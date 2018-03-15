@@ -11,6 +11,8 @@
 |
 */
 
+Auth::login(\App\User::find(2));
+
 Route::get('/', function () {
     return view('test');
 });
