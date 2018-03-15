@@ -10,4 +10,9 @@ class Event extends Model
     {
     	return $this->belongsTo('App\Theme');
     }
+
+    public function orders()
+    {
+    	return $this->hasMany('App\Order');
+    }
 }

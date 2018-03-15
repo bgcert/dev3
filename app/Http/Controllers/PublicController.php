@@ -23,12 +23,10 @@ class PublicController extends Controller
     {
     	$company = \App\Company::with('user')->where('slug', request()->slug)->first();
 
-    	// company's themes
     	$themes = $this->themesBy($company);
-    	// company's events
     	$events = $this->eventsBy($company);
-    	// company's venues
     	$venues = $this->venuesBy($company);
+    	
     	return view('company', compact('company', 'themes', 'events', 'venues'));
     }
 

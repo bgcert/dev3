@@ -27,7 +27,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                    	<li><a class="nav-link" href="/e">events</a></li>
+	        			<li><a class="nav-link" href="/v">venues</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -43,6 +44,14 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                	<a class="dropdown-item" href="/account">
+                                       Account
+                                    </a>
+                                    @if(isset(Auth::user()->company))
+                                	<a class="dropdown-item" href="/dashboard">
+                                       Dashboard
+                                    </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -59,13 +68,6 @@
                 </div>
             </div>
         </nav>
-
-        <div class="container">
-        	<ul>
-	        	<li><a href="/e">events</a></li>
-	        	<li><a href="/v">venues</a></li>
-	        </ul>	
-        </div>
 
         <main class="py-4">
             @yield('content')

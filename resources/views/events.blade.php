@@ -37,6 +37,10 @@
 			<td><a href="/c/{{ $e->theme->company->slug }}">{{ $e->theme->company->name }}</a></td>
 		</tr>
 		<tr>
+			<td></td>
+			<td><a href="#" class="btn btn-primary">Request</a></td>
+		</tr>
+		<tr>
 			<td colspan="2"></td>
 		</tr>
 	
