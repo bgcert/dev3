@@ -70,6 +70,7 @@ class PublicController extends Controller
     public function showVenue()
     {
     	$venue = \App\venue::where('id', request()->id)->with('company')->first();
-    	return view('venue', compact('venue'));
+    	$images = $venue->venue_images;
+    	return view('venue', compact('venue', 'images'));
     }
 }

@@ -10,4 +10,9 @@ class Venue extends Model
     {
     	return $this->belongsTo('App\Company');
     }
+
+    public function venue_images()
+    {
+    	return $this->hasMany('App\VenueImage');
+    }
 }

@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
 	    factory('App\Theme', 30)->create();
 	    factory('App\Event', 50)->create();
 	    factory('App\Venue', 40)->create();
+	    factory('App\VenueImage', 100)->create();
     }
 }
