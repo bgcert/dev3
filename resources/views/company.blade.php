@@ -5,8 +5,23 @@
     <h2>company</h2>
 	<table class="table table-bordered">
 		<tr>
-			<td>#{{ $company->id }}</td>
+			<td>#ID</td>
+			<td>{{ $company->id }}</td>
+		</tr>
+		<tr>
+			<td>Name</td>
 			<td>{{ $company->name }}</td>
+		</tr>
+		<tr>
+			<td>Logo</td>
+			<td><img src="{{ $company->logo }}" style="width: 60px;"></td>
+		</tr>
+		<tr>
+			<td>Cover</td>
+			<td><img src="{{ $company->cover }}" style="width: 240px;"></td>
+		</tr>
+		<tr>
+			<td>User</td>
 			<td>{{ $company->user->name }}</td>
 		</tr>
 	</table>
