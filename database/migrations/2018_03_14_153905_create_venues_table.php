@@ -17,6 +17,9 @@ class CreateVenuesTable extends Migration
             $table->increments('id');
             $table->integer('company_id')->unsigned();
             $table->string('name');
+            $table->text('description');
+            $table->integer('capacity');
+            $table->string('cover')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

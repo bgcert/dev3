@@ -18,6 +18,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'role_id' => rand(1, 2),
+        'picture' => 'https://placeimg.com/240/280/any?t=' . $faker->numberBetween($min = 100, $max = 1000),
         'remember_token' => str_random(10),
     ];
 });

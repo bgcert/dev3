@@ -17,6 +17,8 @@ class CreateThemesTable extends Migration
             $table->increments('id');
             $table->integer('company_id')->unsigned();
             $table->string('title');
+            $table->text('body');
+            $table->string('cover')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

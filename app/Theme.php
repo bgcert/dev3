@@ -10,4 +10,9 @@ class Theme extends Model
     {
     	return $this->belongsTo('App\Company');
     }
+
+    public function events()
+    {
+    	return $this->hasMany('App\Event');
+    }
 }

@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Route::get('/e', 'PublicController@e');
 Route::get('/v', 'PublicController@v');
+Route::get('/c/{slug}', 'PublicController@c');
+
+Route::get('/event/{id}', 'PublicController@showEvent');
+Route::get('/venue/{id}', 'PublicController@showVenue');
 
 Auth::routes();
 

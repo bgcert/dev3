@@ -17,6 +17,9 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->integer('theme_id')->unsigned();
             $table->string('test');
+            $table->string('cover')->nullable();
+            $table->timestamp('begin_at')->nullable();
+            $table->timestamp('end_at')->nullable();
             $table->timestamps();
 
             $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');

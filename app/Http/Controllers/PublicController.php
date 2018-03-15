@@ -18,4 +18,58 @@ class PublicController extends Controller
     	$venues = \App\Venue::with('company')->get();
     	return view('venues', compact('venues'));
     }
+
+    public function c()
+    {
+    	$company = \App\Company::with('user')->where('slug', request()->slug)->first();
+
+    	// company's themes
+    	$themes = $this->themesBy($company);
+    	// company's events
+    	$events = $this->eventsBy($company);
+    	// company's venues
+    	$venues = $this->venuesBy($company);
+    	return view('company', compact('company', 'themes', 'events', 'venues'));
+    }
+
+    public function eventsBy($company)
+    {
+    	$events = \DB::table('events')
+            ->join('themes', 'themes.id', '=', 'events.theme_id')
+            ->where('themes.company_id', $company->id)
+            ->select('events.id', 'events.cover', 'events.begin_at', 'themes.title', 'themes.cover')
+            ->get();
+
+    	return $events;
+    }
+
+    public function themesBy($company)
+    {
+    	$themes = \DB::table('themes')
+            ->where('company_id', $company->id)
+            ->get();
+
+    	return $themes;
+    }
+
+    public function venuesBy($company)
+    {
+    	$events = \DB::table('venues')
+            ->where('company_id', $company->id)
+            ->get();
+
+    	return $events;
+    }
+
+    public function showEvent()
+    {
+    	$event = \App\Event::where('id', request()->id)->with('theme.company')->first();
+    	return view('event', compact('event'));
+    }
+
+    public function showVenue()
+    {
+    	$venue = \App\venue::where('id', request()->id)->with('company')->first();
+    	return view('venue', compact('venue'));
+    }
 }
