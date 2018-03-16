@@ -2,10 +2,6 @@
 
 @section('secondary-content')
 	
-	<ul>
-		@foreach()
-		<li></li>
-		@endforeach
-	</ul>
+	<h2>home</h2>
 
 @endsection

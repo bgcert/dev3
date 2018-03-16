@@ -3,11 +3,18 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+//use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
+//use Spatie\Activitylog\Traits\HasActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    
+    use LogsActivity;
+    //use CausesActivity;
+    //use HasActivity;
 
     /**
      * The attributes that are mass assignable.

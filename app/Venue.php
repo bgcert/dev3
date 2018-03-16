@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Activitylog\Traits\LogsActivity;
 class Venue extends Model
 {
+    use LogsActivity;
+
+    protected $fillable = ['company_id', 'name', 'description', 'capacity'];
+
     public function company()
     {
     	return $this->belongsTo('App\Company');
@@ -17,7 +21,7 @@ class Venue extends Model
     }
 
     /**
-     * Get all of the post's comments.
+     * Get all of the venue's comments.
      */
     public function comments()
     {

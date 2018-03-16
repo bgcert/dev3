@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(5));
+Auth::login(\App\User::find(4));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -38,7 +38,6 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');
-	Route::get('/activity', 'UserController@activity');
 
 	Route::post('/follow', 'UserController@follow');
 
@@ -53,5 +52,11 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');
+
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => 'auth'], function () {
+
+	Route::get('/activity', 'AdminController@activity');
 
 });

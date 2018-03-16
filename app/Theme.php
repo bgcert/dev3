@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Theme extends Model
 {
+    protected $fillable = [
+        'company_id', 'title', 'body',
+    ];
+
     public function company()
     {
     	return $this->belongsTo('App\Company');
