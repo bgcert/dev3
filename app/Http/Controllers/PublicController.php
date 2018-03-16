@@ -30,6 +30,13 @@ class PublicController extends Controller
     	return view('company', compact('company', 'themes', 'events', 'venues'));
     }
 
+    public function u()
+    {
+    	$user = \App\User::find(request()->id);
+    	
+    	return view('user', compact('user'));
+    }
+
     public function eventsBy($company)
     {
     	$events = \DB::table('events')

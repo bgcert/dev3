@@ -44,7 +44,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                	<a class="dropdown-item" href="/account">
+                                	<a class="dropdown-item" href="/users/">
                                        Account
                                     </a>
                                     @if(isset(Auth::user()->company))

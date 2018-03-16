@@ -23,6 +23,7 @@ Route::get('/', 'PublicController@e');
 Route::get('/e', 'PublicController@e');
 Route::get('/v', 'PublicController@v');
 Route::get('/c/{slug}', 'PublicController@c');
+Route::get('/user/{id}', 'PublicController@u');
 
 Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
@@ -36,7 +37,9 @@ Auth::routes();
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
 	Route::get('/', 'UserController@index');
-	Route::get('/order/', 'UserController@order');
+	Route::get('/order', 'UserController@order');
+	Route::get('/activity', 'UserController@activity');
+
 	Route::post('/follow', 'UserController@follow');
 
 });
