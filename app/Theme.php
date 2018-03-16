@@ -15,4 +15,12 @@ class Theme extends Model
     {
     	return $this->hasMany('App\Event');
     }
+
+    /**
+     * Get all of the post's comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
+    }
 }

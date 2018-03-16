@@ -19,5 +19,16 @@
     <p>
     	by <a href="/c/{{ $venue->company->slug }}">{{ $venue->company->name }}</a>
     </p>
+    <h4>Comments</h4>
+    <hr>
+    @foreach($venue->comments as $comment)
+    <div class="media">
+    	<img class="mr-3" src="{{ $comment->user->picture }}" style="width: 28px;">
+    	<div class="media-body">
+    		<h5 class="mt-0"><a href="/user/{{ $comment->user->id }}">{{ $comment->user->name }}</a></h5>
+    		<p>{{ $comment->body }}</p>	
+    	</div>
+    </div>   	
+    @endforeach
 </div>
 @endsection

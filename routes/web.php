@@ -48,5 +48,6 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('teachers', 'TeacherController');
 	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
+	Route::resource('comments', 'CommentController');
 
 });

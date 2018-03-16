@@ -67,13 +67,14 @@ class PublicController extends Controller
 
     public function showEvent()
     {
-    	$event = \App\Event::where('id', request()->id)->with('theme.company')->first();
+    	$event = \App\Event::where('id', request()->id)->with('theme.company', 'theme.comments.user')->first();
     	return view('event', compact('event'));
     }
 
     public function showVenue()
     {
-    	$venue = \App\venue::where('id', request()->id)->with('company')->first();
+    	$venue = \App\venue::where('id', request()->id)->with('company', 'comments.user')->first();
+    	//dd($venue);
     	$images = $venue->venue_images;
     	return view('venue', compact('venue', 'images'));
     }

@@ -13,6 +13,7 @@
 				  <a class="nav-link disabled" href="/dashboard/teachers">Teachers</a>
 				  <a class="nav-link" href="/dashboard/venues">Venues</a>
 				  <a class="nav-link" href="/dashboard/orders">Orders</a>
+				  <a class="nav-link" href="/dashboard/comments">Comments</a>
 				</nav>
     		</div>
     		<div class="col-10">
