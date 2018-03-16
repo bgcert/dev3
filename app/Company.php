@@ -15,4 +15,9 @@ class Company extends Model
     {
     	return $this->hasMany('App\Theme');
     }
+
+    public function followers()
+    {
+    	return $this->belongsToMany('App\User', 'company_user');
+    }
 }

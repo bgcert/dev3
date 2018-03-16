@@ -21,7 +21,7 @@ class PublicController extends Controller
 
     public function c()
     {
-    	$company = \App\Company::with('user')->where('slug', request()->slug)->first();
+    	$company = \App\Company::with('user', 'followers')->where('slug', request()->slug)->first();
 
     	$themes = $this->themesBy($company);
     	$events = $this->eventsBy($company);

@@ -24,6 +24,34 @@
 			<td>User</td>
 			<td>{{ $company->user->name }}</td>
 		</tr>
+		<tr>
+			<td>Followed by:</td>
+			<td>
+				<ul class="list-inline">
+					@foreach($company->followers as $follower)
+					<li class="list-inline-item"><img src="{{ $follower->picture }}" style="width: 20px;"></li>
+					@endforeach
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>--</td>
+			<td>
+				@auth
+				<form method="POST" action="/users/follow">
+					@csrf
+					<input type="hidden" name="id" value="{{ $company->id }}">
+					<button type="submit" class="btn btn-primary">
+						@if($company->followers->contains(auth()->user()))
+							Unfollow
+						@else
+							Follow
+						@endif
+					</button>
+				</form>
+				@endauth
+			</td>
+		</tr>
 	</table>
 
 	<hr>

@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(1));
+Auth::login(\App\User::find(5));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -33,10 +33,11 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
 // USER ROUTES
-Route::group(['namespace' => 'Users', 'prefix' => 'account',  'middleware' => 'auth'], function () {
+Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order/', 'UserController@order');
+	Route::post('/follow', 'UserController@follow');
 
 });
 

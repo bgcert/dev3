@@ -16,4 +16,11 @@ class UserController extends Controller
     {
     	return;
     }
+
+    public function follow()
+    {
+    	$user = \Auth::user();
+    	$user->following()->toggle(request()->id);
+    	return back();
+    }
 }
