@@ -24,25 +24,29 @@ Route::get('/e', 'PublicController@e');
 Route::get('/v', 'PublicController@v');
 Route::get('/c/{slug}', 'PublicController@c');
 
+Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
 Route::get('/venue/{id}', 'PublicController@showVenue');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 // USER ROUTES
 Route::group(['namespace' => 'Users', 'prefix' => 'account',  'middleware' => 'auth'], function () {
+
 	Route::get('/', 'UserController@index');
+	Route::get('/order/', 'UserController@order');
+
 });
-
-Route::get('/order/', 'UserController@order');
-
-
-//Route::get('/dashboard/', 'UserController@dashboard');
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {
 
 	Route::get('/', 'DashboardController@index');
+	Route::resource('themes', 'ThemeController');
+	Route::resource('events', 'EventController');
+	Route::resource('teachers', 'TeacherController');
+	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
+
 });

@@ -59,6 +59,12 @@ class PublicController extends Controller
     	return $events;
     }
 
+    public function showTheme()
+    {
+    	$theme = \App\Theme::where('id', request()->id)->with('company')->first();
+    	return view('theme', compact('theme'));
+    }
+
     public function showEvent()
     {
     	$event = \App\Event::where('id', request()->id)->with('theme.company')->first();

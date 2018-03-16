@@ -10,6 +10,6 @@ class DashboardController extends Controller
     public function index()
     {
     	$company = \Auth::user()->company;
-    	return view('dashboard', compact('company'));
+    	return view('dashboard.index', compact('company'));
     }
 }

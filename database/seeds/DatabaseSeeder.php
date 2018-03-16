@@ -20,8 +20,14 @@ class DatabaseSeeder extends Seeder
 
 	    factory('App\Theme', 30)->create();
 	    factory('App\Event', 50)->create();
-	    factory('App\Venue', 40)->create();
-	    factory('App\VenueImage', 100)->create();
+
+	    factory('App\Venue', 40)->create()->each(function ($v) {
+	    	for ($i=0; $i < rand(1, 10) ; $i++) { 
+	    		$v->venue_images()->save(factory('App\VenueImage')->make());
+	    	}
+	    });
+
+	    //factory('App\VenueImage', 100)->create();
 	    factory('App\Order', 60)->create();
     }
 }

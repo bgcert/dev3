@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Publishers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class ThemeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +16,11 @@ class OrderController extends Controller
     {
     	$company = \Auth::user()->company;
 
-    	$orders = \DB::table('orders')
-    		->join('users', 'users.id', '=', 'orders.user_id')
-    		->join('events', 'events.id', '=', 'orders.event_id')
-            ->join('themes', 'themes.id', '=', 'events.theme_id')
+    	$themes = \DB::table('themes')
             ->where('themes.company_id', $company->id)
-            ->select('orders.id', 'orders.created_at', 'orders.qty', 'users.name', 'events.begin_at', 'themes.title')
             ->get();
 
-        return view('dashboard.orders.index', compact('orders'));
+        return view('dashboard.themes.index', compact('themes'));
     }
 
     /**
@@ -56,7 +52,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //
     }
 
     /**

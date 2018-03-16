@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Publishers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class VenueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +14,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$company = \Auth::user()->company;
+        $company = \Auth::user()->company;
 
-    	$orders = \DB::table('orders')
-    		->join('users', 'users.id', '=', 'orders.user_id')
-    		->join('events', 'events.id', '=', 'orders.event_id')
-            ->join('themes', 'themes.id', '=', 'events.theme_id')
-            ->where('themes.company_id', $company->id)
-            ->select('orders.id', 'orders.created_at', 'orders.qty', 'users.name', 'events.begin_at', 'themes.title')
+    	$venues = \DB::table('venues')
+            ->where('venues.company_id', $company->id)
+            ->select('venues.id', 'venues.name')
             ->get();
 
-        return view('dashboard.orders.index', compact('orders'));
+        return view('dashboard.venues.index', compact('venues'));
     }
 
     /**
@@ -56,7 +53,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //
     }
 
     /**

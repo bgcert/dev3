@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+	<h1>Event</h1>
+	<hr>
 	<img src="{{ $event->cover }}" style="height: 300px;">
     <h2>{{ $event->theme->title }}</h2>
     <div>
