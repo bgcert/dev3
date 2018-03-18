@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function activity()
     {
-        return $activity = Activity::all();
-    	return view('users.index', compact('activity'));
+        $activity = Activity::all();
+    	return view('admin.index', compact('activity'));
     }
 }
