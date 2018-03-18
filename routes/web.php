@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(3));
+Auth::login(\App\User::find(4));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -55,7 +55,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => 'auth'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {
 
 	Route::get('/activity', 'AdminController@activity');
 
