@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(4));
+Auth::login(\App\User::find(3));
 
 // Route::get('/', function () {
 //     return view('test');

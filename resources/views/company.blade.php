@@ -38,17 +38,11 @@
 			<td>--</td>
 			<td>
 				@auth
-				<form method="POST" action="/users/follow">
-					@csrf
-					<input type="hidden" name="id" value="{{ $company->id }}">
-					<button type="submit" class="btn btn-primary">
-						@if($company->followers->contains(auth()->user()))
-							Unfollow
-						@else
-							Follow
-						@endif
-					</button>
-				</form>
+				<follow
+					followed="{{ $company->followers->contains(auth()->user()) }}"
+					company_id="{{ $company->id }}"
+					>
+				</follow>
 				@endauth
 			</td>
 		</tr>

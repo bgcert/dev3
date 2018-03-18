@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td>Begin at:</td>
-			<td>{{ $e->begin_at }}</td>
+			<td>{{ \Carbon\Carbon::parse($e->begin_at)->diffForHumans() }}</td>
 		</tr>
 		<tr>
 			<td>Test</td>
