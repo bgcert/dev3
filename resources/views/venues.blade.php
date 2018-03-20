@@ -31,6 +31,7 @@
 					liked="{{ $v->isLiked->count() }}"
 					>
 				</like>
+				({{ $v->likes_count }})
 			</td>
 		</tr>
 		<tr>

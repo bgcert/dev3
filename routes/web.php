@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(3));
+//Auth::login(\App\User::find(3));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -41,7 +41,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');
-	
+
 	Route::post('/follow', 'UserController@follow');
 
 });
