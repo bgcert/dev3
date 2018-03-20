@@ -36,7 +36,6 @@ class PublicController extends Controller
     public function user()
     {
     	$user = \App\User::find(request()->id);
-    	
     	return view('user', compact('user'));
     }
 
@@ -55,7 +54,6 @@ class PublicController extends Controller
     public function showVenue()
     {
     	$venue = \App\venue::where('id', request()->id)->with('company', 'comments.user')->first();
-    	//dd($venue);
     	$images = $venue->venue_images;
     	return view('venue', compact('venue', 'images'));
     }

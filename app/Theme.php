@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Likable;
+use App\Traits\Commentable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Theme extends Model
 {
+	use Likable;
+	use Commentable;
     use LogsActivity;
     
     protected $fillable = [
@@ -21,26 +25,5 @@ class Theme extends Model
     public function events()
     {
     	return $this->hasMany('App\Event');
-    }
-
-    /**
-     * Get all of the post's comments.
-     */
-    public function comments()
-    {
-        return $this->morphMany('App\Comment', 'commentable');
-    }
-
-    /**
-     * Get all of the post's likes.
-     */
-    public function likes()
-    {
-        return $this->morphMany('App\Like', 'likable');
-    }
-
-    public function isLiked()
-    {
-    	return $this->likes()->where('user_id', \Auth::id());
     }
 }
