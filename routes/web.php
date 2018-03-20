@@ -20,6 +20,9 @@ Auth::login(\App\User::find(4));
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@e');
 
+
+// improve these!
+Route::get('/t', 'PublicController@t');
 Route::get('/e', 'PublicController@e');
 Route::get('/v', 'PublicController@v');
 Route::get('/c/{slug}', 'PublicController@c');

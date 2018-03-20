@@ -1,4 +1,4 @@
-@extends('layouts.app')
+	@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -39,6 +39,15 @@
 		<tr>
 			<td></td>
 			<td><a href="#" class="btn btn-primary">Request</a></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<like
+					liked="{{ $e->theme->isLiked->count() }}"
+					>
+				</like>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2"></td>

@@ -30,4 +30,17 @@ class Theme extends Model
     {
         return $this->morphMany('App\Comment', 'commentable');
     }
+
+    /**
+     * Get all of the post's likes.
+     */
+    public function likes()
+    {
+        return $this->morphMany('App\Like', 'likable');
+    }
+
+    public function isLiked()
+    {
+    	return $this->likes()->where('user_id', \Auth::id());
+    }
 }

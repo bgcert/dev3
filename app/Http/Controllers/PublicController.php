@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+	public function t()
+    {
+    	$themes = \App\Theme::with('isLiked')->get();
+    	dd($themes);
+    	return view('themes', compact('themes'));
+    }
+
     public function e()
     {
-    	$events = \App\Event::with('theme', 'theme.company')->get();
+    	$events = \App\Event::with('theme.isLiked', 'theme.company')->get();
+    	//dd($events);
 
     	return view('events', compact('events'));
     }
