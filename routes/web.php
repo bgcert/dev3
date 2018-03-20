@@ -11,22 +11,22 @@
 |
 */
 
-Auth::login(\App\User::find(4));
+Auth::login(\App\User::find(3));
 
 // Route::get('/', function () {
 //     return view('test');
 // });
 
 // PUBLIC ROUTES
-Route::get('/', 'PublicController@e');
+Route::get('/', 'PublicController@events');
 
 
 // improve these!
-Route::get('/t', 'PublicController@t');
-Route::get('/e', 'PublicController@e');
-Route::get('/v', 'PublicController@v');
-Route::get('/c/{slug}', 'PublicController@c');
-Route::get('/user/{id}', 'PublicController@u');
+Route::get('/t', 'PublicController@themes');
+Route::get('/e', 'PublicController@events');
+Route::get('/v', 'PublicController@venues');
+Route::get('/c/{slug}', 'PublicController@company');
+Route::get('/user/{id}', 'PublicController@user');
 
 Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
@@ -41,7 +41,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');
-
+	
 	Route::post('/follow', 'UserController@follow');
 
 });

@@ -52,21 +52,21 @@
 
 	<h4>{{ $company->name }}'s themes</h4>
 	<ul>
-	@foreach($themes as $t)
+	@foreach($company->themes as $t)
 		<li><a href="/theme/{{ $t->id }}">{{ $t->title }}</a></li>
 	@endforeach
 	</ul>
 
 	<h4>{{ $company->name }}'s events</h4>
 	<ul>
-	@foreach($events as $e)
+	@foreach($company->events as $e)
 		<li><a href="/event/{{ $e->id }}">{{ $e->title }} - {{ $e->begin_at }}</a></li>
 	@endforeach
 	</ul>
 
 	<h4>{{ $company->name }}'s venues</h4>
 	<ul>
-	@foreach($venues as $v)
+	@foreach($company->venues as $v)
 		<li><a href="/venue/{{ $v->id }}">{{ $v->name }}</a></li>
 	@endforeach
 	</ul>
