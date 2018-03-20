@@ -25,6 +25,15 @@
 			<td><a href="/c/{{ $v->company->slug }}">{{ $v->company->name }}</a></td>
 		</tr>
 		<tr>
+			<td></td>
+			<td>
+				<like
+					liked="{{ $v->isLiked->count() }}"
+					>
+				</like>
+			</td>
+		</tr>
+		<tr>
 			<td colspan="2"></td>
 		</tr>
 	

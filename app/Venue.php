@@ -27,4 +27,14 @@ class Venue extends Model
     {
         return $this->morphMany('App\Comment', 'commentable');
     }
+
+    public function likes()
+    {
+        return $this->morphMany('App\Like', 'likable');
+    }
+
+    public function isLiked()
+    {
+    	return $this->likes()->where('user_id', \Auth::id());
+    }
 }
