@@ -11,7 +11,7 @@
 |
 */
 
-//Auth::login(\App\User::find(3));
+Auth::login(\App\User::find(3));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -44,7 +44,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::post('/follow', 'UserController@follow');
 
-	Route::post('/like/theme', 'LikeController@likeTheme');
+	Route::post('/like/theme', 'LikeController@toggleTheme');
 	Route::post('/like/venue', 'LikeController@toggleVenue');
 
 });

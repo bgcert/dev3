@@ -1,23 +1,33 @@
 <template>
 	<div>
-		<a href="#" @click.prevent="toggle"> 
-			<template v-if="isLiked == 1">
-				Unlike
-			</template>
-			<template v-else>
+		<template v-if="auth == 1">
+			<a href="#" @click.prevent="toggle"> 
+				<template v-if="isLiked == 1">
+					Unlike
+				</template>
+				<template v-else>
+					Like
+				</template>
+			</a>	
+		</template>
+		<template v-else>
+			<a href="#" @click.prevent="redirect">
 				Like
-			</template>
-		</a>
+			</a>
+		</template>
+		
+		<span>({{ count }})</span>
 	</div>
 </template>
 
 <script>
     export default {
-    	props: ['liked', 'item_id', 'route'],
+    	props: ['auth', 'likes', 'liked', 'item_id', 'route'],
 
     	data: function () {
     		return {
     			isLiked: this.liked,
+    			count: this.likes,
     		}
     	},
 
@@ -26,13 +36,23 @@
     			var vm = this;
     			axios.post(vm.route, { id: vm.item_id })
     			.then(function (response) {
-    				vm.isLiked = !vm.isLiked;
+    				if (vm.isLiked == 1) {
+    					vm.isLiked = 0;
+    					vm.count--;
+    				} else {
+    					vm.isLiked = 1;
+    					vm.count++;
+    				}
     				console.log(response);
     			})
     			.catch(function (error) {
     				console.log(error);
     			});
     			console.log('toggle like');
+    		},
+
+    		redirect() {
+    			window.location.href = '/login';
     		}
     	},
 

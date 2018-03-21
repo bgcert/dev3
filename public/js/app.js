@@ -47525,13 +47525,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['liked', 'item_id', 'route'],
+	props: ['auth', 'likes', 'liked', 'item_id', 'route'],
 
 	data: function data() {
 		return {
-			isLiked: this.liked
+			isLiked: this.liked,
+			count: this.likes
 		};
 	},
 
@@ -47539,12 +47549,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		toggle: function toggle() {
 			var vm = this;
 			axios.post(vm.route, { id: vm.item_id }).then(function (response) {
-				vm.isLiked = !vm.isLiked;
+				if (vm.isLiked == 1) {
+					vm.isLiked = 0;
+					vm.count--;
+				} else {
+					vm.isLiked = 1;
+					vm.count++;
+				}
 				console.log(response);
 			}).catch(function (error) {
 				console.log(error);
 			});
 			console.log('toggle like');
+		},
+		redirect: function redirect() {
+			window.location.href = '/login';
 		}
 	},
 
@@ -47561,26 +47580,50 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "a",
-      {
-        attrs: { href: "#" },
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            return _vm.toggle($event)
-          }
-        }
-      },
-      [
-        _vm.isLiked == 1
-          ? [_vm._v("\n\t\t\tUnlike\n\t\t")]
-          : [_vm._v("\n\t\t\tLike\n\t\t")]
-      ],
-      2
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _vm.auth == 1
+        ? [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.toggle($event)
+                  }
+                }
+              },
+              [
+                _vm.isLiked == 1
+                  ? [_vm._v("\n\t\t\t\tUnlike\n\t\t\t")]
+                  : [_vm._v("\n\t\t\t\tLike\n\t\t\t")]
+              ],
+              2
+            )
+          ]
+        : [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.redirect($event)
+                  }
+                }
+              },
+              [_vm._v("\n\t\t\tLike\n\t\t")]
+            )
+          ],
+      _vm._v(" "),
+      _c("span", [_vm._v("(" + _vm._s(_vm.count) + ")")])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -28,12 +28,12 @@
 			<td></td>
 			<td>
 				<like
+					likes="{{ $v->likes_count }}"
 					liked="{{ $v->isLiked->count() }}"
 					item_id="{{ $v->id }}"
 					route="/users/like/venue"
 					>
 				</like>
-				({{ $v->likes_count }})
 			</td>
 		</tr>
 		<tr>

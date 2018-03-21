@@ -44,7 +44,11 @@
 			<td></td>
 			<td>
 				<like
+					auth="{{ auth()->check() }}"
+					likes="{{ $e->likes_count }}"
 					liked="{{ $e->theme->isLiked->count() }}"
+					item_id="{{ $e->theme->id }}"
+					route="/users/like/theme"
 					>
 				</like>
 			</td>

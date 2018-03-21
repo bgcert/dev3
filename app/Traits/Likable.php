@@ -131,11 +131,12 @@ trait Likable
 		$counter = $this->likeCount()->first();
 		if($counter) {
 			$counter->count--;
-			if($counter->count) {
+			if($counter->count >= 0) { // if result is 0 it means false in php, ">0" is true 
 				$counter->save();
-			} else {
-				$counter->delete();
 			}
+			//  else {
+			// 	$counter->delete(); // commented so count to be left 0 in the LikeCount table
+			// }
 		}
 	}
 }
