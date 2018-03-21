@@ -47527,26 +47527,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['liked'],
+	props: ['liked', 'item_id', 'route'],
 
 	data: function data() {
 		return {
 			isLiked: this.liked
-			//id: this.company_id
 		};
 	},
 
 	methods: {
 		toggle: function toggle() {
 			var vm = this;
-			// axios.post('/users/follow', { id: vm.id })
-			// .then(function (response) {
-			// 	vm.isFollowed = !vm.isFollowed;
-			// 	console.log(response);
-			// })
-			// .catch(function (error) {
-			// 	console.log(error);
-			// });
+			axios.post(vm.route, { id: vm.item_id }).then(function (response) {
+				vm.isLiked = !vm.isLiked;
+				console.log(response);
+			}).catch(function (error) {
+				console.log(error);
+			});
 			console.log('toggle like');
 		}
 	},

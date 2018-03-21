@@ -29,6 +29,8 @@
 			<td>
 				<like
 					liked="{{ $v->isLiked->count() }}"
+					item_id="{{ $v->id }}"
+					route="/users/like/venue"
 					>
 				</like>
 				({{ $v->likes_count }})

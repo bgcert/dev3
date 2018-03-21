@@ -22,6 +22,14 @@ class CreateLikesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::create('like_counts', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('likeable_id', 36);
+			$table->string('likeable_type', 255);
+			$table->integer('count')->unsigned()->default(0);
+			$table->unique(['likeable_id', 'likeable_type'], 'like_counts');
+		});
     }
 
     /**
@@ -32,5 +40,6 @@ class CreateLikesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('likes');
+        Schema::dropIfExists('like_counts');
     }
 }

@@ -39,8 +39,14 @@ class User extends Authenticatable
     	return $this->belongsToMany('App\Company', 'followers')->withTimestamps();
     }
 
-    public function likedThemes()
-	{
-	    return $this->morphedByMany('App\Theme', 'likeable');
-	}
+ //    public function likes()
+ //    {
+ //    	return $this->hasMany('App\Like');
+ //    }
+
+	// public function comments()
+ //    {
+ //    	return $this->morphMany('App\Comment', 'commentable');
+ //    }    
+
 }

@@ -44,6 +44,9 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::post('/follow', 'UserController@follow');
 
+	Route::post('/like/theme', 'LikeController@likeTheme');
+	Route::post('/like/venue', 'LikeController@toggleVenue');
+
 });
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {
