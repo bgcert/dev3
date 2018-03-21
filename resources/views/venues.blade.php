@@ -28,6 +28,7 @@
 			<td></td>
 			<td>
 				<like
+					auth="{{ auth()->check() }}"
 					likes="{{ $v->likes_count }}"
 					liked="{{ $v->isLiked->count() }}"
 					item_id="{{ $v->id }}"
