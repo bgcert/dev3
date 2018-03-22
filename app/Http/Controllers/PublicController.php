@@ -15,13 +15,20 @@ class PublicController extends Controller
 
     public function events()
     {
-    	$events = \App\Event::with('theme.isLiked', 'theme.company')->get();
+    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
     	return view('events', compact('events'));
+    }
+
+    public function eventList()
+    {
+    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
+    	return response()->json($events);
     }
 
     public function venues()
     {
     	$venues = \App\Venue::with('company', 'isLiked')->withCount('likes')->get();
+    	//dd($venues);
     	return view('venues', compact('venues'));
     }
 

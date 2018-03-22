@@ -15,8 +15,9 @@
 				Like
 			</a>
 		</template>
-		
-		<span>({{ count }})</span>
+		<template v-if="count">
+			<span>({{ count }})</span>	
+		</template>
 	</div>
 </template>
 

@@ -3,9 +3,14 @@
 @section('content')
 <div class="container">
     <h2>events</h2>
+
     <table class="table table-bordered">
+    	<event-box
+    		auth="{{ auth()->check() }}"
+    		>
+		</event-box>
     @foreach($events as $e)
-    
+
     	<tr>
 			<td>#ID</td>
 			<td>{{ $e->id }}</td>

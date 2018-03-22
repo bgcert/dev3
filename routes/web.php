@@ -11,7 +11,7 @@
 |
 */
 
-//Auth::login(\App\User::find(3));
+Auth::login(\App\User::find(5));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -20,8 +20,6 @@
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@events');
 
-
-// improve these!
 Route::get('/t', 'PublicController@themes');
 Route::get('/e', 'PublicController@events');
 Route::get('/v', 'PublicController@venues');
@@ -31,6 +29,8 @@ Route::get('/user/{id}', 'PublicController@user');
 Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
 Route::get('/venue/{id}', 'PublicController@showVenue');
+
+Route::get('/eventlist', 'PublicController@eventList');
 
 Auth::routes();
 
