@@ -7,7 +7,9 @@
 			</tr>
 			<tr>
 				<td>Name</td>
-				<td><a :href="'/event/' + event.id">{{ event.theme.title }}</a></td>
+				<td>
+					<a :href="'/event/' + event.id">{{ event.theme.title }}</a>
+				</td>
 			</tr>
 			<tr>
 				<td>cover</td>
@@ -23,7 +25,10 @@
 			</tr>
 			<tr>
 				<td>Organization</td>
-				<td><a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a></td>
+				<td>
+					<box-hover :name="event.theme.company.name"></box-hover>
+					<!-- <a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a> -->
+				</td>
 			</tr>
 			<tr>
 				<td></td>
