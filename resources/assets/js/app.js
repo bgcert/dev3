@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('follow', require('./components/FollowComponent.vue'));
 Vue.component('like', require('./components/LikeComponent.vue'));
+Vue.component('event-list', require('./components/EventListComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 
 const app = new Vue({

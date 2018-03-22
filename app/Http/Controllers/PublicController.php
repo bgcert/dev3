@@ -22,7 +22,7 @@ class PublicController extends Controller
     public function eventList()
     {
     	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
-    	return response()->json($events);
+    	return $events;
     }
 
     public function venues()

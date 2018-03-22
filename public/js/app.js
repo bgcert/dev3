@@ -13967,7 +13967,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(52);
+module.exports = __webpack_require__(55);
 
 
 /***/ }),
@@ -13994,7 +13994,8 @@ window.Vue = __webpack_require__(37);
 Vue.component('example-component', __webpack_require__(40));
 Vue.component('follow', __webpack_require__(43));
 Vue.component('like', __webpack_require__(46));
-Vue.component('event-box', __webpack_require__(49));
+Vue.component('event-list', __webpack_require__(49));
+Vue.component('event-box', __webpack_require__(52));
 
 var app = new Vue({
   el: '#app'
@@ -47665,6 +47666,122 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources\\assets\\js\\components\\EventListComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-090176bc", Component.options)
+  } else {
+    hotAPI.reload("data-v-090176bc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['auth'],
+
+    data: function data() {
+        return {
+            events: {}
+        };
+    },
+
+    created: function created() {
+        var vm = this;
+        axios.get('/eventlist').then(function (response) {
+            vm.events = response.data;
+            console.log('event list');
+            console.log(vm.events);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    _vm._l(_vm.events, function(event) {
+      return _c(
+        "div",
+        [_c("event-box", { attrs: { auth: _vm.auth, item: event } })],
+        1
+      )
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-090176bc", module.exports)
+  }
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources\\assets\\js\\components\\EventBoxComponent.vue"
 
 /* hot reload */
@@ -47687,7 +47804,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47740,131 +47857,105 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['auth'],
-    data: function data() {
-        return {
-            events: {}
-        };
-    },
+	props: ['auth', 'item'],
+	data: function data() {
+		return {
+			event: this.item
+		};
+	},
 
-    methods: {},
-
-    mounted: function mounted() {
-        console.log('event list Component mounted.');
-    },
-    created: function created() {
-        var vm = this;
-        axios.get('/eventlist').then(function (response) {
-            vm.events = response.data;
-            console.log(vm.events);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
+	mounted: function mounted() {
+		console.log('event box Component mounted.');
+	}
 });
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.events[1]
-        ? [
-            _c("table", { staticClass: "table table-bordered" }, [
-              _c("tr", [
-                _c("td", [_vm._v("#ID")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.events[1].id))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("a", { attrs: { href: "/event/" + _vm.events[1].id } }, [
-                    _vm._v(_vm._s(_vm.events[1].theme.title))
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("cover")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("img", {
-                    staticStyle: { width: "200px" },
-                    attrs: { src: _vm.events[1].cover }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Body")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.events[1].theme.body))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Begin at:")]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.events[1].begin_at))])
-              ]),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td", [_vm._v("Organization")]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "/c/" + _vm.events[1].theme.company.slug }
-                    },
-                    [_vm._v(_vm._s(_vm.events[1].theme.company.name))]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("tr", [
-                _c("td"),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  [
-                    _c("like", {
-                      attrs: {
-                        auth: _vm.auth,
-                        likes:
-                          _vm.events[1].theme.like_count != null
-                            ? _vm.events[1].theme.like_count.count
-                            : "",
-                        liked: _vm.events[1].theme.is_liked.length,
-                        item_id: _vm.events[1].id,
-                        route: "/users/like/theme"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ])
-            ])
-          ]
-        : _vm._e()
-    ],
-    2
-  )
+  return _c("div", [
+    _c("table", { staticClass: "table table-bordered" }, [
+      _c("tr", [
+        _c("td", [_vm._v("#ID")]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.event.id))])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("td", [
+          _c("a", { attrs: { href: "/event/" + _vm.event.id } }, [
+            _vm._v(_vm._s(_vm.event.theme.title))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("cover")]),
+        _vm._v(" "),
+        _c("td", [
+          _c("img", {
+            staticStyle: { width: "200px" },
+            attrs: { src: _vm.event.cover }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Body")]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.event.theme.body))])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Begin at:")]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.event.begin_at))])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td", [_vm._v("Organization")]),
+        _vm._v(" "),
+        _c("td", [
+          _c("a", { attrs: { href: "/c/" + _vm.event.theme.company.slug } }, [
+            _vm._v(_vm._s(_vm.event.theme.company.name))
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("tr", [
+        _c("td"),
+        _vm._v(" "),
+        _c(
+          "td",
+          [
+            _c("like", {
+              attrs: {
+                auth: _vm.auth,
+                likes:
+                  _vm.event.theme.like_count != null
+                    ? _vm.event.theme.like_count.count
+                    : "",
+                liked: _vm.event.theme.is_liked.length,
+                item_id: _vm.event.theme.id,
+                route: "/users/like/theme"
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -47888,7 +47979,7 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
