@@ -1,8 +1,12 @@
 <template>
     <div style="position:relative;">
 		<div class="user-popover" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
-			<h3>{{ name }}</h3>
-			<button>Follow</button>
+			<h3><a :href="'/c/' + company.slug">{{ name }}</a></h3>
+			<follow
+				:followed="company.is_followed.length > 0"
+				:company_id="company.id"
+				>
+			</follow>
 			<hr>
 			<ul>
 				<template v-for="user in company.followers">
@@ -33,9 +37,6 @@
     		{
     			let vm = this;
     			this.getCompany();
-    			// this.timer = setTimeout(function() {
-    			// 	vm.showPopover();
-    			// }, 600);
     		},
 
     		hoverOut: function()

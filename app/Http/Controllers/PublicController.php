@@ -22,7 +22,6 @@ class PublicController extends Controller
     public function venues()
     {
     	$venues = \App\Venue::with('company', 'isLiked')->withCount('likes')->get();
-    	//dd($venues);
     	return view('venues', compact('venues'));
     }
 

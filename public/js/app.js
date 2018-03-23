@@ -48446,6 +48446,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['name', 'id'],
@@ -48464,9 +48468,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hover: function hover() {
             var vm = this;
             this.getCompany();
-            // this.timer = setTimeout(function() {
-            // 	vm.showPopover();
-            // }, 600);
         },
 
         hoverOut: function hoverOut() {
@@ -48530,9 +48531,18 @@ var render = function() {
             on: { mouseover: _vm.hoverInfo, mouseout: _vm.hoverOutInfo }
           },
           [
-            _c("h3", [_vm._v(_vm._s(_vm.name))]),
+            _c("h3", [
+              _c("a", { attrs: { href: "/c/" + _vm.company.slug } }, [
+                _vm._v(_vm._s(_vm.name))
+              ])
+            ]),
             _vm._v(" "),
-            _c("button", [_vm._v("Follow")]),
+            _c("follow", {
+              attrs: {
+                followed: _vm.company.is_followed.length > 0,
+                company_id: _vm.company.id
+              }
+            }),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
@@ -48552,7 +48562,8 @@ var render = function() {
               ],
               2
             )
-          ]
+          ],
+          1
         )
       : _vm._e(),
     _vm._v(" "),
