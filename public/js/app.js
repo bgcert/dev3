@@ -13967,7 +13967,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(58);
+module.exports = __webpack_require__(63);
 
 
 /***/ }),
@@ -47718,7 +47718,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         var vm = this;
-        axios.get('/eventlist').then(function (response) {
+        axios.get('/data/eventlist').then(function (response) {
             vm.events = response.data;
             console.log('event list');
             console.log(vm.events);
@@ -47862,7 +47862,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['auth', 'item'],
@@ -47931,7 +47930,14 @@ var render = function() {
         _vm._v(" "),
         _c(
           "td",
-          [_c("box-hover", { attrs: { name: _vm.event.theme.company.name } })],
+          [
+            _c("box-hover", {
+              attrs: {
+                name: _vm.event.theme.company.name,
+                id: _vm.event.theme.company.id
+              }
+            })
+          ],
           1
         )
       ]),
@@ -47991,13 +47997,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(63)
+  __webpack_require__(56)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(56)
+var __vue_script__ = __webpack_require__(61)
 /* template */
-var __vue_template__ = __webpack_require__(57)
+var __vue_template__ = __webpack_require__(62)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48037,87 +48043,46 @@ module.exports = Component.exports
 
 /***/ }),
 /* 56 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['name'],
-
-    data: function data() {
-        return {
-            active: false
-        };
-    },
-
-    methods: {
-        mouseOver: function mouseOver() {
-            this.active = !this.active;
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Box hover mounted.');
-    }
-});
+// load the styles
+var content = __webpack_require__(57);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(59)("d3964fcc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "box-hover" }, [
-      _c("div", { staticClass: "content-box" }, [
-        _c("h1", [_vm._v(_vm._s(_vm.name))])
-      ]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" }, on: { mouseover: _vm.mouseOver } }, [
-        _vm._v(_vm._s(_vm.name) + " hover")
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-cf657536", module.exports)
-  }
-}
+exports = module.exports = __webpack_require__(58)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.user-popover{\n        position: absolute;\n        width: 200px;\n        background: #fff;\n        border: 1px solid #42b983;\n        padding: 10px 20px;\n        -webkit-box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n                box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n        z-index:999;\n        bottom: 20px;\n}\nbutton{\n        background: #42b983;\n        font-family: 'Montserrat', sans-serif;\n        border: 1px solid #42b983;\n        padding: 12px;\n        font-size: 12px;\n        color: #fff;\n        outline: none;\n        display: inline-block;\n        text-align: center;\n        padding: 6px 12px;\n        border-radius: 3px;\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        margin: 0 0 5px 0;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 58 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 59 */,
-/* 60 */
 /***/ (function(module, exports) {
 
 /*
@@ -48199,49 +48164,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 61 */,
-/* 62 */,
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(64);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(65)("d3964fcc", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(60)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.box-hover {\n\tposition: relative;\n}\n.content-box {\n\tvisibility: hidden;\n\tborder: 1px solid #999;\n\tbackground-color: #fff;\n\tposition: absolute;\n    z-index: 1;\n    top: -80px;\n    padding: 10px;\n}\n.box-hover:hover .content-box {\n    visibility: visible;\n}\n.content-box:hover {\n\tvisibility: visible;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 65 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -48260,7 +48183,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(66)
+var listToStyles = __webpack_require__(60)
 
 /*
 type StyleObject = {
@@ -48469,7 +48392,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 66 */
+/* 60 */
 /***/ (function(module, exports) {
 
 /**
@@ -48500,6 +48423,164 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['name', 'id'],
+
+    data: function data() {
+        return {
+            showPopup: false,
+            timer: '',
+            isInInfo: false,
+            company: []
+        };
+    },
+
+    methods: {
+
+        hover: function hover() {
+            var vm = this;
+            this.getCompany();
+            // this.timer = setTimeout(function() {
+            // 	vm.showPopover();
+            // }, 600);
+        },
+
+        hoverOut: function hoverOut() {
+            var vm = this;
+            clearTimeout(vm.timer);
+            this.timer = setTimeout(function () {
+                if (!vm.isInInfo) {
+                    vm.closePopover();
+                }
+            }, 200);
+        },
+
+        hoverInfo: function hoverInfo() {
+            this.isInInfo = true;
+        },
+
+        hoverOutInfo: function hoverOutInfo() {
+            this.isInInfo = false;
+            this.hoverOut();
+        },
+
+        showPopover: function showPopover() {
+            this.showPopup = true;
+        },
+
+        closePopover: function closePopover() {
+            this.showPopup = false;
+        },
+
+        getCompany: function getCompany() {
+            var vm = this;
+            var route = '/data/getcompany/' + this.id;
+            axios.get(route).then(function (response) {
+                vm.company = response.data;
+                vm.timer = setTimeout(function () {
+                    vm.showPopover();
+                }, 600);
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticStyle: { position: "relative" } }, [
+    _vm.showPopup
+      ? _c(
+          "div",
+          {
+            staticClass: "user-popover",
+            attrs: { transition: "fade" },
+            on: { mouseover: _vm.hoverInfo, mouseout: _vm.hoverOutInfo }
+          },
+          [
+            _c("h3", [_vm._v(_vm._s(_vm.name))]),
+            _vm._v(" "),
+            _c("button", [_vm._v("Follow")]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c(
+              "ul",
+              [
+                _vm._l(_vm.company.followers, function(user) {
+                  return [
+                    _c("li", [
+                      _c("img", {
+                        staticStyle: { width: "20px" },
+                        attrs: { src: user.picture }
+                      })
+                    ])
+                  ]
+                })
+              ],
+              2
+            )
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        attrs: { href: "#" },
+        on: { mouseover: _vm.hover, mouseout: _vm.hoverOut }
+      },
+      [_vm._v(_vm._s(_vm.name))]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cf657536", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

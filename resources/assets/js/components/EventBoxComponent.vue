@@ -26,8 +26,7 @@
 			<tr>
 				<td>Organization</td>
 				<td>
-					<box-hover :name="event.theme.company.name"></box-hover>
-					<!-- <a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a> -->
+					<box-hover :name="event.theme.company.name" :id="event.theme.company.id"></box-hover>
 				</td>
 			</tr>
 			<tr>

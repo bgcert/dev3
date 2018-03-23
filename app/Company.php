@@ -28,7 +28,7 @@ class Company extends Model
 
     public function followers()
     {
-    	return $this->belongsToMany('App\User', 'followers');
+    	return $this->belongsToMany('App\User', 'followers'); // ?!
     }
 
 

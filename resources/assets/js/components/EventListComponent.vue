@@ -22,7 +22,7 @@
 
         created() {
             var vm = this;
-        	axios.get('/eventlist').then(function (response) {
+        	axios.get('/data/eventlist').then(function (response) {
         		vm.events = response.data;
         		console.log('event list');
 				console.log(vm.events);
