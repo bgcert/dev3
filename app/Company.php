@@ -31,16 +31,15 @@ class Company extends Model
     	return $this->belongsToMany('App\User', 'followers')->withTimestamps();
     }
 
+    public function firstFiveFollowers()
+    {
+    	return $this->followers()->limit(5);
+    }
+
     public function isFollowed()
     {
     	return $this->followers()->where('user_id', auth()->id());
     }
-
-
-    // public function isLiked()
-    // {
-    // 	return $this->likes()->where('user_id', \Auth::id());
-    // }
 
 
 }

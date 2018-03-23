@@ -22,10 +22,10 @@ class LikeController extends Controller
     	return $theme;
     }
 
-    public function likeVenue()
-    {
-    	$venue = \App\Venue::find(request()->id);
-    	$venue->like();
-    	return $venue;
-    }
+    // public function likeVenue()
+    // {
+    // 	$venue = \App\Venue::find(request()->id);
+    // 	$venue->like();
+    // 	return $venue;
+    // }
 }

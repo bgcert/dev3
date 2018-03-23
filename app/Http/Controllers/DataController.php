@@ -14,7 +14,7 @@ class DataController extends Controller
 
     public function getCompany()
     {
-    	$company = \App\Company::with(['followers' => function($query) { return $query->limit(5); }])
+    	$company = \App\Company::with('firstFiveFollowers')
     							->with('isFollowed')
 				    			->where('id', request()->id)
 				    			->first();

@@ -31,7 +31,12 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><a href="#">Request</a></td>
+				<td>
+					<request-modal
+						
+						>
+					</request-modal>
+				</td>
 			</tr>
 			<tr>
 				<td></td>

@@ -8,9 +8,9 @@
 				>
 			</follow>
 			<hr>
-			<ul>
-				<template v-for="user in company.followers">
-					<li><img :src="user.picture" style="width: 20px;"></li>
+			<ul style="list-style-type: none;">
+				<template v-for="user in company.first_five_followers">
+					<li style="display: inline; margin: 0 0 0 1px;"><a :href="'/user/' + user.id"><img :src="user.picture" style="border-radius: 4px; width: 25px;"></a></li>
 				</template>
 			</ul>
 		</div>
@@ -95,7 +95,7 @@
 <style>
 	.user-popover{
         position: absolute;
-        width: 200px;
+        width: 250px;
         background: #fff;
         border: 1px solid #42b983;
         padding: 10px 20px;

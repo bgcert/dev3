@@ -13997,6 +13997,7 @@ Vue.component('like', __webpack_require__(46));
 Vue.component('event-list', __webpack_require__(49));
 Vue.component('event-box', __webpack_require__(52));
 Vue.component('box-hover', __webpack_require__(55));
+Vue.component('request-modal', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app'
@@ -47942,7 +47943,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("tr", [_c("td"), _vm._v(" "), _c("td", [_c("request-modal")], 1)]),
       _vm._v(" "),
       _c("tr", [
         _c("td"),
@@ -47969,18 +47970,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td"),
-      _vm._v(" "),
-      _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("Request")])])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48076,7 +48066,7 @@ exports = module.exports = __webpack_require__(58)(false);
 
 
 // module
-exports.push([module.i, "\n.user-popover{\n        position: absolute;\n        width: 200px;\n        background: #fff;\n        border: 1px solid #42b983;\n        padding: 10px 20px;\n        -webkit-box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n                box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n        z-index:999;\n        bottom: 20px;\n}\nbutton{\n        background: #42b983;\n        font-family: 'Montserrat', sans-serif;\n        border: 1px solid #42b983;\n        padding: 12px;\n        font-size: 12px;\n        color: #fff;\n        outline: none;\n        display: inline-block;\n        text-align: center;\n        padding: 6px 12px;\n        border-radius: 3px;\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        margin: 0 0 5px 0;\n}\n", ""]);
+exports.push([module.i, "\n.user-popover{\n        position: absolute;\n        width: 250px;\n        background: #fff;\n        border: 1px solid #42b983;\n        padding: 10px 20px;\n        -webkit-box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n                box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);\n        z-index:999;\n        bottom: 20px;\n}\nbutton{\n        background: #42b983;\n        font-family: 'Montserrat', sans-serif;\n        border: 1px solid #42b983;\n        padding: 12px;\n        font-size: 12px;\n        color: #fff;\n        outline: none;\n        display: inline-block;\n        text-align: center;\n        padding: 6px 12px;\n        border-radius: 3px;\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        margin: 0 0 5px 0;\n}\n", ""]);
 
 // exports
 
@@ -48548,15 +48538,27 @@ var render = function() {
             _vm._v(" "),
             _c(
               "ul",
+              { staticStyle: { "list-style-type": "none" } },
               [
-                _vm._l(_vm.company.followers, function(user) {
+                _vm._l(_vm.company.first_five_followers, function(user) {
                   return [
-                    _c("li", [
-                      _c("img", {
-                        staticStyle: { width: "20px" },
-                        attrs: { src: user.picture }
-                      })
-                    ])
+                    _c(
+                      "li",
+                      {
+                        staticStyle: { display: "inline", margin: "0 0 0 1px" }
+                      },
+                      [
+                        _c("a", { attrs: { href: "/user/" + user.id } }, [
+                          _c("img", {
+                            staticStyle: {
+                              "border-radius": "4px",
+                              width: "25px"
+                            },
+                            attrs: { src: user.picture }
+                          })
+                        ])
+                      ]
+                    )
                   ]
                 })
               ],
@@ -48592,6 +48594,227 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\RequestModalComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f8a96d8", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f8a96d8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['followed', 'company_id'],
+
+	data: function data() {
+		return {
+			show: false
+		};
+	},
+
+	methods: {
+		openModal: function openModal() {
+			this.show = !this.show;
+		}
+	},
+
+	mounted: function mounted() {
+		console.log('Request Modal component mounted.');
+	}
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "a",
+      {
+        attrs: { href: "#" },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.openModal($event)
+          }
+        }
+      },
+      [_vm._v("Request")]
+    ),
+    _vm._v(" "),
+    _vm.show
+      ? _c("div", [
+          _c(
+            "div",
+            {
+              staticClass: "modal",
+              staticStyle: { display: "block" },
+              attrs: { id: "myModal", tabindex: "-1", role: "dialog" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "modal-dialog", attrs: { role: "document" } },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "modal-header" }, [
+                      _c("h5", { staticClass: "modal-title" }, [
+                        _vm._v("Modal title")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "close",
+                          attrs: { type: "button", "aria-label": "Close" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.openModal($event)
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { attrs: { "aria-hidden": "true" } }, [
+                            _vm._v("×")
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
+                ]
+              )
+            ]
+          )
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", [_vm._v("Modal body text goes here.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7f8a96d8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

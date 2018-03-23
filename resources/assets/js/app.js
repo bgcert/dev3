@@ -21,6 +21,7 @@ Vue.component('like', require('./components/LikeComponent.vue'));
 Vue.component('event-list', require('./components/EventListComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
+Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 
 const app = new Vue({
     el: '#app'
