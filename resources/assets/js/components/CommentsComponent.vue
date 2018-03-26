@@ -9,7 +9,7 @@
 		    		<h5 class="mt-0">
 		                <a :href="'/user/' + comment.user.id">{{ comment.user.name }}</a>
 		                ({{ date(comment.created_at) }})
-		                <template v-if="comment.user.id == user">
+		                <template v-if="comment.user.id == user_id">
 		                	<span><a href="#" @click.prevent="removeComment(comment.id, index)">delete</a></span>	
 		                </template>
 		            </h5>
@@ -28,11 +28,10 @@
 
 <script>
     export default {
-    	props: ['id'],
+    	props: ['id', 'user_id'],
 
     	data: function () {
     		return {
-    			user: 9,
     			comments: [],
     			body: ''
     		}

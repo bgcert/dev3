@@ -48902,11 +48902,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id'],
+  props: ['id', 'user_id'],
 
   data: function data() {
     return {
-      user: 9,
       comments: [],
       body: ''
     };
@@ -48989,7 +48988,7 @@ var render = function() {
                       _vm._s(_vm.date(comment.created_at)) +
                       ")\n\t                "
                   ),
-                  comment.user.id == _vm.user
+                  comment.user.id == _vm.user_id
                     ? [
                         _c("span", [
                           _c(

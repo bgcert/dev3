@@ -22,6 +22,7 @@
     </p>
     <comments
     	id="{{ $event->theme->id }}"
+    	user_id="{{ auth()->id() }}"
     	>
     </comments>
 </div>
