@@ -51,7 +51,8 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::post('/like/venue', 'LikeController@toggleVenue');
 
 	// Comments
-	Route::post('/comment/add', 'CommentController@commentTheme');	
+	Route::post('/comment/add', 'CommentController@commentTheme');
+	Route::post('/comment/remove', 'CommentController@destroy');
 
 });
 

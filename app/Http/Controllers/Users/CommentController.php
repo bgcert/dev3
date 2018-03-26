@@ -13,4 +13,10 @@ class CommentController extends Controller
     	$comment = $theme->comment(request()->body);
 		return $comment;
     }
+
+    public function destroy()
+    {
+    	//return request()->id;
+    	return \App\Comment::destroy(request()->id);
+    }
 }

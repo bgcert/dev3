@@ -2,25 +2,26 @@
 	<div>
 		<h4>Comments</h4>
 		<hr>
-		<div v-for="comment in comments">
+		<div v-for="(comment, index) in comments">
 			<div class="media">
 		    	<img class="mr-3" :src="comment.user.picture" style="width: 28px;">
 		    	<div class="media-body">
 		    		<h5 class="mt-0">
 		                <a :href="'/user/' + comment.user.id">{{ comment.user.name }}</a>
 		                ({{ date(comment.created_at) }})
+		                <template v-if="comment.user.id == user">
+		                	<span><a href="#" @click.prevent="removeComment(comment.id, index)">delete</a></span>	
+		                </template>
 		            </h5>
 		    		<p>{{ comment.body }}</p>	
 		    	</div>
 		    </div>	
 		</div>
 		<div>
-			<!-- <form action="" method="post" @submit.prevent="submit"> -->
-				<textarea v-model="body">
-					
-				</textarea>
-				<a href="#" @click.prevent="addComment">Submit</a>
-			<!-- </form> -->
+			<textarea v-model="body">
+				
+			</textarea>
+			<a href="#" @click.prevent="addComment">Submit</a>
 		</div>
 	</div>
 </template>
@@ -31,6 +32,7 @@
 
     	data: function () {
     		return {
+    			user: 9,
     			comments: [],
     			body: ''
     		}
@@ -48,13 +50,25 @@
 				axios.post('/users/comment/add', { id: vm.id, body: this.body })
 				.then(function (response) {
 					vm.comments.push(response.data);
-					vm.message = '';
+					vm.body = '';
 					console.log(response.data);
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
 	            console.log('Comments Component mounted.')
+    		},
+
+    		removeComment(id, index) {
+    			var vm = this;
+    			axios.post('/users/comment/remove', { id: id })
+				.then(function (response) {
+					vm.comments.splice(index, 1);
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
     		}
     	},
 

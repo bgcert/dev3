@@ -48899,12 +48899,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id'],
 
   data: function data() {
     return {
+      user: 9,
       comments: [],
       body: ''
     };
@@ -48920,12 +48922,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var vm = this;
       axios.post('/users/comment/add', { id: vm.id, body: this.body }).then(function (response) {
         vm.comments.push(response.data);
-        vm.message = '';
+        vm.body = '';
         console.log(response.data);
       }).catch(function (error) {
         console.log(error);
       });
       console.log('Comments Component mounted.');
+    },
+    removeComment: function removeComment(id, index) {
+      var vm = this;
+      axios.post('/users/comment/remove', { id: id }).then(function (response) {
+        vm.comments.splice(index, 1);
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   },
 
@@ -48956,7 +48967,7 @@ var render = function() {
       _vm._v(" "),
       _c("hr"),
       _vm._v(" "),
-      _vm._l(_vm.comments, function(comment) {
+      _vm._l(_vm.comments, function(comment, index) {
         return _c("div", [
           _c("div", { staticClass: "media" }, [
             _c("img", {
@@ -48966,16 +48977,40 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "media-body" }, [
-              _c("h5", { staticClass: "mt-0" }, [
-                _c("a", { attrs: { href: "/user/" + comment.user.id } }, [
-                  _vm._v(_vm._s(comment.user.name))
-                ]),
-                _vm._v(
-                  "\n\t                (" +
-                    _vm._s(_vm.date(comment.created_at)) +
-                    ")\n\t            "
-                )
-              ]),
+              _c(
+                "h5",
+                { staticClass: "mt-0" },
+                [
+                  _c("a", { attrs: { href: "/user/" + comment.user.id } }, [
+                    _vm._v(_vm._s(comment.user.name))
+                  ]),
+                  _vm._v(
+                    "\n\t                (" +
+                      _vm._s(_vm.date(comment.created_at)) +
+                      ")\n\t                "
+                  ),
+                  comment.user.id == _vm.user
+                    ? [
+                        _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.removeComment(comment.id, index)
+                                }
+                              }
+                            },
+                            [_vm._v("delete")]
+                          )
+                        ])
+                      ]
+                    : _vm._e()
+                ],
+                2
+              ),
               _vm._v(" "),
               _c("p", [_vm._v(_vm._s(comment.body))])
             ])
