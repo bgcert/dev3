@@ -23,6 +23,8 @@ Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 
+Vue.component('comments', require('./components/CommentsComponent.vue'));
+
 const app = new Vue({
     el: '#app'
 });

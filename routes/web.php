@@ -33,6 +33,7 @@ Route::get('/venue/{id}', 'PublicController@showVenue');
 // Data routes
 Route::get('/data/eventlist', 'DataController@eventList');
 Route::get('/data/getcompany/{id}', 'DataController@getCompany');
+Route::post('/data/getcomments', 'DataController@getComments');
 
 Auth::routes();
 
@@ -48,6 +49,9 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 
 	Route::post('/like/theme', 'LikeController@toggleTheme');
 	Route::post('/like/venue', 'LikeController@toggleVenue');
+
+	// Comments
+	Route::post('/comment/add', 'CommentController@commentTheme');	
 
 });
 

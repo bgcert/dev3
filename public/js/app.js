@@ -13967,7 +13967,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(66);
+module.exports = __webpack_require__(69);
 
 
 /***/ }),
@@ -13998,6 +13998,8 @@ Vue.component('event-list', __webpack_require__(49));
 Vue.component('event-box', __webpack_require__(52));
 Vue.component('box-hover', __webpack_require__(55));
 Vue.component('request-modal', __webpack_require__(63));
+
+Vue.component('comments', __webpack_require__(66));
 
 var app = new Vue({
   el: '#app'
@@ -48819,6 +48821,219 @@ if (false) {
 
 /***/ }),
 /* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(67)
+/* template */
+var __vue_template__ = __webpack_require__(68)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CommentsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a311e82", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a311e82", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['id'],
+
+  data: function data() {
+    return {
+      comments: [],
+      body: ''
+    };
+  },
+
+  methods: {
+    date: function date(_date) {
+      return moment().to(_date);
+      return moment(_date).format('D MMM YYYY');
+    },
+    addComment: function addComment() {
+      console.log(this.message);
+      var vm = this;
+      axios.post('/users/comment/add', { id: vm.id, body: this.body }).then(function (response) {
+        vm.comments.push(response.data);
+        vm.message = '';
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+      console.log('Comments Component mounted.');
+    }
+  },
+
+  mounted: function mounted() {
+    var vm = this;
+    axios.post('/data/getcomments', { id: vm.id }).then(function (response) {
+      vm.comments = response.data;
+      console.log(response.data);
+    }).catch(function (error) {
+      console.log(error);
+    });
+    console.log('Comments Component mounted.');
+  }
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h4", [_vm._v("Comments")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.comments, function(comment) {
+        return _c("div", [
+          _c("div", { staticClass: "media" }, [
+            _c("img", {
+              staticClass: "mr-3",
+              staticStyle: { width: "28px" },
+              attrs: { src: comment.user.picture }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "media-body" }, [
+              _c("h5", { staticClass: "mt-0" }, [
+                _c("a", { attrs: { href: "/user/" + comment.user.id } }, [
+                  _vm._v(_vm._s(comment.user.name))
+                ]),
+                _vm._v(
+                  "\n\t                (" +
+                    _vm._s(_vm.date(comment.created_at)) +
+                    ")\n\t            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(comment.body))])
+            ])
+          ])
+        ])
+      }),
+      _vm._v(" "),
+      _c("div", [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.body,
+              expression: "body"
+            }
+          ],
+          domProps: { value: _vm.body },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.body = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.addComment($event)
+              }
+            }
+          },
+          [_vm._v("Submit")]
+        )
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2a311e82", module.exports)
+  }
+}
+
+/***/ }),
+/* 69 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

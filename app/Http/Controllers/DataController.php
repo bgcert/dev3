@@ -20,4 +20,10 @@ class DataController extends Controller
 				    			->first();
     	return $company;
     }
+
+    public function getComments()
+    {
+    	$theme = \App\Theme::with('comments.user')->where('id', request()->id)->first();
+    	return $theme->comments;
+    }
 }
