@@ -13967,7 +13967,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(63);
+module.exports = __webpack_require__(66);
 
 
 /***/ }),
@@ -13997,7 +13997,7 @@ Vue.component('like', __webpack_require__(46));
 Vue.component('event-list', __webpack_require__(49));
 Vue.component('event-box', __webpack_require__(52));
 Vue.component('box-hover', __webpack_require__(55));
-Vue.component('request-modal', __webpack_require__(67));
+Vue.component('request-modal', __webpack_require__(63));
 
 var app = new Vue({
   el: '#app'
@@ -47863,6 +47863,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['auth', 'item'],
@@ -47870,6 +47874,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			event: this.item
 		};
+	},
+
+	methods: {
+		date: function date(_date) {
+			return moment(_date).format('D MMM YYYY');
+		}
 	},
 
 	mounted: function mounted() {
@@ -47923,7 +47933,7 @@ var render = function() {
       _c("tr", [
         _c("td", [_vm._v("Begin at:")]),
         _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.event.begin_at))])
+        _c("td", [_vm._v(_vm._s(_vm.date(_vm.event.begin_at)))])
       ]),
       _vm._v(" "),
       _c("tr", [
@@ -48591,23 +48601,14 @@ if (false) {
 
 /***/ }),
 /* 63 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(68)
+var __vue_script__ = __webpack_require__(64)
 /* template */
-var __vue_template__ = __webpack_require__(69)
+var __vue_template__ = __webpack_require__(65)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48646,7 +48647,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48702,7 +48703,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 69 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48815,6 +48816,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-7f8a96d8", module.exports)
   }
 }
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

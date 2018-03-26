@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>Begin at:</td>
-				<td>{{ event.begin_at }}</td>
+				<td>{{ date(event.begin_at) }}</td>
 			</tr>
 			<tr>
 				<td>Organization</td>
@@ -33,7 +33,6 @@
 				<td></td>
 				<td>
 					<request-modal
-						
 						>
 					</request-modal>
 				</td>
@@ -61,6 +60,12 @@
     	data: function () {
     		return {
     			event: this.item,
+    		}
+    	},
+
+    	methods: {
+    		date(date) {
+    			return moment(date).format('D MMM YYYY');
     		}
     	},
 
