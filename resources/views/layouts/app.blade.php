@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Scripts -->
+    <!-- Push Scripts -->
     @stack('header-scripts')
 </head>
 <body>
