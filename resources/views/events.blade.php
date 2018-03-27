@@ -8,9 +8,9 @@
 @section('content')
 <div class="container">
     <h2>events</h2>
-    <event-list
+    <event-feed
 		auth="{{ auth()->check() }}"
 		>
-	</event-list>
+	</event-feed>
 </div>
 @endsection

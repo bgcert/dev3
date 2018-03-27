@@ -23,7 +23,7 @@ trait Commentable
 			$comment->user_id = $userId;
 			$comment->body = $body;
 			$this->comments()->save($comment);
-			return $comment->load('user'); // load the associated user
+			return $comment;
 		}
 	}
 }

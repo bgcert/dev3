@@ -11,7 +11,7 @@ class CommentController extends Controller
     {
     	$theme = \App\Theme::find(request()->id);
     	$comment = $theme->comment(request()->body);
-		return $comment;
+		return $comment->load('user'); // load the associated user
     }
 
     public function destroy()

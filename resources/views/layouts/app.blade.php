@@ -19,17 +19,7 @@
 <body>
     <div id="app">
         @include('layouts.includes.navbar')
-        <el-button type="primary">Primary</el-button>
-
-        <el-popover
-		  ref="popover1"
-		  placement="top-start"
-		  title="Title"
-		  width="200"
-		  trigger="hover"
-		  content="this is content, this is content, this is content">
-		</el-popover>
-		<el-button v-popover:popover1>Hover to activate</el-button>
+        
         <main class="py-4">
             @yield('content')
         </main>
