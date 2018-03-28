@@ -14,6 +14,12 @@ window.Vue = require('vue');
 */
 export const EventBus = new Vue();
 
+window.flash = (message, type) => {
+	EventBus.$emit('flash', message, type);
+}
+
+window.auth = { auth: '{{ auth()->check() }}' }
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
@@ -27,6 +33,7 @@ Vue.use(ElementUI, { locale })
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('flash', require('./components/FlashComponent.vue'));
 Vue.component('follow', require('./components/FollowComponent.vue'));
 Vue.component('like', require('./components/LikeComponent.vue'));
 Vue.component('event-feed', require('./components/EventFeedComponent.vue'));

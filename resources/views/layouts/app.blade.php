@@ -18,6 +18,7 @@
 </head>
 <body>
     <div id="app">
+    	<flash message="{{ session('flash') }}"></flash>
         @include('layouts.includes.navbar')
         
         <main class="py-4">

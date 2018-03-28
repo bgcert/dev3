@@ -21,11 +21,4 @@ class LikeController extends Controller
     	$theme->toggle();
     	return $theme;
     }
-
-    // public function likeVenue()
-    // {
-    // 	$venue = \App\Venue::find(request()->id);
-    // 	$venue->like();
-    // 	return $venue;
-    // }
 }

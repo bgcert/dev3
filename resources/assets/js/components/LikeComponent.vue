@@ -35,21 +35,23 @@
     	methods: {
     		toggle() {
     			var vm = this;
+    			var msg = '';
     			axios.post(vm.route, { id: vm.item_id })
     			.then(function (response) {
     				if (vm.isLiked == 1) {
     					vm.isLiked = 0;
     					vm.count--;
+    					msg = 'Item was unliked';
     				} else {
     					vm.isLiked = 1;
     					vm.count++;
+    					msg = 'Item was liked';
     				}
-    				console.log(response);
+					window.flash(msg, 'success');
     			})
     			.catch(function (error) {
     				console.log(error);
     			});
-    			console.log('toggle like');
     		},
 
     		redirect() {

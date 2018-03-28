@@ -33,11 +33,12 @@
     	data: function () {
     		return {
     			comments: [],
-    			body: ''
+    			body: '',
     		}
     	},
 
     	methods: {
+
     		date(date) {
     			return moment().to(date);
     			return moment(date).format('D MMM YYYY');
@@ -50,7 +51,7 @@
 				.then(function (response) {
 					vm.comments.push(response.data);
 					vm.body = '';
-					console.log(response.data);
+					window.flash('New comment posted', 'success');
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -63,11 +64,20 @@
     			axios.post('/users/comment/remove', { id: id })
 				.then(function (response) {
 					vm.comments.splice(index, 1);
-					console.log(response);
+					window.flash('Comment deleted', 'info');
 				})
 				.catch(function (error) {
 					console.log(error);
+					window.flash(error, 'error');
 				});
+    		},
+
+    		handleClose(done) {
+    			this.$confirm('Are you sure to close this dialog?')
+    			.then(_ => {
+    				done();
+    			})
+    			.catch(_ => {});
     		}
     	},
 
