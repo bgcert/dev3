@@ -19,6 +19,7 @@ Auth::login(\App\User::find(9));
 
 // PUBLIC ROUTES
 Route::view('/test', 'test');
+Route::view('/design', 'design');
 Route::get('/', 'PublicController@events');
 
 Route::get('/t', 'PublicController@themes');

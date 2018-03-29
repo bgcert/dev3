@@ -23,8 +23,10 @@ window.auth = { auth: '{{ auth()->check() }}' }
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
+import Vuetify from 'vuetify'
 
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, { locale });
+Vue.use(Vuetify);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -42,6 +44,8 @@ Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
+
+Vue.component('design', require('./components/DesignComponent.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -41,7 +41,7 @@
 
     		date(date) {
     			return moment().to(date);
-    			return moment(date).format('D MMM YYYY');
+    			//return moment(date).format('D MMM YYYY');
     		},
 
     		addComment() {
@@ -61,23 +61,33 @@
 
     		removeComment(id, index) {
     			var vm = this;
-    			axios.post('/users/comment/remove', { id: id })
-				.then(function (response) {
-					vm.comments.splice(index, 1);
-					window.flash('Comment deleted', 'info');
-				})
-				.catch(function (error) {
-					console.log(error);
-					window.flash(error, 'error');
-				});
-    		},
 
-    		handleClose(done) {
-    			this.$confirm('Are you sure to close this dialog?')
-    			.then(_ => {
-    				done();
+    			this.$confirm('This will permanently delete the comment. Continue?', 'Warning', {
+    				type: 'warning'
     			})
-    			.catch(_ => {});
+    			.then( () => {
+    				// Actual delete if "Ok" is pressed
+    				axios.post('/users/comment/remove', { id: id })
+	    				.then(function (response) {
+	    					vm.comments.splice(index, 1);
+	    				})
+	    				.catch(function (error) {
+	    					console.log(error);
+	    				});
+
+	    				this.$message({
+	    					type: 'success',
+	    					message: 'Delete completed'
+	    				});
+    			})
+    			.catch( () => {
+    				this.$message({
+    					type: 'info',
+    					message: 'Delete canceled'
+    				});          
+    			});
+
+    			
     		}
     	},
 
@@ -91,7 +101,7 @@
 			.catch(function (error) {
 				console.log(error);
 			});
-            console.log('Comments Component mounted.')
-        }
+            console.log('Comments Component mounted.');            
+        },
     }
 </script>

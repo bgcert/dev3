@@ -20,7 +20,7 @@
     <div id="app">
     	<flash message="{{ session('flash') }}"></flash>
         @include('layouts.includes.navbar')
-        
+
         <main class="py-4">
             @yield('content')
         </main>
@@ -28,5 +28,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <!-- Push Scripts -->
+    @stack('footer-scripts')
 </body>
 </html>
