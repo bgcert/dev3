@@ -1,22 +1,22 @@
 <template>
 	<div>
 		<template v-if="auth == 1">
-			<a href="#" @click.prevent="toggle"> 
+			<span @click.prevent="toggle"> 
 				<template v-if="isLiked == 1">
-					Unlike
+						<i class="heart red like icon"></i>
 				</template>
 				<template v-else>
-					Like
+						<i class="heart outline like icon"></i>
 				</template>
-			</a>	
+			</span>	
 		</template>
 		<template v-else>
-			<a href="#" @click.prevent="redirect">
-				Like
-			</a>
+			<span href="#" @click.prevent="redirect">
+				<i class="heart outline like icon"></i>
+			</span>
 		</template>
 		<template v-if="count">
-			<span>({{ count }})</span>	
+			<span>{{ count }}</span>
 		</template>
 	</div>
 </template>

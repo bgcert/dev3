@@ -14,19 +14,17 @@ window.Vue = require('vue');
 */
 export const EventBus = new Vue();
 
-window.flash = (message, type) => {
-	EventBus.$emit('flash', message, type);
-}
+// window.flash = (message, type) => {
+// 	EventBus.$emit('flash', message, type);
+// }
 
 window.auth = { auth: '{{ auth()->check() }}' }
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
-import Vuetify from 'vuetify'
 
 Vue.use(ElementUI, { locale });
-Vue.use(Vuetify);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,13 +37,12 @@ Vue.component('flash', require('./components/FlashComponent.vue'));
 Vue.component('follow', require('./components/FollowComponent.vue'));
 Vue.component('like', require('./components/LikeComponent.vue'));
 Vue.component('event-feed', require('./components/EventFeedComponent.vue'));
+Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
-
-Vue.component('design', require('./components/DesignComponent.vue'));
 
 const app = new Vue({
     el: '#app'

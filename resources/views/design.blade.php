@@ -22,14 +22,24 @@
 <body>
 	<div id="app">
 		<v-app>
-			<design></design>
+			<v-toolbar>
+				<v-toolbar-side-icon></v-toolbar-side-icon>
+				<v-toolbar-title>Title</v-toolbar-title>
+				<v-spacer></v-spacer>
+				<v-toolbar-items class="hidden-sm-and-down">
+					<v-btn flat>Link One</v-btn>
+					<v-btn flat>Link Two</v-btn>
+					<v-btn flat>Link Three</v-btn>
+				</v-toolbar-items>
+			</v-toolbar>
+			<card></card>
 		</v-app>
 	</div>
 	<h4>test</h4>
 	<script src="{{ asset('js/app.js') }}"></script>
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
-	
+
 </body>
 </html>
 

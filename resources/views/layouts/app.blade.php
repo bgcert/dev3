@@ -11,23 +11,35 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
     <!-- Push Scripts -->
     @stack('header-scripts')
 </head>
 <body>
     <div id="app">
-    	<flash message="{{ session('flash') }}"></flash>
+    	<!-- <flash message="{{ session('flash') }}"></flash> -->
         @include('layouts.includes.navbar')
 
+        <div class="ui container">
+        	@yield('content')
+        </div>
         <main class="py-4">
-            @yield('content')
+            
         </main>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
+    <script>
+    	$('.ui.dropdown').dropdown();
+    </script>
 
     <!-- Push Scripts -->
     @stack('footer-scripts')

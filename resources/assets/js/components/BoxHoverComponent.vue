@@ -1,6 +1,6 @@
 <template>
-    <div style="position:relative;">
-		<div class="user-popover" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
+    <span style="position:relative;">
+		<a class="user-popover popup top left" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
 			<h3><a :href="'/c/' + company.slug">{{ name }}</a></h3>
 			<follow
 				:followed="company.is_followed.length > 0"
@@ -13,14 +13,15 @@
 					<li style="display: inline; margin: 0 0 0 1px;"><a :href="'/user/' + user.id"><img :src="user.picture" style="border-radius: 4px; width: 25px;"></a></li>
 				</template>
 			</ul>
-		</div>
+		</a>
+		<img :src="logo" class="ui avatar image">
 		<a href="#" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
-    </div>
+    </span>
 </template>
 
 <script>
     export default {
-    	props: ['name', 'id'],
+    	props: ['name', 'logo', 'id'],
 
     	data: function () {
     		return {
@@ -93,18 +94,19 @@
 </script>
 
 <style>
-	.user-popover{
+	.user-popover {
         position: absolute;
         width: 250px;
         background: #fff;
-        border: 1px solid #42b983;
+        border: 1px solid #D4D4D5;
         padding: 10px 20px;
-        box-shadow: 0 6px 6px rgba(16, 16, 16, 0.04), 0 6px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
+        border-radius: 0.28571429rem;
         z-index:999;
         bottom: 20px;
     }
 
-    button{
+    button {
         background: #42b983;
         font-family: 'Montserrat', sans-serif;
         border: 1px solid #42b983;
@@ -119,4 +121,5 @@
         user-select: none;
         margin: 0 0 5px 0;
     }
+    
 </style>

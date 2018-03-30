@@ -1,28 +1,39 @@
 <template>
 	<div>
-		<h4>Comments</h4>
-		<hr>
-		<div v-for="(comment, index) in comments">
-			<div class="media">
-		    	<img class="mr-3" :src="comment.user.picture" style="width: 28px;">
-		    	<div class="media-body">
-		    		<h5 class="mt-0">
-		                <a :href="'/user/' + comment.user.id">{{ comment.user.name }}</a>
-		                ({{ date(comment.created_at) }})
-		                <template v-if="comment.user.id == user_id">
-		                	<span><a href="#" @click.prevent="removeComment(comment.id, index)">delete</a></span>	
-		                </template>
-		            </h5>
-		    		<p>{{ comment.body }}</p>	
-		    	</div>
-		    </div>	
+
+		<h4>Коментари</h4>
+		<div class="ui reply form">
+			<div class="field">
+				<textarea rows="2" v-model="body"></textarea>
+			</div>
+			<a href="" class="ui primary submit labeled icon button" @click.prevent="addComment">
+				<i class="icon edit"></i> Add Comment
+			</a>
 		</div>
-		<div>
-			<textarea v-model="body">
-				
-			</textarea>
-			<a href="#" @click.prevent="addComment">Submit</a>
+		<div class="ui comments">
+			<template v-for="(comment, index) in comments">
+				<div class="comment">
+					<a :href="'/user/' + comment.user.id" class="avatar">
+						<img :src="comment.user.picture">
+					</a>
+					<div class="content">
+						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.name }}</a>
+						<div class="metadata">
+							<div class="date">{{ date(comment.created_at) }}</div>
+							<template v-if="comment.user.id == user_id">
+								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">delete</a>
+							</template>
+						</div>
+						<div class="text">
+							<p>
+								{{ comment.body }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</template>
 		</div>
+
 	</div>
 </template>
 
@@ -41,7 +52,6 @@
 
     		date(date) {
     			return moment().to(date);
-    			//return moment(date).format('D MMM YYYY');
     		},
 
     		addComment() {
