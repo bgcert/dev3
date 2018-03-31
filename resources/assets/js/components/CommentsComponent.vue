@@ -14,7 +14,7 @@
 			<template v-for="(comment, index) in comments">
 				<div class="comment">
 					<a :href="'/user/' + comment.user.id" class="avatar">
-						<img :src="comment.user.picture">
+						<img class="rounded" :src="comment.user.picture">
 					</a>
 					<div class="content">
 						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.name }}</a>
@@ -115,3 +115,9 @@
         },
     }
 </script>
+
+<style>
+	.rounded {
+		border-radius: 50% !important;
+	}
+</style>

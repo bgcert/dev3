@@ -5,10 +5,7 @@
 			>
 		</request-modal>
 
-		
-			
-		
-		<div class="ui four stackable cards">
+		<div class="ui three stackable cards">
 			<template v-for="event in events">
 				<div class="card">
 					<div class="extra content">

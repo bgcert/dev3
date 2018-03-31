@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<a href="#" @click.prevent="toggle"> 
+	<span class="left floated">
+		<a class="mini ui basic button" href="#" @click.prevent="toggle">
 			<template v-if="isFollowed">
 				Unfollow
 			</template>
@@ -8,7 +8,7 @@
 				Follow
 			</template>
 		</a>
-	</div>
+	</span>
 </template>
 
 <script>

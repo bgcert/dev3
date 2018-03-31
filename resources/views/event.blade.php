@@ -3,13 +3,22 @@
 @push('header-scripts')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/bg.js"></script>
+
+	<style>
+		.event-cover {
+			background-image: url({{ $event->cover }});
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 400px;
+		}
+	</style>
 @endpush
 
 @section('content')
 <div class="container">
 	<div class="ui padded grid">
 		<div class="two column row">
-			<div class="ten wide red column" style="background-image: url({{ $event->cover }}); background-size: cover; background-repeat: no-repeat; height: 400px;">
+			<div class="ten wide red column event-cover">
 				<!-- <img src="{{ $event->cover }}"> -->
 			</div>
 			<div class="six wide olive column">

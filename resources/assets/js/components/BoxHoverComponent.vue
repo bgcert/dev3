@@ -1,18 +1,32 @@
 <template>
     <span style="position:relative;">
-		<a class="user-popover popup top left" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
-			<h3><a :href="'/c/' + company.slug">{{ name }}</a></h3>
-			<follow
-				:followed="company.is_followed.length > 0"
-				:company_id="company.id"
-				>
-			</follow>
-			<hr>
-			<ul style="list-style-type: none;">
-				<template v-for="user in company.first_five_followers">
-					<li style="display: inline; margin: 0 0 0 1px;"><a :href="'/user/' + user.id"><img :src="user.picture" style="border-radius: 4px; width: 25px;"></a></li>
-				</template>
-			</ul>
+		<a class="user-popover" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
+            <div class="ui card">
+                <div class="center aligned content">
+                    <a href="#">
+                        <img class="ui tiny circular image" :src="company.logo">
+                    </a>
+                    <div class=" header">
+                        <a class="ui sub header" :href="'/c/' + company.slug">{{ name }}</a>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <follow
+                        :followed="company.is_followed.length > 0"
+                        :company_id="company.id"
+                        >
+                    </follow>
+                    <span class="left floated">
+                        <ul style="list-style-type: none; margin: 1px 0; padding: 0 0 0 10px;">
+                            <template v-for="user in company.first_five_followers">
+                                <li style="display: inline; margin: 0 0 0 2px;"><a :href="'/user/' + user.id"><img :src="user.picture" style="border-radius: 4px; width: 25px;"></a></li>
+                            </template>
+                        </ul>
+                    </span>
+                    
+                </div>
+            </div>
+			
 		</a>
 		<img :src="logo" class="ui avatar image">
 		<a href="#" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
@@ -96,12 +110,11 @@
 <style>
 	.user-popover {
         position: absolute;
-        width: 250px;
-        background: #fff;
-        border: 1px solid #D4D4D5;
-        padding: 10px 20px;
-        box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);
-        border-radius: 0.28571429rem;
+        /*background: #fff;*/
+        /*border: 1px solid #D4D4D5;*/
+        /*padding: 10px 20px;*/
+        /*box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);*/
+        /*border-radius: 0.28571429rem;*/
         z-index:999;
         bottom: 20px;
     }

@@ -12,14 +12,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory('App\User', 10)->create()->each(function ($u) {
+        factory('App\User', 40)->create()->each(function ($u) {
         	if ($u->role_id == 2) {
         		$u->company()->save(factory('App\Company')->make());
         	}
 	    });
 
-	    factory('App\Theme', 30)->create()->each(function ($t) {
-	    	for ($i=0; $i < rand(1, 10) ; $i++) {
+	    factory('App\Theme', 40)->create()->each(function ($t) {
+	    	for ($i=0; $i < rand(1, 30); $i++) {
         		$t->comments()->save(factory('App\Comment')->make());
         	}
 	    });
