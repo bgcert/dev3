@@ -9,7 +9,6 @@
 			<template v-for="event in events">
 				<div class="card">
 					<div class="extra content">
-						<div class="right floated meta">14h</div>
 						<box-hover :name="event.theme.company.name" :logo="event.theme.company.logo" :id="event.theme.company.id"></box-hover>
 					</div>
 					<div class="image">
@@ -36,58 +35,8 @@
 						3 comments
 					</div>
 				</div>
-				<!-- <table class="table table-bordered">
-					<tr>
-						<td>#ID</td>
-						<td>{{ event.id }}</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>
-							<a :href="'/event/' + event.id">{{ event.theme.title }}</a>
-						</td>
-					</tr>
-					<tr>
-						<td>cover</td>
-						<td><img :src="event.cover" style="width: 200px;"></td>
-					</tr>
-					<tr>
-					<td>Body</td>
-						<td>{{ event.theme.body }}</td>
-					</tr>
-					<tr>
-						<td>Begin at:</td>
-						<td>{{ date(event.begin_at) }}</td>
-					</tr>
-					<tr>
-						<td>Organization</td>
-						<td>
-							<box-hover :name="event.theme.company.name" :id="event.theme.company.id"></box-hover>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<a href="#" @click.prevent="request(event.id)">Reqeust</a>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<like
-								:auth="auth"
-								:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
-								:liked="event.theme.is_liked.length"
-								:item_id="event.theme.id"
-								:route="'/users/like/theme'"
-								>
-							</like>
-						</td>
-					</tr>
-				</table> -->
 			</template>
 		</div>
-
 
 	</div>
 </template>

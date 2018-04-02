@@ -79451,6 +79451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['followed', 'company_id'],
@@ -79492,6 +79493,7 @@ var render = function() {
       "a",
       {
         staticClass: "mini ui basic button",
+        class: { orange: _vm.isFollowed },
         attrs: { href: "#" },
         on: {
           click: function($event) {
@@ -79501,6 +79503,8 @@ var render = function() {
         }
       },
       [
+        _c("i", { staticClass: "rss icon" }),
+        _vm._v(" "),
         _vm.isFollowed
           ? [_vm._v("\n\t\t\tНе следвай\n\t\t")]
           : [_vm._v("\n\t\t\tСледвай\n\t\t")]
@@ -79794,57 +79798,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79902,10 +79855,6 @@ var render = function() {
                   "div",
                   { staticClass: "extra content" },
                   [
-                    _c("div", { staticClass: "right floated meta" }, [
-                      _vm._v("14h")
-                    ]),
-                    _vm._v(" "),
                     _c("box-hover", {
                       attrs: {
                         name: event.theme.company.name,
@@ -80550,9 +80499,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['name', 'logo', 'id'],
@@ -80666,53 +80612,29 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("span", { staticClass: "left floated" }, [
-                    _c(
-                      "ul",
-                      {
-                        staticStyle: {
-                          "list-style-type": "none",
-                          margin: "1px 0",
-                          padding: "0 0 0 10px"
-                        }
-                      },
-                      [
-                        _vm._l(_vm.company.first_five_followers, function(
-                          user
-                        ) {
-                          return [
-                            _c(
-                              "li",
-                              {
-                                staticStyle: {
-                                  display: "inline",
-                                  margin: "0 0 0 2px"
-                                }
-                              },
-                              [
-                                _c(
-                                  "a",
-                                  { attrs: { href: "/user/" + user.id } },
-                                  [
-                                    _c("img", {
-                                      staticStyle: {
-                                        "border-radius": "4px",
-                                        width: "25px"
-                                      },
-                                      attrs: { src: user.picture }
-                                    })
-                                  ]
-                                )
-                              ]
-                            )
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ])
+                  _vm._l(_vm.company.first_five_followers, function(follower) {
+                    return [
+                      _c(
+                        "el-tooltip",
+                        {
+                          staticClass: "item",
+                          attrs: {
+                            effect: "dark",
+                            content: follower.name,
+                            placement: "top"
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "ui avatar image",
+                            attrs: { src: follower.picture }
+                          })
+                        ]
+                      )
+                    ]
+                  })
                 ],
-                1
+                2
               )
             ])
           ]
@@ -81026,7 +80948,7 @@ exports = module.exports = __webpack_require__(26)(false);
 
 
 // module
-exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.logo-container { display: inline-block; float: left; margin-right: 30px;\n}\n.company-logo { border-radius: 50%; height: 200px;\n}\n.company-name {\n\tbackground: rgba(0,0,0,.8);\n\tcolor: white;\n\tpadding: 4px 7px;\n\tfloat: left;\n}\n.overlay {\n\tbackground: linear-gradient(45deg, rgba(26, 0, 0, 0.6) 0%, rgba(26, 0, 0, 0.2) 100%);\n}\n", ""]);
+exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.logo-container { display: inline-block; float: left; margin-right: 30px;\n}\n.company-logo { border-radius: 50%; height: 200px;\n}\n.company-name {\n\tbackground: rgba(0,0,0,.8);\n\tcolor: white;\n\tpadding: 4px 7px;\n\tfloat: left;\n}\n.overlay {\n\tbackground: linear-gradient(45deg, rgba(26, 0, 0, 0.6) 0%, rgba(26, 0, 0, 0.2) 100%);\n}\n.follower {\n\tmargin-left: -12px !important;\n}\n.follower.item img {\n\tborder: 2px solid white !important;\n}\n", ""]);
 
 // exports
 
@@ -81037,6 +80959,17 @@ exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -81279,10 +81212,14 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "right menu" }, [
+              _c("div", { staticClass: "ui item" }),
+              _vm._v(" "),
               _c(
-                "a",
+                "div",
                 { staticClass: "ui item" },
                 [
+                  _vm._m(0),
+                  _vm._v(" "),
                   _c("follow", {
                     attrs: {
                       followed: _vm.company.is_followed.length > 0,
@@ -81330,7 +81267,7 @@ var render = function() {
                         _c("span", [_vm._v(_vm._s(theme.body))])
                       ]),
                       _vm._v(" "),
-                      _vm._m(0, true),
+                      _vm._m(1, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "extra" }, [
                         _vm._v(
@@ -81374,7 +81311,7 @@ var render = function() {
                         _c("span", [_vm._v(_vm._s(event.body))])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1, true),
+                      _vm._m(2, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "extra" }, [
                         _vm._v(
@@ -81416,7 +81353,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "meta" }),
                       _vm._v(" "),
-                      _vm._m(2, true),
+                      _vm._m(3, true),
                       _vm._v(" "),
                       _c("div", { staticClass: "extra" }, [
                         _vm._v(
@@ -81432,51 +81369,70 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "four wide column" },
-          [
-            _c("h5", { staticClass: "ui dividing header" }, [
-              _vm._v("\n\t\t\t\t\tПоследователи\n\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.company.followers, function(follower) {
-              return [
-                _c(
-                  "el-tooltip",
-                  {
-                    staticClass: "item",
-                    attrs: {
-                      effect: "dark",
-                      content: follower.name,
-                      placement: "top"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "ui avatar image",
-                      attrs: { src: follower.picture }
-                    })
-                  ]
-                )
-              ]
-            }),
-            _vm._v(" "),
-            _c("h5", { staticClass: "ui dividing header" }, [
-              _vm._v("\n\t\t\t\t\tАдрес\n\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("h5", { staticClass: "ui dividing header" }, [
-              _vm._v("\n\t\t\t\t\tКарта\n\t\t\t\t")
-            ])
-          ],
-          2
-        )
+        _c("div", { staticClass: "four wide column" }, [
+          _c("h5", { staticClass: "ui dividing header" }, [
+            _vm._v("\n\t\t\t\t\tПоследователи\n\t\t\t\t")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ui huge horizontal list" },
+            [
+              _vm._l(_vm.company.followers, function(follower) {
+                return [
+                  _c(
+                    "el-tooltip",
+                    {
+                      staticClass: "item follower",
+                      attrs: {
+                        effect: "dark",
+                        content: follower.name,
+                        placement: "top"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "item" }, [
+                        _c("img", {
+                          staticClass: "ui avatar image",
+                          attrs: { src: follower.picture }
+                        })
+                      ])
+                    ]
+                  )
+                ]
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("h5", { staticClass: "ui dividing header" }, [
+            _vm._v("\n\t\t\t\t\tАдрес\n\t\t\t\t")
+          ]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "ui dividing header" }, [
+            _vm._v("\n\t\t\t\t\tКарта\n\t\t\t\t")
+          ])
+        ])
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c(
+        "a",
+        { staticClass: "mini ui orange basic button", attrs: { href: "#" } },
+        [
+          _c("i", { staticClass: "paper plane icon" }),
+          _vm._v(" Изпрати съобщение")
+        ]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

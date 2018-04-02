@@ -36,13 +36,19 @@
 							Мнения
 						</a>
 						<div class="right menu">
-							<a class="ui item">
+							<div class="ui item">
+								
+							</div>
+							<div class="ui item">
+								<span>
+									<a class="mini ui orange basic button" href="#"><i class="paper plane icon"></i> Изпрати съобщение</a>
+								</span>
 								<follow
-								:followed="company.is_followed.length > 0"
-								:company_id="company.id"
-								>
+									:followed="company.is_followed.length > 0"
+									:company_id="company.id"
+									>
 								</follow>
-							</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -132,11 +138,16 @@
 					<h5 class="ui dividing header">
 						Последователи
 					</h5>
-					<template v-for="follower in company.followers">
-						<el-tooltip class="item" effect="dark" :content="follower.name" placement="top">
-							<img :src="follower.picture" class="ui avatar image">
-						</el-tooltip>
-					</template>
+					<div class="ui huge horizontal list">
+						<template v-for="follower in company.followers">
+							<el-tooltip class="item follower" effect="dark" :content="follower.name" placement="top">
+								<div class="item">
+									<img class="ui avatar image" :src="follower.picture">
+								</div>
+							</el-tooltip>
+						</template>
+					</div>
+					
 					<h5 class="ui dividing header">
 						Адрес
 					</h5>
@@ -201,5 +212,13 @@
 
 	.overlay {
 		background: linear-gradient(45deg, rgba(26, 0, 0, 0.6) 0%, rgba(26, 0, 0, 0.2) 100%);
+	}
+
+	.follower {
+		margin-left: -12px !important;
+	}
+
+	.follower.item img {
+		border: 2px solid white !important;
 	}
 </style>

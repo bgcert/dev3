@@ -16,14 +16,11 @@
                         :company_id="company.id"
                         >
                     </follow>
-                    <span class="left floated">
-                        <ul style="list-style-type: none; margin: 1px 0; padding: 0 0 0 10px;">
-                            <template v-for="user in company.first_five_followers">
-                                <li style="display: inline; margin: 0 0 0 2px;"><a :href="'/user/' + user.id"><img :src="user.picture" style="border-radius: 4px; width: 25px;"></a></li>
-                            </template>
-                        </ul>
-                    </span>
-                    
+                    <template v-for="follower in company.first_five_followers">
+						<el-tooltip class="item" effect="dark" :content="follower.name" placement="top">
+							<img :src="follower.picture" class="ui avatar image">
+						</el-tooltip>
+					</template>                    
                 </div>
             </div>
 			

@@ -1,6 +1,7 @@
 <template>
 	<span class="left floated">
-		<a class="mini ui basic button" href="#" @click.prevent="toggle">
+		<a class="mini ui basic button" :class="{ orange: isFollowed }" href="#" @click.prevent="toggle">
+			<i class="rss icon"></i>
 			<template v-if="isFollowed">
 				Не следвай
 			</template>
