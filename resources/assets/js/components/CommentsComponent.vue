@@ -2,12 +2,12 @@
 	<div>
 
 		<h4>Коментари</h4>
-		<div class="ui reply form">
+		<div class="ui reply form" style="overflow: auto;">
 			<div class="field">
 				<textarea rows="2" v-model="body"></textarea>
 			</div>
-			<a href="" class="ui primary submit labeled icon button" @click.prevent="addComment">
-				<i class="icon edit"></i> Add Comment
+			<a href="#" class="ui small right floated basic button" @click.prevent="addComment">
+				Добави коментар
 			</a>
 		</div>
 		<div class="ui comments">
@@ -59,7 +59,7 @@
     			var vm = this;
 				axios.post('/users/comment/add', { id: vm.id, body: this.body })
 				.then(function (response) {
-					vm.comments.push(response.data);
+					vm.comments.unshift(response.data);
 					vm.body = '';
 					window.flash('New comment posted', 'success');
 				})

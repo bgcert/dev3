@@ -18,6 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('slug');
+            $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('cover')->nullable();
             $table->timestamps();

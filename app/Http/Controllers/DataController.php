@@ -14,9 +14,7 @@ class DataController extends Controller
 
     public function relatedEventList()
     {
-    	//$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->where('theme.company_id', request()->company_id)->get();
     	$events = \App\Event::ByCompany(request()->company_id)->get();
-    	//dd($events);
     	return $events;
     }
 
@@ -29,9 +27,20 @@ class DataController extends Controller
     	return $company;
     }
 
+    public function getCompanyDetails()
+    {
+    	$company = \App\Company::with('user', 'themes', 'events', 'venues', 'followers')
+    							->with('isFollowed')
+    							->where('slug', request()->slug)
+    							->first();
+    	return $company;
+    }
+
     public function getComments()
     {
-    	$theme = \App\Theme::with('comments.user')->where('id', request()->id)->first();
-    	return $theme->comments;
+    	//$theme = \App\Theme::with('comments.user')->where('id', request()->id)->first();
+    	$theme = \App\Theme::where('id', request()->id)->first();
+    	$comments = $theme->comments()->with('user')->orderBy('created_at', 'desc')->get();
+    	return $comments;
     }
 }

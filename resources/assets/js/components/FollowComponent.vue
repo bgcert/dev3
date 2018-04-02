@@ -2,10 +2,10 @@
 	<span class="left floated">
 		<a class="mini ui basic button" href="#" @click.prevent="toggle">
 			<template v-if="isFollowed">
-				Unfollow
+				Не следвай
 			</template>
 			<template v-else>
-				Follow
+				Следвай
 			</template>
 		</a>
 	</span>
@@ -28,7 +28,7 @@
     			axios.post('/users/follow', { id: vm.id })
     			.then(function (response) {
     				vm.isFollowed = !vm.isFollowed;
-    				console.log(response);
+    				console.log(vm.isFollowed);
     			})
     			.catch(function (error) {
     				console.log(error);

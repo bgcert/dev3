@@ -3,7 +3,7 @@
 		<a class="user-popover" v-if="showPopup" transition="fade" @mouseover="hoverInfo" @mouseout="hoverOutInfo">
             <div class="ui card">
                 <div class="center aligned content">
-                    <a href="#">
+                    <a :href="'/c/' + company.slug">
                         <img class="ui tiny circular image" :src="company.logo">
                     </a>
                     <div class=" header">
@@ -28,8 +28,10 @@
             </div>
 			
 		</a>
-		<img :src="logo" class="ui avatar image">
-		<a href="#" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
+		<a :href="'/c/' + company.slug">
+			<img :src="logo" class="ui avatar image">
+		</a>
+		<a :href="'/c/' + company.slug" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
     </span>
 </template>
 
@@ -110,29 +112,8 @@
 <style>
 	.user-popover {
         position: absolute;
-        /*background: #fff;*/
-        /*border: 1px solid #D4D4D5;*/
-        /*padding: 10px 20px;*/
-        /*box-shadow: 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.15);*/
-        /*border-radius: 0.28571429rem;*/
         z-index:999;
         bottom: 20px;
-    }
-
-    button {
-        background: #42b983;
-        font-family: 'Montserrat', sans-serif;
-        border: 1px solid #42b983;
-        padding: 12px;
-        font-size: 12px;
-        color: #fff;
-        outline: none;
-        display: inline-block;
-        text-align: center;
-        padding: 6px 12px;
-        border-radius: 3px;
-        user-select: none;
-        margin: 0 0 5px 0;
     }
     
 </style>

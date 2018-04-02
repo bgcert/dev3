@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(4));
+//Auth::login(\App\User::find(6));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -36,6 +36,7 @@ Route::get('/venue/{id}', 'PublicController@showVenue');
 Route::get('/data/eventlist', 'DataController@eventList');
 Route::post('/data/relatedeventlist', 'DataController@relatedEventList');
 Route::get('/data/getcompany/{id}', 'DataController@getCompany');
+Route::get('/data/company/details/{slug}', 'DataController@getCompanyDetails');
 Route::post('/data/getcomments', 'DataController@getComments');
 
 Auth::routes();

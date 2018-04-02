@@ -12,9 +12,6 @@
 						<div class="meta">
 							<span>{{ date(event.begin_at) }}</span>
 						</div>
-						<div class="description">
-							<p>text text</p>
-						</div>
 						<div class="extra">
 							Прегледан 123 пъти
 						</div>

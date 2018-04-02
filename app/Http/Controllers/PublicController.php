@@ -27,9 +27,7 @@ class PublicController extends Controller
 
     public function company()
     {
-    	$company = \App\Company::with('user', 'themes', 'events', 'venues', 'followers')
-    							->where('slug', request()->slug)
-    							->first();
+		$company = \App\Company::where('slug', request()->slug)->first();
     	return view('company', compact('company'));
     }
 
