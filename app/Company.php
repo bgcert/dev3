@@ -41,5 +41,10 @@ class Company extends Model
     	return $this->followers()->where('user_id', auth()->id());
     }
 
+    public function getLogoAttribute($value)
+    {
+    	return $this->attributes['logo'] = (!empty($value)) ? $value : '/img/default_logo.png';
+    }
+
 
 }

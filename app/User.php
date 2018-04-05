@@ -39,4 +39,9 @@ class User extends Authenticatable
     	return $this->belongsToMany('App\Company', 'followers')->withTimestamps();
     }
 
+    public function getPictureAttribute($value)
+    {
+    	return $this->attributes['picture'] = (!empty($value)) ? $value : '/img/default_user.png';
+    }
+
 }

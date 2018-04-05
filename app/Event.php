@@ -19,10 +19,16 @@ class Event extends Model
     	return $this->hasMany('App\Order');
     }
 
+    // For related events by company
     public function scopeByCompany($query, $id)
     {
         return $query->with('theme')->whereHas('theme', function ($query) use ($id) {
         	$query->where('company_id', $id);
         })->limit(10);
+    }
+
+    public function getCoverAttribute($value)
+    {
+    	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
     }
 }

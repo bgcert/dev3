@@ -26,4 +26,9 @@ class Theme extends Model
     {
     	return $this->hasMany('App\Event');
     }
+
+    public function getCoverAttribute($value)
+    {
+    	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
+    }
 }
