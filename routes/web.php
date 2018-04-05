@@ -46,6 +46,8 @@ Auth::routes();
 // USER ROUTES
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
+	Route::get('/messages', 'MessageController@index');
+
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');
 
