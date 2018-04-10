@@ -47,6 +47,9 @@ Auth::routes();
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
 	Route::get('/messages', 'MessageController@index');
+	Route::post('/threads', 'MessageController@allThreads');
+	Route::post('/thread', 'MessageController@getThread');
+	Route::post('/message', 'MessageController@store');	
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');

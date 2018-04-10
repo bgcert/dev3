@@ -66,6 +66,7 @@
 			Обучения
 		</a>
 		<div class="right menu">
+			<a href="/users/messages" class="item">Messages</a>
 			<div class="ui dropdown item">
 				Потребител <i class="dropdown icon"></i>
 				<div class="menu">

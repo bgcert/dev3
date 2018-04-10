@@ -45,6 +45,10 @@ Vue.component('company-view', require('./components/company/CompanyViewComponent
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 
+// Messanger
+Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
+Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
+
 const app = new Vue({
     el: '#app'
 });
