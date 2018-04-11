@@ -2,11 +2,11 @@
 	<div>
 		<div class="ui large relaxed list">
 			<template v-for="thread in threads">
-				<div class="item">
+				<div class="item" v-bind:class="{ selected: selected == thread.id }">
 					<img class="ui avatar image" :src="thread.first_participant.user.picture">
 					<div class="content">
 						<a href="#" @click.prevent="setThread(thread.id)" class="header">{{ thread.first_participant.user.name }}</a>
-						<div class="description">{{ thread.last_message.user_name + thread.last_message.body }}</div>
+						<div class="description">{{ thread.last_message.user_name + thread.last_message.body }} {{ thread.last_message.updated_at }}</div>
 					</div>
 				</div>
 			</template>
@@ -21,7 +21,8 @@
 
     	data: function () {
     		return {
-    			threads: []
+    			threads: [],
+    			selected: ''
     		}
     	},
 
@@ -32,6 +33,7 @@
         methods: {
         	setThread(id) {
 			    // Send the event on a channel (i-got-clicked) with a payload (the click count.)
+			    this.selected = id;
 			    EventBus.$emit('setThread', id);
         	}
         },
@@ -48,3 +50,9 @@
         }
     }
 </script>
+
+<style>
+	.selected {
+		background-color: #f6f7f9;
+	}
+</style>

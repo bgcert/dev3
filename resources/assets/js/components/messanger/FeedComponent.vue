@@ -10,9 +10,11 @@
 							</el-tooltip>
 						</div>
 						<div class="content">
-							<div class="ui left pointing large label" v-bind:class="{ blue: isAuthUser(message.user.id) }">
-								{{ message.body }}
-							</div>
+							<el-tooltip class="item" effect="dark" :content="message.updated_at" placement="top">
+								<div class="ui left pointing large label" v-bind:class="{ blue: isAuthUser(message.user.id) }">
+									{{ message.body }}
+								</div>
+							</el-tooltip>
 						</div>
 					</div>
 				</template>

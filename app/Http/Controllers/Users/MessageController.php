@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Messanger\Thread;
+use Carbon\Carbon;
 
 class MessageController extends Controller
 {
@@ -18,6 +19,7 @@ class MessageController extends Controller
     {
     	$threads = Thread::with('firstParticipant.user', 'lastMessage.user')
     				->whereHas('participants', function ($q) { $q->where('user_id', request()->auth_id); })
+    				->orderBy('updated_at', 'DESC')
     				->get();
     	return $threads;
     }
@@ -36,6 +38,11 @@ class MessageController extends Controller
     	$message->user_id = request()->user_id;
     	$message->body = request()->message;
     	$message->save();
+
+    	// Update thread
+    	$thread = Thread::find(request()->thread);
+    	$thread->updated_at = Carbon::now();
+    	$thread->save();
 
     	return $message->load('user');
     }
