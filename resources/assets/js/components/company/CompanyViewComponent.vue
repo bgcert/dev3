@@ -200,6 +200,7 @@
 	.data-container { padding: 30px; height: 260px; }
 
 	.logo-container { display: inline-block; float: left; margin-right: 30px; }
+	.logo-container img { border: 2px solid white; }
 
 	.company-logo { border-radius: 50%; height: 200px; }
 
