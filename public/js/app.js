@@ -84486,7 +84486,7 @@ var render = function() {
     _c(
       "a",
       {
-        staticClass: "mini ui basic button",
+        staticClass: "mini ui button",
         class: { orange: _vm.isFollowed },
         attrs: { href: "#" },
         on: {
@@ -86091,40 +86091,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
 
     data: function data() {
         return {
-            company: []
+            company: [],
+            activeName: 'info'
         };
     },
 
@@ -86178,7 +86152,29 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "company-name" }, [
                     _c("h2", [_vm._v(_vm._s(_vm.company.name))])
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        position: "absolute",
+                        right: "40px",
+                        bottom: "20px"
+                      }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("follow", {
+                        attrs: {
+                          followed: _vm.company.is_followed.length > 0,
+                          company_id: _vm.company.id
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ])
               ])
             ]
@@ -86186,182 +86182,176 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "column" }, [
-          _c("div", { staticClass: "ui secondary pointing menu" }, [
-            _c("a", { staticClass: "item active" }, [
-              _vm._v("\n\t\t\t\t\t\tИнфо\n\t\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "item" }, [
-              _vm._v("\n\t\t\t\t\t\tОбучения\n\t\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "item" }, [
-              _vm._v("\n\t\t\t\t\t\tТеми\n\t\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "item" }, [
-              _vm._v("\n\t\t\t\t\t\tМнения\n\t\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "right menu" }, [
-              _c("div", { staticClass: "ui item" }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "ui item" },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c("follow", {
-                    attrs: {
-                      followed: _vm.company.is_followed.length > 0,
-                      company_id: _vm.company.id
-                    }
-                  })
-                ],
-                1
-              )
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
       _c("div", { staticClass: "two column row" }, [
-        _c("div", { staticClass: "twelve wide column" }, [
-          _c("p", [_vm._v(_vm._s(_vm.company.description))]),
-          _vm._v(" "),
-          _c("h3", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tThemes\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui items" },
-            [
-              _vm._l(_vm.company.themes, function(theme) {
-                return [
-                  _c("div", { staticClass: "item" }, [
-                    _c("div", { staticClass: "ui small image" }, [
-                      _c("img", { attrs: { src: theme.cover } })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "header",
-                          attrs: { href: "/theme/" + theme.id }
-                        },
-                        [_vm._v(_vm._s(theme.title))]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "meta" }, [
-                        _c("span", [_vm._v(_vm._s(theme.body))])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(1, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "extra" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t"
-                        )
-                      ])
-                    ])
-                  ])
-                ]
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("h3", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tEvents\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui items" },
-            [
-              _vm._l(_vm.company.events, function(event) {
-                return [
-                  _c("div", { staticClass: "item" }, [
-                    _c("div", { staticClass: "ui small image" }, [
-                      _c("img", { attrs: { src: event.cover } })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "header",
-                          attrs: { href: "/event/" + event.id }
-                        },
-                        [_vm._v(_vm._s(event.title))]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "meta" }, [
-                        _c("span", [_vm._v(_vm._s(event.body))])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(2, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "extra" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t"
-                        )
-                      ])
-                    ])
-                  ])
-                ]
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("h3", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tVenues\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui items" },
-            [
-              _vm._l(_vm.company.venues, function(venue) {
-                return [
-                  _c("div", { staticClass: "item" }, [
-                    _c("div", { staticClass: "ui small image" }, [
-                      _c("img", { attrs: { src: venue.cover } })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "header",
-                          attrs: { href: "/venue/" + venue.id }
-                        },
-                        [_vm._v(_vm._s(venue.name))]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "meta" }),
-                      _vm._v(" "),
-                      _vm._m(3, true),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "extra" }, [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t"
-                        )
-                      ])
-                    ])
-                  ])
-                ]
-              })
-            ],
-            2
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "twelve wide column" },
+          [
+            _c(
+              "el-tabs",
+              {
+                attrs: { type: "card" },
+                on: { "tab-click": _vm.handleClick },
+                model: {
+                  value: _vm.activeName,
+                  callback: function($$v) {
+                    _vm.activeName = $$v
+                  },
+                  expression: "activeName"
+                }
+              },
+              [
+                _c("el-tab-pane", { attrs: { label: "Инфо", name: "info" } }, [
+                  _c("p", [_vm._v(_vm._s(_vm.company.description))])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "el-tab-pane",
+                  { attrs: { label: "Теми", name: "themes" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "ui items" },
+                      [
+                        _vm._l(_vm.company.themes, function(theme) {
+                          return [
+                            _c("div", { staticClass: "item" }, [
+                              _c("div", { staticClass: "ui small image" }, [
+                                _c("img", { attrs: { src: theme.cover } })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "content" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "header",
+                                    attrs: { href: "/theme/" + theme.id }
+                                  },
+                                  [_vm._v(_vm._s(theme.title))]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "meta" }, [
+                                  _c("span", [_vm._v(_vm._s(theme.body))])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "description" }, [
+                                  _c("p")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "extra" }, [
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-tab-pane",
+                  { attrs: { label: "Събития", name: "events" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "ui items" },
+                      [
+                        _vm._l(_vm.company.events, function(event) {
+                          return [
+                            _c("div", { staticClass: "item" }, [
+                              _c("div", { staticClass: "ui small image" }, [
+                                _c("img", { attrs: { src: event.cover } })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "content" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "header",
+                                    attrs: { href: "/event/" + event.id }
+                                  },
+                                  [_vm._v(_vm._s(event.title))]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "meta" }, [
+                                  _c("span", [_vm._v(_vm._s(event.body))])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "description" }, [
+                                  _c("p")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "extra" }, [
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-tab-pane",
+                  { attrs: { label: "Зали", name: "venues" } },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "ui items" },
+                      [
+                        _vm._l(_vm.company.venues, function(venue) {
+                          return [
+                            _c("div", { staticClass: "item" }, [
+                              _c("div", { staticClass: "ui small image" }, [
+                                _c("img", { attrs: { src: venue.cover } })
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "content" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "header",
+                                    attrs: { href: "/venue/" + venue.id }
+                                  },
+                                  [_vm._v(_vm._s(venue.name))]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "meta" }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "description" }, [
+                                  _c("p")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "extra" }, [
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "four wide column" }, [
           _c("h5", { staticClass: "ui dividing header" }, [
@@ -86417,33 +86407,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", [
-      _c(
-        "a",
-        { staticClass: "mini ui orange basic button", attrs: { href: "#" } },
-        [
-          _c("i", { staticClass: "paper plane icon" }),
-          _vm._v(" Изпрати съобщение")
-        ]
-      )
+      _c("a", { staticClass: "mini ui orange button", attrs: { href: "#" } }, [
+        _c("i", { staticClass: "paper plane icon" }),
+        _vm._v(" Изпрати съобщение")
+      ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "description" }, [_c("p")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "description" }, [_c("p")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "description" }, [_c("p")])
   }
 ]
 render._withStripped = true

@@ -13,6 +13,16 @@
 								<div class="company-name">
 									<h2>{{ company.name }}</h2>
 								</div>
+								<div style="position: absolute; right: 40px; bottom: 20px;">
+									<span>
+									<a class="mini ui orange button" href="#"><i class="paper plane icon"></i> Изпрати съобщение</a>
+									</span>
+									<follow
+										:followed="company.is_followed.length > 0"
+										:company_id="company.id"
+										>
+									</follow>
+								</div>
 							</div>
 						</div>
 					</div>	
@@ -20,118 +30,81 @@
 				
 			</div>
 
-			<div class="row">
-				<div class="column">
-					<div class="ui secondary pointing menu">
-						<a class="item active">
-							Инфо
-						</a>
-						<a class="item">
-							Обучения
-						</a>
-						<a class="item">
-							Теми
-						</a>
-						<a class="item">
-							Мнения
-						</a>
-						<div class="right menu">
-							<div class="ui item">
-								
-							</div>
-							<div class="ui item">
-								<span>
-									<a class="mini ui orange basic button" href="#"><i class="paper plane icon"></i> Изпрати съобщение</a>
-								</span>
-								<follow
-									:followed="company.is_followed.length > 0"
-									:company_id="company.id"
-									>
-								</follow>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="two column row">
 				<div class="twelve wide column">
-					<p>{{ company.description }}</p>
-
-					<h3 class="ui dividing header">
-						Themes
-					</h3>
-					<div class="ui items">
-						<template v-for="theme in company.themes">
-							<div class="item">
-								<div class="ui small image">
-									<img :src="theme.cover">
-								</div>
-								<div class="content">
-									<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
-									<div class="meta">
-										<span>{{ theme.body }}</span>
+					<el-tabs type="card" v-model="activeName" @tab-click="handleClick">
+						<el-tab-pane label="Инфо" name="info">
+							<p>{{ company.description }}</p>
+						</el-tab-pane>
+						<el-tab-pane label="Теми" name="themes">
+							<div class="ui items">
+								<template v-for="theme in company.themes">
+									<div class="item">
+										<div class="ui small image">
+											<img :src="theme.cover">
+										</div>
+										<div class="content">
+											<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
+											<div class="meta">
+												<span>{{ theme.body }}</span>
+											</div>
+											<div class="description">
+												<p></p>
+											</div>
+											<div class="extra">
+												Additional Details
+											</div>
+										</div>
 									</div>
-									<div class="description">
-										<p></p>
-									</div>
-									<div class="extra">
-										Additional Details
-									</div>
-								</div>
+								</template>
 							</div>
-						</template>
-					</div>
-
-					<h3 class="ui dividing header">
-						Events
-					</h3>
-					<div class="ui items">
-						<template v-for="event in company.events">
-							<div class="item">
-								<div class="ui small image">
-									<img :src="event.cover">
-								</div>
-								<div class="content">
-									<a :href="'/event/' + event.id" class="header">{{ event.title }}</a>
-									<div class="meta">
-										<span>{{ event.body }}</span>
+						</el-tab-pane>
+						<el-tab-pane label="Събития" name="events">
+							<div class="ui items">
+								<template v-for="event in company.events">
+									<div class="item">
+										<div class="ui small image">
+											<img :src="event.cover">
+										</div>
+										<div class="content">
+											<a :href="'/event/' + event.id" class="header">{{ event.title }}</a>
+											<div class="meta">
+												<span>{{ event.body }}</span>
+											</div>
+											<div class="description">
+												<p></p>
+											</div>
+											<div class="extra">
+												Additional Details
+											</div>
+										</div>
 									</div>
-									<div class="description">
-										<p></p>
-									</div>
-									<div class="extra">
-										Additional Details
-									</div>
-								</div>
+								</template>
 							</div>
-						</template>
-					</div>
-
-
-					<h3 class="ui dividing header">
-						Venues
-					</h3>
-					<div class="ui items">
-						<template v-for="venue in company.venues">
-							<div class="item">
-								<div class="ui small image">
-									<img :src="venue.cover">
-								</div>
-								<div class="content">
-									<a :href="'/venue/' + venue.id" class="header">{{ venue.name }}</a>
-									<div class="meta">
+						</el-tab-pane>
+						<el-tab-pane label="Зали" name="venues">
+							<div class="ui items">
+								<template v-for="venue in company.venues">
+									<div class="item">
+										<div class="ui small image">
+											<img :src="venue.cover">
+										</div>
+										<div class="content">
+											<a :href="'/venue/' + venue.id" class="header">{{ venue.name }}</a>
+											<div class="meta">
+											</div>
+											<div class="description">
+												<p></p>
+											</div>
+											<div class="extra">
+												Additional Details
+											</div>
+										</div>
 									</div>
-									<div class="description">
-										<p></p>
-									</div>
-									<div class="extra">
-										Additional Details
-									</div>
-								</div>
+								</template>
 							</div>
-						</template>
-					</div>
+						</el-tab-pane>
+					</el-tabs>
 				</div>
 
 				<div class="four wide column">
@@ -169,7 +142,8 @@
 
     	data: function () {
     		return {
-    			company: []
+    			company: [],
+    			activeName: 'info'
     		}
     	},
 
