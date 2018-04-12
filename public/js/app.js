@@ -11947,6 +11947,7 @@ Vue.component('company-view', __webpack_require__(224));
 Vue.component('comments', __webpack_require__(229));
 
 // Messanger
+Vue.component('messanger', __webpack_require__(244));
 Vue.component('messages-feed', __webpack_require__(234));
 Vue.component('thread-list', __webpack_require__(237));
 
@@ -87219,7 +87220,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var vm = this;
         axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
             vm.threads = response.data;
-            vm.setThread(vm.threads[vm.threads.length - 1].id); // set last thread as default in FeedComponent.vue
+            vm.setThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
         }).catch(function (error) {
             console.log(error);
         });
@@ -87303,6 +87304,552 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 243 */,
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(247)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(245)
+/* template */
+var __vue_template__ = __webpack_require__(246)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\messanger\\MessangerComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3807b812", Component.options)
+  } else {
+    hotAPI.reload("data-v-3807b812", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 245 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['auth_id', 'name', 'picture'],
+
+  data: function data() {
+    return {
+      threads: [],
+      thread: [],
+      selected: '',
+      message: ''
+    };
+  },
+
+  mounted: function mounted() {
+    console.log('Messanger Component mounted.');
+  },
+
+
+  methods: {
+    loadThread: function loadThread(id) {
+      this.selected = id;
+      var vm = this;
+      axios.post('/users/thread', { id: id }).then(function (response) {
+        vm.thread = response.data;
+        console.log(response.data);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    isAuthUser: function isAuthUser(id) {
+      return id == this.id;
+    },
+    send: function send() {
+      var vm = this;
+      axios.post('/users/message', { user_id: vm.auth_id, thread: vm.selected, message: vm.message }).then(function (response) {
+        vm.thread.messages.push(response.data);
+        console.log(response.data);
+        vm.message = '';
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+
+  created: function created() {
+    var vm = this;
+    axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
+      vm.threads = response.data;
+      vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+});
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("header", [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "middle" }, [
+          _c("h3", [_vm._v(_vm._s(_vm.thread.first_participant.user.name))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("Messenger")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "right" }, [
+          _c("div", { staticClass: "username" }, [
+            _vm._m(1),
+            _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "avatar" }, [
+            _c("img", { attrs: { src: _vm.picture } })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("main", [
+      _c("div", { staticClass: "col-left" }, [
+        _c("div", { staticClass: "col-content" }, [
+          _c(
+            "div",
+            { staticClass: "messages" },
+            [
+              _vm._l(_vm.threads, function(thread) {
+                return [
+                  _c("li", { class: { selected: _vm.selected == thread.id } }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.loadThread(thread.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "avatar" }, [
+                          _c("div", { staticClass: "avatar-image" }, [
+                            _c("div", { staticClass: "status online" }),
+                            _vm._v(" "),
+                            _c("img", {
+                              attrs: {
+                                src: thread.first_participant.user.picture
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", [
+                          _vm._v(_vm._s(thread.first_participant.user.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            _vm._s(
+                              thread.last_message.user_name +
+                                thread.last_message.body
+                            ) +
+                              " " +
+                              _vm._s(thread.last_message.updated_at)
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "col-content" }, [
+          _c("section", { staticClass: "message" }, [
+            _c(
+              "div",
+              { staticClass: "grid-message" },
+              [
+                _vm.thread
+                  ? [
+                      _vm._l(_vm.thread.messages, function(message) {
+                        return [
+                          message.user.id == _vm.auth_id
+                            ? [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-message-sent" },
+                                  [
+                                    _c(
+                                      "el-tooltip",
+                                      {
+                                        staticClass: "item",
+                                        attrs: {
+                                          effect: "dark",
+                                          content: message.updated_at,
+                                          placement: "left"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "message-sent" },
+                                          [
+                                            _c("p", [
+                                              _vm._v(_vm._s(message.body))
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            : [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-message-received" },
+                                  [
+                                    _c(
+                                      "el-tooltip",
+                                      {
+                                        staticClass: "item",
+                                        attrs: {
+                                          effect: "dark",
+                                          content: message.updated_at,
+                                          placement: "right"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "message-received" },
+                                          [
+                                            _c("p", [
+                                              _vm._v(_vm._s(message.body))
+                                            ])
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                        ]
+                      })
+                    ]
+                  : _vm._e()
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-foot" }, [
+          _c("div", { staticClass: "compose" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.message,
+                  expression: "message"
+                }
+              ],
+              attrs: { placeholder: "Напишете съобщение" },
+              domProps: { value: _vm.message },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.message = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "compose-dock" }, [
+              _c("div", { staticClass: "dock" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "ui circular icon button",
+                    on: { click: _vm.send }
+                  },
+                  [_c("i", { staticClass: "paper plane outline icon" })]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-right" }, [
+        _c("div", { staticClass: "col-content" }, [
+          _c("div", { staticClass: "user-panel" }, [
+            _c("div", { staticClass: "avatar" }, [
+              _c("div", { staticClass: "avatar-image" }, [
+                _c("div", { staticClass: "status online" }),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: { src: _vm.thread.first_participant.user.picture }
+                })
+              ]),
+              _vm._v(" "),
+              _c("h3", [
+                _vm._v(_vm._s(_vm.thread.first_participant.user.name))
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("London, United Kingdom")])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "left",
+        staticStyle: { position: "absolute", top: "24%" }
+      },
+      [
+        _c("div", { staticClass: "ui circular blue icon button" }, [
+          _c("i", { staticClass: "paper plane outline icon" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "settings" }, [
+      _c("img", { attrs: { src: "/img/messanger/settings.svg" } })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3807b812", module.exports)
+  }
+}
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(248);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(27)("3dc9a44c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3807b812\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MessangerComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3807b812\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MessangerComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(19)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.selected {\n\tbackground-color: #f6f7f9;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

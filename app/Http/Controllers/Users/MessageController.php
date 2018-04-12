@@ -26,7 +26,7 @@ class MessageController extends Controller
 //
     public function getThread()
     {
-    	$thread = Thread::with('messages.user')->where('id', request()->id)->first();
+    	$thread = Thread::with('firstParticipant.user', 'messages.user')->where('id', request()->id)->first();
     	return $thread;
     }
 

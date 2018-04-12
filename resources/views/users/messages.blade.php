@@ -1,22 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-	
-	<h2>messages</h2>
-	<div class="ui grid">
-		<div class="four wide column">
-			<thread-list
-				auth_id="{{ \Auth::id() }}"
-				>
-			</thread-list>
-		</div>
-		<div class="six wide column">
-			<messages-feed
-				id="{{ \Auth::id() }}"
-				thread_id="1"
-				>
-			</messages-feed>
-		</div>
-	</div>
+
+<messanger
+	auth_id="{{ \Auth::id() }}"
+	name="{{ \Auth::user()->name }}"
+	picture="{{ \Auth::user()->picture }}"
+	>
+</messanger>
 
 @endsection
+
+@push('footer-scripts')
+	<link href="/css/messanger.css" rel="stylesheet">
+@endpush

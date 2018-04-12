@@ -42,7 +42,7 @@
         	var vm = this;
         	axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
         		vm.threads = response.data;
-        		vm.setThread(vm.threads[vm.threads.length - 1].id); // set last thread as default in FeedComponent.vue
+        		vm.setThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
 			})
 			.catch(function (error) {
 				console.log(error);
