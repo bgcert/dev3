@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<span>
 		<template v-if="auth == 1">
 			<span @click.prevent="toggle"> 
 				<template v-if="isLiked == 1">
@@ -18,7 +18,7 @@
 		<template v-if="count">
 			<span>{{ count }}</span>
 		</template>
-	</div>
+	</span>
 </template>
 
 <script>

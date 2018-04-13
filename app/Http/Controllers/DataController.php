@@ -8,7 +8,7 @@ class DataController extends Controller
 {
     public function eventList()
     {
-    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
+    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
     	return $events;
     }
 

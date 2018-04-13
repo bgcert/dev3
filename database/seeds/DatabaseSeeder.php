@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,19 +21,23 @@ class DatabaseSeeder extends Seeder
 
 	    factory('App\Theme', 40)->create()->each(function ($t) {
 	    	for ($i=0; $i < rand(1, 30); $i++) {
-        		$t->comments()->save(factory('App\Comment')->make());
+	    		$user_id = \App\User::all()->random()->id;
+        		$body = Str::random(32);
+        		$t->comment($body, $user_id);
         	}
 	    });
 
 	    factory('App\Event', 50)->create();
 
 	    factory('App\Venue', 40)->create()->each(function ($v) {
-	    	for ($i=0; $i < rand(1, 10) ; $i++) { 
+	    	for ($i=0; $i < rand(1, 10) ; $i++) {
 	    		$v->venue_images()->save(factory('App\VenueImage')->make());
 	    	}
 
 	    	for ($i=0; $i < rand(1, 10) ; $i++) {
-        		$v->comments()->save(factory('App\Comment')->make());
+	    		$user_id = \App\User::all()->random()->id;
+        		$body = Str::random(32);
+        		$v->comment($body, $user_id);
         	}
 	    });
 

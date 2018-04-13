@@ -30,9 +30,13 @@
 								:route="'/users/like/theme'"
 								>
 							</like>
+							<span>
+								<a :href="'/event/' + event.id + '/#comments'">
+									<i class="comment outline icon"></i>
+									{{ event.theme.comment_count.count }}
+								</a>
+							</span>
 						</span>
-						<i class="comment icon"></i>
-						3 comments
 					</div>
 				</div>
 			</template>

@@ -23,6 +23,14 @@ class CreateCommentsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::create('comment_counts', function(Blueprint $table) {
+			$table->increments('id');
+			$table->string('commentable_id', 36);
+			$table->string('commentable_type', 255);
+			$table->integer('count')->unsigned()->default(0);
+			$table->unique(['commentable_id', 'commentable_type'], 'comment_counts');
+		});
     }
 
     /**
@@ -33,5 +41,6 @@ class CreateCommentsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('comments');
+        Schema::dropIfExists('comment_counts');
     }
 }

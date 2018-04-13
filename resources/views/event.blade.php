@@ -43,11 +43,13 @@
 				<p>
 			    	{{ $event->theme->body }}
 			    </p>
-			    <comments
-			    	id="{{ $event->theme->id }}"
-			    	user_id="{{ auth()->id() }}"
-			    	>
-			    </comments>
+			    <div id="comments">
+			    	<comments
+				    	id="{{ $event->theme->id }}"
+				    	user_id="{{ auth()->id() }}"
+				    	>
+				    </comments>	
+			    </div>
 			</div>
 			<div class="six wide column">
 				<div class="ui large horizontal divided list">

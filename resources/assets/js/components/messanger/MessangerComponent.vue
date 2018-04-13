@@ -8,7 +8,7 @@
 
 				<div class="middle">
 					<h3>{{ thread.first_participant.user.name }}</h3>
-					<p>Messenger</p>
+					<!-- <p>Messenger</p> -->
 				</div>
 
 				<div class="right">

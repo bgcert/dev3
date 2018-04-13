@@ -93,7 +93,7 @@
 	        		vm.company = response.data;
 	        		vm.timer = setTimeout(function() {
 	    				vm.showPopover();
-	    			}, 600);
+	    			}, 100);
 					console.log(response);
 				})
 				.catch(function (error) {
