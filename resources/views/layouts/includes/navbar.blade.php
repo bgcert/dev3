@@ -59,25 +59,38 @@
 
 <div class="ui container">
 	<div class="ui menu">
-		<a class="active item">
-			Seminari 365
-		</a>
-		<a class="item">
-			Обучения
-		</a>
+		<a href="/" class="active item"> Seminari 365</a>
+		<a href="/e" class="item"> Обучения</a>
+		<a href="/v" class="item"> Зали</a>
 		<div class="right menu">
-			<a href="/users/messages" class="item">Messages</a>
+			@guest
+			<div class="item">
+				<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
+				<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>
+			</div>
+			@else
+			<a href="/users/messages" class="item">
+				<i class="icon mail"></i> Съобщения
+				<div class="floating ui red label">22</div>
+			</a>
 			<div class="ui dropdown item">
-				Потребител <i class="dropdown icon"></i>
+				{{ Auth::user()->name }} <i class="dropdown icon"></i>
 				<div class="menu">
 					<a class="item">English</a>
 					<a class="item">Russian</a>
 					<a class="item">Spanish</a>
+					<a class="item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 				</div>
 			</div>
-			<div class="item">
-				<div class="ui primary button">Регистрация</div>
-			</div>
+			@endguest
 		</div>
 	</div>
 </div>

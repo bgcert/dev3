@@ -12,6 +12,12 @@ class DataController extends Controller
     	return $events;
     }
 
+    public function venueList()
+    {
+    	$venues = \App\Venue::with('likeCount', 'commentCount', 'isLiked', 'company')->get();
+    	return $venues;
+    }
+
     public function relatedEventList()
     {
     	$events = \App\Event::ByCompany(request()->company_id)->get();
