@@ -45,6 +45,7 @@
 			    </p>
 			    <div id="comments">
 			    	<comments
+			    		type="theme"
 				    	id="{{ $event->theme->id }}"
 				    	user_id="{{ auth()->id() }}"
 				    	>

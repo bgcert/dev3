@@ -14,6 +14,13 @@ class CommentController extends Controller
 		return $comment->load('user'); // load the associated user
     }
 
+    public function commentVenue()
+    {
+    	$venue = \App\Venue::find(request()->id);
+    	$comment = $venue->comment(request()->body);
+		return $comment->load('user'); // load the associated user
+    }
+
     public function destroy()
     {
     	return \App\Comment::destroy(request()->id);

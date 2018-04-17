@@ -38,7 +38,8 @@ Route::get('/data/venuelist', 'DataController@venueList');
 Route::post('/data/relatedeventlist', 'DataController@relatedEventList');
 Route::get('/data/getcompany/{id}', 'DataController@getCompany');
 Route::get('/data/company/details/{slug}', 'DataController@getCompanyDetails');
-Route::post('/data/getcomments', 'DataController@getComments');
+Route::post('/data/theme/comments', 'DataController@themeComments');
+Route::post('/data/venue/comments', 'DataController@venueComments');
 
 Auth::routes();
 
@@ -61,7 +62,8 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::post('/like/venue', 'LikeController@toggleVenue');
 
 	// Comments
-	Route::post('/comment/add', 'CommentController@commentTheme');
+	Route::post('/comment/theme/add', 'CommentController@commentTheme');
+	Route::post('/comment/venue/add', 'CommentController@commentVenue');
 	Route::post('/comment/remove', 'CommentController@destroy');
 
 });

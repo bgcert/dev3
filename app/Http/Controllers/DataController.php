@@ -42,11 +42,17 @@ class DataController extends Controller
     	return $company;
     }
 
-    public function getComments()
+    public function themeComments()
     {
-    	//$theme = \App\Theme::with('comments.user')->where('id', request()->id)->first();
     	$theme = \App\Theme::where('id', request()->id)->first();
     	$comments = $theme->comments()->with('user')->orderBy('created_at', 'desc')->get();
+    	return $comments;
+    }
+
+    public function venueComments()
+    {
+    	$venue = \App\Venue::where('id', request()->id)->first();
+    	$comments = $venue->comments()->with('user')->orderBy('created_at', 'desc')->get();
     	return $comments;
     }
 }

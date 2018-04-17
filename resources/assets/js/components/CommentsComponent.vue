@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<h4>Коментари</h4>
 		<div class="ui reply form" style="overflow: auto;">
 			<div class="field">
@@ -39,7 +38,7 @@
 
 <script>
     export default {
-    	props: ['id', 'user_id'],
+    	props: ['type', 'id', 'user_id'],
 
     	data: function () {
     		return {
@@ -57,7 +56,8 @@
     		addComment() {
     			console.log(this.message);
     			var vm = this;
-				axios.post('/users/comment/add', { id: vm.id, body: this.body })
+    			var route = '/users/comment/' + this.type + '/add';
+				axios.post(route, { id: vm.id, body: this.body })
 				.then(function (response) {
 					vm.comments.unshift(response.data);
 					vm.body = '';
@@ -103,7 +103,8 @@
 
         mounted() {
         	var vm = this;
-			axios.post('/data/getcomments', { id: vm.id })
+        	var route = '/data/' + this.type +'/comments';
+			axios.post(route, { id: vm.id })
 			.then(function (response) {
 				vm.comments = response.data;
 				console.log(response.data);

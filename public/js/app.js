@@ -86818,10 +86818,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id', 'user_id'],
+  props: ['type', 'id', 'user_id'],
 
   data: function data() {
     return {
@@ -86837,7 +86836,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addComment: function addComment() {
       console.log(this.message);
       var vm = this;
-      axios.post('/users/comment/add', { id: vm.id, body: this.body }).then(function (response) {
+      var route = '/users/comment/' + this.type + '/add';
+      axios.post(route, { id: vm.id, body: this.body }).then(function (response) {
         vm.comments.unshift(response.data);
         vm.body = '';
         window.flash('New comment posted', 'success');
@@ -86876,7 +86876,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   mounted: function mounted() {
     var vm = this;
-    axios.post('/data/getcomments', { id: vm.id }).then(function (response) {
+    var route = '/data/' + this.type + '/comments';
+    axios.post(route, { id: vm.id }).then(function (response) {
       vm.comments = response.data;
       console.log(response.data);
     }).catch(function (error) {
