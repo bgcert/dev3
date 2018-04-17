@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-	<div class="ui hidden divider"></div>
 	<div class="ui grid">
 		<div class="row">
 			<div class="twelve wide column">
