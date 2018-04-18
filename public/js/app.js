@@ -85107,6 +85107,7 @@ var render = function() {
                     _c("box-hover", {
                       attrs: {
                         name: venue.company.name,
+                        slug: venue.company.slug,
                         logo: venue.company.logo,
                         id: venue.company.id
                       }

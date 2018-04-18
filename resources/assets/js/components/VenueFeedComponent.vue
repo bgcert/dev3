@@ -9,7 +9,7 @@
 			<template v-for="venue in venues">
 				<div class="card">
 					<div class="extra content">
-						<box-hover :name="venue.company.name" :logo="venue.company.logo" :id="venue.company.id"></box-hover>
+						<box-hover :name="venue.company.name" :slug="venue.company.slug" :logo="venue.company.logo" :id="venue.company.id"></box-hover>
 					</div>
 					<div class="image">
 						<img :src="venue.cover">
