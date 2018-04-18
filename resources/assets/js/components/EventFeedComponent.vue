@@ -9,7 +9,7 @@
 			<template v-for="event in events">
 				<div class="card">
 					<div class="extra content">
-						<box-hover :name="event.theme.company.name" :logo="event.theme.company.logo" :id="event.theme.company.id"></box-hover>
+						<box-hover :name="event.theme.company.name" :slug="event.theme.company.slug" :logo="event.theme.company.logo" :id="event.theme.company.id"></box-hover>
 					</div>
 					<div class="image">
 						<img :src="event.cover">

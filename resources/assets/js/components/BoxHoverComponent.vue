@@ -25,16 +25,16 @@
             </div>
 			
 		</a>
-		<a :href="'/c/' + company.slug">
+		<a :href="'/c/' + slug">
 			<img :src="logo" class="ui avatar image">
 		</a>
-		<a :href="'/c/' + company.slug" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
+		<a :href="'/c/' + slug" @mouseover="hover" @mouseout="hoverOut">{{ name }}</a>
     </span>
 </template>
 
 <script>
     export default {
-    	props: ['name', 'logo', 'id'],
+    	props: ['name', 'slug', 'logo', 'id'],
 
     	data: function () {
     		return {

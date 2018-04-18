@@ -84858,6 +84858,7 @@ var render = function() {
                     _c("box-hover", {
                       attrs: {
                         name: event.theme.company.name,
+                        slug: event.theme.company.slug,
                         logo: event.theme.company.logo,
                         id: event.theme.company.id
                       }
@@ -85755,7 +85756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['name', 'logo', 'id'],
+    props: ['name', 'slug', 'logo', 'id'],
 
     data: function data() {
         return {
@@ -85895,14 +85896,14 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("a", { attrs: { href: "/c/" + _vm.company.slug } }, [
+    _c("a", { attrs: { href: "/c/" + _vm.slug } }, [
       _c("img", { staticClass: "ui avatar image", attrs: { src: _vm.logo } })
     ]),
     _vm._v(" "),
     _c(
       "a",
       {
-        attrs: { href: "/c/" + _vm.company.slug },
+        attrs: { href: "/c/" + _vm.slug },
         on: { mouseover: _vm.hover, mouseout: _vm.hoverOut }
       },
       [_vm._v(_vm._s(_vm.name))]
