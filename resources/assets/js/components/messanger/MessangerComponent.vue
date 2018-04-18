@@ -7,7 +7,9 @@
 				</div>
 
 				<div class="middle">
-					<h3>{{ thread.first_participant.user.name }}</h3>
+					<template v-if="thread.length > 0">
+						<h3>{{ thread.first_participant.user.name }}</h3>
+					</template>
 					<!-- <p>Messenger</p> -->
 				</div>
 
@@ -30,20 +32,22 @@
 			<div class="col-left">
 		        <div class="col-content">
 		            <div class="messages">
-		            	<template v-for="thread in threads">
-			                <li v-bind:class="{ selected: selected == thread.id }">
-			                	<a href="#" @click.prevent="loadThread(thread.id)">
-			                		<div class="avatar">
-				                        <div class="avatar-image">
-				                            <div class="status online"></div>
-				                            <img :src="thread.first_participant.user.picture">
-				                        </div>
-				                    </div>
-				                    <h3>{{ thread.first_participant.user.name }}</h3>
-				                    <p>{{ thread.last_message.user_name + thread.last_message.body }} {{ thread.last_message.updated_at }}</p>	
-			                	</a>
-			                </li>
-		                </template>
+		            	<template v-if="threads.length > 0">
+		            		<template v-for="thread in threads">
+				                <li v-bind:class="{ selected: selected == thread.id }">
+				                	<a href="#" @click.prevent="loadThread(thread.id)">
+				                		<div class="avatar">
+					                        <div class="avatar-image">
+					                            <div class="status online"></div>
+					                            <img :src="thread.first_participant.user.picture">
+					                        </div>
+					                    </div>
+					                    <h3>{{ thread.first_participant.user.name }}</h3>
+					                    <p>{{ thread.last_message.user_name + thread.last_message.body }} {{ thread.last_message.updated_at }}</p>	
+				                	</a>
+				                </li>
+			                </template>
+		            	</template>
 		            </div>
 		        </div>
 		    </div>
@@ -53,7 +57,7 @@
 		        <div class="col-content">
 		            <section class="message">
 		                <div class="grid-message">
-		                	<template v-if="thread">
+		                	<template v-if="thread.length > 0">
 		                		<template v-for="message in thread.messages">
 		                			<template v-if="message.user.id == auth_id">
 				                		<div class="col-message-sent">
@@ -96,18 +100,19 @@
 		    <div class="col-right">
 
 		        <div class="col-content">
+		        	<template v-if="thread.length > 0">
+			            <div class="user-panel">
+			                <div class="avatar">
+			                    <div class="avatar-image">
+			                        <div class="status online"></div>
+			                        <img :src="thread.first_participant.user.picture">
+			                    </div>
 
-		            <div class="user-panel">
-		                <div class="avatar">
-		                    <div class="avatar-image">
-		                        <div class="status online"></div>
-		                        <img :src="thread.first_participant.user.picture">
-		                    </div>
-
-		                    <h3>{{ thread.first_participant.user.name }}</h3>
-		                    <p>London, United Kingdom</p>
-		                </div>
-		            </div>
+			                    <h3>{{ thread.first_participant.user.name }}</h3>
+			                    <p>London, United Kingdom</p>
+			                </div>
+			            </div>
+		        	</template>
 		        </div>
 
 		    </div>
@@ -168,8 +173,14 @@
         created() {
         	var vm = this;
         	axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
+
+        		console.log('cool');
         		vm.threads = response.data;
-        		vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
+        		if (vm.threads.length > 0) {
+        			vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
+        			console.log('yep');	
+        		}
+        		
 			})
 			.catch(function (error) {
 				console.log(error);

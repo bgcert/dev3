@@ -87248,6 +87248,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -87296,8 +87301,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var vm = this;
     axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
+
+      console.log('cool');
       vm.threads = response.data;
-      vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
+      if (vm.threads.length > 0) {
+        vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
+        console.log('yep');
+      }
     }).catch(function (error) {
       console.log(error);
     });
@@ -87317,9 +87327,20 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "middle" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.thread.first_participant.user.name))])
-        ]),
+        _c(
+          "div",
+          { staticClass: "middle" },
+          [
+            _vm.thread.length > 0
+              ? [
+                  _c("h3", [
+                    _vm._v(_vm._s(_vm.thread.first_participant.user.name))
+                  ])
+                ]
+              : _vm._e()
+          ],
+          2
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "right" }, [
           _c("div", { staticClass: "username" }, [
@@ -87341,52 +87362,63 @@ var render = function() {
             "div",
             { staticClass: "messages" },
             [
-              _vm._l(_vm.threads, function(thread) {
-                return [
-                  _c("li", { class: { selected: _vm.selected == thread.id } }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.loadThread(thread.id)
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "avatar" }, [
-                          _c("div", { staticClass: "avatar-image" }, [
-                            _c("div", { staticClass: "status online" }),
-                            _vm._v(" "),
-                            _c("img", {
-                              attrs: {
-                                src: thread.first_participant.user.picture
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("h3", [
-                          _vm._v(_vm._s(thread.first_participant.user.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [
-                          _vm._v(
-                            _vm._s(
-                              thread.last_message.user_name +
-                                thread.last_message.body
-                            ) +
-                              " " +
-                              _vm._s(thread.last_message.updated_at)
-                          )
-                        ])
+              _vm.threads.length > 0
+                ? [
+                    _vm._l(_vm.threads, function(thread) {
+                      return [
+                        _c(
+                          "li",
+                          { class: { selected: _vm.selected == thread.id } },
+                          [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.loadThread(thread.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "avatar" }, [
+                                  _c("div", { staticClass: "avatar-image" }, [
+                                    _c("div", { staticClass: "status online" }),
+                                    _vm._v(" "),
+                                    _c("img", {
+                                      attrs: {
+                                        src:
+                                          thread.first_participant.user.picture
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", [
+                                  _vm._v(
+                                    _vm._s(thread.first_participant.user.name)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(
+                                      thread.last_message.user_name +
+                                        thread.last_message.body
+                                    ) +
+                                      " " +
+                                      _vm._s(thread.last_message.updated_at)
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        )
                       ]
-                    )
-                  ])
-                ]
-              })
+                    })
+                  ]
+                : _vm._e()
             ],
             2
           )
@@ -87400,7 +87432,7 @@ var render = function() {
               "div",
               { staticClass: "grid-message" },
               [
-                _vm.thread
+                _vm.thread.length > 0
                   ? [
                       _vm._l(_vm.thread.messages, function(message) {
                         return [
@@ -87517,25 +87549,36 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-right" }, [
-        _c("div", { staticClass: "col-content" }, [
-          _c("div", { staticClass: "user-panel" }, [
-            _c("div", { staticClass: "avatar" }, [
-              _c("div", { staticClass: "avatar-image" }, [
-                _c("div", { staticClass: "status online" }),
-                _vm._v(" "),
-                _c("img", {
-                  attrs: { src: _vm.thread.first_participant.user.picture }
-                })
-              ]),
-              _vm._v(" "),
-              _c("h3", [
-                _vm._v(_vm._s(_vm.thread.first_participant.user.name))
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("London, United Kingdom")])
-            ])
-          ])
-        ])
+        _c(
+          "div",
+          { staticClass: "col-content" },
+          [
+            _vm.thread.length > 0
+              ? [
+                  _c("div", { staticClass: "user-panel" }, [
+                    _c("div", { staticClass: "avatar" }, [
+                      _c("div", { staticClass: "avatar-image" }, [
+                        _c("div", { staticClass: "status online" }),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            src: _vm.thread.first_participant.user.picture
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", [
+                        _vm._v(_vm._s(_vm.thread.first_participant.user.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("London, United Kingdom")])
+                    ])
+                  ])
+                ]
+              : _vm._e()
+          ],
+          2
+        )
       ])
     ])
   ])
