@@ -1,10 +1,13 @@
 <template>
 	<div>
 		<h4>Коментари</h4>
-		<div class="ui reply form" style="overflow: auto;">
-			<div class="field">
-				<textarea rows="2" v-model="body"></textarea>
-			</div>
+		<div class="ui reply form">
+			<el-input
+				type="textarea"
+				autosize
+				placeholder="Добавете коментар ..."
+				v-model="body">
+			</el-input>
 			<a href="#" class="ui small right floated basic button" @click.prevent="addComment">
 				Добави коментар
 			</a>

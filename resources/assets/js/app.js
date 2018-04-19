@@ -46,10 +46,14 @@ Vue.component('company-view', require('./components/company/CompanyViewComponent
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 
+// Auth
+Vue.component('login', require('./components/auth/LoginComponent.vue'));
+Vue.component('register', require('./components/auth/RegisterComponent.vue'));
+
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
-Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
-Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
+//Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
+//Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
 
 
 const app = new Vue({

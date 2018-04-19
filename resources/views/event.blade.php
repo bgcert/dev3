@@ -36,6 +36,7 @@
 				<p>
 			    	by <a href="/c/{{ $event->theme->company->slug }}">{{ $event->theme->company->name }}</a>
 			    </p>
+			    <p><button class="ui violet big basic button">Записвам се</button></p>
 			</div>
 		</div>
 		<div class="two column row">

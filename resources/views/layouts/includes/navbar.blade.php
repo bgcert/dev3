@@ -67,6 +67,8 @@
 			<div class="item">
 				<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
 				<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>
+				<register></register>
+                <login></login>
 			</div>
 			@else
 			<a href="/users/messages" class="item">
