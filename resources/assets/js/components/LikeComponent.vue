@@ -11,7 +11,7 @@
 			</span>	
 		</template>
 		<template v-else>
-			<span href="#" @click.prevent="redirect">
+			<span href="#" @click.prevent="login">
 				<i class="heart outline like icon"></i>
 			</span>
 		</template>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+	import { EventBus } from '../app';
     export default {
     	props: ['auth', 'likes', 'liked', 'item_id', 'route'],
 
@@ -54,8 +55,8 @@
     			});
     		},
 
-    		redirect() {
-    			window.location.href = '/login';
+    		login() {
+    			EventBus.$emit('loginClicked');
     		}
     	},
 

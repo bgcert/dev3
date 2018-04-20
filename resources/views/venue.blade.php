@@ -22,16 +22,14 @@
 		<div class="row">
 			<div class="twelve wide column">
 				<div class="row">
-					<div class="cover" style="background: url({{ $venue->cover }}) center / cover no-repeat; height: 400px;">
-					
+					<div class="column">
+						<venue-slider
+							id="{{ $venue->id }}"
+							cover="{{ $venue->cover }}"
+							>
+						</venue-slider>
 					</div>
-					<div class="ui small images">
-						@foreach($images as $image)
-						<img src="{{ $image->filename }}">
-						@endforeach
-					</div>
-				</div>
-				
+				</div>				
 				<div class="row">
 					<h4 class="ui dividing header">
 					ПРЕПОРЪЧАНИ ЗАЛИ

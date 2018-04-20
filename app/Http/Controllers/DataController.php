@@ -55,4 +55,11 @@ class DataController extends Controller
     	$comments = $venue->comments()->with('user')->orderBy('created_at', 'desc')->get();
     	return $comments;
     }
+
+    // Load venue images
+    public function venueImages()
+    {
+    	$images = \App\VenueImage::where('venue_id', request()->id)->get();
+    	return $images;
+    }
 }

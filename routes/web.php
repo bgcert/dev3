@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(8));
+Auth::login(\App\User::find(6));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -41,6 +41,9 @@ Route::get('/data/getcompany/{id}', 'DataController@getCompany');
 Route::get('/data/company/details/{slug}', 'DataController@getCompanyDetails');
 Route::post('/data/theme/comments', 'DataController@themeComments');
 Route::post('/data/venue/comments', 'DataController@venueComments');
+
+// Load venue images
+Route::get('/load/venue/images/{id}', 'DataController@venueImages');
 
 Auth::routes();
 

@@ -38,6 +38,7 @@ Vue.component('follow', require('./components/FollowComponent.vue'));
 Vue.component('like', require('./components/LikeComponent.vue'));
 Vue.component('event-feed', require('./components/EventFeedComponent.vue'));
 Vue.component('venue-feed', require('./components/VenueFeedComponent.vue'));
+Vue.component('venue-slider', require('./components/VenueSliderComponent.vue'));
 Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
