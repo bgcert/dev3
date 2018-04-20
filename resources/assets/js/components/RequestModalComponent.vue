@@ -11,7 +11,7 @@
 				<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
 			</span>
 		</el-dialog>
-		<a href="#" @click.prevent="openModal">Request</a>
+		<a href="#" @click.prevent="dialogVisible = true">Request</a>
 	</div>
 </template>
 

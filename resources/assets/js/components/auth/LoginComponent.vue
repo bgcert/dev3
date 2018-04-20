@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button class="ui basic button" @click="dialogFormVisible = true"> Вход</button>
+		<a href="#" class="item" @click="dialogFormVisible = true"> Вход</a>
 
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 
@@ -12,11 +12,9 @@
 					<el-input v-model="form.password"></el-input>
 					<el-checkbox v-model="form.checked"> Запомни ме</el-checkbox>
 				</el-form-item>
-				
-				<a href="#"> </a>
 
 				<el-form-item size="large">
-					<el-button type="plain" @click="onSubmit"> Региистрирай се</el-button>
+					<el-button @click.prevent="callRegister"> Регистрация</el-button>
 					<el-button type="primary" @click="onSubmit"> Вход</el-button>
 					<el-button type="text"> Забравена парола.</el-button>
 				</el-form-item>
@@ -48,11 +46,20 @@
         methods: {
         	onSubmit() {
         		console.log('submit!');
+        	},
+
+        	callRegister() {
+        		this.dialogFormVisible = false;
+        		setTimeout( function(){
+					EventBus.$emit('registerClicked');
+				}, 500 );
         	}
         },
 
         created() {
-        	
+        	EventBus.$on('loginClicked', () => {
+				this.dialogFormVisible = true;
+			});
         }
     }
 </script>

@@ -11682,6 +11682,81 @@ module.exports = Vue;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventBus", function() { return EventBus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg__);
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+__webpack_require__(78);
+
+window.Vue = __webpack_require__(4);
+
+/**
+* Initialize event bus
+*/
+var EventBus = new Vue();
+
+// window.flash = (message, type) => {
+// 	EventBus.$emit('flash', message, type);
+// }
+
+window.auth = { auth: '{{ auth()->check() }}' };
+
+
+
+
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg___default.a });
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', __webpack_require__(194));
+Vue.component('flash', __webpack_require__(197));
+Vue.component('follow', __webpack_require__(200));
+Vue.component('like', __webpack_require__(203));
+Vue.component('event-feed', __webpack_require__(206));
+Vue.component('venue-feed', __webpack_require__(209));
+Vue.component('related-feed', __webpack_require__(212));
+Vue.component('event-box', __webpack_require__(215));
+Vue.component('box-hover', __webpack_require__(218));
+Vue.component('request-modal', __webpack_require__(224));
+Vue.component('company-view', __webpack_require__(227));
+
+Vue.component('comments', __webpack_require__(232));
+
+// Auth
+Vue.component('login', __webpack_require__(237));
+Vue.component('register', __webpack_require__(240));
+
+// Messanger
+Vue.component('messanger', __webpack_require__(243));
+//Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
+//Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
+
+
+var app = new Vue({
+  el: '#app'
+});
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11875,7 +11950,7 @@ function setStyle(element, styleName, value) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -11885,81 +11960,6 @@ var global = module.exports = typeof window != 'undefined' && window.Math == Mat
   : Function('return this')();
 if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
-
-/***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventBus", function() { return EventBus; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_element_ui_lib_theme_chalk_index_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg__);
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-__webpack_require__(78);
-
-window.Vue = __webpack_require__(4);
-
-/**
-* Initialize event bus
-*/
-var EventBus = new Vue();
-
-// window.flash = (message, type) => {
-// 	EventBus.$emit('flash', message, type);
-// }
-
-window.auth = { auth: '{{ auth()->check() }}' };
-
-
-
-
-
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_2_element_ui_lib_locale_lang_bg___default.a });
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', __webpack_require__(194));
-Vue.component('flash', __webpack_require__(197));
-Vue.component('follow', __webpack_require__(200));
-Vue.component('like', __webpack_require__(203));
-Vue.component('event-feed', __webpack_require__(206));
-Vue.component('venue-feed', __webpack_require__(209));
-Vue.component('related-feed', __webpack_require__(212));
-Vue.component('event-box', __webpack_require__(215));
-Vue.component('box-hover', __webpack_require__(218));
-Vue.component('request-modal', __webpack_require__(224));
-Vue.component('company-view', __webpack_require__(227));
-
-Vue.component('comments', __webpack_require__(232));
-
-// Auth
-Vue.component('login', __webpack_require__(237));
-Vue.component('register', __webpack_require__(240));
-
-// Messanger
-Vue.component('messanger', __webpack_require__(243));
-//Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
-//Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
-
-
-var app = new Vue({
-  el: '#app'
-});
 
 /***/ }),
 /* 8 */
@@ -12174,7 +12174,7 @@ module.exports = function (it) {
 
 var store = __webpack_require__(42)('wks');
 var uid = __webpack_require__(24);
-var Symbol = __webpack_require__(6).Symbol;
+var Symbol = __webpack_require__(7).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function (name) {
@@ -14044,7 +14044,7 @@ exports.default = function (ref) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(6);
+var global = __webpack_require__(7);
 var core = __webpack_require__(20);
 var ctx = __webpack_require__(134);
 var hide = __webpack_require__(11);
@@ -14163,7 +14163,7 @@ module.exports = function (key) {
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(6);
+var global = __webpack_require__(7);
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
 module.exports = function (key) {
@@ -14226,7 +14226,7 @@ exports.f = __webpack_require__(15);
 /* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(6);
+var global = __webpack_require__(7);
 var core = __webpack_require__(20);
 var LIBRARY = __webpack_require__(45);
 var wksExt = __webpack_require__(48);
@@ -14814,7 +14814,7 @@ var _scrollbarWidth = __webpack_require__(33);
 
 var _scrollbarWidth2 = _interopRequireDefault(_scrollbarWidth);
 
-var _dom = __webpack_require__(5);
+var _dom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15098,7 +15098,7 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _dom = __webpack_require__(5);
+var _dom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15349,7 +15349,7 @@ module.exports = __webpack_require__(35);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 /***/ }),
 
@@ -16141,7 +16141,7 @@ module.exports = !__webpack_require__(13) && !__webpack_require__(18)(function (
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(17);
-var document = __webpack_require__(6).document;
+var document = __webpack_require__(7).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
 module.exports = function (it) {
@@ -16381,7 +16381,7 @@ function required(rule, value, source, errors, options, type) {
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
+__webpack_require__(5);
 module.exports = __webpack_require__(248);
 
 
@@ -42432,7 +42432,7 @@ module.exports = __webpack_require__(56);
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 /***/ }),
 /* 4 */
@@ -73819,7 +73819,7 @@ var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _dom = __webpack_require__(5);
+var _dom = __webpack_require__(6);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76113,7 +76113,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 exports.__esModule = true;
 
-var _dom = __webpack_require__(5);
+var _dom = __webpack_require__(6);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -76283,7 +76283,7 @@ module.exports = __webpack_require__(34);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 /***/ }),
 
@@ -78794,7 +78794,7 @@ module.exports = __webpack_require__(36);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 /***/ }),
 
@@ -81530,7 +81530,7 @@ module.exports = __webpack_require__(13) ? Object.defineProperties : function de
 /* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var document = __webpack_require__(6).document;
+var document = __webpack_require__(7).document;
 module.exports = document && document.documentElement;
 
 
@@ -81558,7 +81558,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(149);
-var global = __webpack_require__(6);
+var global = __webpack_require__(7);
 var hide = __webpack_require__(11);
 var Iterators = __webpack_require__(46);
 var TO_STRING_TAG = __webpack_require__(15)('toStringTag');
@@ -81659,7 +81659,7 @@ module.exports = __webpack_require__(20).Symbol;
 "use strict";
 
 // ECMAScript 6 symbols shim
-var global = __webpack_require__(6);
+var global = __webpack_require__(7);
 var has = __webpack_require__(9);
 var DESCRIPTORS = __webpack_require__(13);
 var $export = __webpack_require__(37);
@@ -83440,7 +83440,7 @@ module.exports = __webpack_require__(36);
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 /***/ }),
 
@@ -84327,7 +84327,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -84755,7 +84755,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -85006,7 +85006,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -85247,7 +85247,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -85979,7 +85979,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -86103,7 +86103,7 @@ var render = function() {
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.openModal($event)
+              _vm.dialogVisible = true
             }
           }
         },
@@ -87087,9 +87087,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //
@@ -87139,10 +87137,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         onSubmit: function onSubmit() {
             console.log('submit!');
+        },
+        callRegister: function callRegister() {
+            this.dialogFormVisible = false;
+            setTimeout(function () {
+                __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('registerClicked');
+            }, 500);
         }
     },
 
-    created: function created() {}
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('loginClicked', function () {
+            _this.dialogFormVisible = true;
+        });
+    }
 });
 
 /***/ }),
@@ -87157,9 +87167,10 @@ var render = function() {
     "div",
     [
       _c(
-        "button",
+        "a",
         {
-          staticClass: "ui basic button",
+          staticClass: "item",
+          attrs: { href: "#" },
           on: {
             click: function($event) {
               _vm.dialogFormVisible = true
@@ -87239,16 +87250,21 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("a", { attrs: { href: "#" } }),
-              _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { size: "large" } },
                 [
                   _c(
                     "el-button",
-                    { attrs: { type: "plain" }, on: { click: _vm.onSubmit } },
-                    [_vm._v(" Региистрирай се")]
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.callRegister($event)
+                        }
+                      }
+                    },
+                    [_vm._v(" Регистрация")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -87336,7 +87352,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
+//
 //
 //
 //
@@ -87411,10 +87428,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         onSubmit: function onSubmit() {
             console.log('submit!');
+        },
+        callLogin: function callLogin() {
+            this.dialogFormVisible = false;
+            setTimeout(function () {
+                __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
+            }, 500);
         }
     },
 
-    created: function created() {}
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('registerClicked', function () {
+            _this.dialogFormVisible = true;
+        });
+    }
 });
 
 /***/ }),
@@ -87429,11 +87458,13 @@ var render = function() {
     "div",
     [
       _c(
-        "button",
+        "a",
         {
-          staticClass: "ui basic button",
+          staticClass: "item",
+          attrs: { href: "#" },
           on: {
             click: function($event) {
+              $event.preventDefault()
               _vm.dialogFormVisible = true
             }
           }
@@ -87640,6 +87671,19 @@ var render = function() {
                 [
                   _c(
                     "el-button",
+                    {
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.callLogin($event)
+                        }
+                      }
+                    },
+                    [_vm._v(" Вход")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
                     { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
                     [_vm._v("Регистрация")]
                   )
@@ -87763,7 +87807,7 @@ exports.push([module.i, "\n.selected {\n\tbackground-color: #f6f7f9;\n}\n", ""])
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(5);
 //
 //
 //

@@ -64,12 +64,12 @@
 		<a href="/v" class="item"> Зали</a>
 		<div class="right menu">
 			@guest
-			<div class="item">
+			<register></register>			
+			<login></login>
+			<!-- <div class="item">
 				<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
-				<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>
-				<register></register>
-                <login></login>
-			</div>
+				<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
+			</div> -->
 			@else
 			<a href="/users/messages" class="item">
 				<i class="icon mail"></i> Съобщения
