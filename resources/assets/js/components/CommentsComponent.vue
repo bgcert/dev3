@@ -2,15 +2,27 @@
 	<div>
 		<h4>Коментари</h4>
 		<div class="ui reply form">
-			<el-input
-				type="textarea"
-				autosize
-				placeholder="Добавете коментар ..."
-				v-model="body">
-			</el-input>
-			<a href="#" class="ui small right floated basic button" @click.prevent="addComment">
-				Добави коментар
-			</a>
+			<template v-if="auth == 1">
+				<el-input
+					type="textarea"
+					autosize
+					placeholder="Добавете коментар ..."
+					v-model="body">
+				</el-input>
+				<a href="#" class="ui small right floated basic button" @click.prevent="addComment">
+					Добави коментар
+				</a>
+			</template>
+			<template v-else>
+				<el-input
+					@focus="login"
+					type="textarea"
+					placeholder="Добавете коментар ...">
+				</el-input>
+				<a href="#" class="ui small right floated basic button" @click.prevent="login">
+					Добави коментар
+				</a>
+			</template>
 		</div>
 		<div class="ui comments">
 			<template v-for="(comment, index) in comments">
@@ -40,8 +52,9 @@
 </template>
 
 <script>
+	import { EventBus } from '../app';
     export default {
-    	props: ['type', 'id', 'user_id'],
+    	props: ['auth', 'type', 'id', 'user_id'],
 
     	data: function () {
     		return {
@@ -54,6 +67,10 @@
 
     		date(date) {
     			return moment().to(date);
+    		},
+
+    		login() {
+    			EventBus.$emit('loginClicked');
     		},
 
     		addComment() {
