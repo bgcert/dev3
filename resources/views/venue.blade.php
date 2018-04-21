@@ -90,6 +90,7 @@
 				<div class="row">
 					<div id="comments">
 				    	<comments
+				    		auth="{{ Auth::check() }}"
 				    		type="venue"
 					    	id="{{ $venue->id }}"
 					    	user_id="{{ auth()->id() }}"
