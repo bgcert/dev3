@@ -78,6 +78,7 @@
 			<div class="ui dropdown item">
 				{{ Auth::user()->name }} <i class="dropdown icon"></i>
 				<div class="menu">
+					<a href="/users/settings" class="item">Настройки</a>
 					<a class="item">English</a>
 					<a class="item">Russian</a>
 					<a class="item">Spanish</a>

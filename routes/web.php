@@ -57,6 +57,10 @@ Auth::routes();
 // USER ROUTES
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
+	// Settings routes
+	Route::get('/settings', 'SettingsController@index');
+
+	// Messanger routes
 	Route::get('/messages', 'MessageController@index');
 	Route::post('/threads', 'MessageController@allThreads');
 	Route::post('/thread', 'MessageController@getThread');

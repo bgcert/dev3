@@ -470,11 +470,11 @@ Vue.component('comments', __webpack_require__(237));
 Vue.component('login', __webpack_require__(242));
 Vue.component('register', __webpack_require__(245));
 
-// Messanger
-Vue.component('messanger', __webpack_require__(248));
-//Vue.component('messages-feed', require('./components/messanger/FeedComponent.vue'));
-//Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
+// Settings
+Vue.component('settings', __webpack_require__(248));
 
+// Messanger
+Vue.component('messanger', __webpack_require__(251));
 
 var app = new Vue({
   el: '#app'
@@ -16383,7 +16383,7 @@ function required(rule, value, source, errors, options, type) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(253);
+module.exports = __webpack_require__(256);
 
 
 /***/ }),
@@ -87985,15 +87985,400 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(250)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SettingsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ccd1f69a", Component.options)
+  } else {
+    hotAPI.reload("data-v-ccd1f69a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return {
+            form: {
+                name: '',
+                type: ''
+            }
+        };
+    },
+
+    methods: {},
+
+    mounted: function mounted() {
+        console.log('Settings mounted.');
+    },
+    created: function created() {
+        var vm = this;
+        axios.get('/data/venuelist').then(function (response) {
+            vm.venues = response.data;
+            console.log('event list');
+            console.log(vm.events);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-tabs",
+        { attrs: { type: "border-card" } },
+        [
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Акаунт" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "120px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Име" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Бизнес акаунт" } },
+                    [
+                      _c("el-switch", {
+                        model: {
+                          value: _vm.form.type,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "type", $$v)
+                          },
+                          expression: "form.type"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Промяна на парола" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Стара парола" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нова парола" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нова парола (отново)" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Промяна на email" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "120px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нов email" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "120px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Парола" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Деактивиране" } },
+            [
+              _c("el-button", { attrs: { type: "danger" } }, [
+                _vm._v("Деактивирай")
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ccd1f69a", module.exports)
+  }
+}
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(249)
+  __webpack_require__(252)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(251)
+var __vue_script__ = __webpack_require__(254)
 /* template */
-var __vue_template__ = __webpack_require__(252)
+var __vue_template__ = __webpack_require__(255)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -88032,13 +88417,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 249 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(250);
+var content = __webpack_require__(253);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -88058,7 +88443,7 @@ if(false) {
 }
 
 /***/ }),
-/* 250 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(16)(false);
@@ -88072,7 +88457,7 @@ exports.push([module.i, "\n.selected {\n\tbackground-color: #f6f7f9;\n}\n", ""])
 
 
 /***/ }),
-/* 251 */
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88262,7 +88647,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 252 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -88567,7 +88952,7 @@ if (false) {
 }
 
 /***/ }),
-/* 253 */
+/* 256 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
