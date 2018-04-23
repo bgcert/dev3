@@ -17,9 +17,14 @@
 //     return view('test');
 // });
 
+Route::get('/home', function () {
+    return 'hard to remove /home route';
+});
+
 // PUBLIC ROUTES
 Route::view('/test', 'test');
 Route::view('/design', 'design');
+Route::get('/', 'PublicController@events');
 Route::get('/', 'PublicController@events');
 
 Route::get('/t', 'PublicController@themes');

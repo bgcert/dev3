@@ -87347,6 +87347,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             dialogFormVisible: false,
+            loading: false,
             form: {
                 email: '',
                 password: '',
@@ -87362,13 +87363,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onSubmit: function onSubmit() {
+            this.loading = true;
+            var vm = this;
+            axios.post('/login', {
+                email: vm.form.email,
+                password: vm.form.password
+            }).then(function (response) {
+                console.log(response.data);
+                vm.dialogFormVisible = false;
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            });
             console.log('submit!');
         },
         callRegister: function callRegister() {
             this.dialogFormVisible = false;
             setTimeout(function () {
                 __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('registerClicked');
-            }, 500);
+            }, 300);
         }
     },
 
@@ -87433,6 +87446,7 @@ var render = function() {
                 { attrs: { label: "E-mail" } },
                 [
                   _c("el-input", {
+                    attrs: { name: "email" },
                     model: {
                       value: _vm.form.email,
                       callback: function($$v) {
@@ -87450,6 +87464,7 @@ var render = function() {
                 { attrs: { label: "Парола" } },
                 [
                   _c("el-input", {
+                    attrs: { name: "password" },
                     model: {
                       value: _vm.form.password,
                       callback: function($$v) {
@@ -87495,7 +87510,10 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-button",
-                    { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
+                    {
+                      attrs: { type: "primary", loading: _vm.loading },
+                      on: { click: _vm.onSubmit }
+                    },
                     [_vm._v(" Вход")]
                   ),
                   _vm._v(" "),
@@ -87635,13 +87653,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             dialogFormVisible: false,
+            loading: false,
             form: {
                 name: '',
                 email: '',
                 type: false,
                 activities: [],
                 password: '',
-                confirmPassword: ''
+                passwordConfirm: ''
             }
         };
     },
@@ -87653,13 +87672,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onSubmit: function onSubmit() {
+            this.loading = true;
+            var vm = this;
+            axios.post('/register', {
+                name: vm.form.name,
+                email: vm.form.email,
+                password: vm.form.password,
+                password_confirmation: vm.form.confirmPassword
+            }).then(function (response) {
+                console.log(response.data);
+                vm.dialogFormVisible = false;
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            });
             console.log('submit!');
         },
         callLogin: function callLogin() {
             this.dialogFormVisible = false;
             setTimeout(function () {
                 __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
-            }, 500);
+            }, 300);
         }
     },
 
@@ -87725,6 +87758,7 @@ var render = function() {
                 { attrs: { label: "Име" } },
                 [
                   _c("el-input", {
+                    attrs: { name: "name" },
                     model: {
                       value: _vm.form.name,
                       callback: function($$v) {
@@ -87910,7 +87944,10 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-button",
-                    { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
+                    {
+                      attrs: { type: "primary", loading: _vm.loading },
+                      on: { click: _vm.onSubmit }
+                    },
                     [_vm._v("Регистрация")]
                   )
                 ],

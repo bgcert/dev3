@@ -17,8 +17,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+    	// Vue js handles that
+        // if (Auth::guard($guard)->check()) {
+        //     return redirect('/home');
+        // }
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+        	return true;
         }
 
         return $next($request);

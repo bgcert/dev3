@@ -5,7 +5,7 @@
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 			<el-form ref="form" label-position="left" label-width="180px">
 				<el-form-item label="Име">
-					<el-input v-model="form.name"></el-input>
+					<el-input v-model="form.name" name="name"></el-input>
 				</el-form-item>
 				<el-form-item label="Организация">
 					<el-switch v-model="form.type"></el-switch>
@@ -40,7 +40,7 @@
 				</el-form-item>
 				<el-form-item size="large">
 					<el-button @click.prevent="callLogin"> Вход</el-button>
-					<el-button type="primary" @click="onSubmit">Регистрация</el-button>
+					<el-button type="primary" @click="onSubmit" :loading="loading">Регистрация</el-button>
 				</el-form-item>
 			</el-form>
 		</el-dialog>
@@ -54,13 +54,14 @@
     	data: function () {
     		return {
     			dialogFormVisible: false,
+    			loading: false,
     			form: {
     				name: '',
     				email: '',
     				type: false,
     				activities: [],
     				password: '',
-    				confirmPassword: ''
+    				passwordConfirm: ''
     			},
     		}
     	},
@@ -71,6 +72,22 @@
 
         methods: {
         	onSubmit() {
+        		this.loading = true;
+        		let vm = this;
+        		axios.post('/register', {
+        			name: vm.form.name,
+        			email: vm.form.email,
+        			password: vm.form.password,
+        			password_confirmation: vm.form.confirmPassword
+        		})
+        		.then(function (response) {
+        			console.log(response.data);
+        			vm.dialogFormVisible = false;
+        			location.reload();
+        		})
+        		.catch(function (error) {
+        			console.log(error);
+        		});
         		console.log('submit!');
         	},
 
@@ -78,7 +95,7 @@
         		this.dialogFormVisible = false;
         		setTimeout( function(){
 					EventBus.$emit('loginClicked');
-				}, 500 );
+				}, 300 );
         	}
         },
 
