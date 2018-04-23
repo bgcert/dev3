@@ -87646,6 +87646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -87658,9 +87659,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 email: '',
                 type: false,
+                event_publish: true,
+                venue_publish: false,
                 activities: [],
                 password: '',
-                passwordConfirm: ''
+                passwordConfirm: '',
+                organizationName: ''
             }
         };
     },
@@ -87677,10 +87681,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/register', {
                 name: vm.form.name,
                 email: vm.form.email,
+                type: vm.form.type,
+                event_publish: vm.form.event_publish,
+                venue_publish: vm.form.venue_publish,
+                organization_name: vm.form.organizationName,
+                slug: vm.form.slug,
                 password: vm.form.password,
                 password_confirmation: vm.form.confirmPassword
             }).then(function (response) {
-                console.log(response.data);
+                //console.log(response.data);
                 vm.dialogFormVisible = false;
                 location.reload();
             }).catch(function (error) {
@@ -87758,7 +87767,6 @@ var render = function() {
                 { attrs: { label: "Име" } },
                 [
                   _c("el-input", {
-                    attrs: { name: "name" },
                     model: {
                       value: _vm.form.name,
                       callback: function($$v) {
@@ -87819,11 +87827,11 @@ var render = function() {
                               placeholder: "Въведете адрес"
                             },
                             model: {
-                              value: _vm.form.skug,
+                              value: _vm.form.slug,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "skug", $$v)
+                                _vm.$set(_vm.form, "slug", $$v)
                               },
-                              expression: "form.skug"
+                              expression: "form.slug"
                             }
                           },
                           [
@@ -87839,35 +87847,34 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "el-form-item",
-                      { attrs: { label: "Желая да:" } },
+                      { attrs: { label: "Публикуване на обучения" } },
                       [
-                        _c(
-                          "el-checkbox-group",
-                          {
-                            attrs: { size: "small" },
-                            model: {
-                              value: _vm.form.activities,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "activities", $$v)
-                              },
-                              expression: "form.activities"
-                            }
-                          },
-                          [
-                            _c(
-                              "el-checkbox-button",
-                              { attrs: { label: "events", name: "event" } },
-                              [_vm._v("Публикувам обучения")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "el-checkbox-button",
-                              { attrs: { label: "venues", name: "venue" } },
-                              [_vm._v("Публикувам зали")]
-                            )
-                          ],
-                          1
-                        )
+                        _c("el-switch", {
+                          model: {
+                            value: _vm.form.event_publish,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "event_publish", $$v)
+                            },
+                            expression: "form.event_publish"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form-item",
+                      { attrs: { label: "Публикуване на събития" } },
+                      [
+                        _c("el-switch", {
+                          model: {
+                            value: _vm.form.venue_publish,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "venue_publish", $$v)
+                            },
+                            expression: "form.venue_publish"
+                          }
+                        })
                       ],
                       1
                     )

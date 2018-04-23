@@ -21,6 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
             $table->string('cover')->nullable();
+            $table->boolean('event_publish')->default(1);
+            $table->boolean('venue_publish')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

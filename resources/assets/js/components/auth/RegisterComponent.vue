@@ -5,7 +5,7 @@
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 			<el-form ref="form" label-position="left" label-width="180px">
 				<el-form-item label="Име">
-					<el-input v-model="form.name" name="name"></el-input>
+					<el-input v-model="form.name"></el-input>
 				</el-form-item>
 				<el-form-item label="Организация">
 					<el-switch v-model="form.type"></el-switch>
@@ -15,16 +15,17 @@
 						<el-input v-model="form.organizationName"></el-input>
 					</el-form-item>
 					<el-form-item label="Адрес">
-						<el-input size="medium" placeholder="Въведете адрес" v-model="form.skug">
+						<el-input size="medium" placeholder="Въведете адрес" v-model="form.slug">
 							<template slot="prepend">http://seminari365.com/</template>
 						</el-input>
 					</el-form-item>
 
-					<el-form-item label="Желая да:">
-						<el-checkbox-group size="small" v-model="form.activities">
-							<el-checkbox-button label="events" name="event">Публикувам обучения</el-checkbox-button>
-							<el-checkbox-button label="venues" name="venue">Публикувам зали</el-checkbox-button>
-						</el-checkbox-group>
+					<el-form-item label="Публикуване на обучения">
+						<el-switch v-model="form.event_publish"></el-switch>
+					</el-form-item>
+
+					<el-form-item label="Публикуване на събития">
+						<el-switch v-model="form.venue_publish"></el-switch>
 					</el-form-item>
 
 				</template>
@@ -59,10 +60,13 @@
     				name: '',
     				email: '',
     				type: false,
+    				event_publish: true,
+    				venue_publish: false,
     				activities: [],
     				password: '',
-    				passwordConfirm: ''
-    			},
+    				passwordConfirm: '',
+    				organizationName: '',
+    			}
     		}
     	},
 
@@ -77,11 +81,16 @@
         		axios.post('/register', {
         			name: vm.form.name,
         			email: vm.form.email,
+        			type: vm.form.type,
+        			event_publish: vm.form.event_publish,
+        			venue_publish: vm.form.venue_publish,
+        			organization_name: vm.form.organizationName,
+        			slug: vm.form.slug,
         			password: vm.form.password,
         			password_confirmation: vm.form.confirmPassword
         		})
         		.then(function (response) {
-        			console.log(response.data);
+        			//console.log(response.data);
         			vm.dialogFormVisible = false;
         			location.reload();
         		})
