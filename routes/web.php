@@ -57,8 +57,13 @@ Auth::routes();
 // USER ROUTES
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
+	// Load data routes
+	Route::get('/load/user/{id}', 'SettingsController@getUserData');
+
 	// Settings routes
 	Route::get('/settings', 'SettingsController@index');
+	Route::post('/set/user/name', 'SettingsController@setName');
+	Route::post('/set/account/type', 'SettingsController@toggleType');
 
 	// Messanger routes
 	Route::get('/messages', 'MessageController@index');

@@ -4,13 +4,22 @@
 
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 
-			<el-form ref="form" label-position="left" label-width="140px">
+			<template v-if="errorMessage">
+				<el-alert
+					:title="errorMessage"
+					type="error"
+					show-icon>
+				</el-alert>
+			</template>
+
+			<el-form ref="form" label-position="left" label-width="140px" action="/">
+					
 				<el-form-item label="E-mail">
-					<el-input v-model="form.email" name="email"></el-input>
+					<el-input type="text" v-model="form.email" name="email"></el-input>
 				</el-form-item>
 				<el-form-item label="Парола">
-					<el-input v-model="form.password" name="password"></el-input>
-					<el-checkbox v-model="form.checked"> Запомни ме</el-checkbox>
+					<el-input type="password" v-model="form.password" name="password"></el-input>
+					<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
 				</el-form-item>
 
 				<el-form-item size="large">
@@ -36,7 +45,8 @@
     				email: '',
     				password: '',
     				checked: true
-    			}
+    			},
+    			errorMessage: ''
     		}
     	},
 
@@ -55,10 +65,12 @@
         		.then(function (response) {
         			console.log(response.data);
         			vm.dialogFormVisible = false;
-        			location.reload();
+        			window.location.reload();
         		})
         		.catch(function (error) {
-        			console.log(error);
+        			console.log(error.response);
+        			vm.loading = false;
+        			vm.errorMessage = error.response.data.message;
         		});
         		console.log('submit!');
         	},

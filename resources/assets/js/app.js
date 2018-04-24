@@ -52,7 +52,7 @@ Vue.component('login', require('./components/auth/LoginComponent.vue'));
 Vue.component('register', require('./components/auth/RegisterComponent.vue'));
 
 // Settings
-Vue.component('settings', require('./components/SettingsComponent.vue'));
+Vue.component('settings', require('./components/settings/SettingsComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));

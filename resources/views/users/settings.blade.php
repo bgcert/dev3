@@ -6,7 +6,10 @@
 
 	<div class="ui centered grid">
 		<div class="twelve wide column">
-			<settings></settings>
+			<settings
+				id="{{ Auth::id() }}"
+				>
+			</settings>
 		</div>
 	</div>
 
