@@ -471,7 +471,7 @@ Vue.component('login', __webpack_require__(242));
 Vue.component('register', __webpack_require__(245));
 
 // Settings
-Vue.component('settings', __webpack_require__(260));
+Vue.component('settings', __webpack_require__(248));
 
 // Messanger
 Vue.component('messanger', __webpack_require__(251));
@@ -88010,9 +88010,527 @@ if (false) {
 }
 
 /***/ }),
-/* 248 */,
-/* 249 */,
-/* 250 */,
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(249)
+/* template */
+var __vue_template__ = __webpack_require__(250)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\settings\\SettingsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-bbe226d0", Component.options)
+  } else {
+    hotAPI.reload("data-v-bbe226d0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 249 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['id'],
+
+  data: function data() {
+    return {
+      user: [],
+      type: '',
+      form: {
+        name: '',
+        type: '',
+        events: '',
+        venues: '',
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: '',
+        email: '',
+        password: ''
+      }
+    };
+  },
+
+  methods: {
+    setName: function setName() {
+      var vm = this;
+      var route = '/users/set/user/name';
+      axios.post(route, { id: vm.id, name: vm.form.name }).then(function (response) {
+        console.log(response);
+        vm.$message('Името е променено.');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    toggleType: function toggleType() {
+      var vm = this;
+      var route = '/users/set/account/type';
+      axios.post(route, { id: vm.id, type: vm.form.type }).then(function (response) {
+        console.log(response);
+        vm.$message('Видът на акаунта е променен.');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    toggleEventPublish: function toggleEventPublish() {
+      var vm = this;
+      var route = '/users/set/publish/event';
+      axios.post(route, { id: vm.id, status: vm.form.events }).then(function (response) {
+        console.log(response);
+        var status = vm.form.events ? 'активирано' : 'деактивирано';
+        vm.$message('\u041F\u0443\u0431\u043B\u0438\u043A\u0443\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u0441\u044A\u0431\u0438\u0442\u0438\u044F \u0435 ' + status + '.');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    toggleVenuePublish: function toggleVenuePublish() {
+      var vm = this;
+      var route = '/users/set/publish/venue';
+      axios.post(route, { id: vm.id, status: vm.form.venues }).then(function (response) {
+        console.log(response);
+        var status = vm.form.venues ? 'активирано' : 'деактивирано';
+        vm.$message('\u041F\u0443\u0431\u043B\u0438\u043A\u0443\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u0437\u0430\u043B\u0438 \u0435 ' + status + '.');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('Settings mounted.');
+  },
+  created: function created() {
+    var vm = this;
+    var route = '/users/load/user/' + this.id;
+    axios.get(route).then(function (response) {
+      vm.user = response.data;
+      vm.form.type = response.data.role_id == 2 ? true : false;
+      vm.form.name = response.data.name;
+      vm.form.events = Boolean(response.data.company.event_publish);
+      vm.form.venues = Boolean(response.data.company.venue_publish);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+});
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-tabs",
+        { attrs: { type: "border-card" } },
+        [
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Акаунт" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Име" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "name", $$v)
+                          },
+                          expression: "form.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", plain: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.setName($event)
+                            }
+                          }
+                        },
+                        [_vm._v(" Промени")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Бизнес акаунт" } },
+                    [
+                      _c("el-switch", {
+                        on: { change: _vm.toggleType },
+                        model: {
+                          value: _vm.form.type,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "type", $$v)
+                          },
+                          expression: "form.type"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.form.type
+                    ? [
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Публикуване на събития" } },
+                          [
+                            _c("el-switch", {
+                              on: { change: _vm.toggleEventPublish },
+                              model: {
+                                value: _vm.form.events,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "events", $$v)
+                                },
+                                expression: "form.events"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Публикуване на зали" } },
+                          [
+                            _c("el-switch", {
+                              on: { change: _vm.toggleVenuePublish },
+                              model: {
+                                value: _vm.form.venues,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "venues", $$v)
+                                },
+                                expression: "form.venues"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]
+                    : _vm._e()
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Промяна на парола" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Стара парола" } },
+                    [
+                      _c("el-input", {
+                        attrs: { type: "password" },
+                        model: {
+                          value: _vm.form.oldPassword,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "oldPassword", $$v)
+                          },
+                          expression: "form.oldPassword"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нова парола" } },
+                    [
+                      _c("el-input", {
+                        attrs: { type: "password" },
+                        model: {
+                          value: _vm.form.newPassword,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "newPassword", $$v)
+                          },
+                          expression: "form.newPassword"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "180px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нова парола (отново)" } },
+                    [
+                      _c("el-input", {
+                        attrs: { type: "password" },
+                        model: {
+                          value: _vm.form.confirmNewPassword,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "confirmNewPassword", $$v)
+                          },
+                          expression: "form.confirmNewPassword"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Промяна на email" } },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "120px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Нов email" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.form.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "email", $$v)
+                          },
+                          expression: "form.email"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                {
+                  ref: "form",
+                  attrs: { model: _vm.form, "label-width": "120px" }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Парола" } },
+                    [
+                      _c("el-input", {
+                        attrs: { type: "password" },
+                        model: {
+                          value: _vm.form.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "password", $$v)
+                          },
+                          expression: "form.password"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-tab-pane",
+            { attrs: { label: "Деактивиране" } },
+            [
+              _c("el-button", { attrs: { type: "danger" } }, [
+                _vm._v("Деактивирай")
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-bbe226d0", module.exports)
+  }
+}
+
+/***/ }),
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -88603,488 +89121,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(261)
-/* template */
-var __vue_template__ = __webpack_require__(262)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\settings\\SettingsComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bbe226d0", Component.options)
-  } else {
-    hotAPI.reload("data-v-bbe226d0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 261 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(3);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id'],
-
-  data: function data() {
-    return {
-      user: [],
-      type: '',
-      form: {
-        name: '',
-        type: ''
-      }
-    };
-  },
-
-  methods: {
-    setName: function setName() {
-      var vm = this;
-      var route = '/users/set/user/name';
-      axios.post(route, { id: vm.id, name: vm.form.name }).then(function (response) {
-        console.log(response);
-        vm.$message('Името е променено.');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    toggleType: function toggleType() {
-      var vm = this;
-      var route = '/users/set/account/type';
-      axios.post(route, { id: vm.id, type: vm.form.type }).then(function (response) {
-        console.log(response);
-        vm.$message('Името е променено.');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  },
-
-  mounted: function mounted() {
-    console.log('Settings mounted.');
-  },
-  created: function created() {
-    var vm = this;
-    var route = '/users/load/user/' + this.id;
-    axios.get(route).then(function (response) {
-      vm.user = response.data;
-      vm.form.type = response.data.role_id == 2 ? true : false;
-      vm.form.name = response.data.name;
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
-});
-
-/***/ }),
-/* 262 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "el-tabs",
-        { attrs: { type: "border-card" } },
-        [
-          _c(
-            "el-tab-pane",
-            { attrs: { label: "Акаунт" } },
-            [
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Име" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    [
-                      _c(
-                        "el-button",
-                        {
-                          attrs: { type: "primary", plain: "" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.setName($event)
-                            }
-                          }
-                        },
-                        [_vm._v(" Промени")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Бизнес акаунт" } },
-                    [
-                      _c("el-switch", {
-                        on: { change: _vm.toggleType },
-                        model: {
-                          value: _vm.form.type,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "type", $$v)
-                          },
-                          expression: "form.type"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Публикуване на събития" } },
-                    [
-                      _c("el-switch", {
-                        attrs: { disabled: !_vm.form.type },
-                        model: {
-                          value: _vm.form.events,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "events", $$v)
-                          },
-                          expression: "form.events"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Публикуване на зали" } },
-                    [
-                      _c("el-switch", {
-                        attrs: { disabled: !_vm.form.type },
-                        model: {
-                          value: _vm.form.venues,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "venues", $$v)
-                          },
-                          expression: "form.venues"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-tab-pane",
-            { attrs: { label: "Промяна на парола" } },
-            [
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Стара парола" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Нова парола" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Нова парола (отново)" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-tab-pane",
-            { attrs: { label: "Промяна на email" } },
-            [
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "120px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Нов email" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "120px" }
-                },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Парола" } },
-                    [
-                      _c("el-input", {
-                        model: {
-                          value: _vm.form.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
-                          },
-                          expression: "form.name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-tab-pane",
-            { attrs: { label: "Деактивиране" } },
-            [
-              _c("el-button", { attrs: { type: "danger" } }, [
-                _vm._v("Деактивирай")
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-bbe226d0", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

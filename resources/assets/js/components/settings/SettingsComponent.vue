@@ -17,32 +17,35 @@
 						<el-switch v-model="form.type" @change="toggleType"></el-switch>
 					</el-form-item>
 
-					<el-form-item label="Публикуване на събития">
-						<el-switch v-model="form.events" :disabled="!form.type"></el-switch>
-					</el-form-item>
+					<template v-if="form.type">
+						<el-form-item label="Публикуване на събития">
+							<el-switch v-model="form.events" @change="toggleEventPublish"></el-switch>
+						</el-form-item>
 
-					<el-form-item label="Публикуване на зали">
-						<el-switch v-model="form.venues" :disabled="!form.type"></el-switch>
-					</el-form-item>
+						<el-form-item label="Публикуване на зали">
+							<el-switch v-model="form.venues" @change="toggleVenuePublish"></el-switch>
+						</el-form-item>	
+					</template>
+					
 				</el-form>				
 			</el-tab-pane>
 
 			<el-tab-pane label="Промяна на парола">
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Стара парола">
-						<el-input v-model="form.name"></el-input>
+						<el-input type="password" v-model="form.oldPassword"></el-input>
 					</el-form-item>
 				</el-form>
 
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Нова парола">
-						<el-input v-model="form.name"></el-input>
+						<el-input type="password" v-model="form.newPassword"></el-input>
 					</el-form-item>
 				</el-form>
 
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Нова парола (отново)">
-						<el-input v-model="form.name"></el-input>
+						<el-input type="password" v-model="form.confirmNewPassword"></el-input>
 					</el-form-item>
 				</el-form>
 			</el-tab-pane>
@@ -51,13 +54,13 @@
 
 				<el-form ref="form" :model="form" label-width="120px">
 					<el-form-item label="Нов email">
-						<el-input v-model="form.name"></el-input>
+						<el-input v-model="form.email"></el-input>
 					</el-form-item>
 				</el-form>
 
 				<el-form ref="form" :model="form" label-width="120px">
 					<el-form-item label="Парола">
-						<el-input v-model="form.name"></el-input>
+						<el-input type="password" v-model="form.password"></el-input>
 					</el-form-item>
 				</el-form>
 
@@ -80,7 +83,14 @@
     			type: '',
     			form: {
     				name: '',
-    				type: ''
+    				type: '',
+    				events: '',
+    				venues: '',
+    				oldPassword: '',
+    				newPassword: '',
+    				confirmNewPassword: '',
+    				email: '',
+    				password: ''
     			},
     		}
     	},
@@ -105,7 +115,35 @@
     			axios.post(route, { id: vm.id, type: vm.form.type })
 				.then(function (response) {
 					console.log(response);
-					vm.$message('Името е променено.');
+					vm.$message('Видът на акаунта е променен.');
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		},
+
+    		toggleEventPublish() {
+    			var vm = this;
+    			var route = '/users/set/publish/event';
+    			axios.post(route, { id: vm.id, status: vm.form.events })
+				.then(function (response) {
+					console.log(response);
+					var status = (vm.form.events) ? 'активирано' : 'деактивирано';
+					vm.$message(`Публикуването на събития е ${status}.`);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		},
+
+    		toggleVenuePublish() {
+    			var vm = this;
+    			var route = '/users/set/publish/venue';
+    			axios.post(route, { id: vm.id, status: vm.form.venues })
+				.then(function (response) {
+					console.log(response);
+					var status = (vm.form.venues) ? 'активирано' : 'деактивирано';
+					vm.$message(`Публикуването на зали е ${status}.`);
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -124,6 +162,8 @@
         		vm.user = response.data;
         		vm.form.type = (response.data.role_id == 2) ? true : false;
         		vm.form.name = response.data.name;
+        		vm.form.events = Boolean(response.data.company.event_publish);
+        		vm.form.venues = Boolean(response.data.company.venue_publish);
 			})
 			.catch(function (error) {
 				console.log(error);

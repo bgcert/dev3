@@ -50,6 +50,10 @@ Route::post('/data/venue/comments', 'DataController@venueComments');
 // Load venue images
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');
 
+// Verification routes
+Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name('auth.verify');
+Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -64,6 +68,8 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::get('/settings', 'SettingsController@index');
 	Route::post('/set/user/name', 'SettingsController@setName');
 	Route::post('/set/account/type', 'SettingsController@toggleType');
+	Route::post('/set/publish/event', 'SettingsController@toggleEventPublish');
+	Route::post('/set/publish/venue', 'SettingsController@toggleVenuePublish');
 
 	// Messanger routes
 	Route::get('/messages', 'MessageController@index');
