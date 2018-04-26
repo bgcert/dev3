@@ -7,9 +7,21 @@
 				<el-form-item label="Име">
 					<el-input v-model="form.name"></el-input>
 				</el-form-item>
+
+				<el-form-item label="E-mail">
+					<el-input v-model="form.email"></el-input>
+				</el-form-item>
+				<el-form-item label="Парола">
+					<el-input v-model="form.password"></el-input>
+				</el-form-item>
+				<el-form-item label="Потвърдете паролата">
+					<el-input v-model="form.confirmPassword"></el-input>
+				</el-form-item>
+
 				<el-form-item label="Организация">
 					<el-switch v-model="form.type"></el-switch>
 				</el-form-item>
+
 				<template v-if="form.type">
 					<el-form-item label="Име на организацията">
 						<el-input v-model="form.organizationName"></el-input>
@@ -29,16 +41,6 @@
 					</el-form-item>
 
 				</template>
-
-				<el-form-item label="E-mail">
-					<el-input v-model="form.email"></el-input>
-				</el-form-item>
-				<el-form-item label="Парола">
-					<el-input v-model="form.password"></el-input>
-				</el-form-item>
-				<el-form-item label="Потвърдете паролата">
-					<el-input v-model="form.confirmPassword"></el-input>
-				</el-form-item>
 				<el-form-item size="large">
 					<el-button @click.prevent="callLogin"> Вход</el-button>
 					<el-button type="primary" @click="onSubmit" :loading="loading">Регистрация</el-button>

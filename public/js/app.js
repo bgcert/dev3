@@ -87676,6 +87676,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -87810,6 +87812,57 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
+                { attrs: { label: "E-mail" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "email", $$v)
+                      },
+                      expression: "form.email"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Парола" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.password,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "password", $$v)
+                      },
+                      expression: "form.password"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Потвърдете паролата" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.confirmPassword,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "confirmPassword", $$v)
+                      },
+                      expression: "form.confirmPassword"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
                 { attrs: { label: "Организация" } },
                 [
                   _c("el-switch", {
@@ -87909,57 +87962,6 @@ var render = function() {
                     )
                   ]
                 : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "E-mail" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Парола" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password", $$v)
-                      },
-                      expression: "form.password"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Потвърдете паролата" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.confirmPassword,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "confirmPassword", $$v)
-                      },
-                      expression: "form.confirmPassword"
-                    }
-                  })
-                ],
-                1
-              ),
               _vm._v(" "),
               _c(
                 "el-form-item",

@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\VerificationToken;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -29,11 +31,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // Verification methods
     public function verificationToken()
-	{
-	    return $this->hasOne('App\VerificationToken');
-	}
+    {
+        return $this->hasOne(VerificationToken::class);
+    }
+    public function hasVerifiedEmail()
+    {
+        return $this->verified;
+    }
+    public static function byEmail($email)
+    {
+        return static::where('email', $email);
+    }
 
+
+    // Relations
     public function company()
     {
     	return $this->hasOne('App\Company');
@@ -44,6 +57,7 @@ class User extends Authenticatable
     	return $this->belongsToMany('App\Company', 'followers')->withTimestamps();
     }
 
+    // Attribute modification
     public function getPictureAttribute($value)
     {
     	return $this->attributes['picture'] = (!empty($value)) ? $value : '/img/default_user.png';
