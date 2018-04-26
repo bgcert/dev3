@@ -51,15 +51,15 @@ Route::post('/data/venue/comments', 'DataController@venueComments');
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');
 
 // Verification routes
-Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name('auth.verify');
-Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
+Route::get('email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
+Route::get('email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 // USER ROUTES
-Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
+Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['auth','isVerified']], function () {
 
 	// Load data routes
 	Route::get('/load/user/{id}', 'SettingsController@getUserData');
