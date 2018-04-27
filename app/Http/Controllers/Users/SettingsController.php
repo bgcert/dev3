@@ -28,31 +28,24 @@ class SettingsController extends Controller
     }
 
     // Maybe putting part of this in user/company model should be better!
-    public function toggleType()
+    public function setPublisher()
     {
-    	$type = (request()->type) ? 2 : 1;
     	$user = \App\User::find(request()->id);
-    	$user->role_id = $type;
-    	$user->save();
+    	if (request()->publisher) {
+    		$user->role_id = 2;
+    		$user->save();
 
-    	return $user->role_id;
-    }
+    		$company = \App\Company::firstOrNew(['user_id' => $user->id]);
+    		$company->update(request()->all());
+    		//dd($company);
+    		return 'user is publisher now';
+    	} else
+    	{
+    		$user->role_id = 1;
+    		$user->save();
+    		return 'user is NOT publisher now';
+    	}
 
-    // Maybe putting part of this in user/company model should be better!
-	public function toggleEventPublish()
-    {
-    	$status = request()->status;
-    	$company = \App\Company::where('user_id', request()->id)->first();
-    	$company->event_publish = (int)$status;
-    	$company->save();
-
-    	return $company->event_publish;
-    }
-
-    // Maybe putting part of this in user/company model should be better!
-    public function toggleVenuePublish()
-    {
-    	$status = request()->status;
     	$company = \App\Company::where('user_id', request()->id)->first();
     	$company->venue_publish = (int)$status;
     	$company->save();

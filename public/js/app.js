@@ -88138,6 +88138,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88145,12 +88159,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
-      user: [],
       form: {
-        name: '',
-        publisher: '',
-        events: '',
-        venues: '',
+        publisher: false,
+        user: {},
+        company: {
+          name: '',
+          slug: '',
+          event_publish: false,
+          venue_publish: false
+        },
         oldPassword: '',
         newPassword: '',
         confirmNewPassword: '',
@@ -88164,44 +88181,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     setName: function setName() {
       var vm = this;
       var route = '/users/set/user/name';
-      axios.post(route, { id: vm.id, name: vm.form.name }).then(function (response) {
+      axios.post(route, { id: vm.id, name: vm.user.name }).then(function (response) {
         console.log(response);
         vm.$message('Името е променено.');
       }).catch(function (error) {
         console.log(error);
       });
     },
-    toggleType: function toggleType() {
+    setPublisher: function setPublisher() {
       var vm = this;
-      var route = '/users/set/account/type';
-      axios.post(route, { id: vm.id, publisher: vm.form.publisher }).then(function (response) {
+      var route = '/users/set/publisher/data';
+      axios.post(route, {
+        id: vm.id,
+        publisher: vm.form.publisher,
+        name: vm.company.name,
+        slug: vm.company.slug,
+        event_publish: vm.company.event_publish,
+        venue_publish: vm.company.venue_publish
+      }).then(function (response) {
         console.log(response);
-        vm.$message('Видът на акаунта е променен.');
+        vm.$message('Името е променено.');
       }).catch(function (error) {
         console.log(error);
       });
-    },
-    toggleEventPublish: function toggleEventPublish() {
-      var vm = this;
-      var route = '/users/set/publish/event';
-      axios.post(route, { id: vm.id, status: vm.form.events }).then(function (response) {
-        console.log(response);
-        var status = vm.form.events ? 'активирано' : 'деактивирано';
-        vm.$message('\u041F\u0443\u0431\u043B\u0438\u043A\u0443\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u0441\u044A\u0431\u0438\u0442\u0438\u044F \u0435 ' + status + '.');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    },
-    toggleVenuePublish: function toggleVenuePublish() {
-      var vm = this;
-      var route = '/users/set/publish/venue';
-      axios.post(route, { id: vm.id, status: vm.form.venues }).then(function (response) {
-        console.log(response);
-        var status = vm.form.venues ? 'активирано' : 'деактивирано';
-        vm.$message('\u041F\u0443\u0431\u043B\u0438\u043A\u0443\u0432\u0430\u043D\u0435\u0442\u043E \u043D\u0430 \u0437\u0430\u043B\u0438 \u0435 ' + status + '.');
-      }).catch(function (error) {
-        console.log(error);
-      });
+      console.log(this.company);
     }
   },
 
@@ -88212,11 +88215,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     var route = '/users/load/user/' + this.id;
     axios.get(route).then(function (response) {
-      vm.user = response.data;
+      vm.form.user = response.data;
+      if (response.data.company) {
+        vm.form.company = response.data.company;
+      }
       vm.form.publisher = response.data.role_id == 2 ? true : false;
-      vm.form.name = response.data.name;
-      vm.form.events = Boolean(response.data.company.event_publish);
-      vm.form.venues = Boolean(response.data.company.venue_publish);
     }).catch(function (error) {
       console.log(error);
     });
@@ -88255,11 +88258,11 @@ var render = function() {
                     [
                       _c("el-input", {
                         model: {
-                          value: _vm.form.name,
+                          value: _vm.form.user.name,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "name", $$v)
+                            _vm.$set(_vm.form.user, "name", $$v)
                           },
-                          expression: "form.name"
+                          expression: "form.user.name"
                         }
                       })
                     ],
@@ -88291,7 +88294,6 @@ var render = function() {
                     { attrs: { label: "Бизнес акаунт" } },
                     [
                       _c("el-switch", {
-                        on: { change: _vm.toggleType },
                         model: {
                           value: _vm.form.publisher,
                           callback: function($$v) {
@@ -88308,16 +88310,66 @@ var render = function() {
                     ? [
                         _c(
                           "el-form-item",
+                          { attrs: { label: "Име на организацията" } },
+                          [
+                            _c("el-input", {
+                              model: {
+                                value: _vm.form.company.name,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form.company, "name", $$v)
+                                },
+                                expression: "form.company.name"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Адрес" } },
+                          [
+                            _c(
+                              "el-input",
+                              {
+                                attrs: {
+                                  size: "medium",
+                                  placeholder: "Въведете адрес"
+                                },
+                                model: {
+                                  value: _vm.form.company.slug,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form.company, "slug", $$v)
+                                  },
+                                  expression: "form.company.slug"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "prepend" }, [
+                                  _vm._v("http://seminari365.com/")
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
                           { attrs: { label: "Публикуване на събития" } },
                           [
                             _c("el-switch", {
-                              on: { change: _vm.toggleEventPublish },
                               model: {
-                                value: _vm.form.events,
+                                value: _vm.form.company.event_publish,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.form, "events", $$v)
+                                  _vm.$set(
+                                    _vm.form.company,
+                                    "event_publish",
+                                    $$v
+                                  )
                                 },
-                                expression: "form.events"
+                                expression: "form.company.event_publish"
                               }
                             })
                           ],
@@ -88329,20 +88381,43 @@ var render = function() {
                           { attrs: { label: "Публикуване на зали" } },
                           [
                             _c("el-switch", {
-                              on: { change: _vm.toggleVenuePublish },
                               model: {
-                                value: _vm.form.venues,
+                                value: _vm.form.company.venue_publish,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.form, "venues", $$v)
+                                  _vm.$set(
+                                    _vm.form.company,
+                                    "venue_publish",
+                                    $$v
+                                  )
                                 },
-                                expression: "form.venues"
+                                expression: "form.company.venue_publish"
                               }
                             })
                           ],
                           1
                         )
                       ]
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", plain: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.setPublisher($event)
+                            }
+                          }
+                        },
+                        [_vm._v(" Промени")]
+                      )
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -88449,7 +88524,7 @@ var render = function() {
                 "el-form",
                 {
                   ref: "form",
-                  attrs: { model: _vm.form, "label-width": "120px" }
+                  attrs: { model: _vm.form, "label-width": "180px" }
                 },
                 [
                   _c(
@@ -88458,11 +88533,11 @@ var render = function() {
                     [
                       _c("el-input", {
                         model: {
-                          value: _vm.form.email,
+                          value: _vm.form.user.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "email", $$v)
+                            _vm.$set(_vm.form.user, "email", $$v)
                           },
-                          expression: "form.email"
+                          expression: "form.user.email"
                         }
                       })
                     ],
@@ -88476,7 +88551,7 @@ var render = function() {
                 "el-form",
                 {
                   ref: "form",
-                  attrs: { model: _vm.form, "label-width": "120px" }
+                  attrs: { model: _vm.form, "label-width": "180px" }
                 },
                 [
                   _c(

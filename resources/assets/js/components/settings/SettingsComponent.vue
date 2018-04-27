@@ -6,7 +6,7 @@
 			<el-tab-pane label="Акаунт">
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Име">
-						<el-input v-model="form.name"></el-input>
+						<el-input v-model="form.user.name"></el-input>
 					</el-form-item>
 
 					<el-form-item>
@@ -14,18 +14,32 @@
 					</el-form-item>
 
 					<el-form-item label="Бизнес акаунт">
-						<el-switch v-model="form.publisher" @change="toggleType"></el-switch>
+						<el-switch v-model="form.publisher"></el-switch>
 					</el-form-item>
 
 					<template v-if="form.publisher">
+						<el-form-item label="Име на организацията">
+							<el-input v-model="form.company.name"></el-input>
+						</el-form-item>
+
+						<el-form-item label="Адрес">
+							<el-input size="medium" placeholder="Въведете адрес" v-model="form.company.slug">
+								<template slot="prepend">http://seminari365.com/</template>
+							</el-input>
+						</el-form-item>
+
 						<el-form-item label="Публикуване на събития">
-							<el-switch v-model="form.events" @change="toggleEventPublish"></el-switch>
+							<el-switch v-model="form.company.event_publish"></el-switch>
 						</el-form-item>
 
 						<el-form-item label="Публикуване на зали">
-							<el-switch v-model="form.venues" @change="toggleVenuePublish"></el-switch>
-						</el-form-item>	
+							<el-switch v-model="form.company.venue_publish"></el-switch>
+						</el-form-item>
 					</template>
+
+					<el-form-item>
+						<el-button type="primary" plain @click.prevent="setPublisher"> Промени</el-button>
+					</el-form-item>
 					
 				</el-form>				
 			</el-tab-pane>
@@ -52,13 +66,13 @@
 
 			<el-tab-pane label="Промяна на email">
 
-				<el-form ref="form" :model="form" label-width="120px">
+				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Нов email">
-						<el-input v-model="form.email"></el-input>
+						<el-input v-model="form.user.email"></el-input>
 					</el-form-item>
 				</el-form>
 
-				<el-form ref="form" :model="form" label-width="120px">
+				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Парола">
 						<el-input type="password" v-model="form.password"></el-input>
 					</el-form-item>
@@ -79,18 +93,22 @@
 
     	data: function () {
     		return {
-    			user: [],
     			form: {
-    				name: '',
-    				publisher: '',
-    				events: '',
-    				venues: '',
-    				oldPassword: '',
-    				newPassword: '',
-    				confirmNewPassword: '',
-    				email: '',
-    				password: ''
-    			},
+    				publisher: false,
+	    			user: {
+	    			},
+	    			company: {
+	    				name: '',
+	    				slug: '',
+	    				event_publish: false,
+	    				venue_publish: false
+	    			},
+	    			oldPassword: '',
+					newPassword: '',
+					confirmNewPassword: '',
+					email: '',
+					password: ''
+    			}
     		}
     	},
 
@@ -98,7 +116,7 @@
     		setName() {
     			var vm = this;
     			var route = '/users/set/user/name';
-    			axios.post(route, { id: vm.id, name: vm.form.name })
+    			axios.post(route, { id: vm.id, name: vm.user.name })
 				.then(function (response) {
 					console.log(response);
 					vm.$message('Името е променено.');
@@ -108,45 +126,26 @@
 				});
     		},
 
-    		toggleType() {
+    		setPublisher() {
     			var vm = this;
-    			var route = '/users/set/account/type';
-    			axios.post(route, { id: vm.id, publisher: vm.form.publisher })
+    			var route = '/users/set/publisher/data';
+    			axios.post(route,
+    				{
+    					id: vm.id,
+    					publisher: vm.form.publisher,
+    					name: vm.company.name,
+    					slug: vm.company.slug,
+    					event_publish: vm.company.event_publish,
+    					venue_publish: vm.company.venue_publish
+    				})
 				.then(function (response) {
 					console.log(response);
-					vm.$message('Видът на акаунта е променен.');
+					vm.$message('Името е променено.');
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
-    		},
-
-    		toggleEventPublish() {
-    			var vm = this;
-    			var route = '/users/set/publish/event';
-    			axios.post(route, { id: vm.id, status: vm.form.events })
-				.then(function (response) {
-					console.log(response);
-					var status = (vm.form.events) ? 'активирано' : 'деактивирано';
-					vm.$message(`Публикуването на събития е ${status}.`);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-    		},
-
-    		toggleVenuePublish() {
-    			var vm = this;
-    			var route = '/users/set/publish/venue';
-    			axios.post(route, { id: vm.id, status: vm.form.venues })
-				.then(function (response) {
-					console.log(response);
-					var status = (vm.form.venues) ? 'активирано' : 'деактивирано';
-					vm.$message(`Публикуването на зали е ${status}.`);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+    			console.log(this.company);
     		}
     	},
 
@@ -158,11 +157,11 @@
             var vm = this;
             var route = '/users/load/user/' + this.id;
         	axios.get(route).then(function (response) {
-        		vm.user = response.data;
+        		vm.form.user = response.data;
+        		if (response.data.company) {
+        			vm.form.company = response.data.company;
+        		}
         		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-        		vm.form.name = response.data.name;
-        		vm.form.events = Boolean(response.data.company.event_publish);
-        		vm.form.venues = Boolean(response.data.company.venue_publish);
 			})
 			.catch(function (error) {
 				console.log(error);

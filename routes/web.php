@@ -67,9 +67,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	// Settings routes
 	Route::get('/settings', 'SettingsController@index');
 	Route::post('/set/user/name', 'SettingsController@setName');
-	Route::post('/set/account/type', 'SettingsController@toggleType');
-	Route::post('/set/publish/event', 'SettingsController@toggleEventPublish');
-	Route::post('/set/publish/venue', 'SettingsController@toggleVenuePublish');
+	Route::post('/set/publisher/data', 'SettingsController@setPublisher');
 
 	// Messanger routes
 	Route::get('/messages', 'MessageController@index');
