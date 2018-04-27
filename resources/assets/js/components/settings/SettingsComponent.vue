@@ -116,7 +116,7 @@
     		setName() {
     			var vm = this;
     			var route = '/users/set/user/name';
-    			axios.post(route, { id: vm.id, name: vm.user.name })
+    			axios.post(route, { id: vm.id, name: vm.form.user.name })
 				.then(function (response) {
 					console.log(response);
 					vm.$message('Името е променено.');
@@ -133,8 +133,8 @@
     				{
     					id: vm.id,
     					publisher: vm.form.publisher,
-    					name: vm.company.name,
-    					slug: vm.company.slug,
+    					name: vm.form.company.name,
+    					slug: vm.form.company.slug,
     					event_publish: vm.company.event_publish,
     					venue_publish: vm.company.venue_publish
     				})
