@@ -87689,13 +87689,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form: {
                 name: '',
                 email: '',
-                type: false,
+                publisher: false,
                 event_publish: true,
                 venue_publish: false,
                 activities: [],
                 password: '',
                 passwordConfirm: '',
-                organizationName: ''
+                companyName: ''
             }
         };
     },
@@ -87712,15 +87712,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/register', {
                 name: vm.form.name,
                 email: vm.form.email,
-                type: vm.form.type,
+                publisher: vm.form.publisher,
                 event_publish: vm.form.event_publish,
                 venue_publish: vm.form.venue_publish,
-                organization_name: vm.form.organizationName,
+                company_name: vm.form.companyName,
                 slug: vm.form.slug,
                 password: vm.form.password,
                 password_confirmation: vm.form.confirmPassword
             }).then(function (response) {
-                //console.log(response.data);
                 vm.dialogFormVisible = false;
                 location.reload();
             }).catch(function (error) {
@@ -87867,18 +87866,18 @@ var render = function() {
                 [
                   _c("el-switch", {
                     model: {
-                      value: _vm.form.type,
+                      value: _vm.form.publisher,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "type", $$v)
+                        _vm.$set(_vm.form, "publisher", $$v)
                       },
-                      expression: "form.type"
+                      expression: "form.publisher"
                     }
                   })
                 ],
                 1
               ),
               _vm._v(" "),
-              _vm.form.type
+              _vm.form.publisher
                 ? [
                     _c(
                       "el-form-item",
@@ -87886,11 +87885,11 @@ var render = function() {
                       [
                         _c("el-input", {
                           model: {
-                            value: _vm.form.organizationName,
+                            value: _vm.form.companyName,
                             callback: function($$v) {
-                              _vm.$set(_vm.form, "organizationName", $$v)
+                              _vm.$set(_vm.form, "companyName", $$v)
                             },
-                            expression: "form.organizationName"
+                            expression: "form.companyName"
                           }
                         })
                       ],
@@ -88147,10 +88146,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       user: [],
-      type: '',
       form: {
         name: '',
-        type: '',
+        publisher: '',
         events: '',
         venues: '',
         oldPassword: '',
@@ -88176,7 +88174,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     toggleType: function toggleType() {
       var vm = this;
       var route = '/users/set/account/type';
-      axios.post(route, { id: vm.id, type: vm.form.type }).then(function (response) {
+      axios.post(route, { id: vm.id, publisher: vm.form.publisher }).then(function (response) {
         console.log(response);
         vm.$message('Видът на акаунта е променен.');
       }).catch(function (error) {
@@ -88215,7 +88213,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var route = '/users/load/user/' + this.id;
     axios.get(route).then(function (response) {
       vm.user = response.data;
-      vm.form.type = response.data.role_id == 2 ? true : false;
+      vm.form.publisher = response.data.role_id == 2 ? true : false;
       vm.form.name = response.data.name;
       vm.form.events = Boolean(response.data.company.event_publish);
       vm.form.venues = Boolean(response.data.company.venue_publish);
@@ -88295,18 +88293,18 @@ var render = function() {
                       _c("el-switch", {
                         on: { change: _vm.toggleType },
                         model: {
-                          value: _vm.form.type,
+                          value: _vm.form.publisher,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "type", $$v)
+                            _vm.$set(_vm.form, "publisher", $$v)
                           },
-                          expression: "form.type"
+                          expression: "form.publisher"
                         }
                       })
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _vm.form.type
+                  _vm.form.publisher
                     ? [
                         _c(
                           "el-form-item",

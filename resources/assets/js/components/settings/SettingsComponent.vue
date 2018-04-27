@@ -14,10 +14,10 @@
 					</el-form-item>
 
 					<el-form-item label="Бизнес акаунт">
-						<el-switch v-model="form.type" @change="toggleType"></el-switch>
+						<el-switch v-model="form.publisher" @change="toggleType"></el-switch>
 					</el-form-item>
 
-					<template v-if="form.type">
+					<template v-if="form.publisher">
 						<el-form-item label="Публикуване на събития">
 							<el-switch v-model="form.events" @change="toggleEventPublish"></el-switch>
 						</el-form-item>
@@ -80,10 +80,9 @@
     	data: function () {
     		return {
     			user: [],
-    			type: '',
     			form: {
     				name: '',
-    				type: '',
+    				publisher: '',
     				events: '',
     				venues: '',
     				oldPassword: '',
@@ -112,7 +111,7 @@
     		toggleType() {
     			var vm = this;
     			var route = '/users/set/account/type';
-    			axios.post(route, { id: vm.id, type: vm.form.type })
+    			axios.post(route, { id: vm.id, publisher: vm.form.publisher })
 				.then(function (response) {
 					console.log(response);
 					vm.$message('Видът на акаунта е променен.');
@@ -160,7 +159,7 @@
             var route = '/users/load/user/' + this.id;
         	axios.get(route).then(function (response) {
         		vm.user = response.data;
-        		vm.form.type = (response.data.role_id == 2) ? true : false;
+        		vm.form.publisher = (response.data.role_id == 2) ? true : false;
         		vm.form.name = response.data.name;
         		vm.form.events = Boolean(response.data.company.event_publish);
         		vm.form.venues = Boolean(response.data.company.venue_publish);

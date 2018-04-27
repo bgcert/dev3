@@ -19,12 +19,12 @@
 				</el-form-item>
 
 				<el-form-item label="Организация">
-					<el-switch v-model="form.type"></el-switch>
+					<el-switch v-model="form.publisher"></el-switch>
 				</el-form-item>
 
-				<template v-if="form.type">
+				<template v-if="form.publisher">
 					<el-form-item label="Име на организацията">
-						<el-input v-model="form.organizationName"></el-input>
+						<el-input v-model="form.companyName"></el-input>
 					</el-form-item>
 					<el-form-item label="Адрес">
 						<el-input size="medium" placeholder="Въведете адрес" v-model="form.slug">
@@ -61,13 +61,13 @@
     			form: {
     				name: '',
     				email: '',
-    				type: false,
+    				publisher: false,
     				event_publish: true,
     				venue_publish: false,
     				activities: [],
     				password: '',
     				passwordConfirm: '',
-    				organizationName: '',
+    				companyName: '',
     			}
     		}
     	},
@@ -83,16 +83,15 @@
         		axios.post('/register', {
         			name: vm.form.name,
         			email: vm.form.email,
-        			type: vm.form.type,
+        			publisher: vm.form.publisher,
         			event_publish: vm.form.event_publish,
         			venue_publish: vm.form.venue_publish,
-        			organization_name: vm.form.organizationName,
+        			company_name: vm.form.companyName,
         			slug: vm.form.slug,
         			password: vm.form.password,
         			password_confirmation: vm.form.confirmPassword
         		})
         		.then(function (response) {
-        			//console.log(response.data);
         			vm.dialogFormVisible = false;
         			location.reload();
         		})
