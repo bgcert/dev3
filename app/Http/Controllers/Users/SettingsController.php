@@ -15,7 +15,7 @@ class SettingsController extends Controller
     public function getUserData()
     {
     	$user = \App\User::find(request()->id);
-    	return ($user->role_id == 2) ? $user->load('company') : $user;
+    	return ($user->company) ? $user->load('company') : $user;
     }
 
     public function setName()
@@ -32,24 +32,17 @@ class SettingsController extends Controller
     {
     	$user = \App\User::find(request()->id);
     	if (request()->publisher) {
-    		$user->role_id = 2;
-    		$user->save();
-
-    		$company = \App\Company::firstOrNew(['user_id' => $user->id]);
-    		$company->update(request()->all());
-    		//dd($company);
-    		return 'user is publisher now';
-    	} else
-    	{
-    		$user->role_id = 1;
-    		$user->save();
-    		return 'user is NOT publisher now';
+    		$company = $user->company()->updateOrCreate([], request()->all());
+    		if ($company->exists) {
+				$user->role_id = 2;
+				$user->save();
+				return 'data is saved and the user is publisher now';
+			}
+			return 'error, data not saved';
     	}
 
-    	$company = \App\Company::where('user_id', request()->id)->first();
-    	$company->venue_publish = (int)$status;
-    	$company->save();
-
-    	return $company->venue_publish;
+   		$user->role_id = 1;
+   		$user->save();
+   		return 'user is NOT publisher now';
     }
 }

@@ -88162,17 +88162,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       form: {
         publisher: false,
         user: {},
-        company: {
-          name: '',
-          slug: '',
-          event_publish: false,
-          venue_publish: false
-        },
         oldPassword: '',
         newPassword: '',
         confirmNewPassword: '',
         email: '',
         password: ''
+      },
+      company: {
+        name: '',
+        slug: '',
+        event_publish: false,
+        venue_publish: false
       }
     };
   },
@@ -88181,7 +88181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     setName: function setName() {
       var vm = this;
       var route = '/users/set/user/name';
-      axios.post(route, { id: vm.id, name: vm.user.name }).then(function (response) {
+      axios.post(route, { id: vm.id, name: vm.form.user.name }).then(function (response) {
         console.log(response);
         vm.$message('Името е променено.');
       }).catch(function (error) {
@@ -88194,13 +88194,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post(route, {
         id: vm.id,
         publisher: vm.form.publisher,
-        name: vm.company.name,
-        slug: vm.company.slug,
-        event_publish: vm.company.event_publish,
-        venue_publish: vm.company.venue_publish
+        name: vm.form.user.company.name,
+        slug: vm.form.user.company.slug,
+        event_publish: vm.form.user.company.event_publish,
+        venue_publish: vm.form.user.company.venue_publish
       }).then(function (response) {
         console.log(response);
-        vm.$message('Името е променено.');
+        vm.$message('Данните са променени.');
       }).catch(function (error) {
         console.log(error);
       });
@@ -88215,9 +88215,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     var route = '/users/load/user/' + this.id;
     axios.get(route).then(function (response) {
+      console.log(response.data);
       vm.form.user = response.data;
       if (response.data.company) {
-        vm.form.company = response.data.company;
+        vm.form.user.company = response.data.company;
+      } else {
+        vm.form.user.company = vm.company;
       }
       vm.form.publisher = response.data.role_id == 2 ? true : false;
     }).catch(function (error) {
@@ -88314,11 +88317,11 @@ var render = function() {
                           [
                             _c("el-input", {
                               model: {
-                                value: _vm.form.company.name,
+                                value: _vm.form.user.company.name,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.form.company, "name", $$v)
+                                  _vm.$set(_vm.form.user.company, "name", $$v)
                                 },
-                                expression: "form.company.name"
+                                expression: "form.user.company.name"
                               }
                             })
                           ],
@@ -88337,11 +88340,11 @@ var render = function() {
                                   placeholder: "Въведете адрес"
                                 },
                                 model: {
-                                  value: _vm.form.company.slug,
+                                  value: _vm.form.user.company.slug,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.form.company, "slug", $$v)
+                                    _vm.$set(_vm.form.user.company, "slug", $$v)
                                   },
-                                  expression: "form.company.slug"
+                                  expression: "form.user.company.slug"
                                 }
                               },
                               [
@@ -88361,15 +88364,15 @@ var render = function() {
                           [
                             _c("el-switch", {
                               model: {
-                                value: _vm.form.company.event_publish,
+                                value: _vm.form.user.company.event_publish,
                                 callback: function($$v) {
                                   _vm.$set(
-                                    _vm.form.company,
+                                    _vm.form.user.company,
                                     "event_publish",
                                     $$v
                                   )
                                 },
-                                expression: "form.company.event_publish"
+                                expression: "form.user.company.event_publish"
                               }
                             })
                           ],
@@ -88382,15 +88385,15 @@ var render = function() {
                           [
                             _c("el-switch", {
                               model: {
-                                value: _vm.form.company.venue_publish,
+                                value: _vm.form.user.company.venue_publish,
                                 callback: function($$v) {
                                   _vm.$set(
-                                    _vm.form.company,
+                                    _vm.form.user.company,
                                     "venue_publish",
                                     $$v
                                   )
                                 },
-                                expression: "form.company.venue_publish"
+                                expression: "form.user.company.venue_publish"
                               }
                             })
                           ],

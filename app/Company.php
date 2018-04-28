@@ -50,5 +50,15 @@ class Company extends Model
     	return $this->attributes['logo'] = (!empty($value)) ? $value : '/img/default_logo.png';
     }
 
+    public function getEventPublishAttribute($value)
+    {
+    	return (bool) $value;
+    }
+
+    public function getVenuePublishAttribute($value)
+    {
+    	return (bool) $value;
+    }
+
 
 }

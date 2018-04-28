@@ -19,21 +19,21 @@
 
 					<template v-if="form.publisher">
 						<el-form-item label="Име на организацията">
-							<el-input v-model="form.company.name"></el-input>
+							<el-input v-model="form.user.company.name"></el-input>
 						</el-form-item>
 
 						<el-form-item label="Адрес">
-							<el-input size="medium" placeholder="Въведете адрес" v-model="form.company.slug">
+							<el-input size="medium" placeholder="Въведете адрес" v-model="form.user.company.slug">
 								<template slot="prepend">http://seminari365.com/</template>
 							</el-input>
 						</el-form-item>
 
 						<el-form-item label="Публикуване на събития">
-							<el-switch v-model="form.company.event_publish"></el-switch>
+							<el-switch v-model="form.user.company.event_publish"></el-switch>
 						</el-form-item>
 
 						<el-form-item label="Публикуване на зали">
-							<el-switch v-model="form.company.venue_publish"></el-switch>
+							<el-switch v-model="form.user.company.venue_publish"></el-switch>
 						</el-form-item>
 					</template>
 
@@ -96,19 +96,20 @@
     			form: {
     				publisher: false,
 	    			user: {
-	    			},
-	    			company: {
-	    				name: '',
-	    				slug: '',
-	    				event_publish: false,
-	    				venue_publish: false
+
 	    			},
 	    			oldPassword: '',
 					newPassword: '',
 					confirmNewPassword: '',
 					email: '',
 					password: ''
-    			}
+    			},
+    			company: {
+    				name: '',
+    				slug: '',
+    				event_publish: false,
+    				venue_publish: false
+				}
     		}
     	},
 
@@ -133,14 +134,14 @@
     				{
     					id: vm.id,
     					publisher: vm.form.publisher,
-    					name: vm.form.company.name,
-    					slug: vm.form.company.slug,
-    					event_publish: vm.company.event_publish,
-    					venue_publish: vm.company.venue_publish
+    					name: vm.form.user.company.name,
+    					slug: vm.form.user.company.slug,
+    					event_publish: vm.form.user.company.event_publish,
+    					venue_publish: vm.form.user.company.venue_publish
     				})
 				.then(function (response) {
 					console.log(response);
-					vm.$message('Името е променено.');
+					vm.$message('Данните са променени.');
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -157,9 +158,12 @@
             var vm = this;
             var route = '/users/load/user/' + this.id;
         	axios.get(route).then(function (response) {
+        		console.log(response.data);
         		vm.form.user = response.data;
         		if (response.data.company) {
-        			vm.form.company = response.data.company;
+        			vm.form.user.company = response.data.company;
+        		} else {
+        			vm.form.user.company = vm.company;
         		}
         		vm.form.publisher = (response.data.role_id == 2) ? true : false;
 			})
