@@ -88152,6 +88152,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88205,6 +88207,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
       console.log(this.company);
+    },
+    changePassword: function changePassword() {
+      var vm = this;
+      var route = '/users/change/password';
+      axios.post(route, {
+        old_password: vm.form.oldPassword,
+        new_password: vm.form.newPassword,
+        new_password_confirmation: vm.form.newPasswordConfirmation
+      }).then(function (response) {
+        if (response.data.error) {
+          vm.$message({
+            message: response.data.error,
+            type: 'warning'
+          });
+        } else {
+          vm.$message({
+            message: response.data.success,
+            type: 'success'
+          });
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   },
 
@@ -88455,18 +88480,8 @@ var render = function() {
                       })
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Нова парола" } },
@@ -88483,18 +88498,8 @@ var render = function() {
                       })
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form",
-                {
-                  ref: "form",
-                  attrs: { model: _vm.form, "label-width": "180px" }
-                },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Нова парола (отново)" } },
@@ -88502,13 +88507,33 @@ var render = function() {
                       _c("el-input", {
                         attrs: { type: "password" },
                         model: {
-                          value: _vm.form.confirmNewPassword,
+                          value: _vm.form.newPasswordConfirmation,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "confirmNewPassword", $$v)
+                            _vm.$set(_vm.form, "newPasswordConfirmation", $$v)
                           },
-                          expression: "form.confirmNewPassword"
+                          expression: "form.newPasswordConfirmation"
                         }
                       })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", plain: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.changePassword($event)
+                            }
+                          }
+                        },
+                        [_vm._v(" Промени")]
+                      )
                     ],
                     1
                   )

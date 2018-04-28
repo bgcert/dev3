@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::get('/settings', 'SettingsController@index');
 	Route::post('/set/user/name', 'SettingsController@setName');
 	Route::post('/set/publisher/data', 'SettingsController@setPublisher');
+	Route::post('/change/password', 'SettingsController@changePassword');
 
 	// Messanger routes
 	Route::get('/messages', 'MessageController@index');

@@ -45,23 +45,25 @@
 			</el-tab-pane>
 
 			<el-tab-pane label="Промяна на парола">
+
 				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Стара парола">
 						<el-input type="password" v-model="form.oldPassword"></el-input>
 					</el-form-item>
-				</el-form>
 
-				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Нова парола">
 						<el-input type="password" v-model="form.newPassword"></el-input>
 					</el-form-item>
-				</el-form>
 
-				<el-form ref="form" :model="form" label-width="180px">
 					<el-form-item label="Нова парола (отново)">
-						<el-input type="password" v-model="form.confirmNewPassword"></el-input>
+						<el-input type="password" v-model="form.newPasswordConfirmation"></el-input>
+					</el-form-item>
+
+					<el-form-item>
+						<el-button type="primary" plain @click.prevent="changePassword"> Промени</el-button>
 					</el-form-item>
 				</el-form>
+
 			</el-tab-pane>
 
 			<el-tab-pane label="Промяна на email">
@@ -147,7 +149,34 @@
 					console.log(error);
 				});
     			console.log(this.company);
-    		}
+    		},
+
+    		changePassword() {
+    			var vm = this;
+    			var route = '/users/change/password';
+    			axios.post(route,
+    				{
+    					old_password: vm.form.oldPassword,
+    					new_password: vm.form.newPassword,
+    					new_password_confirmation: vm.form.newPasswordConfirmation
+    				})
+				.then(function (response) {
+					if (response.data.error) {
+						vm.$message({
+				        	message: response.data.error,
+				        	type: 'warning'
+				        });
+					} else {
+						vm.$message({
+				        	message: response.data.success,
+				        	type: 'success'
+				        });
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		},
     	},
 
         mounted() {
