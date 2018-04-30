@@ -21,7 +21,6 @@ class ThemeController extends Controller
             ->get();
 
         return $themes;
-        return view('dashboard.themes.index', compact('themes'));
     }
 
     /**

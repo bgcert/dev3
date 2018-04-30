@@ -8,9 +8,41 @@
 		<div class="ui three stackable cards">
 			<template v-for="event in events">
 				<div class="card">
-					<div class="extra content">
-						<box-hover :name="event.theme.company.name" :slug="event.theme.company.slug" :logo="event.theme.company.logo" :id="event.theme.company.id"></box-hover>
-					</div>
+					<el-popover
+						slot="reference"
+						class="extra content"
+						@show="getCompany(event.theme.company.id)"
+						placement="top"
+						width="400"
+						trigger="hover">
+
+						<div class="ui card">
+			                <div class="center aligned content">
+			                    <a :href="'/c/' + company.slug">
+			                        <img class="ui tiny circular image" :src="company.logo">
+			                    </a>
+			                    <div class=" header">
+			                        <a class="ui sub header" :href="'/c/' + company.slug">{{ company.name }}</a>
+			                    </div>
+			                </div>
+			                <div class="extra content">
+			                    <follow
+			                        :followed="company.is_followed"
+			                        :company_id="company.id"
+			                        >
+			                    </follow>
+			                    <template v-for="follower in company.first_five_followers">
+									<el-tooltip class="item" effect="dark" :content="follower.name" placement="top">
+										<img :src="follower.picture" class="ui avatar image">
+									</el-tooltip>
+								</template>                    
+			                </div>
+			            </div>
+
+						<div slot="reference">
+							<a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a>
+						</div>
+					</el-popover>
 					<div class="image">
 						<img :src="event.cover">
 					</div>
@@ -52,7 +84,9 @@
 
     	data: function () {
     		return {
-    			events: {}
+    			test: 0,
+    			events: {},
+    			company: []
     		}
     	},
 
@@ -64,6 +98,20 @@
     		request(id) {
     			EventBus.$emit('testlog', 'some message');
     			console.log('request ' + id);
+    		},
+
+    		getCompany: function(id) {
+    			let vm = this;
+    			let route = '/data/getcompany/' + id;
+    			axios.get(route).then(function (response) {
+    				console.log(response.data);
+    				vm.company = response.data;
+	        		//vm.company = response.data;
+					console.log(response);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
     		}
     	},
 

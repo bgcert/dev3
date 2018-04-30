@@ -41,6 +41,7 @@ Vue.component('venue-feed', require('./components/VenueFeedComponent.vue'));
 Vue.component('venue-slider', require('./components/VenueSliderComponent.vue'));
 Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
+Vue.component('theme-box', require('./components/ThemeBoxComponent.vue'));
 Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 Vue.component('company-view', require('./components/company/CompanyViewComponent.vue'));
@@ -56,6 +57,7 @@ Vue.component('settings', require('./components/settings/SettingsComponent.vue')
 
 // Dashboard
 Vue.component('dashboard', require('./components/dashboard/DashboardComponent.vue'));
+Vue.component('theme-feed', require('./components/dashboard/ThemeFeedComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));

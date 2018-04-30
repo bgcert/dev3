@@ -1,12 +1,12 @@
 <template>
 	<div>
+		<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+			<el-radio-button :label="false">expand</el-radio-button>
+			<el-radio-button :label="true">collapse</el-radio-button>
+		</el-radio-group>
 		<el-row>
 			<el-col :span="6">
 				<div class="grid-content bg-purple">
-					<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-						<el-radio-button :label="false">expand</el-radio-button>
-						<el-radio-button :label="true">collapse</el-radio-button>
-					</el-radio-group>
 					<el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
 						<el-menu-item index="1">
 							<i class="el-icon-menu"></i>
@@ -31,11 +31,11 @@
 					</el-menu>
 				</div>
 			</el-col>
-			<el-col :span="12">
+			<el-col :span="18">
 				<div class="grid-content">
 					<el-container>
 						<el-main>
-							
+							<theme-feed></theme-feed>
 						</el-main>
 					</el-container>
 				</div>
@@ -69,14 +69,7 @@
         },
 
         created() {
-            var vm = this;
-            var route = '/dashboard/themes';
-        	axios.get(route).then(function (response) {
-        		console.log(response.data);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+            
         }
     }
 </script>
