@@ -11,7 +11,7 @@
 |
 */
 
-//Auth::login(\App\User::find(6));
+Auth::login(\App\User::find(5));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -96,7 +96,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::get('/', 'DashboardController@index');
 	Route::resource('themes', 'ThemeController');
 	Route::resource('events', 'EventController');
-	Route::resource('teachers', 'TeacherController');
+	//Route::resource('teachers', 'TeacherController');
 	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');

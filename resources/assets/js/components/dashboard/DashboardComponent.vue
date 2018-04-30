@@ -35,7 +35,7 @@
 				<div class="grid-content">
 					<el-container>
 						<el-main>
-							ldkfjgldjflkg
+							
 						</el-main>
 					</el-container>
 				</div>
@@ -69,21 +69,14 @@
         },
 
         created() {
-   //          var vm = this;
-   //          var route = '/users/load/user/' + this.id;
-   //      	axios.get(route).then(function (response) {
-   //      		console.log(response.data);
-   //      		vm.form.user = response.data;
-   //      		if (response.data.company) {
-   //      			vm.form.user.company = response.data.company;
-   //      		} else {
-   //      			vm.form.user.company = vm.company;
-   //      		}
-   //      		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-			// })
-			// .catch(function (error) {
-			// 	console.log(error);
-			// });
+            var vm = this;
+            var route = '/dashboard/themes';
+        	axios.get(route).then(function (response) {
+        		console.log(response.data);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
         }
     }
 </script>

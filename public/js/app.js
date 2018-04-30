@@ -88806,21 +88806,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('Dashboard mounted.');
     },
     created: function created() {
-        //          var vm = this;
-        //          var route = '/users/load/user/' + this.id;
-        //      	axios.get(route).then(function (response) {
-        //      		console.log(response.data);
-        //      		vm.form.user = response.data;
-        //      		if (response.data.company) {
-        //      			vm.form.user.company = response.data.company;
-        //      		} else {
-        //      			vm.form.user.company = vm.company;
-        //      		}
-        //      		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-        // })
-        // .catch(function (error) {
-        // 	console.log(error);
-        // });
+        var vm = this;
+        var route = '/dashboard/themes';
+        axios.get(route).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
@@ -88926,17 +88918,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "grid-content" },
-              [
-                _c(
-                  "el-container",
-                  [
-                    _c("el-main", [
-                      _vm._v("\n\t\t\t\t\t\tldkfjgldjflkg\n\t\t\t\t\t")
-                    ])
-                  ],
-                  1
-                )
-              ],
+              [_c("el-container", [_c("el-main")], 1)],
               1
             )
           ])
