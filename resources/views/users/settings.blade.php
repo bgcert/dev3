@@ -1,8 +1,6 @@
-@extends('layouts.users')
+@extends('layouts.app')
 
-@section('secondary-content')
-	
-	<h2>settings</h2>
+@section('content')
 
 	<div class="ui centered grid">
 		<div class="twelve wide column">

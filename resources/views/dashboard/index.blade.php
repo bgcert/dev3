@@ -1,5 +1,5 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
-@section('secondary-content')
-	dashboard - index
+@section('content')
+	<dashboard></dashboard>
 @endsection
