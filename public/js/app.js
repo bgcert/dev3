@@ -88227,6 +88227,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: 'success'
           });
         }
+        vm.form.oldPassword = '';
+        vm.form.newPassword = '';
+        vm.form.newPasswordConfirmation = '';
       }).catch(function (error) {
         console.log(error);
       });
