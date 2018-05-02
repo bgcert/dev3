@@ -13,7 +13,7 @@
 						class="extra content"
 						@show="getCompany(event.theme.company.id)"
 						placement="top"
-						width="400"
+						width="250"
 						trigger="hover">
 
 						
@@ -43,9 +43,9 @@
 			                </template>
 			            </div>
 
-						<div slot="reference">
+						<span slot="reference">
 							<a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a>
-						</div>
+						</span>
 					</el-popover>
 					<div class="image">
 						<img :src="event.cover">
@@ -138,5 +138,6 @@
 <style>
 	.ui.card {
 		min-height: 200px;
+		box-shadow: none;
 	}
 </style>
