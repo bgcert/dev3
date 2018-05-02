@@ -28,6 +28,7 @@
     			var vm = this;
     			axios.post('/users/follow', { id: vm.id })
     			.then(function (response) {
+    				console.log(response.data);
     				vm.isFollowed = !vm.isFollowed;
     				console.log(vm.isFollowed);
     			})
