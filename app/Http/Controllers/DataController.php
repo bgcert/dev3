@@ -27,7 +27,6 @@ class DataController extends Controller
     public function getCompany()
     {
     	$company = \App\Company::with('firstFiveFollowers')
-    							->with('isFollowed')
 				    			->where('id', request()->id)
 				    			->first();
     	return $company;

@@ -22,6 +22,6 @@ class UserController extends Controller
     {
     	$user = \Auth::user();
     	$user->following()->toggle(request()->id);
-    	return back();
+    	return 'follow button click';
     }
 }

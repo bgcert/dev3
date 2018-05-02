@@ -10,6 +10,8 @@ class Company extends Model
         'name', 'slug', 'description', 'logo', 'cover', 'event_publish', 'venue_publish',
     ];
 
+    protected $appends = ['is_followed'];
+
     public function user()
     {
     	return $this->belongsTo('App\User');
@@ -40,9 +42,9 @@ class Company extends Model
     	return $this->followers()->limit(5);
     }
 
-    public function isFollowed()
+    public function getIsFollowedAttribute()
     {
-    	return $this->followers()->where('user_id', auth()->id());
+    	return (auth()->check()) ? $this->followers->contains(\Auth::user()) : false;
     }
 
     public function getLogoAttribute($value)

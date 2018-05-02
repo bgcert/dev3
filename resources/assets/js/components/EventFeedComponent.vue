@@ -84,7 +84,6 @@
 
     	data: function () {
     		return {
-    			test: 0,
     			events: {},
     			company: []
     		}
