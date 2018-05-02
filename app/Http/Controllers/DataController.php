@@ -35,7 +35,6 @@ class DataController extends Controller
     public function getCompanyDetails()
     {
     	$company = \App\Company::with('user', 'themes', 'events', 'venues', 'followers')
-    							->with('isFollowed')
     							->where('slug', request()->slug)
     							->first();
     	return $company;
