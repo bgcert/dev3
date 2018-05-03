@@ -21,6 +21,7 @@ class Event extends Model
     }
 
     // For related events by company
+    // Usage Event::byCompany(<company_id>)->get();
     public function scopeByCompany($query, $id)
     {
         return $query->with('theme')->whereHas('theme', function ($query) use ($id) {

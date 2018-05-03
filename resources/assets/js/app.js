@@ -63,7 +63,7 @@ Vue.component('settings', require('./components/settings/SettingsComponent.vue')
 
 // Dashboard
 Vue.component('dashboard', require('./components/dashboard/DashboardComponent.vue'));
-Vue.component('theme-feed', require('./components/dashboard/ThemeFeedComponent.vue'));
+//Vue.component('theme-feed', require('./components/dashboard/ThemeFeedComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));

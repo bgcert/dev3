@@ -97,6 +97,8 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');
 
+	Route::get('/categories', 'DashboardController@categories');
+
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {
