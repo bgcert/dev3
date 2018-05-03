@@ -21,5 +21,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'role_id' => rand(1, 2),
         'picture' => 'https://picsum.photos/280/280/?image=' . $faker->numberBetween($min = 100, $max = 300),
         'remember_token' => str_random(10),
+        'verified' => 1
     ];
 });

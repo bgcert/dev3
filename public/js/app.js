@@ -434,7 +434,7 @@ Vue.component('venue-slider', __webpack_require__(215));
 Vue.component('related-feed', __webpack_require__(220));
 Vue.component('event-box', __webpack_require__(223));
 Vue.component('theme-box', __webpack_require__(226));
-//Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
+Vue.component('box-hover', __webpack_require__(266));
 Vue.component('request-modal', __webpack_require__(229));
 Vue.component('company-view', __webpack_require__(232));
 
@@ -89839,6 +89839,304 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 265 */,
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(267)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(269)
+/* template */
+var __vue_template__ = __webpack_require__(270)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BoxHoverComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-cf657536", Component.options)
+  } else {
+    hotAPI.reload("data-v-cf657536", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 267 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(268);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("d3964fcc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cf657536\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./BoxHoverComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(10)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.user-popover {\n        position: absolute;\n        z-index:999;\n        bottom: 20px;\n}\n    \n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 269 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['name', 'slug', 'logo', 'id'],
+
+    data: function data() {
+        return {
+            showPopup: false,
+            timer: '',
+            isInInfo: false,
+            company: []
+        };
+    },
+
+    methods: {
+
+        hover: function hover() {
+            var vm = this;
+            this.getCompany();
+        },
+
+        hoverOut: function hoverOut() {
+            var vm = this;
+            clearTimeout(vm.timer);
+            this.timer = setTimeout(function () {
+                if (!vm.isInInfo) {
+                    vm.closePopover();
+                }
+            }, 200);
+        },
+
+        hoverInfo: function hoverInfo() {
+            this.isInInfo = true;
+        },
+
+        hoverOutInfo: function hoverOutInfo() {
+            this.isInInfo = false;
+            this.hoverOut();
+        },
+
+        showPopover: function showPopover() {
+            this.showPopup = true;
+        },
+
+        closePopover: function closePopover() {
+            this.showPopup = false;
+        },
+
+        getCompany: function getCompany() {
+            var vm = this;
+            var route = '/data/getcompany/' + this.id;
+            axios.get(route).then(function (response) {
+                vm.company = response.data;
+                vm.timer = setTimeout(function () {
+                    vm.showPopover();
+                }, 100);
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { staticStyle: { position: "relative" } }, [
+    _vm.showPopup
+      ? _c(
+          "a",
+          {
+            staticClass: "user-popover",
+            attrs: { transition: "fade" },
+            on: { mouseover: _vm.hoverInfo, mouseout: _vm.hoverOutInfo }
+          },
+          [
+            _c("div", { staticClass: "ui card" }, [
+              _c("div", { staticClass: "center aligned content" }, [
+                _c("a", { attrs: { href: "/c/" + _vm.company.slug } }, [
+                  _c("img", {
+                    staticClass: "ui tiny circular image",
+                    attrs: { src: _vm.company.logo }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: " header" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "ui sub header",
+                      attrs: { href: "/c/" + _vm.company.slug }
+                    },
+                    [_vm._v(_vm._s(_vm.name))]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "extra content" },
+                [
+                  _c("follow", {
+                    attrs: {
+                      followed: _vm.company.is_followed.length > 0,
+                      company_id: _vm.company.id
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.company.first_five_followers, function(follower) {
+                    return [
+                      _c(
+                        "el-tooltip",
+                        {
+                          staticClass: "item",
+                          attrs: {
+                            effect: "dark",
+                            content: follower.name,
+                            placement: "top"
+                          }
+                        },
+                        [
+                          _c("img", {
+                            staticClass: "ui avatar image",
+                            attrs: { src: follower.picture }
+                          })
+                        ]
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("a", { attrs: { href: "/c/" + _vm.slug } }, [
+      _c("img", { staticClass: "ui avatar image", attrs: { src: _vm.logo } })
+    ]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        attrs: { href: "/c/" + _vm.slug },
+        on: { mouseover: _vm.hover, mouseout: _vm.hoverOut }
+      },
+      [_vm._v(_vm._s(_vm.name))]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-cf657536", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

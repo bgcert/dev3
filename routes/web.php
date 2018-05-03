@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(5));
+Auth::login(\App\User::find(4));
 
 // Route::get('/', function () {
 //     return view('test');
@@ -59,7 +59,7 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
 // USER ROUTES
-Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['auth','isVerified']], function () {
+Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['auth', 'isVerified']], function () {
 
 	// Load data routes
 	Route::get('/load/user/{id}', 'SettingsController@getUserData');
