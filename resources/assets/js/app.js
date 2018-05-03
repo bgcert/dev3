@@ -24,11 +24,13 @@ window.auth = { auth: '{{ auth()->check() }}' }
 import router from './router.js'; // Importing routes
 
 import VueRouter from 'vue-router';
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
 Vue.use(VueRouter);
+
 Vue.use(ElementUI, { locale });
 
 /**
@@ -47,7 +49,6 @@ Vue.component('venue-slider', require('./components/VenueSliderComponent.vue'));
 Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
 Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('theme-box', require('./components/ThemeBoxComponent.vue'));
-//Vue.component('box-hover', require('./components/BoxHoverComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 Vue.component('company-view', require('./components/company/CompanyViewComponent.vue'));
 

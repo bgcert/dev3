@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(5));
+Auth::login(\App\User::find(11));
 
 Route::get('/home', function () {
     return 'hard to remove /home route';

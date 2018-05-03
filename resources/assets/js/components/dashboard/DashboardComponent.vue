@@ -1,46 +1,18 @@
 <template>
 	<div>
-		<el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-			<el-radio-button :label="false">expand</el-radio-button>
-			<el-radio-button :label="true">collapse</el-radio-button>
-		</el-radio-group>
-		<el-row>
-			<el-col :span="6">
-				<div class="grid-content bg-purple">
-					<el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-						<el-menu-item index="1">
-							<i class="el-icon-menu"></i>
-							<span slot="title">Теми</span>
-						</el-menu-item>
-						<el-menu-item index="2">
-							<i class="el-icon-menu"></i>
-							<span slot="title">Календар</span>
-						</el-menu-item>
-						<el-menu-item index="3">
-							<i class="el-icon-menu"></i>
-							<span slot="title">Зали</span>
-						</el-menu-item>
-						<el-menu-item index="4">
-							<i class="el-icon-document"></i>
-							<span slot="title">Заявки</span>
-						</el-menu-item>
-						<el-menu-item index="5">
-							<i class="el-icon-setting"></i>
-							<span slot="title">Navigator Four</span>
-						</el-menu-item>
-					</el-menu>
+		<div class="ui grid">
+			<div class="four wide column">
+				<div class="ui fluid vertical pointing menu">
+					<router-link to="/home" class="item">Home</router-link>
+					<router-link to="/about" class="item">About</router-link>
+					<router-link to="/themes" class="item">Теми</router-link>
+					<router-link to="/events" class="item">Календар</router-link>
 				</div>
-			</el-col>
-			<el-col :span="18">
-				<div class="grid-content">
-					<el-container>
-						<el-main>
-							<theme-feed></theme-feed>
-						</el-main>
-					</el-container>
-				</div>
-			</el-col>
-		</el-row>
+			</div>
+			<div class="twelve wide column">
+				<router-view></router-view>
+			</div>
+		</div>
 	</div>
 </template>
 

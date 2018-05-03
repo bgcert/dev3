@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -30,5 +31,15 @@ class Event extends Model
     public function getCoverAttribute($value)
     {
     	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
+    }
+
+    public function getBeginAtAttribute($value)
+    {
+    	return $this->attributes['begin_at'] = Carbon::parse($value)->format('D, d M Y');
+    }
+
+    public function getEndAtAttribute($value)
+    {
+    	return $this->attributes['end_at'] = Carbon::parse($value)->format('D, d M Y');
     }
 }

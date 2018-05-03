@@ -15,13 +15,13 @@ class EventController extends Controller
     public function index()
     {
         $company = \Auth::user()->company;
-
-    	$events = \DB::table('events')
-            ->join('themes', 'themes.id', '=', 'events.theme_id')
-            ->where('themes.company_id', $company->id)
-            ->select('events.id', 'events.begin_at', 'themes.title')
-            ->get();
-
+    	// $events = \DB::table('events')
+     //        ->join('themes', 'themes.id', '=', 'events.theme_id')
+     //        ->where('themes.company_id', $company->id)
+     //        ->select('events.id', 'events.begin_at', 'themes.title')
+     //        ->get();
+        $events = \App\Event::byCompany(\Auth::user()->company->id)->get();
+        return $events;
         return view('dashboard.events.index', compact('events'));
     }
 

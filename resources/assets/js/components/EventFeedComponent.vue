@@ -52,7 +52,7 @@
 					</div>
 					<div class="content">
 						<p style="text-transform: uppercase;">
-							{{ date(event.begin_at) }}
+							{{ event.begin_at }}
 						</p>
 						<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 					</div>
