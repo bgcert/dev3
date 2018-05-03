@@ -14,16 +14,21 @@ window.Vue = require('vue');
 */
 export const EventBus = new Vue();
 
-// window.flash = (message, type) => {
-// 	EventBus.$emit('flash', message, type);
-// }
+// Need to be checked!
+window.flash = (message, type) => {
+	EventBus.$emit('flash', message, type);
+}
 
 window.auth = { auth: '{{ auth()->check() }}' }
 
+import router from './router.js'; // Importing routes
+
+import VueRouter from 'vue-router';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
+Vue.use(VueRouter);
 Vue.use(ElementUI, { locale });
 
 /**
@@ -64,5 +69,7 @@ Vue.component('messanger', require('./components/messanger/MessangerComponent.vu
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
+    router
 });
