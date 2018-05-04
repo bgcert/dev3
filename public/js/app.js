@@ -460,7 +460,7 @@ Vue.component('dashboard', __webpack_require__(269));
 //Vue.component('theme-feed', require('./components/dashboard/ThemeFeedComponent.vue'));
 
 // Messanger
-Vue.component('messanger', __webpack_require__(277));
+Vue.component('messanger', __webpack_require__(274));
 
 var app = new Vue({
   el: '#app',
@@ -18930,7 +18930,7 @@ function required(rule, value, source, errors, options, type) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-module.exports = __webpack_require__(282);
+module.exports = __webpack_require__(279);
 
 
 /***/ }),
@@ -44813,7 +44813,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(57);
 
 
-var routes = [{ path: '/home', component: __webpack_require__(108) }, { path: '/about', component: __webpack_require__(111) }, { path: '/themes', component: __webpack_require__(114) }, { path: '/themes/create', component: __webpack_require__(117) }, { path: '/events', component: __webpack_require__(120) }];
+var routes = [{ path: '/home', component: __webpack_require__(108) }, { path: '/about', component: __webpack_require__(111) }, { path: '/themes', component: __webpack_require__(114) }, { path: '/themes/create', component: __webpack_require__(117) }, { path: '/events', component: __webpack_require__(281) }, { path: '/events/create', component: __webpack_require__(284) }];
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     routes: routes
@@ -45067,6 +45067,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -45102,23 +45109,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
+  return _c("div", [
+    _c("div", { staticClass: "ui segments" }, [
       _c(
-        "el-row",
+        "div",
+        { staticClass: "ui segment" },
         [
+          _c("h3", [_vm._v("Теми")]),
+          _vm._v(" "),
           _c(
             "router-link",
             { staticClass: "item", attrs: { to: "/themes/create" } },
-            [_c("el-button", [_vm._v(" Добави тема")])],
-            1
+            [
+              _c("button", { staticClass: "ui tiny basic button" }, [
+                _c("i", { staticClass: "plus icon" }),
+                _vm._v("\n\t\t\t\t\tДобави тема\n\t\t\t\t")
+              ])
+            ]
           )
         ],
         1
       ),
       _vm._v(" "),
-      _c("el-row", [
+      _c("div", { staticClass: "ui segment" }, [
         _c(
           "div",
           {
@@ -45197,9 +45210,8 @@ var render = function() {
           2
         )
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -45305,40 +45317,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             loading: true,
+            categories: [],
             form: {
-                name: '',
+                title: '',
+                category: '',
+                body: '',
                 region: '',
                 date1: '',
                 date2: '',
                 delivery: false,
                 type: [],
                 resource: '',
-                desc: ''
+                cover: 'https://picsum.photos/800/400/?image=293'
             }
         };
     },
 
-    methods: {},
+    methods: {
+        save: function save() {
+            console.log('save');
+            var vm = this;
+            axios.post('/dashboard/themes', {
+                title: vm.form.title,
+                body: vm.form.body,
+                category_id: vm.form.category,
+                cover: vm.form.cover
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
 
     mounted: function mounted() {
         console.log('New theme view mounted.');
     },
     created: function created() {
-        //      	var vm = this;
-        //          var route = '/dashboard/themes';
-        //      	axios.get(route).then(function (response) {
-        //      		console.log(response.data);
-        //      		vm.themes = response.data;
-        //      		vm.loading = false;
-        // })
-        // .catch(function (error) {
-        // 	console.log(error);
-        // });
+        var vm = this;
+        var route = '/dashboard/categories';
+        axios.get(route).then(function (response) {
+            console.log(response.data);
+            vm.categories = response.data;
+            vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 });
 
@@ -45350,181 +45395,217 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h3", [_vm._v("Нова тема")]),
+  return _c("div", [
+    _c("div", { staticClass: "ui segments" }, [
+      _vm._m(0),
       _vm._v(" "),
       _c(
-        "el-form",
-        { ref: "form", attrs: { model: _vm.form, "label-width": "120px" } },
+        "div",
+        { staticClass: "ui segment" },
         [
           _c(
-            "el-form-item",
-            { attrs: { label: "Заглавие" } },
-            [
-              _c("el-input", {
-                model: {
-                  value: _vm.form.name,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "name", $$v)
-                  },
-                  expression: "form.name"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Категория" } },
+            "el-form",
+            { ref: "form", attrs: { model: _vm.form, "label-width": "120px" } },
             [
               _c(
-                "el-select",
-                {
-                  attrs: { placeholder: "please select your zone" },
-                  model: {
-                    value: _vm.form.region,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "region", $$v)
-                    },
-                    expression: "form.region"
-                  }
-                },
+                "el-form-item",
+                { attrs: { label: "Заглавие" } },
                 [
-                  _c("el-option", {
-                    attrs: { label: "Zone one", value: "shanghai" }
-                  }),
-                  _vm._v(" "),
-                  _c("el-option", {
-                    attrs: { label: "Zone two", value: "beijing" }
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.title,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "title", $$v)
+                      },
+                      expression: "form.title"
+                    }
                   })
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Instant delivery" } },
-            [
-              _c("el-switch", {
-                model: {
-                  value: _vm.form.delivery,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "delivery", $$v)
-                  },
-                  expression: "form.delivery"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Activity type" } },
-            [
-              _c(
-                "el-checkbox-group",
-                {
-                  model: {
-                    value: _vm.form.type,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "type", $$v)
-                    },
-                    expression: "form.type"
-                  }
-                },
-                [
-                  _c("el-checkbox", {
-                    attrs: { label: "Online activities", name: "type" }
-                  }),
-                  _vm._v(" "),
-                  _c("el-checkbox", {
-                    attrs: { label: "Promotion activities", name: "type" }
-                  }),
-                  _vm._v(" "),
-                  _c("el-checkbox", {
-                    attrs: { label: "Offline activities", name: "type" }
-                  }),
-                  _vm._v(" "),
-                  _c("el-checkbox", {
-                    attrs: { label: "Simple brand exposure", name: "type" }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Resources" } },
-            [
-              _c(
-                "el-radio-group",
-                {
-                  model: {
-                    value: _vm.form.resource,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "resource", $$v)
-                    },
-                    expression: "form.resource"
-                  }
-                },
-                [
-                  _c("el-radio", { attrs: { label: "Sponsor" } }),
-                  _vm._v(" "),
-                  _c("el-radio", { attrs: { label: "Venue" } })
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Съдържание" } },
-            [
-              _c("el-input", {
-                attrs: { type: "textarea" },
-                model: {
-                  value: _vm.form.desc,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "desc", $$v)
-                  },
-                  expression: "form.desc"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            [
-              _c("el-button", { attrs: { type: "primary" } }, [
-                _vm._v("Добави")
-              ]),
+              ),
               _vm._v(" "),
-              _c("el-button", [_vm._v("Откажи")])
+              _c(
+                "el-form-item",
+                { attrs: { label: "Категория" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { placeholder: "Изберете категория" },
+                      model: {
+                        value: _vm.form.category,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "category", $$v)
+                        },
+                        expression: "form.category"
+                      }
+                    },
+                    [
+                      _vm._l(_vm.categories, function(category) {
+                        return [
+                          _c("el-option", {
+                            attrs: { label: category.name, value: category.id }
+                          })
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Instant delivery" } },
+                [
+                  _c("el-switch", {
+                    model: {
+                      value: _vm.form.delivery,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "delivery", $$v)
+                      },
+                      expression: "form.delivery"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Activity type" } },
+                [
+                  _c(
+                    "el-checkbox-group",
+                    {
+                      model: {
+                        value: _vm.form.type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "type", $$v)
+                        },
+                        expression: "form.type"
+                      }
+                    },
+                    [
+                      _c("el-checkbox", {
+                        attrs: { label: "Online activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Promotion activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Offline activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Simple brand exposure", name: "type" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Resources" } },
+                [
+                  _c(
+                    "el-radio-group",
+                    {
+                      model: {
+                        value: _vm.form.resource,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "resource", $$v)
+                        },
+                        expression: "form.resource"
+                      }
+                    },
+                    [
+                      _c("el-radio", { attrs: { label: "Sponsor" } }),
+                      _vm._v(" "),
+                      _c("el-radio", { attrs: { label: "Venue" } })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Съдържание" } },
+                [
+                  _c("el-input", {
+                    attrs: { type: "textarea", rows: 12 },
+                    model: {
+                      value: _vm.form.body,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "body", $$v)
+                      },
+                      expression: "form.body"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("el-form-item", [
+                _c(
+                  "div",
+                  { staticClass: "right floated" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "ui right floated primary button",
+                        on: { click: _vm.save }
+                      },
+                      [_vm._v("\n\t\t\t\t        \tЗапиши\n\t\t\t\t        ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      { staticClass: "item", attrs: { to: "/themes" } },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "ui right floated basic button" },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t        \tОткажи\n\t\t\t\t\t        "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
             ],
             1
           )
         ],
         1
       )
-    ],
-    1
-  )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui segment" }, [
+      _c("h4", [_vm._v("Нова тема")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -45535,219 +45616,9 @@ if (false) {
 }
 
 /***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(121)
-/* template */
-var __vue_template__ = __webpack_require__(122)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\views\\Events.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-076efa34", Component.options)
-  } else {
-    hotAPI.reload("data-v-076efa34", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            events: '',
-            loading: true
-        };
-    },
-
-    methods: {},
-
-    mounted: function mounted() {
-        console.log('theme box Component mounted.');
-    },
-    created: function created() {
-        var vm = this;
-        var route = '/dashboard/events';
-        axios.get(route).then(function (response) {
-            console.log(response.data);
-            vm.events = response.data;
-            vm.loading = false;
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
-});
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "loading",
-            rawName: "v-loading.fullscreen",
-            value: _vm.loading,
-            expression: "loading",
-            modifiers: { fullscreen: true }
-          }
-        ],
-        staticClass: "ui three stackable cards"
-      },
-      [
-        _vm._l(_vm.events, function(event) {
-          return [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "image" }, [
-                _c("img", { attrs: { src: event.cover } })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t" + _vm._s(event.begin_at) + "\n\t\t\t\t\t"
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "header",
-                    attrs: { href: "/event/" + event.id }
-                  },
-                  [_vm._v(_vm._s(event.theme.title))]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "extra content" }, [
-                _c(
-                  "span",
-                  { staticClass: "right floated" },
-                  [
-                    _c(
-                      "el-row",
-                      [
-                        _c("el-button", {
-                          attrs: {
-                            type: "success",
-                            icon: "el-icon-view",
-                            size: "mini"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("el-button", {
-                          attrs: {
-                            type: "warning",
-                            icon: "el-icon-edit",
-                            size: "mini"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("el-button", {
-                          attrs: {
-                            type: "danger",
-                            icon: "el-icon-delete",
-                            size: "mini"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ])
-          ]
-        })
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-076efa34", module.exports)
-  }
-}
-
-/***/ }),
+/* 120 */,
+/* 121 */,
+/* 122 */,
 /* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -94433,22 +94304,19 @@ if (false) {
 }
 
 /***/ }),
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(278)
+  __webpack_require__(275)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(280)
+var __vue_script__ = __webpack_require__(277)
 /* template */
-var __vue_template__ = __webpack_require__(281)
+var __vue_template__ = __webpack_require__(278)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -94487,13 +94355,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 278 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(279);
+var content = __webpack_require__(276);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -94513,7 +94381,7 @@ if(false) {
 }
 
 /***/ }),
-/* 279 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(false);
@@ -94527,7 +94395,7 @@ exports.push([module.i, "\n.selected {\n\tbackground-color: #f6f7f9;\n}\n", ""])
 
 
 /***/ }),
-/* 280 */
+/* 277 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94717,7 +94585,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 281 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95022,10 +94890,654 @@ if (false) {
 }
 
 /***/ }),
-/* 282 */
+/* 279 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 280 */,
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(282)
+/* template */
+var __vue_template__ = __webpack_require__(283)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\events\\EventIndex.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f6994904", Component.options)
+  } else {
+    hotAPI.reload("data-v-f6994904", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 282 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            events: '',
+            loading: true
+        };
+    },
+
+    methods: {},
+
+    mounted: function mounted() {
+        console.log('theme box Component mounted.');
+    },
+    created: function created() {
+        var vm = this;
+        var route = '/dashboard/events';
+        axios.get(route).then(function (response) {
+            console.log(response.data);
+            vm.events = response.data;
+            vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "ui segments" }, [
+      _c(
+        "div",
+        { staticClass: "ui segment" },
+        [
+          _c("h3", [_vm._v("Календар")]),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            { staticClass: "item", attrs: { to: "/events/create" } },
+            [
+              _c("button", { staticClass: "ui tiny basic button" }, [
+                _c("i", { staticClass: "plus icon" }),
+                _vm._v("\n\t\t\t\t\tДобави събитие\n\t\t\t\t")
+              ])
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui segment" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "loading",
+                rawName: "v-loading.fullscreen",
+                value: _vm.loading,
+                expression: "loading",
+                modifiers: { fullscreen: true }
+              }
+            ],
+            staticClass: "ui three stackable cards"
+          },
+          [
+            _vm._l(_vm.events, function(event) {
+              return [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "image" }, [
+                    _c("img", { attrs: { src: event.cover } })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "content" }, [
+                    _c(
+                      "p",
+                      { staticStyle: { "text-transform": "uppercase" } },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t" +
+                            _vm._s(event.begin_at) +
+                            "\n\t\t\t\t\t\t\t"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "header",
+                        attrs: { href: "/event/" + event.id }
+                      },
+                      [_vm._v(_vm._s(event.theme.title))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "extra content" }, [
+                    _c(
+                      "span",
+                      { staticClass: "right floated" },
+                      [
+                        _c(
+                          "el-row",
+                          [
+                            _c("el-button", {
+                              attrs: {
+                                type: "success",
+                                icon: "el-icon-view",
+                                size: "mini"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("el-button", {
+                              attrs: {
+                                type: "warning",
+                                icon: "el-icon-edit",
+                                size: "mini"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("el-button", {
+                              attrs: {
+                                type: "danger",
+                                icon: "el-icon-delete",
+                                size: "mini"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ]
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f6994904", module.exports)
+  }
+}
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(285)
+/* template */
+var __vue_template__ = __webpack_require__(286)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\views\\events\\CreateEvent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a7d49470", Component.options)
+  } else {
+    hotAPI.reload("data-v-a7d49470", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 285 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            loading: true,
+            themes: [],
+            form: {
+                theme: '',
+                region: '',
+                date: '',
+                data1: '',
+                delivery: false,
+                type: [],
+                resource: '',
+                cover: 'https://picsum.photos/800/400/?image=293'
+            }
+        };
+    },
+
+    methods: {
+        save: function save() {
+            console.log('save');
+            var vm = this;
+            axios.post('/dashboard/events', {
+                theme_id: vm.form.theme,
+                cover: 'https://picsum.photos/800/400/?image=120',
+                begin_at: vm.form.date[0],
+                end_at: vm.form.date[1]
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('New theme view mounted.');
+    },
+    created: function created() {
+        var vm = this;
+        var route = '/dashboard/themes';
+        axios.get(route).then(function (response) {
+            console.log(response.data);
+            vm.themes = response.data;
+            vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "ui segments" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "ui segment" },
+        [
+          _c(
+            "el-form",
+            { ref: "form", attrs: { model: _vm.form, "label-width": "120px" } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "Категория" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { placeholder: "Изберете тема" },
+                      model: {
+                        value: _vm.form.theme,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "theme", $$v)
+                        },
+                        expression: "form.theme"
+                      }
+                    },
+                    [
+                      _vm._l(_vm.themes, function(theme) {
+                        return [
+                          _c("el-option", {
+                            attrs: { label: theme.title, value: theme.id }
+                          })
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Instant delivery" } },
+                [
+                  _c("el-switch", {
+                    model: {
+                      value: _vm.form.delivery,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "delivery", $$v)
+                      },
+                      expression: "form.delivery"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Дати" } },
+                [
+                  _c("el-date-picker", {
+                    attrs: {
+                      type: "datetimerange",
+                      "range-separator": "To",
+                      "start-placeholder": "Начална дата",
+                      "end-placeholder": "Крайна дата",
+                      "value-format": "yyyy-MM-dd HH:mm:ss"
+                    },
+                    model: {
+                      value: _vm.form.date,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "date", $$v)
+                      },
+                      expression: "form.date"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Activity type" } },
+                [
+                  _c(
+                    "el-checkbox-group",
+                    {
+                      model: {
+                        value: _vm.form.type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "type", $$v)
+                        },
+                        expression: "form.type"
+                      }
+                    },
+                    [
+                      _c("el-checkbox", {
+                        attrs: { label: "Online activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Promotion activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Offline activities", name: "type" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-checkbox", {
+                        attrs: { label: "Simple brand exposure", name: "type" }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Resources" } },
+                [
+                  _c(
+                    "el-radio-group",
+                    {
+                      model: {
+                        value: _vm.form.resource,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "resource", $$v)
+                        },
+                        expression: "form.resource"
+                      }
+                    },
+                    [
+                      _c("el-radio", { attrs: { label: "Sponsor" } }),
+                      _vm._v(" "),
+                      _c("el-radio", { attrs: { label: "Venue" } })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("el-form-item", [
+                _c(
+                  "div",
+                  { staticClass: "right floated" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "ui right floated primary button",
+                        on: { click: _vm.save }
+                      },
+                      [_vm._v("\n\t\t\t\t        \tЗапиши\n\t\t\t\t        ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      { staticClass: "item", attrs: { to: "/themes" } },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "ui right floated basic button" },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t        \tОткажи\n\t\t\t\t\t        "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui segment" }, [
+      _c("h4", [_vm._v("Ново събитие")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a7d49470", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

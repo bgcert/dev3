@@ -10,6 +10,10 @@ class Event extends Model
 {
 	use LogsActivity;
 
+	protected $fillable = [
+        'theme_id', 'begin_at', 'end_at', 'cover',
+    ];
+
     public function theme()
     {
     	return $this->belongsTo('App\Theme');

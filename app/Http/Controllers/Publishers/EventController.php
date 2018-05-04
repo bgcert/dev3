@@ -35,7 +35,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	return \Auth::user()->company->events()->create($request->all());
     }
 
     /**

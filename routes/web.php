@@ -97,7 +97,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');
 
-	Route::get('/categories', 'DashboardController@categories');
+	Route::get('/categories', 'ThemeController@categories');
 
 });
 

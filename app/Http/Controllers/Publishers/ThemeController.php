@@ -14,13 +14,7 @@ class ThemeController extends Controller
      */
     public function index()
     {
-    	$company = \Auth::user()->company;
-
-    	$themes = \DB::table('themes')
-            ->where('themes.company_id', $company->id)
-            ->get();
-
-        return $themes;
+        return \Auth::user()->company->themes;
     }
 
     /**
@@ -41,7 +35,7 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	return \Auth::user()->company->themes()->create($request->all());
     }
 
     /**
@@ -88,4 +82,9 @@ class ThemeController extends Controller
     {
         //
     }
+
+	public function categories()
+    {
+        return \App\category::all();
+    }   
 }

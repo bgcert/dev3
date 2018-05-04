@@ -2,24 +2,34 @@
 	<div>
 		<div class="ui segments">
 			<div class="ui segment">
-				<h4>Нова тема</h4>
+				<h4>Ново събитие</h4>
 			</div>
 			
 			<div class="ui segment">
 				<el-form ref="form" :model="form" label-width="120px">
-					<el-form-item label="Заглавие">
-						<el-input v-model="form.title"></el-input>
-					</el-form-item>
 					<el-form-item label="Категория">
-						<el-select v-model="form.category" placeholder="Изберете категория">
-							<template v-for="category in categories">
-								<el-option :label="category.name" :value="category.id"></el-option>	
+						<el-select v-model="form.theme" placeholder="Изберете тема">
+							<template v-for="theme in themes">
+								<el-option :label="theme.title" :value="theme.id"></el-option>	
 							</template>
 						</el-select>
 					</el-form-item>
+
 					<el-form-item label="Instant delivery">
 						<el-switch v-model="form.delivery"></el-switch>
 					</el-form-item>
+
+					<el-form-item label="Дати">
+						<el-date-picker
+							v-model="form.date"
+							type="datetimerange"
+							range-separator="To"
+							start-placeholder="Начална дата"
+							end-placeholder="Крайна дата"
+							value-format="yyyy-MM-dd HH:mm:ss">
+						</el-date-picker>
+					</el-form-item>
+
 					<el-form-item label="Activity type">
 						<el-checkbox-group v-model="form.type">
 							<el-checkbox label="Online activities" name="type"></el-checkbox>
@@ -33,9 +43,6 @@
 							<el-radio label="Sponsor"></el-radio>
 							<el-radio label="Venue"></el-radio>
 						</el-radio-group>
-					</el-form-item>
-					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
 					</el-form-item>
 					<el-form-item>
 						<div class="right floated">
@@ -60,14 +67,12 @@
     	data: function () {
     		return {
     			loading: true,
-    			categories: [],
+    			themes: [],
     			form: {
-    				title: '',
-    				category: '',
-    				body: '',
+    				theme: '',
     				region: '',
-    				date1: '',
-    				date2: '',
+    				date: '',
+    				data1: '',
     				delivery: false,
     				type: [],
     				resource: '',
@@ -80,11 +85,11 @@
     		save() {
     			console.log('save');
     			var vm = this;
-    			axios.post('/dashboard/themes', {
-    				title: vm.form.title,
-    				body: vm.form.body,
-    				category_id: vm.form.category,
-    				cover: vm.form.cover
+    			axios.post('/dashboard/events', {
+    				theme_id: vm.form.theme,
+    				cover: 'https://picsum.photos/800/400/?image=120',
+    				begin_at: vm.form.date[0],
+    				end_at: vm.form.date[1],
     			})
     			.then(function (response) {
     				console.log(response);
@@ -101,10 +106,10 @@
 
         created() {
         	var vm = this;
-            var route = '/dashboard/categories';
+            var route = '/dashboard/themes';
         	axios.get(route).then(function (response) {
         		console.log(response.data);
-        		vm.categories = response.data;
+        		vm.themes = response.data;
         		vm.loading = false;
 			})
 			.catch(function (error) {

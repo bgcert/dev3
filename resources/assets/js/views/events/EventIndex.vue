@@ -2,24 +2,27 @@
 	<div>
 		<div class="ui segments">
 			<div class="ui segment">
-				<h3>Теми</h3>
-				<router-link to="/themes/create" class="item">
+				<h3>Календар</h3>
+				<router-link to="/events/create" class="item">
 					<button class="ui tiny basic button">
 						<i class="plus icon"></i>
-						Добави тема
+						Добави събитие
 					</button>
 				</router-link>
 			</div>
 
 			<div class="ui segment">
 				<div class="ui three stackable cards" v-loading.fullscreen="loading">
-					<template v-for="theme in themes">
+					<template v-for="event in events">
 						<div class="card">
 							<div class="image">
-								<img :src="theme.cover">
+								<img :src="event.cover">
 							</div>
 							<div class="content">
-								<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
+								<p style="text-transform: uppercase;">
+									{{ event.begin_at }}
+								</p>
+								<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 							</div>
 							<div class="extra content">
 								<span class="right floated">
@@ -42,7 +45,7 @@
     export default {
     	data: function () {
     		return {
-    			themes: '',
+    			events: '',
     			loading: true
     		}
     	},
@@ -57,10 +60,10 @@
 
         created() {
         	var vm = this;
-            var route = '/dashboard/themes';
+            var route = '/dashboard/events';
         	axios.get(route).then(function (response) {
         		console.log(response.data);
-        		vm.themes = response.data;
+        		vm.events = response.data;
         		vm.loading = false;
 			})
 			.catch(function (error) {

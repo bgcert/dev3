@@ -10,7 +10,7 @@ class Company extends Model
         'name', 'slug', 'description', 'logo', 'cover', 'event_publish', 'venue_publish',
     ];
 
-    protected $appends = ['is_followed', ''];
+    protected $appends = ['is_followed'];
 
     public function user()
     {
@@ -20,6 +20,11 @@ class Company extends Model
     public function themes()
     {
     	return $this->hasMany('App\Theme');
+    }
+
+    public function events()
+    {
+        return $this->hasManyThrough('App\Event', 'App\Theme');
     }
 
     public function venues()
