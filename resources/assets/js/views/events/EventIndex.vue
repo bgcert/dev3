@@ -11,8 +11,8 @@
 				</router-link>
 			</div>
 
-			<div class="ui segment">
-				<div class="ui three stackable cards" v-loading.fullscreen="loading">
+			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
+				<div class="ui three stackable cards">
 					<template v-for="event in events">
 						<div class="card">
 							<div class="image">
