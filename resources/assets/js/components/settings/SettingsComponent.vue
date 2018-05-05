@@ -1,70 +1,43 @@
 <template>
 	<div>
+		<div class="ui top attached tabular menu">
+			<router-link
+				to="/account"
+				class="item"
+				:class="{ active: activeTab == 'account' }"
+				@click.native="switchTab('account')">
+				Акаунт
+			</router-link>
+
+			<router-link
+				to="/change-pass"
+				class="item"
+				:class="{ active: activeTab == 'change-pass' }"
+				@click.native="switchTab('change-pass')">
+				Промяна на парола
+			</router-link>
+
+			<router-link
+				to="/change-email"
+				class="item"
+				:class="{ active: activeTab == 'change-email' }"
+				@click.native="switchTab('change-email')">
+				Промяна на email
+			</router-link>
+			<router-link
+				to="/deactivate"
+				class="item":class="{ active: activeTab == 'deactivate' }"
+				@click.native="switchTab('deactivate')">
+				Деактивиране
+			</router-link>
+		</div>
+		<div class="ui bottom attached active tab segment">
+			<keep-alive>
+				<router-view></router-view>
+			</keep-alive>
+		</div>
 
 		<el-tabs type="border-card">
-
-			<el-tab-pane label="Акаунт">
-				<el-form ref="form" :model="form" label-width="180px">
-					<el-form-item label="Име">
-						<el-input v-model="form.user.name"></el-input>
-					</el-form-item>
-
-					<el-form-item>
-						<el-button type="primary" plain @click.prevent="setName"> Промени</el-button>
-					</el-form-item>
-
-					<el-form-item label="Бизнес акаунт">
-						<el-switch v-model="form.publisher"></el-switch>
-					</el-form-item>
-
-					<template v-if="form.publisher">
-						<el-form-item label="Име на организацията">
-							<el-input v-model="form.user.company.name"></el-input>
-						</el-form-item>
-
-						<el-form-item label="Адрес">
-							<el-input size="medium" placeholder="Въведете адрес" v-model="form.user.company.slug">
-								<template slot="prepend">http://seminari365.com/</template>
-							</el-input>
-						</el-form-item>
-
-						<el-form-item label="Публикуване на събития">
-							<el-switch v-model="form.user.company.event_publish"></el-switch>
-						</el-form-item>
-
-						<el-form-item label="Публикуване на зали">
-							<el-switch v-model="form.user.company.venue_publish"></el-switch>
-						</el-form-item>
-					</template>
-
-					<el-form-item>
-						<el-button type="primary" plain @click.prevent="setPublisher"> Промени</el-button>
-					</el-form-item>
-					
-				</el-form>				
-			</el-tab-pane>
-
-			<el-tab-pane label="Промяна на парола">
-
-				<el-form ref="form" :model="form" label-width="180px">
-					<el-form-item label="Стара парола">
-						<el-input type="password" v-model="form.oldPassword"></el-input>
-					</el-form-item>
-
-					<el-form-item label="Нова парола">
-						<el-input type="password" v-model="form.newPassword"></el-input>
-					</el-form-item>
-
-					<el-form-item label="Нова парола (отново)">
-						<el-input type="password" v-model="form.newPasswordConfirmation"></el-input>
-					</el-form-item>
-
-					<el-form-item>
-						<el-button type="primary" plain @click.prevent="changePassword"> Промени</el-button>
-					</el-form-item>
-				</el-form>
-
-			</el-tab-pane>
 
 			<el-tab-pane label="Промяна на email">
 
@@ -95,6 +68,7 @@
 
     	data: function () {
     		return {
+    			activeTab: 'account',
     			form: {
     				publisher: false,
 	    			user: {
@@ -116,6 +90,10 @@
     	},
 
     	methods: {
+    		switchTab(tab) {
+    			this.activeTab = tab;
+    		},
+
     		setName() {
     			var vm = this;
     			var route = '/users/set/user/name';
@@ -187,21 +165,21 @@
         },
 
         created() {
-            var vm = this;
-            var route = '/users/load/user/' + this.id;
-        	axios.get(route).then(function (response) {
-        		console.log(response.data);
-        		vm.form.user = response.data;
-        		if (response.data.company) {
-        			vm.form.user.company = response.data.company;
-        		} else {
-        			vm.form.user.company = vm.company;
-        		}
-        		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+   //          var vm = this;
+   //          var route = '/users/load/user/';
+   //      	axios.get(route).then(function (response) {
+   //      		console.log(response.data);
+   //      		vm.form.user = response.data;
+   //      		if (response.data.company) {
+   //      			vm.form.user.company = response.data.company;
+   //      		} else {
+   //      			vm.form.user.company = vm.company;
+   //      		}
+   //      		vm.form.publisher = (response.data.role_id == 2) ? true : false;
+			// })
+			// .catch(function (error) {
+			// 	console.log(error);
+			// });
         }
     }
 </script>

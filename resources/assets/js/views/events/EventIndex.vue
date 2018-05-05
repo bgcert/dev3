@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="ui segments">
-			<div class="ui segment">
-				<h3>Календар</h3>
-				<router-link to="/events/create" class="item">
+			<div class="ui clearing segment">
+				<h3 style="float: left;">Календар</h3>
+				<router-link to="/events/create" class="item" style="float: right;">
 					<button class="ui tiny basic button">
 						<i class="plus icon"></i>
 						Добави събитие

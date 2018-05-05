@@ -4,10 +4,7 @@
 
 	<div class="ui centered grid">
 		<div class="twelve wide column">
-			<settings
-				id="{{ Auth::id() }}"
-				>
-			</settings>
+			<settings></settings>
 		</div>
 	</div>
 

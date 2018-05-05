@@ -49,7 +49,7 @@
 							<div class="ui right floated primary button" @click="save">
 					        	Запиши
 					        </div>
-							<router-link to="/themes" class="item">
+							<router-link to="/events" class="item">
 								<div class="ui right floated basic button">
 						        	Откажи
 						        </div>

@@ -69,7 +69,7 @@
 							<span>
 								<a :href="'/event/' + event.id + '/#comments'">
 									<i class="comment outline icon"></i>
-									{{ event.theme.comment_count.count }}
+									{{ (event.theme.comment_count != null) ? event.theme.comment_count.count : 0 }}
 								</a>
 							</span>
 						</span>

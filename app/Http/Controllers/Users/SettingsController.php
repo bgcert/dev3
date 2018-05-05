@@ -15,13 +15,13 @@ class SettingsController extends Controller
 
     public function getUserData()
     {
-    	$user = \App\User::find(request()->id);
+    	$user = \App\User::find(\Auth::id());
     	return ($user->company) ? $user->load('company') : $user;
     }
 
     public function setName()
     {
-    	$user = \App\User::find(request()->id);
+    	$user = \App\User::find(\Auth::id());
     	$user->name = request()->name;
     	$user->save();
 
@@ -31,7 +31,7 @@ class SettingsController extends Controller
     // Maybe putting part of this in user/company model should be better!
     public function setPublisher()
     {
-    	$user = \App\User::find(request()->id);
+    	$user = \App\User::find(\Auth::id());
     	if (request()->publisher) {
     		$company = $user->company()->updateOrCreate([], request()->all());
     		if ($company->exists) {

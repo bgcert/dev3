@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(11));
+//Auth::login(\App\User::find(11));
 
 Route::get('/home', function () {
     return 'hard to remove /home route';
@@ -58,7 +58,7 @@ Auth::routes();
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['auth', 'isVerified']], function () {
 
 	// Load data routes
-	Route::get('/load/user/{id}', 'SettingsController@getUserData');
+	Route::get('/load/user/', 'SettingsController@getUserData');
 
 	// Settings routes
 	Route::get('/settings', 'SettingsController@index');
