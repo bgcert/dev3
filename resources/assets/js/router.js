@@ -9,6 +9,7 @@ let routes = [
     { path: '/events/create', component: require('./views/events/CreateEvent.vue') },
 
     // Settings routes
+    { path: '/', component: require('./views/settings/Account.vue') },
     { path: '/account', component: require('./views/settings/Account.vue') },
     { path: '/change-pass', component: require('./views/settings/ChangePassword.vue') },
     { path: '/change-email', component: require('./views/settings/ChangeEmail.vue') },
