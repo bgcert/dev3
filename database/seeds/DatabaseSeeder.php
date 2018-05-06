@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
 	    		$teachers = \App\Teacher::where('company_id', $e->theme->company->id)->get();
 	    		if ($teachers->count() > 0) {
 	    			$teacher_id = $teachers->random()->id;
-	    			$e->attach($teacher_id);
+	    			$e->teachers()->attach($teacher_id);
 	    		}
         	}
 	    });
