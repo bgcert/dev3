@@ -30,11 +30,11 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        	<a class="dropdown-item" href="/users/">
+                        	<a class="dropdown-item" href="/users/account">
                                Account
                             </a>
                             @if(isset(Auth::user()->company))
-                        	<a class="dropdown-item" href="/dashboard">
+                        	<a class="dropdown-item" href="/dashboard/home">
                                Dashboard
                             </a>
                             @endif
@@ -78,9 +78,9 @@
 			<div class="ui dropdown item">
 				{{ Auth::user()->name }} <i class="dropdown icon"></i>
 				<div class="menu">
-					<a href="/users/settings" class="item">Настройки</a>
+					<a href="/users/settings#/account" class="item">Настройки</a>
 					@if(Auth::user()->role_id == 2)
-					<a href="/dashboard" class="item">Контролен панел</a>
+					<a href="/dashboard#/home" class="item">Контролен панел</a>
 					@endif
 					<a class="item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();

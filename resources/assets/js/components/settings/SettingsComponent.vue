@@ -4,60 +4,37 @@
 			<router-link
 				to="/account"
 				class="item"
-				:class="{ active: activeTab == 'account' }"
-				@click.native="switchTab('account')">
+				:class="{ active: $route.path == '/account' }">
 				Акаунт
 			</router-link>
 
 			<router-link
 				to="/change-pass"
 				class="item"
-				:class="{ active: activeTab == 'change-pass' }"
-				@click.native="switchTab('change-pass')">
+				:class="{ active: $route.path == '/change-pass' }">
 				Промяна на парола
 			</router-link>
 
 			<router-link
 				to="/change-email"
 				class="item"
-				:class="{ active: activeTab == 'change-email' }"
-				@click.native="switchTab('change-email')">
+				:class="{ active: $route.path == '/change-email' }">
 				Промяна на email
 			</router-link>
+
 			<router-link
 				to="/deactivate"
-				class="item":class="{ active: activeTab == 'deactivate' }"
-				@click.native="switchTab('deactivate')">
+				class="item":class="{ active: $route.path == '/deactivate' }">
 				Деактивиране
 			</router-link>
 		</div>
+
 		<div class="ui bottom attached active tab segment">
 			<keep-alive>
 				<router-view></router-view>
 			</keep-alive>
 		</div>
-
-		<el-tabs type="border-card">
-
-			<el-tab-pane label="Промяна на email">
-
-				<el-form ref="form" :model="form" label-width="180px">
-					<el-form-item label="Нов email">
-						<el-input v-model="form.user.email"></el-input>
-					</el-form-item>
-				</el-form>
-
-				<el-form ref="form" :model="form" label-width="180px">
-					<el-form-item label="Парола">
-						<el-input type="password" v-model="form.password"></el-input>
-					</el-form-item>
-				</el-form>
-
-			</el-tab-pane>
-			<el-tab-pane label="Деактивиране">
-				<el-button type="danger">Деактивирай</el-button>
-			</el-tab-pane>
-		</el-tabs>
+		
 	</div>
 </template>
 
@@ -68,7 +45,7 @@
 
     	data: function () {
     		return {
-    			activeTab: 'account',
+    			activeTab: this.$route.path,
     			form: {
     				publisher: false,
 	    			user: {
@@ -90,9 +67,6 @@
     	},
 
     	methods: {
-    		switchTab(tab) {
-    			this.activeTab = tab;
-    		},
 
     		setName() {
     			var vm = this;
@@ -165,6 +139,7 @@
         },
 
         created() {
+        	console.log(this.$route.path);
    //          var vm = this;
    //          var route = '/users/load/user/';
    //      	axios.get(route).then(function (response) {

@@ -5,12 +5,13 @@ let routes = [
     { path: '/about', component: require('./views/About.vue') },
     { path: '/themes', component: require('./views/themes/ThemeIndex.vue') },
     { path: '/themes/create', component: require('./views/themes/CreateTheme.vue') },
+    { path: '/teachers', component: require('./views/teachers/TeacherIndex.vue') },
+    { path: '/teachers/create', component: require('./views/teachers/CreateTeacher.vue') },
     { path: '/events', component: require('./views/events/EventIndex.vue') },
     { path: '/events/create', component: require('./views/events/CreateEvent.vue') },
 
     // Settings routes
-    { path: '/', component: require('./views/settings/Account.vue') },
-    { path: '/account', component: require('./views/settings/Account.vue') },
+    { path: '/account/', component: require('./views/settings/Account.vue') },
     { path: '/change-pass', component: require('./views/settings/ChangePassword.vue') },
     { path: '/change-email', component: require('./views/settings/ChangeEmail.vue') },
     { path: '/deactivate', component: require('./views/settings/Deactivate.vue') },

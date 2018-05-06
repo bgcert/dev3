@@ -3,10 +3,11 @@
 		<div class="ui grid">
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
-					<router-link to="/home" class="item">Home</router-link>
-					<router-link to="/about" class="item">About</router-link>
-					<router-link to="/themes" class="item">Теми</router-link>
-					<router-link to="/events" class="item">Календар</router-link>
+					<router-link to="/home" class="item"> Home</router-link>
+					<router-link to="/about" class="item"> About</router-link>
+					<router-link to="/themes" class="item"> Теми</router-link>
+					<router-link to="/teachers" class="item"> Лектори</router-link>
+					<router-link to="/events" class="item"> Календар</router-link>
 				</div>
 			</div>
 			<div class="twelve wide column">

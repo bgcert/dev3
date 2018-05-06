@@ -8,6 +8,7 @@
 			<div class="field">
 				<button class="ui basic button" @click.prevent="setName"> Промени</button>
 			</div>
+			<div class="ui section divider"></div>
 			<div class="field">
 				<div class="ui toggle checkbox">
 					<input type="checkbox" v-model="form.publisher">

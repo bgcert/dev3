@@ -19,6 +19,11 @@ class Event extends Model
     	return $this->belongsTo('App\Theme');
     }
 
+    public function teachers()
+    {
+    	return $this->belongsToMany('App\Teacher')->withTimestamps();
+    }
+
     public function orders()
     {
     	return $this->hasMany('App\Order');

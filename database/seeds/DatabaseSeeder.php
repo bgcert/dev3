@@ -29,7 +29,17 @@ class DatabaseSeeder extends Seeder
         	}
 	    });
 
-	    factory('App\Event', 50)->create();
+	    factory('App\Teacher', 40)->create();
+
+	    factory('App\Event', 70)->create()->each(function ($e) {
+	    	for ($i=0; $i < rand(1, 3); $i++) {
+	    		$teachers = \App\Teacher::where('company_id', $e->theme->company->id)->get();
+	    		if ($teachers->count() > 0) {
+	    			$teacher_id = $teachers->random()->id;
+	    			$e->attach($teacher_id);
+	    		}
+        	}
+	    });
 
 	    factory('App\Venue', 40)->create()->each(function ($v) {
 	    	for ($i=0; $i < rand(1, 10) ; $i++) {
