@@ -2,20 +2,13 @@
 	<div>
 		<div class="ui segments">
 			<div class="ui segment">
-				<h4>Нова тема</h4>
+				<h4>Нов лектор</h4>
 			</div>
 			
 			<div class="ui segment">
 				<el-form ref="form" :model="form" label-width="120px">
-					<el-form-item label="Заглавие">
-						<el-input v-model="form.title"></el-input>
-					</el-form-item>
-					<el-form-item label="Категория">
-						<el-select v-model="form.category" placeholder="Изберете категория">
-							<template v-for="category in categories">
-								<el-option :label="category.name" :value="category.id"></el-option>	
-							</template>
-						</el-select>
+					<el-form-item label="Име">
+						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 					<el-form-item label="Instant delivery">
 						<el-switch v-model="form.delivery"></el-switch>
@@ -35,14 +28,14 @@
 						</el-radio-group>
 					</el-form-item>
 					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
+						<el-input type="textarea" :rows="12" v-model="form.details"></el-input>
 					</el-form-item>
 					<el-form-item>
 						<div class="right floated">
 							<div class="ui right floated primary button" @click="save">
 					        	Запиши
 					        </div>
-							<router-link to="/themes" class="item">
+							<router-link to="/teachers" class="item">
 								<div class="ui right floated basic button">
 						        	Откажи
 						        </div>
@@ -62,9 +55,8 @@
     			loading: true,
     			categories: [],
     			form: {
-    				title: '',
-    				category: '',
-    				body: '',
+    				name: '',
+    				details: '',
     				region: '',
     				date1: '',
     				date2: '',

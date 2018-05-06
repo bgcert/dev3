@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Publishers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ThemeController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class ThemeController extends Controller
      */
     public function index()
     {
-    	$data[0] = \Auth::user()->company->themes;
-    	$data[1] = \Auth::user()->company->teachers;
-        return $data;
+        return \Auth::user()->company->teachers;
     }
 
     /**
@@ -37,7 +35,7 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-    	return \Auth::user()->company->themes()->create($request->all());
+        //
     }
 
     /**
@@ -84,9 +82,4 @@ class ThemeController extends Controller
     {
         //
     }
-
-	public function categories()
-    {
-        return \App\category::all();
-    }   
 }

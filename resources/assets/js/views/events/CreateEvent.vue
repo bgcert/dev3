@@ -19,6 +19,12 @@
 						<el-switch v-model="form.delivery"></el-switch>
 					</el-form-item>
 
+					<el-form-item label="Преподаватели">
+						<template v-for="teacher in teachers">
+							<el-checkbox v-model="selectedTeachers" :label="teacher.name" :value="teacher.id" border></el-checkbox>
+						</template>
+					</el-form-item>
+
 					<el-form-item label="Дати">
 						<el-date-picker
 							v-model="form.date"
@@ -68,6 +74,8 @@
     		return {
     			loading: true,
     			themes: [],
+    			teachers: [],
+    			selectedTeachers: [],
     			form: {
     				theme: '',
     				region: '',
@@ -87,6 +95,7 @@
     			var vm = this;
     			axios.post('/dashboard/events', {
     				theme_id: vm.form.theme,
+    				teachers: vm.selectedTeachers,
     				cover: 'https://picsum.photos/800/400/?image=120',
     				begin_at: vm.form.date[0],
     				end_at: vm.form.date[1],
@@ -109,7 +118,8 @@
             var route = '/dashboard/themes';
         	axios.get(route).then(function (response) {
         		console.log(response.data);
-        		vm.themes = response.data;
+        		vm.themes = response.data[0];
+        		vm.teachers = response.data[1];
         		vm.loading = false;
 			})
 			.catch(function (error) {

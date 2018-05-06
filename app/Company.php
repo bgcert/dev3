@@ -22,6 +22,11 @@ class Company extends Model
     	return $this->hasMany('App\Theme');
     }
 
+    public function teachers()
+    {
+        return $this->hasMany('App\Teacher');
+    }
+
     public function events()
     {
         return $this->hasManyThrough('App\Event', 'App\Theme');

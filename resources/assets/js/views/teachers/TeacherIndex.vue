@@ -2,24 +2,24 @@
 	<div>
 		<div class="ui segments">
 			<div class="ui segment">
-				<h3>Теми</h3>
-				<router-link to="/themes/create" class="item">
+				<h3>Лектори</h3>
+				<router-link to="/teachers/create" class="item">
 					<button class="ui tiny basic button">
 						<i class="plus icon"></i>
-						Добави тема
+						Добави лектор
 					</button>
 				</router-link>
 			</div>
 
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
 				<div class="ui three stackable cards">
-					<template v-for="theme in themes">
+					<template v-for="teacher in teachers">
 						<div class="card">
 							<div class="image">
-								<img :src="theme.cover">
+								<img :src="teacher.image">
 							</div>
 							<div class="content">
-								<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
+								<a :href="'/teacher/' + teacher.id" class="header">{{ teacher.name }}</a>
 							</div>
 							<div class="extra content">
 								<span class="right floated">
@@ -42,7 +42,7 @@
     export default {
     	data: function () {
     		return {
-    			themes: '',
+    			teachers: '',
     			loading: true
     		}
     	},
@@ -52,15 +52,15 @@
     	},
 
         mounted() {
-            console.log('theme box Component mounted.')
+            console.log('Teacher index view Component mounted.')
         },
 
         created() {
         	var vm = this;
-            var route = '/dashboard/themes';
+            var route = '/dashboard/teachers';
         	axios.get(route).then(function (response) {
         		console.log(response.data);
-        		vm.themes = response.data;
+        		vm.teachers = response.data;
         		vm.loading = false;
 			})
 			.catch(function (error) {

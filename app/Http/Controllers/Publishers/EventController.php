@@ -35,7 +35,13 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-    	return \Auth::user()->company->events()->create($request->all());
+    	$event = \Auth::user()->company->events()->create($request->all());
+    	dd($request->teachers);
+    	foreach ($request->teachers as $teacher) {
+    		$event->teachers()->attach($teacher->id);
+    	}
+    	
+    	return $event;
     }
 
     /**
