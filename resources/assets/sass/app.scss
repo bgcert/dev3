@@ -7,8 +7,24 @@
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
+
+// Semantic UI
+@import "../semantic-ui/dist/semantic.min.css";
+
 body {
 	background-color: #f1f1f1;
+}
+
+#nav-header {
+	background-color: #fff;
+	border-bottom: 1px solid #E1E3DF;
+	padding: 20px 0;
+}
+
+.menu-simple {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
 }
 
 .navbar-laravel {

@@ -89,20 +89,11 @@
     	},
 
         mounted() {
-            console.log('New theme view mounted.')
+            console.log('Create teacher view mounted.')
         },
 
         created() {
-   //      	var vm = this;
-   //          var route = '/dashboard/categories';
-   //      	axios.get(route).then(function (response) {
-   //      		console.log(response.data);
-   //      		vm.categories = response.data;
-   //      		vm.loading = false;
-			// })
-			// .catch(function (error) {
-			// 	console.log(error);
-			// });
+
         }
     }
 </script>

@@ -35,7 +35,6 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(request());
         return \Auth::user()->company->teachers()->create(request()->all());
     }
 

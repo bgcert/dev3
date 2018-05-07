@@ -57,44 +57,47 @@
 
 <hr>
 
-<div class="ui container">
-	<div class="ui menu">
-		<a href="/" class="active item"> Seminari 365</a>
-		<a href="/e" class="item"> Обучения</a>
-		<a href="/v" class="item"> Зали</a>
-		<div class="right menu">
-			@guest
-			<register></register>			
-			<login></login>
-			<!-- <div class="item">
-				<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
-				<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
-			</div> -->
-			@else
-			<a href="/users/messages" class="item">
-				<i class="icon mail"></i> Съобщения
-				<div class="floating ui red label">22</div>
-			</a>
-			<div class="ui dropdown item">
-				{{ Auth::user()->name }} <i class="dropdown icon"></i>
-				<div class="menu">
-					<a href="/users/settings#/account" class="item">Настройки</a>
-					@if(Auth::user()->role_id == 2)
-					<a href="/dashboard#/home" class="item">Контролен панел</a>
-					@endif
-					<a class="item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+<div id="nav-header">
+	<div class="ui container">
+		<div class="ui menu menu-simple">
+			<a href="/" class="active item"> Seminari 365</a>
+			<a href="/e" class="item"> Обучения</a>
+			<a href="/v" class="item"> Зали</a>
+			<div class="right menu">
+				@guest
+				<register></register>			
+				<login></login>
+				<!-- <div class="item">
+					<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
+					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
+				</div> -->
+				@else
+				<a href="/users/messages" class="item">
+					<i class="icon mail"></i> Съобщения
+					<div class="floating ui red label">22</div>
+				</a>
+				<div class="ui dropdown item">
+					{{ Auth::user()->name }} <i class="dropdown icon"></i>
+					<div class="menu">
+						<a href="/users/settings#/account" class="item">Настройки</a>
+						@if(Auth::user()->role_id == 2)
+						<a href="/dashboard#/home" class="item">Контролен панел</a>
+						@endif
+						<a class="item" href="{{ route('logout') }}"
+	                       onclick="event.preventDefault();
+	                                     document.getElementById('logout-form').submit();">
+	                        {{ __('Logout') }}
+	                    </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+	                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	                        @csrf
+	                    </form>
+					</div>
 				</div>
+				@endguest
 			</div>
-			@endguest
 		</div>
 	</div>
 </div>
+
 <div class="ui hidden divider"></div>
