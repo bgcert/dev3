@@ -8,7 +8,14 @@
 		<div class="ui three stackable cards">
 			<template v-for="event in events">
 				<div class="card">
-					<el-popover
+					<div class="extra content">
+						<box-hover
+							:id="event.theme.company.id"
+							:name="event.theme.company.name"
+							>
+						</box-hover>
+					</div>
+					<!-- <el-popover
 						slot="reference"
 						class="extra content"
 						@show="getCompany(event.theme.company.id)"
@@ -46,7 +53,7 @@
 						<span slot="reference">
 							<a :href="'/c/' + event.theme.company.slug">{{ event.theme.company.name }}</a>
 						</span>
-					</el-popover>
+					</el-popover> -->
 					<div class="image">
 						<img :src="event.cover">
 					</div>
@@ -90,7 +97,7 @@
     		return {
     			events: {},
     			company: [],
-    			loading: true,
+    			// loading: true,
     		}
     	},
 
@@ -104,21 +111,21 @@
     			console.log('request ' + id);
     		},
 
-    		getCompany: function(id) {
-    			this.loading = true;
-    			let vm = this;
-    			let route = '/data/getcompany/' + id;
-    			axios.get(route).then(function (response) {
-    				console.log(response.data);
-    				vm.company = response.data;
-    				vm.loading = false;
-	        		//vm.company = response.data;
-					console.log(response);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-    		}
+    // 		getCompany: function(id) {
+    // 			this.loading = true;
+    // 			let vm = this;
+    // 			let route = '/data/getcompany/' + id;
+    // 			axios.get(route).then(function (response) {
+    // 				console.log(response.data);
+    // 				vm.company = response.data;
+    // 				vm.loading = false;
+	   //      		//vm.company = response.data;
+				// 	console.log(response);
+				// })
+				// .catch(function (error) {
+				// 	console.log(error);
+				// });
+    // 		}
     	},
 
         created() {
@@ -134,10 +141,3 @@
         }
     }
 </script>
-
-<style>
-	.ui.card {
-		min-height: 200px;
-		box-shadow: none;
-	}
-</style>

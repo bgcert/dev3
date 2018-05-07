@@ -9,7 +9,11 @@
 			<template v-for="venue in venues">
 				<div class="card">
 					<div class="extra content">
-						<box-hover :name="venue.company.name" :slug="venue.company.slug" :logo="venue.company.logo" :id="venue.company.id"></box-hover>
+						<box-hover
+							:id="venue.company.id"
+							:name="venue.company.name"
+							>
+						</box-hover>
 					</div>
 					<div class="image">
 						<img :src="venue.cover">
@@ -49,19 +53,17 @@
 
     	data: function () {
     		return {
-    			venues: {}
+    			venues: {},
     		}
     	},
 
     	methods: {
-    		// date(date) {
-    		// 	return moment(date).format('ddd, D MMM YYYY');
-    		// },
 
     		request(id) {
     			EventBus.$emit('testlog', 'some message');
     			console.log('request ' + id);
     		}
+
     	},
 
         created() {
