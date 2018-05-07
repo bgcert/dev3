@@ -9,6 +9,7 @@
 // @import '~bootstrap/scss/bootstrap';
 
 // Semantic UI
+// Needs improvements: @import '~semantic-ui/../semantic' ?? as bootsrap^^;
 @import "../semantic-ui/dist/semantic.min.css";
 
 body {
@@ -18,13 +19,7 @@ body {
 #nav-header {
 	background-color: #fff;
 	border-bottom: 1px solid #E1E3DF;
-	padding: 20px 0;
-}
-
-.menu-simple {
-	border: none;
-	box-shadow: none;
-	border-radius: 0;
+	padding: 17px 0;
 }
 
 .navbar-laravel {

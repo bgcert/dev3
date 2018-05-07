@@ -367,14 +367,7 @@
 #nav-header {
   background-color: #fff;
   border-bottom: 1px solid #E1E3DF;
-  padding: 20px 0;
-}
-
-.menu-simple {
-  border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border-radius: 0;
+  padding: 17px 0;
 }
 
 .navbar-laravel {
