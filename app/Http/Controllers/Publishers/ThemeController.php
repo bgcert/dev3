@@ -14,9 +14,7 @@ class ThemeController extends Controller
      */
     public function index()
     {
-    	$data[0] = \Auth::user()->company->themes;
-    	$data[1] = \Auth::user()->company->teachers;
-        return $data;
+    	return \Auth::user()->company->themes;
     }
 
     /**

@@ -24,7 +24,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        $data[0] = \Auth::user()->company->themes;
+    	$data[1] = \Auth::user()->company->teachers;
+        return $data;
     }
 
     /**
@@ -36,10 +38,11 @@ class EventController extends Controller
     public function store(Request $request)
     {
     	$event = \Auth::user()->company->events()->create($request->all());
-    	dd($request->teachers);
-    	foreach ($request->teachers as $teacher) {
-    		$event->teachers()->attach($teacher->id);
-    	}
+    	return $event->teachers()->attach($request->teachers);
+    	// dd($request->teachers);
+    	// foreach ($request->teachers as $teacher) {
+    	// 	$event->teachers->attach($teacher->id);
+    	// }
     	
     	return $event;
     }

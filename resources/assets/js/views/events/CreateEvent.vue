@@ -7,8 +7,9 @@
 			
 			<div class="ui segment">
 				<el-form ref="form" :model="form" label-width="120px">
-					<el-form-item label="Категория">
-						<el-select v-model="form.theme" placeholder="Изберете тема">
+
+					<el-form-item label="Тема">
+						<el-select v-model="selectedTheme" placeholder="Изберете тема">
 							<template v-for="theme in themes">
 								<el-option :label="theme.title" :value="theme.id"></el-option>	
 							</template>
@@ -19,10 +20,15 @@
 						<el-switch v-model="form.delivery"></el-switch>
 					</el-form-item>
 
-					<el-form-item label="Преподаватели">
-						<template v-for="teacher in teachers">
-							<el-checkbox v-model="selectedTeachers" :label="teacher.name" :value="teacher.id" border></el-checkbox>
-						</template>
+					<el-form-item label="Лектори">
+						<el-select v-model="selectedTeachers" multiple placeholder="Select">
+							<el-option
+								v-for="teacher in teachers"
+								:key="teacher.id"
+								:label="teacher.name"
+								:value="teacher.id">
+							</el-option>
+						</el-select>
 					</el-form-item>
 
 					<el-form-item label="Дати">
@@ -76,6 +82,7 @@
     			themes: [],
     			teachers: [],
     			selectedTeachers: [],
+    			selectedTheme: '',
     			form: {
     				theme: '',
     				region: '',
@@ -94,7 +101,7 @@
     			console.log('save');
     			var vm = this;
     			axios.post('/dashboard/events', {
-    				theme_id: vm.form.theme,
+    				theme_id: vm.selectedTheme,
     				teachers: vm.selectedTeachers,
     				cover: 'https://picsum.photos/800/400/?image=120',
     				begin_at: vm.form.date[0],
@@ -115,7 +122,7 @@
 
         created() {
         	var vm = this;
-            var route = '/dashboard/themes';
+            var route = '/dashboard/events/create';
         	axios.get(route).then(function (response) {
         		console.log(response.data);
         		vm.themes = response.data[0];

@@ -10,9 +10,11 @@
 					<el-form-item label="Име">
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
+
 					<el-form-item label="Instant delivery">
 						<el-switch v-model="form.delivery"></el-switch>
 					</el-form-item>
+
 					<el-form-item label="Activity type">
 						<el-checkbox-group v-model="form.type">
 							<el-checkbox label="Online activities" name="type"></el-checkbox>
@@ -21,12 +23,14 @@
 							<el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
 						</el-checkbox-group>
 					</el-form-item>
+
 					<el-form-item label="Resources">
 						<el-radio-group v-model="form.resource">
 							<el-radio label="Sponsor"></el-radio>
 							<el-radio label="Venue"></el-radio>
 						</el-radio-group>
 					</el-form-item>
+
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="form.details"></el-input>
 					</el-form-item>
@@ -53,7 +57,6 @@
     	data: function () {
     		return {
     			loading: true,
-    			categories: [],
     			form: {
     				name: '',
     				details: '',
@@ -72,7 +75,7 @@
     		save() {
     			console.log('save');
     			var vm = this;
-    			axios.post('/dashboard/themes', {
+    			axios.post('/dashboard/teachers', {
     				title: vm.form.title,
     				body: vm.form.body,
     				category_id: vm.form.category,
@@ -92,16 +95,16 @@
         },
 
         created() {
-        	var vm = this;
-            var route = '/dashboard/categories';
-        	axios.get(route).then(function (response) {
-        		console.log(response.data);
-        		vm.categories = response.data;
-        		vm.loading = false;
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+   //      	var vm = this;
+   //          var route = '/dashboard/categories';
+   //      	axios.get(route).then(function (response) {
+   //      		console.log(response.data);
+   //      		vm.categories = response.data;
+   //      		vm.loading = false;
+			// })
+			// .catch(function (error) {
+			// 	console.log(error);
+			// });
         }
     }
 </script>

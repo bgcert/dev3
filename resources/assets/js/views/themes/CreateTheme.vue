@@ -10,6 +10,7 @@
 					<el-form-item label="Заглавие">
 						<el-input v-model="form.title"></el-input>
 					</el-form-item>
+
 					<el-form-item label="Категория">
 						<el-select v-model="form.category" placeholder="Изберете категория">
 							<template v-for="category in categories">
@@ -17,6 +18,7 @@
 							</template>
 						</el-select>
 					</el-form-item>
+					
 					<el-form-item label="Instant delivery">
 						<el-switch v-model="form.delivery"></el-switch>
 					</el-form-item>

@@ -45340,6 +45340,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -45971,12 +45973,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             loading: true,
-            categories: [],
             form: {
                 name: '',
                 details: '',
@@ -45995,7 +46000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         save: function save() {
             console.log('save');
             var vm = this;
-            axios.post('/dashboard/themes', {
+            axios.post('/dashboard/teachers', {
                 title: vm.form.title,
                 body: vm.form.body,
                 category_id: vm.form.category,
@@ -46012,15 +46017,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log('New theme view mounted.');
     },
     created: function created() {
-        var vm = this;
-        var route = '/dashboard/categories';
-        axios.get(route).then(function (response) {
-            console.log(response.data);
-            vm.categories = response.data;
-            vm.loading = false;
-        }).catch(function (error) {
-            console.log(error);
-        });
+        //      	var vm = this;
+        //          var route = '/dashboard/categories';
+        //      	axios.get(route).then(function (response) {
+        //      		console.log(response.data);
+        //      		vm.categories = response.data;
+        //      		vm.loading = false;
+        // })
+        // .catch(function (error) {
+        // 	console.log(error);
+        // });
     }
 });
 
@@ -46609,6 +46615,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -46617,6 +46629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             themes: [],
             teachers: [],
             selectedTeachers: [],
+            selectedTheme: '',
             form: {
                 theme: '',
                 region: '',
@@ -46635,7 +46648,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log('save');
             var vm = this;
             axios.post('/dashboard/events', {
-                theme_id: vm.form.theme,
+                theme_id: vm.selectedTheme,
                 teachers: vm.selectedTeachers,
                 cover: 'https://picsum.photos/800/400/?image=120',
                 begin_at: vm.form.date[0],
@@ -46653,7 +46666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var vm = this;
-        var route = '/dashboard/themes';
+        var route = '/dashboard/events/create';
         axios.get(route).then(function (response) {
             console.log(response.data);
             vm.themes = response.data[0];
@@ -46687,18 +46700,18 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "Категория" } },
+                { attrs: { label: "Тема" } },
                 [
                   _c(
                     "el-select",
                     {
                       attrs: { placeholder: "Изберете тема" },
                       model: {
-                        value: _vm.form.theme,
+                        value: _vm.selectedTheme,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "theme", $$v)
+                          _vm.selectedTheme = $$v
                         },
-                        expression: "form.theme"
+                        expression: "selectedTheme"
                       }
                     },
                     [
@@ -46735,28 +46748,29 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "Преподаватели" } },
+                { attrs: { label: "Лектори" } },
                 [
-                  _vm._l(_vm.teachers, function(teacher) {
-                    return [
-                      _c("el-checkbox", {
-                        attrs: {
-                          label: teacher.name,
-                          value: teacher.id,
-                          border: ""
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { multiple: "", placeholder: "Select" },
+                      model: {
+                        value: _vm.selectedTeachers,
+                        callback: function($$v) {
+                          _vm.selectedTeachers = $$v
                         },
-                        model: {
-                          value: _vm.selectedTeachers,
-                          callback: function($$v) {
-                            _vm.selectedTeachers = $$v
-                          },
-                          expression: "selectedTeachers"
-                        }
+                        expression: "selectedTeachers"
+                      }
+                    },
+                    _vm._l(_vm.teachers, function(teacher) {
+                      return _c("el-option", {
+                        key: teacher.id,
+                        attrs: { label: teacher.name, value: teacher.id }
                       })
-                    ]
-                  })
+                    })
+                  )
                 ],
-                2
+                1
               ),
               _vm._v(" "),
               _c(
