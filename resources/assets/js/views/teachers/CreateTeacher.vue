@@ -73,13 +73,11 @@
 
     	methods: {
     		save() {
-    			console.log('save');
     			var vm = this;
     			axios.post('/dashboard/teachers', {
-    				title: vm.form.title,
-    				body: vm.form.body,
-    				category_id: vm.form.category,
-    				cover: vm.form.cover
+    				name: vm.form.name,
+    				details: vm.form.details,
+    				image: 'https://picsum.photos/400/400/?image=276'
     			})
     			.then(function (response) {
     				console.log(response);
