@@ -39,8 +39,50 @@
 			    <p><button class="ui violet big basic button">Записвам се</button></p>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="column">
+				<div class="ui divided items">
+					<div class="item">
+						<div class="image">
+							<img src="{{ $event->theme->company->logo }}">
+						</div>
+						<div class="content">
+							<a class="header">{{ $event->theme->company->name }}</a>
+							<div class="meta">
+								<span class="cinema">Union Square 14</span>
+							</div>
+							<div class="description">
+								<p></p>
+							</div>
+							<div class="extra">
+								<button class="ui facebook mini button">
+									<i class="facebook icon"></i>
+									Facebook
+								</button>
+								<button class="ui linkedin mini button">
+									<i class="linkedin icon"></i>
+									LinkedIn
+								</button>
+								<button class="ui instagram mini button">
+									<i class="instagram icon"></i>
+									Instagram
+								</button>
+								<button class="ui youtube mini button">
+									<i class="youtube icon"></i>
+									YouTube
+								</button>
+								<!-- <div class="ui label"><i class="globe icon"></i> Additional Languages</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="two column row">
 			<div class="ten wide column">
+				
 				<p>
 			    	{{ $event->theme->body }}
 			    </p>

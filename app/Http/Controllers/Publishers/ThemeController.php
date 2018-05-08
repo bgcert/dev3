@@ -85,6 +85,6 @@ class ThemeController extends Controller
 
 	public function categories()
     {
-        return \App\category::all();
+        return \App\Category::all();
     }   
 }

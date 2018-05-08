@@ -4,6 +4,7 @@
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/e" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
+
 			<div class="ui mini form">
 				<div class="ui action left icon input">
 					<i class="search icon"></i>
@@ -20,10 +21,14 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
-				<a href="/users/messages" class="item">
-					<i class="icon mail"></i>
-					<div class="floating ui red label">22</div>
+				<a class="item">
+					<i class="paper plane outline icon"></i>
+					<!-- <div class="floating ui red label">22</div> -->
 				</a>
+				<a href="/users/messages" class="item">
+					<i class="bell outline icon"></i>
+				</a>
+
 				<div class="ui dropdown item">
 					{{ Auth::user()->name }} <i class="dropdown icon"></i>
 					<div class="menu">
