@@ -21,11 +21,11 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
-				<a class="item">
+				<a href="/users/messages" class="item">
 					<i class="paper plane outline icon"></i>
 					<!-- <div class="floating ui red label">22</div> -->
 				</a>
-				<a href="/users/messages" class="item">
+				<a class="item">
 					<i class="bell outline icon"></i>
 				</a>
 
@@ -51,6 +51,7 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <!-- <div class="ui hidden divider"></div> -->
