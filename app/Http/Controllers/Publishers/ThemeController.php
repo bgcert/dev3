@@ -57,7 +57,9 @@ class ThemeController extends Controller
      */
     public function edit($id)
     {
-        //
+    	$data[0] = \App\Theme::find($id);
+    	$data[1] = \App\Category::all();
+        return $data;
     }
 
     /**
@@ -69,7 +71,7 @@ class ThemeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	return \App\Theme::where('id', $id)->update($request->all());
     }
 
     /**

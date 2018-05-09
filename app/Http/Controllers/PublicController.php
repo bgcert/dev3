@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+	public function home()
+    {
+    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
+    	return view('home', compact('events'));
+    }
+
 	public function themes()
     {
     	$themes = \App\Theme::with('isLiked')->get();

@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="ui segments">
-			<div class="ui segment">
-				<h3>Лектори</h3>
-				<router-link to="/teachers/create" class="item">
+			<div class="ui clearing segment">
+				<h3 style="float: left;">Лектори</h3>
+				<router-link to="/teachers/create" class="item" style="float: right;">
 					<button class="ui tiny basic button">
 						<i class="plus icon"></i>
 						Добави лектор

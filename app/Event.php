@@ -43,13 +43,13 @@ class Event extends Model
     	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
     }
 
-    public function getBeginAtAttribute($value)
-    {
-    	return $this->attributes['begin_at'] = Carbon::parse($value)->format('D, d M Y');
-    }
+    // public function getBeginAtAttribute($value)
+    // {
+    // 	return $this->attributes['begin_at'] = Carbon::parse($value)->format('D, d M Y');
+    // }
 
-    public function getEndAtAttribute($value)
-    {
-    	return $this->attributes['end_at'] = Carbon::parse($value)->format('D, d M Y');
-    }
+    // public function getEndAtAttribute($value)
+    // {
+    // 	return $this->attributes['end_at'] = Carbon::parse($value)->format('D, d M Y');
+    // }
 }

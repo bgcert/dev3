@@ -41,10 +41,11 @@
 						<label> Публикуване на зали</label>
 					</div>
 				</div>
-				<div class="field">
-					<button class="ui basic button" @click.prevent="setPublisher"> Промени</button>
-				</div>
 			</template>
+			
+			<div class="field">
+				<button class="ui basic button" @click.prevent="setPublisher"> Промени</button>
+			</div>
 			
 		</form>
 

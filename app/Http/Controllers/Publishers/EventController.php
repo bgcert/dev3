@@ -66,7 +66,10 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+    	$data[0] = \App\Event::find($id)->load('theme', 'teachers');
+    	//dd($data[0]);
+    	$data[1] = \Auth::user()->company->teachers;
+        return $data;
     }
 
     /**

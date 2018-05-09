@@ -7,11 +7,6 @@
 
 @section('content')
 <div class="container">
-	<div class="ui grid">
-		<div class="column">
-			<carousel></carousel>		
-		</div>
-	</div>
 	
     <h2>events</h2>
     <event-feed

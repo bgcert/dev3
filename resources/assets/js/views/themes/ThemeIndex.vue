@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<div class="ui segments">
-			<div class="ui segment">
-				<h3>Теми</h3>
-				<router-link to="/themes/create" class="item">
+			<div class="ui clearing segment">
+				<h3 style="float: left;">Теми</h3>
+				<router-link to="/themes/create" class="item" style="float: right;">
 					<button class="ui tiny basic button">
 						<i class="plus icon"></i>
 						Добави тема
@@ -19,14 +19,20 @@
 								<img :src="theme.cover">
 							</div>
 							<div class="content">
-								<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
+								<router-link :to="'/themes/edit/' + theme.id" class="header">
+									{{ theme.title }}
+								</router-link>
 							</div>
 							<div class="extra content">
 								<span class="right floated">
 									<el-row>
-										<el-button type="success" icon="el-icon-view" size="mini"></el-button>
-										<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
-										<el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+										<a :href="'/theme/' + theme.id" class="mini ui positive icon button" target="_blank"><i class="eye icon"></i></a>
+										<router-link :to="'/themes/edit/' + theme.id" class="item">
+											<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
+										</router-link>
+										<router-link :to="'/themes/edit/' + theme.id" class="item">
+											<el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
+										</router-link>
 									</el-row>
 								</span>
 							</div>

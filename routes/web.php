@@ -17,12 +17,8 @@ Route::get('/home', function () {
     return 'hard to remove /home route';
 });
 
-Route::view('/test-home', 'test-home');
-
 // PUBLIC ROUTES
-Route::view('/test', 'test');
-Route::view('/design', 'design');
-Route::get('/', 'PublicController@events');
+Route::get('/', 'PublicController@home');
 
 Route::get('/t', 'PublicController@themes');
 Route::get('/e', 'PublicController@events');
@@ -94,7 +90,6 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('themes', 'ThemeController');
 	Route::resource('teachers', 'TeacherController');
 	Route::resource('events', 'EventController');
-	//Route::resource('teachers', 'TeacherController');
 	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
 	Route::resource('comments', 'CommentController');
