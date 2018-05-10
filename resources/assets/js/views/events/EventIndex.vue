@@ -28,7 +28,9 @@
 								<span class="right floated">
 									<el-row>
 										<el-button type="success" icon="el-icon-view" size="mini"></el-button>
-										<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
+										<router-link :to="'/events/edit/' + event.id" class="item">
+											<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
+										</router-link>
 										<el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
 									</el-row>
 								</span>

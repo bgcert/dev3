@@ -3,14 +3,13 @@
 		<template v-if="event.id">
 
 			<div class="ui segments">
-				<div class="ui segment">
+				<div class="ui secondary segment">
 					<h4>Редактиране на събитие</h4>
 				</div>
 				
 				<div class="ui segment">
 					<h3>{{ event.theme.title }}</h3>
 					<el-form ref="form" :model="form" label-width="120px">
-						
 
 						<el-form-item label="Лектори">
 							<el-select v-model="selectedTeachers" multiple placeholder="Select">
@@ -94,12 +93,12 @@
     		save() {
     			console.log('save');
     			var vm = this;
-    			axios.post('/dashboard/events', {
-    				theme_id: vm.selectedTheme,
+    			let route = '/dashboard/events/' + this.$route.params.id;
+    			axios.patch(route, {
     				teachers: vm.selectedTeachers,
     				cover: 'https://picsum.photos/800/400/?image=120',
-    				begin_at: vm.form.date[0],
-    				end_at: vm.form.date[1],
+    				begin_at: vm.date[0],
+    				end_at: vm.date[1],
     			})
     			.then(function (response) {
     				console.log(response);

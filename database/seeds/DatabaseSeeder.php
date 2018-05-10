@@ -32,11 +32,15 @@ class DatabaseSeeder extends Seeder
 	    factory('App\Teacher', 40)->create();
 
 	    factory('App\Event', 70)->create()->each(function ($e) {
+	    	$teacher_id = null;
 	    	for ($i=0; $i < rand(1, 3); $i++) {
 	    		$teachers = \App\Teacher::where('company_id', $e->theme->company->id)->get();
 	    		if ($teachers->count() > 0) {
-	    			$teacher_id = $teachers->random()->id;
-	    			$e->teachers()->attach($teacher_id);
+	    			$random = $teachers->random()->id;
+	    			if ($teacher_id != $random) {
+	    				$teacher_id = $random;
+	    				$e->teachers()->attach($teacher_id);
+	    			}
 	    		}
         	}
 	    });

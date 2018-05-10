@@ -12,6 +12,7 @@ let routes = [
     // Teacher routes
     { path: '/teachers', component: require('./views/teachers/TeacherIndex.vue') },
     { path: '/teachers/create', component: require('./views/teachers/CreateTeacher.vue') },
+    { path: '/teachers/edit/:id', component: require('./views/teachers/EditTeacher.vue') },
 
     // Event routes
     { path: '/events', component: require('./views/events/EventIndex.vue') },

@@ -57,7 +57,7 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        return \App\Teacher::find($id);
     }
 
     /**
@@ -69,7 +69,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return \App\Teacher::where('id', $id)->update($request->all());
     }
 
     /**

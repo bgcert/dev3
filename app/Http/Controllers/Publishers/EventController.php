@@ -39,12 +39,6 @@ class EventController extends Controller
     {
     	$event = \Auth::user()->company->events()->create($request->all());
     	return $event->teachers()->attach($request->teachers);
-    	// dd($request->teachers);
-    	// foreach ($request->teachers as $teacher) {
-    	// 	$event->teachers->attach($teacher->id);
-    	// }
-    	
-    	return $event;
     }
 
     /**
@@ -67,7 +61,6 @@ class EventController extends Controller
     public function edit($id)
     {
     	$data[0] = \App\Event::find($id)->load('theme', 'teachers');
-    	//dd($data[0]);
     	$data[1] = \Auth::user()->company->teachers;
         return $data;
     }
@@ -81,7 +74,12 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	$event = \App\Event::where('id', $id)->first();
+		$event->update($request->except(['teachers']));
+
+        $event->teachers()->detach();
+
+    	return $event->teachers()->attach($request->teachers);
     }
 
     /**
