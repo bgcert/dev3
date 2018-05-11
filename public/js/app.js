@@ -98904,7 +98904,11 @@ var render = function() {
                             _c("i", { staticClass: "comment outline icon" }),
                             _vm._v(
                               "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(venue.comment_count.count) +
+                                _vm._s(
+                                  venue.comment_count != null
+                                    ? venue.comment_count.count
+                                    : 0
+                                ) +
                                 "\n\t\t\t\t\t\t\t"
                             )
                           ]
@@ -99785,15 +99789,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['followed', 'company_id'],
+    props: {
+        auth: { type: Number, required: true },
+        classes: [String, Number]
+    },
 
     data: function data() {
         return {
-            dialogVisible: false,
-            message: ''
+            dialogVisible: false
         };
     },
 
@@ -99802,6 +99817,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$confirm('Are you sure to close this dialog?').then(function (_) {
                 done();
             }).catch(function (_) {});
+        },
+        login: function login() {
+            __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
         }
     },
 
@@ -99810,10 +99828,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var vm = this;
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('testlog', function (message) {
-            vm.dialogVisible = true;
-            vm.message = message;
-        });
+        //      	EventBus.$on('testlog', function(message) {
+        //      		vm.dialogVisible = true;
+        //      		vm.message = message;
+        // });
     }
 });
 
@@ -99828,77 +99846,97 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "el-dialog",
-        {
-          attrs: {
-            title: "Tips",
-            visible: _vm.dialogVisible,
-            "before-close": _vm.handleClose,
-            width: "30%"
-          },
-          on: {
-            "update:visible": function($event) {
-              _vm.dialogVisible = $event
-            }
-          }
-        },
-        [
-          _c("span", [_vm._v(_vm._s(_vm.message))]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "dialog-footer",
-              attrs: { slot: "footer" },
-              slot: "footer"
-            },
-            [
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.dialogVisible = false
-                    }
+      !_vm.auth
+        ? [
+            _c(
+              "a",
+              {
+                class: _vm.classes,
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
                   }
+                }
+              },
+              [_vm._v("\n\t\t\tЗаписвам се\n\t\t")]
+            )
+          ]
+        : [
+            _c(
+              "el-dialog",
+              {
+                attrs: {
+                  title: "Заявка",
+                  visible: _vm.dialogVisible,
+                  "before-close": _vm.handleClose,
+                  width: "30%"
                 },
-                [_vm._v("Cancel")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  attrs: { type: "primary" },
-                  on: {
-                    click: function($event) {
-                      _vm.dialogVisible = false
-                    }
+                on: {
+                  "update:visible": function($event) {
+                    _vm.dialogVisible = $event
                   }
-                },
-                [_vm._v("Confirm")]
-              )
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              _vm.dialogVisible = true
-            }
-          }
-        },
-        [_vm._v("Request")]
-      )
+                }
+              },
+              [
+                _c("span"),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "dialog-footer",
+                    attrs: { slot: "footer" },
+                    slot: "footer"
+                  },
+                  [
+                    _c(
+                      "el-button",
+                      {
+                        on: {
+                          click: function($event) {
+                            _vm.dialogVisible = false
+                          }
+                        }
+                      },
+                      [_vm._v("Cancel")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "primary" },
+                        on: {
+                          click: function($event) {
+                            _vm.dialogVisible = false
+                          }
+                        }
+                      },
+                      [_vm._v("Confirm")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                class: _vm.classes,
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.dialogVisible = true
+                  }
+                }
+              },
+              [_vm._v("Записвам се")]
+            )
+          ]
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

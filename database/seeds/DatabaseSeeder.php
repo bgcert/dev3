@@ -23,9 +23,7 @@ class DatabaseSeeder extends Seeder
 
 	    factory('App\Theme', 40)->create()->each(function ($t) {
 	    	for ($i=0; $i < rand(1, 30); $i++) {
-	    		$user_id = \App\User::all()->random()->id;
-        		$body = Str::random(32);
-        		$t->comment($body, $user_id);
+        		$t->comments()->save(factory('App\Comment')->make());
         	}
 	    });
 
@@ -51,9 +49,7 @@ class DatabaseSeeder extends Seeder
 	    	}
 
 	    	for ($i=0; $i < rand(1, 10) ; $i++) {
-	    		$user_id = \App\User::all()->random()->id;
-        		$body = Str::random(32);
-        		$v->comment($body, $user_id); // Comments should be improved!!!
+        		$v->comments()->save(factory('App\Comment')->make());
         	}
 	    });
 

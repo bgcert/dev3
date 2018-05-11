@@ -36,7 +36,13 @@
 				<p>
 			    	by <a href="/c/{{ $event->theme->company->slug }}">{{ $event->theme->company->name }}</a>
 			    </p>
-			    <p><button class="ui violet big basic button">Записвам се</button></p>
+			    <p>
+			    	<request-modal
+						auth="{{ Auth::check() }}"
+						classes="ui basic button"
+						>
+					</request-modal>
+				</p>
 			</div>
 		</div>
 

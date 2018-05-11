@@ -34,7 +34,7 @@
 							<span>
 								<a :href="'/venue/' + venue.id + '/#comments'">
 									<i class="comment outline icon"></i>
-									{{ venue.comment_count.count }}
+									{{ (venue.comment_count != null) ? venue.comment_count.count : 0 }}
 								</a>
 							</span>
 						</span>
