@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="ui container">
 	<div class="ui grid">
 		<div class="column">
 			<carousel></carousel>		

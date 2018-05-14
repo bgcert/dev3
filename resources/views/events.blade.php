@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="ui container">
 	
     <h2>events</h2>
     <event-feed
