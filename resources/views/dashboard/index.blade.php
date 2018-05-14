@@ -5,5 +5,8 @@
 @endpush
 
 @section('content')
-	<dashboard></dashboard>
+	<div class="ui container">
+		<dashboard></dashboard>	
+	</div>
+	
 @endsection

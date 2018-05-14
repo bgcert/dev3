@@ -50617,6 +50617,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50704,16 +50706,27 @@ var render = function() {
                       _c("img", { attrs: { src: teacher.image } })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "header",
-                          attrs: { href: "/teacher/" + teacher.id }
-                        },
-                        [_vm._v(_vm._s(teacher.name))]
-                      )
-                    ]),
+                    _c(
+                      "div",
+                      { staticClass: "content" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "header",
+                            attrs: { to: "/teachers/edit/" + teacher.id }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t" +
+                                _vm._s(teacher.name) +
+                                "\n\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "extra content" }, [
                       _c(
@@ -51486,6 +51499,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51573,28 +51588,39 @@ var render = function() {
                       _c("img", { attrs: { src: event.cover } })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c(
-                        "p",
-                        { staticStyle: { "text-transform": "uppercase" } },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t" +
-                              _vm._s(event.begin_at) +
-                              "\n\t\t\t\t\t\t\t"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "header",
-                          attrs: { href: "/event/" + event.id }
-                        },
-                        [_vm._v(_vm._s(event.theme.title))]
-                      )
-                    ]),
+                    _c(
+                      "div",
+                      { staticClass: "content" },
+                      [
+                        _c(
+                          "p",
+                          { staticStyle: { "text-transform": "uppercase" } },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t" +
+                                _vm._s(event.begin_at) +
+                                "\n\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "header",
+                            attrs: { to: "/events/edit/" + event.id }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t" +
+                                _vm._s(event.theme.title) +
+                                "\n\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "extra content" }, [
                       _c(

@@ -19,7 +19,9 @@
 								<img :src="teacher.image">
 							</div>
 							<div class="content">
-								<a :href="'/teacher/' + teacher.id" class="header">{{ teacher.name }}</a>
+								<router-link :to="'/teachers/edit/' + teacher.id" class="header">
+									{{ teacher.name }}
+								</router-link>
 							</div>
 							<div class="extra content">
 								<span class="right floated">

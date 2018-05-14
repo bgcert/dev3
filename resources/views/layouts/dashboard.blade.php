@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <div class="container">
+    <div class="ui container">
     	<h2>{{ \Auth::user()->company->name }}'s dashboard</h2>
     	<div class="row">
     		<div class="col-2">

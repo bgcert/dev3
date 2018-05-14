@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <div class="container">
+    <div class="ui container">
     	<h2>{{ \Auth::user()->name }}'s settings</h2>
     	<ul class="nav nav-tabs">
     		<li class="nav-item">

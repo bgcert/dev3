@@ -22,7 +22,9 @@
 								<p style="text-transform: uppercase;">
 									{{ event.begin_at }}
 								</p>
-								<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
+								<router-link :to="'/events/edit/' + event.id" class="header">
+									{{ event.theme.title }}
+								</router-link>
 							</div>
 							<div class="extra content">
 								<span class="right floated">
