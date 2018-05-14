@@ -24,9 +24,8 @@
     	<!-- <flash message="{{ session('flash') }}"></flash> -->
         @include('layouts.includes.navbar')
 
-        <div class="ui container">
-        	@yield('content')
-        </div>
+        @yield('content')
+        
         <main class="py-4">
             
         </main>

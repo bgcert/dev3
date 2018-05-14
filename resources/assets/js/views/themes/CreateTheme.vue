@@ -90,6 +90,8 @@
     			})
     			.then(function (response) {
     				console.log(response);
+    				vm.$message('Темата е добавена успешно.');
+    				vm.$router.push('/themes');
     			})
     			.catch(function (error) {
     				console.log(error);

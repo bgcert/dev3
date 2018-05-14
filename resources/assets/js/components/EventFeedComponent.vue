@@ -1,9 +1,5 @@
 <template>
 	<div>
-		<request-modal
-			auth="1"
-			>
-		</request-modal>
 
 		<div class="ui three stackable cards">
 			<template v-for="event in events">

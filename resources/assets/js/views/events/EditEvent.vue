@@ -102,6 +102,8 @@
     			})
     			.then(function (response) {
     				console.log(response);
+    				vm.$message('Събитието е редактирано.');
+    				vm.$router.push('/events');
     			})
     			.catch(function (error) {
     				console.log(error);

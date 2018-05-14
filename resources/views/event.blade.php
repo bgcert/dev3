@@ -15,7 +15,22 @@
 @endpush
 
 @section('content')
-<div class="container">
+<div class="sub-nav" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #DDDDDD;">
+	<div class="ui container">
+		<div class="ui breadcrumb">
+			<a href="/" class="section">Начало</a>
+			<i class="right angle icon divider"></i>
+			<a href="/e" class="section">Събития</a>
+			<i class="right angle icon divider"></i>
+			<a href="/c/{{ $event->theme->company->slug }}" class="section">{{ $event->theme->company->name }}</a>
+			<i class="right angle icon divider"></i>
+			<div class="active section">{{ $event->theme->title }}</div>
+		</div>
+	</div>
+</div>
+
+<div class="ui container">
+	
 	<div class="ui padded grid">
 		<div class="two column row">
 			<div class="ten wide red column event-cover">

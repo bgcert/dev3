@@ -28,7 +28,7 @@
 	import { EventBus } from '../app';
     export default {
     	props: {
-    		auth: { type: Number, required: true},
+    		auth: { type: [String, Number], required: true},
     		classes: [String, Number]
     	},
 

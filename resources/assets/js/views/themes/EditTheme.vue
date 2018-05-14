@@ -70,6 +70,8 @@
     			})
     			.then(function (response) {
     				console.log(response.data);
+    				vm.$message('Темата е редактирана успешно.');
+    				vm.$router.push('/themes');
     			})
     			.catch(function (error) {
     				console.log(error);

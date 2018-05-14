@@ -63,6 +63,8 @@
     			})
     			.then(function (response) {
     				console.log(response);
+    				vm.$message('Лекторът е редактиран успешно.');
+    				vm.$router.push('/teachers');
     			})
     			.catch(function (error) {
     				console.log(error);

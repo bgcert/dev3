@@ -49974,6 +49974,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 cover: vm.form.cover
             }).then(function (response) {
                 console.log(response);
+                vm.$message('Темата е добавена успешно.');
+                vm.$router.push('/themes');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -50348,6 +50350,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 cover: vm.form.cover
             }).then(function (response) {
                 console.log(response.data);
+                vm.$message('Темата е редактирана успешно.');
+                vm.$router.push('/themes');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -50915,6 +50919,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				image: 'https://picsum.photos/400/400/?image=276'
 			}).then(function (response) {
 				console.log(response);
+				vm.$message('Лекторът е добавен.');
+				vm.$router.push('/teachers');
 			}).catch(function (error) {
 				console.log(error);
 			});
@@ -51241,6 +51247,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 image: 'https://picsum.photos/400/400/?image=276'
             }).then(function (response) {
                 console.log(response);
+                vm.$message('Лекторът е редактиран успешно.');
+                vm.$router.push('/teachers');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -51820,6 +51828,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 end_at: vm.form.date[1]
             }).then(function (response) {
                 console.log(response);
+                vm.$message('Събитието е създадено успешно.');
+                vm.$router.push('/events');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -52243,6 +52253,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 end_at: vm.date[1]
             }).then(function (response) {
                 console.log(response);
+                vm.$message('Събитието е редактирано.');
+                vm.$router.push('/events');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -98542,10 +98554,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -98589,104 +98597,98 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("request-modal", { attrs: { auth: "1" } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "ui three stackable cards" },
-        [
-          _vm._l(_vm.events, function(event) {
-            return [
-              _c("div", { staticClass: "card" }, [
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "ui three stackable cards" },
+      [
+        _vm._l(_vm.events, function(event) {
+          return [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "div",
+                { staticClass: "extra content" },
+                [
+                  _c("box-hover", {
+                    attrs: {
+                      id: event.theme.company.id,
+                      name: event.theme.company.name
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "image" }, [
+                _c("img", { attrs: { src: event.cover } })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "content" }, [
+                _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t" + _vm._s(event.begin_at) + "\n\t\t\t\t\t"
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "extra content" },
+                  "a",
+                  {
+                    staticClass: "header",
+                    attrs: { href: "/event/" + event.id }
+                  },
+                  [_vm._v(_vm._s(event.theme.title))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "extra content" }, [
+                _c(
+                  "span",
+                  { staticClass: "right floated" },
                   [
-                    _c("box-hover", {
+                    _c("like", {
                       attrs: {
-                        id: event.theme.company.id,
-                        name: event.theme.company.name
+                        auth: _vm.auth,
+                        likes:
+                          event.theme.like_count != null
+                            ? event.theme.like_count.count
+                            : "",
+                        liked: event.theme.is_liked.length,
+                        item_id: event.theme.id,
+                        route: "/users/like/theme"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/event/" + event.id + "/#comments" }
+                        },
+                        [
+                          _c("i", { staticClass: "comment outline icon" }),
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t" +
+                              _vm._s(
+                                event.theme.comment_count != null
+                                  ? event.theme.comment_count.count
+                                  : 0
+                              ) +
+                              "\n\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ])
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "image" }, [
-                  _c("img", { attrs: { src: event.cover } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t" + _vm._s(event.begin_at) + "\n\t\t\t\t\t"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "header",
-                      attrs: { href: "/event/" + event.id }
-                    },
-                    [_vm._v(_vm._s(event.theme.title))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "extra content" }, [
-                  _c(
-                    "span",
-                    { staticClass: "right floated" },
-                    [
-                      _c("like", {
-                        attrs: {
-                          auth: _vm.auth,
-                          likes:
-                            event.theme.like_count != null
-                              ? event.theme.like_count.count
-                              : "",
-                          liked: event.theme.is_liked.length,
-                          item_id: event.theme.id,
-                          route: "/users/like/theme"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "/event/" + event.id + "/#comments" }
-                          },
-                          [
-                            _c("i", { staticClass: "comment outline icon" }),
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(
-                                  event.theme.comment_count != null
-                                    ? event.theme.comment_count.count
-                                    : 0
-                                ) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                )
               ])
-            ]
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
+            ])
+          ]
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -99802,7 +99804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
-        auth: { type: Number, required: true },
+        auth: { type: [String, Number], required: true },
         classes: [String, Number]
     },
 

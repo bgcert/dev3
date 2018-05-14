@@ -81,6 +81,8 @@
     			})
     			.then(function (response) {
     				console.log(response);
+    				vm.$message('Лекторът е добавен.');
+    				vm.$router.push('/teachers');
     			})
     			.catch(function (error) {
     				console.log(error);
