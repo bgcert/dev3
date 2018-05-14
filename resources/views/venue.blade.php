@@ -6,19 +6,22 @@
 @endpush
 
 @section('content')
+<div class="sub-nav" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #DDDDDD;">
+	<div class="ui container">
+		<div class="ui breadcrumb">
+			<a href="/" class="section">Начало</a>
+			<i class="right angle icon divider"></i>
+			<a href="/v" class="section">Зали</a>
+			<i class="right angle icon divider"></i>
+			<a href="/c/{{ $venue->company->slug }}" class="section">{{ $venue->company->name }}</a>
+			<i class="right angle icon divider"></i>
+			<div class="active section">{{ $venue->name }}</div>
+		</div>
+	</div>
+</div>
+
 <div class="ui container">
 	<div class="ui grid">
-		<div class="row">
-			<div class="column">
-				<div class="ui small breadcrumb">
-					<a class="section">Начало</a>
-					<i class="right chevron icon divider"></i>
-					<a class="section">София</a>
-					<i class="right chevron icon divider"></i>
-					<div class="active section">Зали</div>
-				</div>
-			</div>
-		</div>
 		<div class="row">
 			<div class="twelve wide column">
 				<div class="row">

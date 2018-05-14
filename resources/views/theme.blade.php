@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="ui container">
 	<h1>Theme</h1>
 	<hr>
 	<img src="{{ $theme->cover }}" style="height: 300px;">

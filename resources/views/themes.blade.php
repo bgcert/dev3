@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="ui container">
 	<h1>All Themes</h1>
 	<hr>
 	<ul>
