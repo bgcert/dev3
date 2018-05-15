@@ -34,6 +34,11 @@ class SettingsController extends Controller
     	$user = \App\User::find(\Auth::id());
     	if (request()->publisher) {
     		$company = $user->company()->updateOrCreate([], request()->all());
+    		
+    		if (!$company->company_detail()->exists) {
+    			$company->company_detail()->create();
+    		}
+
     		if ($company->exists) {
 				$user->role_id = 2;
 				$user->save();
