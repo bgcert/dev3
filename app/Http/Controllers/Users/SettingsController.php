@@ -35,7 +35,7 @@ class SettingsController extends Controller
     	if (request()->publisher) {
     		$company = $user->company()->updateOrCreate([], request()->all());
 
-    		if (!$company->company_detail->exists) {
+    		if (!$company->company_detail) {
     			$company->company_detail()->create();
     		}
 
