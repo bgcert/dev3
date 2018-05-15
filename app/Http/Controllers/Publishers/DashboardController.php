@@ -12,4 +12,9 @@ class DashboardController extends Controller
     	$company = \Auth::user()->company;
     	return view('dashboard.index', compact('company'));
     }
+
+    public function getCompany()
+    {
+    	return \App\Company::with('company_detail')->where('user_id', \Auth::id())->first();
+    }
 }

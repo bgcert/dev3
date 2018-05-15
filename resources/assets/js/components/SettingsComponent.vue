@@ -39,7 +39,7 @@
 </template>
 
 <script>
-	import { EventBus } from '../../app';
+	import { EventBus } from '../app';
     export default {
 		props: ['id'],
 

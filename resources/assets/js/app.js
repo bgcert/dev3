@@ -61,11 +61,10 @@ Vue.component('login', require('./components/auth/LoginComponent.vue'));
 Vue.component('register', require('./components/auth/RegisterComponent.vue'));
 
 // Settings
-Vue.component('settings', require('./components/settings/SettingsComponent.vue'));
+Vue.component('settings', require('./components/SettingsComponent.vue'));
 
 // Dashboard
-Vue.component('dashboard', require('./components/dashboard/DashboardComponent.vue'));
-//Vue.component('theme-feed', require('./components/dashboard/ThemeFeedComponent.vue'));
+Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));

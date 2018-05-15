@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(6));
+Auth::login(\App\User::find(17));
 
 Route::get('/home', function () {
     return 'hard to remove /home route';
@@ -95,6 +95,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('comments', 'CommentController');
 
 	Route::get('/categories', 'ThemeController@categories');
+	Route::get('/load/company', 'DashboardController@getCompany');
 
 });
 

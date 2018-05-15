@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         factory('App\User', 40)->create()->each(function ($u) {
         	if ($u->role_id == 2) {
-        		$u->company()->save(factory('App\Company')->make());
+        		$company = $u->company()->save(factory('App\Company')->make());
+        		$company->company_detail()->save(factory('App\CompanyDetail')->make());
         	}
 	    });
 

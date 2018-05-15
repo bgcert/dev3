@@ -3,6 +3,7 @@
 		<div class="ui grid">
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
+					<router-link to="/profile" class="item"> Фирмен профил</router-link>
 					<router-link to="/themes" class="item"> Теми</router-link>
 					<router-link to="/teachers" class="item"> Лектори</router-link>
 					<router-link to="/events" class="item"> Календар</router-link>
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-	import { EventBus } from '../../app';
+	import { EventBus } from '../app';
     export default {
 
     	data: function () {

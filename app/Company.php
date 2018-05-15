@@ -17,6 +17,11 @@ class Company extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function company_detail()
+    {
+        return $this->hasOne('App\CompanyDetail');
+    }
+
     public function themes()
     {
     	return $this->hasMany('App\Theme');
