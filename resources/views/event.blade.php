@@ -24,7 +24,7 @@
 			<i class="right angle icon divider"></i>
 			<a href="/c/{{ $event->theme->company->slug }}" class="section">{{ $event->theme->company->name }}</a>
 			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $event->theme->title }}</div>
+			<div class="active section">{{ $event->theme->title }} - {{ Carbon\Carbon::parse($event->begin_at)->format('d M Y') }}</div>
 		</div>
 	</div>
 </div>
