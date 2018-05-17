@@ -17,4 +17,14 @@ class DashboardController extends Controller
     {
     	return \App\Company::with('company_detail')->where('user_id', \Auth::id())->first();
     }
+
+    public function saveCompany()
+    {
+    	//dd(request()->company_detail);
+    	$company = \App\Company::where('user_id', \Auth::id())->first();
+    	$company->update(request()->company);
+    	$company->company_detail->update(request()->company_detail);
+    	
+    	return 'ok';
+    }
 }

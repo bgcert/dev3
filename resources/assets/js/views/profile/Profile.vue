@@ -7,17 +7,7 @@
 			</div>
 
 			<div class="field">
-				<label>Адрес</label>
-				<textarea rows="2"></textarea>
-			</div>
-
-			<div class="field">
-				<label>Описание</label>
-				<textarea></textarea>
-			</div>
-
-			<div class="field">
-				<label>Адрес на профила в Seminari365</label>
+				<label>Адрес (URL) на профила в Seminari365</label>
 				<div class="ui labeled right input">
 					<div class="ui label">
 						http://seminari365.com/
@@ -27,12 +17,32 @@
 			</div>
 
 			<div class="field">
+				<label>Описание</label>
+				<textarea v-model="company_detail.description"></textarea>
+			</div>
+
+			<div class="field">
+				<label>E-mail</label>
+				<input type="text" v-model="company_detail.email">
+			</div>
+
+			<div class="field">
+				<label>Телефон</label>
+				<input type="text" v-model="company_detail.phone">
+			</div>
+
+			<div class="field">
+				<label>Адрес</label>
+				<textarea rows="2" v-model="company_detail.address"></textarea>
+			</div>
+
+			<div class="field">
 				<label>Facebook</label>
 				<div class="ui labeled right input">
 					<div class="ui label">
 						http://facebook.com/
 					</div>
-					<input type="text" v-model="company.company_detail.facebook">
+					<input type="text" v-model="company_detail.facebook">
 				</div>
 			</div>
 
@@ -42,7 +52,7 @@
 					<div class="ui label">
 						http://instagram.com/
 					</div>
-					<input type="text" v-model="company.company_detail.instagram">
+					<input type="text" v-model="company_detail.instagram">
 				</div>
 			</div>
 
@@ -52,13 +62,13 @@
 					<div class="ui label">
 						http://linkedin.com/company/
 					</div>
-					<input type="text" v-model="company.company_detail.linkedin">
+					<input type="text" v-model="company_detail.linkedin">
 				</div>
 			</div>
 			
 			<div class="field">
 				<div class="ui basic clearing segment">
-					<button class="ui labeled icon button" @click.prevent="" style="float: right;"><i class="icon save"></i> Запиши</button>	
+					<button class="ui labeled icon button" @click.prevent="save" style="float: right;"><i class="icon save"></i> Запиши</button>	
 				</div>
 			</div>
 			
@@ -72,38 +82,23 @@
     export default {
     	data: function () {
     		return {
-    			company: {}
+    			company: {},
+    			company_detail: {}
     		}
     	},
 
     	methods: {
-    		setName() {
+    		save() {
     			var vm = this;
-    			var route = '/users/set/user/name';
-    			axios.post(route, { name: vm.form.user.name })
-				.then(function (response) {
-					console.log(response);
-					vm.$message('Името е променено.');
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-    		},
-
-    		setPublisher() {
-    			var vm = this;
-    			var route = '/users/set/publisher/data';
+    			var route = '/dashboard/save/company/data';
     			axios.post(route,
     				{
-    					publisher: vm.form.publisher,
-    					name: vm.form.user.company.name,
-    					slug: vm.form.user.company.slug,
-    					event_publish: vm.form.user.company.event_publish,
-    					venue_publish: vm.form.user.company.venue_publish
+    					company_detail: vm.company_detail,
+    					company: vm.company
     				})
 				.then(function (response) {
 					console.log(response);
-					vm.$message('Данните са променени.');
+					vm.$message('Данните са записани.');
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -120,16 +115,13 @@
             var vm = this;
             var route = '/dashboard/load/company';
         	axios.get(route).then(function (response) {
-        		console.log('test');
         		console.log(response.data);
+        		let data = response.data;
+        		vm.company_detail = data.company_detail;
+        		delete data.is_followed;
+        		delete data.followers;
+        		delete data.company_detail;
         		vm.company = response.data;
-        		// vm.form.user = response.data;
-        		// if (response.data.company) {
-        		// 	vm.form.user.company = response.data.company;
-        		// } else {
-        		// 	vm.form.user.company = vm.company;
-        		// }
-        		// vm.form.publisher = (response.data.role_id == 2) ? true : false;
 			})
 			.catch(function (error) {
 				console.log(error);
