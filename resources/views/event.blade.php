@@ -3,15 +3,6 @@
 @push('header-scripts')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/bg.js"></script>
-
-	<style>
-		.event-cover {
-			background-image: url({{ $event->cover }});
-			background-size: cover;
-			background-repeat: no-repeat;
-			height: 400px;
-		}
-	</style>
 @endpush
 
 @section('content')
@@ -33,7 +24,7 @@
 	
 	<div class="ui padded grid">
 		<div class="two column row">
-			<div class="ten wide red column event-cover">
+			<div class="ten wide red column event-cover" style="background-image: url({{ $event->cover }});">
 				<!-- <img src="{{ $event->cover }}"> -->
 			</div>
 			<div class="six wide olive column">
@@ -69,7 +60,7 @@
 							<img src="{{ $event->theme->company->company_detail->logo }}">
 						</div>
 						<div class="content">
-							<a class="header">{{ $event->theme->company->name }}</a>
+							<div class="header">{{ $event->theme->company->name }}</div>
 							<div class="meta">
 								<span class="cinema">{{  $event->theme->company->company_detail->address }}</span>
 							</div>
@@ -93,7 +84,6 @@
 									<i class="youtube icon"></i>
 									YouTube
 								</a>
-								<!-- <div class="ui label"><i class="globe icon"></i> Additional Languages</div> -->
 							</div>
 						</div>
 					</div>
@@ -118,26 +108,6 @@
 			    </div>
 			</div>
 			<div class="six wide column">
-				<div class="ui large horizontal divided list">
-					<div class="item">
-						<img class="ui avatar image" src="/images/avatar/small/helen.jpg">
-						<div class="content">
-							<div class="header">Helen</div>
-						</div>
-					</div>
-					<div class="item">
-						<img class="ui avatar image" src="/images/avatar/small/christian.jpg">
-						<div class="content">
-							<div class="header">Christian</div>
-						</div>
-					</div>
-					<div class="item">
-						<img class="ui avatar image" src="/images/avatar/small/daniel.jpg">
-						<div class="content">
-							<div class="header">Daniel</div>
-						</div>
-					</div>
-				</div>
 				<h3 class="ui dividing header">Популярни обучения</h3>
 				<related-feed
 					auth="{{ auth()->check() }}"

@@ -15,7 +15,7 @@
 								</div>
 								<div style="position: absolute; right: 40px; bottom: 20px;">
 									<span>
-									<a class="mini ui orange button" href="#"><i class="paper plane icon"></i> Изпрати съобщение</a>
+										<a class="mini ui orange button" href="#"><i class="paper plane icon"></i> Изпрати съобщение</a>
 									</span>
 									<follow
 										:followed="company.is_followed.length > 0"
