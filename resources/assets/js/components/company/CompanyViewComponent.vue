@@ -4,11 +4,11 @@
 			<div class="row">
 
 				<div class="column">
-					<div class="cover-container" :style="'background: url(' + company.cover + ') center / cover no-repeat;'">
+					<div class="cover-container" :style="'background: url(' + company.company_detail.cover + ') center / cover no-repeat;'">
 						<div class="overlay">
 							<div class="data-container">
 								<div class="logo-container">
-									<img class="company-logo" :src="company.logo">
+									<img class="company-logo" :src="company.company_detail.logo">
 								</div>
 								<div class="company-name">
 									<h2>{{ company.name }}</h2>
@@ -34,7 +34,7 @@
 				<div class="twelve wide column">
 					<el-tabs type="card" v-model="activeName" @tab-click="handleClick">
 						<el-tab-pane label="Инфо" name="info">
-							<p>{{ company.description }}</p>
+							<p>{{ company.company_detail.description }}</p>
 						</el-tab-pane>
 						<el-tab-pane label="Теми" name="themes">
 							<div class="ui items">
@@ -120,10 +120,34 @@
 							</el-tooltip>
 						</template>
 					</div>
-					
-					<h5 class="ui dividing header">
-						Адрес
-					</h5>
+					<div class="ui segment">
+						<div class="ui list">
+							<div class="item">
+								<i class="phone icon"></i>
+								<div class="content">
+									{{ company.company_detail.phone }}
+								</div>
+							</div>
+							<div class="item">
+								<i class="marker icon"></i>
+								<div class="content">
+									{{ company.company_detail.address }}
+								</div>
+							</div>
+							<div class="item">
+								<i class="mail icon"></i>
+								<div class="content">
+									<a href="mailto:jack@semantic-ui.com">{{ company.company_detail.email }}</a>
+								</div>
+							</div>
+							<div class="item">
+								<i class="linkify icon"></i>
+								<div class="content">
+									<a href="http://www.semantic-ui.com">semantic-ui.com</a>
+								</div>
+							</div>
+						</div>
+					</div>
 					<h5 class="ui dividing header">
 						Карта
 					</h5>

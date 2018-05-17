@@ -12,7 +12,7 @@
 				<template v-if="!loading">
 	                <div class="center aligned content">
 	                    <a :href="'/c/' + company.slug">
-	                        <img class="ui tiny circular image" :src="company.logo">
+	                        <img class="ui tiny circular image" :src="company.company_detail.logo">
 	                    </a>
 	                    <div class=" header">
 	                        <a class="ui sub header" :href="'/c/' + company.slug">{{ name }}</a>

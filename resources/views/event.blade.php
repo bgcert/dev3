@@ -66,33 +66,33 @@
 				<div class="ui divided items">
 					<div class="item">
 						<div class="image">
-							<img src="{{ $event->theme->company->logo }}">
+							<img src="{{ $event->theme->company->company_detail->logo }}">
 						</div>
 						<div class="content">
 							<a class="header">{{ $event->theme->company->name }}</a>
 							<div class="meta">
-								<span class="cinema">Union Square 14</span>
+								<span class="cinema">{{  $event->theme->company->company_detail->address }}</span>
 							</div>
 							<div class="description">
 								<p></p>
 							</div>
 							<div class="extra">
-								<button class="ui facebook mini button">
+								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->facebook }}" class="ui facebook mini button">
 									<i class="facebook icon"></i>
 									Facebook
-								</button>
-								<button class="ui linkedin mini button">
-									<i class="linkedin icon"></i>
-									LinkedIn
-								</button>
-								<button class="ui instagram mini button">
+								</a>
+								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->instagram }}" class="ui instagram mini button">
 									<i class="instagram icon"></i>
 									Instagram
-								</button>
-								<button class="ui youtube mini button">
+								</a>
+								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->linkedin }}" class="ui linkedin mini button">
+									<i class="linkedin icon"></i>
+									LinkedIn
+								</a>
+								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->youtube }}" class="ui youtube mini button">
 									<i class="youtube icon"></i>
 									YouTube
-								</button>
+								</a>
 								<!-- <div class="ui label"><i class="globe icon"></i> Additional Languages</div> -->
 							</div>
 						</div>

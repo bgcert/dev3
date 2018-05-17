@@ -21,7 +21,7 @@ class PublicController extends Controller
 
     public function events()
     {
-    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
+    	$events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company.company_detail')->get();
     	return view('events', compact('events'));
     }
 

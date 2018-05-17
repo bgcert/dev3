@@ -26,7 +26,7 @@ class DataController extends Controller
 
     public function getCompany()
     {
-    	$company = \App\Company::with('firstFiveFollowers')
+    	$company = \App\Company::with('company_detail', 'firstFiveFollowers')
 				    			->where('id', request()->id)
 				    			->first();
     	return $company;
@@ -34,7 +34,7 @@ class DataController extends Controller
 
     public function getCompanyDetails()
     {
-    	$company = \App\Company::with('user', 'themes', 'events', 'venues', 'followers')
+    	$company = \App\Company::with('company_detail', 'user', 'themes', 'events', 'venues', 'followers')
     							->where('slug', request()->slug)
     							->first();
     	return $company;

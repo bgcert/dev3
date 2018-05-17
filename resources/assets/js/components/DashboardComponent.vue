@@ -3,10 +3,30 @@
 		<div class="ui grid">
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
-					<router-link to="/profile" class="item"> Фирмен профил</router-link>
-					<router-link to="/themes" class="item"> Теми</router-link>
-					<router-link to="/teachers" class="item"> Лектори</router-link>
-					<router-link to="/events" class="item"> Календар</router-link>
+					<router-link
+						to="/profile"
+						class="item"
+						:class="{ active: $route.path == '/profile' }">
+						Фирмен профил
+					</router-link>
+					<router-link
+						to="/themes"
+						class="item"
+						:class="{ active: $route.path == '/themes' }">
+						Теми
+					</router-link>
+					<router-link
+						to="/teachers"
+						class="item"
+						:class="{ active: $route.path == '/teachers' }">
+						Лектори
+					</router-link>
+					<router-link
+						to="/events"
+						class="item"
+						:class="{ active: $route.path == '/events' }">
+						Календар
+					</router-link>
 				</div>
 			</div>
 			<div class="twelve wide column">

@@ -20,11 +20,9 @@ class DashboardController extends Controller
 
     public function saveCompany()
     {
-    	//dd(request()->company_detail);
     	$company = \App\Company::where('user_id', \Auth::id())->first();
     	$company->update(request()->company);
     	$company->company_detail->update(request()->company_detail);
-    	
     	return 'ok';
     }
 }

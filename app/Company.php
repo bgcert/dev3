@@ -9,8 +9,6 @@ class Company extends Model
 	protected $fillable = [
         'name', 'slug', 'event_publish', 'venue_publish',
     ];
-
-    protected $hidden = ["created_at", "updated_at"];
     
     protected $appends = ['is_followed'];
 

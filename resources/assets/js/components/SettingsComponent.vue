@@ -140,21 +140,21 @@
 
         created() {
         	console.log(this.$route.path);
-   //          var vm = this;
-   //          var route = '/users/load/user/';
-   //      	axios.get(route).then(function (response) {
-   //      		console.log(response.data);
-   //      		vm.form.user = response.data;
-   //      		if (response.data.company) {
-   //      			vm.form.user.company = response.data.company;
-   //      		} else {
-   //      			vm.form.user.company = vm.company;
-   //      		}
-   //      		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-			// })
-			// .catch(function (error) {
-			// 	console.log(error);
-			// });
+            var vm = this;
+            var route = '/users/load/user/';
+        	axios.get(route).then(function (response) {
+        		console.log(response.data);
+        		vm.form.user = response.data;
+        		if (response.data.company) {
+        			vm.form.user.company = response.data.company;
+        		} else {
+        			vm.form.user.company = vm.company;
+        		}
+        		vm.form.publisher = (response.data.role_id == 2) ? true : false;
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
         }
     }
 </script>

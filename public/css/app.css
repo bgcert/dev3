@@ -364,6 +364,10 @@
   background-color: #F8F8FA;
 }
 
+.main.container {
+  padding: 2em 0em 7em;
+}
+
 #nav-header {
   background-color: #fff;
   border-bottom: 1px solid #DDDDDD;

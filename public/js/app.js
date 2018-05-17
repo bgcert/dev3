@@ -98769,7 +98769,7 @@ var render = function() {
                       _c("a", { attrs: { href: "/c/" + _vm.company.slug } }, [
                         _c("img", {
                           staticClass: "ui tiny circular image",
-                          attrs: { src: _vm.company.logo }
+                          attrs: { src: _vm.company.company_detail.logo }
                         })
                       ]),
                       _vm._v(" "),
@@ -100701,6 +100701,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -100747,7 +100771,7 @@ var render = function() {
               staticClass: "cover-container",
               style:
                 "background: url(" +
-                _vm.company.cover +
+                _vm.company.company_detail.cover +
                 ") center / cover no-repeat;"
             },
             [
@@ -100756,7 +100780,7 @@ var render = function() {
                   _c("div", { staticClass: "logo-container" }, [
                     _c("img", {
                       staticClass: "company-logo",
-                      attrs: { src: _vm.company.logo }
+                      attrs: { src: _vm.company.company_detail.logo }
                     })
                   ]),
                   _vm._v(" "),
@@ -100812,7 +100836,9 @@ var render = function() {
               },
               [
                 _c("el-tab-pane", { attrs: { label: "Инфо", name: "info" } }, [
-                  _c("p", [_vm._v(_vm._s(_vm.company.description))])
+                  _c("p", [
+                    _vm._v(_vm._s(_vm.company.company_detail.description))
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -100999,8 +101025,44 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _c("h5", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tАдрес\n\t\t\t\t")
+          _c("div", { staticClass: "ui segment" }, [
+            _c("div", { staticClass: "ui list" }, [
+              _c("div", { staticClass: "item" }, [
+                _c("i", { staticClass: "phone icon" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t" +
+                      _vm._s(_vm.company.company_detail.phone) +
+                      "\n\t\t\t\t\t\t\t"
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item" }, [
+                _c("i", { staticClass: "marker icon" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t\t\t\t" +
+                      _vm._s(_vm.company.company_detail.address) +
+                      "\n\t\t\t\t\t\t\t"
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "item" }, [
+                _c("i", { staticClass: "mail icon" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _c("a", { attrs: { href: "mailto:jack@semantic-ui.com" } }, [
+                    _vm._v(_vm._s(_vm.company.company_detail.email))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
           ]),
           _vm._v(" "),
           _c("h5", { staticClass: "ui dividing header" }, [
@@ -101020,6 +101082,20 @@ var staticRenderFns = [
       _c("a", { staticClass: "mini ui orange button", attrs: { href: "#" } }, [
         _c("i", { staticClass: "paper plane icon" }),
         _vm._v(" Изпрати съобщение")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("i", { staticClass: "linkify icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("a", { attrs: { href: "http://www.semantic-ui.com" } }, [
+          _vm._v("semantic-ui.com")
+        ])
       ])
     ])
   }
@@ -102353,21 +102429,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     console.log(this.$route.path);
-    //          var vm = this;
-    //          var route = '/users/load/user/';
-    //      	axios.get(route).then(function (response) {
-    //      		console.log(response.data);
-    //      		vm.form.user = response.data;
-    //      		if (response.data.company) {
-    //      			vm.form.user.company = response.data.company;
-    //      		} else {
-    //      			vm.form.user.company = vm.company;
-    //      		}
-    //      		vm.form.publisher = (response.data.role_id == 2) ? true : false;
-    // })
-    // .catch(function (error) {
-    // 	console.log(error);
-    // });
+    var vm = this;
+    var route = '/users/load/user/';
+    axios.get(route).then(function (response) {
+      console.log(response.data);
+      vm.form.user = response.data;
+      if (response.data.company) {
+        vm.form.user.company = response.data.company;
+      } else {
+        vm.form.user.company = vm.company;
+      }
+      vm.form.publisher = response.data.role_id == 2 ? true : false;
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -102561,6 +102636,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -102603,26 +102698,42 @@ var render = function() {
           [
             _c(
               "router-link",
-              { staticClass: "item", attrs: { to: "/profile" } },
-              [_vm._v(" Фирмен профил")]
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/profile" },
+                attrs: { to: "/profile" }
+              },
+              [_vm._v("\n\t\t\t\t\tФирмен профил\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(
               "router-link",
-              { staticClass: "item", attrs: { to: "/themes" } },
-              [_vm._v(" Теми")]
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/themes" },
+                attrs: { to: "/themes" }
+              },
+              [_vm._v("\n\t\t\t\t\tТеми\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(
               "router-link",
-              { staticClass: "item", attrs: { to: "/teachers" } },
-              [_vm._v(" Лектори")]
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/teachers" },
+                attrs: { to: "/teachers" }
+              },
+              [_vm._v("\n\t\t\t\t\tЛектори\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(
               "router-link",
-              { staticClass: "item", attrs: { to: "/events" } },
-              [_vm._v(" Календар")]
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/events" },
+                attrs: { to: "/events" }
+              },
+              [_vm._v("\n\t\t\t\t\tКалендар\n\t\t\t\t")]
             )
           ],
           1
