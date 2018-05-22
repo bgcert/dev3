@@ -8,5 +8,4 @@
 	<div class="ui main container">
 		<dashboard></dashboard>	
 	</div>
-	
 @endsection

@@ -186,7 +186,7 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
 
 <style>

@@ -22,6 +22,7 @@
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="theme.body"></el-input>
 					</el-form-item>
+
 					<el-form-item>
 						<div class="right floated">
 							<div class="ui right floated primary button" @click="save">
@@ -35,6 +36,16 @@
 						</div>
 					</el-form-item>
 				</el-form>
+
+				<h3>File upload</h3>
+				<hr>
+
+				<input type="file" @change="onFileChange">
+
+				<div id="canvas">
+					<img v-if="url" id="image" :src="url">
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -44,6 +55,8 @@
     export default {
     	data: function () {
     		return {
+    			url: null,
+    			dialogVisible: false,
     			loading: true,
     			categories: [],
     			theme: [],
@@ -76,6 +89,12 @@
     			.catch(function (error) {
     				console.log(error);
     			});
+    		},
+
+    		onFileChange(e)
+    		{
+				const file = e.target.files[0];
+    			this.url = URL.createObjectURL(file);
     		}
     	},
 
@@ -96,5 +115,13 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
+
+<style>
+	#image img {
+		max-width: 400px;
+	}
+
+</style>
+
