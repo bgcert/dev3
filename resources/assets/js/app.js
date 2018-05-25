@@ -25,11 +25,14 @@ import router from './router.js'; // Importing routes
 
 import VueRouter from 'vue-router';
 
+import vueCropper from 'vue-cropper'
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
 Vue.use(VueRouter);
+Vue.use(vueCropper);
 
 Vue.use(ElementUI, { locale });
 
@@ -66,9 +69,11 @@ Vue.component('settings', require('./components/SettingsComponent.vue'));
 // Dashboard
 Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
+// Cropper
+Vue.component('vueCropper', vueCropper);
+
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
-
 
 const app = new Vue({
     el: '#app',

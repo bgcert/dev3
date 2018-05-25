@@ -26,9 +26,27 @@
 					<el-form-item label="Корица">
 						<input type="file" name="fileupload" @change="onFileSelected">
 						<!-- Wrap the image or canvas element with a block element (container) -->
-						<div>
+						<!-- <div>
 							<img id="image" src="https://picsum.photos/800/400/?image=194">
-						</div>
+						</div> -->
+
+						<vueCropper
+							ref="cropper2"
+							:img="example2.img"
+							:outputSize="example2.size"
+							:outputType="example2.outputType"
+							:info="example2.info"
+							:canScale="example2.canScale"
+							:autoCrop="example2.autoCrop"
+							:autoCropWidth="example2.autoCropWidth"
+							:autoCropHeight="example2.autoCropHeight"
+							:fixed="example2.fixed"
+							:fixedNumber="example2.fixedNumber"
+						></vueCropper>
+
+						
+
+
 					</el-form-item>
 
 					<el-form-item>
@@ -45,8 +63,6 @@
 					</el-form-item>
 				</el-form>
 
-				
-
 			</div>
 		</div>
 	</div>
@@ -55,6 +71,23 @@
     export default {
     	data: function () {
     		return {
+    			example2: {
+					img: 'http://ofyaji162.bkt.clouddn.com/bg1.jpg',
+					info: true,
+					size: 1,
+					outputType: 'jpeg',
+					canScale: false,
+					autoCrop: true,
+					// 只有自动截图开启 宽度高度才生效
+					autoCropWidth: 300,
+					autoCropHeight: 250,
+					// 开启宽度和高度比例
+					fixed: true,
+					fixedNumber: [4, 3]
+				},
+    			img: 'https://picsum.photos/800/400/?image=194',
+    			size: 1,
+    			type: 'png',
     			loading: true,
     			selectedFile: null,
     			categories: [],
@@ -92,27 +125,7 @@
 
     		onFileSelected(event)
     		{
-
-    			//$('#image').attr('src', URL.createObjectURL(event.target.files[0]));
-
-				var $image = $('#image');
-
-				$image.cropper({
-					aspectRatio: 16 / 9,
-					crop: function(event) {
-						console.log(event.detail.x);
-						console.log(event.detail.y);
-						console.log(event.detail.width);
-						console.log(event.detail.height);
-						console.log(event.detail.rotate);
-						console.log(event.detail.scaleX);
-						console.log(event.detail.scaleY);
-					}
-				});
-
-				// Get the Cropper.js instance after initialized
-				var cropper = $image.data('cropper');
-
+    			$('#image').attr('src', URL.createObjectURL(event.target.files[0]));
     		}
     	},
 
@@ -121,7 +134,7 @@
         },
 
         created() {
-        	$.fn.cropper;
+
         	var vm = this;
             var route = '/dashboard/themes/' + this.$route.params.id + '/edit';
         	axios.get(route).then(function (response) {
@@ -133,6 +146,7 @@
 			.catch(function (error) {
 				console.log(error);
 			});
+
         }
     };
 </script>
@@ -140,8 +154,8 @@
 <style>
 	/* Limit image width to avoid overflow the container */
 	img {
-	  max-width: 100%; /* This rule is very important, please do not ignore this! */
+	  max-width: 100%;
+	  height: 200px;
 	}
-
 </style>
 

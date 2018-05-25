@@ -63,7 +63,7 @@
         created() {
             
         }
-    }
+    };
 </script>
 
 <style>
