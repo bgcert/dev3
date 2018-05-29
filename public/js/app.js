@@ -50808,7 +50808,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50912,134 +50912,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			bg: {
-				hint: 'Натиснете тук',
-				loading: 'Качване…',
-				noSupported: 'Браузерът не се поддържа.',
-				success: 'Upload success',
-				fail: 'Upload failed',
-				preview: 'Преглед',
-				btn: {
-					off: 'Cancel',
-					close: 'Затвори',
-					back: 'Назад',
-					save: 'Запиши'
-				},
-				error: {
-					onlyImg: 'Image only',
-					outOfSize: 'Image exceeds size limit: ',
-					lowestPx: 'Image\'s size is too low. Expected at least: '
-				}
-			},
-			show: false,
-			params: {
-				token: '123456798',
-				name: 'avatar'
-			},
-			headers: {
-				smail: '*_~'
-			},
-			imgDataUrl: '', // the datebase64 url of created image
-			img: 'https://picsum.photos/800/400/?image=194',
-			loading: true,
-			selectedFile: null,
-			categories: [],
-			theme: [],
-			form: {
-				title: '',
-				category: '',
-				body: '',
-				type: [],
-				cover: 'https://picsum.photos/800/400/?image=293'
-			}
-		};
-	},
+  data: function data() {
+    return {
+      show: false,
+      params: {
+        token: '123456798',
+        name: 'avatar'
+      },
+      headers: {
+        smail: '*_~'
+      },
+      imgDataUrl: '', // the datebase64 url of created image
+      loading: true,
+      selectedFile: null,
+      categories: [],
+      theme: [],
+      form: {
+        title: '',
+        category: '',
+        body: '',
+        type: [],
+        cover: 'https://picsum.photos/800/400/?image=293'
+      }
+    };
+  },
 
-	methods: {
-		save: function save() {
-			console.log('save');
-			var vm = this;
-			var route = '/dashboard/themes/' + this.$route.params.id;
-			axios.put(route, {
-				title: vm.theme.title,
-				body: vm.theme.body,
-				category_id: vm.theme.category_id,
-				cover: vm.form.cover
-			}).then(function (response) {
-				console.log(response.data);
-				vm.$message('Темата е редактирана успешно.');
-				vm.$router.push('/themes');
-			}).catch(function (error) {
-				console.log(error);
-			});
-		},
-		onFileSelected: function onFileSelected(event) {
-			$('#image').attr('src', URL.createObjectURL(event.target.files[0]));
-		},
-		toggleShow: function toggleShow() {
-			this.show = !this.show;
-		},
+  methods: {
+    save: function save() {
+      console.log('save');
+      var vm = this;
+      var route = '/dashboard/themes/' + this.$route.params.id;
+      axios.put(route, {
+        title: vm.theme.title,
+        body: vm.theme.body,
+        category_id: vm.theme.category_id,
+        cover: vm.form.cover
+      }).then(function (response) {
+        console.log(response.data);
+        vm.$message('Темата е редактирана успешно.');
+        vm.$router.push('/themes');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    toggleShow: function toggleShow() {
+      this.show = !this.show;
+    },
 
-		/**
-  * crop success
-  *
-  * [param] imgDataUrl
-  * [param] field
-  */
-		cropSuccess: function cropSuccess(imgDataUrl, field) {
-			console.log('-------- crop success --------');
-			this.imgDataUrl = imgDataUrl;
-		},
+    /**
+    * crop success
+    *
+    * [param] imgDataUrl
+    * [param] field
+    */
+    cropSuccess: function cropSuccess(imgDataUrl, field) {
+      console.log('-------- crop success --------');
+      var vm = this;
+      var route = '/dashboard/themes/set/cover';
+      axios.post(route, {
+        cover: imgDataUrl
+      }).then(function (response) {
+        //console.log(response.data);
+        vm.$message('Темата е редактирана успешно.');
+        vm.$router.push('/themes');
+      }).catch(function (error) {
+        console.log(error);
+      });
+      this.theme.cover = imgDataUrl;
+    }
+  },
 
-		/**
-   * upload success
-   *
-   * [param] jsonData  server api return data, already json encode
-   * [param] field
-   */
-		cropUploadSuccess: function cropUploadSuccess(jsonData, field) {
-			console.log('-------- upload success --------');
-			console.log(jsonData);
-			console.log('field: ' + field);
-		},
+  mounted: function mounted() {
+    console.log('Edit theme view mounted.');
+  },
+  created: function created() {
 
-		/**
-   * upload fail
-   *
-   * [param] status    server api return error status, like 500
-   * [param] field
-   */
-		cropUploadFail: function cropUploadFail(status, field) {
-			console.log('-------- upload fail --------');
-			console.log(status);
-			console.log('field: ' + field);
-		}
-	},
-
-	mounted: function mounted() {
-		console.log('Edit theme view mounted.');
-	},
-	created: function created() {
-
-		var vm = this;
-		var route = '/dashboard/themes/' + this.$route.params.id + '/edit';
-		axios.get(route).then(function (response) {
-			console.log(response.data);
-			vm.theme = response.data[0];
-			vm.categories = response.data[1];
-			vm.loading = false;
-		}).catch(function (error) {
-			console.log(error);
-		});
-	}
+    var vm = this;
+    var route = '/dashboard/themes/' + this.$route.params.id + '/edit';
+    axios.get(route).then(function (response) {
+      console.log(response.data);
+      vm.theme = response.data[0];
+      vm.categories = response.data[1];
+      vm.loading = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 });
 
 /***/ }),
@@ -51132,11 +51092,21 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "Корица" } },
                 [
+                  _c("img", {
+                    staticClass: "ui medium bordered image",
+                    attrs: { src: _vm.theme.cover }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "button",
                     {
                       staticClass: "ui basic button",
-                      on: { click: _vm.toggleShow }
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.toggleShow($event)
+                        }
+                      }
                     },
                     [
                       _c("i", { staticClass: "icon cloud upload" }),
@@ -51149,18 +51119,11 @@ var render = function() {
                       field: "img",
                       width: 357,
                       height: 179,
-                      url: "/upload",
-                      params: _vm.params,
-                      headers: _vm.headers,
                       langType: "bg",
                       "img-format": "png",
                       noCircle: true
                     },
-                    on: {
-                      "crop-success": _vm.cropSuccess,
-                      "crop-upload-success": _vm.cropUploadSuccess,
-                      "crop-upload-fail": _vm.cropUploadFail
-                    },
+                    on: { "crop-success": _vm.cropSuccess },
                     model: {
                       value: _vm.show,
                       callback: function($$v) {

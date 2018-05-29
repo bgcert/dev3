@@ -24,17 +24,13 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<button class="ui basic button" @click="toggleShow"><i class="icon cloud upload"></i> Смени корицата</button>
+						<img class="ui medium bordered image" :src="theme.cover">
+						<button class="ui basic button" @click.prevent="toggleShow"><i class="icon cloud upload"></i> Смени корицата</button>
 						<my-upload field="img"
 					        @crop-success="cropSuccess"
-					        @crop-upload-success="cropUploadSuccess"
-					        @crop-upload-fail="cropUploadFail"
 					        v-model="show"
 							:width="357"
 							:height="179"
-							url="/upload"
-							:params="params"
-							:headers="headers"
 							langType="bg"
 							img-format="png"
 							:noCircle="true">
@@ -66,25 +62,6 @@
     export default {
     	data: function () {
     		return {
-				bg: {
-			        hint: 'Натиснете тук',
-			        loading: 'Качване…',
-			        noSupported: 'Браузерът не се поддържа.',
-			        success: 'Upload success',
-			        fail: 'Upload failed',
-			        preview: 'Преглед',
-			        btn: {
-			            off: 'Cancel',
-			            close: 'Затвори',
-			            back: 'Назад',
-			            save: 'Запиши'
-			        },
-			        error: {
-			            onlyImg: 'Image only',
-			            outOfSize: 'Image exceeds size limit: ',
-			            lowestPx: 'Image\'s size is too low. Expected at least: '
-			        }
-			    },
     			show: false,
 				params: {
 					token: '123456798',
@@ -94,7 +71,6 @@
 					smail: '*_~'
 				},
 				imgDataUrl: '', // the datebase64 url of created image
-    			img: 'https://picsum.photos/800/400/?image=194',
     			loading: true,
     			selectedFile: null,
     			categories: [],
@@ -130,11 +106,6 @@
     			});
     		},
 
-    		onFileSelected(event)
-    		{
-    			$('#image').attr('src', URL.createObjectURL(event.target.files[0]));
-    		},
-
     		toggleShow() {
 				this.show = !this.show;
 			},
@@ -146,30 +117,21 @@
 			 */
 			cropSuccess(imgDataUrl, field){
 				console.log('-------- crop success --------');
-				this.imgDataUrl = imgDataUrl;
+				var vm = this;
+				let route = '/dashboard/themes/set/cover';
+				axios.post(route, {
+					cover: imgDataUrl
+    			})
+    			.then(function (response) {
+    				//console.log(response.data);
+    				vm.$message('Темата е редактирана успешно.');
+    				vm.$router.push('/themes');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			});
+				this.theme.cover = imgDataUrl;
 			},
-			/**
-			 * upload success
-			 *
-			 * [param] jsonData  server api return data, already json encode
-			 * [param] field
-			 */
-			cropUploadSuccess(jsonData, field){
-				console.log('-------- upload success --------');
-				console.log(jsonData);
-				console.log('field: ' + field);
-			},
-			/**
-			 * upload fail
-			 *
-			 * [param] status    server api return error status, like 500
-			 * [param] field
-			 */
-			cropUploadFail(status, field){
-				console.log('-------- upload fail --------');
-				console.log(status);
-				console.log('field: ' + field);
-			}
     	},
 
         mounted() {

@@ -98,6 +98,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::get('/load/company', 'DashboardController@getCompany');
 	Route::post('/save/company/data', 'DashboardController@saveCompany');
 
+	// Theme cover change
+	Route::post('/themes/set/cover', 'ThemeController@setCover');
+
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {

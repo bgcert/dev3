@@ -88,5 +88,10 @@ class ThemeController extends Controller
 	public function categories()
     {
         return \App\Category::all();
-    }   
+    }
+
+    public function setCover()
+    {
+    	dd(request());
+    }
 }
