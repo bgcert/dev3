@@ -59,6 +59,7 @@
 								</router-link>	
 							</div>
 						</el-form-item>
+
 					</el-form>
 				</div>
 			</div>
@@ -134,6 +135,12 @@
 			.catch(function (error) {
 				console.log(error);
 			});
+
         }
-    }
+    };
 </script>
+
+<style>
+
+
+</style>

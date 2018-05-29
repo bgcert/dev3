@@ -24,30 +24,25 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<input type="file" name="fileupload" @change="onFileSelected">
-						<!-- Wrap the image or canvas element with a block element (container) -->
-						<!-- <div>
-							<img id="image" src="https://picsum.photos/800/400/?image=194">
-						</div> -->
-
-						<vueCropper
-							ref="cropper2"
-							:img="example2.img"
-							:outputSize="example2.size"
-							:outputType="example2.outputType"
-							:info="example2.info"
-							:canScale="example2.canScale"
-							:autoCrop="example2.autoCrop"
-							:autoCropWidth="example2.autoCropWidth"
-							:autoCropHeight="example2.autoCropHeight"
-							:fixed="example2.fixed"
-							:fixedNumber="example2.fixedNumber"
-						></vueCropper>
-
-						
-
+						<button class="ui basic button" @click="toggleShow"><i class="icon cloud upload"></i> Смени корицата</button>
+						<my-upload field="img"
+					        @crop-success="cropSuccess"
+					        @crop-upload-success="cropUploadSuccess"
+					        @crop-upload-fail="cropUploadFail"
+					        v-model="show"
+							:width="357"
+							:height="179"
+							url="/upload"
+							:params="params"
+							:headers="headers"
+							langType="bg"
+							img-format="png"
+							:noCircle="true">
+						</my-upload>
+						<img :src="imgDataUrl">
 
 					</el-form-item>
+
 
 					<el-form-item>
 						<div class="right floated">
@@ -71,23 +66,35 @@
     export default {
     	data: function () {
     		return {
-    			example2: {
-					img: 'http://ofyaji162.bkt.clouddn.com/bg1.jpg',
-					info: true,
-					size: 1,
-					outputType: 'jpeg',
-					canScale: false,
-					autoCrop: true,
-					// 只有自动截图开启 宽度高度才生效
-					autoCropWidth: 300,
-					autoCropHeight: 250,
-					// 开启宽度和高度比例
-					fixed: true,
-					fixedNumber: [4, 3]
+				bg: {
+			        hint: 'Натиснете тук',
+			        loading: 'Качване…',
+			        noSupported: 'Браузерът не се поддържа.',
+			        success: 'Upload success',
+			        fail: 'Upload failed',
+			        preview: 'Преглед',
+			        btn: {
+			            off: 'Cancel',
+			            close: 'Затвори',
+			            back: 'Назад',
+			            save: 'Запиши'
+			        },
+			        error: {
+			            onlyImg: 'Image only',
+			            outOfSize: 'Image exceeds size limit: ',
+			            lowestPx: 'Image\'s size is too low. Expected at least: '
+			        }
+			    },
+    			show: false,
+				params: {
+					token: '123456798',
+					name: 'avatar'
 				},
+				headers: {
+					smail: '*_~'
+				},
+				imgDataUrl: '', // the datebase64 url of created image
     			img: 'https://picsum.photos/800/400/?image=194',
-    			size: 1,
-    			type: 'png',
     			loading: true,
     			selectedFile: null,
     			categories: [],
@@ -126,7 +133,43 @@
     		onFileSelected(event)
     		{
     			$('#image').attr('src', URL.createObjectURL(event.target.files[0]));
-    		}
+    		},
+
+    		toggleShow() {
+				this.show = !this.show;
+			},
+            /**
+			 * crop success
+			 *
+			 * [param] imgDataUrl
+			 * [param] field
+			 */
+			cropSuccess(imgDataUrl, field){
+				console.log('-------- crop success --------');
+				this.imgDataUrl = imgDataUrl;
+			},
+			/**
+			 * upload success
+			 *
+			 * [param] jsonData  server api return data, already json encode
+			 * [param] field
+			 */
+			cropUploadSuccess(jsonData, field){
+				console.log('-------- upload success --------');
+				console.log(jsonData);
+				console.log('field: ' + field);
+			},
+			/**
+			 * upload fail
+			 *
+			 * [param] status    server api return error status, like 500
+			 * [param] field
+			 */
+			cropUploadFail(status, field){
+				console.log('-------- upload fail --------');
+				console.log(status);
+				console.log('field: ' + field);
+			}
     	},
 
         mounted() {
@@ -146,16 +189,11 @@
 			.catch(function (error) {
 				console.log(error);
 			});
-
         }
     };
 </script>
 
 <style>
-	/* Limit image width to avoid overflow the container */
-	img {
-	  max-width: 100%;
-	  height: 200px;
-	}
+	
 </style>
 

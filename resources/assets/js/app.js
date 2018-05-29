@@ -21,18 +21,17 @@ window.flash = (message, type) => {
 
 window.auth = { auth: '{{ auth()->check() }}' }
 
-import router from './router.js'; // Importing routes
+import router from './router.js' // Importing routes
 
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
 
-import vueCropper from 'vue-cropper'
+import myUpload from 'vue-image-crop-upload';
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
 Vue.use(VueRouter);
-Vue.use(vueCropper);
 
 Vue.use(ElementUI, { locale });
 
@@ -69,8 +68,8 @@ Vue.component('settings', require('./components/SettingsComponent.vue'));
 // Dashboard
 Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
-// Cropper
-Vue.component('vueCropper', vueCropper);
+// Crop
+Vue.component('my-upload', myUpload);
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
