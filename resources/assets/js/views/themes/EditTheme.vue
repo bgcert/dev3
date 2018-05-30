@@ -123,9 +123,7 @@
 					cover: imgDataUrl
     			})
     			.then(function (response) {
-    				//console.log(response.data);
-    				vm.$message('Темата е редактирана успешно.');
-    				vm.$router.push('/themes');
+    				vm.$message('Корицата е сменена');
     			})
     			.catch(function (error) {
     				console.log(error);
