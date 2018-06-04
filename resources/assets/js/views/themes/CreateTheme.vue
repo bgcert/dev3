@@ -36,6 +36,16 @@
 							<el-radio label="Venue"></el-radio>
 						</el-radio-group>
 					</el-form-item>
+
+					<el-form-item label="Корица">
+						<imageUpload
+							canvasWidth="357"
+							canvasHeight="178"
+							>
+						</imageUpload>
+					</el-form-item>
+					
+
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
 					</el-form-item>
