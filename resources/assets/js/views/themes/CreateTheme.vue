@@ -62,12 +62,14 @@
 						</div>
 					</el-form-item>
 				</el-form>
+				<button class="ui basic button" @click="save">test</button>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import { EventBus } from '../../app';
     export default {
     	data: function () {
     		return {
@@ -90,13 +92,28 @@
 
     	methods: {
     		save() {
-    			console.log('save');
+    			let vm = this;
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					this.postTheme(data);
+					console.log(data); // data is the function returned from the child component (imageUpload)	
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
+				});
+    		},
+
+    		postTheme(data) {
     			var vm = this;
     			axios.post('/dashboard/themes', {
     				title: vm.form.title,
     				body: vm.form.body,
     				category_id: vm.form.category,
-    				cover: vm.form.cover
+    				position: data[0],
+    				cover: data[1],
+    				filename: data[2],
+    				width: 357
     			})
     			.then(function (response) {
     				console.log(response);
@@ -125,5 +142,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

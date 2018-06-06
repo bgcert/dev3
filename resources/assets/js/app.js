@@ -25,8 +25,6 @@ import router from './router.js' // Importing routes
 
 import VueRouter from 'vue-router'
 
-import myUpload from 'vue-image-crop-upload';
-
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
@@ -68,9 +66,6 @@ Vue.component('settings', require('./components/SettingsComponent.vue'));
 
 // Dashboard
 Vue.component('dashboard', require('./components/DashboardComponent.vue'));
-
-// Crop
-Vue.component('my-upload', myUpload);
 
 // Messanger
 Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));

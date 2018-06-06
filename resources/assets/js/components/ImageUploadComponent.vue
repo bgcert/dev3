@@ -4,11 +4,11 @@
 			<input type="file" name="file" id="file" class="inputfile" @change="onFileChange">
 			<label for="file" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
 		</div>
-		<button class="ui small positive icon button" @click.prevent="save"><i class="save icon"></i> Запиши</button>		
 	</div>
 </template>
 
 <script>
+	import { EventBus } from '../app';
     export default {
     	props: ['img', 'canvasWidth', 'canvasHeight', 'position'],
 
@@ -20,27 +20,37 @@
     			newPos: null,
     			deviation: null,
     			curPos: this.position,
+    			file: null,
+    			filename: null
     		}
     	},
 
     	methods: {
-    		save() {
-    			console.log('save: ' + this.curPos);
-    		},
-
     		onFileChange(e) {
+    			this.file = e.target.files[0];
+    			console.log(this.file);
+    			this.filename = this.file.name;
+    			let fileReader = new FileReader();
+    			fileReader.readAsDataURL(e.target.files[0]);
+
+    			fileReader.onload = (e) => {
+    				this.file = e.target.result
+    			}
+    			//let files = e.target.files || e.dataTransfer.files;
+
     			this.mouseDown = false;
-    			const file = e.target.files[0];
-    			$('#image').css('background-image', 'url(' + URL.createObjectURL(file) + ')');
+    			//const file = e.target.files[0];
+    			//this.file = e.target.files[0];
+    			$('#image').css('background-image', 'url(' + URL.createObjectURL(this.file) + ')');
     			this.image = new Image();
-				this.image.src = URL.createObjectURL(file);
+				this.image.src = URL.createObjectURL(this.file);
 				this.curPos = 0;
 				$(this.image).on('load', this.reposition);
     		},
 
     		handleMouseEnter(e) { this.start_y = e.clientY; },
     		handleMouseDown() { this.mouseDown = true; },
-    		handleMouseUp() { this.mouseDown = false; console.log('up'); },
+    		handleMouseUp() { this.mouseDown = false; },
 
     		handleImageMove(e) {
 				this.newPos = e.clientY - this.start_y;
@@ -77,6 +87,24 @@
             } else {
             	$('#image').css('background-image', "url(img/default_cover.png)");
             }
+        },
+
+        created() {
+        	EventBus.$on('imageSave', (resolve, reject) => {
+        		console.log(this.filename);
+        		var data = [this.curPos, this.file, this.filename];
+
+    			resolve(data);
+	            var route = '/dashboard/image/save';
+	   //      	axios.post(route, { image: this.image }).then(function (response) {
+	   //      		var data = [vm.image.src, vm.curPos];
+	   //      		//console.log(response.data);
+	   //      		resolve(data); //setTimeout(() => resolve(true), 2000) // This resolve() is the function I sent through the promise and as a parameter (resolve)
+				// })
+				// .catch(function (error) {
+				// 	reject(error);
+				// });        		
+        	});
         }
     };
 </script>

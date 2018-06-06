@@ -101,6 +101,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Theme cover change
 	Route::post('/themes/set/cover', 'ThemeController@setCover');
 
+	// Save image from upload component
+	Route::post('/image/save', 'DashboardController@saveImage');
+
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {

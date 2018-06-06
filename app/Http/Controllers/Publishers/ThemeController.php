@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Image;
 
 class ThemeController extends Controller
 {
@@ -35,6 +36,25 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
+    	$path  = public_path('test/');
+    	$file = $request->cover;
+    	$originalName = explode('.', $request->filename);
+    	$uploadName = time() . '.' . end($originalName); // end() is the last element if the array
+    	$image = Image::make($file);
+    	$image->resize($request->width, null, function ($constraint) {
+		    $constraint->aspectRatio();
+		});
+
+    	$image->save($path . $uploadName);
+    	
+    	return 'image saved';
+
+    	$originalImage = $request->cover;
+		$savedImage = Image::make($originalImage);
+		$savedImage->save($path . $originalImage->getClientOriginalName());
+    	return 'image saved';
+    	$img = Image::make('public/foo.jpg');
+    	return $request->position;
     	return \Auth::user()->company->themes()->create($request->all());
     }
 

@@ -14,7 +14,7 @@ class Theme extends Model
     use LogsActivity;
     
     protected $fillable = [
-        'company_id', 'category_id', 'title', 'body', 'cover',
+        'company_id', 'category_id', 'title', 'body', 'cover', 'position',
     ];
 
     public function company()
