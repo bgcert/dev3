@@ -12,8 +12,9 @@
 						</box-hover>
 					</div>
 
-					<div class="image">
-						<img :src="event.cover">
+					<div class="image"
+						:style="{ 'background-image': 'url(' + event.cover + ')', 'background-position-y': event.position + 'px' }"
+						>
 					</div>
 					<div class="content">
 						<p style="text-transform: uppercase;">
@@ -80,5 +81,11 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
+
+<style>
+	.image {
+		height: 178px;
+	}
+</style>
