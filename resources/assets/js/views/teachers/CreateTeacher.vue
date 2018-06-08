@@ -11,24 +11,12 @@
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Instant delivery">
-						<el-switch v-model="form.delivery"></el-switch>
-					</el-form-item>
-
-					<el-form-item label="Activity type">
-						<el-checkbox-group v-model="form.type">
-							<el-checkbox label="Online activities" name="type"></el-checkbox>
-							<el-checkbox label="Promotion activities" name="type"></el-checkbox>
-							<el-checkbox label="Offline activities" name="type"></el-checkbox>
-							<el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-						</el-checkbox-group>
-					</el-form-item>
-
-					<el-form-item label="Resources">
-						<el-radio-group v-model="form.resource">
-							<el-radio label="Sponsor"></el-radio>
-							<el-radio label="Venue"></el-radio>
-						</el-radio-group>
+					<el-form-item label="Корица">
+						<imageUpload
+							canvasWidth="200"
+							canvasHeight="200"
+							>
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">

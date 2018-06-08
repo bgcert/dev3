@@ -23,6 +23,7 @@
 						<imageUpload
 							canvasWidth="357"
 							canvasHeight="178"
+							movable="true"
 							>
 						</imageUpload>
 					</el-form-item>

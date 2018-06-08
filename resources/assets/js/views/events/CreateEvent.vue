@@ -16,10 +16,6 @@
 						</el-select>
 					</el-form-item>
 
-					<el-form-item label="Instant delivery">
-						<el-switch v-model="form.delivery"></el-switch>
-					</el-form-item>
-
 					<el-form-item label="Лектори">
 						<el-select v-model="selectedTeachers" multiple placeholder="Select">
 							<el-option
@@ -46,6 +42,7 @@
 						<imageUpload
 							canvasWidth="357"
 							canvasHeight="178"
+							movable="true"
 							>
 						</imageUpload>
 					</el-form-item>
