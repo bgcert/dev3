@@ -18,24 +18,6 @@
 							</template>
 						</el-select>
 					</el-form-item>
-					
-					<el-form-item label="Instant delivery">
-						<el-switch v-model="form.delivery"></el-switch>
-					</el-form-item>
-					<el-form-item label="Activity type">
-						<el-checkbox-group v-model="form.type">
-							<el-checkbox label="Online activities" name="type"></el-checkbox>
-							<el-checkbox label="Promotion activities" name="type"></el-checkbox>
-							<el-checkbox label="Offline activities" name="type"></el-checkbox>
-							<el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-						</el-checkbox-group>
-					</el-form-item>
-					<el-form-item label="Resources">
-						<el-radio-group v-model="form.resource">
-							<el-radio label="Sponsor"></el-radio>
-							<el-radio label="Venue"></el-radio>
-						</el-radio-group>
-					</el-form-item>
 
 					<el-form-item label="Корица">
 						<imageUpload
@@ -45,7 +27,6 @@
 						</imageUpload>
 					</el-form-item>
 					
-
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
 					</el-form-item>
@@ -62,7 +43,6 @@
 						</div>
 					</el-form-item>
 				</el-form>
-				<button class="ui basic button" @click="save">test</button>
 			</div>
 		</div>
 	</div>
@@ -79,10 +59,6 @@
     				title: '',
     				category: '',
     				body: '',
-    				region: '',
-    				date1: '',
-    				date2: '',
-    				delivery: false,
     				type: [],
     				resource: '',
     				cover: 'https://picsum.photos/800/400/?image=293'
@@ -93,36 +69,40 @@
     	methods: {
     		save() {
     			let vm = this;
+    			let image;
+
+    			let formData = new FormData();
+				formData.append('title', this.form.title);
+				formData.append('body', this.form.body);
+				formData.append('category_id', this.form.category);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
     			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
 
 				upload.then((data) => {
-					this.postTheme(data);
-					console.log(data); // data is the function returned from the child component (imageUpload)	
+					formData.append('cover', data[0]);
+					formData.append('width', data[1]);
+					formData.append('position', data[2]);
+
+					axios.post('/dashboard/themes', formData, config)
+	    			.then(function (response) {
+	    				console.log(response);
+	    				vm.$message('Темата е добавена успешно.');
+	    				vm.$router.push('/themes');
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			});
 				}, (error) => {
 					console.log('Promise rejected.');
 					vm.$message('Невалидно изображение');
 				});
-    		},
-
-    		postTheme(data) {
-    			var vm = this;
-    			axios.post('/dashboard/themes', {
-    				title: vm.form.title,
-    				body: vm.form.body,
-    				category_id: vm.form.category,
-    				position: data[0],
-    				cover: data[1],
-    				filename: data[2],
-    				width: 357
-    			})
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Темата е добавена успешно.');
-    				vm.$router.push('/themes');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
     		}
     	},
 

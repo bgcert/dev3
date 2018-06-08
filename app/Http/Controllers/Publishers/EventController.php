@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Image;
 
 class EventController extends Controller
 {
@@ -37,8 +38,17 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-    	$event = \Auth::user()->company->events()->create($request->all());
-    	return $event->teachers()->attach($request->teachers);
+    	$requestData = $request->all();
+    	$name = $this->saveImage($requestData['cover']);
+    	$requestData['cover'] = '/test/' . $name;
+
+    	$requestData['teachers'] = explode(',', $requestData['teachers']);
+
+    	$event = \Auth::user()->company->events()->create($requestData);
+    	
+    	$event->teachers()->attach($requestData['teachers']);
+    	
+    	return 'saved maybe';
     }
 
     /**
@@ -91,5 +101,25 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveImage($file)
+    {
+    	//$file = request()->file;
+    	$extension = $file->getClientOriginalExtension();
+    	$img = Image::make($file);
+
+		// now you are able to resize the instance
+		$img->resize(request()->width, null, function ($constraint) {
+		    $constraint->aspectRatio();
+		});
+		
+		// Generate random name
+		$newName = md5(microtime()) . '.' . $extension;
+
+		// finally we save the image as a new file
+		$img->save(public_path('test/') . $newName);
+
+    	return $newName;
     }
 }

@@ -1,6 +1,6 @@
 <template>
 	<div @mousemove="handleImageMove">
-		<div id="image" @mousedown.prevent="handleMouseDown" @mouseenter="handleMouseEnter">
+		<div id="image" @mousedown.prevent="handleMouseDown" @mouseenter="handleMouseEnter" :style="'background-image: url(' + image.src + ')'">
 			<input type="file" name="file" id="file" class="inputfile" @change="onFileChange">
 			<label for="file" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
 		</div>
@@ -14,38 +14,37 @@
 
     	data: function () {
     		return {
-    			image: null,
+    			image:
+	    			{
+	    				src: 'img/default_cover.png'
+	    			},
     			mouseDown: false,
     			start_y: null,
     			newPos: null,
     			deviation: null,
     			curPos: this.position,
     			file: null,
-    			filename: null
+    			filename: null,
+    			data: null,
     		}
     	},
 
     	methods: {
     		onFileChange(e) {
-    			this.file = e.target.files[0];
-    			console.log(this.file);
-    			this.filename = this.file.name;
-    			let fileReader = new FileReader();
-    			fileReader.readAsDataURL(e.target.files[0]);
+    			let vm = this;
 
-    			fileReader.onload = (e) => {
-    				this.file = e.target.result
-    			}
-    			//let files = e.target.files || e.dataTransfer.files;
+    			var files = e.target.files || e.dataTransfer.files;
+    			var imageUrl = URL.createObjectURL(files[0]);
+    			this.image = new Image;
+    			this.image.onload = function() {
+    				vm.reposition(this.width, this.height);
+    			};
+    			this.image.src = imageUrl;
 
     			this.mouseDown = false;
-    			//const file = e.target.files[0];
-    			//this.file = e.target.files[0];
-    			$('#image').css('background-image', 'url(' + URL.createObjectURL(this.file) + ')');
-    			this.image = new Image();
-				this.image.src = URL.createObjectURL(this.file);
 				this.curPos = 0;
-				$(this.image).on('load', this.reposition);
+
+				this.file = files[0];
     		},
 
     		handleMouseEnter(e) { this.start_y = e.clientY; },
@@ -64,13 +63,10 @@
 				}
 			},
 
-    		reposition() {
+    		reposition(w, h) {
     			$(document).mouseup(this.handleMouseUp);
         		$(document).mousemove(this.handleImageMove);
-				$('#image').css('background-image', "url(" + this.image.src + ")");
 				$('#image').css('background-position-y', -this.curPos);
-				var w = this.image.width;
-				var h = this.image.height;
 				var ratio = w / this.canvasWidth;
 				var newHeight = Math.floor(h / ratio);
 				this.deviation = newHeight - this.canvasHeight;
@@ -79,40 +75,20 @@
 
         mounted() {
             console.log('Image component mounted.');
-            if (this.img) {
-            	let vm = this;
-				this.image = new Image();
-				this.image.src = this.img;
-				$(this.image).on('load', vm.reposition);
-            } else {
-            	$('#image').css('background-image', "url(img/default_cover.png)");
-            }
         },
 
         created() {
         	EventBus.$on('imageSave', (resolve, reject) => {
-        		console.log(this.filename);
-        		var data = [this.curPos, this.file, this.filename];
-
-    			resolve(data);
-	            var route = '/dashboard/image/save';
-	   //      	axios.post(route, { image: this.image }).then(function (response) {
-	   //      		var data = [vm.image.src, vm.curPos];
-	   //      		//console.log(response.data);
-	   //      		resolve(data); //setTimeout(() => resolve(true), 2000) // This resolve() is the function I sent through the promise and as a parameter (resolve)
-				// })
-				// .catch(function (error) {
-				// 	reject(error);
-				// });        		
+				console.log(this.curPos);
+				let data = [this.file, this.canvasWidth, this.curPos];
+				resolve(data);
         	});
         }
     };
 </script>
 
 <style>
-	.cover {
-		margin: 10px;
-	}
+	.cover { margin: 10px; }
 
 	#image {
 		padding: 7px;

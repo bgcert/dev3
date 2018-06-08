@@ -25,9 +25,4 @@ class DashboardController extends Controller
     	$company->company_detail->update(request()->company_detail);
     	return 'ok';
     }
-
-    public function saveImage()
-    {
-    	return 'image saved';
-    }
 }

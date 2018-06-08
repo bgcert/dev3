@@ -11,7 +11,7 @@ class Event extends Model
 	use LogsActivity;
 
 	protected $fillable = [
-        'theme_id', 'begin_at', 'end_at', 'cover',
+        'theme_id', 'begin_at', 'end_at', 'cover', 'position',
     ];
 
     public function theme()
@@ -35,7 +35,7 @@ class Event extends Model
     {
         return $query->with('theme')->whereHas('theme', function ($query) use ($id) {
         	$query->where('company_id', $id);
-        })->limit(10);
+        });
     }
 
     public function getCoverAttribute($value)

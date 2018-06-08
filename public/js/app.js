@@ -50504,26 +50504,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50535,10 +50515,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         title: '',
         category: '',
         body: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
         type: [],
         resource: '',
         cover: 'https://picsum.photos/800/400/?image=293'
@@ -50548,37 +50524,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     save: function save() {
-      var _this = this;
-
       var vm = this;
+      var image = void 0;
+
+      var formData = new FormData();
+      formData.append('title', this.form.title);
+      formData.append('body', this.form.body);
+      formData.append('category_id', this.form.category);
+
+      var config = {
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+
       var upload = new Promise(function (resolve, reject) {
         return __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('imageSave', resolve, reject);
       });
 
       upload.then(function (data) {
-        _this.postTheme(data);
-        console.log(data); // data is the function returned from the child component (imageUpload)	
+        formData.append('cover', data[0]);
+        formData.append('width', data[1]);
+        formData.append('position', data[2]);
+
+        axios.post('/dashboard/themes', formData, config).then(function (response) {
+          console.log(response);
+          vm.$message('Темата е добавена успешно.');
+          vm.$router.push('/themes');
+        }).catch(function (error) {
+          console.log(error);
+        });
       }, function (error) {
         console.log('Promise rejected.');
         vm.$message('Невалидно изображение');
-      });
-    },
-    postTheme: function postTheme(data) {
-      var vm = this;
-      axios.post('/dashboard/themes', {
-        title: vm.form.title,
-        body: vm.form.body,
-        category_id: vm.form.category,
-        position: data[0],
-        cover: data[1],
-        filename: data[2],
-        width: 357
-      }).then(function (response) {
-        console.log(response);
-        vm.$message('Темата е добавена успешно.');
-        vm.$router.push('/themes');
-      }).catch(function (error) {
-        console.log(error);
       });
     }
   },
@@ -50669,87 +50647,6 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "Instant delivery" } },
-                [
-                  _c("el-switch", {
-                    model: {
-                      value: _vm.form.delivery,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "delivery", $$v)
-                      },
-                      expression: "form.delivery"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Activity type" } },
-                [
-                  _c(
-                    "el-checkbox-group",
-                    {
-                      model: {
-                        value: _vm.form.type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "type", $$v)
-                        },
-                        expression: "form.type"
-                      }
-                    },
-                    [
-                      _c("el-checkbox", {
-                        attrs: { label: "Online activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Promotion activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Offline activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Simple brand exposure", name: "type" }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Resources" } },
-                [
-                  _c(
-                    "el-radio-group",
-                    {
-                      model: {
-                        value: _vm.form.resource,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "resource", $$v)
-                        },
-                        expression: "form.resource"
-                      }
-                    },
-                    [
-                      _c("el-radio", { attrs: { label: "Sponsor" } }),
-                      _vm._v(" "),
-                      _c("el-radio", { attrs: { label: "Venue" } })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
                 { attrs: { label: "Корица" } },
                 [
                   _c("imageUpload", {
@@ -50812,12 +50709,6 @@ var render = function() {
               ])
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "ui basic button", on: { click: _vm.save } },
-            [_vm._v("test")]
           )
         ],
         1
@@ -52541,6 +52432,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 //
 //
 //
@@ -52611,69 +52503,97 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            loading: true,
-            themes: [],
-            teachers: [],
-            selectedTeachers: [],
-            selectedTheme: '',
-            form: {
-                theme: '',
-                region: '',
-                date: '',
-                data1: '',
-                delivery: false,
-                type: [],
-                resource: '',
-                cover: 'https://picsum.photos/800/400/?image=293'
-            }
-        };
-    },
+  data: function data() {
+    return {
+      loading: true,
+      themes: [],
+      teachers: [],
+      selectedTeachers: {},
+      selectedTheme: '',
+      form: {
+        theme: '',
+        date: '',
+        data1: '',
+        type: [],
+        cover: 'https://picsum.photos/800/400/?image=293'
+      }
+    };
+  },
 
-    methods: {
-        save: function save() {
-            console.log('save');
-            var vm = this;
-            axios.post('/dashboard/events', {
-                theme_id: vm.selectedTheme,
-                teachers: vm.selectedTeachers,
-                cover: 'https://picsum.photos/800/400/?image=120',
-                begin_at: vm.form.date[0],
-                end_at: vm.form.date[1]
-            }).then(function (response) {
-                console.log(response);
-                vm.$message('Събитието е създадено успешно.');
-                vm.$router.push('/events');
-            }).catch(function (error) {
-                console.log(error);
-            });
+  methods: {
+    save: function save() {
+      var vm = this;
+      var image = void 0;
+
+      var formData = new FormData();
+      formData.append('theme_id', this.selectedTheme);
+      formData.append('teachers', this.selectedTeachers);
+      formData.append('begin_at', this.form.date[0]);
+      formData.append('end_at', this.form.date[1]);
+
+      var config = {
+        header: {
+          'Content-Type': 'multipart/form-data'
         }
-    },
+      };
 
-    mounted: function mounted() {
-        console.log('New theme view mounted.');
-    },
-    created: function created() {
-        var vm = this;
-        var route = '/dashboard/events/create';
-        axios.get(route).then(function (response) {
-            console.log(response.data);
-            vm.themes = response.data[0];
-            vm.teachers = response.data[1];
-            vm.loading = false;
+      var upload = new Promise(function (resolve, reject) {
+        return __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('imageSave', resolve, reject);
+      });
+
+      upload.then(function (data) {
+        formData.append('cover', data[0]);
+        formData.append('width', data[1]);
+        formData.append('position', data[2]);
+
+        axios.post('/dashboard/events', formData, config).then(function (response) {
+          console.log(response);
+          vm.$message('Събитието е създадено успешно.');
+          //vm.$router.push('/events');
         }).catch(function (error) {
-            console.log(error);
+          console.log(error);
         });
+      }, function (error) {
+        console.log(error);
+        vm.$message('Невалидно изображение');
+      });
+    },
+    save1: function save1() {
+      var vm = this;
+      axios.post('/dashboard/events', {
+        theme_id: vm.selectedTheme,
+        teachers: vm.selectedTeachers,
+        cover: 'https://picsum.photos/800/400/?image=120',
+        begin_at: vm.form.date[0],
+        end_at: vm.form.date[1]
+      }).then(function (response) {
+        console.log(response);
+        vm.$message('Събитието е създадено успешно.');
+        vm.$router.push('/events');
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
+  },
+
+  mounted: function mounted() {
+    console.log('New theme view mounted.');
+  },
+  created: function created() {
+    var vm = this;
+    var route = '/dashboard/events/create';
+    axios.get(route).then(function (response) {
+      console.log(response.data);
+      vm.themes = response.data[0];
+      vm.teachers = response.data[1];
+      vm.loading = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 });
 
 /***/ }),
@@ -52797,64 +52717,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "Activity type" } },
+                { attrs: { label: "Корица" } },
                 [
-                  _c(
-                    "el-checkbox-group",
-                    {
-                      model: {
-                        value: _vm.form.type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "type", $$v)
-                        },
-                        expression: "form.type"
-                      }
-                    },
-                    [
-                      _c("el-checkbox", {
-                        attrs: { label: "Online activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Promotion activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Offline activities", name: "type" }
-                      }),
-                      _vm._v(" "),
-                      _c("el-checkbox", {
-                        attrs: { label: "Simple brand exposure", name: "type" }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Resources" } },
-                [
-                  _c(
-                    "el-radio-group",
-                    {
-                      model: {
-                        value: _vm.form.resource,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "resource", $$v)
-                        },
-                        expression: "form.resource"
-                      }
-                    },
-                    [
-                      _c("el-radio", { attrs: { label: "Sponsor" } }),
-                      _vm._v(" "),
-                      _c("el-radio", { attrs: { label: "Venue" } })
-                    ],
-                    1
-                  )
+                  _c("imageUpload", {
+                    attrs: { canvasWidth: "357", canvasHeight: "178" }
+                  })
                 ],
                 1
               ),
@@ -101696,7 +101563,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.cover {\n\tmargin: 10px;\n}\n#image {\n\tpadding: 7px;\n\twidth: 357px;\n\theight: 178px;\n\tbackground-size: cover;\n\tcursor: -webkit-grab;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.cover { margin: 10px;\n}\n#image {\n\tpadding: 7px;\n\twidth: 357px;\n\theight: 178px;\n\tbackground-size: cover;\n\tcursor: -webkit-grab;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -101724,40 +101591,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            image: null,
+            image: {
+                src: 'img/default_cover.png'
+            },
             mouseDown: false,
             start_y: null,
             newPos: null,
             deviation: null,
             curPos: this.position,
             file: null,
-            filename: null
+            filename: null,
+            data: null
         };
     },
 
     methods: {
         onFileChange: function onFileChange(e) {
-            var _this = this;
+            var vm = this;
 
-            this.file = e.target.files[0];
-            console.log(this.file);
-            this.filename = this.file.name;
-            var fileReader = new FileReader();
-            fileReader.readAsDataURL(e.target.files[0]);
-
-            fileReader.onload = function (e) {
-                _this.file = e.target.result;
+            var files = e.target.files || e.dataTransfer.files;
+            var imageUrl = URL.createObjectURL(files[0]);
+            this.image = new Image();
+            this.image.onload = function () {
+                vm.reposition(this.width, this.height);
             };
-            //let files = e.target.files || e.dataTransfer.files;
+            this.image.src = imageUrl;
 
             this.mouseDown = false;
-            //const file = e.target.files[0];
-            //this.file = e.target.files[0];
-            $('#image').css('background-image', 'url(' + URL.createObjectURL(this.file) + ')');
-            this.image = new Image();
-            this.image.src = URL.createObjectURL(this.file);
             this.curPos = 0;
-            $(this.image).on('load', this.reposition);
+
+            this.file = files[0];
         },
         handleMouseEnter: function handleMouseEnter(e) {
             this.start_y = e.clientY;
@@ -101779,13 +101642,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 $('#image').css('background-position-y', this.curPos);
             }
         },
-        reposition: function reposition() {
+        reposition: function reposition(w, h) {
             $(document).mouseup(this.handleMouseUp);
             $(document).mousemove(this.handleImageMove);
-            $('#image').css('background-image', "url(" + this.image.src + ")");
             $('#image').css('background-position-y', -this.curPos);
-            var w = this.image.width;
-            var h = this.image.height;
             var ratio = w / this.canvasWidth;
             var newHeight = Math.floor(h / ratio);
             this.deviation = newHeight - this.canvasHeight;
@@ -101794,32 +101654,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('Image component mounted.');
-        if (this.img) {
-            var vm = this;
-            this.image = new Image();
-            this.image.src = this.img;
-            $(this.image).on('load', vm.reposition);
-        } else {
-            $('#image').css('background-image', "url(img/default_cover.png)");
-        }
     },
     created: function created() {
-        var _this2 = this;
+        var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
-            console.log(_this2.filename);
-            var data = [_this2.curPos, _this2.file, _this2.filename];
-
+            console.log(_this.curPos);
+            var data = [_this.file, _this.canvasWidth, _this.curPos];
             resolve(data);
-            var route = '/dashboard/image/save';
-            //      	axios.post(route, { image: this.image }).then(function (response) {
-            //      		var data = [vm.image.src, vm.curPos];
-            //      		//console.log(response.data);
-            //      		resolve(data); //setTimeout(() => resolve(true), 2000) // This resolve() is the function I sent through the promise and as a parameter (resolve)
-            // })
-            // .catch(function (error) {
-            // 	reject(error);
-            // });        		
         });
     }
 });
@@ -101836,6 +101678,7 @@ var render = function() {
     _c(
       "div",
       {
+        style: "background-image: url(" + _vm.image.src + ")",
         attrs: { id: "image" },
         on: {
           mousedown: function($event) {

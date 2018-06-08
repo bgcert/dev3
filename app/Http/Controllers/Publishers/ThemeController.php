@@ -36,26 +36,11 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-    	$path  = public_path('test/');
-    	$file = $request->cover;
-    	$originalName = explode('.', $request->filename);
-    	$uploadName = time() . '.' . end($originalName); // end() is the last element if the array
-    	$image = Image::make($file);
-    	$image->resize($request->width, null, function ($constraint) {
-		    $constraint->aspectRatio();
-		});
+    	$requestData = $request->all();
+    	$name = $this->saveImage($requestData['cover']);
+    	$requestData['cover'] = '/test/' . $name;
 
-    	$image->save($path . $uploadName);
-    	
-    	return 'image saved';
-
-    	$originalImage = $request->cover;
-		$savedImage = Image::make($originalImage);
-		$savedImage->save($path . $originalImage->getClientOriginalName());
-    	return 'image saved';
-    	$img = Image::make('public/foo.jpg');
-    	return $request->position;
-    	return \Auth::user()->company->themes()->create($request->all());
+    	return \Auth::user()->company->themes()->create($requestData);
     }
 
     /**
@@ -110,8 +95,23 @@ class ThemeController extends Controller
         return \App\Category::all();
     }
 
-    public function setCover()
+    public function saveImage($file)
     {
-    	dd(request());
+    	//$file = request()->file;
+    	$extension = $file->getClientOriginalExtension();
+    	$img = Image::make($file);
+
+		// now you are able to resize the instance
+		$img->resize(request()->width, null, function ($constraint) {
+		    $constraint->aspectRatio();
+		});
+		
+		// Generate random name
+		$newName = md5(microtime()) . '.' . $extension;
+
+		// finally we save the image as a new file
+		$img->save(public_path('test/') . $newName);
+
+    	return $newName;
     }
 }

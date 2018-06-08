@@ -74,5 +74,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
