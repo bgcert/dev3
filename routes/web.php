@@ -13,6 +13,11 @@
 
 Auth::login(\App\User::find(1));
 
+Route::get('/eventtest', function () {
+    $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
+    return view('eventtest', compact('events'));
+});
+
 Route::get('/home', function () {
     return 'hard to remove /home route';
 });
@@ -33,6 +38,7 @@ Route::get('/venue/{id}', 'PublicController@showVenue');
 // Data routes
 // load/../.. ?? 
 Route::get('/data/eventlist', 'DataController@eventList');
+Route::post('/data/event/search', 'DataController@eventSearch');
 Route::get('/data/venuelist', 'DataController@venueList');
 Route::post('/data/relatedeventlist', 'DataController@relatedEventList');
 Route::get('/data/getcompany/{id}', 'DataController@getCompany');

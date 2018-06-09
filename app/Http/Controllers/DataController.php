@@ -12,6 +12,16 @@ class DataController extends Controller
     	return $events;
     }
 
+    public function eventSearch()
+    {
+    	$string = request()->searchQuery;
+    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->whereHas('theme', function ($query) use ($string) {
+			    		$query->where('title', 'like', '%'. $string . '%');
+					})->get();
+
+    	return $events;
+    }
+
     public function venueList()
     {
     	$venues = \App\Venue::with('likeCount', 'commentCount', 'isLiked', 'company')->get();

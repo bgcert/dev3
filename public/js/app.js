@@ -99389,39 +99389,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['auth'],
+   props: ['auth'],
 
-    data: function data() {
-        return {
-            events: {},
-            company: []
-            // loading: true,
-        };
-    },
+   data: function data() {
+      return {
+         events: {},
+         company: [],
+         searchQuery: '',
+         fullscreenLoading: false
+      };
+   },
 
-    methods: {
-        date: function date(_date) {
-            return moment(_date).format('ddd, D MMM YYYY');
-        },
-        request: function request(id) {
-            __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('testlog', 'some message');
-            console.log('request ' + id);
-        }
-    },
+   watch: {
+      searchQuery: function searchQuery(val) {
+         if (val.length > 2) {
+            this.searchAfterDebounce();
+         }
+      }
+   },
 
-    created: function created() {
-        var vm = this;
-        axios.get('/data/eventlist').then(function (response) {
+   methods: {
+      searchAfterDebounce: _.debounce(function () {
+         this.fullscreenLoading = true;
+         this.search();
+      }, 800 // 800 milliseconds
+      ),
+
+      search: function search() {
+         var vm = this;
+         var route = '/data/event/search';
+         axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
             vm.events = response.data;
-            console.log('event list');
-            console.log(vm.events);
-        }).catch(function (error) {
+            vm.fullscreenLoading = false;
+         }).catch(function (error) {
             console.log(error);
-        });
-    }
+            vm.fullscreenLoading = false;
+         });
+      },
+      date: function date(_date) {
+         return moment(_date).format('ddd, D MMM YYYY');
+      },
+      request: function request(id) {
+         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('testlog', 'some message');
+         console.log('request ' + id);
+      }
+   },
+
+   created: function created() {
+      var vm = this;
+      axios.get('/data/eventlist').then(function (response) {
+         vm.events = response.data;
+      }).catch(function (error) {
+         console.log(error);
+      });
+   }
 });
 
 /***/ }),
@@ -99433,9 +99463,49 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "ui huge form" }, [
+      _c("div", { staticClass: "field" }, [
+        _c("label", [_vm._v("Търси")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchQuery,
+              expression: "searchQuery"
+            }
+          ],
+          attrs: { placeholder: "Търсене", type: "text" },
+          domProps: { value: _vm.searchQuery },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.searchQuery = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "ui three stackable cards" },
+      {
+        directives: [
+          {
+            name: "loading",
+            rawName: "v-loading.fullscreen.lock",
+            value: _vm.fullscreenLoading,
+            expression: "fullscreenLoading",
+            modifiers: { fullscreen: true, lock: true }
+          }
+        ],
+        staticClass: "ui three stackable cards"
+      },
       [
         _vm._l(_vm.events, function(event) {
           return [

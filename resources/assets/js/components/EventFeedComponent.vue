@@ -1,7 +1,13 @@
 <template>
 	<div>
-
-		<div class="ui three stackable cards">
+		<div class="ui huge form">
+			<div class="field">
+		    	<label>Търси</label>
+		    	<input placeholder="Търсене" type="text" v-model="searchQuery">
+		    </div>
+		</div>
+		<br>
+		<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">
 			<template v-for="event in events">
 				<div class="card">
 					<div class="extra content">
@@ -55,11 +61,41 @@
     		return {
     			events: {},
     			company: [],
-    			// loading: true,
+    			searchQuery: '',
+    			fullscreenLoading: false
     		}
     	},
 
+    	watch: {
+	        searchQuery: function (val) {
+	        	if (val.length > 2) {
+	        		this.searchAfterDebounce()	
+	        	}
+	            
+	        }
+	    },
+
     	methods: {
+    		searchAfterDebounce: _.debounce(
+	            function () {
+	            	this.fullscreenLoading = true;
+	                this.search()
+	            }, 800 // 800 milliseconds
+	        ),
+
+    		search() {
+    			let vm = this;
+    			let route = '/data/event/search' 
+	        	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
+	        		vm.events = response.data;
+	        		vm.fullscreenLoading = false;
+				})
+				.catch(function (error) {
+					console.log(error);
+					vm.fullscreenLoading = false;
+				});
+    		},
+
     		date(date) {
     			return moment(date).format('ddd, D MMM YYYY');
     		},
@@ -74,8 +110,6 @@
             var vm = this;
         	axios.get('/data/eventlist').then(function (response) {
         		vm.events = response.data;
-        		console.log('event list');
-				console.log(vm.events);
 			})
 			.catch(function (error) {
 				console.log(error);
