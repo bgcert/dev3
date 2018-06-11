@@ -196,7 +196,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(80);
 
-window.Vue = __webpack_require__(6);
+window.Vue = __webpack_require__(5);
 
 /**
 * Initialize event bus
@@ -257,7 +257,8 @@ Vue.component('settings', __webpack_require__(318));
 Vue.component('dashboard', __webpack_require__(321));
 
 // Messanger
-Vue.component('messanger', __webpack_require__(326));
+//Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
+Vue.component('messanger-app', __webpack_require__(345));
 
 var app = new Vue({
   el: '#app',
@@ -809,88 +810,6 @@ module.exports = {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11856,6 +11775,88 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(106).setImmediate))
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12100,7 +12101,7 @@ exports.addClass = addClass;
 exports.removeClass = removeClass;
 exports.setStyle = setStyle;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -12771,7 +12772,7 @@ var _zhCN = __webpack_require__(163);
 
 var _zhCN2 = _interopRequireDefault(_zhCN);
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -13604,7 +13605,7 @@ exports.default = function (target) {
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -13837,7 +13838,7 @@ exports.default = function () {
   return scrollBarWidth;
 };
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -17347,7 +17348,7 @@ exports.default = {
 exports.__esModule = true;
 exports.PopupManager = undefined;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -17593,7 +17594,7 @@ exports.PopupManager = _popupManager2.default;
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -18555,7 +18556,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 exports.__esModule = true;
 exports.default = scrollIntoView;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -18872,7 +18873,7 @@ function required(rule, value, source, errors, options, type) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(331);
+module.exports = __webpack_require__(326);
 
 
 /***/ }),
@@ -50652,9 +50653,9 @@ var render = function() {
                 [
                   _c("imageUpload", {
                     attrs: {
-                      canvasWidth: "357",
-                      canvasHeight: "178",
-                      movable: "true"
+                      canvasWidth: 357,
+                      canvasHeight: 178,
+                      movable: true
                     }
                   })
                 ],
@@ -50821,7 +50822,7 @@ if(false) {
 /* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -52775,7 +52776,7 @@ if(false) {
 /* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -54418,7 +54419,7 @@ module.exports = __webpack_require__(10);
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(5);
 
 /***/ }),
 /* 6 */
@@ -86843,7 +86844,7 @@ var RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__(6);
+var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -90667,7 +90668,7 @@ module.exports = __webpack_require__(10);
 /***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(6);
+module.exports = __webpack_require__(5);
 
 /***/ }),
 
@@ -97661,7 +97662,7 @@ if(false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var escape = __webpack_require__(245);
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -98908,7 +98909,7 @@ if(false) {
 /* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -99205,7 +99206,7 @@ if(false) {
 /* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -99324,7 +99325,7 @@ if(false) {
 /* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -99930,7 +99931,7 @@ if(false) {
 /* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -100941,7 +100942,7 @@ if(false) {
 /* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -101584,7 +101585,7 @@ if(false) {
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -101866,7 +101867,7 @@ if(false) {
 /* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -103277,7 +103278,7 @@ if(false) {
 /* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(5)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -103432,22 +103433,42 @@ if (false) {
 
 /***/ }),
 /* 326 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(327)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(329)
+var __vue_script__ = __webpack_require__(346)
 /* template */
-var __vue_template__ = __webpack_require__(330)
+var __vue_template__ = __webpack_require__(347)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -103460,7 +103481,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\messanger\\MessangerComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\messanger\\MessangerAppComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -103469,9 +103490,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3807b812", Component.options)
+    hotAPI.createRecord("data-v-0f0cdf52", Component.options)
   } else {
-    hotAPI.reload("data-v-3807b812", Component.options)
+    hotAPI.reload("data-v-0f0cdf52", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -103482,47 +103503,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 327 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(328);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(7)("3dc9a44c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3807b812\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MessangerComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3807b812\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MessangerComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 328 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.selected {\n\tbackground-color: #f6f7f9;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 329 */
+/* 346 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103536,475 +103517,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['auth_id', 'name', 'picture'],
 
-  data: function data() {
-    return {
-      threads: [],
-      thread: [],
-      selected: '',
-      message: ''
-    };
-  },
-
-  mounted: function mounted() {
-    console.log('Messanger Component mounted.');
-  },
-
-
-  methods: {
-    loadThread: function loadThread(id) {
-      this.selected = id;
-      var vm = this;
-      axios.post('/users/thread', { id: id }).then(function (response) {
-        vm.thread = response.data;
-        console.log(response.data);
-      }).catch(function (error) {
-        console.log(error);
-      });
+    data: function data() {
+        return {};
     },
-    isAuthUser: function isAuthUser(id) {
-      return id == this.id;
+
+    methods: {
+        // flash(message) {
+        // 	this.$message({
+        // 		message: message,
+        // 	});
+        // }
     },
-    send: function send() {
-      var vm = this;
-      axios.post('/users/message', { user_id: vm.auth_id, thread: vm.selected, message: vm.message }).then(function (response) {
-        vm.thread.messages.push(response.data);
-        console.log(response.data);
-        vm.message = '';
-      }).catch(function (error) {
-        console.log(error);
-      });
+
+    mounted: function mounted() {
+        console.log('Messanger App Component mounted.');
+    },
+    created: function created() {
+        // EventBus.$on('flash', (message, type) => {
+        // 	this.$message({
+        // 		message: message,
+        // 		type: type
+        // 	});
+        // });
     }
-  },
-
-  created: function created() {
-    var vm = this;
-    axios.post('/users/threads', { auth_id: vm.auth_id }).then(function (response) {
-
-      console.log('cool');
-      vm.threads = response.data;
-      if (vm.threads.length > 0) {
-        vm.loadThread(vm.threads[0].id); // set last thread as default in FeedComponent.vue
-        console.log('yep');
-      }
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
 });
 
 /***/ }),
-/* 330 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("header", [
-      _c("div", { staticClass: "container" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "middle" },
-          [
-            _vm.thread.length > 0
-              ? [
-                  _c("h3", [
-                    _vm._v(_vm._s(_vm.thread.first_participant.user.name))
-                  ])
-                ]
-              : _vm._e()
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "right" }, [
-          _c("div", { staticClass: "username" }, [
-            _vm._m(1),
-            _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "avatar" }, [
-            _c("img", { attrs: { src: _vm.picture } })
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("main", [
-      _c("div", { staticClass: "col-left" }, [
-        _c("div", { staticClass: "col-content" }, [
-          _c(
-            "div",
-            { staticClass: "messages" },
-            [
-              _vm.threads.length > 0
-                ? [
-                    _vm._l(_vm.threads, function(thread) {
-                      return [
-                        _c(
-                          "li",
-                          { class: { selected: _vm.selected == thread.id } },
-                          [
-                            _c(
-                              "a",
-                              {
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.loadThread(thread.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("div", { staticClass: "avatar" }, [
-                                  _c("div", { staticClass: "avatar-image" }, [
-                                    _c("div", { staticClass: "status online" }),
-                                    _vm._v(" "),
-                                    _c("img", {
-                                      attrs: {
-                                        src:
-                                          thread.first_participant.user.picture
-                                      }
-                                    })
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", [
-                                  _vm._v(
-                                    _vm._s(thread.first_participant.user.name)
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    _vm._s(
-                                      thread.last_message.user_name +
-                                        thread.last_message.body
-                                    ) +
-                                      " " +
-                                      _vm._s(thread.last_message.updated_at)
-                                  )
-                                ])
-                              ]
-                            )
-                          ]
-                        )
-                      ]
-                    })
-                  ]
-                : _vm._e()
-            ],
-            2
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
-        _c("div", { staticClass: "col-content" }, [
-          _c("section", { staticClass: "message" }, [
-            _c(
-              "div",
-              { staticClass: "grid-message" },
-              [
-                _vm.thread.length > 0
-                  ? [
-                      _vm._l(_vm.thread.messages, function(message) {
-                        return [
-                          message.user.id == _vm.auth_id
-                            ? [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-message-sent" },
-                                  [
-                                    _c(
-                                      "el-tooltip",
-                                      {
-                                        staticClass: "item",
-                                        attrs: {
-                                          effect: "dark",
-                                          content: message.updated_at,
-                                          placement: "left"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "message-sent" },
-                                          [
-                                            _c("p", [
-                                              _vm._v(_vm._s(message.body))
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            : [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-message-received" },
-                                  [
-                                    _c(
-                                      "el-tooltip",
-                                      {
-                                        staticClass: "item",
-                                        attrs: {
-                                          effect: "dark",
-                                          content: message.updated_at,
-                                          placement: "right"
-                                        }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "message-received" },
-                                          [
-                                            _c("p", [
-                                              _vm._v(_vm._s(message.body))
-                                            ])
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                        ]
-                      })
-                    ]
-                  : _vm._e()
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-foot" }, [
-          _c("div", { staticClass: "compose" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.message,
-                  expression: "message"
-                }
-              ],
-              attrs: { placeholder: "Напишете съобщение" },
-              domProps: { value: _vm.message },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.message = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "compose-dock" }, [
-              _c("div", { staticClass: "dock" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "ui circular icon button",
-                    on: { click: _vm.send }
-                  },
-                  [_c("i", { staticClass: "paper plane outline icon" })]
-                )
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-right" }, [
-        _c(
-          "div",
-          { staticClass: "col-content" },
-          [
-            _vm.thread.length > 0
-              ? [
-                  _c("div", { staticClass: "user-panel" }, [
-                    _c("div", { staticClass: "avatar" }, [
-                      _c("div", { staticClass: "avatar-image" }, [
-                        _c("div", { staticClass: "status online" }),
-                        _vm._v(" "),
-                        _c("img", {
-                          attrs: {
-                            src: _vm.thread.first_participant.user.picture
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("h3", [
-                        _vm._v(_vm._s(_vm.thread.first_participant.user.name))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [_vm._v("London, United Kingdom")])
-                    ])
-                  ])
-                ]
-              : _vm._e()
-          ],
-          2
-        )
-      ])
-    ])
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "left",
-        staticStyle: { position: "absolute", top: "24%" }
-      },
-      [
-        _c("div", { staticClass: "ui circular blue icon button" }, [
-          _c("i", { staticClass: "paper plane outline icon" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "settings" }, [
-      _c("img", { attrs: { src: "/img/messanger/settings.svg" } })
-    ])
+    return _c("div", [_c("div", { staticClass: "ui segment" })])
   }
 ]
 render._withStripped = true
@@ -104012,15 +103569,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3807b812", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0f0cdf52", module.exports)
   }
 }
-
-/***/ }),
-/* 331 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
