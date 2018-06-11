@@ -40,9 +40,9 @@
 
 					<el-form-item label="Корица">
 						<imageUpload
-							canvasWidth="357"
-							canvasHeight="178"
-							movable="true"
+							:canvasWidth="357"
+							:canvasHeight="178"
+							:movable="true"
 							>
 						</imageUpload>
 					</el-form-item>
