@@ -99411,7 +99411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
    watch: {
       searchQuery: function searchQuery(val) {
-         if (val.length > 2) {
+         if (val.length > 2 || val.length == 0) {
             this.searchAfterDebounce();
          }
       }

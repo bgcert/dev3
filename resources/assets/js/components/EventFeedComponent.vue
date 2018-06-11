@@ -68,10 +68,9 @@
 
     	watch: {
 	        searchQuery: function (val) {
-	        	if (val.length > 2) {
-	        		this.searchAfterDebounce()	
-	        	}
-	            
+	        	if (val.length > 2 || val.length == 0) {
+	        		this.searchAfterDebounce();
+	        	}	            
 	        }
 	    },
 
