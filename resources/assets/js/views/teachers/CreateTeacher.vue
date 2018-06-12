@@ -13,8 +13,8 @@
 
 					<el-form-item label="Корица">
 						<imageUpload
-							canvasWidth="200"
-							canvasHeight="200"
+							:canvasWidth="200"
+							:canvasHeight="200"
 							>
 						</imageUpload>
 					</el-form-item>

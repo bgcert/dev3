@@ -71,9 +71,10 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 
 	// Messanger routes
 	Route::get('/messages', 'MessageController@index');
-	Route::post('/threads', 'MessageController@allThreads');
-	Route::post('/thread', 'MessageController@getThread');
-	Route::post('/message', 'MessageController@store');
+	Route::get('/threads', 'MessageController@getThreads');
+	Route::get('/thread/{id}', 'MessageController@getThreadBy');
+	Route::post('/message/add', 'MessageController@addMessage');
+	//Route::post('/message', 'MessageController@store');
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');

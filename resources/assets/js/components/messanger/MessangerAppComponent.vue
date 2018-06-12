@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<div class="ui segment">
-			
+		<div class="ui segment messanger">
+			<thread-list :threads="threads" :selected="selectedThread"></thread-list>
+			<messages-feed></messages-feed>
 		</div>
 	</div>
 </template>
@@ -12,16 +13,13 @@
 
     	data: function () {
     		return {
-
+    			selectedThread: null,
+    			threads: []
     		}
     	},
 
         methods: {
-        	// flash(message) {
-        	// 	this.$message({
-        	// 		message: message,
-        	// 	});
-        	// }
+
         },
 
         mounted() {
@@ -29,12 +27,19 @@
         },
 
         created() {
-        	// EventBus.$on('flash', (message, type) => {
-        	// 	this.$message({
-        	// 		message: message,
-        	// 		type: type
-        	// 	});
-        	// });
+        	axios.get('threads')
+        		.then((response) => {
+        			//console.log(response.data);
+        			this.threads = response.data;
+        			this.selectedThread = response.data[0];
+        		});
         }
     };
 </script>
+
+<style>
+	.messanger {
+		display: flex;
+		height: 600px;
+	}
+</style>

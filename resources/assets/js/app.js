@@ -70,6 +70,8 @@ Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 // Messanger
 //Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
 Vue.component('messanger-app', require('./components/messanger/MessangerAppComponent.vue'));
+Vue.component('thread-list', require('./components/messanger/ThreadListComponent.vue'));
+Vue.component('messages-feed', require('./components/messanger/MessagesFeedComponent.vue'));
 
 const app = new Vue({
     el: '#app',
