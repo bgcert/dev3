@@ -1,20 +1,22 @@
 <template>
 	<div>
 		<div class="ui segment messanger">
-			<thread-list :threads="threads" :selected="selectedThread"></thread-list>
-			<messages-feed></messages-feed>
+			<threadList></threadList>
+			<messagesFeed></messagesFeed>
 		</div>
 	</div>
 </template>
 
 <script>
+	import threadList from './ThreadListComponent';
+    import messagesFeed from './MessagesFeedComponent';
 	import { EventBus } from '../../app';
     export default {
+    	components: { threadList, messagesFeed },
 
     	data: function () {
     		return {
-    			selectedThread: null,
-    			threads: []
+
     		}
     	},
 
@@ -23,16 +25,17 @@
         },
 
         mounted() {
-            console.log('Messanger App Component mounted.')
+            console.log('Messanger App Component mounted.');
+
+            Echo.private('messages')
+                .listen('NewMessage', () => {
+                    // this.hanleIncoming(e.message);
+                    console.log('message sent');
+                });
         },
 
         created() {
-        	axios.get('threads')
-        		.then((response) => {
-        			//console.log(response.data);
-        			this.threads = response.data;
-        			this.selectedThread = response.data[0];
-        		});
+        	
         }
     };
 </script>

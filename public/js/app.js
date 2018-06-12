@@ -257,10 +257,7 @@ Vue.component('settings', __webpack_require__(318));
 Vue.component('dashboard', __webpack_require__(321));
 
 // Messanger
-//Vue.component('messanger', require('./components/messanger/MessangerComponent.vue'));
 Vue.component('messanger-app', __webpack_require__(326));
-Vue.component('thread-list', __webpack_require__(331));
-Vue.component('messages-feed', __webpack_require__(336));
 
 var app = new Vue({
   el: '#app',
@@ -103530,7 +103527,11 @@ exports.push([module.i, "\n.messanger {\n\tdisplay: -webkit-box;\n\tdisplay: -ms
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ThreadListComponent__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ThreadListComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ThreadListComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MessagesFeedComponent__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MessagesFeedComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__MessagesFeedComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app__ = __webpack_require__(1);
 //
 //
 //
@@ -103540,31 +103541,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: { threadList: __WEBPACK_IMPORTED_MODULE_0__ThreadListComponent___default.a, messagesFeed: __WEBPACK_IMPORTED_MODULE_1__MessagesFeedComponent___default.a },
 
     data: function data() {
-        return {
-            selectedThread: null,
-            threads: []
-        };
+        return {};
     },
 
     methods: {},
 
     mounted: function mounted() {
         console.log('Messanger App Component mounted.');
-    },
-    created: function created() {
-        var _this = this;
 
-        axios.get('threads').then(function (response) {
-            //console.log(response.data);
-            _this.threads = response.data;
-            _this.selectedThread = response.data[0];
+        Echo.private('messages').listen('NewMessage', function () {
+            // this.hanleIncoming(e.message);
+            console.log('message sent');
         });
-    }
+    },
+    created: function created() {}
 });
 
 /***/ }),
@@ -103579,13 +103577,7 @@ var render = function() {
     _c(
       "div",
       { staticClass: "ui segment messanger" },
-      [
-        _c("thread-list", {
-          attrs: { threads: _vm.threads, selected: _vm.selectedThread }
-        }),
-        _vm._v(" "),
-        _c("messages-feed")
-      ],
+      [_c("threadList"), _vm._v(" "), _c("messagesFeed")],
       1
     )
   ])
@@ -103934,8 +103926,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // props: ['thread'],
-
     data: function data() {
         return {
             thread: null,

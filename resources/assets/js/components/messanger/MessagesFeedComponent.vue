@@ -18,8 +18,6 @@
 <script>
 	import { EventBus } from '../../app';
     export default {
-    	// props: ['thread'],
-
     	data: function () {
     		return {
     			thread: null,

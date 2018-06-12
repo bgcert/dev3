@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Messanger\Thread;
+use App\Events\NewMessage;
 use Carbon\Carbon;
 
 class MessageController extends Controller
@@ -47,22 +48,7 @@ class MessageController extends Controller
     	$thread->updated_at = Carbon::now();
     	$thread->save();
 
-    	return $message->load('user');
-    }    
-
-    public function store()
-    {
-    	$message = new \App\Messanger\Message;
-
-    	$message->thread_id = request()->thread;
-    	$message->user_id = request()->user_id;
-    	$message->body = request()->message;
-    	$message->save();
-
-    	// Update thread
-    	$thread = Thread::find(request()->thread);
-    	$thread->updated_at = Carbon::now();
-    	$thread->save();
+    	broadcast(new NewMessage($message));
 
     	return $message->load('user');
     }
