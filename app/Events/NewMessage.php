@@ -11,7 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class NewMessage
+class NewMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -34,6 +34,11 @@ class NewMessage
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('messages');
+        return new PrivateChannel('messages.' . $this->message->thread_id);
+    }
+
+    public function broadcastWith()
+    {
+    	return ['message' => $this->message];
     }
 }

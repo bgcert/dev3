@@ -70,10 +70,10 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::post('/change/password', 'SettingsController@changePassword');
 
 	// Messanger routes
-	Route::get('/messages', 'MessageController@index');
-	Route::get('/threads', 'MessageController@getThreads');
-	Route::get('/thread/{id}', 'MessageController@getThreadBy');
-	Route::post('/message/add', 'MessageController@addMessage');
+	//Route::get('/messages', 'MessageController@index');
+	// Route::get('/threads', 'MessageController@getThreads');
+	// Route::get('/thread/{id}', 'MessageController@getThreadBy');
+	// Route::post('/message/add', 'MessageController@addMessage');
 	//Route::post('/message', 'MessageController@store');
 
 	Route::get('/', 'UserController@index');
@@ -89,6 +89,14 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::post('/comment/venue/add', 'CommentController@commentVenue');
 	Route::post('/comment/remove', 'CommentController@destroy');
 
+});
+
+// Messanger group
+Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => ['auth', 'isVerified']], function () {
+	Route::get('/', 'MessageController@index');
+	Route::get('/threads', 'MessageController@getThreads');
+	Route::get('/thread/{id}', 'MessageController@getThreadBy');
+	Route::post('/add', 'MessageController@addMessage');
 });
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {

@@ -26,12 +26,6 @@
 
         mounted() {
             console.log('Messanger App Component mounted.');
-
-            Echo.private('messages')
-                .listen('NewMessage', () => {
-                    // this.hanleIncoming(e.message);
-                    console.log('message sent');
-                });
         },
 
         created() {

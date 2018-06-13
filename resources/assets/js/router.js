@@ -27,6 +27,10 @@ let routes = [
     { path: '/change-pass', component: require('./views/settings/ChangePassword.vue') },
     { path: '/change-email', component: require('./views/settings/ChangeEmail.vue') },
     { path: '/deactivate', component: require('./views/settings/Deactivate.vue') },
+
+    // Messanger
+    { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
+    //{ path: '/t/:id', component: require('./views/messanger/Index.vue') },
 ];
 
 export default new VueRouter({

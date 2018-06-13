@@ -20,7 +20,7 @@
     export default {
     	data: function () {
     		return {
-    			threadId: null,
+    			threadId: this.$route.params.id,
     			messages: [],
     			input: ''
     		}
@@ -36,7 +36,7 @@
                     return;
                 }
 
-                axios.post('message/add', {
+                axios.post('messages/add', {
                 	thread: this.threadId,
                     input: this.input
                 }).then((response) => {
@@ -68,29 +68,27 @@
 
         mounted() {
             console.log('Messages feed Component mounted.');
+
+            Echo.private('messages.' + this.threadId)
+                .listen('NewMessage', (e) => {
+                    // this.hanleIncoming(e.message);
+                    console.log(e.message);
+                });
         },
 
         created() {
+        	
         	EventBus.$on('selected', id => {
         		if (this.input != '') {
         			this.input = '';
         		}
         		this.threadId = id;
-				let route = 'thread/' + id;
+				let route = 'messages/thread/' + id;
 	        	axios.get(route)
 	        		.then((response) => {
 	        			this.messages = response.data.messages;
 	        		});
-			});
-
-        	if (this.threadId) {
-        		Echo.private('messages.' + this.threadId)
-                .listen('NewMessage', (e) => {
-                    // this.hanleIncoming(e.message);
-                    console.log(e.message);
-                });
-        	}
-			
+			});			
         }
     };
 </script>

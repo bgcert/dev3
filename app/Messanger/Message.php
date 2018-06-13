@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Message extends Model
 {
 
-	protected $appends = ['user_name'];
+	protected $appends = ['user_name', 'sent'];
 
     public function thread()
     {
@@ -28,5 +28,14 @@ class Message extends Model
     public function getUpdatedAtAttribute()
     {
     	return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
+    }
+
+    public function getSentAttribute()
+    {
+    	return $this->user->id;
+    	if ($this->user->id == \Auth::id()) {
+    		return true;
+    	}
+    	//return false;
     }
 }

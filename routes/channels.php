@@ -11,11 +11,11 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+// Broadcast::channel('App.User.{id}', function ($user, $id) {
+//     return (int) $user->id === (int) $id;
+// });
 
-Broadcast::channel('messages', function ($user, $id) {
-	return true;
-    return (int) $user->id === (int) $id;
+Broadcast::channel('messages.{thread_id}', function ($user, $thread_id) {
+	$thread = \App\Messanger\Thread::find((int) $thread_id);
+	return $thread->participants->contains('user_id', (int) $user->id);
 });

@@ -21,7 +21,7 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
-				<a href="/users/messages" class="item">
+				<a href="/messages" class="item">
 					<i class="paper plane outline icon"></i>
 					<!-- <div class="floating ui red label">22</div> -->
 				</a>

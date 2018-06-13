@@ -10,7 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
     	$company = \Auth::user()->company;
-    	return ($company) ? view('dashboard.index', compact($company)) : abort(404);
+    	return ($company) ? view('dashboard', compact($company)) : abort(404);
     }
 
     public function getCompany()
