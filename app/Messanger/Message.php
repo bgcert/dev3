@@ -33,9 +33,5 @@ class Message extends Model
     public function getSentAttribute()
     {
     	return $this->user->id;
-    	if ($this->user->id == \Auth::id()) {
-    		return true;
-    	}
-    	//return false;
     }
 }
