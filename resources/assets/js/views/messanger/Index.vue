@@ -175,7 +175,7 @@
 
     		search() {
     			let vm = this;
-    			let route = '/messages/user/search' 
+    			let route = 'messages/user/search' 
 	        	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
 	        		vm.searchResults = response.data;
 	        		vm.loading = false;
