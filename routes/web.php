@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(1));
+//Auth::login(\App\User::find(1));
 
 Route::get('/eventtest', function () {
     $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
