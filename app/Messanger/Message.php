@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Message extends Model
 {
-
+	protected $fillable = ['user_id', 'body'];
 	protected $appends = ['user_name', 'sent'];
 
     public function thread()

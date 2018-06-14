@@ -1,9 +1,7 @@
 <template>
 	<div>
-		<div class="ui segment">
-			<h2>Messanger</h2>
-			<router-view></router-view>
-		</div>
+		<h2>Messanger</h2>
+		<router-view></router-view>
 	</div>
 </template>
 

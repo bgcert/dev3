@@ -95,8 +95,9 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => ['auth', 'isVerified']], function () {
 	Route::get('/', 'MessageController@index');
 	Route::get('/threads', 'MessageController@getThreads');
-	Route::get('/thread/{id}', 'MessageController@getThreadBy');
+	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
 	Route::post('/add', 'MessageController@addMessage');
+	Route::post('/new', 'MessageController@newMessage');
 	Route::post('/user/search', 'MessageController@search');
 });
 

@@ -29,7 +29,7 @@ class MessageController extends Controller
     	return $data;
     }
 //
-    public function getThreadBy($id)
+    public function getThreadByUser($id)
     {
     	$thread = Thread::with('firstParticipant.user', 'messages.user')->where('id', $id)->first();
     	return $thread;
@@ -54,9 +54,35 @@ class MessageController extends Controller
     	return $message->load('user');
     }
 
+    public function newMessage()
+    {
+    	$thread = new \App\Messanger\Thread;
+    	$thread->save();
+
+    	$thread->participants()->createMany([
+    		['user_id' => \Auth::id()],
+    		['user_id' => request()->to]
+    	]);
+
+    	$message = new \App\Messanger\Message;
+
+    	$message->thread_id = $thread->id;
+    	$message->user_id = \Auth::id();
+    	$message->body = request()->input;
+    	$message->save();
+
+    	broadcast(new NewMessage($message));
+
+    	// Update thread
+    	$thread->updated_at = Carbon::now();
+    	//$thread->save();
+    	$data = [$thread->load('firstParticipant.user', 'messages.user'), $message->load('user') ];
+    	return $data;
+    }
+
     public function search()
     {
-    	$users = \App\User::where('name', 'LIKE', '%' . request()->searchQuery . '%')->get();
+    	$users = \App\User::where('name', 'LIKE', '%' . request()->searchQuery . '%')->limit(5)->get();
     	return $users;
     }
 }

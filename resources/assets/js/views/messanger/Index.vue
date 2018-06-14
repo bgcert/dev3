@@ -1,22 +1,24 @@
 <template>
 	<div>
-		<div class="messanger">
+		<div class="ui segment messanger">
 			<div class="threads">
+
 				<form class="ui form">
 					<div class="field">
 						<input type="text" name="first-name" placeholder="Намери потребител" v-model="searchQuery" @focus="focus = true" @blur="focus = false">
-
 					</div>
 				</form>
 				<div class="ui active centered inline small loader" v-show="loading"></div>
+
 				<div class="ui middle aligned selection list" v-for="item in searchResults">
-					<div class="item">
+					<div class="item" @click.prevent="newUser(item)">
 						<img class="ui avatar image" :src="item.picture">
 						<div class="content">
 							<div class="header">{{ item.name }}</div>
 						</div>
 					</div>
 				</div>
+
 				<ul v-show="!focus && (searchQuery == '')">
 					<li v-for="thread in threads" @click.prevent="selectThread(thread.id)" :class="{ 'selected': thread.id == selected }">
 						<router-link :to="'/t/' + thread.id">
@@ -25,7 +27,7 @@
 							</div>
 							<div class="details">
 								<p class="name">{{ thread.first_participant.user.name }}</p>
-								<p>{{ thread.last_message.body }}</p>
+								<p v-if="thread.last_message">{{ thread.last_message.body }}</p>
 							</div>
 						</router-link>
 					</li>
@@ -33,7 +35,16 @@
 			</div>
 
 			<div class="feed-container">
-				<h3>Messages feed</h3>
+				<div class="ui divided items" v-if="selectedUser">
+					<div class="item">
+						<div class="ui tiny circular image">
+							<img :src="selectedUser.picture">
+						</div>
+						<div class="middle aligned content">
+							{{ selectedUser.name }}
+						</div>
+					</div>
+				</div>
 
 				<div  class="messages-feed" ref="feed">
 					<ul>
@@ -43,9 +54,8 @@
 			                </div>
 						</li>
 					</ul>	
+					<textarea v-model="input" @keydown.enter.prevent="send" placeholder="Message..."></textarea>
 				</div>
-				
-				<textarea v-model="input" @keydown.enter.prevent="send" placeholder="Message..."></textarea>
 			</div>
 		</div>
 	</div>
@@ -63,18 +73,35 @@
     			userId: null,
     			threads: [],
     			selected: null,
+    			selectedUser: null,
     			messages: [],
     			input: '',
     			searchQuery: '',
-    			searchResults: []
+    			searchResults: [],
+    			newMessage: false
     		}
     	},
 
         methods: {
+        	newUser(item) {
+        		this.searchQuery = '';
+				var exist = this.threads.filter(function(arr) { 
+				    return arr.first_participant.user.id == item.id; 
+				});
+
+				if (exist.length == 0) {
+					this.newMessage = true;
+					this.selectedUser = item;
+	        		this.messages = [];
+	        		this.selected = null;
+	        		return;
+				}
+
+				this.selectThread(exist[0].id);
+        	},
+
         	selectThread(id) {
-        		if (this.threads.length == 0) {
-        			return;
-        		}
+        		if (this.threads.length == 0) return;
 
         		if (id == null) {
         			id = this.threads[0].id;
@@ -87,6 +114,7 @@
 	        	axios.get(route)
 	        		.then((response) => {
 	        			this.messages = response.data.messages;
+	        			this.selectedUser = response.data.first_participant.user;
 	        		});
 
 	        	Echo.private('messages.' + this.selected)
@@ -96,12 +124,24 @@
         	},
 
         	send() {
-        		if (this.selected == null) {
-        			return;
-        		}
-
                 if (this.input == '') {
                     return;
+                }
+
+                if (this.newMessage) {
+					axios.post('messages/new', {
+	                	to: this.selectedUser.id,
+	                    input: this.input
+	                }).then((response) => {
+	                	this.newMessage = false;
+	                	this.input = '';
+	                	this.threads.unshift(response.data[0]);
+	                	this.messages = response.data[1];
+	                	this.selectThread(response.data[0].id);
+	                	// this.selected = response.data[0].id;
+	                	console.log();
+	                });
+	                return;               	
                 }
 
                 axios.post('messages/add', {
@@ -190,11 +230,9 @@
 <style lang="scss" scoped>
 	.messanger {
 		display: flex;
-		height: 600px;
 
 		.threads {
 		    flex: 2;
-		    max-height: 600px;
 		    overflow-y: scroll;
 		    border-right: 1px solid #a6a6a6;
 		    
@@ -203,7 +241,7 @@
 		        padding-left: 0;
 		        li {
 		        	&.selected {
-		                background: #fff111;
+		                background: #e9ebee;
 		            }
 		        }
 		        li a {
@@ -245,6 +283,12 @@
 			flex: 5;
 		}
 
+		.ui.divided.items {
+			border-bottom: 1px solid #e9ebee;
+			margin: 0;
+			padding: 10px;
+		}
+
 		textarea {
 		    width: 96%;
 		    margin: 10px;
@@ -256,7 +300,7 @@
 
 		.messages-feed {
 		    height: 100%;
-		    max-height: 470px;
+		    //max-height: 470px;
 		    overflow-y: scroll;
 		    ul {
 		        list-style-type: none;
