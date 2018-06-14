@@ -69,6 +69,7 @@ Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/MessangerComponent.vue'));
+Vue.component('new-message', require('./components/NewMessageComponent.vue'));
 //Vue.component('messanger-app', require('./components/messanger/MessangerAppComponent.vue'));
 
 const app = new Vue({

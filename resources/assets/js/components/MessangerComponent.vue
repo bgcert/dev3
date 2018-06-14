@@ -2,7 +2,7 @@
 	<div>
 		<div class="ui segment">
 			<h2>Messanger</h2>
-			<router-view model="model"></router-view>
+			<router-view></router-view>
 		</div>
 	</div>
 </template>

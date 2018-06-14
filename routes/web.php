@@ -11,7 +11,7 @@
 |
 */
 
-//Auth::login(\App\User::find(1));
+Auth::login(\App\User::find(1));
 
 Route::get('/eventtest', function () {
     $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
@@ -97,6 +97,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => [
 	Route::get('/threads', 'MessageController@getThreads');
 	Route::get('/thread/{id}', 'MessageController@getThreadBy');
 	Route::post('/add', 'MessageController@addMessage');
+	Route::post('/user/search', 'MessageController@search');
 });
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {

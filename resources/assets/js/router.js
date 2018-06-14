@@ -30,6 +30,7 @@ let routes = [
 
     // Messanger
     { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
+
     //{ path: '/t/:id', component: require('./views/messanger/Index.vue') },
 ];
 

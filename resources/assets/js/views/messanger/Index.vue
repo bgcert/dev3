@@ -2,7 +2,22 @@
 	<div>
 		<div class="messanger">
 			<div class="threads">
-				<ul>
+				<form class="ui form">
+					<div class="field">
+						<input type="text" name="first-name" placeholder="Намери потребител" v-model="searchQuery" @focus="focus = true" @blur="focus = false">
+
+					</div>
+				</form>
+				<div class="ui active centered inline small loader" v-show="loading"></div>
+				<div class="ui middle aligned selection list" v-for="item in searchResults">
+					<div class="item">
+						<img class="ui avatar image" :src="item.picture">
+						<div class="content">
+							<div class="header">{{ item.name }}</div>
+						</div>
+					</div>
+				</div>
+				<ul v-show="!focus && (searchQuery == '')">
 					<li v-for="thread in threads" @click.prevent="selectThread(thread.id)" :class="{ 'selected': thread.id == selected }">
 						<router-link :to="'/t/' + thread.id">
 							<div class="picture">
@@ -37,16 +52,21 @@
 </template>
 
 <script>
+	import _ from 'lodash'; // Don't know why is not imported already.
 	import { EventBus } from '../../app';
     export default {
 
     	data: function () {
     		return {
+    			focus: false,
+    			loading: false,
     			userId: null,
     			threads: [],
     			selected: null,
     			messages: [],
-    			input: ''
+    			input: '',
+    			searchQuery: '',
+    			searchResults: []
     		}
     	},
 
@@ -105,7 +125,26 @@
                 setTimeout(() => {
                     this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
                 }, 100);
-            }
+            },
+
+            searchAfterDebounce: _.debounce(
+	            function () {
+	                this.search()
+	            }, 800 // 800 milliseconds
+	        ),
+
+    		search() {
+    			let vm = this;
+    			let route = '/messages/user/search' 
+	        	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
+	        		vm.searchResults = response.data;
+	        		vm.loading = false;
+				})
+				.catch(function (error) {
+					vm.loading = false;
+					console.log(error);
+				});
+    		},
         },
 
         watch: {
@@ -114,16 +153,24 @@
             },
             messages: function () {
                 this.scrollToBottom();
-            }
+            },
+            searchQuery: function (val) {
+	        	if (val.length > 2) {
+	        		this.loading = true;
+	        		this.searchAfterDebounce();
+	        	} else {
+	        		this.searchResults = [];
+	        	}
+	        }
         },
 
         mounted() {
             console.log('Messanger App Component mounted.');
         },
 
-        created() {
+        created() {        	
         	let id = (this.$route.params.id) ? this.$route.params.id : null;
-        	let vm = this;
+        	let vm = this;       	
 
         	async function getThreads() {
         		await axios.get('messages/threads')

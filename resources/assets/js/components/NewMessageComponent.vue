@@ -1,34 +1,34 @@
 <template>
-	<div>
+	<span>
 		<template v-if="!auth">
-			<a href="#" :class="classes" @click.prevent="login">
+			<a href="#" @click.prevent="login">
 				Записвам се
 			</a>
 		</template>
 		<template v-else>
 			<el-dialog
-				title="Заявка"
+				title="Ново съобщение"
 				:visible.sync="dialogVisible"
 				:before-close="handleClose"
 				width="30%">
 				<span>
-					
+					<el-input type="textarea"></el-input>
 				</span>
 				<span slot="footer" class="dialog-footer">
-					<el-button @click="dialogVisible = false">Cancel</el-button>
-					<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+					<el-button @click="dialogVisible = false">Откажи</el-button>
+					<el-button type="primary" @click="dialogVisible = false">Изпрати</el-button>
 				</span>
 			</el-dialog>
-			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Записвам се</a>
+			<a class="mini ui orange button" href="#" @click.prevent="dialogVisible = true"><i class="paper plane icon"></i> Изпрати съобщение</a>
 		</template>
-	</div>
+	</span>
 </template>
 
 <script>
 	import { EventBus } from '../app';
     export default {
     	props: {
-    		auth: { type: [String, Number], required: true},
+    		auth: { type: [Boolean], required: true},
     		classes: [String, Number]
     	},
 
@@ -53,15 +53,11 @@
     	},
 
         mounted() {
-            console.log('Request Modal component mounted.');
+            console.log('New message component mounted.');
         },
 
         created() {
-        	var vm = this;
-   //      	EventBus.$on('testlog', function(message) {
-   //      		vm.dialogVisible = true;
-   //      		vm.message = message;
-			// });
+
         }
     };
 </script>

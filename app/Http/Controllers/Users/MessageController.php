@@ -53,4 +53,10 @@ class MessageController extends Controller
 
     	return $message->load('user');
     }
+
+    public function search()
+    {
+    	$users = \App\User::where('name', 'LIKE', '%' . request()->searchQuery . '%')->get();
+    	return $users;
+    }
 }
