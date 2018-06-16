@@ -71,14 +71,26 @@
     			focus: false,
     			loading: false,
     			userId: null,
-    			threads: [],
+    			// threads: [],
     			selected: null,
     			selectedUser: null,
-    			messages: [],
+    			// messages: [],
     			input: '',
     			searchQuery: '',
-    			searchResults: [],
+    			// searchResults: [],
     			newMessage: false
+    		}
+    	},
+
+    	computed: {
+    		threads() {
+    			return this.$store.getters.threads;
+    		},
+    		messages() {
+    			return this.$store.getters.messages;
+    		},
+    		searchResults() {
+    			return this.$store.getters.searchResults;
     		}
     	},
 
@@ -101,21 +113,22 @@
         	},
 
         	selectThread(id) {
-        		if (this.threads.length == 0) return;
+        		this.$store.dispatch('getMessages', id);
+        		// if (this.threads.length == 0) return;
 
-        		if (id == null) {
-        			id = this.threads[0].id;
-        			this.$router.push('t/' + id);
-        		}
+        		// if (id == null) {
+        		// 	id = this.threads[0].id;
+        		// 	this.$router.push('t/' + id);
+        		// }
 
         		this.selected = id;
 
-        		let route = 'messages/thread/' + id;
-	        	axios.get(route)
-	        		.then((response) => {
-	        			this.messages = response.data.messages;
-	        			this.selectedUser = response.data.first_participant.user;
-	        		});
+        		// let route = 'messages/thread/' + id;
+	        	// axios.get(route)
+	        	// 	.then((response) => {
+	        	// 		this.messages = response.data.messages;
+	        	// 		this.selectedUser = response.data.first_participant.user;
+	        	// 	});
 
 	        	Echo.private('messages.' + this.selected)
                 .listen('NewMessage', (e) => {
@@ -135,7 +148,7 @@
 	                }).then((response) => {
 	                	this.newMessage = false;
 	                	this.input = '';
-	                	this.threads.unshift(response.data[0]);
+	                	//this.threads.unshift(response.data[0]);
 	                	this.messages = response.data[1];
 	                	this.selectThread(response.data[0].id);
 	                	// this.selected = response.data[0].id;
@@ -174,16 +187,17 @@
 	        ),
 
     		search() {
-    			let vm = this;
-    			let route = 'messages/user/search' 
-	        	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
-	        		vm.searchResults = response.data;
-	        		vm.loading = false;
-				})
-				.catch(function (error) {
-					vm.loading = false;
-					console.log(error);
-				});
+    			this.$store.dispatch('search', this.input);
+    // 			let vm = this;
+    // 			let route = 'messages/user/search' 
+	   //      	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
+	   //      		vm.searchResults = response.data;
+	   //      		vm.loading = false;
+				// })
+				// .catch(function (error) {
+				// 	vm.loading = false;
+				// 	console.log(error);
+				// });
     		},
         },
 
@@ -206,23 +220,25 @@
 
         mounted() {
             console.log('Messanger App Component mounted.');
+            this.$store.dispatch('getThreads');
+            //this.selectThread();
         },
 
         created() {        	
         	let id = (this.$route.params.id) ? this.$route.params.id : null;
         	let vm = this;       	
 
-        	async function getThreads() {
-        		await axios.get('messages/threads')
-        		.then((response) => {
-        			vm.threads = response.data[0];
-        			vm.userId = response.data[1];
-        		});
+   //      	async function getThreads() {
+   //      		await axios.get('messages/threads')
+   //      		.then((response) => {
+   //      			vm.threads = response.data[0];
+   //      			vm.userId = response.data[1];
+   //      		});
 
-        		await vm.selectThread(id);
-			}
+   //      		await vm.selectThread(id);
+			// }
 
-			getThreads();        	
+			// getThreads();        	
         }
     };
 </script>
