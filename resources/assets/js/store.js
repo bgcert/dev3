@@ -1,9 +1,9 @@
 export default {
     state: {
-    	msg: 'Hello',
     	userId: null,
     	threads: [],
     	messages: [],
+    	selectedThread: null,
     	searchResults: []
     },
     getters: {
@@ -16,6 +16,12 @@ export default {
         messages(state) {
             return state.messages;
         },
+        selectedThread(state) {
+            return state.selectedThread;
+        },
+        searchResults(state) {
+            return state.searchResults;
+        },
     },
     mutations: {
     	updateThreads(state, payload) {
@@ -27,18 +33,35 @@ export default {
     		state.messages = payload;
     	},
 
+    	selectThread(state, payload) {
+    		state.selectedThread = payload;
+    	},
+
     	updateSearchResults(state, payload) {
     		state.searchResults = payload;
+    	},
+
+    	pushMessage(state, payload) {
+    		state.messages.push(payload);
+    	},
+
+    	clearSearchResults(state) {
+    		state.searchResults = [];
     	}
     },
     actions: {
     	getThreads(context) {
-    		axios.get('messages/threads')
-        		.then((response) => {
-        			context.commit('updateThreads', response.data);
-        		})
-        		.catch((error) => {
-        		})
+    		return new Promise((resolve, reject) => {
+	    		axios.get('messages/threads')
+	        		.then((response) => {
+	        			context.commit('updateThreads', response.data);
+	        			resolve()
+	        		})
+	        		.catch((error) => {
+	        			reject(error);
+	        		})
+    		})
+    		
         },
 
         getMessages(context, id) {
@@ -48,6 +71,15 @@ export default {
         			context.commit('updateMessages', response.data.messages);
         			//this.selectedUser = response.data.first_participant.user;
         		});
+        },
+
+        sendMessage(context, message) {
+        	axios.post('messages/add', {
+                	thread_id: context.getters.selectedThread,
+                    input: message
+                }).then((response) => {
+                	context.commit('pushMessage', response.data);
+                });
         },
 
         search(context, input) {

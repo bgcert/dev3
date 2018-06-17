@@ -3,9 +3,10 @@
 		<div class="ui segment messanger">
 			<div class="threads">
 
+				<!-- Search -->
 				<form class="ui form">
 					<div class="field">
-						<input type="text" name="first-name" placeholder="Намери потребител" v-model="searchQuery" @focus="focus = true" @blur="focus = false">
+						<input type="text" name="first-name" placeholder="Намери потребител" v-model="searchInput" @focus="focus = true" @blur="focus = false">
 					</div>
 				</form>
 				<div class="ui active centered inline small loader" v-show="loading"></div>
@@ -19,8 +20,9 @@
 					</div>
 				</div>
 
-				<ul v-show="!focus && (searchQuery == '')">
-					<li v-for="thread in threads" @click.prevent="selectThread(thread.id)" :class="{ 'selected': thread.id == selected }">
+				<!-- Thread List -->
+				<ul v-show="!focus && (searchInput == '')">
+					<li v-for="thread in threads" @click.prevent="selectThread(thread.id)" :class="{ 'selected': thread.id == selectedThread }">
 						<router-link :to="'/t/' + thread.id">
 							<div class="picture">
 								<img :src="thread.first_participant.user.picture">
@@ -34,6 +36,7 @@
 				</ul>
 			</div>
 
+			<!-- Messages Feed -->
 			<div class="feed-container">
 				<div class="ui divided items" v-if="selectedUser">
 					<div class="item">
@@ -71,25 +74,25 @@
     			focus: false,
     			loading: false,
     			userId: null,
-    			// threads: [],
     			selected: null,
     			selectedUser: null,
-    			// messages: [],
     			input: '',
-    			searchQuery: '',
-    			// searchResults: [],
+    			searchInput: '',
     			newMessage: false
     		}
     	},
 
     	computed: {
-    		threads() {
+    		threads: function() {
     			return this.$store.getters.threads;
     		},
-    		messages() {
+    		messages: function() {
     			return this.$store.getters.messages;
     		},
-    		searchResults() {
+    		selectedThread: function() {
+    			return this.$store.getters.selectedThread;
+    		},
+    		searchResults: function() {
     			return this.$store.getters.searchResults;
     		}
     	},
@@ -112,23 +115,16 @@
 				this.selectThread(exist[0].id);
         	},
 
-        	selectThread(id) {
+        	selectThread(id = null) {
+        		if (this.threads.length == 0) return;
+
+        		if (id == null) {
+        			id = this.threads[0].id; // id is the first thread
+        			this.$router.push('/t/' + id);
+        		}
+
+        		this.$store.commit('selectThread', id);
         		this.$store.dispatch('getMessages', id);
-        		// if (this.threads.length == 0) return;
-
-        		// if (id == null) {
-        		// 	id = this.threads[0].id;
-        		// 	this.$router.push('t/' + id);
-        		// }
-
-        		this.selected = id;
-
-        		// let route = 'messages/thread/' + id;
-	        	// axios.get(route)
-	        	// 	.then((response) => {
-	        	// 		this.messages = response.data.messages;
-	        	// 		this.selectedUser = response.data.first_participant.user;
-	        	// 	});
 
 	        	Echo.private('messages.' + this.selected)
                 .listen('NewMessage', (e) => {
@@ -140,6 +136,8 @@
                 if (this.input == '') {
                     return;
                 }
+
+                this.$store.dispatch('sendMessage', this.input);
 
                 if (this.newMessage) {
 					axios.post('messages/new', {
@@ -157,12 +155,12 @@
 	                return;               	
                 }
 
-                axios.post('messages/add', {
-                	thread_id: this.selected,
-                    input: this.input
-                }).then((response) => {
-                	this.input = '';
-                });
+                // axios.post('messages/add', {
+                // 	thread_id: this.selected,
+                //     input: this.input
+                // }).then((response) => {
+                // 	this.input = '';
+                // });
             },
 
             hanleIncoming(message) {
@@ -187,17 +185,7 @@
 	        ),
 
     		search() {
-    			this.$store.dispatch('search', this.input);
-    // 			let vm = this;
-    // 			let route = 'messages/user/search' 
-	   //      	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
-	   //      		vm.searchResults = response.data;
-	   //      		vm.loading = false;
-				// })
-				// .catch(function (error) {
-				// 	vm.loading = false;
-				// 	console.log(error);
-				// });
+    			this.$store.dispatch('search', this.searchInput);
     		},
         },
 
@@ -208,37 +196,30 @@
             messages: function () {
                 this.scrollToBottom();
             },
-            searchQuery: function (val) {
+            searchInput: function (val) {
 	        	if (val.length > 2) {
 	        		this.loading = true;
 	        		this.searchAfterDebounce();
 	        	} else {
-	        		this.searchResults = [];
+	        		this.$store.commit('clearSearchResults');
 	        	}
 	        }
         },
 
         mounted() {
             console.log('Messanger App Component mounted.');
-            this.$store.dispatch('getThreads');
-            //this.selectThread();
+            let id = (this.$route.params.id) ? this.$route.params.id : null;
+            this.$store.dispatch('getThreads').then((id) => {
+            	console.log('test');
+            	this.selectThread(id);
+				//this.$store.dispatch('getFirstThread', id);
+			});
+			//this.$store.dispatch('getFirstThread', id);
         },
 
         created() {        	
         	let id = (this.$route.params.id) ? this.$route.params.id : null;
-        	let vm = this;       	
-
-   //      	async function getThreads() {
-   //      		await axios.get('messages/threads')
-   //      		.then((response) => {
-   //      			vm.threads = response.data[0];
-   //      			vm.userId = response.data[1];
-   //      		});
-
-   //      		await vm.selectThread(id);
-			// }
-
-			// getThreads();        	
+        	let vm = this;     	
         }
     };
 </script>
