@@ -56,28 +56,25 @@ class MessageController extends Controller
 
     public function newMessage()
     {
-    	$thread = new \App\Messanger\Thread;
-    	$thread->save();
+    	// Check if thread already exist
+    	$thread = Thread::with('firstParticipant')
+    				->whereHas('firstParticipant', function ($q)
+    				{
+    					$q->where('user_id', request()->to);
+    				})
+    				->first();
 
-    	$thread->participants()->createMany([
-    		['user_id' => \Auth::id()],
-    		['user_id' => request()->to]
-    	]);
+    	if (!$thread) {
+    		$thread = new \App\Messanger\Thread;
+    		$thread->save();
 
-    	$message = new \App\Messanger\Message;
+    		$thread->participants()->createMany([
+	    		['user_id' => \Auth::id()],
+	    		['user_id' => request()->to]
+	    	]);
+    	}
 
-    	$message->thread_id = $thread->id;
-    	$message->user_id = \Auth::id();
-    	$message->body = request()->input;
-    	$message->save();
-
-    	broadcast(new NewMessage($message));
-
-    	// Update thread
-    	$thread->updated_at = Carbon::now();
-    	//$thread->save();
-    	$data = [$thread->load('firstParticipant.user', 'messages.user'), $message->load('user') ];
-    	return $data;
+    	return $thread->load('firstParticipant.user', 'messages.user');
     }
 
     public function search()

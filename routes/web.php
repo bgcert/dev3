@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(1));
+//Auth::login(\App\User::find(1));
 
 Route::get('/eventtest', function () {
     $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
@@ -68,13 +68,6 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::post('/set/user/name', 'SettingsController@setName');
 	Route::post('/set/publisher/data', 'SettingsController@setPublisher');
 	Route::post('/change/password', 'SettingsController@changePassword');
-
-	// Messanger routes
-	//Route::get('/messages', 'MessageController@index');
-	// Route::get('/threads', 'MessageController@getThreads');
-	// Route::get('/thread/{id}', 'MessageController@getThreadBy');
-	// Route::post('/message/add', 'MessageController@addMessage');
-	//Route::post('/message', 'MessageController@store');
 
 	Route::get('/', 'UserController@index');
 	Route::get('/order', 'UserController@order');

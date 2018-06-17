@@ -22,7 +22,7 @@
 
 				<!-- Thread List -->
 				<ul v-show="!focus && (searchInput == '')">
-					<li v-for="thread in threads" @click.prevent="selectThread(thread.id)" :class="{ 'selected': thread.id == selectedThread }">
+					<li v-for="thread in threads" @click.prevent="selectThread(thread)" :class="{ 'selected': thread.id == selectedThread }">
 						<router-link :to="'/t/' + thread.id">
 							<div class="picture">
 								<img :src="thread.first_participant.user.picture">
@@ -38,13 +38,13 @@
 
 			<!-- Messages Feed -->
 			<div class="feed-container">
-				<div class="ui divided items" v-if="selectedUser">
+				<div class="ui divided items" v-if="contact">
 					<div class="item">
 						<div class="ui tiny circular image">
-							<img :src="selectedUser.picture">
+							<img :src="contact.picture">
 						</div>
 						<div class="middle aligned content">
-							{{ selectedUser.name }}
+							{{ contact.name }}
 						</div>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 			                </div>
 						</li>
 					</ul>	
-					<textarea v-model="input" @keydown.enter.prevent="send" placeholder="Message..."></textarea>
+					<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()" placeholder="Message..."></textarea>
 				</div>
 			</div>
 		</div>
@@ -78,13 +78,16 @@
     			selectedUser: null,
     			input: '',
     			searchInput: '',
-    			newMessage: false
+    			isNew: false
     		}
     	},
 
     	computed: {
     		threads: function() {
     			return this.$store.getters.threads;
+    		},
+    		contact: function() {
+    			return this.$store.getters.contact;
     		},
     		messages: function() {
     			return this.$store.getters.messages;
@@ -98,69 +101,50 @@
     	},
 
         methods: {
-        	newUser(item) {
-        		this.searchQuery = '';
-				var exist = this.threads.filter(function(arr) { 
-				    return arr.first_participant.user.id == item.id; 
-				});
-
-				if (exist.length == 0) {
-					this.newMessage = true;
-					this.selectedUser = item;
-	        		this.messages = [];
-	        		this.selected = null;
-	        		return;
-				}
-
-				this.selectThread(exist[0].id);
-        	},
-
-        	selectThread(id = null) {
-        		if (this.threads.length == 0) return;
-
-        		if (id == null) {
-        			id = this.threads[0].id; // id is the first thread
-        			this.$router.push('/t/' + id);
-        		}
-
-        		this.$store.commit('selectThread', id);
-        		this.$store.dispatch('getMessages', id);
-
-	        	Echo.private('messages.' + this.selected)
-                .listen('NewMessage', (e) => {
+        	listen() {
+        		Echo.private('messages.' + this.selectedThread)
+                	.listen('NewMessage', (e) => {
                     this.hanleIncoming(e.message);
                 });
         	},
+        	newUser(item) {
+        		this.searchQuery = '';
+				var result = this.threads.filter(function(arr) { 
+				    return arr.first_participant.user.id == item.id; 
+				});
+
+				if (result.length == 0) {
+					this.$store.commit('updateContact', item);
+					this.$store.commit('updateMessages', []);
+					this.$store.commit('updateSelectedThread', null);
+					this.searchInput = '';
+					this.isNew = true;
+	        		return;
+				}
+
+				this.selectThread(result[0]);
+        	},
+
+        	selectThread(thread = null) {
+        		if (this.threads.length == 0) return;
+
+        		if (thread == null) thread = this.threads[0]; // id is the first thread
+
+        		this.$store.dispatch('selectThread', thread);
+        		this.$store.dispatch('getMessages', thread.id);
+        	},
 
         	send() {
-                if (this.input == '') {
-                    return;
-                }
+                if (this.input == '') return;
 
                 this.$store.dispatch('sendMessage', this.input);
+                this.input = '';
+            },
 
-                if (this.newMessage) {
-					axios.post('messages/new', {
-	                	to: this.selectedUser.id,
-	                    input: this.input
-	                }).then((response) => {
-	                	this.newMessage = false;
-	                	this.input = '';
-	                	//this.threads.unshift(response.data[0]);
-	                	this.messages = response.data[1];
-	                	this.selectThread(response.data[0].id);
-	                	// this.selected = response.data[0].id;
-	                	console.log();
-	                });
-	                return;               	
-                }
-
-                // axios.post('messages/add', {
-                // 	thread_id: this.selected,
-                //     input: this.input
-                // }).then((response) => {
-                // 	this.input = '';
-                // });
+            async newMessage() {
+            	this.isNew = false;
+            	await this.$store.dispatch('newContact');
+            	this.send();
             },
 
             hanleIncoming(message) {
@@ -175,7 +159,7 @@
             scrollToBottom() {
                 setTimeout(() => {
                     this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
-                }, 100);
+                }, 300);
             },
 
             searchAfterDebounce: _.debounce(
@@ -201,6 +185,7 @@
 	        		this.loading = true;
 	        		this.searchAfterDebounce();
 	        	} else {
+	        		this.loading = false;
 	        		this.$store.commit('clearSearchResults');
 	        	}
 	        }
@@ -208,18 +193,19 @@
 
         mounted() {
             console.log('Messanger App Component mounted.');
-            let id = (this.$route.params.id) ? this.$route.params.id : null;
-            this.$store.dispatch('getThreads').then((id) => {
-            	console.log('test');
-            	this.selectThread(id);
-				//this.$store.dispatch('getFirstThread', id);
+
+            this.$store.dispatch('getThreads').then(() => {
+            	this.selectThread();
 			});
-			//this.$store.dispatch('getFirstThread', id);
+			// this.$store.dispatch('listen');
+
         },
 
-        created() {        	
-        	let id = (this.$route.params.id) ? this.$route.params.id : null;
-        	let vm = this;     	
+        created() {
+        	let vm = this;
+        	setTimeout(function(){
+        		vm.listen();
+        	}, 3000);
         }
     };
 </script>
