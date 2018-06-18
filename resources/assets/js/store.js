@@ -90,6 +90,7 @@ export default {
 
             Echo.private('threads.' + context.getters.userId)
                 	.listen('NewThread', (e) => {
+                		console.log(e);
                 		context.commit('unshiftThread', e.thread);
 	            		// if (e.participant == context.getters.userId) {
 	            		// 	context.commit('unshiftThread', e.thread);
