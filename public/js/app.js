@@ -52492,7 +52492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.post('/dashboard/events', formData, config).then(function (response) {
           console.log(response);
           vm.$message('Събитието е създадено успешно.');
-          //vm.$router.push('/events');
+          vm.$router.push('/events');
         }).catch(function (error) {
           console.log(error);
         });

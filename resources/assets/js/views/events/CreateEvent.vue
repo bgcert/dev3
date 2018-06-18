@@ -114,7 +114,7 @@
 	    			.then(function (response) {
 	    				console.log(response);
 	    				vm.$message('Събитието е създадено успешно.');
-    					//vm.$router.push('/events');
+    					vm.$router.push('/events');
 	    			})
 	    			.catch(function (error) {
 	    				console.log(error);

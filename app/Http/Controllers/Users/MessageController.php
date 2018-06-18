@@ -74,6 +74,8 @@ class MessageController extends Controller
 	    	]);
     	}
 
+    	broadcast(new NewThread($thread));
+
     	return $thread->load('firstParticipant.user', 'messages.user');
     }
 
