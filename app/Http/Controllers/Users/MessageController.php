@@ -75,9 +75,9 @@ class MessageController extends Controller
 	    	]);
     	}
 
-    	$thread->load('firstParticipant.user', 'messages.user');
-
     	broadcast(new NewThread($thread, request()->to));
+    	
+    	$thread->load('firstParticipant.user', 'messages.user');
 
     	return $thread;
     }

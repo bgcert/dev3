@@ -41,6 +41,6 @@ class NewThread implements ShouldBroadcast
 
     public function broadcastWith()
     {
-    	return ['thread' => $this->thread, 'participant' => $this->participant];
+    	return ['thread_id' => $this->thread->id];
     }
 }

@@ -90,8 +90,14 @@ export default {
 
             Echo.private('threads.' + context.getters.userId)
                 	.listen('NewThread', (e) => {
-                		console.log(e);
-                		context.commit('unshiftThread', e.thread);
+
+                		let route = 'messages/thread/' + e.thread_id;
+			        	axios.get(route)
+			        		.then((response) => {
+			        			context.commit('unshiftThread', response.data);
+			        		});
+
+                		// context.commit('unshiftThread', e.thread);
 	            		// if (e.participant == context.getters.userId) {
 	            		// 	context.commit('unshiftThread', e.thread);
 	            		// }

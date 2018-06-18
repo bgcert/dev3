@@ -55678,7 +55678,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
 
             Echo.private('threads.' + context.getters.userId).listen('NewThread', function (e) {
-                context.commit('unshiftThread', e.thread);
+
+                var route = 'messages/thread/' + e.thread_id;
+                axios.get(route).then(function (response) {
+                    context.commit('unshiftThread', response.data);
+                });
+
+                // context.commit('unshiftThread', e.thread);
                 // if (e.participant == context.getters.userId) {
                 // 	context.commit('unshiftThread', e.thread);
                 // }
