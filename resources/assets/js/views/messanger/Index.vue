@@ -127,12 +127,15 @@
         	},
 
         	selectThread(thread = null) {
-        		if (this.threads.length == 0) return;
+        		return new Promise((resolve, reject) => {
+	        		if (this.threads.length == 0) return;
 
-        		if (thread == null) thread = this.threads[0]; // id is the first thread
+	        		if (thread == null) thread = this.threads[0]; // id is the first thread
 
-        		this.$store.dispatch('selectThread', thread);
-        		this.$store.dispatch('getMessages', thread.id);
+	        		this.$store.dispatch('selectThread', thread);
+	        		this.$store.dispatch('getMessages', thread.id);
+	        		resolve();
+        		})
         	},
 
         	send() {
@@ -189,16 +192,19 @@
             this.$store.dispatch('getThreads')
             .then(() => {
             	this.selectThread();
+			})
+			.then(() => {
+            	this.$store.dispatch('listen');
 			});
 			// this.$store.dispatch('listen');
 
         },
 
         created() {
-        	let vm = this;
-        	setTimeout(function(){
-        		vm.listen();
-        	}, 3000);
+        	// let vm = this;
+        	// setTimeout(function(){
+        	// 	vm.listen();
+        	// }, 1000);
         }
     };
 </script>

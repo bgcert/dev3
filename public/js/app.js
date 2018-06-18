@@ -54466,14 +54466,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.selectThread(result[0]);
         },
         selectThread: function selectThread() {
+            var _this2 = this;
+
             var thread = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-            if (this.threads.length == 0) return;
+            return new Promise(function (resolve, reject) {
+                if (_this2.threads.length == 0) return;
 
-            if (thread == null) thread = this.threads[0]; // id is the first thread
+                if (thread == null) thread = _this2.threads[0]; // id is the first thread
 
-            this.$store.dispatch('selectThread', thread);
-            this.$store.dispatch('getMessages', thread.id);
+                _this2.$store.dispatch('selectThread', thread);
+                _this2.$store.dispatch('getMessages', thread.id);
+                resolve();
+            });
         },
         send: function send() {
             if (this.input == '') return;
@@ -54509,10 +54514,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return newMessage;
         }(),
         scrollToBottom: function scrollToBottom() {
-            var _this2 = this;
+            var _this3 = this;
 
             setTimeout(function () {
-                _this2.$refs.feed.scrollTop = _this2.$refs.feed.scrollHeight - _this2.$refs.feed.clientHeight;
+                _this3.$refs.feed.scrollTop = _this3.$refs.feed.scrollHeight - _this3.$refs.feed.clientHeight;
             }, 300);
         },
 
@@ -54546,20 +54551,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     mounted: function mounted() {
-        var _this3 = this;
+        var _this4 = this;
 
         console.log('Messanger App Component mounted.');
 
         this.$store.dispatch('getThreads').then(function () {
-            _this3.selectThread();
+            _this4.selectThread();
+        }).then(function () {
+            _this4.$store.dispatch('listen');
         });
         // this.$store.dispatch('listen');
     },
     created: function created() {
-        var vm = this;
-        setTimeout(function () {
-            vm.listen();
-        }, 3000);
+        // let vm = this;
+        // setTimeout(function(){
+        // 	vm.listen();
+        // }, 1000);
     }
 });
 
@@ -55658,15 +55665,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             context.commit('updateContact', thread.first_participant.user);
             context.commit('updateSelectedThread', thread.id);
         },
+        listen: function listen(context) {
 
-
-        // listen(context) {
-        // 	Echo.private('messages.' + context.getters.selectedThread)
-        //         	.listen('NewMessage', (e) => {
-        //         	context.commit('pushMessage', e.message);
-        //         });
-        // },
-
+            Echo.private('messages.' + context.getters.selectedThread).listen('NewMessage', function (e) {
+                console.log(e.message);
+                if (e.message.user_id == context.getters.contact.id) {
+                    context.commit('pushMessage', e.message);
+                }
+            });
+        },
         newContact: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(context) {
                 var id;
