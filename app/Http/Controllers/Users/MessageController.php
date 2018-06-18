@@ -44,19 +44,19 @@ class MessageController extends Controller
     	$message->body = request()->input;
     	$message->save();
 
-    	broadcast(new NewMessage($message));
-
     	// Update thread
     	$thread = Thread::find(request()->thread_id);
     	$thread->updated_at = Carbon::now();
     	$thread->save();
+
+    	broadcast(new NewMessage($message));
 
     	return $message->load('user');
     }
 
     public function newMessage()
     {
-    	// Check if thread already exist
+    	// Check if thread already exist - Validation!
     	$thread = Thread::with('firstParticipant')
     				->whereHas('firstParticipant', function ($q)
     				{

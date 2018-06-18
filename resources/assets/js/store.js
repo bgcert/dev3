@@ -77,12 +77,12 @@ export default {
         	context.commit('updateSelectedThread', thread.id);
         },
 
-        listen(context) {
-        	Echo.private('messages.' + context.getters.selectedThread)
-                	.listen('NewMessage', (e) => {
-                	context.commit('pushMessage', e.message);
-                });
-        },
+        // listen(context) {
+        // 	Echo.private('messages.' + context.getters.selectedThread)
+        //         	.listen('NewMessage', (e) => {
+        //         	context.commit('pushMessage', e.message);
+        //         });
+        // },
 
         async newContact(context) {
         	let id = await context.dispatch('newThread');

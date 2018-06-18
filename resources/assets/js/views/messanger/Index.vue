@@ -57,8 +57,8 @@
 			                </div>
 						</li>
 					</ul>	
-					<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()" placeholder="Message..."></textarea>
 				</div>
+				<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()" placeholder="Message..."></textarea>
 			</div>
 		</div>
 	</div>
@@ -104,7 +104,8 @@
         	listen() {
         		Echo.private('messages.' + this.selectedThread)
                 	.listen('NewMessage', (e) => {
-                    this.hanleIncoming(e.message);
+                		console.log('Got event...');
+                    	this.$store.commit('pushMessage', e.message);
                 });
         	},
         	newUser(item) {
@@ -147,15 +148,6 @@
             	this.send();
             },
 
-            hanleIncoming(message) {
-            	this.pushMessage(message);
-            	// console.log(message.sent);
-            },
-
-            pushMessage(message) {
-            	this.messages.push(message);
-            },
-
             scrollToBottom() {
                 setTimeout(() => {
                     this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight - this.$refs.feed.clientHeight;
@@ -194,7 +186,8 @@
         mounted() {
             console.log('Messanger App Component mounted.');
 
-            this.$store.dispatch('getThreads').then(() => {
+            this.$store.dispatch('getThreads')
+            .then(() => {
             	this.selectThread();
 			});
 			// this.$store.dispatch('listen');
@@ -213,6 +206,7 @@
 <style lang="scss" scoped>
 	.messanger {
 		display: flex;
+		height: 700px;
 
 		.threads {
 		    flex: 2;
@@ -283,7 +277,7 @@
 
 		.messages-feed {
 		    height: 100%;
-		    //max-height: 470px;
+		    max-height: 520px;
 		    overflow-y: scroll;
 		    ul {
 		        list-style-type: none;
