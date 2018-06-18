@@ -73,7 +73,6 @@
     		return {
     			focus: false,
     			loading: false,
-    			userId: null,
     			selected: null,
     			selectedUser: null,
     			input: '',
@@ -83,6 +82,9 @@
     	},
 
     	computed: {
+    		userId: function() {
+    			return this.$store.getters.userId;
+    		},
     		threads: function() {
     			return this.$store.getters.threads;
     		},
@@ -194,7 +196,7 @@
             	this.selectThread();
 			})
 			.then(() => {
-            	this.$store.dispatch('listen');
+				this.$store.dispatch('listen');
 			});
 			// this.$store.dispatch('listen');
 

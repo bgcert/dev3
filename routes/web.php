@@ -90,7 +90,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => [
 	Route::get('/threads', 'MessageController@getThreads');
 	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
 	Route::post('/add', 'MessageController@addMessage');
-	Route::post('/new', 'MessageController@newMessage');
+	Route::post('/new', 'MessageController@newThread');
 	Route::post('/user/search', 'MessageController@search');
 });
 

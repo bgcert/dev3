@@ -15,7 +15,14 @@
 //     return (int) $user->id === (int) $id;
 // });
 
-Broadcast::channel('messages.{thread_id}', function ($user, $thread_id) {
+Broadcast::channel('messages.{id}', function ($user, $id) {
+	return (int) $user->id === (int) $id;
+	// $thread = \App\Messanger\Thread::find((int) $thread_id);
+	// return $thread->participants->contains('user_id', (int) $user->id);
+});
+
+Broadcast::channel('threads.{participant}', function ($user, $participant) {
+	return true;
 	$thread = \App\Messanger\Thread::find((int) $thread_id);
 	return $thread->participants->contains('user_id', (int) $user->id);
 });

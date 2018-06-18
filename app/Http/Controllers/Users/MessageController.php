@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Messanger\Thread;
 use App\Events\NewMessage;
+use App\Events\NewThread;
 use Carbon\Carbon;
 
 class MessageController extends Controller
@@ -54,7 +55,7 @@ class MessageController extends Controller
     	return $message->load('user');
     }
 
-    public function newMessage()
+    public function newThread()
     {
     	// Check if thread already exist - Validation!
     	$thread = Thread::with('firstParticipant')
@@ -74,9 +75,11 @@ class MessageController extends Controller
 	    	]);
     	}
 
-    	broadcast(new NewThread($thread));
+    	$thread->load('firstParticipant.user', 'messages.user');
 
-    	return $thread->load('firstParticipant.user', 'messages.user');
+    	broadcast(new NewThread($thread, request()->to));
+
+    	return $thread;
     }
 
     public function search()

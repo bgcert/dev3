@@ -1,5 +1,6 @@
 export default {
     state: {
+    	userId: null,
     	threads: [],
     	messages: [],
     	contact: [],
@@ -8,7 +9,7 @@ export default {
     },
 
     getters: {
-    	welcome(state) { return state.msg; },
+    	userId(state) { return state.userId; },
         threads(state) { return state.threads; },
         contact(state) { return state.contact; },
         messages(state) { return state.messages; },
@@ -19,6 +20,7 @@ export default {
     mutations: {
     	updateThreads(state, payload) {
     		state.threads = payload[0];
+    		state.userId = payload[1];
     	},
 
     	updateMessages(state, payload) {
@@ -78,19 +80,25 @@ export default {
         },
 
         listen(context) {
-
-        	Echo.private('messages.' + context.getters.selectedThread)
+        	Echo.private('messages.' + context.getters.userId)
                 	.listen('NewMessage', (e) => {
-                		console.log(e.message);
-                		if (e.message.user_id == context.getters.contact.id) {
+                		// context.commit('pushMessage', e.message);
+                		if (e.message.thread_id == context.getters.selectedThread) {
                 			context.commit('pushMessage', e.message);
                 		}
+                });
+
+            Echo.private('threads.' + context.getters.userId)
+                	.listen('NewThread', (e) => {
+                		context.commit('unshiftThread', e.thread);
+	            		// if (e.participant == context.getters.userId) {
+	            		// 	context.commit('unshiftThread', e.thread);
+	            		// }
                 });
         },
 
         async newContact(context) {
         	let id = await context.dispatch('newThread');
-        	console.log(id);
         	context.commit('updateSelectedThread', id);
         },
 

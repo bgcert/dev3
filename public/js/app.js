@@ -54412,7 +54412,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             focus: false,
             loading: false,
-            userId: null,
             selected: null,
             selectedUser: null,
             input: '',
@@ -54422,6 +54421,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     computed: {
+        userId: function userId() {
+            return this.$store.getters.userId;
+        },
         threads: function threads() {
             return this.$store.getters.threads;
         },
@@ -55589,6 +55591,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     state: {
+        userId: null,
         threads: [],
         messages: [],
         contact: [],
@@ -55597,8 +55600,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     getters: {
-        welcome: function welcome(state) {
-            return state.msg;
+        userId: function userId(state) {
+            return state.userId;
         },
         threads: function threads(state) {
             return state.threads;
@@ -55620,6 +55623,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mutations: {
         updateThreads: function updateThreads(state, payload) {
             state.threads = payload[0];
+            state.userId = payload[1];
         },
         updateMessages: function updateMessages(state, payload) {
             state.messages = payload;
@@ -55666,12 +55670,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             context.commit('updateSelectedThread', thread.id);
         },
         listen: function listen(context) {
-
-            Echo.private('messages.' + context.getters.selectedThread).listen('NewMessage', function (e) {
-                console.log(e.message);
-                if (e.message.user_id == context.getters.contact.id) {
+            Echo.private('messages.' + context.getters.userId).listen('NewMessage', function (e) {
+                // context.commit('pushMessage', e.message);
+                if (e.message.thread_id == context.getters.selectedThread) {
                     context.commit('pushMessage', e.message);
                 }
+            });
+
+            Echo.private('threads.' + context.getters.userId).listen('NewThread', function (e) {
+                context.commit('unshiftThread', e.thread);
+                // if (e.participant == context.getters.userId) {
+                // 	context.commit('unshiftThread', e.thread);
+                // }
             });
         },
         newContact: function () {
@@ -55687,10 +55697,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 id = _context.sent;
 
-                                console.log(id);
                                 context.commit('updateSelectedThread', id);
 
-                            case 5:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
