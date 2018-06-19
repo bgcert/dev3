@@ -54317,7 +54317,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.messanger[data-v-75f6efc8] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 700px;\n}\n.messanger .threads[data-v-75f6efc8] {\n    -webkit-box-flex: 2;\n        -ms-flex: 2;\n            flex: 2;\n    overflow-y: scroll;\n    border-right: 1px solid #a6a6a6;\n}\n.messanger .threads ul[data-v-75f6efc8] {\n      list-style-type: none;\n      padding-left: 0;\n}\n.messanger .threads ul li.selected[data-v-75f6efc8] {\n        background: #e9ebee;\n}\n.messanger .threads ul li a[data-v-75f6efc8] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        padding: 2px;\n        border-bottom: 1px solid #f1f1f1;\n        height: 80px;\n        position: relative;\n        cursor: pointer;\n}\n.messanger .threads ul li a .picture[data-v-75f6efc8] {\n          -webkit-box-flex: 1;\n              -ms-flex: 1;\n                  flex: 1;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n}\n.messanger .threads ul li a .picture img[data-v-75f6efc8] {\n            width: 35px;\n            border-radius: 50%;\n            margin: 0 auto;\n}\n.messanger .threads ul li a .details[data-v-75f6efc8] {\n          -webkit-box-flex: 3;\n              -ms-flex: 3;\n                  flex: 3;\n          font-size: 14px;\n          overflow: hidden;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n}\n.messanger .threads ul li a .details p[data-v-75f6efc8] {\n            margin: 0;\n}\n.messanger .threads ul li a .details p.name[data-v-75f6efc8] {\n              font-weight: bold;\n}\n.messanger .feed-container[data-v-75f6efc8] {\n    -webkit-box-flex: 5;\n        -ms-flex: 5;\n            flex: 5;\n}\n.messanger .ui.divided.items[data-v-75f6efc8] {\n    border-bottom: 1px solid #e9ebee;\n    margin: 0;\n    padding: 10px;\n}\n.messanger textarea[data-v-75f6efc8] {\n    width: 96%;\n    margin: 10px;\n    resize: none;\n    border-radius: 3px;\n    border: 1px solid lightgray;\n    padding: 6px;\n}\n.messanger .messages-feed[data-v-75f6efc8] {\n    height: 100%;\n    max-height: 520px;\n    overflow-y: scroll;\n}\n.messanger .messages-feed ul[data-v-75f6efc8] {\n      list-style-type: none;\n      padding: 5px;\n}\n.messanger .messages-feed ul li.message[data-v-75f6efc8] {\n        margin: 10px 0;\n        width: 100%;\n}\n.messanger .messages-feed ul li.message .text[data-v-75f6efc8] {\n          max-width: 200px;\n          border-radius: 5px;\n          padding: 12px;\n          display: inline-block;\n}\n.messanger .messages-feed ul li.message.received[data-v-75f6efc8] {\n          text-align: right;\n}\n.messanger .messages-feed ul li.message.received .text[data-v-75f6efc8] {\n            background: #b2b2b2;\n            color: #fff;\n}\n.messanger .messages-feed ul li.message.sent[data-v-75f6efc8] {\n          text-align: left;\n}\n.messanger .messages-feed ul li.message.sent .text[data-v-75f6efc8] {\n            background: #81c4f9;\n}\n[data-v-75f6efc8]::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */\n}\n", ""]);
+exports.push([module.i, "\n.unread[data-v-75f6efc8] {\n  border: 3px solid red;\n}\n.messanger[data-v-75f6efc8] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 700px;\n}\n.messanger .threads[data-v-75f6efc8] {\n    -webkit-box-flex: 2;\n        -ms-flex: 2;\n            flex: 2;\n    overflow-y: scroll;\n    border-right: 1px solid #a6a6a6;\n}\n.messanger .threads ul[data-v-75f6efc8] {\n      list-style-type: none;\n      padding-left: 0;\n}\n.messanger .threads ul li.selected[data-v-75f6efc8] {\n        background: #e9ebee;\n}\n.messanger .threads ul li a[data-v-75f6efc8] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        padding: 2px;\n        border-bottom: 1px solid #f1f1f1;\n        height: 80px;\n        position: relative;\n        cursor: pointer;\n}\n.messanger .threads ul li a .picture[data-v-75f6efc8] {\n          -webkit-box-flex: 1;\n              -ms-flex: 1;\n                  flex: 1;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: center;\n              -ms-flex-align: center;\n                  align-items: center;\n}\n.messanger .threads ul li a .picture img[data-v-75f6efc8] {\n            width: 35px;\n            border-radius: 50%;\n            margin: 0 auto;\n}\n.messanger .threads ul li a .details[data-v-75f6efc8] {\n          -webkit-box-flex: 3;\n              -ms-flex: 3;\n                  flex: 3;\n          font-size: 14px;\n          overflow: hidden;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n}\n.messanger .threads ul li a .details p[data-v-75f6efc8] {\n            margin: 0;\n}\n.messanger .threads ul li a .details p.name[data-v-75f6efc8] {\n              font-weight: bold;\n}\n.messanger .feed-container[data-v-75f6efc8] {\n    -webkit-box-flex: 5;\n        -ms-flex: 5;\n            flex: 5;\n}\n.messanger .ui.divided.items[data-v-75f6efc8] {\n    border-bottom: 1px solid #e9ebee;\n    margin: 0;\n    padding: 10px;\n}\n.messanger textarea[data-v-75f6efc8] {\n    width: 96%;\n    margin: 10px;\n    resize: none;\n    border-radius: 3px;\n    border: 1px solid lightgray;\n    padding: 6px;\n}\n.messanger .messages-feed[data-v-75f6efc8] {\n    height: 100%;\n    max-height: 520px;\n    overflow-y: scroll;\n}\n.messanger .messages-feed ul[data-v-75f6efc8] {\n      list-style-type: none;\n      padding: 5px;\n}\n.messanger .messages-feed ul li.message[data-v-75f6efc8] {\n        margin: 10px 0;\n        width: 100%;\n}\n.messanger .messages-feed ul li.message .text[data-v-75f6efc8] {\n          max-width: 200px;\n          border-radius: 5px;\n          padding: 12px;\n          display: inline-block;\n}\n.messanger .messages-feed ul li.message.received[data-v-75f6efc8] {\n          text-align: right;\n}\n.messanger .messages-feed ul li.message.received .text[data-v-75f6efc8] {\n            background: #b2b2b2;\n            color: #fff;\n}\n.messanger .messages-feed ul li.message.sent[data-v-75f6efc8] {\n          text-align: left;\n}\n.messanger .messages-feed ul li.message.sent .text[data-v-75f6efc8] {\n            background: #81c4f9;\n}\n[data-v-75f6efc8]::-webkit-scrollbar {\n  width: 0px;\n  /* remove scrollbar space */\n  background: transparent;\n  /* optional: just make scrollbar invisible */\n}\n", ""]);
 
 // exports
 
@@ -54403,6 +54403,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
  // Don't know why is not imported already.
 
@@ -54412,8 +54413,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             focus: false,
             loading: false,
-            selected: null,
-            selectedUser: null,
             input: '',
             searchInput: '',
             isNew: false
@@ -54442,14 +54441,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
-        listen: function listen() {
-            var _this = this;
-
-            Echo.private('messages.' + this.selectedThread).listen('NewMessage', function (e) {
-                console.log('Got event...');
-                _this.$store.commit('pushMessage', e.message);
-            });
-        },
         newUser: function newUser(item) {
             this.searchQuery = '';
             var result = this.threads.filter(function (arr) {
@@ -54467,20 +54458,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             this.selectThread(result[0]);
         },
-        selectThread: function selectThread() {
-            var _this2 = this;
-
-            var thread = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            return new Promise(function (resolve, reject) {
-                if (_this2.threads.length == 0) return;
-
-                if (thread == null) thread = _this2.threads[0]; // id is the first thread
-
-                _this2.$store.dispatch('selectThread', thread);
-                _this2.$store.dispatch('getMessages', thread.id);
-                resolve();
-            });
+        selectThread: function selectThread(thread) {
+            this.$store.dispatch('selectThread', thread);
         },
         send: function send() {
             if (this.input == '') return;
@@ -54516,10 +54495,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return newMessage;
         }(),
         scrollToBottom: function scrollToBottom() {
-            var _this3 = this;
+            var _this = this;
 
             setTimeout(function () {
-                _this3.$refs.feed.scrollTop = _this3.$refs.feed.scrollHeight - _this3.$refs.feed.clientHeight;
+                _this.$refs.feed.scrollTop = _this.$refs.feed.scrollHeight - _this.$refs.feed.clientHeight;
             }, 300);
         },
 
@@ -54531,7 +54510,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         search: function search() {
             this.$store.dispatch('search', this.searchInput);
-        }
+        },
+        load: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return this.$store.dispatch('load');
+
+                            case 2:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function load() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return load;
+        }()
     },
 
     watch: {
@@ -54553,23 +54555,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     mounted: function mounted() {
-        var _this4 = this;
-
         console.log('Messanger App Component mounted.');
-
-        this.$store.dispatch('getThreads').then(function () {
-            _this4.selectThread();
-        }).then(function () {
-            _this4.$store.dispatch('listen');
-        });
-        // this.$store.dispatch('listen');
+        this.$store.dispatch('load');
     },
-    created: function created() {
-        // let vm = this;
-        // setTimeout(function(){
-        // 	vm.listen();
-        // }, 1000);
-    }
+    created: function created() {}
 });
 
 /***/ }),
@@ -55456,7 +55445,10 @@ var render = function() {
               return _c(
                 "li",
                 {
-                  class: { selected: thread.id == _vm.selectedThread },
+                  class: {
+                    selected: thread.id == _vm.selectedThread,
+                    unread: thread.unread
+                  },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -55543,7 +55535,6 @@ var render = function() {
               expression: "input"
             }
           ],
-          attrs: { placeholder: "Message..." },
           domProps: { value: _vm.input },
           on: {
             keydown: function($event) {
@@ -55643,12 +55634,60 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         pushMessage: function pushMessage(state, payload) {
             state.messages.push(payload);
         },
+
+
+        // updateSeen(state, payload) {
+        // 	console.log(payload);
+        // 	console.log('seen');
+        // },
+
         clearSearchResults: function clearSearchResults(state) {
             state.searchResults = [];
         }
     },
 
     actions: {
+        load: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(context) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return context.dispatch('getThreads');
+
+                            case 2:
+
+                                context.dispatch('listen');
+
+                                if (!(context.getters.threads.length == 0)) {
+                                    _context.next = 5;
+                                    break;
+                                }
+
+                                return _context.abrupt('return');
+
+                            case 5:
+                                _context.next = 7;
+                                return context.dispatch('selectThread', context.getters.threads[0]);
+
+                            case 7:
+                                context.dispatch('getMessages', context.getters.selectedThread);
+
+                            case 8:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function load(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return load;
+        }(),
         getThreads: function getThreads(context) {
             return new Promise(function (resolve, reject) {
                 axios.get('messages/threads').then(function (response) {
@@ -55660,14 +55699,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
         },
         getMessages: function getMessages(context, id) {
-            var route = 'messages/thread/' + id;
-            axios.get(route).then(function (response) {
-                context.commit('updateMessages', response.data.messages);
+            return new Promise(function (resolve, reject) {
+                var route = 'messages/thread/' + id;
+                axios.get(route).then(function (response) {
+                    context.commit('updateMessages', response.data.messages);
+                    resolve();
+                });
             });
         },
         selectThread: function selectThread(context, thread) {
-            context.commit('updateContact', thread.first_participant.user);
-            context.commit('updateSelectedThread', thread.id);
+            return new Promise(function (resolve, reject) {
+                context.commit('updateContact', thread.first_participant.user);
+                context.commit('updateSelectedThread', thread.id);
+                context.dispatch('getMessages', thread.id);
+                resolve();
+            });
         },
         listen: function listen(context) {
             Echo.private('messages.' + context.getters.userId).listen('NewMessage', function (e) {
@@ -55678,9 +55724,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
 
             Echo.private('threads.' + context.getters.userId).listen('NewThread', function (e) {
-
                 var route = 'messages/thread/' + e.thread_id;
                 axios.get(route).then(function (response) {
+                    response.data.unread = true;
                     context.commit('unshiftThread', response.data);
                 });
 
@@ -55691,30 +55737,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
         },
         newContact: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(context) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(context) {
                 var id;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context.next = 2;
+                                _context2.next = 2;
                                 return context.dispatch('newThread');
 
                             case 2:
-                                id = _context.sent;
+                                id = _context2.sent;
 
                                 context.commit('updateSelectedThread', id);
 
                             case 4:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this);
+                }, _callee2, this);
             }));
 
-            function newContact(_x) {
-                return _ref.apply(this, arguments);
+            function newContact(_x2) {
+                return _ref2.apply(this, arguments);
             }
 
             return newContact;
@@ -55735,6 +55781,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 input: message
             }).then(function (response) {
                 context.commit('pushMessage', response.data);
+            });
+        },
+        seen: function seen(context) {
+            axios.post('messages/seen', {
+                thread_id: context.getters.selectedThread
+            }).then(function (response) {
+                context.commit('updateSeen', response.data);
             });
         },
         search: function search(context, input) {

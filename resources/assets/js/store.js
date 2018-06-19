@@ -47,12 +47,26 @@ export default {
     		state.messages.push(payload);
     	},
 
+    	// updateSeen(state, payload) {
+    	// 	console.log(payload);
+    	// 	console.log('seen');
+    	// },
+
     	clearSearchResults(state) {
     		state.searchResults = [];
     	}
     },
 
     actions: {
+    	async load(context) {
+    		await context.dispatch('getThreads');
+
+    		context.dispatch('listen');
+    		if (context.getters.threads.length == 0) return;
+    		await context.dispatch('selectThread', context.getters.threads[0]);
+    		context.dispatch('getMessages', context.getters.selectedThread);
+    	},
+
     	getThreads(context) {
     		return new Promise((resolve, reject) => {
 	    		axios.get('messages/threads')
@@ -67,16 +81,23 @@ export default {
         },
 
         getMessages(context, id) {
-        	let route = 'messages/thread/' + id;
-        	axios.get(route)
-        		.then((response) => {
-        			context.commit('updateMessages', response.data.messages);
-        		});
+        	return new Promise((resolve, reject) => {
+	        	let route = 'messages/thread/' + id;
+	        	axios.get(route)
+	        		.then((response) => {
+	        			context.commit('updateMessages', response.data.messages);
+	        			resolve()
+	        		});
+        	})
         },
 
         selectThread(context, thread) {
-        	context.commit('updateContact', thread.first_participant.user);
-        	context.commit('updateSelectedThread', thread.id);
+        	return new Promise((resolve, reject) => {
+	        	context.commit('updateContact', thread.first_participant.user);
+	        	context.commit('updateSelectedThread', thread.id);
+	        	context.dispatch('getMessages', thread.id);
+	        	resolve();
+        	})
         },
 
         listen(context) {
@@ -89,11 +110,12 @@ export default {
                 });
 
             Echo.private('threads.' + context.getters.userId)
-                	.listen('NewThread', (e) => {
 
+                	.listen('NewThread', (e) => {
                 		let route = 'messages/thread/' + e.thread_id;
 			        	axios.get(route)
 			        		.then((response) => {
+			        			response.data.unread = true;
 			        			context.commit('unshiftThread', response.data);
 			        		});
 
@@ -129,14 +151,22 @@ export default {
                 });
         },
 
+        seen(context) {
+        	axios.post('messages/seen', {
+                	thread_id: context.getters.selectedThread,
+                }).then((response) => {
+                	context.commit('updateSeen', response.data);
+                });
+        },
+
         search(context, input) {
 	        	axios.post('messages/user/search', { searchQuery: input })
 	        		.then(function (response) {
 	        			context.commit('updateSearchResults', response.data);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
 		}
     }
 }

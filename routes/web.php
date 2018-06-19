@@ -91,6 +91,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => [
 	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
 	Route::post('/add', 'MessageController@addMessage');
 	Route::post('/new', 'MessageController@newThread');
+	Route::post('/seen', 'MessageController@seen');
 	Route::post('/user/search', 'MessageController@search');
 });
 

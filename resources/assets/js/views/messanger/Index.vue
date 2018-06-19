@@ -21,8 +21,9 @@
 				</div>
 
 				<!-- Thread List -->
-				<ul v-show="!focus && (searchInput == '')">
-					<li v-for="thread in threads" @click.prevent="selectThread(thread)" :class="{ 'selected': thread.id == selectedThread }">
+					
+				<ul  v-show="!focus && (searchInput == '')">
+					<li v-for="thread in threads" @click.prevent="selectThread(thread)" :class="{ 'selected': thread.id == selectedThread, 'unread': thread.unread }">
 						<router-link :to="'/t/' + thread.id">
 							<div class="picture">
 								<img :src="thread.first_participant.user.picture">
@@ -58,7 +59,7 @@
 						</li>
 					</ul>	
 				</div>
-				<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()" placeholder="Message..."></textarea>
+				<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()"></textarea>
 			</div>
 		</div>
 	</div>
@@ -73,8 +74,6 @@
     		return {
     			focus: false,
     			loading: false,
-    			selected: null,
-    			selectedUser: null,
     			input: '',
     			searchInput: '',
     			isNew: false
@@ -103,13 +102,6 @@
     	},
 
         methods: {
-        	listen() {
-        		Echo.private('messages.' + this.selectedThread)
-                	.listen('NewMessage', (e) => {
-                		console.log('Got event...');
-                    	this.$store.commit('pushMessage', e.message);
-                });
-        	},
         	newUser(item) {
         		this.searchQuery = '';
 				var result = this.threads.filter(function(arr) { 
@@ -128,16 +120,8 @@
 				this.selectThread(result[0]);
         	},
 
-        	selectThread(thread = null) {
-        		return new Promise((resolve, reject) => {
-	        		if (this.threads.length == 0) return;
-
-	        		if (thread == null) thread = this.threads[0]; // id is the first thread
-
-	        		this.$store.dispatch('selectThread', thread);
-	        		this.$store.dispatch('getMessages', thread.id);
-	        		resolve();
-        		})
+        	selectThread(thread) {
+        		this.$store.dispatch('selectThread', thread);
         	},
 
         	send() {
@@ -168,6 +152,10 @@
     		search() {
     			this.$store.dispatch('search', this.searchInput);
     		},
+
+    		async load() {
+    			await this.$store.dispatch('load');
+    		}
         },
 
         watch: {
@@ -190,28 +178,19 @@
 
         mounted() {
             console.log('Messanger App Component mounted.');
-
-            this.$store.dispatch('getThreads')
-            .then(() => {
-            	this.selectThread();
-			})
-			.then(() => {
-				this.$store.dispatch('listen');
-			});
-			// this.$store.dispatch('listen');
-
+            this.$store.dispatch('load');
         },
 
         created() {
-        	// let vm = this;
-        	// setTimeout(function(){
-        	// 	vm.listen();
-        	// }, 1000);
+        	
         }
     };
 </script>
 
 <style lang="scss" scoped>
+	.unread {
+		border: 3px solid red;
+	}
 	.messanger {
 		display: flex;
 		height: 700px;
