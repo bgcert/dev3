@@ -106467,7 +106467,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.mapouter {\n\ttext-align: right;\n\theight: 250px;\n\twidth: 650px;\n}\n.gmap_canvas {\n\toverflow:hidden;\n\tbackground:none!important;\n\theight: 250px;\n\twidth: 650px;\n}\n", ""]);
+exports.push([module.i, "\n.google-maps {\n        position: relative;\n        padding-bottom: 45%; // This is the aspect ratio\n        height: 0;\n        overflow: hidden;\n}\n.google-maps iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100% !important;\n        height: 100% !important;\n}\n", ""]);
 
 // exports
 
@@ -106487,23 +106487,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "mapouter" }, [
-        _c("div", { staticClass: "gmap_canvas" }, [
-          _c("iframe", {
-            attrs: {
-              width: "650",
-              height: "500",
-              id: "gmap_canvas",
-              src:
-                "https://maps.google.com/maps?q=Sofia&t=&z=15&ie=UTF8&iwloc=&output=embed",
-              frameborder: "0",
-              scrolling: "no",
-              marginheight: "0",
-              marginwidth: "0"
-            }
-          })
-        ])
+    return _c("div", { staticClass: "ui segment" }, [
+      _c("div", { staticClass: "google-maps" }, [
+        _c("iframe", {
+          staticStyle: { border: "0" },
+          attrs: {
+            src:
+              "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7098.94326104394!2d78.0430654485247!3d27.172909818538997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1385710909804",
+            width: "600",
+            height: "250",
+            frameborder: "0"
+          }
+        })
       ])
     ])
   }
@@ -106538,19 +106533,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  data: function data() {
-    return {};
-  },
+	data: function data() {
+		return {};
+	},
 
-  mounted: function mounted() {}
+	mounted: function mounted() {
+		$(function () {
+			var mapDiv = document.getElementById("map_canvas");
+			/// Set control options for map
+			var zoptions = {
+				position: google.maps.ControlPosition.TOP_RIGHT,
+				style: google.maps.ZoomControlStyle.SMALL
+			};
+			/// Position of map using coord that were passed else do nothing.
+			var pos = new google.maps.LatLng(40.716948, -74.003563);
+			/// Set basic map options using above control options
+			var options = {
+				zoom: 10,
+				zoomControlOptions: zoptions,
+				mapTypeId: google.maps.MapTypeId.TERRAIN,
+				center: pos
+			};
+			this.map = new google.maps.Map(mapDiv, options);
+		});
+	}
 });
 
 /***/ })
