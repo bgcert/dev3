@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<template v-if="!auth">
+		<div v-if="!auth">
 			<a href="#" :class="classes" @click.prevent="login">
 				Записвам се
 			</a>
-		</template>
-		<template v-else>
+		</div>
+		<div v-else>
 			<el-dialog
 				title="Заявка"
 				:visible.sync="dialogVisible"
@@ -20,7 +20,7 @@
 				</span>
 			</el-dialog>
 			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Записвам се</a>
-		</template>
+		</div>
 	</div>
 </template>
 

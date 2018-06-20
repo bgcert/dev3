@@ -36,6 +36,24 @@
 					<el-tabs type="card" v-model="activeName" @tab-click="handleClick">
 						<el-tab-pane label="Инфо" name="info">
 							<p>{{ company.company_detail.description }}</p>
+							<div class="extra">
+								<a :href="'http://www.facebook.com/' + company.company_detail.facebook" class="ui facebook mini button">
+									<i class="facebook icon"></i>
+									Facebook
+								</a>
+								<a :href="'instagram.com/' + company.company_detail.instagram" class="ui instagram mini button">
+									<i class="instagram icon"></i>
+									Instagram
+								</a>
+								<a :href="'http://linkedin.com/' + company.company_detail.linkedin" class="ui linkedin mini button">
+									<i class="linkedin icon"></i>
+									LinkedIn
+								</a>
+								<a :href="'http://youtube.com/' + company.company_detail.youtube" class="ui youtube mini button">
+									<i class="youtube icon"></i>
+									YouTube
+								</a>
+							</div>
 						</el-tab-pane>
 						<el-tab-pane label="Теми" name="themes">
 							<div class="ui items">

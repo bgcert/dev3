@@ -13,7 +13,6 @@ class MessageController extends Controller
 {
     public function index()
     {
-    	//$threads = Thread::with('firstParticipant.user', 'lastMessage.user')->whereHas('participants', function ($q) { $q->where('user_id', \Auth::id()); })->get();
     	return view('messanger');
     }
 

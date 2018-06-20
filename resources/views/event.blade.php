@@ -3,100 +3,141 @@
 @push('header-scripts')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/bg.js"></script>
+
+	<style>
+		.cover {
+			background-color: #505763;
+			background-size: cover;
+    		background-position: 50%;
+		}
+		.overlay {
+			height: 100%;
+			background-color: rgba(0,0,0,0.6);
+		}
+		.flex-center {
+			 display: flex !important;
+			 justify-content:center;
+			 align-items: center;
+		}
+		.info { color: white; }
+		.details { border: 1px solid red; flex: 1; }
+		.flex { display: flex; }
+		.logo { flex: 1; }
+		.company-details { flex: 3; text-align: center; }
+		.event-header { padding: 30px 0 !important; }
+	</style>
 @endpush
 
 @section('content')
-<div class="sub-nav" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #DDDDDD;">
+<div class="ui segment">
 	<div class="ui container">
 		<div class="ui breadcrumb">
 			<a href="/" class="section">Начало</a>
 			<i class="right angle icon divider"></i>
 			<a href="/e" class="section">Събития</a>
 			<i class="right angle icon divider"></i>
-			<a href="/c/{{ $event->theme->company->slug }}" class="section">{{ $event->theme->company->name }}</a>
-			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $event->theme->title }} - {{ Carbon\Carbon::parse($event->begin_at)->format('d M Y') }}</div>
+			<div class="active section">{{ $event->theme->title }} - {{ $event->begin }} - {{ $event->end }}</div>
+		</div>
+	</div>
+</div>
+
+<div class="cover" style="background-image: url({{ $event->cover }});">
+	<div class="overlay">
+		<div class="ui container">
+			<div class="ui grid event-header">
+				<div class="flex-center ten wide column ">
+					<div class="info">
+						<h1 class="title">{{ $event->theme->title }}</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+						</p>
+						<h3>{{ $event->begin }} - {{ $event->end }}</h3>
+					</div>	
+				</div>
+				<div class="six wide column">
+					<div class="ui segment">
+						<div class="flex">
+							<div class="logo">
+								<a href="/c/{{ $event->theme->company->slug }}"><img class="ui tiny rounded image" src="{{ $event->theme->company->company_detail->logo }}"></a>
+							</div>
+							<div class="company-details">
+								<h3>{{ $event->theme->company->name }}</h3>
+								<a href="/c/{{ $event->theme->company->slug }}" class="ui basic button">Фирмен профил</a>
+							</div>
+						</div>
+						<div class="ui divider"></div>
+						<div>
+							<p>Wed, 12 Jan, 18</p>
+							<p>07.00 - 17.00 ч.</p>
+						</div>
+						<div class="ui horizontal statistics">
+							<div class="statistic">
+								<div class="value">240.00</div>
+								<div class="label">лв. с ДДС</div>
+							</div>
+							<request-modal style="width: 100%;"
+								auth="{{ Auth::check() }}"
+								classes="ui fluid orange button">
+							</request-modal>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 <div class="ui container">
 	
-	<div class="ui padded grid">
-		<div class="two column row">
-			<div class="ten wide red column event-cover" style="background-image: url({{ $event->cover }});">
-				<!-- <img src="{{ $event->cover }}"> -->
-			</div>
-			<div class="six wide olive column">
-				<div class="ui basic center aligned segment">
-					<div class="ui mini statistic">
-						<div class="value">
-							{{ Carbon\Carbon::parse($event->begin_at)->format('d') }}
-						</div>
-						<div class="label">
-							{{ Carbon\Carbon::parse($event->begin_at)->format('M') }}
-						</div>
-					</div>	
-				</div>
-				<h2>{{ $event->theme->title }}</h2>
-				<p>
-			    	by <a href="/c/{{ $event->theme->company->slug }}">{{ $event->theme->company->name }}</a>
-			    </p>
-			    <p>
-			    	<request-modal
-						auth="{{ Auth::check() }}"
-						classes="ui basic button"
-						>
-					</request-modal>
-				</p>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="column">
-				<div class="ui divided items">
-					<div class="item">
-						<div class="image">
-							<img src="{{ $event->theme->company->company_detail->logo }}">
-						</div>
-						<div class="content">
-							<div class="header">{{ $event->theme->company->name }}</div>
-							<div class="meta">
-								<span class="cinema">{{  $event->theme->company->company_detail->address }}</span>
-							</div>
-							<div class="description">
-								<p></p>
-							</div>
-							<div class="extra">
-								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->facebook }}" class="ui facebook mini button">
-									<i class="facebook icon"></i>
-									Facebook
-								</a>
-								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->instagram }}" class="ui instagram mini button">
-									<i class="instagram icon"></i>
-									Instagram
-								</a>
-								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->linkedin }}" class="ui linkedin mini button">
-									<i class="linkedin icon"></i>
-									LinkedIn
-								</a>
-								<a href="http://www.facebook.com/{{ $event->theme->company->company_detail->youtube }}" class="ui youtube mini button">
-									<i class="youtube icon"></i>
-									YouTube
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="ui segment padded grid">
 
 		<div class="two column row">
 			<div class="ten wide column">
-				
 				<p>
 			    	{{ $event->theme->body }}
 			    </p>
+
+			    <table class="ui celled padded table">
+			    	<tbody>
+			    		<tr>
+			    			<td>Дати на провеждане</td>
+			    			<td>{{ $event->begin }} - {{ $event->end }}</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Начален час / Краен час</td>
+			    			<td>09.00 / 17.00 ч.</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Цена</td>
+			    			<td>240.00 лв. с включен ДДС</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Метод на обучение</td>
+			    			<td>Присъствен, Онлайн</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Продължителност</td>
+			    			<td>20 дни, 160 учебни часа</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Сертификат</td>
+			    			<td>Издава се</td>
+			    		</tr>
+			    	</tbody>
+			    </table>
+
+			    <h3 class="ui dividing header">
+			    	Лектори
+			    </h3>
+			    @foreach($event->teachers as $teacher)
+				    <h3 class="ui header">
+				    	<img src="{{ $teacher->image }}" class="ui circular image">
+				    	{{ $teacher->name }}
+				    </h3>
+				    <p>{{ $teacher->details }}</p>
+			    @endforeach
+			    <google-map></google-map>
+			    <div class="ui divider"></div>
 			    <div id="comments">
 			    	<comments
 			    		auth="{{ Auth::check() }}"

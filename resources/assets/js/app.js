@@ -62,6 +62,8 @@ Vue.component('imageUpload', require('./components/ImageUploadComponent.vue'));
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 
+Vue.component('google-map', require('./components/MapComponent.vue'));
+
 // Auth
 Vue.component('login', require('./components/auth/LoginComponent.vue'));
 Vue.component('register', require('./components/auth/RegisterComponent.vue'));

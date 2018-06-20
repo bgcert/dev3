@@ -15,6 +15,21 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"
+	type="text/javascript"></script>
+
+	<!-- Google map script -->
+	<script>
+		function initMap() {} // now it IS a function and it is in global
+
+		$(() => {
+		  initMap = function() {
+		    // your code like...
+		    var map = new google.maps.Map(document.getElementById('map'), {/*your code*/});
+		    // and other stuff...
+		  }
+		})
+	</script>
 
     <!-- Push Scripts -->
     @stack('header-scripts')

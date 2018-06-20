@@ -103,14 +103,12 @@ export default {
         listen(context) {
         	Echo.private('messages.' + context.getters.userId)
                 	.listen('NewMessage', (e) => {
-                		// context.commit('pushMessage', e.message);
                 		if (e.message.thread_id == context.getters.selectedThread) {
                 			context.commit('pushMessage', e.message);
                 		}
                 });
 
             Echo.private('threads.' + context.getters.userId)
-
                 	.listen('NewThread', (e) => {
                 		let route = 'messages/thread/' + e.thread_id;
 			        	axios.get(route)
@@ -118,11 +116,6 @@ export default {
 			        			response.data.unread = true;
 			        			context.commit('unshiftThread', response.data);
 			        		});
-
-                		// context.commit('unshiftThread', e.thread);
-	            		// if (e.participant == context.getters.userId) {
-	            		// 	context.commit('unshiftThread', e.thread);
-	            		// }
                 });
         },
 

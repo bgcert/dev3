@@ -49,10 +49,15 @@ class Event extends Model
     	return $this->attributes['position'] = (!empty($value)) ? $value : $this->theme->position;
     }
 
-    // public function getBeginAtAttribute($value)
-    // {
-    // 	return $this->attributes['begin_at'] = Carbon::parse($value)->format('D, d M Y');
-    // }
+    public function getBeginAttribute()
+    {
+    	return Carbon::parse($this->begin_at)->format('d M');
+    }
+
+    public function getEndAttribute()
+    {
+    	return Carbon::parse($this->end_at)->format('d M, Y');
+    }
 
     // public function getEndAtAttribute($value)
     // {

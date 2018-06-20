@@ -253,6 +253,8 @@ Vue.component('imageUpload', __webpack_require__(312));
 
 Vue.component('comments', __webpack_require__(317));
 
+Vue.component('google-map', __webpack_require__(361));
+
 // Auth
 Vue.component('login', __webpack_require__(322));
 Vue.component('register', __webpack_require__(325));
@@ -55717,7 +55719,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         listen: function listen(context) {
             Echo.private('messages.' + context.getters.userId).listen('NewMessage', function (e) {
-                // context.commit('pushMessage', e.message);
                 if (e.message.thread_id == context.getters.selectedThread) {
                     context.commit('pushMessage', e.message);
                 }
@@ -55729,11 +55730,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     response.data.unread = true;
                     context.commit('unshiftThread', response.data);
                 });
-
-                // context.commit('unshiftThread', e.thread);
-                // if (e.participant == context.getters.userId) {
-                // 	context.commit('unshiftThread', e.thread);
-                // }
             });
         },
         newContact: function () {
@@ -103288,27 +103284,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      !_vm.auth
-        ? [
-            _c(
-              "a",
-              {
-                class: _vm.classes,
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.login($event)
-                  }
+  return _c("div", [
+    !_vm.auth
+      ? _c("div", [
+          _c(
+            "a",
+            {
+              class: _vm.classes,
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.login($event)
                 }
-              },
-              [_vm._v("\n\t\t\tЗаписвам се\n\t\t")]
-            )
-          ]
-        : [
+              }
+            },
+            [_vm._v("\n\t\t\tЗаписвам се\n\t\t")]
+          )
+        ])
+      : _c(
+          "div",
+          [
             _c(
               "el-dialog",
               {
@@ -103379,10 +103375,10 @@ var render = function() {
               },
               [_vm._v("Записвам се")]
             )
-          ]
-    ],
-    2
-  )
+          ],
+          1
+        )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -103491,6 +103487,24 @@ exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -103769,6 +103783,72 @@ var render = function() {
                 _c("el-tab-pane", { attrs: { label: "Инфо", name: "info" } }, [
                   _c("p", [
                     _vm._v(_vm._s(_vm.company.company_detail.description))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "extra" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui facebook mini button",
+                        attrs: {
+                          href:
+                            "http://www.facebook.com/" +
+                            _vm.company.company_detail.facebook
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "facebook icon" }),
+                        _vm._v("\n\t\t\t\t\t\t\t\tFacebook\n\t\t\t\t\t\t\t")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui instagram mini button",
+                        attrs: {
+                          href:
+                            "instagram.com/" +
+                            _vm.company.company_detail.instagram
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "instagram icon" }),
+                        _vm._v("\n\t\t\t\t\t\t\t\tInstagram\n\t\t\t\t\t\t\t")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui linkedin mini button",
+                        attrs: {
+                          href:
+                            "http://linkedin.com/" +
+                            _vm.company.company_detail.linkedin
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "linkedin icon" }),
+                        _vm._v("\n\t\t\t\t\t\t\t\tLinkedIn\n\t\t\t\t\t\t\t")
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui youtube mini button",
+                        attrs: {
+                          href:
+                            "http://youtube.com/" +
+                            _vm.company.company_detail.youtube
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "youtube icon" }),
+                        _vm._v("\n\t\t\t\t\t\t\t\tYouTube\n\t\t\t\t\t\t\t")
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -106282,6 +106362,196 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(362)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(365)
+/* template */
+var __vue_template__ = __webpack_require__(364)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\MapComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62ccd510", Component.options)
+  } else {
+    hotAPI.reload("data-v-62ccd510", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 362 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(363);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(7)("334b1f3b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62ccd510\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62ccd510\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.mapouter {\n\ttext-align: right;\n\theight: 250px;\n\twidth: 650px;\n}\n.gmap_canvas {\n\toverflow:hidden;\n\tbackground:none!important;\n\theight: 250px;\n\twidth: 650px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 364 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "mapouter" }, [
+        _c("div", { staticClass: "gmap_canvas" }, [
+          _c("iframe", {
+            attrs: {
+              width: "650",
+              height: "500",
+              id: "gmap_canvas",
+              src:
+                "https://maps.google.com/maps?q=Sofia&t=&z=15&ie=UTF8&iwloc=&output=embed",
+              frameborder: "0",
+              scrolling: "no",
+              marginheight: "0",
+              marginwidth: "0"
+            }
+          })
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-62ccd510", module.exports)
+  }
+}
+
+/***/ }),
+/* 365 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  data: function data() {
+    return {};
+  },
+
+  mounted: function mounted() {}
+});
 
 /***/ })
 /******/ ]);
