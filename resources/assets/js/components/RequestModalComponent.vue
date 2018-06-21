@@ -11,13 +11,20 @@
 				:visible.sync="dialogVisible"
 				:before-close="handleClose"
 				width="30%">
-				<span>
-					
-				</span>
-				<span slot="footer" class="dialog-footer">
-					<el-button @click="dialogVisible = false">Cancel</el-button>
-					<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
-				</span>
+					<div>
+						<el-form ref="form" label-width="30%">
+							<el-form-item label="Количество">
+								<el-input-number v-model="qty" @change="handleChange" :min="1" :max="10"></el-input-number>
+							</el-form-item>
+							<el-form-item label="Фактура">
+								<el-checkbox v-model="invoice" name="type"></el-checkbox>
+							</el-form-item>
+						</el-form>
+					</div>
+					<span slot="footer" class="dialog-footer">
+						<el-button @click="dialogVisible = false">Откажи</el-button>
+						<el-button type="primary" @click="dialogVisible = false">Заяви</el-button>
+					</span>
 			</el-dialog>
 			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Записвам се</a>
 		</div>
@@ -35,6 +42,8 @@
     	data: function () {
     		return {
     			dialogVisible: false,
+    			qty: 1,
+    			invoice: false,
     		}
     	},
 
@@ -45,6 +54,10 @@
     				done();
     			})
     			.catch(_ => {});
+    		},
+
+    		handleChange(value) {
+    			console.log(value)
     		},
 
     		login() {

@@ -11,11 +11,10 @@
 			<template v-for="event in events">
 				<div class="card">
 					<div class="extra content">
-						<box-hover
+						<BoxHover
 							:id="event.theme.company.id"
-							:name="event.theme.company.name"
-							>
-						</box-hover>
+							:name="event.theme.company.name">
+						</BoxHover>
 					</div>
 
 					<div class="image"
@@ -30,14 +29,13 @@
 					</div>
 					<div class="extra content">
 						<span class="right floated">
-							<like
+							<Like
 								:auth="auth"
 								:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
 								:liked="event.theme.is_liked.length"
 								:item_id="event.theme.id"
-								:route="'/users/like/theme'"
-								>
-							</like>
+								:route="'/users/like/theme'">
+							</Like>
 							<span>
 								<a :href="'/event/' + event.id + '/#comments'">
 									<i class="comment outline icon"></i>
@@ -54,7 +52,12 @@
 
 <script>
 	import { EventBus } from '../app';
+	import Like from './LikeComponent.vue'
+	import BoxHover from './BoxHoverComponent.vue'
     export default {
+    	components: {
+			Like, BoxHover
+		},
     	props: ['auth'],
 
     	data: function () {

@@ -48,7 +48,12 @@
 
 <script>
 	import { EventBus } from '../app';
+	import Like from './LikeComponent.vue'
+	import BoxHover from './BoxHoverComponent.vue'
     export default {
+    	components: {
+			Like, BoxHover
+		},
     	props: ['auth'],
 
     	data: function () {

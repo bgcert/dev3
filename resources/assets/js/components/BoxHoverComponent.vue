@@ -42,7 +42,11 @@
 </template>
 
 <script>
+	import Follow from './FollowComponent.vue'
     export default {
+    	components: {
+			Follow
+		},
     	props: ['id', 'name'],
 
     	data: function () {

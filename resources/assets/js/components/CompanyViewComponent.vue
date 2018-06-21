@@ -18,11 +18,11 @@
 										
 									</span>
 									<new-message :auth="true"></new-message>
-									<follow
+									<Follow
 										:followed="company.is_followed.length > 0"
 										:company_id="company.id"
 										>
-									</follow>
+									</Follow>
 								</div>
 							</div>
 						</div>
@@ -180,7 +180,11 @@
 </template>
 
 <script>
+	import Follow from './FollowComponent.vue'
     export default {
+    	components: {
+			Follow
+		},
     	props: ['slug'],
 
     	data: function () {
