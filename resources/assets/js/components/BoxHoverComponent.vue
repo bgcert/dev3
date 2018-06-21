@@ -19,11 +19,11 @@
 	                    </div>
 	                </div>
 	                <div class="extra content">
-                		<follow
+                		<Follow
 	                        :followed="company.is_followed"
 	                        :company_id="company.id"
 	                        >
-	                    </follow>
+	                    </Follow>
 	                    
 	                    <template v-for="follower in company.first_five_followers">
 							<el-tooltip class="item" effect="dark" :content="follower.name" placement="top">

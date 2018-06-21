@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(1));
+//Auth::login(\App\User::find(1));
 
 Route::get('/eventtest', function () {
     $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
@@ -93,6 +93,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => [
 	Route::post('/new', 'MessageController@newThread');
 	Route::post('/seen', 'MessageController@seen');
 	Route::post('/user/search', 'MessageController@search');
+	Route::get('/contact/{id}', 'MessageController@getUserBy');
 });
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {

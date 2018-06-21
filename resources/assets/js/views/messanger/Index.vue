@@ -59,7 +59,7 @@
 						</li>
 					</ul>	
 				</div>
-				<textarea v-model="input" @keydown.enter.prevent="(isNew) ? newMessage() : send()"></textarea>
+				<textarea v-model="input" @keydown.enter.prevent="(contactIsNew) ? newMessage() : send()"></textarea>
 			</div>
 		</div>
 	</div>
@@ -76,7 +76,6 @@
     			loading: false,
     			input: '',
     			searchInput: '',
-    			isNew: false
     		}
     	},
 
@@ -98,26 +97,24 @@
     		},
     		searchResults: function() {
     			return this.$store.getters.searchResults;
+    		},
+    		contactIsNew: function() {
+    			return this.$store.getters.contactIsNew;
     		}
     	},
 
         methods: {
-        	newUser(item) {
+
+        	async newUser(item) {
         		this.searchQuery = '';
-				var result = this.threads.filter(function(arr) { 
-				    return arr.first_participant.user.id == item.id; 
-				});
 
-				if (result.length == 0) {
-					this.$store.commit('updateContact', item);
-					this.$store.commit('updateMessages', []);
-					this.$store.commit('updateSelectedThread', null);
-					this.searchInput = '';
-					this.isNew = true;
-	        		return;
-				}
+        		let exist = await this.$store.dispatch('existingContact', item.id);
 
-				this.selectThread(result[0]);
+				this.$store.commit('updateContact', item);
+				this.$store.commit('updateMessages', []);
+				this.$store.commit('updateSelectedThread', null);
+				this.searchInput = '';
+				// this.isNew = true;
         	},
 
         	selectThread(thread) {
@@ -177,8 +174,13 @@
         },
 
         mounted() {
+
             console.log('Messanger App Component mounted.');
-            this.$store.dispatch('load');
+            this.$store.dispatch('load', this.$route.query.contact);
+            // if (this.$route.query.contact) {
+            // 	this.$store.dispatch('load', this.$route.query.contact);
+            // 	this.isNew = true;
+            // }
         },
 
         created() {

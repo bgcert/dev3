@@ -16,6 +16,11 @@ class MessageController extends Controller
     	return view('messanger');
     }
 
+    public function getUserBy()
+    {
+    	return \App\User::with('company')->where('id', request()->id)->first();
+    }
+
     public function getThreads()
     {
     	$threads = Thread::with('firstParticipant.user', 'lastMessage.user')

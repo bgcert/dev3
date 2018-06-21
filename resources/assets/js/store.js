@@ -5,6 +5,7 @@ export default {
     	messages: [],
     	contact: [],
     	selectedThread: null,
+    	contactIsNew: false,
     	searchResults: []
     },
 
@@ -12,12 +13,14 @@ export default {
     	userId(state) { return state.userId; },
         threads(state) { return state.threads; },
         contact(state) { return state.contact; },
+        contactIsNew(state) { return state.contactIsNew; },
         messages(state) { return state.messages; },
         selectedThread(state) { return state.selectedThread; },
         searchResults(state) { return state.searchResults; },
     },
 
     mutations: {
+
     	updateThreads(state, payload) {
     		state.threads = payload[0];
     		state.userId = payload[1];
@@ -33,6 +36,10 @@ export default {
 
     	updateContact(state, payload) {
     		state.contact = payload;
+    	},
+
+    	updateContactIsNew(state, payload) {
+    		state.contactIsNew = payload;
     	},
 
     	updateSearchResults(state, payload) {
@@ -58,14 +65,96 @@ export default {
     },
 
     actions: {
-    	async load(context) {
+    	async load(context, contact_id) {
+			// Load all existing threads
     		await context.dispatch('getThreads');
 
+    		// Listening for new threads and messages
     		context.dispatch('listen');
-    		if (context.getters.threads.length == 0) return;
-    		await context.dispatch('selectThread', context.getters.threads[0]);
+    		// if no threads -> return
+    		if (context.getters.threads.length == 0) {
+    			return;
+    		}
+
+    		let thread = [];
+    		// Check if contact id is set
+    		if (contact_id) {
+    			// if is set, check if a thread with this contact exist
+    			let result = await context.dispatch('existingContact', contact_id);
+    			if (result) {
+    				// if exist, select coresponding thread
+    				thread = result;
+    			} else {
+    				// else get the new contact
+    				let contact = await context.dispatch('getContact', contact_id);
+    				context.commit('updateContact', contact);
+    			}
+    		} else {
+    			// if not, select last thread
+    			thread = context.state.threads[0];
+    			await context.dispatch('selectThread', thread);
+    		}
+    		
     		context.dispatch('getMessages', context.getters.selectedThread);
     	},
+
+    	selectThread(context, thread) {
+        	return new Promise((resolve, reject) => {    			
+	        	context.commit('updateContact', thread.first_participant.user);
+	        	context.commit('updateSelectedThread', thread.id);
+	        	context.dispatch('getMessages', thread.id);
+	        	resolve();
+        	})
+        },
+
+    	existingContact(context, id) {
+    		return new Promise((resolve, reject) => {
+	    		var result = context.state.threads.filter(function(array) { 
+				    return array.first_participant.user.id == id;
+				});
+
+				if (result.length > 0) {
+					resolve(result[0]);	
+				} else {
+					context.commit('updateContactIsNew', true);
+
+					console.log('a new contact');
+					resolve(null);
+				}
+			})
+    	},
+
+    	getContact(context, id) {
+    		return new Promise((resolve, reject) => {
+	    		let route = 'messages/contact/' + id;
+	    		axios.get(route)
+	    			.then((response) => {
+	    				resolve(response.data)
+	                });
+            })
+    	},
+
+    	newThread(context) {
+        	return new Promise((resolve, reject) => {
+	        	axios.post('messages/new', {
+		                	to: context.getters.contact.id,
+		                }).then((response) => {
+		                	context.commit('unshiftThread', response.data);
+		                	resolve(response.data.id)
+		                });
+	        })
+        },
+
+    	// toUser(context, id) {
+    	// 	let vm = this;
+    	// 	let route = 'messages/contact/' + id;
+    	// 	axios.get(route)
+    	// 		.then((response) => {
+    	// 			console.log(response.data);
+     //            	context.commit('updateContact', response.data);
+     //            	context.commit('updateSelectedThread', null);
+     //            });
+    	// },
 
     	getThreads(context) {
     		return new Promise((resolve, reject) => {
@@ -91,14 +180,7 @@ export default {
         	})
         },
 
-        selectThread(context, thread) {
-        	return new Promise((resolve, reject) => {
-	        	context.commit('updateContact', thread.first_participant.user);
-	        	context.commit('updateSelectedThread', thread.id);
-	        	context.dispatch('getMessages', thread.id);
-	        	resolve();
-        	})
-        },
+
 
         listen(context) {
         	Echo.private('messages.' + context.getters.userId)
@@ -122,17 +204,6 @@ export default {
         async newContact(context) {
         	let id = await context.dispatch('newThread');
         	context.commit('updateSelectedThread', id);
-        },
-
-        newThread(context) {
-        	return new Promise((resolve, reject) => {
-	        	axios.post('messages/new', {
-		                	to: context.getters.contact.id,
-		                }).then((response) => {
-		                	context.commit('unshiftThread', response.data);
-		                	resolve(response.data.id)
-		                });
-	        })
         },
 
         sendMessage(context, message) {

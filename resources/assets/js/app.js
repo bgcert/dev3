@@ -45,7 +45,6 @@ Vue.use(ElementUI, { locale });
  */
 
 Vue.component('flash', require('./components/FlashComponent.vue'));
-//Vue.component('follow', require('./components/FollowComponent.vue'));
 Vue.component('carousel', require('./components/CarouselComponent.vue'));
 Vue.component('event-feed', require('./components/EventFeedComponent.vue'));
 Vue.component('venue-feed', require('./components/VenueFeedComponent.vue'));
@@ -73,8 +72,7 @@ Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/MessangerComponent.vue'));
-//Vue.component('new-message', require('./components/NewMessageComponent.vue'));
-//Vue.component('messanger-app', require('./components/messanger/MessangerAppComponent.vue'));
+// Vue.component('new-message', require('./components/NewMessageComponent.vue'));
 
 const app = new Vue({
     el: '#app',

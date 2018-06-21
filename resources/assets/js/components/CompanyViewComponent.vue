@@ -14,10 +14,7 @@
 									<h2>{{ company.name }}</h2>
 								</div>
 								<div style="position: absolute; right: 40px; bottom: 20px;">
-									<span>
-										
-									</span>
-									<new-message :auth="true"></new-message>
+									<a :href="'/messages#/t?contact=' + company.user.id" class="ui mini orange button">Изпрати съобщение</a>
 									<Follow
 										:followed="company.is_followed.length > 0"
 										:company_id="company.id"
