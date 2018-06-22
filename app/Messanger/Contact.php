@@ -4,7 +4,7 @@ namespace App\Messanger;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Participant extends Model
+class Contact extends Model
 {
 	protected $fillable = ['user_id'];
 

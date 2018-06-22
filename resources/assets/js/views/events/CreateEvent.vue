@@ -39,12 +39,12 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<imageUpload
+						<ImageUpload
 							:canvasWidth="357"
 							:canvasHeight="178"
 							:movable="true"
 							>
-						</imageUpload>
+						</ImageUpload>
 					</el-form-item>
 
 					<el-form-item>
@@ -67,7 +67,11 @@
 
 <script>
 	import { EventBus } from '../../app';
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+    	components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
     			loading: true,

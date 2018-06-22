@@ -7,6 +7,9 @@ let routes = [
     // Profile routes
     { path: '/profile', component: require('./views/profile/Profile.vue') },
 
+    // Notification routes
+    { path: '/notifications', component: require('./views/notifications/Index.vue') },
+
     // Theme routes
     { path: '/themes', component: require('./views/themes/ThemeIndex.vue') },
     { path: '/themes/create', component: require('./views/themes/CreateTheme.vue') },
@@ -21,6 +24,12 @@ let routes = [
     { path: '/events', component: require('./views/events/EventIndex.vue') },
     { path: '/events/create', component: require('./views/events/CreateEvent.vue') },
     { path: '/events/edit/:id', component: require('./views/events/EditEvent.vue') },
+
+    // Order routes
+    { path: '/orders', component: require('./views/orders/Index.vue') },
+    { path: '/orders/:id', component: require('./views/orders/View.vue') },
+    { path: '/orders/create', component: require('./views/orders/Create.vue') },
+    { path: '/orders/edit/:id', component: require('./views/orders/Edit.vue') },
 
     // Settings routes
     { path: '/account/', component: require('./views/settings/Account.vue') },

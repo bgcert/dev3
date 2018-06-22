@@ -11,9 +11,9 @@ class Thread extends Model
     	return $this->hasMany('App\Messanger\Message');
     }
 
-    public function participants()
+    public function contacts()
     {
-    	return $this->hasMany('App\Messanger\Participant');
+    	return $this->hasMany('App\Messanger\Contact');
     }
 
     /**
@@ -31,9 +31,9 @@ class Thread extends Model
     	return $this->hasOne('App\Messanger\Message')->orderBy('created_at', 'DESC');
     }
 
-    public function firstParticipant()
+    public function firstContact()
     {
-    	return $this->hasOne('App\Messanger\Participant')->where('user_id', '!=', \Auth::id());
+    	return $this->hasOne('App\Messanger\Contact')->where('user_id', '!=', \Auth::id());
     }
 
 }

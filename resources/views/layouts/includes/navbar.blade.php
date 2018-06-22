@@ -21,13 +21,6 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
-				<a href="/messages#/t" class="item">
-					<i class="paper plane outline icon"></i>
-					<!-- <div class="floating ui red label">22</div> -->
-				</a>
-				<a class="item">
-					<i class="bell outline icon"></i>
-				</a>
 
 				<div class="ui dropdown item">
 					{{ Auth::user()->name }} <i class="dropdown icon"></i>
@@ -47,6 +40,13 @@
 	                    </form>
 					</div>
 				</div>
+				<a href="/messages#/t" class="item">
+					<i class="paper plane outline icon"></i>
+				</a>
+				<notifications></notifications>
+				<span class="item">
+				  <i class="question outline circle icon"></i>
+				</span>
 				@endguest
 			</div>
 		</div>

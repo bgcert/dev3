@@ -10,6 +10,12 @@
 						Фирмен профил
 					</router-link>
 					<router-link
+						to="/notifications"
+						class="item"
+						:class="{ active: $route.path == '/notifications' }">
+						Известия
+					</router-link>
+					<router-link
 						to="/themes"
 						class="item"
 						:class="{ active: $route.path == '/themes' }">
@@ -26,6 +32,12 @@
 						class="item"
 						:class="{ active: $route.path == '/events' }">
 						Календар
+					</router-link>
+					<router-link
+						to="/orders"
+						class="item"
+						:class="{ active: $route.path == '/orders' }">
+						Заявки
 					</router-link>
 				</div>
 			</div>

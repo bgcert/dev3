@@ -12,11 +12,11 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<imageUpload
+						<ImageUpload
 							:canvasWidth="200"
 							:canvasHeight="200"
 							>
-						</imageUpload>
+						</ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
@@ -41,7 +41,11 @@
 </template>
 
 <script>
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+    	components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
     			loading: true,

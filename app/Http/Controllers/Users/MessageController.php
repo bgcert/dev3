@@ -23,8 +23,8 @@ class MessageController extends Controller
 
     public function getThreads()
     {
-    	$threads = Thread::with('firstParticipant.user', 'lastMessage.user')
-    				->whereHas('participants', function ($q)
+    	$threads = Thread::with('firstContact.user', 'lastMessage.user')
+    				->whereHas('contacts', function ($q)
     				{
     					$q->where('user_id', \Auth::id());
     				})
@@ -36,18 +36,18 @@ class MessageController extends Controller
 //
     public function getThreadByUser($id)
     {
-    	$thread = Thread::with('firstParticipant.user', 'messages.user')->where('id', $id)->first();
+    	$thread = Thread::with('firstContact.user', 'messages.user')->where('id', $id)->first();
     	return $thread;
     }
 
     public function newThread()
     {
     	// Check if thread already exist - Validation!
-    	$thread = Thread::whereHas('participants', function ($q)
+    	$thread = Thread::whereHas('contacts', function ($q)
     				{
     					$q->where('user_id', \Auth::id());
     				})
-    				->whereHas('participants', function ($q)
+    				->whereHas('contacts', function ($q)
     					{
     						$q->where('user_id', request()->to);
     					})
@@ -57,7 +57,7 @@ class MessageController extends Controller
     		$thread = new \App\Messanger\Thread;
     		$thread->save();
 
-    		$thread->participants()->createMany([
+    		$thread->contacts()->createMany([
 	    		['user_id' => \Auth::id()],
 	    		['user_id' => request()->to]
 	    	]);
@@ -65,7 +65,7 @@ class MessageController extends Controller
 
     	broadcast(new NewThread($thread, request()->to));
 
-    	$thread->load('firstParticipant.user', 'lastMessage');
+    	$thread->load('firstContact.user', 'lastMessage');
 
     	return $thread;
     }
@@ -91,11 +91,11 @@ class MessageController extends Controller
 
     public function seen()
     {
-    	$participant = \App\Messanger\Participant::where('user_id', \Auth::id())->where('thread_id', request()->thread_id)->first();
+    	$contact = \App\Messanger\Contact::where('user_id', \Auth::id())->where('thread_id', request()->thread_id)->first();
 
-    	$participant->last_read = Carbon::now();
-    	$participant->save();
-    	return $participant->thread->id;
+    	$contact->last_read = Carbon::now();
+    	$contact->save();
+    	return $contact->thread->id;
     }
 
     public function search()

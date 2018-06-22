@@ -26,10 +26,10 @@
 					<li v-for="thread in threads" @click.prevent="selectThread(thread)" :class="{ 'selected': thread.id == selectedThread, 'unread': thread.unread }">
 						<router-link :to="'/t/' + thread.id">
 							<div class="picture">
-								<img :src="thread.first_participant.user.picture">
+								<img :src="thread.first_contact.user.picture">
 							</div>
 							<div class="details">
-								<p class="name">{{ thread.first_participant.user.name }}</p>
+								<p class="name">{{ thread.first_contact.user.name }}</p>
 								<p v-if="thread.last_message">{{ thread.last_message.body }}</p>
 							</div>
 						</router-link>
@@ -176,7 +176,7 @@
         mounted() {
 
             console.log('Messanger App Component mounted.');
-            this.$store.dispatch('load', this.$route.query.contact);
+            this.$store.dispatch('load', this.$route.params.id);
             // if (this.$route.query.contact) {
             // 	this.$store.dispatch('load', this.$route.query.contact);
             // 	this.isNew = true;

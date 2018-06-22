@@ -71,36 +71,27 @@ export default {
 
     		// Listening for new threads and messages
     		context.dispatch('listen');
-    		// if no threads -> return
-    		if (context.getters.threads.length == 0) {
-    			return;
-    		}
-
     		let thread = [];
-    		// Check if contact id is set
-    		if (contact_id) {
-    			// if is set, check if a thread with this contact exist
+    		// if no threads -> return
+    		if (context.getters.threads.length == 0 && !contact_id) {
+    			return;
+    		} else if (!contact_id) {
+    			thread = context.state.threads[0];
+    			await context.dispatch('selectThread', thread);
+    			context.dispatch('getMessages', context.getters.selectedThread);
+    		} else {
     			let result = await context.dispatch('existingContact', contact_id);
-    			if (result) {
-    				// if exist, select coresponding thread
-    				thread = result;
-    			} else {
-    				// else get the new contact
+    			if (result == null) {
     				let contact = await context.dispatch('getContact', contact_id);
     				context.commit('updateContact', contact);
     			}
-    		} else {
-    			// if not, select last thread
-    			thread = context.state.threads[0];
-    			await context.dispatch('selectThread', thread);
     		}
-    		
-    		context.dispatch('getMessages', context.getters.selectedThread);
+
     	},
 
     	selectThread(context, thread) {
         	return new Promise((resolve, reject) => {    			
-	        	context.commit('updateContact', thread.first_participant.user);
+	        	context.commit('updateContact', thread.first_contact.user);
 	        	context.commit('updateSelectedThread', thread.id);
 	        	context.dispatch('getMessages', thread.id);
 	        	resolve();
@@ -110,7 +101,7 @@ export default {
     	existingContact(context, id) {
     		return new Promise((resolve, reject) => {
 	    		var result = context.state.threads.filter(function(array) { 
-				    return array.first_participant.user.id == id;
+				    return array.first_contact.user.id == id;
 				});
 
 				if (result.length > 0) {

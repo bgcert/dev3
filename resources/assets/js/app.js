@@ -50,13 +50,13 @@ Vue.component('event-feed', require('./components/EventFeedComponent.vue'));
 Vue.component('venue-feed', require('./components/VenueFeedComponent.vue'));
 Vue.component('venue-slider', require('./components/VenueSliderComponent.vue'));
 Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
-//Vue.component('event-box', require('./components/EventBoxComponent.vue'));
 Vue.component('theme-box', require('./components/ThemeBoxComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 Vue.component('company-view', require('./components/CompanyViewComponent.vue'));
-Vue.component('imageUpload', require('./components/ImageUploadComponent.vue'));
+//Vue.component('imageUpload', require('./components/ImageUploadComponent.vue'));
 
 Vue.component('comments', require('./components/CommentsComponent.vue'));
+Vue.component('notifications', require('./components/NotificationsComponent.vue'));
 
 Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
@@ -72,7 +72,6 @@ Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
 // Messanger
 Vue.component('messanger', require('./components/MessangerComponent.vue'));
-// Vue.component('new-message', require('./components/NewMessageComponent.vue'));
 
 const app = new Vue({
     el: '#app',
