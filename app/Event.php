@@ -34,8 +34,8 @@ class Event extends Model
     public function scopeByCompany($query, $id)
     {
         return $query->with('theme')->whereHas('theme', function ($query) use ($id) {
-        	$query->where('company_id', $id);
-        });
+			        	$query->where('company_id', $id);
+			        });
     }
 
     public function getCoverAttribute($value)

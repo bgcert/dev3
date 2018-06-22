@@ -10,7 +10,31 @@
 			</router-link>
 		</div>
 		<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-			<h1>test</h1>
+
+			<table class="ui sortable celled table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Получена на:</th>
+						<th>Дата/Тема</th>
+						<th>Статус</th>
+					</tr>
+				</thead>
+				<tbody v-for="order in orders">
+					<tr>
+						<td>{{ order.id }}</td>
+						<td>{{ order.created_at }}</td>
+						<td>{{ order.begin_at }} - {{ order.title }}</td>
+						<td><div class="ui green horizontal label">Платена</div></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr><th>3 People</th>
+						<th>2 Approved</th>
+						<th></th>
+						<th></th>
+					</tr></tfoot>
+				</table>
 		</div>
 	</div>
 </template>
@@ -20,6 +44,7 @@
     	data: function () {
     		return {
     			loading: false,
+    			orders: [],
     		}
     	},
 
@@ -32,16 +57,16 @@
         },
 
         created() {
-   //      	var vm = this;
-   //          var route = '/dashboard/events';
-   //      	axios.get(route).then(function (response) {
-   //      		console.log(response.data);
-   //      		vm.events = response.data;
-   //      		vm.loading = false;
-			// })
-			// .catch(function (error) {
-			// 	console.log(error);
-			// });
+        	var vm = this;
+            var route = '/dashboard/orders';
+        	axios.get(route).then(function (response) {
+        		console.log(response.data);
+        		vm.orders = response.data;
+        		// vm.loading = false;
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
         }
     };
 </script>

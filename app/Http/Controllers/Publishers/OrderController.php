@@ -20,11 +20,12 @@ class OrderController extends Controller
     		->join('users', 'users.id', '=', 'orders.user_id')
     		->join('events', 'events.id', '=', 'orders.event_id')
             ->join('themes', 'themes.id', '=', 'events.theme_id')
+            ->leftJoin('order_participants', 'order_participants.order_id', '=', 'orders.id')
             ->where('themes.company_id', $company->id)
-            ->select('orders.id', 'orders.created_at', 'orders.qty', 'users.name', 'events.begin_at', 'themes.title')
+            ->select('orders.id', 'orders.created_at', 'users.name', 'events.begin_at', 'themes.title', \DB::raw("count(order_participants.id) as participants_count"))
             ->get();
 
-        return view('dashboard.orders.index', compact('orders'));
+        return $orders;
     }
 
     /**

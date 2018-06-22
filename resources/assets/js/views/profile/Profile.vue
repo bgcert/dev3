@@ -127,5 +127,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
