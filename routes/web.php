@@ -11,11 +11,15 @@
 |
 */
 
-//Auth::login(\App\User::find(1));
+Auth::login(\App\User::find(1));
 
-Route::get('/eventtest', function () {
-    $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
-    return view('eventtest', compact('events'));
+Route::get('/query', function () {
+    $id = \Auth::id();
+    	$items = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
+			        	$q->where('user_id', $id);
+			        })->orderBy('created_at')->get();
+
+    return view('query', compact('items'));
 });
 
 Route::get('/home', function () {

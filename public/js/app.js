@@ -53915,6 +53915,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53999,15 +54016,58 @@ var render = function() {
             _vm._l(_vm.orders, function(order) {
               return _c("tbody", [
                 _c("tr", [
-                  _c("td", [_vm._v(_vm._s(order.id))]),
-                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(order.created_at))]),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(order.begin_at) + " - " + _vm._s(order.title))
-                  ]),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/orders/" + order.id } },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t" +
+                              _vm._s(order.event.begin_at) +
+                              " - " +
+                              _vm._s(order.event.theme.title) +
+                              "\n\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c("td", [_vm._v(_vm._s(order.participants_count))]),
+                  _vm._v(" "),
+                  _vm._m(1, true),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "div",
+                      { staticClass: "ui mini basic icon buttons" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "ui button",
+                            attrs: { to: "/orders/" + order.id }
+                          },
+                          [_c("i", { staticClass: "edit icon" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "ui button",
+                            attrs: { to: "/orders/" + order.id + "/delete" }
+                          },
+                          [_c("i", { staticClass: "trash icon" })]
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ])
               ])
             }),
@@ -54027,13 +54087,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Получена на:")]),
         _vm._v(" "),
         _c("th", [_vm._v("Дата/Тема")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Статус")])
+        _c("th", [_c("i", { staticClass: "user icon" })]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Статус")]),
+        _vm._v(" "),
+        _c("th")
       ])
     ])
   },
@@ -54042,7 +54104,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("div", { staticClass: "ui green horizontal label" }, [
+      _c("div", { staticClass: "ui mini green horizontal label" }, [
         _vm._v("Платена")
       ])
     ])
@@ -54056,6 +54118,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("3 People")]),
         _vm._v(" "),
         _c("th", [_vm._v("2 Approved")]),
+        _vm._v(" "),
+        _c("th"),
         _vm._v(" "),
         _c("th"),
         _vm._v(" "),
@@ -54134,29 +54198,96 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            options: [{
+                value: 'Option1',
+                label: 'Платена'
+            }, {
+                value: 'Option2',
+                label: 'Потвърдена'
+            }, {
+                value: 'Option3',
+                label: 'Отказана'
+            }],
+            value: '',
+            order: {}
+        };
     },
 
     methods: {},
 
     mounted: function mounted() {
         console.log('Orders create mounted.');
+
+        var vm = this;
+        var route = '/dashboard/orders/' + this.$route.params.id;
+        axios.get(route).then(function (response) {
+            console.log(response.data);
+            vm.order = response.data;
+            // vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
     },
-    created: function created() {
-        //      	var vm = this;
-        //          var route = '/dashboard/events';
-        //      	axios.get(route).then(function (response) {
-        //      		console.log(response.data);
-        //      		vm.events = response.data;
-        //      		vm.loading = false;
-        // })
-        // .catch(function (error) {
-        // 	console.log(error);
-        // });
-    }
+    created: function created() {}
 });
 
 /***/ }),
@@ -54167,16 +54298,126 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "ui segments" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.order.id
+      ? _c("div", { staticClass: "ui segment" }, [
+          _c("div", { staticClass: "ui grid" }, [
+            _c("div", { staticClass: "ten wide column" }, [
+              _c("h4", [
+                _vm._v(
+                  _vm._s(_vm.order.event.theme.title) +
+                    " - " +
+                    _vm._s(_vm.order.event.begin_at)
+                )
+              ]),
+              _vm._v(" "),
+              _c("table", { staticClass: "ui table" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v(_vm._s(_vm.order.created_at))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("120.00 лв.")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.order.participants_count))])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "ui collapsing table" },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _vm._l(_vm.order.participants, function(participant) {
+                    return _c("tbody", [
+                      _c("tr", [_c("td", [_vm._v(_vm._s(participant.name))])])
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm._m(3)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "six wide column" }, [
+              _c(
+                "div",
+                { staticClass: "ui secondary segment" },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { placeholder: "Select" },
+                      model: {
+                        value: _vm.value,
+                        callback: function($$v) {
+                          _vm.value = $$v
+                        },
+                        expression: "value"
+                      }
+                    },
+                    _vm._l(_vm.options, function(item) {
+                      return _c("el-option", {
+                        key: item.value,
+                        attrs: { label: item.label, value: item.value }
+                      })
+                    })
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui segments" }, [
-      _c("div", { staticClass: "ui clearing segment" }, [
-        _c("h3", { staticStyle: { float: "left" } }, [_vm._v("Заявка ID")])
+    return _c("div", { staticClass: "ui clearing segment" }, [
+      _c("h3", { staticStyle: { float: "left" } }, [_vm._v("Заявка ID")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Регистрирана на:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Цена")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Участници")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Списък на участниците")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui form" }, [
+      _c("div", { staticClass: "field" }, [
+        _c("label", [_vm._v("Записки (видими от организатора)")]),
+        _vm._v(" "),
+        _c("textarea")
       ])
     ])
   }
@@ -104121,6 +104362,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -104132,12 +104380,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             dialogVisible: false,
-            qty: 1,
+            participants: [{ name: '' }],
             invoice: false
         };
     },
 
     methods: {
+        addField: function addField() {
+            this.participants.push({
+                name: ''
+            });
+        },
+
+        deleteField: function deleteField(index) {
+            this.participants.splice(index, 1);;
+        },
+
         handleClose: function handleClose(done) {
             this.$confirm('Are you sure to close this dialog?').then(function (_) {
                 done();
@@ -104215,20 +104473,53 @@ var render = function() {
                       "el-form",
                       { ref: "form", attrs: { "label-width": "30%" } },
                       [
+                        _vm._l(_vm.participants, function(pariticipant, index) {
+                          return [
+                            _c(
+                              "el-form-item",
+                              { attrs: { label: "Участник " + (index + 1) } },
+                              [
+                                _c(
+                                  "el-input",
+                                  {
+                                    attrs: { placeholder: "Please input" },
+                                    model: {
+                                      value: pariticipant.name,
+                                      callback: function($$v) {
+                                        _vm.$set(pariticipant, "name", $$v)
+                                      },
+                                      expression: "pariticipant.name"
+                                    }
+                                  },
+                                  [
+                                    _c("el-button", {
+                                      attrs: {
+                                        slot: "append",
+                                        type: "primary",
+                                        icon: "el-icon-delete"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.deleteField(index)
+                                        }
+                                      },
+                                      slot: "append"
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }),
+                        _vm._v(" "),
                         _c(
                           "el-form-item",
-                          { attrs: { label: "Количество" } },
                           [
-                            _c("el-input-number", {
-                              attrs: { min: 1, max: 10 },
-                              on: { change: _vm.handleChange },
-                              model: {
-                                value: _vm.qty,
-                                callback: function($$v) {
-                                  _vm.qty = $$v
-                                },
-                                expression: "qty"
-                              }
+                            _c("el-button", {
+                              attrs: { type: "primary", icon: "el-icon-plus" },
+                              on: { click: _vm.addField }
                             })
                           ],
                           1
@@ -104252,7 +104543,7 @@ var render = function() {
                           1
                         )
                       ],
-                      1
+                      2
                     )
                   ],
                   1

@@ -13,8 +13,15 @@
 				width="30%">
 					<div>
 						<el-form ref="form" label-width="30%">
-							<el-form-item label="Количество">
-								<el-input-number v-model="qty" @change="handleChange" :min="1" :max="10"></el-input-number>
+							<template v-for="(pariticipant, index) in participants">
+								<el-form-item :label="'Участник ' + (index+1)">
+									<el-input placeholder="Please input" v-model="pariticipant.name">
+										<el-button type="primary" icon="el-icon-delete" slot="append" @click="deleteField(index)"></el-button>
+									</el-input>
+								</el-form-item>
+							</template>
+							<el-form-item>
+								<el-button type="primary" icon="el-icon-plus" @click="addField"></el-button>
 							</el-form-item>
 							<el-form-item label="Фактура">
 								<el-checkbox v-model="invoice" name="type"></el-checkbox>
@@ -42,12 +49,22 @@
     	data: function () {
     		return {
     			dialogVisible: false,
-    			qty: 1,
+    			participants: [{name: ''}],
     			invoice: false,
     		}
     	},
 
     	methods: {
+    		addField: function() {
+    			this.participants.push({
+    				name: '',
+    			});
+    		},
+
+    		deleteField: function(index) {
+    			this.participants.splice(index, 1);;
+    		},
+
     		handleClose(done) {
     			this.$confirm('Are you sure to close this dialog?')
     			.then(_ => {

@@ -14,26 +14,43 @@
 			<table class="ui sortable celled table">
 				<thead>
 					<tr>
-						<th>#</th>
 						<th>Получена на:</th>
 						<th>Дата/Тема</th>
+						<th><i class="user icon"></i></th>
 						<th>Статус</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody v-for="order in orders">
 					<tr>
-						<td>{{ order.id }}</td>
 						<td>{{ order.created_at }}</td>
-						<td>{{ order.begin_at }} - {{ order.title }}</td>
-						<td><div class="ui green horizontal label">Платена</div></td>
+						<td>
+							<router-link :to="'/orders/' + order.id">
+								{{ order.event.begin_at }} - {{ order.event.theme.title }}
+							</router-link>
+						</td>
+						<td>{{ order.participants_count }}</td>
+						<td><div class="ui mini green horizontal label">Платена</div></td>
+						<td>
+							<div class="ui mini basic icon buttons">
+								<router-link :to="'/orders/' + order.id" class="ui button">
+									<i class="edit icon"></i>
+								</router-link>
+								<router-link :to="'/orders/' + order.id + '/delete'" class="ui button">
+									<i class="trash icon"></i>
+								</router-link>
+							</div>
+						</td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr><th>3 People</th>
-						<th>2 Approved</th>
-						<th></th>
-						<th></th>
-					</tr></tfoot>
+					<tfoot>
+						<tr><th>3 People</th>
+							<th>2 Approved</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</tfoot>
 				</table>
 		</div>
 	</div>

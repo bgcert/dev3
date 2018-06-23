@@ -14,16 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$company = \Auth::user()->company;
-
-    	$orders = \DB::table('orders')
-    		->join('users', 'users.id', '=', 'orders.user_id')
-    		->join('events', 'events.id', '=', 'orders.event_id')
-            ->join('themes', 'themes.id', '=', 'events.theme_id')
-            ->leftJoin('order_participants', 'order_participants.order_id', '=', 'orders.id')
-            ->where('themes.company_id', $company->id)
-            ->select('orders.id', 'orders.created_at', 'users.name', 'events.begin_at', 'themes.title', \DB::raw("count(order_participants.id) as participants_count"))
-            ->get();
+    	$id = \Auth::id();
+    	$orders = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
+			        	$q->where('user_id', $id);
+			        })->orderBy('created_at')->get();
 
         return $orders;
     }
@@ -57,7 +51,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return $id;
+    	return \App\Order::with('user', 'event.theme', 'participants')->withCount('participants')->where('id', $id)->first();
     }
 
     /**
