@@ -17,7 +17,7 @@ class OrderController extends Controller
     	$id = \Auth::id();
     	$orders = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
 			        	$q->where('user_id', $id);
-			        })->orderBy('created_at')->get();
+			        })->orderByDesc('created_at')->get();
 
         return $orders;
     }

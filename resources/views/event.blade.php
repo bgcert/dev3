@@ -76,6 +76,8 @@
 								<div class="label">лв. с ДДС</div>
 							</div>
 							<request-modal style="width: 100%;"
+								:id="{{ json_encode($event->id) }}"
+								title="{{ $event->theme->title }}"
 								:auth="{{ json_encode(Auth::check()) }}"
 								classes="ui fluid orange button">
 							</request-modal>

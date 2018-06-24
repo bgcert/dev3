@@ -11,16 +11,16 @@
 |
 */
 
-//Auth::login(\App\User::find(1));
+Auth::login(\App\User::find(20));
 
-Route::get('/query', function () {
-    $id = \Auth::id();
-    	$items = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
-			        	$q->where('user_id', $id);
-			        })->orderBy('created_at')->get();
+// Route::get('/query', function () {
+//     $id = \Auth::id();
+//     	$items = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
+// 			        	$q->where('user_id', $id);
+// 			        })->orderBy('created_at')->get();
 
-    return view('query', compact('items'));
-});
+//     return view('query', compact('items'));
+// });
 
 Route::get('/home', function () {
     return 'hard to remove /home route';
@@ -74,10 +74,12 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::post('/change/password', 'SettingsController@changePassword');
 
 	Route::get('/', 'UserController@index');
-	Route::get('/order', 'UserController@order');
+	Route::post('/order', 'UserController@order');
 
+	// Follow
 	Route::post('/follow', 'UserController@follow');
 
+	// Like
 	Route::post('/like/theme', 'LikeController@toggleTheme');
 	Route::post('/like/venue', 'LikeController@toggleVenue');
 
@@ -85,6 +87,9 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 	Route::post('/comment/theme/add', 'CommentController@commentTheme');
 	Route::post('/comment/venue/add', 'CommentController@commentVenue');
 	Route::post('/comment/remove', 'CommentController@destroy');
+
+	// Notifications
+	Route::get('/notifications', 'UserController@notifications');
 
 });
 

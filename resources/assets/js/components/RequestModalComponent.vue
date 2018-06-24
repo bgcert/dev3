@@ -12,6 +12,7 @@
 				:before-close="handleClose"
 				width="30%">
 					<div>
+						<h3>{{ title }}</h3>
 						<el-form ref="form" label-width="30%">
 							<template v-for="(pariticipant, index) in participants">
 								<el-form-item :label="'Участник ' + (index+1)">
@@ -30,7 +31,7 @@
 					</div>
 					<span slot="footer" class="dialog-footer">
 						<el-button @click="dialogVisible = false">Откажи</el-button>
-						<el-button type="primary" @click="dialogVisible = false">Заяви</el-button>
+						<el-button type="primary" @click="sendOrder">Заяви</el-button>
 					</span>
 			</el-dialog>
 			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Записвам се</a>
@@ -42,6 +43,8 @@
 	import { EventBus } from '../app';
     export default {
     	props: {
+    		id: { required: true },
+    		title: { type: [String], required: name },
     		auth: { type: [Boolean], required: true},
     		classes: [String, Number]
     	},
@@ -63,6 +66,20 @@
 
     		deleteField: function(index) {
     			this.participants.splice(index, 1);;
+    		},
+
+    		sendOrder: function() {
+    			this.dialogVisible = false;
+    			axios.post('/users/order', {
+    				event_id: this.id,
+    				participants: this.participants
+    			})
+    			.then(function (response) {
+	        		console.log(response.data);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
     		},
 
     		handleClose(done) {

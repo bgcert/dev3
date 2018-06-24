@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
+	use Notifiable;
+	
 	protected $fillable = [
         'name', 'slug', 'event_publish', 'venue_publish',
     ];
