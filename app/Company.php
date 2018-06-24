@@ -10,7 +10,7 @@ class Company extends Model
         'name', 'slug', 'event_publish', 'venue_publish',
     ];
     
-    protected $appends = ['is_followed'];
+    protected $appends = ['is_followed']; // This should be changed!
 
     public function user()
     {
