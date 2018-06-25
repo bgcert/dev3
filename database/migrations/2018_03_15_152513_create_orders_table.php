@@ -17,7 +17,10 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('event_id')->unsigned();
+            $table->string('contact_person');
+            $table->string('contact_number');
             $table->text('comment')->nullable();
+            $table->text('note')->nullable();
             $table->boolean('paid')->default(0);
             $table->boolean('invoice')->default(0);
             $table->timestamps();

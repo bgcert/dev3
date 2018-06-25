@@ -11,7 +11,7 @@ class Event extends Model
 	use LogsActivity;
 
 	protected $fillable = [
-        'theme_id', 'begin_at', 'end_at', 'cover', 'position',
+        'theme_id', 'begin_at', 'end_at', 'cover', 'position', 'price'
     ];
 
     public function theme()

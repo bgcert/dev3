@@ -9,6 +9,8 @@ class Order extends Model
 {
 	use LogsActivity;
 
+	protected $fillable = ['contact_person', 'contact_number', 'comment', 'invoice'];
+
     public function event()
     {
     	return $this->belongsTo('App\Event');
@@ -22,5 +24,10 @@ class Order extends Model
     public function participants()
     {
     	return $this->hasMany('App\OrderParticipant');
+    }
+
+    public function details()
+    {
+    	return $this->hasOne('App\OrderDetail');
     }
 }

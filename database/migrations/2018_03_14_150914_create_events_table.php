@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->integer('theme_id')->unsigned();
             $table->string('cover')->nullable();
             $table->integer('position')->nullable();
+            $table->integer('price')->unsigned();
             $table->timestamp('begin_at')->nullable();
             $table->timestamp('end_at')->nullable();
             $table->timestamps();

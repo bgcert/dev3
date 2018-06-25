@@ -17,12 +17,19 @@ class UserController extends Controller
     	$order = new \App\Order;
     	$order->user_id = \Auth::id();
     	$order->event_id = request()->event_id;
+    	$order->contact_person = request()->contact_person;
+    	$order->contact_number = request()->contact_number;
+    	$order->invoice = request()->invoice;
     	$order->save();
 
     	foreach (request()->participants as $item) {
     		$order->participants()->create([
     			'name' => $item['name']
     		]);
+    	}
+    	
+    	if (request()->invoice) {
+    		$order->details()->create(request()->details);
     	}
 
     	// Event owner

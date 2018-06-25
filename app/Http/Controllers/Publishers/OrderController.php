@@ -51,7 +51,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	return \App\Order::with('user', 'event.theme', 'participants')->withCount('participants')->where('id', $id)->first();
+    	return \App\Order::with('user', 'event.theme', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
     }
 
     /**

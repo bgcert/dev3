@@ -14,19 +14,48 @@
 					<div>
 						<h3>{{ title }}</h3>
 						<el-form ref="form" label-width="30%">
-							<template v-for="(pariticipant, index) in participants">
-								<el-form-item :label="'Участник ' + (index+1)">
-									<el-input placeholder="Please input" v-model="pariticipant.name">
-										<el-button type="primary" icon="el-icon-delete" slot="append" @click="deleteField(index)"></el-button>
-									</el-input>
+							<div class="ui vertical segment">
+								<el-form-item label="Лице за контакт">
+									<el-input placeholder="Please input" v-model="contactPerson"></el-input>
 								</el-form-item>
-							</template>
-							<el-form-item>
-								<el-button type="primary" icon="el-icon-plus" @click="addField"></el-button>
-							</el-form-item>
-							<el-form-item label="Фактура">
-								<el-checkbox v-model="invoice" name="type"></el-checkbox>
-							</el-form-item>
+								<el-form-item label="Телефон">
+									<el-input placeholder="Please input" v-model="contactNumber"></el-input>
+								</el-form-item>
+							</div>
+							<div class="ui basic segment">
+								<h4>Участници</h4>
+								<template v-for="(pariticipant, index) in participants">
+									<el-form-item :label="'Участник ' + (index+1)">
+										<el-input placeholder="Please input" v-model="pariticipant.name" size="small">
+											<el-button type="primary" icon="el-icon-delete" slot="append" @click="deleteField(index)"></el-button>
+										</el-input>
+									</el-form-item>
+								</template>
+								<el-form-item>
+									<el-button type="primary" icon="el-icon-plus" @click="addField"></el-button>
+								</el-form-item>
+								<el-form-item label="Фактура">
+									<el-checkbox v-model="invoice" name="type"></el-checkbox>
+								</el-form-item>
+								<template v-if="invoice">
+									<h4>Данни за фактура</h4>
+									<el-form-item label="Организация">
+										<el-input placeholder="Please input" v-model="companyData.organization" size="small"></el-input>
+									</el-form-item>
+									<el-form-item label="ЕИК">
+										<el-input placeholder="Please input" v-model="companyData.cid" size="small"></el-input>
+									</el-form-item>
+									<el-form-item label="ДДС номер">
+										<el-input v-model="companyData.vat" size="small"></el-input>
+									</el-form-item>
+									<el-form-item label="Адрес">
+										<el-input type="textarea" v-model="companyData.address"></el-input>
+									</el-form-item>
+									<el-form-item label="МОЛ">
+										<el-input placeholder="Please input" v-model="companyData.owner" size="small"></el-input>
+									</el-form-item>
+								</template>
+							</div>
 						</el-form>
 					</div>
 					<span slot="footer" class="dialog-footer">
@@ -52,16 +81,27 @@
     	data: function () {
     		return {
     			dialogVisible: false,
+    			contactPerson: '',
+    			contactNumber: '',
     			participants: [{name: ''}],
     			invoice: false,
+    			companyData: {
+    				organization: '',
+    				cid: null,
+    				vat: 'BG',
+    				address: '',
+    				owner: ''
+    			}
     		}
     	},
 
     	methods: {
     		addField: function() {
-    			this.participants.push({
-    				name: '',
-    			});
+    			if (this.participants.length <= 14) {
+    				this.participants.push({
+	    				name: '',
+	    			});
+    			}
     		},
 
     		deleteField: function(index) {
@@ -72,7 +112,11 @@
     			this.dialogVisible = false;
     			axios.post('/users/order', {
     				event_id: this.id,
-    				participants: this.participants
+    				contact_person: this.contactPerson,
+    				contact_number: this.contactNumber,
+    				participants: this.participants,
+    				invoice: this.invoice,
+    				details: this.companyData
     			})
     			.then(function (response) {
 	        		console.log(response.data);
