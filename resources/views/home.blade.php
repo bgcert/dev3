@@ -13,7 +13,6 @@
 		</div>
 	</div>
 	
-    <h2>events</h2>
     <event-feed
 		auth="{{ auth()->check() }}"
 		>

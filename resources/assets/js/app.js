@@ -46,6 +46,7 @@ Vue.use(ElementUI, { locale });
 
 Vue.component('flash', require('./components/FlashComponent.vue'));
 Vue.component('carousel', require('./components/CarouselComponent.vue'));
+Vue.component('category-menu', require('./components/CategoryMenuComponent.vue'));
 Vue.component('event-feed', require('./components/EventFeedComponent.vue'));
 Vue.component('venue-feed', require('./components/VenueFeedComponent.vue'));
 Vue.component('venue-slider', require('./components/VenueSliderComponent.vue'));

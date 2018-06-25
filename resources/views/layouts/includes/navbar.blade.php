@@ -4,6 +4,7 @@
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/e" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
+			<category-menu></category-menu>
 
 			<div class="ui mini form">
 				<div class="ui action left icon input">
@@ -53,5 +54,3 @@
 	</div>
 
 </div>
-
-<!-- <div class="ui hidden divider"></div> -->

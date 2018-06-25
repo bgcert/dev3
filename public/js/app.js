@@ -237,6 +237,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_4_element_ui___default.a, { locale: __WEBPACK_
 
 Vue.component('flash', __webpack_require__(284));
 Vue.component('carousel', __webpack_require__(287));
+Vue.component('category-menu', __webpack_require__(375));
 Vue.component('event-feed', __webpack_require__(291));
 Vue.component('venue-feed', __webpack_require__(304));
 Vue.component('venue-slider', __webpack_require__(307));
@@ -54250,6 +54251,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54301,57 +54317,72 @@ var render = function() {
     _vm.order.id
       ? _c("div", { staticClass: "ui segment" }, [
           _c("div", { staticClass: "ui grid" }, [
-            _c(
-              "div",
-              { staticClass: "ten wide column" },
-              [
-                _c("h4", [
-                  _vm._v(
-                    _vm._s(_vm.order.event.theme.title) +
-                      " - " +
-                      _vm._s(_vm.order.event.begin_at)
-                  )
-                ]),
+            _c("div", { staticClass: "ten wide column" }, [
+              _c("h4", [
+                _vm._v(
+                  _vm._s(_vm.order.event.theme.title) +
+                    " - " +
+                    _vm._s(_vm.order.event.begin_at)
+                )
+              ]),
+              _vm._v(" "),
+              _c("table", { staticClass: "ui table" }, [
+                _vm._m(1),
                 _vm._v(" "),
-                _c("table", { staticClass: "ui table" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("td", [_vm._v(_vm._s(_vm.order.created_at))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(_vm.order.event.price) + ".00 лв.")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.order.participants_count))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tfoot", [
-                    _c("tr", [
-                      _c("th"),
-                      _vm._v(" "),
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("th", [
-                        _c("h4", [
-                          _vm._v(
-                            _vm._s(
-                              _vm.order.event.price *
-                                _vm.order.participants_count
-                            ) + ".00 лв."
-                          )
-                        ])
-                      ])
-                    ])
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v(_vm._s(_vm.order.created_at))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.order.event.price) + ".00 лв.")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.order.participants_count))])
                   ])
                 ]),
                 _vm._v(" "),
-                _vm.order.invoice
-                  ? [
-                      _c("table", { staticClass: "ui celled table" }, [
-                        _vm._m(3),
+                _c("tfoot", [
+                  _c("tr", [
+                    _c("th"),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("th", [
+                      _c("h4", [
+                        _vm._v(
+                          _vm._s(
+                            _vm.order.event.price * _vm.order.participants_count
+                          ) + ".00 лв."
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "ui celled table" },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td", [_vm._v("Лице за контакти")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.order.contact_person))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("Телефон")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.order.contact_number))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.order.invoice
+                    ? [
+                        _vm._m(4),
                         _vm._v(" "),
                         _c("tbody", [
                           _c("tr", [
@@ -54388,36 +54419,33 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(_vm.order.details.owner))])
                           ])
                         ])
-                      ])
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "table",
-                  { staticClass: "ui collapsing table" },
-                  [
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._l(_vm.order.participants, function(
-                      participant,
-                      index
-                    ) {
-                      return _c("tbody", [
-                        _c("tr", [
-                          _c("td", [
-                            _vm._v(_vm._s(index + 1 + ". " + participant.name))
-                          ])
+                      ]
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "ui collapsing table" },
+                [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _vm._l(_vm.order.participants, function(participant, index) {
+                    return _c("tbody", [
+                      _c("tr", [
+                        _c("td", [
+                          _vm._v(_vm._s(index + 1 + ". " + participant.name))
                         ])
                       ])
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _vm._m(5)
-              ],
-              2
-            ),
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm._m(6)
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "six wide column" }, [
               _c(
@@ -54480,6 +54508,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("th", [_c("h4", [_vm._v("Общо:")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", { attrs: { colspan: "2" } }, [_vm._v("Контакти")])])
+    ])
   },
   function() {
     var _vm = this
@@ -102659,6 +102695,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -103209,30 +103266,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui huge form" }, [
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Търси")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.searchQuery,
-              expression: "searchQuery"
-            }
-          ],
-          attrs: { placeholder: "Търсене", type: "text" },
-          domProps: { value: _vm.searchQuery },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.searchQuery = $event.target.value
-            }
-          }
-        })
+    _c("div", { staticClass: "ui vertical segment" }, [
+      _c("div", { staticClass: "ui center aligned grid container" }, [
+        _c("div", { staticClass: "column" }, [
+          _c("h3", { staticClass: "ui header" }, [
+            _vm._v(
+              "\n\t\t\t\t\tSemantic is growing fast. Want to see just how much? Sign up and we'll let you know\n\t\t\t\t"
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui big form" }, [
+            _c("div", { staticClass: "field" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "ui icon input",
+                  staticStyle: { width: "450px" }
+                },
+                [
+                  _c("i", { staticClass: "search icon" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchQuery,
+                        expression: "searchQuery"
+                      }
+                    ],
+                    attrs: { placeholder: "Търсене", type: "text" },
+                    domProps: { value: _vm.searchQuery },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchQuery = $event.target.value
+                      }
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
@@ -103345,7 +103425,28 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("select", { staticClass: "ui search dropdown" }, [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Град")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "AL" } }, [_vm._v("Alabama")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "AK" } }, [_vm._v("Alaska")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "AZ" } }, [_vm._v("Arizona")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "AR" } }, [_vm._v("Arkansas")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "CA" } }, [_vm._v("California")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -107603,6 +107704,156 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(376)
+/* template */
+var __vue_template__ = __webpack_require__(377)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CategoryMenuComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c976f9ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-c976f9ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 376 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return {};
+    },
+
+    mounted: function mounted() {
+        console.log('Flash Component mounted.');
+    },
+
+
+    methods: {
+        flash: function flash(message) {
+            this.$message({
+                message: message
+            });
+        }
+    },
+
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('flash', function (message, type) {
+            _this.$message({
+                message: message,
+                type: type
+            });
+        });
+    }
+});
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui dropdown red item" }, [
+      _vm._v("\n\tКатегории  "),
+      _c("i", { staticClass: "dropdown icon" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "menu" }, [
+        _c("a", { staticClass: "item", attrs: { href: "/browse/test" } }, [
+          _vm._v("test")
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c976f9ce", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

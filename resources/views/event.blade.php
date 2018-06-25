@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @push('header-scripts')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/bg.js"></script>
-
 	<style>
 		.cover {
 			background-color: #505763;
@@ -72,7 +69,7 @@
 						</div>
 						<div class="ui horizontal statistics">
 							<div class="statistic">
-								<div class="value">240.00</div>
+								<div class="value">{{ $event->price }}.00</div>
 								<div class="label">лв. с ДДС</div>
 							</div>
 							<request-modal style="width: 100%;"

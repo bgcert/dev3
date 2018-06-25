@@ -1,10 +1,31 @@
 <template>
 	<div>
-		<div class="ui huge form">
-			<div class="field">
-		    	<label>Търси</label>
-		    	<input placeholder="Търсене" type="text" v-model="searchQuery">
-		    </div>
+		<div class="ui vertical segment">
+			<div class="ui center aligned grid container">
+				<div class="column">
+					<h3 class="ui header">
+						Semantic is growing fast. Want to see just how much? Sign up and we'll let you know
+					</h3>
+					<div class="ui big form">
+						<div class="field">
+							<span class="ui icon input" style="width: 450px;">
+								<i class="search icon"></i>
+					    		<input placeholder="Търсене" type="text" v-model="searchQuery">
+							</span>
+					    	<span>
+					    		<select class="ui search dropdown">
+						    		<option value="">Град</option>
+						    		<option value="AL">Alabama</option>
+						    		<option value="AK">Alaska</option>
+						    		<option value="AZ">Arizona</option>
+						    		<option value="AR">Arkansas</option>
+						    		<option value="CA">California</option>
+						    	</select>
+					    	</span>
+					    </div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<br>
 		<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">

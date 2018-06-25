@@ -31,37 +31,52 @@
 						</tfoot>
 					</table>
 
-					<template v-if="order.invoice">
 						<table class="ui celled table">
 							<thead>
 								<tr>
-									<th colspan="2">Данни за фактура</th>
+									<th colspan="2">Контакти</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>Организация</td>
-									<td>{{ order.details.organization }}</td>
+									<td>Лице за контакти</td>
+									<td>{{ order.contact_person }}</td>
 								</tr>
 								<tr>
-									<td>ЕИК</td>
-									<td>{{ order.details.cid }}</td>
-								</tr>
-								<tr>
-									<td>ДДС номер</td>
-									<td>{{ order.details.vat }}</td>
-								</tr>
-								<tr>
-									<td>Адрес</td>
-									<td>{{ order.details.address }}</td>
-								</tr>
-								<tr>
-									<td>МОЛ</td>
-									<td>{{ order.details.owner }}</td>
+									<td>Телефон</td>
+									<td>{{ order.contact_number }}</td>
 								</tr>
 							</tbody>
+							<template v-if="order.invoice">
+								<thead>
+									<tr>
+										<th colspan="2">Данни за фактура</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Организация</td>
+										<td>{{ order.details.organization }}</td>
+									</tr>
+									<tr>
+										<td>ЕИК</td>
+										<td>{{ order.details.cid }}</td>
+									</tr>
+									<tr>
+										<td>ДДС номер</td>
+										<td>{{ order.details.vat }}</td>
+									</tr>
+									<tr>
+										<td>Адрес</td>
+										<td>{{ order.details.address }}</td>
+									</tr>
+									<tr>
+										<td>МОЛ</td>
+										<td>{{ order.details.owner }}</td>
+									</tr>
+								</tbody>
+							</template>
 						</table>
-					</template>
 
 					<table class="ui collapsing table">
 						<thead>

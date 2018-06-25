@@ -1,5 +1,9 @@
 <template>
-	<div>
+	<div class="ui dropdown red item">
+		Категории  <i class="dropdown icon"></i>
+		<div class="menu">
+			<a href="/browse/test" class="item">test</a>
+		</div>
 	</div>
 </template>
 
