@@ -37,6 +37,38 @@
 						</tbody>
 					</table>
 
+					<template v-if="order.invoice">
+						<table class="ui collapsing celled table">
+							<thead>
+								<tr>
+									<th colspan="2">Данни за фактура</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Организация</td>
+									<td>{{ order.details.organization }}</td>
+								</tr>
+								<tr>
+									<td>ЕИК</td>
+									<td>{{ order.details.cid }}</td>
+								</tr>
+								<tr>
+									<td>ДДС номер</td>
+									<td>{{ order.details.vat }}</td>
+								</tr>
+								<tr>
+									<td>Адрес</td>
+									<td>{{ order.details.address }}</td>
+								</tr>
+								<tr>
+									<td>МОЛ</td>
+									<td>{{ order.details.owner }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+
 					<div class="ui form">
 						<div class="field">
 							<label>Записки (видими от организатора)</label>
