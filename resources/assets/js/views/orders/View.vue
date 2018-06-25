@@ -11,34 +11,28 @@
 						<thead>
 							<tr>
 								<th>Регистрирана на:</th>
-								<th>Цена</th>
+								<th>Ед. цена</th>
 								<th>Участници</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>{{ order.created_at }}</td>
-								<td>120.00 лв.</td>
+								<td>{{ order.event.price }}.00 лв.</td>
 								<td>{{ order.participants_count }}</td>
 							</tr>
 						</tbody>
-					</table>
-
-					<table class="ui collapsing table">
-						<thead>
+						<tfoot>
 							<tr>
-								<th>Списък на участниците</th>
+								<th></th>
+								<th><h4>Общо:</h4></th>
+								<th><h4>{{ order.event.price * order.participants_count }}.00 лв.</h4></th>
 							</tr>
-						</thead>
-						<tbody v-for="participant in order.participants">
-							<tr>
-								<td>{{ participant.name }}</td>
-							</tr>
-						</tbody>
+						</tfoot>
 					</table>
 
 					<template v-if="order.invoice">
-						<table class="ui collapsing celled table">
+						<table class="ui celled table">
 							<thead>
 								<tr>
 									<th colspan="2">Данни за фактура</th>
@@ -68,6 +62,19 @@
 							</tbody>
 						</table>
 					</template>
+
+					<table class="ui collapsing table">
+						<thead>
+							<tr>
+								<th>Списък на участниците</th>
+							</tr>
+						</thead>
+						<tbody v-for="(participant, index) in order.participants">
+							<tr>
+								<td>{{ (index+1) + '. ' + participant.name }}</td>
+							</tr>
+						</tbody>
+					</table>
 
 					<div class="ui form">
 						<div class="field">

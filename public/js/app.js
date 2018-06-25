@@ -54243,6 +54243,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54313,79 +54320,101 @@ var render = function() {
                     _c("tr", [
                       _c("td", [_vm._v(_vm._s(_vm.order.created_at))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v("120.00 лв.")]),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm.order.event.price) + ".00 лв.")
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.order.participants_count))])
                     ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tfoot", [
+                    _c("tr", [
+                      _c("th"),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("th", [
+                        _c("h4", [
+                          _vm._v(
+                            _vm._s(
+                              _vm.order.event.price *
+                                _vm.order.participants_count
+                            ) + ".00 лв."
+                          )
+                        ])
+                      ])
+                    ])
                   ])
                 ]),
+                _vm._v(" "),
+                _vm.order.invoice
+                  ? [
+                      _c("table", { staticClass: "ui celled table" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("tbody", [
+                          _c("tr", [
+                            _c("td", [_vm._v("Организация")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.order.details.organization))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("ЕИК")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.order.details.cid))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("ДДС номер")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.order.details.vat))])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("Адрес")]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(_vm.order.details.address))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("tr", [
+                            _c("td", [_vm._v("МОЛ")]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.order.details.owner))])
+                          ])
+                        ])
+                      ])
+                    ]
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "table",
                   { staticClass: "ui collapsing table" },
                   [
-                    _vm._m(2),
+                    _vm._m(4),
                     _vm._v(" "),
-                    _vm._l(_vm.order.participants, function(participant) {
+                    _vm._l(_vm.order.participants, function(
+                      participant,
+                      index
+                    ) {
                       return _c("tbody", [
-                        _c("tr", [_c("td", [_vm._v(_vm._s(participant.name))])])
+                        _c("tr", [
+                          _c("td", [
+                            _vm._v(_vm._s(index + 1 + ". " + participant.name))
+                          ])
+                        ])
                       ])
                     })
                   ],
                   2
                 ),
                 _vm._v(" "),
-                _vm.order.invoice
-                  ? [
-                      _c(
-                        "table",
-                        { staticClass: "ui collapsing celled table" },
-                        [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("tbody", [
-                            _c("tr", [
-                              _c("td", [_vm._v("Организация")]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(_vm.order.details.organization))
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_vm._v("ЕИК")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(_vm.order.details.cid))])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_vm._v("ДДС номер")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(_vm.order.details.vat))])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_vm._v("Адрес")]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(_vm.order.details.address))
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("tr", [
-                              _c("td", [_vm._v("МОЛ")]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(_vm.order.details.owner))
-                              ])
-                            ])
-                          ])
-                        ]
-                      )
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ],
               2
             ),
@@ -54440,7 +54469,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Регистрирана на:")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Цена")]),
+        _c("th", [_vm._v("Ед. цена")]),
         _vm._v(" "),
         _c("th", [_vm._v("Участници")])
       ])
@@ -54450,9 +54479,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [_c("th", [_vm._v("Списък на участниците")])])
-    ])
+    return _c("th", [_c("h4", [_vm._v("Общо:")])])
   },
   function() {
     var _vm = this
@@ -54462,6 +54489,14 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { colspan: "2" } }, [_vm._v("Данни за фактура")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Списък на участниците")])])
     ])
   },
   function() {
