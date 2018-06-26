@@ -38,6 +38,11 @@ class Event extends Model
 			        });
     }
 
+    public function scopeOfCity($query, $city_id)
+    {
+        return $query->where('city_id', '==', $city_id);
+    }
+
     public function getCoverAttribute($value)
     {
     	//return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';

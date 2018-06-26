@@ -9,15 +9,26 @@ class DataController extends Controller
     public function eventList()
     {
     	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
-    	return $events;
+    	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
+
+    	$data = [$events, $cities];
+    	return $data;
     }
 
     public function eventSearch()
     {
     	$string = request()->searchQuery;
-    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->whereHas('theme', function ($query) use ($string) {
-			    		$query->where('title', 'like', '%'. $string . '%');
-					})->get();
+    	$city = request()->city_id;
+    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')
+    						->when($city, function ($query) use ($city) {
+			                    return $query->where('city_id', $city);
+			                })
+			                ->when($string, function ($query) use ($string) {
+			                    return $query->whereHas('theme', function ($query) use ($string) {
+						    		$query->where('title', 'like', '%'. $string . '%');
+								});
+			                })
+							->get();
 
     	return $events;
     }

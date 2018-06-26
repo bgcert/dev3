@@ -6,6 +6,7 @@
 					<h3 class="ui header">
 						Semantic is growing fast. Want to see just how much? Sign up and we'll let you know
 					</h3>
+
 					<div class="ui big form">
 						<div class="field">
 							<span class="ui icon input" style="width: 450px;">
@@ -13,14 +14,17 @@
 					    		<input placeholder="Търсене" type="text" v-model="searchQuery">
 							</span>
 					    	<span>
-					    		<select class="ui search dropdown">
-						    		<option value="">Град</option>
-						    		<option value="AL">Alabama</option>
-						    		<option value="AK">Alaska</option>
-						    		<option value="AZ">Arizona</option>
-						    		<option value="AR">Arkansas</option>
-						    		<option value="CA">California</option>
-						    	</select>
+					    		<el-select v-model="selectedCity" filterable placeholder="Всички градове">
+									<el-option
+										v-for="city in cities"
+										:key="city.id"
+										:label="city.name + ' (' + city.events_count + ')'"
+										:value="city.id">
+									</el-option>
+								</el-select>
+					    	</span>
+					    	<span>
+					    		<button class="ui big basic button" @click.prevent="selectedCity = null">Всички</button>
 					    	</span>
 					    </div>
 					</div>
@@ -84,6 +88,8 @@
     	data: function () {
     		return {
     			events: {},
+    			cities: [],
+    			selectedCity: null,
     			company: [],
     			searchQuery: '',
     			fullscreenLoading: false
@@ -95,6 +101,10 @@
 	        	if (val.length > 2 || val.length == 0) {
 	        		this.searchAfterDebounce();
 	        	}	            
+	        },
+
+	        selectedCity: function() {
+	        	this.searchAfterDebounce();
 	        }
 	    },
 
@@ -108,11 +118,18 @@
 
     		search() {
     			let vm = this;
-    			let route = '/data/event/search' 
-	        	axios.post(route, { searchQuery: this.searchQuery }).then(function (response) {
-	        		vm.events = response.data;
-	        		vm.fullscreenLoading = false;
-				})
+    			let route = '/data/event/search';
+    			let city = this.selectedCity ? this.selectedCity : null;
+    			let search = this.searchQuery ? this.searchQuery : null;
+	        	axios.post(route,
+	        		{
+	        			searchQuery: search,
+	        			city_id: city
+	        		})
+	        		.then(function (response) {
+		        		vm.events = response.data;
+		        		vm.fullscreenLoading = false;
+					})
 				.catch(function (error) {
 					console.log(error);
 					vm.fullscreenLoading = false;
@@ -132,7 +149,8 @@
         created() {
             var vm = this;
         	axios.get('/data/eventlist').then(function (response) {
-        		vm.events = response.data;
+        		vm.events = response.data[0];
+        		vm.cities = response.data[1];
 			})
 			.catch(function (error) {
 				console.log(error);

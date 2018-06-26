@@ -33,7 +33,7 @@
 					<div class="content">
 						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.name }}</a>
 						<div class="metadata">
-							<div class="date">{{ date(comment.created_at) }}</div>
+							<div class="date">{{ comment.created_at }}</div>
 							<template v-if="comment.user.id == user_id">
 								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">delete</a>
 							</template>
@@ -65,16 +65,11 @@
 
     	methods: {
 
-    		date(date) {
-    			return moment().to(date);
-    		},
-
     		login() {
     			EventBus.$emit('loginClicked');
     		},
 
     		addComment() {
-    			console.log(this.message);
     			var vm = this;
     			var route = '/users/comment/' + this.type + '/add';
 				axios.post(route, { id: vm.id, body: this.body })
@@ -86,7 +81,6 @@
 				.catch(function (error) {
 					console.log(error);
 				});
-	            console.log('Comments Component mounted.')
     		},
 
     		removeComment(id, index) {
@@ -134,7 +128,7 @@
 			});
             console.log('Comments Component mounted.');            
         },
-    }
+    };
 </script>
 
 <style>

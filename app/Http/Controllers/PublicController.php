@@ -62,4 +62,8 @@ class PublicController extends Controller
     	$images = $venue->venue_images;
     	return view('venue', compact('venue', 'images'));
     }
+
+    public function categories() {
+    	return \DB::table('categories')->get();
+    }
 }

@@ -40,7 +40,9 @@ Route::get('/event/{id}', 'PublicController@showEvent');
 Route::get('/venue/{id}', 'PublicController@showVenue');
 
 // Data routes
-// load/../.. ?? 
+// load/../.. ??
+// Categories
+Route::get('/data/categories', 'PublicController@categories');
 Route::get('/data/eventlist', 'DataController@eventList');
 Route::post('/data/event/search', 'DataController@eventSearch');
 Route::get('/data/venuelist', 'DataController@venueList');

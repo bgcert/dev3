@@ -16,6 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('theme_id')->unsigned();
+            $table->integer('city_id')->unsigned();
             $table->string('cover')->nullable();
             $table->integer('position')->nullable();
             $table->integer('price')->unsigned();
@@ -24,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->timestamps();
 
             $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 

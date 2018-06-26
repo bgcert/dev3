@@ -10,7 +10,7 @@
 					<div class="content">
 						<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 						<div class="meta">
-							<span>{{ date(event.begin_at) }}</span>
+							<span>{{ event.begin_at }}</span>
 						</div>
 						<div class="extra">
 							Прегледан 123 пъти
@@ -35,9 +35,6 @@
     	},
 
     	methods: {
-    		date(date) {
-    			return moment(date).format('ddd, D MMM YYYY');
-    		},
 
     		request(id) {
     			EventBus.$emit('testlog', 'some message');

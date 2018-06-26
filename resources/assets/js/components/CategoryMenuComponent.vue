@@ -1,8 +1,10 @@
 <template>
-	<div class="ui dropdown red item">
+	<div class="ui dropdown item">
 		Категории  <i class="dropdown icon"></i>
 		<div class="menu">
-			<a href="/browse/test" class="item">test</a>
+			<template v-for="category in categories">
+				<a :href="'/browse/' + category.slug" class="item">{{ category.name }}</a>
+			</template>
 		</div>
 	</div>
 </template>
@@ -13,29 +15,26 @@
 
     	data: function () {
     		return {
-
+    			categories: []
     		}
     	},
 
         mounted() {
-            console.log('Flash Component mounted.')
+            console.log('Category Menu Component mounted.')
         },
 
         methods: {
-        	flash(message) {
-        		this.$message({
-        			message: message,
-        		});
-        	}
+
         },
 
         created() {
-        	EventBus.$on('flash', (message, type) => {
-        		this.$message({
-        			message: message,
-        			type: type
-        		});
-        	});
+        	let vm = this;
+        	axios.get('/data/categories').then(function (response) {
+    				vm.categories = response.data;
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
         }
     };
 </script>
