@@ -73,7 +73,7 @@
 
         created() {
             var vm = this;
-        	axios.get('/data/venuelist').then(function (response) {
+        	axios.get('/api/venuelist').then(function (response) {
         		vm.venues = response.data;
         		console.log('event list');
 				console.log(vm.events);

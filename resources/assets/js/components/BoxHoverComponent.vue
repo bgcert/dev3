@@ -61,7 +61,7 @@
     		getCompany: function(id) {
     			this.loading = true;
     			let vm = this;
-    			let route = '/data/getcompany/' + id;
+    			let route = '/api/getcompany/' + id;
     			axios.get(route).then(function (response) {
     				console.log(response.data);
     				vm.company = response.data;

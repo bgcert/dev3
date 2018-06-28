@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Image;
+use App\Traits\ResizableImage;
 
 class ThemeController extends Controller
 {
+	use ResizableImage;
     /**
      * Display a listing of the resource.
      *
@@ -93,25 +94,5 @@ class ThemeController extends Controller
 	public function categories()
     {
         return \App\Category::all();
-    }
-
-    public function saveImage($file)
-    {
-    	//$file = request()->file;
-    	$extension = $file->getClientOriginalExtension();
-    	$img = Image::make($file);
-
-		// now you are able to resize the instance
-		$img->resize(request()->width, null, function ($constraint) {
-		    $constraint->aspectRatio();
-		});
-		
-		// Generate random name
-		$newName = md5(microtime()) . '.' . $extension;
-
-		// finally we save the image as a new file
-		$img->save(public_path('test/') . $newName);
-
-    	return $newName;
     }
 }

@@ -29,7 +29,7 @@
 
         created() {
         	let vm = this;
-        	axios.get('/data/categories').then(function (response) {
+        	axios.get('/api/categories').then(function (response) {
     				vm.categories = response.data;
 				})
 				.catch(function (error) {

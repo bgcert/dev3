@@ -14,7 +14,12 @@
 					    		<input placeholder="Търсене" type="text" v-model="searchQuery">
 							</span>
 					    	<span>
-					    		<el-select v-model="selectedCity" filterable placeholder="Всички градове">
+					    		<el-select
+					    			v-model="selectedCity"
+					    			filterable
+					    			clearable
+					    			no-match-text="Няма открити"
+					    			placeholder="Всички градове">
 									<el-option
 										v-for="city in cities"
 										:key="city.id"
@@ -22,9 +27,6 @@
 										:value="city.id">
 									</el-option>
 								</el-select>
-					    	</span>
-					    	<span>
-					    		<button class="ui big basic button" @click.prevent="selectedCity = null">Всички</button>
 					    	</span>
 					    </div>
 					</div>
@@ -118,7 +120,7 @@
 
     		search() {
     			let vm = this;
-    			let route = '/data/event/search';
+    			let route = '/api/event/search';
     			let city = this.selectedCity ? this.selectedCity : null;
     			let search = this.searchQuery ? this.searchQuery : null;
 	        	axios.post(route,
@@ -148,7 +150,7 @@
 
         created() {
             var vm = this;
-        	axios.get('/data/eventlist').then(function (response) {
+        	axios.get('/api/eventlist').then(function (response) {
         		vm.events = response.data[0];
         		vm.cities = response.data[1];
 			})

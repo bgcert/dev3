@@ -245,8 +245,6 @@ Vue.component('related-feed', __webpack_require__(315));
 Vue.component('theme-box', __webpack_require__(318));
 Vue.component('request-modal', __webpack_require__(321));
 Vue.component('company-view', __webpack_require__(324));
-//Vue.component('imageUpload', require('./components/ImageUploadComponent.vue'));
-
 Vue.component('comments', __webpack_require__(329));
 Vue.component('notifications', __webpack_require__(334));
 
@@ -50878,10 +50876,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -50926,8 +50920,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       upload.then(function (data) {
         formData.append('cover', data[0]);
-        formData.append('width', data[1]);
-        formData.append('position', data[2]);
 
         axios.post('/dashboard/themes', formData, config).then(function (response) {
           console.log(response);
@@ -50993,7 +50985,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.cover { margin: 10px;\n}\n#image {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.cover { margin: 10px;\n}\n#image {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -51052,105 +51044,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    img: String,
-    canvasWidth: Number,
-    canvasHeight: Number,
-    position: Number,
-    movable: {
-      default: false,
-      type: Boolean
+    props: {
+        img: String
+    },
+
+    data: function data() {
+        return {
+            image: {
+                src: 'img/default_cover.png'
+            },
+            mouseDown: false,
+            start_y: null,
+            newPos: null,
+            deviation: null,
+            curPos: this.position,
+            file: null,
+            filename: null,
+            data: null
+        };
+    },
+
+    methods: {
+        onFileChange: function onFileChange(e) {
+            var vm = this;
+
+            var files = e.target.files || e.dataTransfer.files;
+            var imageUrl = URL.createObjectURL(files[0]);
+            this.image = new Image();
+
+            this.image.src = imageUrl;
+
+            this.file = files[0];
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Image component mounted.');
+    },
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
+            resolve(_this.file);
+        });
+    },
+    destroyed: function destroyed() {
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('imageSave');
     }
-  },
-
-  data: function data() {
-    return {
-      image: {
-        src: 'img/default_cover.png'
-      },
-      mouseDown: false,
-      start_y: null,
-      newPos: null,
-      deviation: null,
-      curPos: this.position,
-      file: null,
-      filename: null,
-      data: null
-    };
-  },
-
-  methods: {
-    onFileChange: function onFileChange(e) {
-      var vm = this;
-
-      var files = e.target.files || e.dataTransfer.files;
-      var imageUrl = URL.createObjectURL(files[0]);
-      this.image = new Image();
-
-      this.image.onload = function () {
-        vm.reposition(this.width, this.height);
-      };
-
-      this.image.src = imageUrl;
-
-      this.mouseDown = false;
-      this.curPos = 0;
-
-      this.file = files[0];
-    },
-    handleMouseEnter: function handleMouseEnter(e) {
-      this.start_y = e.clientY;
-    },
-    handleMouseDown: function handleMouseDown() {
-      this.mouseDown = true;
-    },
-    handleMouseUp: function handleMouseUp() {
-      this.mouseDown = false;
-    },
-    handleImageMove: function handleImageMove(e) {
-      this.newPos = e.clientY - this.start_y;
-      this.start_y = e.clientY;
-      if (this.movable) {
-        $('#image').css('cursor', '-webkit-grab');
-      }
-      if (this.mouseDown && this.movable) {
-        $('#image').css('background-position-y', '+=' + this.newPos);
-        this.curPos = parseInt($('#image').css('background-position-y'));
-        if (this.curPos > 0) this.curPos = 0;
-        if (this.curPos < -this.deviation) this.curPos = -this.deviation;
-        $('#image').css('background-position-y', this.curPos);
-      }
-    },
-    reposition: function reposition(w, h) {
-      $(document).mouseup(this.handleMouseUp);
-      $(document).mousemove(this.handleImageMove);
-      $('#image').css('background-position-y', -this.curPos);
-      var ratio = w / this.canvasWidth;
-      var newHeight = Math.floor(h / ratio);
-      this.deviation = newHeight - this.canvasHeight;
-    }
-  },
-
-  mounted: function mounted() {
-    console.log('Image component mounted.');
-  },
-  created: function created() {
-    var _this = this;
-
-    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
-      console.log(_this.curPos);
-      var data = [_this.file, _this.canvasWidth, _this.curPos];
-      resolve(data);
-    });
-  }
 });
 
 /***/ }),
@@ -51161,24 +51104,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { on: { mousemove: _vm.handleImageMove } }, [
+  return _c("div", [
     _c(
       "div",
       {
         style: {
           "background-image": "url(" + _vm.image.src + ")",
-          width: _vm.canvasWidth + "px",
-          height: _vm.canvasHeight + "px",
           "background-position": "center center"
         },
-        attrs: { id: "image" },
-        on: {
-          mousedown: function($event) {
-            $event.preventDefault()
-            return _vm.handleMouseDown($event)
-          },
-          mouseenter: _vm.handleMouseEnter
-        }
+        attrs: { id: "image" }
       },
       [
         _c("input", {
@@ -51187,13 +51121,7 @@ var render = function() {
           on: { change: _vm.onFileChange }
         }),
         _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm.movable
-          ? _c("div", { staticClass: "ui top right attached icon label" }, [
-              _c("i", { staticClass: "arrows alternate icon" })
-            ])
-          : _vm._e()
+        _vm._m(0)
       ]
     )
   ])
@@ -51293,15 +51221,7 @@ var render = function() {
               _c(
                 "el-form-item",
                 { attrs: { label: "Корица" } },
-                [
-                  _c("ImageUpload", {
-                    attrs: {
-                      canvasWidth: 357,
-                      canvasHeight: 178,
-                      movable: true
-                    }
-                  })
-                ],
+                [_c("ImageUpload")],
                 1
               ),
               _vm._v(" "),
@@ -53038,10 +52958,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -53089,8 +53005,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       upload.then(function (data) {
         formData.append('cover', data[0]);
-        formData.append('width', data[1]);
-        formData.append('position', data[2]);
 
         axios.post('/dashboard/events', formData, config).then(function (response) {
           console.log(response);
@@ -53244,15 +53158,7 @@ var render = function() {
               _c(
                 "el-form-item",
                 { attrs: { label: "Корица" } },
-                [
-                  _c("ImageUpload", {
-                    attrs: {
-                      canvasWidth: 357,
-                      canvasHeight: 178,
-                      movable: true
-                    }
-                  })
-                ],
+                [_c("ImageUpload")],
                 1
               ),
               _vm._v(" "),
@@ -102625,7 +102531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         var vm = this;
-        axios.get('/data/categories').then(function (response) {
+        axios.get('/api/categories').then(function (response) {
             vm.categories = response.data;
         }).catch(function (error) {
             console.log(error);
@@ -102855,6 +102761,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -102897,7 +102805,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     search: function search() {
       var vm = this;
-      var route = '/data/event/search';
+      var route = '/api/event/search';
       var city = this.selectedCity ? this.selectedCity : null;
       var search = this.searchQuery ? this.searchQuery : null;
       axios.post(route, {
@@ -102922,7 +102830,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   created: function created() {
     var vm = this;
-    axios.get('/data/eventlist').then(function (response) {
+    axios.get('/api/eventlist').then(function (response) {
       vm.events = response.data[0];
       vm.cities = response.data[1];
     }).catch(function (error) {
@@ -103175,7 +103083,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCompany: function getCompany(id) {
       this.loading = true;
       var vm = this;
-      var route = '/data/getcompany/' + id;
+      var route = '/api/getcompany/' + id;
       axios.get(route).then(function (response) {
         console.log(response.data);
         vm.company = response.data;
@@ -103466,7 +103374,12 @@ var render = function() {
                   _c(
                     "el-select",
                     {
-                      attrs: { filterable: "", placeholder: "Всички градове" },
+                      attrs: {
+                        filterable: "",
+                        clearable: "",
+                        "no-match-text": "Няма открити",
+                        placeholder: "Всички градове"
+                      },
                       model: {
                         value: _vm.selectedCity,
                         callback: function($$v) {
@@ -103487,23 +103400,7 @@ var render = function() {
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("span", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "ui big basic button",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.selectedCity = null
-                      }
-                    }
-                  },
-                  [_vm._v("Всички")]
-                )
-              ])
+              )
             ])
           ])
         ])
@@ -103760,7 +103657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   created: function created() {
     var vm = this;
-    axios.get('/data/venuelist').then(function (response) {
+    axios.get('/api/venuelist').then(function (response) {
       vm.venues = response.data;
       console.log('event list');
       console.log(vm.events);
@@ -104156,7 +104053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     created: function created() {
         var vm = this;
-        axios.post('/data/relatedeventlist', { company_id: vm.company_id }).then(function (response) {
+        axios.post('/api/relatedeventlist', { company_id: vm.company_id }).then(function (response) {
             vm.events = response.data;
             console.log('event list');
             console.log(vm.events);
@@ -105307,7 +105204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     var vm = this;
-    var route = '/data/company/details/' + this.slug;
+    var route = '/api/company/details/' + this.slug;
     axios.get(route).then(function (response) {
       vm.company = response.data;
       console.log(response.data);
@@ -105943,7 +105840,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   mounted: function mounted() {
     var vm = this;
-    var route = '/data/' + this.type + '/comments';
+    var route = '/api/' + this.type + '/comments';
     axios.post(route, { id: vm.id }).then(function (response) {
       vm.comments = response.data;
       console.log(response.data);
@@ -107606,6 +107503,8 @@ exports.push([module.i, "\n.el-menu-vertical-demo:not(.el-menu--collapse) {\n\tm
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
 //
 //
 //

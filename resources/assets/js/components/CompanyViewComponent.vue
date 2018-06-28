@@ -201,7 +201,7 @@
 
         created() {
         	let vm = this;
-			let route = '/data/company/details/' + this.slug;
+			let route = '/api/company/details/' + this.slug;
 			axios.get(route).then(function (response) {
         		vm.company = response.data;
 				console.log(response.data);
@@ -210,7 +210,7 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>
 
 <style>

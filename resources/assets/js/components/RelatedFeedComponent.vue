@@ -44,7 +44,7 @@
 
         created() {
             var vm = this;
-        	axios.post('/data/relatedeventlist', { company_id: vm.company_id}).then(function (response) {
+        	axios.post('/api/relatedeventlist', { company_id: vm.company_id}).then(function (response) {
         		vm.events = response.data;
         		console.log('event list');
 				console.log(vm.events);

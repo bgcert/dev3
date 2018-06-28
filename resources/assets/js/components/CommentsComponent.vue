@@ -117,7 +117,7 @@
 
         mounted() {
         	var vm = this;
-        	var route = '/data/' + this.type +'/comments';
+        	var route = '/api/' + this.type +'/comments';
 			axios.post(route, { id: vm.id })
 			.then(function (response) {
 				vm.comments = response.data;

@@ -39,12 +39,8 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<ImageUpload
-							:canvasWidth="357"
-							:canvasHeight="178"
-							:movable="true"
-							>
-						</ImageUpload>
+							<ImageUpload>
+							</ImageUpload>
 					</el-form-item>
 
 					<el-form-item>
@@ -111,8 +107,6 @@
 
 				upload.then((data) => {
 					formData.append('cover', data[0]);
-					formData.append('width', data[1]);
-					formData.append('position', data[2]);
 
 					axios.post('/dashboard/events', formData, config)
 	    			.then(function (response) {

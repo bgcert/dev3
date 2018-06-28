@@ -54,8 +54,6 @@ Vue.component('related-feed', require('./components/RelatedFeedComponent.vue'));
 Vue.component('theme-box', require('./components/ThemeBoxComponent.vue'));
 Vue.component('request-modal', require('./components/RequestModalComponent.vue'));
 Vue.component('company-view', require('./components/CompanyViewComponent.vue'));
-//Vue.component('imageUpload', require('./components/ImageUploadComponent.vue'));
-
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 Vue.component('notifications', require('./components/NotificationsComponent.vue'));
 
