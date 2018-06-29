@@ -12,40 +12,30 @@
 			</div>
 
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
+
 				<div class="ui three stackable cards">
 					<template v-for="theme in themes">
-						<div class="card">
-							<div class="image">
-								<img :src="theme.cover">
-							</div>
-							<div class="content">
-								<router-link :to="'/themes/edit/' + theme.id" class="header">
-									{{ theme.title }}
-								</router-link>
-							</div>
-							<div class="extra content">
-								<span class="right floated">
-									<el-row>
-										<a :href="'/theme/' + theme.id" class="mini ui positive icon button" target="_blank"><i class="eye icon"></i></a>
-										<router-link :to="'/themes/edit/' + theme.id" class="item">
-											<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
-										</router-link>
-										<router-link :to="'/themes/edit/' + theme.id" class="item">
-											<el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
-										</router-link>
-									</el-row>
-								</span>
-							</div>
-						</div>
+						<CardDashboard
+							:image="theme.cover"
+							:title="theme.title"
+							:view_link="'/themes/edit/' + theme.id"
+							:edit_link="'/themes/edit/' + theme.id"
+							:delete_link="'/themes/delete/' + theme.id">
+						</CardDashboard>
 					</template>
 				</div>
+
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import CardDashboard from '../../components/CardDashboardComponent.vue'
     export default {
+    	components: {
+			CardDashboard
+		},
     	data: function () {
     		return {
     			themes: '',
@@ -73,5 +63,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

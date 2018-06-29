@@ -38,7 +38,7 @@ class ThemeController extends Controller
     public function store(Request $request)
     {
     	$requestData = $request->all();
-    	$name = $this->saveImage($requestData['cover']);
+    	$name = $this->saveImage($request->cover, 357, 178);
     	$requestData['cover'] = '/test/' . $name;
 
     	return \Auth::user()->company->themes()->create($requestData);

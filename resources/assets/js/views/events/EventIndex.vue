@@ -12,41 +12,31 @@
 			</div>
 
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
+
 				<div class="ui three stackable cards">
 					<template v-for="event in events">
-						<div class="card">
-							<div class="image">
-								<img :src="event.cover">
-							</div>
-							<div class="content">
-								<p style="text-transform: uppercase;">
-									{{ event.begin_at }}
-								</p>
-								<router-link :to="'/events/edit/' + event.id" class="header">
-									{{ event.theme.title }}
-								</router-link>
-							</div>
-							<div class="extra content">
-								<span class="right floated">
-									<el-row>
-										<el-button type="success" icon="el-icon-view" size="mini"></el-button>
-										<router-link :to="'/events/edit/' + event.id" class="item">
-											<el-button type="warning" icon="el-icon-edit" size="mini"></el-button>
-										</router-link>
-										<el-button type="danger" icon="el-icon-delete" size="mini"></el-button>
-									</el-row>
-								</span>
-							</div>
-						</div>
+						<CardDashboard
+							:image="event.cover"
+							:date="event.begin_at"
+							:title="event.theme.title"
+							:view_link="'/events/edit/' + event.id"
+							:edit_link="'/events/edit/' + event.id"
+							:delete_link="'/events/delete/' + event.id">
+						</CardDashboard>
 					</template>
 				</div>
+
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import CardDashboard from '../../components/CardDashboardComponent.vue'
     export default {
+    	components: {
+			CardDashboard
+		},
     	data: function () {
     		return {
     			events: '',

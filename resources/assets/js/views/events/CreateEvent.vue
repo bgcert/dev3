@@ -106,7 +106,7 @@
     			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
 
 				upload.then((data) => {
-					formData.append('cover', data[0]);
+					formData.append('cover', data);
 
 					axios.post('/dashboard/events', formData, config)
 	    			.then(function (response) {
@@ -122,25 +122,6 @@
 					vm.$message('Невалидно изображение');
 				});
     		},
-
-    		save1() {
-    			var vm = this;
-    			axios.post('/dashboard/events', {
-    				theme_id: vm.selectedTheme,
-    				teachers: vm.selectedTeachers,
-    				cover: 'https://picsum.photos/800/400/?image=120',
-    				begin_at: vm.form.date[0],
-    				end_at: vm.form.date[1],
-    			})
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Събитието е създадено успешно.');
-    				vm.$router.push('/events');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
-    		}
     	},
 
         mounted() {

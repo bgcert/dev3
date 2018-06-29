@@ -6,15 +6,17 @@ use Image;
 
 trait ResizableImage
 {
-	public function saveImage($file)
+	public function saveImage($file, $w, $h)
     {
-    	$w = 357;
-    	$h = 178;
-    	//$file = request()->file;
     	$extension = $file->getClientOriginalExtension();
     	$img = Image::make($file);
 
-    	if ($img->width() <= $img->height()) {
+    	$relation = $w / $h;
+
+    	$resizeWidth = $w * $relation;
+    	$resizeHeight = $h * $relation;
+
+    	if ($img->width() / $img->height() < $relation) {
     		$img->resize($w, null, function ($constraint) {
 			    $constraint->aspectRatio();
 			});
@@ -23,11 +25,6 @@ trait ResizableImage
 			    $constraint->aspectRatio();
 			});
     	}
-
-		// now you are able to resize the instance
-		// $img->resize(request()->width, null, function ($constraint) {
-		//     $constraint->aspectRatio();
-		// });
 		
 		// Generate random name
 		$newName = md5(microtime()) . '.' . $extension;

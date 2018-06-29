@@ -50535,20 +50535,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__);
 //
 //
 //
@@ -50582,7 +50570,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        CardDashboard: __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default.a
+    },
     data: function data() {
         return {
             themes: '',
@@ -50663,96 +50655,15 @@ var render = function() {
             [
               _vm._l(_vm.themes, function(theme) {
                 return [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "image" }, [
-                      _c("img", { attrs: { src: theme.cover } })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "content" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "header",
-                            attrs: { to: "/themes/edit/" + theme.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(theme.title) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "extra content" }, [
-                      _c(
-                        "span",
-                        { staticClass: "right floated" },
-                        [
-                          _c(
-                            "el-row",
-                            [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "mini ui positive icon button",
-                                  attrs: {
-                                    href: "/theme/" + theme.id,
-                                    target: "_blank"
-                                  }
-                                },
-                                [_c("i", { staticClass: "eye icon" })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "item",
-                                  attrs: { to: "/themes/edit/" + theme.id }
-                                },
-                                [
-                                  _c("el-button", {
-                                    attrs: {
-                                      type: "warning",
-                                      icon: "el-icon-edit",
-                                      size: "mini"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "item",
-                                  attrs: { to: "/themes/edit/" + theme.id }
-                                },
-                                [
-                                  _c("el-button", {
-                                    attrs: {
-                                      type: "danger",
-                                      icon: "el-icon-delete",
-                                      size: "mini"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ])
-                  ])
+                  _c("CardDashboard", {
+                    attrs: {
+                      image: theme.cover,
+                      title: theme.title,
+                      view_link: "/themes/edit/" + theme.id,
+                      edit_link: "/themes/edit/" + theme.id,
+                      delete_link: "/themes/delete/" + theme.id
+                    }
+                  })
                 ]
               })
             ],
@@ -50919,7 +50830,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       upload.then(function (data) {
-        formData.append('cover', data[0]);
+        formData.append('cover', data);
 
         axios.post('/dashboard/themes', formData, config).then(function (response) {
           console.log(response);
@@ -51088,6 +50999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
+            console.log(_this.file);
             resolve(_this.file);
         });
     },
@@ -51390,7 +51302,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51401,15 +51313,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -51635,55 +51538,31 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Корица" } },
-                [
-                  _c("img", {
-                    staticClass: "ui medium bordered image",
-                    attrs: { src: _vm.theme.cover }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "ui basic button",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.toggleShow($event)
-                        }
+              _c("el-form-item", { attrs: { label: "Корица" } }, [
+                _c("img", {
+                  staticClass: "ui medium bordered image",
+                  attrs: { src: _vm.theme.cover }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "ui basic button",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.toggleShow($event)
                       }
-                    },
-                    [
-                      _c("i", { staticClass: "icon cloud upload" }),
-                      _vm._v(" Смени корицата")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("my-upload", {
-                    attrs: {
-                      field: "img",
-                      width: 357,
-                      height: 179,
-                      langType: "bg",
-                      "img-format": "png",
-                      noCircle: true
-                    },
-                    on: { "crop-success": _vm.cropSuccess },
-                    model: {
-                      value: _vm.show,
-                      callback: function($$v) {
-                        _vm.show = $$v
-                      },
-                      expression: "show"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("img", { attrs: { src: _vm.imgDataUrl } })
-                ],
-                1
-              ),
+                  },
+                  [
+                    _c("i", { staticClass: "icon cloud upload" }),
+                    _vm._v(" Смени корицата")
+                  ]
+                ),
+                _vm._v(" "),
+                _c("img", { attrs: { src: _vm.imgDataUrl } })
+              ]),
               _vm._v(" "),
               _c("el-form-item", [
                 _c(
@@ -51799,17 +51678,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__);
 //
 //
 //
@@ -51844,7 +51714,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        CardDashboard: __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default.a
+    },
     data: function data() {
         return {
             teachers: '',
@@ -51925,82 +51799,15 @@ var render = function() {
             [
               _vm._l(_vm.teachers, function(teacher) {
                 return [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "image" }, [
-                      _c("img", { attrs: { src: teacher.image } })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "content" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "header",
-                            attrs: { to: "/teachers/edit/" + teacher.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(teacher.name) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "extra content" }, [
-                      _c(
-                        "span",
-                        { staticClass: "right floated" },
-                        [
-                          _c(
-                            "el-row",
-                            [
-                              _c("el-button", {
-                                attrs: {
-                                  type: "success",
-                                  icon: "el-icon-view",
-                                  size: "mini"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "item",
-                                  attrs: { to: "/teachers/edit/" + teacher.id }
-                                },
-                                [
-                                  _c("el-button", {
-                                    attrs: {
-                                      type: "warning",
-                                      icon: "el-icon-edit",
-                                      size: "mini"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("el-button", {
-                                attrs: {
-                                  type: "danger",
-                                  icon: "el-icon-delete",
-                                  size: "mini"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ])
-                  ])
+                  _c("CardDashboard", {
+                    attrs: {
+                      image: teacher.image,
+                      title: teacher.name,
+                      view_link: "/teachers/edit/" + teacher.id,
+                      edit_link: "/teachers/edit/" + teacher.id,
+                      delete_link: "/teachers/delete/" + teacher.id
+                    }
+                  })
                 ]
               })
             ],
@@ -52602,20 +52409,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue__);
 //
 //
 //
@@ -52650,7 +52445,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        CardDashboard: __WEBPACK_IMPORTED_MODULE_0__components_CardDashboardComponent_vue___default.a
+    },
     data: function data() {
         return {
             events: '',
@@ -52731,94 +52530,16 @@ var render = function() {
             [
               _vm._l(_vm.events, function(event) {
                 return [
-                  _c("div", { staticClass: "card" }, [
-                    _c("div", { staticClass: "image" }, [
-                      _c("img", { attrs: { src: event.cover } })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "content" },
-                      [
-                        _c(
-                          "p",
-                          { staticStyle: { "text-transform": "uppercase" } },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(event.begin_at) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "header",
-                            attrs: { to: "/events/edit/" + event.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(event.theme.title) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "extra content" }, [
-                      _c(
-                        "span",
-                        { staticClass: "right floated" },
-                        [
-                          _c(
-                            "el-row",
-                            [
-                              _c("el-button", {
-                                attrs: {
-                                  type: "success",
-                                  icon: "el-icon-view",
-                                  size: "mini"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "item",
-                                  attrs: { to: "/events/edit/" + event.id }
-                                },
-                                [
-                                  _c("el-button", {
-                                    attrs: {
-                                      type: "warning",
-                                      icon: "el-icon-edit",
-                                      size: "mini"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("el-button", {
-                                attrs: {
-                                  type: "danger",
-                                  icon: "el-icon-delete",
-                                  size: "mini"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ])
-                  ])
+                  _c("CardDashboard", {
+                    attrs: {
+                      image: event.cover,
+                      date: event.begin_at,
+                      title: event.theme.title,
+                      view_link: "/events/edit/" + event.id,
+                      edit_link: "/events/edit/" + event.id,
+                      delete_link: "/events/delete/" + event.id
+                    }
+                  })
                 ]
               })
             ],
@@ -53004,7 +52725,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
 
       upload.then(function (data) {
-        formData.append('cover', data[0]);
+        formData.append('cover', data);
 
         axios.post('/dashboard/events', formData, config).then(function (response) {
           console.log(response);
@@ -53016,22 +52737,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }, function (error) {
         console.log(error);
         vm.$message('Невалидно изображение');
-      });
-    },
-    save1: function save1() {
-      var vm = this;
-      axios.post('/dashboard/events', {
-        theme_id: vm.selectedTheme,
-        teachers: vm.selectedTeachers,
-        cover: 'https://picsum.photos/800/400/?image=120',
-        begin_at: vm.form.date[0],
-        end_at: vm.form.date[1]
-      }).then(function (response) {
-        console.log(response);
-        vm.$message('Събитието е създадено успешно.');
-        vm.$router.push('/events');
-      }).catch(function (error) {
-        console.log(error);
       });
     }
   },
@@ -107768,6 +107473,197 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(379)
+/* template */
+var __vue_template__ = __webpack_require__(380)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CardDashboardComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-37065bb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-37065bb0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 379 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['image', 'date', 'title', 'view_link', 'edit_link', 'delete_link'],
+  data: function data() {
+    return {};
+  },
+
+  mounted: function mounted() {
+    console.log('Card Dashboard Component mounted.');
+  },
+
+
+  methods: {},
+
+  created: function created() {}
+});
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "image" }, [
+      _c("img", { attrs: { src: _vm.image } })
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "content" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "header", attrs: { to: _vm.edit_link } },
+          [_vm._v("\n\t\t\t" + _vm._s(_vm.title) + "\n\t\t")]
+        ),
+        _vm._v(" "),
+        _vm.date
+          ? _c("div", { staticClass: "meta" }, [
+              _c("span", { staticClass: "date" }, [_vm._v(_vm._s(_vm.date))])
+            ])
+          : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "extra content" }, [
+      _c("div", { staticClass: "right floated" }, [
+        _c(
+          "div",
+          { staticClass: "ui basic mini icon buttons" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "ui button", attrs: { to: _vm.view_link } },
+              [_c("i", { staticClass: "eye icon" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "ui button", attrs: { to: _vm.edit_link } },
+              [_c("i", { staticClass: "edit icon" })]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "ui button", attrs: { to: _vm.delete_link } },
+              [_c("i", { staticClass: "trash icon" })]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-37065bb0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

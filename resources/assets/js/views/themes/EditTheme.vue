@@ -26,15 +26,6 @@
 					<el-form-item label="Корица">
 						<img class="ui medium bordered image" :src="theme.cover">
 						<button class="ui basic button" @click.prevent="toggleShow"><i class="icon cloud upload"></i> Смени корицата</button>
-						<my-upload field="img"
-					        @crop-success="cropSuccess"
-					        v-model="show"
-							:width="357"
-							:height="179"
-							langType="bg"
-							img-format="png"
-							:noCircle="true">
-						</my-upload>
 						<img :src="imgDataUrl">
 
 					</el-form-item>

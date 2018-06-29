@@ -56,7 +56,9 @@
 
         created() {
         	EventBus.$on('imageSave', (resolve, reject) => {
+				console.log(this.file);
 				resolve(this.file);
+
         	});
         },
 
