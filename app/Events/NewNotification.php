@@ -36,9 +36,4 @@ class NewNotification implements ShouldBroadcast
     {
         return new PrivateChannel('notifications.' . $this->user->id);
     }
-
-    // public function broadcastWith()
-    // {
-    // 	return ['thread_id' => $this->thread->id];
-    // }
 }

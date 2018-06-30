@@ -1,8 +1,6 @@
 <template>
 	<div class="card">
-		<div class="image" :style="`background: url(${image})`">
-			<!-- <img :src="image"> -->
-		</div>
+		<div class="image" :style="`background: url(${image})`"></div>
 		<div class="content">
 			<router-link :to="edit_link" class="header">
 				{{ title }}
@@ -14,15 +12,21 @@
 		<div class="extra content">
 			<div class="right floated">
 				<div class="ui basic mini icon buttons">
-					<router-link :to="view_link" class="ui button">
-						<i class="eye icon"></i>
-					</router-link>
-					<router-link :to="edit_link" class="ui button">
-						<i class="edit icon"></i>
-					</router-link>
-					<router-link :to="delete_link" class="ui button">
-						<i class="trash icon"></i>
-					</router-link>
+					<el-tooltip effect="dark" content="Преглед" placement="top">
+						<button class="ui button" @click.prevent="$emit('show')">
+							<i class="eye icon"></i>
+						</button>
+					</el-tooltip>
+					<el-tooltip effect="dark" content="Редактиране" placement="top">
+						<router-link :to="edit_link" class="ui button">
+							<i class="edit icon"></i>
+						</router-link>
+					</el-tooltip>
+					<el-tooltip effect="dark" content="Изтриване" placement="top">
+						<button class="ui button" @click.prevent="$emit('delete')">
+							<i class="trash icon"></i>
+						</button>
+					</el-tooltip>
 				</div>
 			</div>
 		</div>
@@ -31,7 +35,7 @@
 
 <script>
     export default {
-    	props: ['image', 'date', 'title', 'view_link', 'edit_link', 'delete_link'],
+    	props: ['image', 'date', 'title', 'edit_link'],
     	data: function () {
     		return {
 
@@ -43,7 +47,14 @@
         },
 
         methods: {
+        	click() {
+        		console.log('delete ?');
+		    	this.$emit('delete', 'bye');
+		    },
 
+        	handleDelete() {
+        		console.log('delete clicked');
+        	}
         },
 
         created() {

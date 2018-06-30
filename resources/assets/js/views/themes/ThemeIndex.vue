@@ -1,5 +1,17 @@
 <template>
 	<div>
+		<!-- <el-dialog
+			title="Tips"
+			:visible.sync="dialogVisible"
+			width="30%"
+			:before-close="handleDelete">
+			<span>This is a message</span>
+			<span slot="footer" class="dialog-footer">
+				<el-button @click="dialogVisible = false">Не</el-button>
+				<el-button type="primary" @click="dialogVisible = false">Да</el-button>
+			</span>
+		</el-dialog> -->
+
 		<div class="ui segments">
 			<div class="ui clearing segment">
 				<h3 style="float: left;">Теми</h3>
@@ -18,9 +30,10 @@
 						<CardDashboard
 							:image="theme.cover"
 							:title="theme.title"
-							:view_link="'/themes/edit/' + theme.id"
 							:edit_link="'/themes/edit/' + theme.id"
-							:delete_link="'/themes/delete/' + theme.id">
+							v-on:show="handleShow(theme.id)"
+							v-on:delete="handleDelete(theme.id)"
+							>
 						</CardDashboard>
 					</template>
 				</div>
@@ -38,13 +51,25 @@
 		},
     	data: function () {
     		return {
+    			dialogVisible: false,
     			themes: '',
     			loading: true
     		}
     	},
 
     	methods: {
+    		handleDelete(id) {
+    			this.$confirm('Сигурни ли сте, че желаете да изтриете тази тема?')
+	    			.then(_ => {
+	    				console.log(id);
+	    				done();
+	    			})
+	    			.catch(_ => {});
+    		},
 
+    		handleShow(id) {
+    			window.open('/event/' + id,'_blank');
+    		}
     	},
 
         mounted() {
@@ -62,6 +87,8 @@
 			.catch(function (error) {
 				console.log(error);
 			});
+
+
         }
     };
 </script>

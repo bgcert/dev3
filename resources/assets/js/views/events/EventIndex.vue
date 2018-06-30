@@ -19,9 +19,10 @@
 							:image="event.cover"
 							:date="event.begin_at"
 							:title="event.theme.title"
-							:view_link="'/events/edit/' + event.id"
 							:edit_link="'/events/edit/' + event.id"
-							:delete_link="'/events/delete/' + event.id">
+							v-on:show="handleShow(event.id)"
+							v-on:delete="handleDelete(event.id)"
+							>
 						</CardDashboard>
 					</template>
 				</div>
@@ -45,7 +46,14 @@
     	},
 
     	methods: {
-
+    		handleDelete(id) {
+    			this.$confirm('Сигурни ли сте, че желаете да изтриете това събитие?')
+	    			.then(_ => {
+	    				console.log(id);
+	    				done();
+	    			})
+	    			.catch(_ => {});
+    		},
     	},
 
         mounted() {

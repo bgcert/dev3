@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::login(\App\User::find(4));
+Auth::login(\App\User::find(4));
 
 // Route::get('/query', function () {
 //     $id = \Auth::id();
@@ -38,19 +38,6 @@ Route::get('/user/{id}', 'PublicController@user');
 Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
 Route::get('/venue/{id}', 'PublicController@showVenue');
-
-// Data routes
-// load/../.. ??
-// Categories
-// Route::get('/data/categories', 'PublicController@categories');
-// Route::get('/data/eventlist', 'DataController@eventList');
-// Route::post('/data/event/search', 'DataController@eventSearch');
-// Route::get('/data/venuelist', 'DataController@venueList');
-// Route::post('/data/relatedeventlist', 'DataController@relatedEventList');
-// Route::get('/data/getcompany/{id}', 'DataController@getCompany');
-// Route::get('/data/company/details/{slug}', 'DataController@getCompanyDetails');
-// Route::post('/data/theme/comments', 'DataController@themeComments');
-// Route::post('/data/venue/comments', 'DataController@venueComments');
 
 // Load venue images
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');
