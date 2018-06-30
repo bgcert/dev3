@@ -44,7 +44,7 @@
 				<a href="/messages#/t" class="item">
 					<i class="paper plane outline icon"></i>
 				</a>
-				<notifications></notifications>
+				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				<span class="item">
 				  <i class="question outline circle icon"></i>
 				</span>

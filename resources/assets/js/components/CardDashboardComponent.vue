@@ -1,7 +1,7 @@
 <template>
 	<div class="card">
-		<div class="image">
-			<img :src="image">
+		<div class="image" :style="`background: url(${image})`">
+			<!-- <img :src="image"> -->
 		</div>
 		<div class="content">
 			<router-link :to="edit_link" class="header">
@@ -51,3 +51,11 @@
         }
     };
 </script>
+
+<style>
+	.image {
+		height: 150px;
+		background-size: cover !important;
+		background-position: center center !important;
+	}
+</style>

@@ -45,7 +45,7 @@
 					</div>
 
 					<div class="image"
-						:style="{ 'background-image': 'url(' + event.cover + ')', 'background-position-y': event.position + 'px' }"
+						:style="`background: url(${event.cover})`"
 						>
 					</div>
 					<div class="content">
@@ -138,14 +138,14 @@
 				});
     		},
 
-    		date(date) {
-    			return moment(date).format('ddd, D MMM YYYY');
-    		},
+    		// date(date) {
+    		// 	return moment(date).format('ddd, D MMM YYYY');
+    		// },
 
-    		request(id) {
-    			EventBus.$emit('testlog', 'some message');
-    			console.log('request ' + id);
-    		}
+    		// request(id) {
+    		// 	EventBus.$emit('testlog', 'some message');
+    		// 	console.log('request ' + id);
+    		// }
     	},
 
         created() {
@@ -164,5 +164,7 @@
 <style>
 	.image {
 		height: 178px;
+		background-size: cover !important;
+		background-position: center center !important;
 	}
 </style>

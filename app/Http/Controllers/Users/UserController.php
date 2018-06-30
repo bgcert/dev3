@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Events\NewNotification;
 
 class UserController extends Controller
 {
@@ -33,7 +34,10 @@ class UserController extends Controller
     	}
 
     	// Event owner
-    	$order->event->theme->company->user->notify(new \App\Notifications\NewOrder);
+    	$event_owner = $order->event->theme->company->user;
+    	$event_owner->notify(new \App\Notifications\NewOrder);
+
+    	broadcast(new NewNotification($event_owner));
 
     	return $order;
     }
