@@ -46,7 +46,7 @@
 				</a>
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				<span class="item">
-				  <i class="question outline circle icon"></i>
+					<i class="question outline circle icon"></i>
 				</span>
 				@endguest
 			</div>

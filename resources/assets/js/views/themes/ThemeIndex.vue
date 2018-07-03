@@ -1,16 +1,16 @@
 <template>
 	<div>
-		<!-- <el-dialog
+		<el-dialog
 			title="Tips"
 			:visible.sync="dialogVisible"
 			width="30%"
 			:before-close="handleDelete">
-			<span>This is a message</span>
+			<span slot="header">This is a message</span>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">Не</el-button>
-				<el-button type="primary" @click="dialogVisible = false">Да</el-button>
+				<el-button @click="dialogVisible = false">Да</el-button>
+				<el-button type="primary" @click="dialogVisible = false">Не</el-button>
 			</span>
-		</el-dialog> -->
+		</el-dialog>
 
 		<div class="ui segments">
 			<div class="ui clearing segment">
@@ -32,7 +32,7 @@
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
 							v-on:show="handleShow(theme.id)"
-							v-on:delete="handleDelete(theme.id)"
+							v-on:deleteItem="handleDelete(theme.id)"
 							>
 						</CardDashboard>
 					</template>
@@ -68,7 +68,7 @@
     		},
 
     		handleShow(id) {
-    			window.open('/event/' + id,'_blank');
+    			window.open('/theme/' + id,'_blank');
     		}
     	},
 
@@ -77,6 +77,7 @@
         },
 
         created() {
+        	this.$on('deleteItem', this.handleDelete);
         	var vm = this;
             var route = '/dashboard/themes';
         	axios.get(route).then(function (response) {

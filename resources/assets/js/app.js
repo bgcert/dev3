@@ -29,14 +29,14 @@ import Vuex from 'vuex';
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/bg'
+// import locale from 'element-ui/lib/locale/lang/bg'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
 const store = new Vuex.Store(StoreData);
 
-Vue.use(ElementUI, { locale });
+Vue.use(ElementUI);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

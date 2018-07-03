@@ -23,7 +23,7 @@
 						</router-link>
 					</el-tooltip>
 					<el-tooltip effect="dark" content="Изтриване" placement="top">
-						<button class="ui button" @click.prevent="$emit('delete')">
+						<button class="ui button" @click.prevent="$emit('deleteItem')">
 							<i class="trash icon"></i>
 						</button>
 					</el-tooltip>
