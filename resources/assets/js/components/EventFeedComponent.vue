@@ -1,6 +1,8 @@
 <template>
 	<div>
+
 		<div class="ui vertical segment">
+
 			<div class="ui center aligned grid container">
 				<div class="column">
 					<h3 class="ui header">
@@ -81,14 +83,16 @@
 	import { EventBus } from '../app';
 	import Like from './LikeComponent.vue'
 	import BoxHover from './BoxHoverComponent.vue'
+	import VCard from 'vuetify/es5/components/VCard'
     export default {
     	components: {
-			Like, BoxHover
+			Like, BoxHover, VCard
 		},
     	props: ['auth'],
 
     	data: function () {
     		return {
+    			boolean: true,
     			events: {},
     			cities: [],
     			selectedCity: null,

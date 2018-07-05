@@ -41,9 +41,6 @@
 
         @yield('content')
         
-        <main class="py-4">
-            
-        </main>
     </div>
 
     <!-- Scripts -->

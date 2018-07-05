@@ -11,7 +11,6 @@
     },
     "devDependencies": {
         "axios": "^0.18",
-        "bootstrap": "^4.1.1",
         "cross-env": "^5.2.0",
         "jquery": "^3.3.1",
         "laravel-mix": "^2.1.11",
@@ -22,11 +21,12 @@
         "vue-router": "^3.0.1"
     },
     "dependencies": {
-        "element-ui": "^2.4.1",
+        "element-ui": "^2.4.3",
         "laravel-echo": "^1.4.0",
         "pusher-js": "^4.2.2",
         "semantic-ui": "^2.3.2",
-        "vuetify": "^1.0.19",
+        "vue-material": "^1.0.0-beta-10.2",
+        "vuetify": "^1.1.1",
         "vuex": "^3.0.1"
     }
 }
