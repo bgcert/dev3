@@ -1,16 +1,22 @@
 <template>
 	<div>
-		<el-dialog
-			title="Tips"
-			:visible.sync="dialogVisible"
-			width="30%"
-			:before-close="handleDelete">
-			<span slot="header">This is a message</span>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">Да</el-button>
-				<el-button type="primary" @click="dialogVisible = false">Не</el-button>
-			</span>
-		</el-dialog>
+		<v-app>
+			<v-layout row justify-center>
+
+				<v-dialog v-model="dialog" max-width="390">
+					<v-card>
+						<v-card-title class="headline">Сигурни ли сте, че желаете ли да изтриете темата</v-card-title>
+
+						<v-card-actions>
+								
+							<v-spacer></v-spacer>
+
+							<v-btn color="green darken-1" flat="flat" @click="dialog = false"> Не</v-btn>
+							<v-btn color="green darken-1" flat="flat" @click="dialog = false" > Да</v-btn>
+						</v-card-actions>
+					</v-card>
+				</v-dialog>
+			</v-layout>
 
 		<div class="ui segments">
 			<div class="ui clearing segment">
@@ -40,6 +46,7 @@
 
 			</div>
 		</div>
+		</v-app>
 	</div>
 </template>
 
@@ -51,6 +58,7 @@
 		},
     	data: function () {
     		return {
+    			dialog: false,
     			dialogVisible: false,
     			themes: '',
     			loading: true
@@ -59,16 +67,11 @@
 
     	methods: {
     		handleDelete(id) {
-    			this.$confirm('Сигурни ли сте, че желаете да изтриете тази тема?')
-	    			.then(_ => {
-	    				console.log(id);
-	    				done();
-	    			})
-	    			.catch(_ => {});
+    			console.log('delete');
     		},
 
     		handleShow(id) {
-    			window.open('/theme/' + id,'_blank');
+    			window.open('/theme/' + id, '_blank');
     		}
     	},
 

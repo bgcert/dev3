@@ -2,7 +2,6 @@
 	<div>
 
 		<div class="ui vertical segment">
-
 			<div class="ui center aligned grid container">
 				<div class="column">
 					<h3 class="ui header">
