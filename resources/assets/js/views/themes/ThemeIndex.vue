@@ -1,17 +1,5 @@
 <template>
 	<div>
-		<el-dialog
-			title="Tips"
-			:visible.sync="dialogVisible"
-			width="30%"
-			:before-close="handleDelete">
-			<span slot="header">This is a message</span>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">Да</el-button>
-				<el-button type="primary" @click="dialogVisible = false">Не</el-button>
-			</span>
-		</el-dialog>
-
 		<div class="ui segments">
 			<div class="ui clearing segment">
 				<h3 style="float: left;">Теми</h3>
@@ -31,8 +19,8 @@
 							:image="theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
-							v-on:show="handleShow(theme.id)"
-							v-on:deleteItem="handleDelete(theme.id)"
+							@show="handleShow(theme.id)"
+							@deleteClick="handleDelete(theme.id)"
 							>
 						</CardDashboard>
 					</template>
@@ -51,24 +39,43 @@
 		},
     	data: function () {
     		return {
-    			dialogVisible: false,
     			themes: '',
     			loading: true
     		}
     	},
 
     	methods: {
+    		showModal() {
+
+    		},
+    		testConfirm() {
+    			console.log('confirmed');
+    		},
+    		testCancel() {
+    			console.log('canceled');
+    		},
     		handleDelete(id) {
-    			this.$confirm('Сигурни ли сте, че желаете да изтриете тази тема?')
-	    			.then(_ => {
-	    				console.log(id);
-	    				done();
-	    			})
-	    			.catch(_ => {});
+    			this.$swal({
+    				title: 'Are you sure?',
+    				text: "You won't be able to revert this!",
+    				type: 'warning',
+    				showCancelButton: true,
+    				confirmButtonColor: '#3085d6',
+    				cancelButtonColor: '#d33',
+    				confirmButtonText: 'Yes, delete it!'
+    			}).then((result) => {
+    				if (result.value) {
+    					this.$swal(
+    						'Deleted!',
+    						'Your file has been deleted.',
+    						'success'
+    						)
+    				}
+    			})
     		},
 
     		handleShow(id) {
-    			window.open('/theme/' + id,'_blank');
+    			window.open('/theme/' + id, '_blank');
     		}
     	},
 
@@ -88,8 +95,6 @@
 			.catch(function (error) {
 				console.log(error);
 			});
-
-
         }
     };
 </script>

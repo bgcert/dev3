@@ -83,10 +83,9 @@
 	import { EventBus } from '../app';
 	import Like from './LikeComponent.vue'
 	import BoxHover from './BoxHoverComponent.vue'
-	import VCard from 'vuetify/es5/components/VCard'
     export default {
     	components: {
-			Like, BoxHover, VCard
+			Like, BoxHover
 		},
     	props: ['auth'],
 

@@ -22,11 +22,12 @@
     },
     "dependencies": {
         "element-ui": "^2.4.3",
+        "ion-sound": "^3.0.7",
         "laravel-echo": "^1.4.0",
+        "muse-ui": "^3.0.0-rc.4",
         "pusher-js": "^4.2.2",
         "semantic-ui": "^2.3.2",
-        "vue-material": "^1.0.0-beta-10.2",
-        "vuetify": "^1.1.1",
+        "vue-sweetalert2": "^1.4.2",
         "vuex": "^3.0.1"
     }
 }

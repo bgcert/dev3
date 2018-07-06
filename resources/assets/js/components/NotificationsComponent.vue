@@ -74,7 +74,7 @@
 				],
 
 			    // main config
-			    path: "/js/ion.sound-master/sounds/",
+			    path: "/sounds/",
 			    preload: true,
 			    multiplay: true,
 			    volume: 0.9

@@ -31,12 +31,18 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
-// import Vuetify from 'vuetify'
-// import 'vuetify/dist/vuetify.min.css'
-// Vue.use(Vuetify)
+import MuseUI from 'muse-ui';
+import 'muse-ui/dist/muse-ui.css';
+
+import VueSweetalert2 from 'vue-sweetalert2';
+Vue.use(VueSweetalert2);
+
+import Ion from 'ion-sound'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(MuseUI);
+Vue.use(Ion);
 
 const store = new Vuex.Store(StoreData);
 
@@ -60,6 +66,7 @@ Vue.component('request-modal', require('./components/RequestModalComponent.vue')
 Vue.component('company-view', require('./components/CompanyViewComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 Vue.component('notifications', require('./components/NotificationsComponent.vue'));
+Vue.component('modal', require('./components/ModalComponent.vue'));
 
 Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
