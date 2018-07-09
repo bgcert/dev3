@@ -30,6 +30,7 @@ import Vuex from 'vuex';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
+
 import JqueryConfirm from 'jquery-confirm'
 import 'jquery-confirm/dist/jquery-confirm.min.css'
 

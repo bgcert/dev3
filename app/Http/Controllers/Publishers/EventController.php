@@ -15,16 +15,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $user;
-
-    public function __construct()
-    {
-    	$this->user = \Auth::user();
-    }
-
     public function index()
     {
-        return \App\Event::byCompany($this->user->company->id)->get();
+        return \App\Event::byCompany(\Auth::user()->company->id)->get();
     }
 
     /**
@@ -34,8 +27,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        $data[0] = $this->user->company->themes;
-    	$data[1] = $this->user->company->teachers;
+        $data[0] = \Auth::user()->company->themes;
+    	$data[1] = \Auth::user()->company->teachers;
         return $data;
     }
 
@@ -53,7 +46,7 @@ class EventController extends Controller
 
     	$requestData['teachers'] = explode(',', $requestData['teachers']);
 
-		$event = $this->user->company->events()->create($requestData);
+		$event = \Auth::user()->company->events()->create($requestData);
     	if (empty($requestData['teachers'])) {
     		$event->teachers()->attach($requestData['teachers']);
     	}
@@ -81,7 +74,7 @@ class EventController extends Controller
     public function edit($id)
     {
     	$data[0] = \App\Event::find($id)->load('theme', 'teachers');
-    	$data[1] = $this->user->company->teachers;
+    	$data[1] = \Auth::user()->company->teachers;
         return $data;
     }
 
