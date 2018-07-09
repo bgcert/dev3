@@ -80,6 +80,6 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Teacher::destroy($id);
     }
 }
