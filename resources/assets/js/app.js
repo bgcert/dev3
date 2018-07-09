@@ -30,20 +30,15 @@ import Vuex from 'vuex';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
-
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
-
-import VueSweetalert2 from 'vue-sweetalert2';
-Vue.use(VueSweetalert2);
+import JqueryConfirm from 'jquery-confirm'
+import 'jquery-confirm/dist/jquery-confirm.min.css'
 
 import Ion from 'ion-sound'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
-Vue.use(MuseUI);
 Vue.use(Ion);
-
+Vue.use(JqueryConfirm);
 const store = new Vuex.Store(StoreData);
 
 Vue.use(ElementUI);

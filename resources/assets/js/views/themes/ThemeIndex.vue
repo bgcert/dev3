@@ -14,13 +14,13 @@
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
 
 				<div class="ui three stackable cards">
-					<template v-for="theme in themes">
+					<template v-for="(theme, index) in themes">
 						<CardDashboard
 							:image="theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
 							@show="handleShow(theme.id)"
-							@deleteClick="handleDelete(theme.id)"
+							@deleteClick="handleDelete(theme.id, index)"
 							>
 						</CardDashboard>
 					</template>
@@ -39,39 +39,17 @@
 		},
     	data: function () {
     		return {
-    			themes: '',
+    			themes: {},
     			loading: true
     		}
     	},
 
     	methods: {
-    		showModal() {
-
-    		},
-    		testConfirm() {
-    			console.log('confirmed');
-    		},
-    		testCancel() {
-    			console.log('canceled');
-    		},
-    		handleDelete(id) {
-    			this.$swal({
-    				title: 'Are you sure?',
-    				text: "You won't be able to revert this!",
-    				type: 'warning',
-    				showCancelButton: true,
-    				confirmButtonColor: '#3085d6',
-    				cancelButtonColor: '#d33',
-    				confirmButtonText: 'Yes, delete it!'
-    			}).then((result) => {
-    				if (result.value) {
-    					this.$swal(
-    						'Deleted!',
-    						'Your file has been deleted.',
-    						'success'
-    						)
-    				}
-    			})
+    		handleDelete(id, index) {
+    			let vm = this;
+    			axios.delete('dashboard/themes/' + id).then( function (response) {
+    				vm.themes.splice(index, 1);
+    			});
     		},
 
     		handleShow(id) {
@@ -80,7 +58,7 @@
     	},
 
         mounted() {
-            console.log('theme box Component mounted.')
+            console.log('theme box Component mounted.');
         },
 
         created() {

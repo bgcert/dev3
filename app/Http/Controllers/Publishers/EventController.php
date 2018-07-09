@@ -110,6 +110,6 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Event::destroy($id);
     }
 }

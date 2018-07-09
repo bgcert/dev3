@@ -23,7 +23,7 @@
 						</router-link>
 					</el-tooltip>
 					<el-tooltip effect="dark" content="Изтриване" placement="top">
-						<button class="ui button" @click.prevent="$emit('deleteClick')">
+						<button class="ui button" @click.prevent="emitDelete">
 							<i class="trash icon"></i>
 						</button>
 					</el-tooltip>
@@ -47,13 +47,13 @@
         },
 
         methods: {
-        	click() {
-        		console.log('delete ?');
-		    	this.$emit('delete', 'bye');
-		    },
-
-        	handleDelete() {
-        		console.log('delete clicked');
+        	emitDelete() {
+        		var result = confirm("Press a button!");
+			    if (result) {
+			    	this.$emit('deleteClick');   
+			    } else {
+			        console.log('canceled');
+			    }
         	}
         },
 

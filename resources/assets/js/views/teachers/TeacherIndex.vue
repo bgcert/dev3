@@ -14,13 +14,14 @@
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
 
 				<div class="ui three stackable cards">
-					<template v-for="teacher in teachers">
+					<template v-for="(teacher, index) in teachers">
 						<CardDashboard
 							:image="teacher.image"
 							:title="teacher.name"
-							:view_link="'/teachers/edit/' + teacher.id"
 							:edit_link="'/teachers/edit/' + teacher.id"
-							:delete_link="'/teachers/delete/' + teacher.id">
+							@show="handleShow(theme.id)"
+							@deleteClick="handleDelete(teacher.id, index)"
+							>
 						</CardDashboard>
 					</template>
 				</div>
@@ -39,13 +40,18 @@
 		},
     	data: function () {
     		return {
-    			teachers: '',
+    			teachers: {},
     			loading: true
     		}
     	},
 
     	methods: {
-
+    		handleDelete(id, index) {
+    			let vm = this;
+    			axios.delete('dashboard/teachers/' + id).then( function (response) {
+    				vm.teachers.splice(index, 1);
+    			});
+    		},
     	},
 
         mounted() {

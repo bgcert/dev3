@@ -14,14 +14,14 @@
 			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
 
 				<div class="ui three stackable cards">
-					<template v-for="event in events">
+					<template v-for="(event, index) in events">
 						<CardDashboard
 							:image="event.cover"
 							:date="event.begin_at"
 							:title="event.theme.title"
 							:edit_link="'/events/edit/' + event.id"
-							v-on:show="handleShow(event.id)"
-							v-on:delete="handleDelete(event.id)"
+							@show="handleShow(event.id)"
+							@deleteClick="handleDelete(event.id, index)"
 							>
 						</CardDashboard>
 					</template>
@@ -40,20 +40,22 @@
 		},
     	data: function () {
     		return {
-    			events: '',
+    			events: [],
     			loading: true
     		}
     	},
 
     	methods: {
-    		handleDelete(id) {
-    			this.$confirm('Сигурни ли сте, че желаете да изтриете това събитие?')
-	    			.then(_ => {
-	    				console.log(id);
-	    				done();
-	    			})
-	    			.catch(_ => {});
+    		handleDelete(id, index) {
+    			let vm = this;
+    			axios.delete('dashboard/events/' + id).then( function (response) {
+    				vm.events.splice(index, 1);
+    			});
     		},
+
+    		handleShow(id) {
+    			window.open('/event/' + id, '_blank');
+    		}
     	},
 
         mounted() {

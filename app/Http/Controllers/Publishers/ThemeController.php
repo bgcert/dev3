@@ -88,7 +88,7 @@ class ThemeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Theme::destroy($id);
     }
 
 	public function categories()
