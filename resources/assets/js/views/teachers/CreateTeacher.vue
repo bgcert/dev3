@@ -71,7 +71,6 @@
 
     			let formData = new FormData();
     			// Needed for patch request with form data
-    			formData.append('_method', 'patch');
     			formData.append('name', this.form.name);
 				formData.append('details', this.form.details);
 
@@ -90,7 +89,7 @@
 						formData.append('file', data);
 					}
 
-					axios.post('/dashboard/teachers/', formData, config)
+					axios.post('/dashboard/teachers', formData, config)
 		    			.then(function (response) {
 		    				vm.$message('Лекторът е добавен.');
     						vm.$router.push('/teachers');
