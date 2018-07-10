@@ -2,6 +2,13 @@
 	<div>
 		<div class="ui top attached tabular menu">
 			<router-link
+				to="/notifications"
+				class="item"
+				:class="{ active: $route.path == '/notifications' }">
+				Известия
+			</router-link>
+			
+			<router-link
 				to="/account"
 				class="item"
 				:class="{ active: $route.path == '/account' }">

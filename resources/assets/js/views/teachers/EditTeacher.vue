@@ -5,10 +5,17 @@
 				<h4>Редактиране на лектор</h4>
 			</div>
 			
-			<div class="ui segment">
-				<el-form ref="form" :model="form" label-width="120px">
+			<div class="ui segment" v-if="!loading">
+				<el-form ref="form" label-width="120px">
 					<el-form-item label="Име">
 						<el-input v-model="teacher.name"></el-input>
+					</el-form-item>
+
+					<el-form-item label="Снимка">
+						<ImageUpload
+							:img="teacher.image"
+							>
+						</ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
@@ -33,42 +40,59 @@
 </template>
 
 <script>
+	import { EventBus } from '../../app';
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+		components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
     			loading: true,
     			teacher: [],
-    			form: {
-    				name: '',
-    				details: '',
-    				region: '',
-    				date1: '',
-    				date2: '',
-    				delivery: false,
-    				type: [],
-    				resource: '',
-    				cover: 'https://picsum.photos/800/400/?image=293'
-    			}
     		}
     	},
 
     	methods: {
     		save() {
-    			var vm = this;
-    			let route = '/dashboard/teachers/' + this.$route.params.id;
-    			axios.patch(route, {
-    				name: vm.teacher.name,
-    				details: vm.teacher.details,
-    				image: 'https://picsum.photos/400/400/?image=276'
-    			})
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Лекторът е редактиран успешно.');
-    				vm.$router.push('/teachers');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
+    			let vm = this;
+    			let image;
+
+    			let formData = new FormData();
+    			// Needed for patch request with form data
+    			formData.append('_method', 'patch');
+    			formData.append('name', this.teacher.name);
+				formData.append('details', this.teacher.details);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					// Append if file selected
+					if (data) {
+						formData.append('file', data);
+					}
+
+					let route = '/dashboard/teachers/' + this.$route.params.id;
+					axios.post(route, formData, config)
+		    			.then(function (response) {
+		    				console.log(response);
+		    				vm.$message('Данните са редактирани успешно.');
+		    				vm.$router.push('/teachers');
+		    			})
+		    			.catch(function (error) {
+		    				console.log(error);
+		    			});
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
+				});
     		}
     	},
 

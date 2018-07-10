@@ -7,9 +7,6 @@ let routes = [
     // Profile routes
     { path: '/profile', component: require('./views/profile/Profile.vue') },
 
-    // Notification routes
-    { path: '/notifications', component: require('./views/notifications/Index.vue') },
-
     // Theme routes
     { path: '/themes', component: require('./views/themes/ThemeIndex.vue') },
     { path: '/themes/create', component: require('./views/themes/CreateTheme.vue') },
@@ -32,6 +29,7 @@ let routes = [
     { path: '/orders/edit/:id', component: require('./views/orders/Edit.vue') },
 
     // Settings routes
+    { path: '/notifications', component: require('./views/settings/Notifications.vue') },
     { path: '/account/', component: require('./views/settings/Account.vue') },
     { path: '/change-pass', component: require('./views/settings/ChangePassword.vue') },
     { path: '/change-email', component: require('./views/settings/ChangeEmail.vue') },

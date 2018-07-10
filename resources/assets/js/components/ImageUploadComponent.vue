@@ -23,7 +23,7 @@
     		return {
     			image:
 	    			{
-	    				src: 'img/default_cover.png'
+	    				src: this.img ? this.img : 'img/default_cover.png'
 	    			},
     			mouseDown: false,
     			start_y: null,
@@ -56,9 +56,7 @@
 
         created() {
         	EventBus.$on('imageSave', (resolve, reject) => {
-				console.log(this.file);
 				resolve(this.file);
-
         	});
         },
 

@@ -38,8 +38,10 @@ class ThemeController extends Controller
     public function store(Request $request)
     {
     	$requestData = $request->all();
-    	$name = $this->saveImage($request->cover, 357, 178);
-    	$requestData['cover'] = '/test/' . $name;
+    	if ($request->file) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$requestData['cover'] = '/test/' . $name;
+    	}
 
     	return \Auth::user()->company->themes()->create($requestData);
     }
@@ -77,7 +79,15 @@ class ThemeController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	return \App\Theme::where('id', $id)->update($request->all());
+    	$theme = \App\Theme::find($id);
+    	$requestData = $request->all();
+    	if (isset($request->file)) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$requestData['cover'] = '/test/' . $name;
+    	}
+    	
+    	$theme->update($requestData);
+    	return 'saved';
     }
 
     /**

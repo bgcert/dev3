@@ -41,9 +41,11 @@ class EventController extends Controller
     public function store(Request $request)
     {
     	$requestData = $request->all();
-    	$name = $this->saveImage($request->cover, 357, 178);
-    	$requestData['cover'] = '/test/' . $name;
-
+    	if ($request->file) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$requestData['cover'] = '/test/' . $name;
+    	}
+    	
     	$requestData['teachers'] = explode(',', $requestData['teachers']);
 
 		$event = \Auth::user()->company->events()->create($requestData);
@@ -87,11 +89,16 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+    	if (isset($request->file)) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$name = '/test/' . $name;
+    		$request->merge([ 'cover' => $name ]);
+    	}
+
     	$event = \App\Event::where('id', $id)->first();
 		$event->update($request->except(['teachers']));
 
         $event->teachers()->detach();
-
     	return $event->teachers()->attach($request->teachers);
     }
 

@@ -1,10 +1,6 @@
 <template>
-	<div class="ui segments">
-		<div class="ui clearing segment">
-			<h3 style="float: left;">Известия</h3>
-		</div>
-
-		<div class="ui segment">
+	<div>
+		<div v-if="notifications.length > 0">
 			<div class="ui very relaxed divided list" v-for="notification in notifications">
 				<div class="item">
 					<img class="ui avatar image" src="https://picsum.photos/280/280/?image=123">
@@ -14,6 +10,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div v-else>
+			<h4>Няма налични известия</h4>
 		</div>
 	</div>
 </template>

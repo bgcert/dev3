@@ -132,5 +132,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

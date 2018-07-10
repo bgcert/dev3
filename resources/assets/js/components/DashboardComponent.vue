@@ -10,12 +10,6 @@
 						Фирмен профил
 					</router-link>
 					<router-link
-						to="/notifications"
-						class="item"
-						:class="{ active: $route.path == '/notifications' }">
-						Известия
-					</router-link>
-					<router-link
 						to="/themes"
 						class="item"
 						:class="{ active: $route.path == '/themes' }">

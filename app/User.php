@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'verification_token', 'verified', 'role_id'
+        'password', 'remember_token', 'verification_token', 'verified'
     ];
 
     // Relations

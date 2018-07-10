@@ -31,15 +31,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/bg'
 
-import JqueryConfirm from 'jquery-confirm'
-import 'jquery-confirm/dist/jquery-confirm.min.css'
-
 import Ion from 'ion-sound'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(Ion);
-Vue.use(JqueryConfirm);
 const store = new Vuex.Store(StoreData);
 
 Vue.use(ElementUI);

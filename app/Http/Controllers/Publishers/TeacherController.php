@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\ResizableImage;
 
 class TeacherController extends Controller
 {
+	use ResizableImage;
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +37,12 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        return \Auth::user()->company->teachers()->create(request()->all());
+    	$requestData = $request->all();
+    	if ($request->file) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$requestData['image'] = '/test/' . $name;
+    	}
+        return \Auth::user()->company->teachers()->create($requestData);
     }
 
     /**
@@ -69,7 +76,18 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return \App\Teacher::where('id', $id)->update($request->all());
+    	$requestData = $request->all();
+    	if ($request->file) {
+    		$name = $this->saveImage($request->file, 357, 178);
+    		$requestData['image'] = '/test/' . $name;
+    	}
+
+    	$teacher = \App\Teacher::where('id', $id)->first();
+
+    	// return \Auth::user()->company->themes()->create($requestData);
+    	$teacher->update($requestData);
+
+        return 'saved';
     }
 
     /**

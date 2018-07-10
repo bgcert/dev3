@@ -106,7 +106,7 @@
     			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
 
 				upload.then((data) => {
-					formData.append('cover', data);
+					formData.append('file', data);
 
 					axios.post('/dashboard/events', formData, config)
 	    			.then(function (response) {

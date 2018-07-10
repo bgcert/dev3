@@ -11,7 +11,7 @@
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Корица">
+					<el-form-item label="Снимка">
 						<ImageUpload
 							:canvasWidth="200"
 							:canvasHeight="200"
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+	import { EventBus } from '../../app';
 	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
     	components: {
@@ -65,20 +66,42 @@
 
     	methods: {
     		save() {
-    			var vm = this;
-    			axios.post('/dashboard/teachers', {
-    				name: vm.form.name,
-    				details: vm.form.details,
-    				image: 'https://picsum.photos/400/400/?image=276'
-    			})
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Лекторът е добавен.');
-    				vm.$router.push('/teachers');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
+    			let vm = this;
+    			let image;
+
+    			let formData = new FormData();
+    			// Needed for patch request with form data
+    			formData.append('_method', 'patch');
+    			formData.append('name', this.form.name);
+				formData.append('details', this.form.details);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					// Append if file selected
+					if (data) {
+						formData.append('file', data);
+					}
+
+					axios.post('/dashboard/teachers/', formData, config)
+		    			.then(function (response) {
+		    				vm.$message('Лекторът е добавен.');
+    						vm.$router.push('/teachers');
+		    			})
+		    			.catch(function (error) {
+		    				console.log(error);
+		    			});
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
+				});
     		}
     	},
 
@@ -89,5 +112,5 @@
         created() {
 
         }
-    }
+    };
 </script>

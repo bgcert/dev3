@@ -11,6 +11,12 @@
 					<h3>{{ event.theme.title }}</h3>
 					<el-form ref="form" :model="form" label-width="120px">
 
+						<el-form-item label="Корица">
+							<ImageUpload
+								:img="event.cover">
+							</ImageUpload>
+						</el-form-item>
+
 						<el-form-item label="Лектори">
 							<el-select v-model="selectedTeachers" multiple placeholder="Select">
 								<el-option
@@ -33,20 +39,6 @@
 							</el-date-picker>
 						</el-form-item>
 
-						<el-form-item label="Activity type">
-							<el-checkbox-group v-model="form.type">
-								<el-checkbox label="Online activities" name="type"></el-checkbox>
-								<el-checkbox label="Promotion activities" name="type"></el-checkbox>
-								<el-checkbox label="Offline activities" name="type"></el-checkbox>
-								<el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-							</el-checkbox-group>
-						</el-form-item>
-						<el-form-item label="Resources">
-							<el-radio-group v-model="form.resource">
-								<el-radio label="Sponsor"></el-radio>
-								<el-radio label="Venue"></el-radio>
-							</el-radio-group>
-						</el-form-item>
 						<el-form-item>
 							<div class="right floated">
 								<div class="ui right floated primary button" @click="save">
@@ -68,7 +60,12 @@
 </template>
 
 <script>
+	import { EventBus } from '../../app';
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+    	components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
     			loading: true,
@@ -92,23 +89,45 @@
 
     	methods: {
     		save() {
-    			console.log('save');
-    			var vm = this;
-    			let route = '/dashboard/events/' + this.$route.params.id;
-    			axios.patch(route, {
-    				teachers: vm.selectedTeachers,
-    				cover: 'https://picsum.photos/800/400/?image=120',
-    				begin_at: vm.date[0],
-    				end_at: vm.date[1],
-    			})
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Събитието е редактирано.');
-    				vm.$router.push('/events');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
+    			let vm = this;
+    			let image;
+
+    			let formData = new FormData();
+    			// Needed for patch request with form data
+    			formData.append('_method', 'patch');
+				formData.append('teachers', this.selectedTeachers);
+				formData.append('begin_at', this.date[0]);
+				formData.append('end_at', this.date[1]);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					// Append if file selected
+					if (data) {
+						formData.append('file', data);
+					}
+
+					let route = '/dashboard/events/' + this.$route.params.id;
+					axios.post(route, formData, config)
+	    			.then(function (response) {
+	    				console.log(response);
+	    				vm.$message('Събитието е редактирано.');
+    					vm.$router.push('/events');
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			});
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
+				});
     		}
     	},
 

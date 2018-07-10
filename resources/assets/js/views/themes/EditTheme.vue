@@ -5,8 +5,8 @@
 				<h4>Редактиране на тема</h4>
 			</div>
 			
-			<div class="ui segment">
-				<el-form ref="form" :model="form" label-width="120px">
+			<div class="ui segment" v-if="!loading">
+				<el-form ref="form" label-width="120px">
 					<el-form-item label="Заглавие">
 						<el-input v-model="theme.title"></el-input>
 					</el-form-item>
@@ -24,12 +24,10 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<img class="ui medium bordered image" :src="theme.cover">
-						<button class="ui basic button" @click.prevent="toggleShow"><i class="icon cloud upload"></i> Смени корицата</button>
-						<img :src="imgDataUrl">
-
+							<ImageUpload
+								:img="theme.cover">
+							</ImageUpload>
 					</el-form-item>
-
 
 					<el-form-item>
 						<div class="right floated">
@@ -50,77 +48,64 @@
 	</div>
 </template>
 <script>
+	import { EventBus } from '../../app'
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+    	components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
     			show: false,
-				params: {
-					token: '123456798',
-					name: 'avatar'
-				},
-				headers: {
-					smail: '*_~'
-				},
-				imgDataUrl: '', // the datebase64 url of created image
     			loading: true,
     			selectedFile: null,
     			categories: [],
     			theme: [],
-    			form: {
-    				title: '',
-    				category: '',
-    				body: '',
-    				type: [],
-    				cover: 'https://picsum.photos/800/400/?image=293'
-    			}
     		}
     	},
 
     	methods: {
     		save() {
-    			console.log('save');
-    			var vm = this;
-    			let route = '/dashboard/themes/' + this.$route.params.id;
-    			axios.put(route, {
-    				title: vm.theme.title,
-    				body: vm.theme.body,
-    				category_id: vm.theme.category_id,
-    				cover: vm.form.cover
-    			})
-    			.then(function (response) {
-    				console.log(response.data);
-    				vm.$message('Темата е редактирана успешно.');
-    				vm.$router.push('/themes');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
-    		},
+    			let vm = this;
+    			let image;
 
-    		toggleShow() {
-				this.show = !this.show;
-			},
-            /**
-			 * crop success
-			 *
-			 * [param] imgDataUrl
-			 * [param] field
-			 */
-			cropSuccess(imgDataUrl, field){
-				console.log('-------- crop success --------');
-				var vm = this;
-				let route = '/dashboard/themes/set/cover';
-				axios.post(route, {
-					cover: imgDataUrl
-    			})
-    			.then(function (response) {
-    				vm.$message('Корицата е сменена');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
-				this.theme.cover = imgDataUrl;
-			},
+    			let formData = new FormData();
+    			// Needed for patch request with form data
+    			formData.append('_method', 'patch');
+				formData.append('title', this.theme.title);
+				formData.append('body', this.theme.body);
+				formData.append('category_id', this.theme.category_id);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					// Append if file selected
+					if (data) {
+						formData.append('file', data);
+					}
+
+					let route = '/dashboard/themes/' + this.$route.params.id;
+					axios.post(route, formData)
+	    			.then(function (response) {
+	    				console.log(response);
+	    				vm.$message('Темата е редактирана успешно.');
+	    				vm.$router.push('/themes');
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			});
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
+				});
+    		}
     	},
 
         mounted() {
@@ -132,7 +117,6 @@
         	var vm = this;
             var route = '/dashboard/themes/' + this.$route.params.id + '/edit';
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
         		vm.theme = response.data[0];
         		vm.categories = response.data[1];
         		vm.loading = false;
