@@ -58,7 +58,8 @@ class NewOrder extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'You have a new order.'
+            'message' => 'Имате нова заявка.',
+            'url' => 'users/settings#/notifications'
         ];
     }
 }

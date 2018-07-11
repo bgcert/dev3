@@ -52,4 +52,13 @@ class UserController extends Controller
     public function notifications() {
     	return \Auth::user()->notifications;
     }
+
+    public function notification_check() {
+    	return \Auth::user()->unreadNotifications()->count();
+    }
+
+    public function notification_read($id) {
+    	$user = \Auth::user();
+    	return $user->unreadNotifications()->where('id', $id)->first()->markAsRead();
+    }
 }

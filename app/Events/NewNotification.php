@@ -14,16 +14,16 @@ class NewNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $event_owner;
+    public $event_owner_id;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($event_owner)
+    public function __construct($event_owner_id)
     {
-        $this->event_owner = $event_owner;
+        $this->event_owner_id = $event_owner_id;
     }
 
     /**
@@ -34,6 +34,6 @@ class NewNotification implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PrivateChannel('notifications.' . $this->event_owner);
+        return new PrivateChannel('notifications.' . $this->event_owner_id);
     }
 }

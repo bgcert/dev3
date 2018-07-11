@@ -140,15 +140,6 @@
 					vm.fullscreenLoading = false;
 				});
     		},
-
-    		// date(date) {
-    		// 	return moment(date).format('ddd, D MMM YYYY');
-    		// },
-
-    		// request(id) {
-    		// 	EventBus.$emit('testlog', 'some message');
-    		// 	console.log('request ' + id);
-    		// }
     	},
 
         created() {

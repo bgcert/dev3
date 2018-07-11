@@ -1,32 +1,20 @@
 <template>
-	<span class="item notification-icon">
+	<span class="item notification-icon" @click="listNotifications">
 		<el-popover
 			placement="bottom-end"
-			width="400"
 			trigger="click">
 
-			<div class="ui relaxed divided list">
-				<div class="item">
-					<i class="large github middle aligned icon"></i>
-					<div class="content">
-						<a class="header">Semantic-Org/Semantic-UI</a>
-						<div class="description">Updated 10 mins ago</div>
+			<div v-loading="loading" >
+				<div class="ui middle aligned divided list" >
+					<div class="item" :class="{ unread: notification.read_at == null }" v-for="notification in notifications">
+						<i class="large github middle aligned icon"></i>
+						<div class="content">
+							<a href="/users/settings#/notifications" class="header" @click.prevent="markAsRead(notification.id)">{{ notification.data.message }}</a>
+							<div class="description">{{ notification.created_at }}</div>
+						</div>
 					</div>
 				</div>
-				<div class="item">
-					<i class="large github middle aligned icon"></i>
-					<div class="content">
-						<a class="header">Semantic-Org/Semantic-UI-Docs</a>
-						<div class="description">Updated 22 mins ago</div>
-					</div>
-				</div>
-				<div class="item">
-					<i class="large github middle aligned icon"></i>
-					<div class="content">
-						<a class="header">Semantic-Org/Semantic-UI-Meteor</a>
-						<div class="description">Updated 34 mins ago</div>
-					</div>
-				</div>
+				<a href="/users/settings#/notifications" class="ui tiny fluid button">Всички известия</a>
 			</div>
 			
 			<span slot="reference">
@@ -46,17 +34,48 @@
     	
     	data: function () {
     		return {
+    			loading: false,
     			notifications: [],
     			notificationsCount: 0
     		}
     	},
 
     	methods: {
-    		
+    		listNotifications() {
+    			this.loading = true;
+    			var vm = this;
+	        	axios.get('/users/notifications').then(function (response) {
+	        		vm.notifications = response.data;
+	        		vm.loading = false;
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		},
+    		markAsRead(id) {
+    			var vm = this;
+    			let route = '/users/notifications/' + id;
+	        	axios.get(route).then(function (response) {
+	        		window.location.href = '/users/settings#/notifications';
+	        		// vm.notifications = response.data;
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		}
     	},
 
         mounted() {
             console.log('Notifications component mounted.');
+
+			var vm = this;
+        	axios.get('/users/notifications/check').then(function (response) {
+        		vm.notificationsCount = response.data;
+        		console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 
             Echo.private('notifications.' + this.user_id)
                 	.listen('NewNotification', (e) => {
@@ -84,6 +103,10 @@
 </script>
 
 <style>
+	.unread {
+		background-color: #f1f1f1;
+	}
+
 	.notification-icon {
 		cursor: pointer;
 		/*background-color: #fdd8ab !important;*/

@@ -104002,69 +104002,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
-  },
-  props: ['auth'],
+	components: {
+		Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
+	},
+	props: ['auth'],
 
-  data: function data() {
-    return {
-      boolean: true,
-      events: {},
-      cities: [],
-      selectedCity: null,
-      company: [],
-      searchQuery: '',
-      fullscreenLoading: false
-    };
-  },
+	data: function data() {
+		return {
+			boolean: true,
+			events: {},
+			cities: [],
+			selectedCity: null,
+			company: [],
+			searchQuery: '',
+			fullscreenLoading: false
+		};
+	},
 
-  watch: {
-    searchQuery: function searchQuery(val) {
-      if (val.length > 2 || val.length == 0) {
-        this.searchAfterDebounce();
-      }
-    },
+	watch: {
+		searchQuery: function searchQuery(val) {
+			if (val.length > 2 || val.length == 0) {
+				this.searchAfterDebounce();
+			}
+		},
 
-    selectedCity: function selectedCity() {
-      this.searchAfterDebounce();
-    }
-  },
+		selectedCity: function selectedCity() {
+			this.searchAfterDebounce();
+		}
+	},
 
-  methods: {
-    searchAfterDebounce: _.debounce(function () {
-      this.fullscreenLoading = true;
-      this.search();
-    }, 800 // 800 milliseconds
-    ),
+	methods: {
+		searchAfterDebounce: _.debounce(function () {
+			this.fullscreenLoading = true;
+			this.search();
+		}, 800 // 800 milliseconds
+		),
 
-    search: function search() {
-      var vm = this;
-      var route = '/api/event/search';
-      var city = this.selectedCity ? this.selectedCity : null;
-      var search = this.searchQuery ? this.searchQuery : null;
-      axios.post(route, {
-        searchQuery: search,
-        city_id: city
-      }).then(function (response) {
-        vm.events = response.data;
-        vm.fullscreenLoading = false;
-      }).catch(function (error) {
-        console.log(error);
-        vm.fullscreenLoading = false;
-      });
-    }
-  },
+		search: function search() {
+			var vm = this;
+			var route = '/api/event/search';
+			var city = this.selectedCity ? this.selectedCity : null;
+			var search = this.searchQuery ? this.searchQuery : null;
+			axios.post(route, {
+				searchQuery: search,
+				city_id: city
+			}).then(function (response) {
+				vm.events = response.data;
+				vm.fullscreenLoading = false;
+			}).catch(function (error) {
+				console.log(error);
+				vm.fullscreenLoading = false;
+			});
+		}
+	},
 
-  created: function created() {
-    var vm = this;
-    axios.get('/api/eventlist').then(function (response) {
-      vm.events = response.data[0];
-      vm.cities = response.data[1];
-    }).catch(function (error) {
-      console.log(error);
-    });
-  }
+	created: function created() {
+		var vm = this;
+		axios.get('/api/eventlist').then(function (response) {
+			vm.events = response.data[0];
+			vm.cities = response.data[1];
+		}).catch(function (error) {
+			console.log(error);
+		});
+	}
 });
 
 /***/ }),
@@ -107326,7 +107326,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.notification-icon {\n\tcursor: pointer;\n\t/*background-color: #fdd8ab !important;*/\n}\n.notification-label {\n\tposition: absolute;\n\ttop: -8px;\n\tleft: 14px;\n\tfont-size: 8px;\n\tbackground-color: #f2711c;\n\tpadding: 2px;\n\tborder-radius: 2px;\n\tcolor: white;\n\topacity: 0.7;\n\t-webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n\t        box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n}\n", ""]);
+exports.push([module.i, "\n.unread {\n\tbackground-color: #f1f1f1;\n}\n.notification-icon {\n\tcursor: pointer;\n\t/*background-color: #fdd8ab !important;*/\n}\n.notification-label {\n\tposition: absolute;\n\ttop: -8px;\n\tleft: 14px;\n\tfont-size: 8px;\n\tbackground-color: #f2711c;\n\tpadding: 2px;\n\tborder-radius: 2px;\n\tcolor: white;\n\topacity: 0.7;\n\t-webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n\t        box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n}\n", ""]);
 
 // exports
 
@@ -107367,18 +107367,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -107386,17 +107374,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
+      loading: false,
       notifications: [],
       notificationsCount: 0
     };
   },
 
-  methods: {},
+  methods: {
+    listNotifications: function listNotifications() {
+      this.loading = true;
+      var vm = this;
+      axios.get('/users/notifications').then(function (response) {
+        vm.notifications = response.data;
+        vm.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    markAsRead: function markAsRead(id) {
+      var vm = this;
+      var route = '/users/notifications/' + id;
+      axios.get(route).then(function (response) {
+        window.location.href = '/users/settings#/notifications';
+        // vm.notifications = response.data;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
 
   mounted: function mounted() {
     var _this = this;
 
     console.log('Notifications component mounted.');
+
+    var vm = this;
+    axios.get('/users/notifications/check').then(function (response) {
+      vm.notificationsCount = response.data;
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    });
 
     Echo.private('notifications.' + this.user_id).listen('NewNotification', function (e) {
       _this.notificationsCount++;
@@ -107429,55 +107447,78 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "span",
-    { staticClass: "item notification-icon" },
+    {
+      staticClass: "item notification-icon",
+      on: { click: _vm.listNotifications }
+    },
     [
       _c(
         "el-popover",
-        { attrs: { placement: "bottom-end", width: "400", trigger: "click" } },
+        { attrs: { placement: "bottom-end", trigger: "click" } },
         [
-          _c("div", { staticClass: "ui relaxed divided list" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "large github middle aligned icon" }),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.loading,
+                  expression: "loading"
+                }
+              ]
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "ui middle aligned divided list" },
+                _vm._l(_vm.notifications, function(notification) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "item",
+                      class: { unread: notification.read_at == null }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "large github middle aligned icon"
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "content" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "header",
+                            attrs: { href: "/users/settings#/notifications" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.markAsRead(notification.id)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(notification.data.message))]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "description" }, [
+                          _vm._v(_vm._s(notification.created_at))
+                        ])
+                      ])
+                    ]
+                  )
+                })
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("a", { staticClass: "header" }, [
-                  _vm._v("Semantic-Org/Semantic-UI")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "description" }, [
-                  _vm._v("Updated 10 mins ago")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "large github middle aligned icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("a", { staticClass: "header" }, [
-                  _vm._v("Semantic-Org/Semantic-UI-Docs")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "description" }, [
-                  _vm._v("Updated 22 mins ago")
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "large github middle aligned icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("a", { staticClass: "header" }, [
-                  _vm._v("Semantic-Org/Semantic-UI-Meteor")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "description" }, [
-                  _vm._v("Updated 34 mins ago")
-                ])
-              ])
-            ])
-          ]),
+              _c(
+                "a",
+                {
+                  staticClass: "ui tiny fluid button",
+                  attrs: { href: "/users/settings#/notifications" }
+                },
+                [_vm._v("Всички известия")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
             _c("div", { staticStyle: { position: "relative" } }, [
