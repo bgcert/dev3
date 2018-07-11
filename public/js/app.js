@@ -54732,11 +54732,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var vm = this;
-        var route = '/users/notifications';
-        axios.get(route).then(function (response) {
-            console.log(response.data);
+        axios.get('/users/notifications').then(function (response) {
             vm.notifications = response.data;
-            // vm.loading = false;
         }).catch(function (error) {
             console.log(error);
         });
@@ -54753,27 +54750,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.notifications.length > 0
-      ? _c(
-          "div",
-          _vm._l(_vm.notifications, function(notification) {
-            return _c("div", { staticClass: "ui very relaxed divided list" }, [
-              _c("div", { staticClass: "item" }, [
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "ui very relaxed divided list" },
+            _vm._l(_vm.notifications, function(notification) {
+              return _c("div", { staticClass: "item" }, [
                 _c("img", {
                   staticClass: "ui avatar image",
                   attrs: { src: "https://picsum.photos/280/280/?image=123" }
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "content" }, [
-                  _c("a", { staticClass: "header" }, [_vm._v("Daniel Louise")]),
+                  _c("a", { staticClass: "header" }, [
+                    _vm._v(_vm._s(notification.data.message))
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "description" }, [
-                    _vm._v(_vm._s(notification.data.message))
+                    _vm._v(_vm._s(notification.created_at))
                   ])
                 ])
               ])
-            ])
-          })
-        )
+            })
+          )
+        ])
       : _c("div", [_c("h4", [_vm._v("Няма налични известия")])])
   ])
 }
@@ -107396,7 +107396,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var route = '/users/notifications/' + id;
       axios.get(route).then(function (response) {
         window.location.href = '/users/settings#/notifications';
-        // vm.notifications = response.data;
       }).catch(function (error) {
         console.log(error);
       });
@@ -108797,6 +108796,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -108923,6 +108925,15 @@ var render = function() {
             attrs: { to: "/notifications" }
           },
           [_vm._v("\n\t\t\tИзвестия\n\t\t")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "item",
+            attrs: { href: "http://dev1.oo/dashboard#/profile" }
+          },
+          [_vm._v("Фирмен панел")]
         ),
         _vm._v(" "),
         _c(

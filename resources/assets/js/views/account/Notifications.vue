@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<div v-if="notifications.length > 0">
-			<div class="ui very relaxed divided list" v-for="notification in notifications">
-				<div class="item">
+			<div class="ui very relaxed divided list">
+				<div class="item" v-for="notification in notifications">
 					<img class="ui avatar image" src="https://picsum.photos/280/280/?image=123">
 					<div class="content">
-						<a class="header">Daniel Louise</a>
-						<div class="description">{{ notification.data.message }}</div>
+						<a class="header">{{ notification.data.message }}</a>
+						<div class="description">{{ notification.created_at }}</div>
 					</div>
 				</div>
 			</div>
@@ -35,11 +35,8 @@
 
         created() {
         	var vm = this;
-            var route = '/users/notifications';
-        	axios.get(route).then(function (response) {
-        		console.log(response.data);
+        	axios.get('/users/notifications').then(function (response) {
         		vm.notifications = response.data;
-        		// vm.loading = false;
 			})
 			.catch(function (error) {
 				console.log(error);

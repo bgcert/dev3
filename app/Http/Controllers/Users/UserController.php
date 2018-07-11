@@ -50,7 +50,7 @@ class UserController extends Controller
     }
 
     public function notifications() {
-    	return \Auth::user()->notifications;
+    	return \Auth::user()->notifications()->take(8)->get();
     }
 
     public function notification_check() {
@@ -58,7 +58,10 @@ class UserController extends Controller
     }
 
     public function notification_read($id) {
-    	$user = \Auth::user();
-    	return $user->unreadNotifications()->where('id', $id)->first()->markAsRead();
+    	return \Auth::user()
+    				->unreadNotifications()
+	    			->where('id', $id)
+	    			->first()
+	    			->markAsRead();
     }
 }

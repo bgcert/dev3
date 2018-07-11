@@ -8,6 +8,8 @@
 				Известия
 			</router-link>
 			
+			<a href="http://dev1.oo/dashboard#/profile" class="item">Фирмен панел</a>
+
 			<router-link
 				to="/settings"
 				class="item"
@@ -31,7 +33,8 @@
 
 			<router-link
 				to="/deactivate"
-				class="item":class="{ active: $route.path == '/deactivate' }">
+				class="item"
+				:class="{ active: $route.path == '/deactivate' }">
 				Деактивиране
 			</router-link>
 		</div>

@@ -57,7 +57,6 @@
     			let route = '/users/notifications/' + id;
 	        	axios.get(route).then(function (response) {
 	        		window.location.href = '/users/settings#/notifications';
-	        		// vm.notifications = response.data;
 				})
 				.catch(function (error) {
 					console.log(error);
