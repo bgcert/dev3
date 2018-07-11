@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\ResizableImage;
 
 class DashboardController extends Controller
 {
+	use ResizableImage;
+
     public function index()
     {
     	$company = \Auth::user()->company;
@@ -21,8 +24,15 @@ class DashboardController extends Controller
     public function saveCompany()
     {
     	$company = \App\Company::where('user_id', \Auth::id())->first();
-    	$company->update(request()->company);
-    	$company->company_detail->update(request()->company_detail);
+    	$data = request()->all();
+    	$company->update(request()->all());
+    	if (request()->file) {
+    		$name = $this->saveImage(request()->file, 357, 178);
+    		$name = '/test/' . $name;
+    		$data['logo'] = $name;
+    	}
+
+    	$company->company_detail->update($data);
     	return 'ok';
     }
 }

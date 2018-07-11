@@ -66,8 +66,8 @@ Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 Vue.component('login', require('./components/auth/LoginComponent.vue'));
 Vue.component('register', require('./components/auth/RegisterComponent.vue'));
 
-// Settings
-Vue.component('settings', require('./components/SettingsComponent.vue'));
+// Account
+Vue.component('account', require('./components/AccountComponent.vue'));
 
 // Dashboard
 Vue.component('dashboard', require('./components/DashboardComponent.vue'));

@@ -26,7 +26,7 @@
 				<div class="ui dropdown item">
 					{{ Auth::user()->name }} <i class="dropdown icon"></i>
 					<div class="menu">
-						<a href="/users/settings#/account" class="item">Настройки</a>
+						<a href="/users/settings#/notifications" class="item">Акаунт</a>
 						@if(Auth::user()->role_id == 2)
 						<a href="/dashboard#/home" class="item">Контролен панел</a>
 						@endif
@@ -45,10 +45,15 @@
 					<i class="paper plane outline icon"></i>
 				</a>
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
-				<span class="item">
-					<i class="question outline circle icon"></i>
-				</span>
 				@endguest
+				<div class="ui dropdown item">
+					<i class="question outline circle icon"></i>
+					<div class="menu">
+						<a href="/users/settings#/account" class="item">Помощ</a>
+						<a href="/users/settings#/account" class="item">Реклама</a>
+						<a href="/users/settings#/account" class="item">Контакти</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

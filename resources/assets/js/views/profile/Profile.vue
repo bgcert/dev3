@@ -17,23 +17,30 @@
 			</div>
 
 			<div class="field">
+				<label>Лого</label>
+				<ImageUpload
+					:img="company_details.logo">
+				</ImageUpload>
+			</div>
+
+			<div class="field">
 				<label>Описание</label>
-				<textarea v-model="company_detail.description"></textarea>
+				<textarea v-model="company_details.description"></textarea>
 			</div>
 
 			<div class="field">
 				<label>E-mail</label>
-				<input type="text" v-model="company_detail.email">
+				<input type="text" v-model="company_details.email">
 			</div>
 
 			<div class="field">
 				<label>Телефон</label>
-				<input type="text" v-model="company_detail.phone">
+				<input type="text" v-model="company_details.phone">
 			</div>
 
 			<div class="field">
 				<label>Адрес</label>
-				<textarea rows="2" v-model="company_detail.address"></textarea>
+				<textarea rows="2" v-model="company_details.address"></textarea>
 			</div>
 
 			<div class="field">
@@ -42,7 +49,7 @@
 					<div class="ui label">
 						http://facebook.com/
 					</div>
-					<input type="text" v-model="company_detail.facebook">
+					<input type="text" v-model="company_details.facebook">
 				</div>
 			</div>
 
@@ -52,7 +59,7 @@
 					<div class="ui label">
 						http://instagram.com/
 					</div>
-					<input type="text" v-model="company_detail.instagram">
+					<input type="text" v-model="company_details.instagram">
 				</div>
 			</div>
 
@@ -62,7 +69,7 @@
 					<div class="ui label">
 						http://linkedin.com/company/
 					</div>
-					<input type="text" v-model="company_detail.linkedin">
+					<input type="text" v-model="company_details.linkedin">
 				</div>
 			</div>
 			
@@ -79,32 +86,64 @@
 
 <script>
 	import { EventBus } from '../../app';
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
+    	components: {
+			ImageUpload
+		},
     	data: function () {
     		return {
-    			company: {},
-    			company_detail: {}
+    			company: [],
+    			company_details: []
     		}
     	},
 
     	methods: {
     		save() {
-    			var vm = this;
-    			var route = '/dashboard/save/company/data';
-    			axios.post(route,
-    				{
-    					company_detail: vm.company_detail,
-    					company: vm.company
-    				})
-				.then(function (response) {
-					console.log(response);
-					vm.$message('Данните са записани.');
-				})
-				.catch(function (error) {
-					console.log(error);
+    			let vm = this;
+    			let image;
+
+    			let formData = new FormData();
+    			// Needed for patch request with form data
+    			// formData.append('_method', 'patch');
+    			formData.append('name', this.company.name);
+    			formData.append('slug', this.company.slug);
+    			formData.append('address', this.company_details.address);
+    			formData.append('description', this.company_details.description);
+    			formData.append('phone', this.company_details.phone);
+    			formData.append('facebook', this.company_details.facebook);
+    			formData.append('instagram', this.company_details.instagram);
+    			formData.append('linkedin', this.company_details.linkedin);
+    			formData.append('youtube', this.company_details.youtube);
+
+    			let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				upload.then((data) => {
+					// Append if file selected
+					if (data) {
+						formData.append('file', data);
+					}
+
+					axios.post('/dashboard/save/company/data', formData , config)
+	    			.then(function (response) {
+	    				console.log(response);
+	    				vm.$message('Данните са записани.');
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			});
+				}, (error) => {
+					console.log('Promise rejected.');
+					vm.$message('Невалидно изображение');
 				});
-    			console.log(this.company);
-    		},
+    		}
     	},
 
         mounted() {
@@ -117,7 +156,7 @@
         	axios.get(route).then(function (response) {
         		console.log(response.data);
         		let data = response.data;
-        		vm.company_detail = data.company_detail;
+        		vm.company_details = data.company_detail;
         		delete data.is_followed;
         		delete data.followers;
         		delete data.company_detail;

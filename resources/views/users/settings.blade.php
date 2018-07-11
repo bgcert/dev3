@@ -4,7 +4,7 @@
 	<div class="ui main container">
 		<div class="ui centered grid">
 			<div class="twelve wide column">
-				<settings></settings>
+				<account></account>
 			</div>
 		</div>
 	</div>

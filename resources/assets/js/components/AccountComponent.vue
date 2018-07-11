@@ -9,10 +9,10 @@
 			</router-link>
 			
 			<router-link
-				to="/account"
+				to="/settings"
 				class="item"
-				:class="{ active: $route.path == '/account' }">
-				Акаунт
+				:class="{ active: $route.path == '/settings' }">
+				Настройки
 			</router-link>
 
 			<router-link
@@ -163,5 +163,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

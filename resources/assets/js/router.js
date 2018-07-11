@@ -28,12 +28,12 @@ let routes = [
     { path: '/orders/create', component: require('./views/orders/Create.vue') },
     { path: '/orders/edit/:id', component: require('./views/orders/Edit.vue') },
 
-    // Settings routes
-    { path: '/notifications', component: require('./views/settings/Notifications.vue') },
-    { path: '/account/', component: require('./views/settings/Account.vue') },
-    { path: '/change-pass', component: require('./views/settings/ChangePassword.vue') },
-    { path: '/change-email', component: require('./views/settings/ChangeEmail.vue') },
-    { path: '/deactivate', component: require('./views/settings/Deactivate.vue') },
+    // Account routes
+    { path: '/notifications', component: require('./views/account/Notifications.vue') },
+    { path: '/settings/', component: require('./views/account/Settings.vue') },
+    { path: '/change-pass', component: require('./views/account/ChangePassword.vue') },
+    { path: '/change-email', component: require('./views/account/ChangeEmail.vue') },
+    { path: '/deactivate', component: require('./views/account/Deactivate.vue') },
 
     // Messanger
     { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
