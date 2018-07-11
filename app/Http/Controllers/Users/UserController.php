@@ -37,7 +37,7 @@ class UserController extends Controller
     	$event_owner = $order->event->theme->company->user;
     	$event_owner->notify(new \App\Notifications\NewOrder);
 
-    	broadcast(new NewNotification($event_owner));
+    	broadcast(new NewNotification($event_owner->id));
 
     	return $order;
     }

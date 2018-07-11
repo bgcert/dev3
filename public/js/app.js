@@ -50063,6 +50063,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formData.append('slug', this.company.slug);
       formData.append('address', this.company_details.address);
       formData.append('description', this.company_details.description);
+      formData.append('email', this.company_details.email);
       formData.append('phone', this.company_details.phone);
       formData.append('facebook', this.company_details.facebook);
       formData.append('instagram', this.company_details.instagram);
