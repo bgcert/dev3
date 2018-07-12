@@ -43,15 +43,21 @@
 				</div>
 
 				@if(Auth::user()->role_id == 2)
-				<div class="ui dropdown">
-					<div class="item">
-						<a class="ui tiny orange button"><i class="plus square icon"></i> Добави</a>
-					</div>
+				<div class="ui dropdown icon item">
+					<i class="plus square icon"></i>
 					<div class="menu">
-						<a href="/users/settings#/account" class="item">Събитие</a>
-						<a href="/users/settings#/account" class="item">Тема</a>
-						<a href="/users/settings#/account" class="item">Лектор</a>
-						<a href="/users/settings#/account" class="item">Зала</a>
+						<div class="item">
+							Събитие
+						</div>
+						<div class="item">
+							Тема
+						</div>
+						<div class="item">
+							Лектор
+						</div>
+						<div class="item">
+							Зала
+						</div>
 					</div>
 				</div>
 				@endif
@@ -62,39 +68,18 @@
 
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				@endguest
-				<div class="ui dropdown item">
-					<i class="question outline circle icon"></i>
-					<div class="menu">
-						<a href="/users/settings#/account" class="item">Помощ</a>
-						<a href="/users/settings#/account" class="item">Реклама</a>
-						<a href="/users/settings#/account" class="item">Контакти</a>
-					</div>
-				</div>
 
 				<div class="ui dropdown icon item">
-					<i class="wrench icon"></i>
+					<i class="question outline circle icon"></i>
 					<div class="menu">
 						<div class="item">
-							<i class="dropdown icon"></i>
-							<span class="text">New</span>
-							<div class="menu">
-								<div class="item">Document</div>
-								<div class="item">Image</div>
-							</div>
+							Помощ
 						</div>
 						<div class="item">
-							Open...
+							Реклама
 						</div>
 						<div class="item">
-							Save...
-						</div>
-						<div class="item">Edit Permissions</div>
-						<div class="divider"></div>
-						<div class="header">
-							Export
-						</div>
-						<div class="item">
-							Share...
+							Контакти
 						</div>
 					</div>
 				</div>

@@ -22,6 +22,11 @@ let routes = [
     { path: '/events/create', component: require('./views/events/CreateEvent.vue') },
     { path: '/events/edit/:id', component: require('./views/events/EditEvent.vue') },
 
+    // Event routes
+    { path: '/venues', component: require('./views/venues/VenueIndex.vue') },
+    { path: '/venues/create', component: require('./views/venues/CreateVenue.vue') },
+    { path: '/venues/edit/:id', component: require('./views/venues/EditVenue.vue') },
+
     // Order routes
     { path: '/orders', component: require('./views/orders/Index.vue') },
     { path: '/orders/:id', component: require('./views/orders/View.vue') },
@@ -37,8 +42,6 @@ let routes = [
 
     // Messanger
     { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
-
-    //{ path: '/t/:id', component: require('./views/messanger/Index.vue') },
 ];
 
 export default new VueRouter({

@@ -12,7 +12,7 @@ class Venue extends Model
 	use Commentable;
     use LogsActivity;
 
-    protected $fillable = ['company_id', 'name', 'description', 'capacity'];
+    protected $fillable = ['company_id', 'name', 'description', 'capacity', 'cover'];
 
     public function company()
     {

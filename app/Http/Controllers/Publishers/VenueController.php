@@ -14,14 +14,7 @@ class VenueController extends Controller
      */
     public function index()
     {
-        $company = \Auth::user()->company;
-
-    	$venues = \DB::table('venues')
-            ->where('venues.company_id', $company->id)
-            ->select('venues.id', 'venues.name')
-            ->get();
-
-        return view('dashboard.venues.index', compact('venues'));
+        return \Auth::user()->company->venues;
     }
 
     /**

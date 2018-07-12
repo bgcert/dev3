@@ -28,6 +28,12 @@
 						Календар
 					</router-link>
 					<router-link
+						to="/venues"
+						class="item"
+						:class="{ active: $route.path == '/venues' }">
+						Зали
+					</router-link>
+					<router-link
 						to="/orders"
 						class="item"
 						:class="{ active: $route.path == '/orders' }">
