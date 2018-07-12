@@ -35,4 +35,13 @@ class DashboardController extends Controller
     	$company->company_detail->update($data);
     	return 'ok';
     }
+
+    public function upload()
+    {
+    	if (request()->file) {
+    		$name = $this->saveImage(request()->file, 357, 178);
+    		$name = '/test/' . $name;
+    	}
+    	return $name;
+    }
 }

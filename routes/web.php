@@ -115,6 +115,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 	// Save image from upload component
 	Route::post('/image/save', 'DashboardController@saveImage');
+	Route::post('/image/upload', 'DashboardController@upload');
 
 });
 

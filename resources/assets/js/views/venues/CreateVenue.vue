@@ -6,14 +6,14 @@
 			</div>
 			
 			<div class="ui segment">
-				<el-form label-width="120px">
+				<el-form label-width="160px">
 					<el-form-item label="Наименование">
 						<el-input v-model="name"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Корица">
-							<ImageUpload>
-							</ImageUpload>
+					<el-form-item label="Основна снимка">
+							<!-- <ImageUpload>
+							</ImageUpload> -->
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -26,6 +26,12 @@
 
 					<el-form-item label="Цена">
 						<el-input v-model="price"></el-input>
+					</el-form-item>
+
+					<el-form-item label="Допълнителни снимки">
+						<ImageUpload2>
+						</ImageUpload2>
+						<input type="file" name="test" @change="onFileChange">
 					</el-form-item>
 
 					<el-form-item>
@@ -49,9 +55,10 @@
 <script>
 	import { EventBus } from '../../app';
 	import ImageUpload from '../../components/ImageUploadComponent.vue'
+	import ImageUpload2 from '../../components/UploadComponent2.vue'
     export default {
     	components: {
-			ImageUpload
+			ImageUpload, ImageUpload2
 		},
     	data: function () {
     		return {
@@ -65,6 +72,9 @@
     	},
 
     	methods: {
+    		onFileChange(event) {
+    			console.log(event);
+    		},
     		save() {
     			let vm = this;
     			let image;
