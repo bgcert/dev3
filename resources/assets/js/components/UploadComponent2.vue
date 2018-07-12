@@ -9,6 +9,7 @@
 			<input type="file" name="file" id="file" class="inputfile" @change="onFileChange">
 			<label for="file" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
 		</div>
+		<el-progress :percentage="progress"></el-progress>
 		<button class="ui basic red button" @click.prevent="upload"> Upload</button>
 	</div>
 </template>
@@ -23,6 +24,7 @@
     	data: function () {
     		return {
     			selectedFile: null,
+    			progress: 0,
     			image:
 	    			{
 	    				src: this.img ? this.img : 'img/default_cover.png'
@@ -51,7 +53,7 @@
   				formData.append('file', this.selectedFile);
     			axios.post('dashboard/image/upload', formData, {
     				onUploadProgress: progressEvent => {
-    					console.log('Upload progress: ' + Math.round( (progressEvent.loaded * 100) / progressEvent.total ) + '%')
+    					this.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
     				}
     			})
     		}
