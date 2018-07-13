@@ -80,26 +80,30 @@
     			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
     			return promise;
     		},
-    		save() {
+    		async save() {
     			let vm = this;
 
-				this.uploadCover(function () {
-					console.log('cover uploaded');
+    			this.cover = await this.uploadCover();
+    			this.imageList = await this.uploadImages();
+
+    			console.log(this.imageList);
+
+    			axios.post('/dashboard/venues', {
+					name: vm.name,
+					description: vm.description,
+					capacity: vm.capacity,
+					cover: vm.cover,
+					images: vm.imageList
+
 				})
-				.then(this.uploadImages(function () {
-					console.log('images uploaded');
-				}))
-				.then(function () {
-					axios.post('/dashboard/venues', { name: vm.name, description: vm.description, capacity: vm.capacity })
-		    			.then(function (response) {
-		    				console.log(response);
-		    				vm.$message('Залата е добавена успешно.');
-		    				vm.$router.push('/venues');
-		    			})
-		    			.catch(function (error) {
-		    				console.log(error);
-		    			})
-				});
+    			.then(function (response) {
+    				console.log(response);
+    				vm.$message('Залата е добавена успешно.');
+    				// vm.$router.push('/venues');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		}
     	},
 

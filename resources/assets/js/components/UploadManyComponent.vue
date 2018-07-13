@@ -26,8 +26,6 @@
 
     	data: function () {
     		return {
-    			dialogImageUrl: '',
-        		dialogVisible: false,
     			instances: 0,
     			selectedFiles: [],
     			progress: 0,
@@ -46,45 +44,50 @@
 
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			console.log(imageUrl);
     			let image = new Image;
     			image.src = imageUrl;
     			this.imageList.push(image);
 
 				this.file = files[0];
     		},
-    		upload() {
-    			const formData = new FormData()
-  				formData.append('file', this.selectedFile);
-    			axios.post('dashboard/image/upload', formData, {
-    				onUploadProgress: progressEvent => {
-    					this.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-    				}
-    			})
+
+    		uploadImage(file) {
+    			let vm = this;
+    			return new Promise(resolve => {
+    				let formData = new FormData();
+    				formData.append('file', file);
+	    			axios.post('dashboard/image/upload', formData, {
+	    				onUploadProgress: progressEvent => {
+	    					vm.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    				}
+	    			})
+	    			.then(function (responce) {
+	    				resolve(responce.data);
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			})
+    			});
+    		},
+
+    		async test() {
+    			let images = [];
+    			let arr = this.selectedFiles;
+        		for (var i = 0, len = arr.length; i < len; i++) {
+					let x = await this.uploadImage(arr[i]);
+					images.push(x);
+				}
+				return images;
     		}
     	},
 
         mounted() {
-            console.log('Image component mounted.');
+            console.log('UploadMany component mounted.');
         },
 
         created() {
         	EventBus.$on('imageSaveMany', (resolve, reject) => {
-        		const formData = new FormData()
-        		this.selectedFiles.forEach(function (file) {
-        			formData.append('file', file);
-        		});
-    			axios.post('dashboard/image/upload', formData, {
-    				onUploadProgress: progressEvent => {
-    					this.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-    				}
-    			})
-    			.then(function (responce) {
-    				resolve(responce.data);
-    			})
-    			.catch(function () {
-    				reject('error');
-    			})
+        		resolve(this.test());
         	});
         },
 

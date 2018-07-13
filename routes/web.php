@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(7));
+Auth::login(\App\User::find(9));
 
 // Route::get('/query', function () {
 //     $id = \Auth::id();

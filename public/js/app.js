@@ -53908,11 +53908,17 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_UploadComponent_vue__ = __webpack_require__(412);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_UploadComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_UploadComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_UploadManyComponent_vue__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_UploadManyComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_UploadManyComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_UploadComponent_vue__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_UploadComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_UploadComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UploadManyComponent_vue__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_UploadManyComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_UploadManyComponent_vue__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -53970,66 +53976,339 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	components: {
-		ImageUpload: __WEBPACK_IMPORTED_MODULE_1__components_UploadComponent_vue___default.a, UploadMany: __WEBPACK_IMPORTED_MODULE_2__components_UploadManyComponent_vue___default.a
-	},
-	data: function data() {
-		return {
-			loading: true,
-			name: '',
-			description: '',
-			capacity: null,
-			price: null,
-			cover: 'https://picsum.photos/800/400/?image=293',
-			extraImages: 1,
-			imageList: []
-		};
-	},
+  components: {
+    ImageUpload: __WEBPACK_IMPORTED_MODULE_2__components_UploadComponent_vue___default.a, UploadMany: __WEBPACK_IMPORTED_MODULE_3__components_UploadManyComponent_vue___default.a
+  },
+  data: function data() {
+    return {
+      loading: true,
+      name: '',
+      description: '',
+      capacity: null,
+      price: null,
+      cover: 'https://picsum.photos/800/400/?image=293',
+      extraImages: 1,
+      imageList: []
+    };
+  },
 
-	methods: {
-		uploadCover: function uploadCover() {
-			var promise = new Promise(function (resolve, reject) {
-				return __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('imageSave', resolve, reject);
-			});
-			return promise;
-		},
-		uploadImages: function uploadImages() {
-			var promise = new Promise(function (resolve, reject) {
-				return __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('imageSaveMany', resolve, reject);
-			});
-			return promise;
-		},
-		save: function save() {
-			var vm = this;
+  methods: {
+    uploadCover: function uploadCover() {
+      var promise = new Promise(function (resolve, reject) {
+        return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('imageSave', resolve, reject);
+      });
+      return promise;
+    },
+    uploadImages: function uploadImages() {
+      var promise = new Promise(function (resolve, reject) {
+        return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('imageSaveMany', resolve, reject);
+      });
+      return promise;
+    },
+    save: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var vm;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                vm = this;
+                _context.next = 3;
+                return this.uploadCover();
 
-			this.uploadCover(function () {
-				console.log('cover uploaded');
-			}).then(this.uploadImages(function () {
-				console.log('images uploaded');
-			})).then(function () {
-				axios.post('/dashboard/venues', { name: vm.name, description: vm.description, capacity: vm.capacity }).then(function (response) {
-					console.log(response);
-					vm.$message('Залата е добавена успешно.');
-					vm.$router.push('/venues');
-				}).catch(function (error) {
-					console.log(error);
-				});
-			});
-		}
-	},
+              case 3:
+                this.cover = _context.sent;
+                _context.next = 6;
+                return this.uploadImages();
 
-	mounted: function mounted() {
-		console.log('New venue view mounted.');
-	},
-	created: function created() {}
+              case 6:
+                this.imageList = _context.sent;
+
+
+                console.log(this.imageList);
+
+                axios.post('/dashboard/venues', {
+                  name: vm.name,
+                  description: vm.description,
+                  capacity: vm.capacity,
+                  cover: vm.cover,
+                  images: vm.imageList
+
+                }).then(function (response) {
+                  console.log(response);
+                  vm.$message('Залата е добавена успешно.');
+                  // vm.$router.push('/venues');
+                }).catch(function (error) {
+                  console.log(error);
+                });
+
+              case 9:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function save() {
+        return _ref.apply(this, arguments);
+      }
+
+      return save;
+    }()
+  },
+
+  mounted: function mounted() {
+    console.log('New venue view mounted.');
+  },
+  created: function created() {}
 });
 
 /***/ }),
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(170)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(172)
+/* template */
+var __vue_template__ = __webpack_require__(173)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\UploadComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4e19f7d5", Component.options)
+  } else {
+    hotAPI.reload("data-v-4e19f7d5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(171);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("dc07971c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e19f7d5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e19f7d5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cover { margin: 10px;\n}\n.image {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 172 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        img: String
+    },
+
+    data: function data() {
+        return {
+            selectedFile: null,
+            progress: 0,
+            image: {
+                src: this.img ? this.img : 'img/default_cover.png'
+            },
+            file: null,
+            filename: null,
+            data: null
+        };
+    },
+
+    methods: {
+        onFileChange: function onFileChange(e) {
+            this.selectedFile = event.target.files[0];
+            var vm = this;
+
+            var files = e.target.files || e.dataTransfer.files;
+            var imageUrl = URL.createObjectURL(files[0]);
+            this.image = new Image();
+
+            this.image.src = imageUrl;
+
+            this.file = files[0];
+        },
+        upload: function upload() {
+            var _this = this;
+
+            var formData = new FormData();
+            formData.append('file', this.selectedFile);
+            axios.post('dashboard/image/upload', formData, {
+                onUploadProgress: function onUploadProgress(progressEvent) {
+                    _this.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                }
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Image component mounted.');
+    },
+    created: function created() {
+        var _this2 = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
+            var formData = new FormData();
+            formData.append('file', _this2.selectedFile);
+            axios.post('dashboard/image/upload', formData, {
+                onUploadProgress: function onUploadProgress(progressEvent) {
+                    _this2.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                }
+            }).then(function (responce) {
+                resolve(responce.data);
+            }).catch(function () {
+                reject('error');
+            });
+        });
+    },
+    destroyed: function destroyed() {
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('imageSave');
+    }
+});
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        {
+          staticClass: "image",
+          style: {
+            "background-image": "url(" + _vm.image.src + ")",
+            "background-position": "center center"
+          }
+        },
+        [
+          _c("input", {
+            staticClass: "inputfile",
+            attrs: { type: "file", name: "file", id: "file" },
+            on: { change: _vm.onFileChange }
+          }),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      ),
+      _vm._v(" "),
+      _c("el-progress", { attrs: { percentage: _vm.progress } })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "ui small purple icon button cover",
+        attrs: { for: "file" }
+      },
+      [_c("i", { staticClass: "camera icon" }), _vm._v(" Качи")]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4e19f7d5", module.exports)
+  }
+}
+
+/***/ }),
 /* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54126,7 +54405,13 @@ exports.push([module.i, "\n.cover { margin: 10px;\n}\n.images {\n\tpadding: 7px;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -54149,77 +54434,114 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        img: String
-    },
+   props: {
+      img: String
+   },
 
-    data: function data() {
-        return {
-            dialogImageUrl: '',
-            dialogVisible: false,
-            instances: 0,
-            selectedFiles: [],
-            progress: 0,
-            imageList: [],
-            file: null,
-            filename: null,
-            data: null
-        };
-    },
+   data: function data() {
+      return {
+         instances: 0,
+         selectedFiles: [],
+         progress: 0,
+         imageList: [],
+         file: null,
+         filename: null,
+         data: null
+      };
+   },
 
-    methods: {
-        onFileChange: function onFileChange(e) {
-            this.instances++;
-            this.selectedFiles.push(event.target.files[0]);
-            var vm = this;
+   methods: {
+      onFileChange: function onFileChange(e) {
+         this.instances++;
+         this.selectedFiles.push(event.target.files[0]);
+         var vm = this;
 
-            var files = e.target.files || e.dataTransfer.files;
-            var imageUrl = URL.createObjectURL(files[0]);
-            console.log(imageUrl);
-            var image = new Image();
-            image.src = imageUrl;
-            this.imageList.push(image);
+         var files = e.target.files || e.dataTransfer.files;
+         var imageUrl = URL.createObjectURL(files[0]);
+         var image = new Image();
+         image.src = imageUrl;
+         this.imageList.push(image);
 
-            this.file = files[0];
-        },
-        upload: function upload() {
-            var _this = this;
-
+         this.file = files[0];
+      },
+      uploadImage: function uploadImage(file) {
+         var vm = this;
+         return new Promise(function (resolve) {
             var formData = new FormData();
-            formData.append('file', this.selectedFile);
+            formData.append('file', file);
             axios.post('dashboard/image/upload', formData, {
-                onUploadProgress: function onUploadProgress(progressEvent) {
-                    _this.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                }
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Image component mounted.');
-    },
-    created: function created() {
-        var _this2 = this;
-
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSaveMany', function (resolve, reject) {
-            var formData = new FormData();
-            _this2.selectedFiles.forEach(function (file) {
-                formData.append('file', file);
-            });
-            axios.post('dashboard/image/upload', formData, {
-                onUploadProgress: function onUploadProgress(progressEvent) {
-                    _this2.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                }
+               onUploadProgress: function onUploadProgress(progressEvent) {
+                  vm.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+               }
             }).then(function (responce) {
-                resolve(responce.data);
-            }).catch(function () {
-                reject('error');
+               resolve(responce.data);
+            }).catch(function (error) {
+               console.log(error);
             });
-        });
-    },
-    destroyed: function destroyed() {
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('imageSave');
-    }
+         });
+      },
+      test: function () {
+         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var images, arr, i, len, x;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+               while (1) {
+                  switch (_context.prev = _context.next) {
+                     case 0:
+                        images = [];
+                        arr = this.selectedFiles;
+                        i = 0, len = arr.length;
+
+                     case 3:
+                        if (!(i < len)) {
+                           _context.next = 11;
+                           break;
+                        }
+
+                        _context.next = 6;
+                        return this.uploadImage(arr[i]);
+
+                     case 6:
+                        x = _context.sent;
+
+                        images.push(x);
+
+                     case 8:
+                        i++;
+                        _context.next = 3;
+                        break;
+
+                     case 11:
+                        return _context.abrupt('return', images);
+
+                     case 12:
+                     case 'end':
+                        return _context.stop();
+                  }
+               }
+            }, _callee, this);
+         }));
+
+         function test() {
+            return _ref.apply(this, arguments);
+         }
+
+         return test;
+      }()
+   },
+
+   mounted: function mounted() {
+      console.log('UploadMany component mounted.');
+   },
+   created: function created() {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('imageSaveMany', function (resolve, reject) {
+         resolve(_this.test());
+      });
+   },
+   destroyed: function destroyed() {
+      __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$off('imageSave');
+   }
 });
 
 /***/ }),
@@ -110571,268 +110893,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(413)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(415)
-/* template */
-var __vue_template__ = __webpack_require__(416)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\UploadComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4e19f7d5", Component.options)
-  } else {
-    hotAPI.reload("data-v-4e19f7d5", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 413 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(414);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("dc07971c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e19f7d5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4e19f7d5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./UploadComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 414 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.cover { margin: 10px;\n}\n.image {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 415 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        img: String
-    },
-
-    data: function data() {
-        return {
-            selectedFile: null,
-            progress: 0,
-            image: {
-                src: this.img ? this.img : 'img/default_cover.png'
-            },
-            file: null,
-            filename: null,
-            data: null
-        };
-    },
-
-    methods: {
-        onFileChange: function onFileChange(e) {
-            this.selectedFile = event.target.files[0];
-            var vm = this;
-
-            var files = e.target.files || e.dataTransfer.files;
-            var imageUrl = URL.createObjectURL(files[0]);
-            this.image = new Image();
-
-            this.image.src = imageUrl;
-
-            this.file = files[0];
-        },
-        upload: function upload() {
-            var _this = this;
-
-            var formData = new FormData();
-            formData.append('file', this.selectedFile);
-            axios.post('dashboard/image/upload', formData, {
-                onUploadProgress: function onUploadProgress(progressEvent) {
-                    _this.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                }
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Image component mounted.');
-    },
-    created: function created() {
-        var _this2 = this;
-
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('imageSave', function (resolve, reject) {
-            var formData = new FormData();
-            formData.append('file', _this2.selectedFile);
-            axios.post('dashboard/image/upload', formData, {
-                onUploadProgress: function onUploadProgress(progressEvent) {
-                    _this2.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                }
-            }).then(function (responce) {
-                resolve(responce.data);
-            }).catch(function () {
-                reject('error');
-            });
-        });
-    },
-    destroyed: function destroyed() {
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('imageSave');
-    }
-});
-
-/***/ }),
-/* 416 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        {
-          staticClass: "image",
-          style: {
-            "background-image": "url(" + _vm.image.src + ")",
-            "background-position": "center center"
-          }
-        },
-        [
-          _c("input", {
-            staticClass: "inputfile",
-            attrs: { type: "file", name: "file", id: "file" },
-            on: { change: _vm.onFileChange }
-          }),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      ),
-      _vm._v(" "),
-      _c("el-progress", { attrs: { percentage: _vm.progress } })
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      {
-        staticClass: "ui small purple icon button cover",
-        attrs: { for: "file" }
-      },
-      [_c("i", { staticClass: "camera icon" }), _vm._v(" Качи")]
-    )
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4e19f7d5", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
