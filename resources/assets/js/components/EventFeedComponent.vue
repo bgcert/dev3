@@ -135,10 +135,10 @@
 		        		vm.events = response.data;
 		        		vm.fullscreenLoading = false;
 					})
-				.catch(function (error) {
-					console.log(error);
-					vm.fullscreenLoading = false;
-				});
+					.catch(function (error) {
+						console.log(error);
+						vm.fullscreenLoading = false;
+					});
     		},
     	},
 

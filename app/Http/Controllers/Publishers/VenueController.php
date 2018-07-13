@@ -35,7 +35,13 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     //    $requestData = $request->all();
+    	// if ($request->file) {
+    	// 	$name = $this->saveImage($request->file, 357, 178);
+    	// 	$requestData['cover'] = '/test/' . $name;
+    	// }
+
+    	return \Auth::user()->company->venues()->create($request->all());
     }
 
     /**

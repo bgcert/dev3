@@ -72,5 +72,5 @@
         mounted() {
             console.log('event box Component mounted.')
         }
-    }
+    };
 </script>

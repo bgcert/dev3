@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div
-			id="image"
+			class="image"
 			:style="{
 						'background-image': 'url(' + image.src + ')',
 						'background-position': 'center center'
@@ -10,7 +10,6 @@
 			<label for="file" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
 		</div>
 		<el-progress :percentage="progress"></el-progress>
-		<button class="ui basic red button" @click.prevent="upload"> Upload</button>
 	</div>
 </template>
 
@@ -65,7 +64,19 @@
 
         created() {
         	EventBus.$on('imageSave', (resolve, reject) => {
-				resolve(this.file);
+        		const formData = new FormData()
+  				formData.append('file', this.selectedFile);
+    			axios.post('dashboard/image/upload', formData, {
+    				onUploadProgress: progressEvent => {
+    					this.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+    				}
+    			})
+    			.then(function (responce) {
+    				resolve(responce.data);
+    			})
+    			.catch(function () {
+    				reject('error');
+    			})
         	});
         },
 
@@ -78,7 +89,7 @@
 <style>
 	.cover { margin: 10px; }
 
-	#image {
+	.image {
 		padding: 7px;
 		background-size: cover;
 		position: relative;

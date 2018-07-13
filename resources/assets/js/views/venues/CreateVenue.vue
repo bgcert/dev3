@@ -12,8 +12,8 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-							<!-- <ImageUpload>
-							</ImageUpload> -->
+						<ImageUpload>
+						</ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -29,9 +29,7 @@
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
-						<ImageUpload2>
-						</ImageUpload2>
-						<input type="file" name="test" @change="onFileChange">
+						<UploadMany></UploadMany>
 					</el-form-item>
 
 					<el-form-item>
@@ -54,11 +52,11 @@
 
 <script>
 	import { EventBus } from '../../app';
-	import ImageUpload from '../../components/ImageUploadComponent.vue'
-	import ImageUpload2 from '../../components/UploadComponent2.vue'
+	import ImageUpload from '../../components/UploadComponent.vue'
+	import UploadMany from '../../components/UploadManyComponent.vue'
     export default {
     	components: {
-			ImageUpload, ImageUpload2
+			ImageUpload, UploadMany
 		},
     	data: function () {
     		return {
@@ -67,49 +65,40 @@
 				description: '',
 				capacity: null,
 				price: null,
-				cover: 'https://picsum.photos/800/400/?image=293'
+				cover: 'https://picsum.photos/800/400/?image=293',
+				extraImages: 1,
+				imageList: []
     		}
     	},
 
     	methods: {
-    		onFileChange(event) {
-    			console.log(event);
+    		uploadCover() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    			return promise;
+    		},
+    		uploadImages() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
+    			return promise;
     		},
     		save() {
     			let vm = this;
-    			let image;
 
-    			let formData = new FormData();
-				formData.append('name', this.name);
-				formData.append('body', this.description);
-				formData.append('capacity', this.capacity);
-
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
-
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				upload.then((data) => {
-					if (data) {
-						formData.append('file', data);	
-					}
-					
-					axios.post('/dashboard/venues', formData, config)
-	    			.then(function (response) {
-	    				console.log(response);
-	    				vm.$message('Залата е добавена успешно.');
-	    				vm.$router.push('/venues');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
+				this.uploadCover(function () {
+					console.log('cover uploaded');
+				})
+				.then(this.uploadImages(function () {
+					console.log('images uploaded');
+				}))
+				.then(function () {
+					axios.post('/dashboard/venues', { name: vm.name, description: vm.description, capacity: vm.capacity })
+		    			.then(function (response) {
+		    				console.log(response);
+		    				vm.$message('Залата е добавена успешно.');
+		    				vm.$router.push('/venues');
+		    			})
+		    			.catch(function (error) {
+		    				console.log(error);
+		    			})
 				});
     		}
     	},

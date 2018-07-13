@@ -51,19 +51,3 @@
 
 <style>
 </style>
-
-methods : {
-    ,
-    clickYah(){
-        this.active = false;
-        this.resolve(true);
-    },
-    clickNah(){
-        this.active = false;
-        this.resolve(false);
-    }
-}
-
-// then to call it...
-this.$refs.modalDialog.pop()
-.then(confirmResult => next(confirmResult));

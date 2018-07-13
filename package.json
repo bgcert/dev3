@@ -21,6 +21,7 @@
         "vue-router": "^3.0.1"
     },
     "dependencies": {
+        "@websanova/vue-upload": "^0.2.14-beta",
         "element-ui": "^2.4.3",
         "ion-sound": "^3.0.7",
         "jquery-confirm": "^3.3.2",
