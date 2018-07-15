@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-for="image in imageList">
+		<div v-for="(image, index) in images">
 			<div
 				class="images"
 				:style="{
@@ -9,10 +9,10 @@
 						}">
 			</div>
 			<el-progress :percentage="image.progress"></el-progress>
-			<h2>{{ image.progress }}</h2>
+			<button class="ui basic button" @click.prevent="remove(index)">Remove</button>
 		</div>
 		<div>
-			<label for="files" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
+			<label for="files" class="ui small icon button cover" ><i class="camera icon"></i> Добави</label>
 			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
 		</div>
 	</div>
@@ -27,13 +27,9 @@
 
     	data: function () {
     		return {
-    			instances: 0,
     			selectedFiles: [],
-    			progress: 0,
-    			imageList: [],
+    			images: [],
     			file: null,
-    			filename: null,
-    			data: null
     		}
     	},
 
@@ -44,14 +40,17 @@
 
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			// let image = ;
-    			// image.file.src = imageUrl;
-    			// let data = [{ 'url': imageUrl, 'progress': 0 }];
-    			this.imageList.push({ 'url': imageUrl, 'progress': 0 });
+    			this.images.push({ 'url': imageUrl, 'progress': 0 });
 
 				this.file = files[0];
     		},
 
+    		remove(index) {
+    			this.images.splice(index, 1);
+    			this.selectedFiles.splice(index, 1);
+    			this.file = null;
+    			console.log(index + ' removed');
+    		},
     		uploadImage(file, index) {
     			let vm = this;
     			return new Promise(resolve => {
@@ -59,7 +58,7 @@
     				formData.append('file', file);
 	    			axios.post('dashboard/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
-	    					vm.imageList[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    					vm.images[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
 	    			})
 	    			.then(function (responce) {
@@ -71,7 +70,7 @@
     			});
     		},
 
-    		async test() {
+    		async imageList() {
     			let images = [];
     			let arr = this.selectedFiles;
         		for (var i = 0, len = arr.length; i < len; i++) {
@@ -88,7 +87,7 @@
 
         created() {
         	EventBus.$on('imageSaveMany', (resolve, reject) => {
-        		resolve(this.test());
+        		resolve(this.imageList());
         	});
         },
 

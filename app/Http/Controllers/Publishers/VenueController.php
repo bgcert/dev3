@@ -35,8 +35,14 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-    	return $request->all();
-    	return \Auth::user()->company->venues()->create($request->all());
+    	$venue = \Auth::user()->company->venues()->create($request->all());
+    	// return $request->images;
+    	$images = [];
+    	foreach ($request->images as $image) {
+    		array_push($images, ['filename' => $image]);
+    	}
+    	$venue->venue_images()->createMany($images);
+    	return $venue;
     }
 
     /**

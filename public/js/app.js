@@ -55215,13 +55215,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
    data: function data() {
       return {
-         instances: 0,
          selectedFiles: [],
-         progress: 0,
-         imageList: [],
-         file: null,
-         filename: null,
-         data: null
+         images: [],
+         file: null
       };
    },
 
@@ -55232,12 +55228,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
          var files = e.target.files || e.dataTransfer.files;
          var imageUrl = URL.createObjectURL(files[0]);
-         // let image = ;
-         // image.file.src = imageUrl;
-         // let data = [{ 'url': imageUrl, 'progress': 0 }];
-         this.imageList.push({ 'url': imageUrl, 'progress': 0 });
+         this.images.push({ 'url': imageUrl, 'progress': 0 });
 
          this.file = files[0];
+      },
+      remove: function remove(index) {
+         this.images.splice(index, 1);
+         this.selectedFiles.splice(index, 1);
+         this.file = null;
+         console.log(index + ' removed');
       },
       uploadImage: function uploadImage(file, index) {
          var vm = this;
@@ -55246,7 +55245,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             formData.append('file', file);
             axios.post('dashboard/image/upload', formData, {
                onUploadProgress: function onUploadProgress(progressEvent) {
-                  vm.imageList[index].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                  vm.images[index].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
                }
             }).then(function (responce) {
                resolve(responce.data);
@@ -55255,7 +55254,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
          });
       },
-      test: function () {
+      imageList: function () {
          var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
             var images, arr, i, len, x;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -55296,11 +55295,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }, _callee, this);
          }));
 
-         function test() {
+         function imageList() {
             return _ref.apply(this, arguments);
          }
 
-         return test;
+         return imageList;
       }()
    },
 
@@ -55311,7 +55310,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       var _this = this;
 
       __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('imageSaveMany', function (resolve, reject) {
-         resolve(_this.test());
+         resolve(_this.imageList());
       });
    },
    destroyed: function destroyed() {
@@ -55330,7 +55329,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._l(_vm.imageList, function(image) {
+      _vm._l(_vm.images, function(image, index) {
         return _c(
           "div",
           [
@@ -55344,7 +55343,19 @@ var render = function() {
             _vm._v(" "),
             _c("el-progress", { attrs: { percentage: image.progress } }),
             _vm._v(" "),
-            _c("h2", [_vm._v(_vm._s(image.progress))])
+            _c(
+              "button",
+              {
+                staticClass: "ui basic button",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.remove(index)
+                  }
+                }
+              },
+              [_vm._v("Remove")]
+            )
           ],
           1
         )
@@ -55370,11 +55381,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      {
-        staticClass: "ui small purple icon button cover",
-        attrs: { for: "files" }
-      },
-      [_c("i", { staticClass: "camera icon" }), _vm._v(" Качи")]
+      { staticClass: "ui small icon button cover", attrs: { for: "files" } },
+      [_c("i", { staticClass: "camera icon" }), _vm._v(" Добави")]
     )
   }
 ]
