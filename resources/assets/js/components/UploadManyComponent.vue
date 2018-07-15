@@ -1,14 +1,15 @@
 <template>
 	<div>
-		<div v-for="(instance, index) in instances">
+		<div v-for="image in imageList">
 			<div
 				class="images"
 				:style="{
-							'background-image': 'url(' + imageList[index].src + ')',
+							'background-image': 'url(' + image.url + ')',
 							'background-position': 'center center'
 						}">
 			</div>
-			<el-progress :percentage="progress"></el-progress>
+			<el-progress :percentage="image.progress"></el-progress>
+			<h2>{{ image.progress }}</h2>
 		</div>
 		<div>
 			<label for="files" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
@@ -38,27 +39,27 @@
 
     	methods: {
     		onFileChange(e) {
-    			this.instances++;
     			this.selectedFiles.push(event.target.files[0]);
     			let vm = this;
 
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			let image = new Image;
-    			image.src = imageUrl;
-    			this.imageList.push(image);
+    			// let image = ;
+    			// image.file.src = imageUrl;
+    			// let data = [{ 'url': imageUrl, 'progress': 0 }];
+    			this.imageList.push({ 'url': imageUrl, 'progress': 0 });
 
 				this.file = files[0];
     		},
 
-    		uploadImage(file) {
+    		uploadImage(file, index) {
     			let vm = this;
     			return new Promise(resolve => {
     				let formData = new FormData();
     				formData.append('file', file);
 	    			axios.post('dashboard/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
-	    					vm.progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    					vm.imageList[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
 	    			})
 	    			.then(function (responce) {
@@ -74,7 +75,7 @@
     			let images = [];
     			let arr = this.selectedFiles;
         		for (var i = 0, len = arr.length; i < len; i++) {
-					let x = await this.uploadImage(arr[i]);
+					let x = await this.uploadImage(arr[i], i);
 					images.push(x);
 				}
 				return images;
