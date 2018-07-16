@@ -1,16 +1,28 @@
 <template>
 	<div>
-		<div v-for="(image, index) in images">
+		<div v-for="(image, index) in uploadedImages">
 			<div
 				class="images"
 				:style="{
-							'background-image': 'url(' + image.url + ')',
+							'background-image': 'url(' + image.filename + ')',
+							'background-position': 'center center'
+						}">
+			</div>
+			<button class="ui basic button" @click.prevent="detach(index, image.id)">Remove</button>
+		</div>
+
+		<div v-for="(image, index) in imageList">
+			<div
+				class="images"
+				:style="{
+							'background-image': 'url(' + image.filename + ')',
 							'background-position': 'center center'
 						}">
 			</div>
 			<el-progress :percentage="image.progress"></el-progress>
 			<button class="ui basic button" @click.prevent="remove(index)">Remove</button>
 		</div>
+
 		<div>
 			<label for="files" class="ui small icon button cover" ><i class="camera icon"></i> Добави</label>
 			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
@@ -21,15 +33,19 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: {
-    		img: String
-    	},
+    	props: ['images'],
 
     	data: function () {
     		return {
     			selectedFiles: [],
-    			images: [],
+    			imageList: [],
+    			uploadedImages: [],
     			file: null,
+    		}
+    	},
+    	watch: {
+    		images: function (val) {
+    			return this.uploadedImages = val;
     		}
     	},
 
@@ -40,25 +56,30 @@
 
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			this.images.push({ 'url': imageUrl, 'progress': 0 });
+    			this.imageList.push({ 'filename': imageUrl, 'progress': 0 });
 
 				this.file = files[0];
     		},
 
     		remove(index) {
-    			this.images.splice(index, 1);
+    			this.imageList.splice(index, 1);
     			this.selectedFiles.splice(index, 1);
     			this.file = null;
-    			console.log(index + ' removed');
     		},
+
+    		detach(index, id) {
+    			this.uploadedImages.splice(index, 1);
+    			this.$emit('detachClick', id);
+    		},
+
     		uploadImage(file, index) {
     			let vm = this;
-    			return new Promise(resolve => {
+    			return new Promise((resolve, reject) => {
     				let formData = new FormData();
     				formData.append('file', file);
 	    			axios.post('dashboard/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
-	    					vm.images[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    					vm.imageList[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
 	    			})
 	    			.then(function (responce) {
@@ -70,14 +91,14 @@
     			});
     		},
 
-    		async imageList() {
-    			let images = [];
+    		async getNames() {
+    			let imageList = [];
     			let arr = this.selectedFiles;
         		for (var i = 0, len = arr.length; i < len; i++) {
-					let x = await this.uploadImage(arr[i], i);
-					images.push(x);
+					let name = await this.uploadImage(arr[i], i);
+					imageList.push(name);
 				}
-				return images;
+				return imageList;
     		}
     	},
 
@@ -87,12 +108,16 @@
 
         created() {
         	EventBus.$on('imageSaveMany', (resolve, reject) => {
-        		resolve(this.imageList());
+        		if (this.selectedFiles == null) {
+        			resolve();
+        			return;
+        		}
+        		resolve(this.getNames());
         	});
         },
 
         destroyed() {
-			EventBus.$off('imageSave');
+			EventBus.$off('imageSaveMany');
 		}
     };
 </script>

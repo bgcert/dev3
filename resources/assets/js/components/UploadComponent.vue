@@ -3,7 +3,7 @@
 		<div
 			class="image"
 			:style="{
-						'background-image': 'url(' + image.src + ')',
+						'background-image': 'url(' + imageUrl.src + ')',
 						'background-position': 'center center'
 					}">
 			<input type="file" name="file" id="file" class="inputfile" @change="onFileChange">
@@ -16,21 +16,21 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: {
-    		img: String
-    	},
+    	props: ['image'],
 
     	data: function () {
     		return {
     			selectedFile: null,
     			progress: 0,
-    			image:
-	    			{
-	    				src: this.img ? this.img : 'img/default_cover.png'
-	    			},
+    			imageUrl: { src: '/img/default_cover.png' },
     			file: null,
     			filename: null,
     			data: null
+    		}
+    	},
+    	watch: {
+    		image: function (val) {
+    			return this.imageUrl.src = val;
     		}
     	},
 
@@ -40,10 +40,10 @@
     			let vm = this;
 
     			var files = e.target.files || e.dataTransfer.files;
-    			var imageUrl = URL.createObjectURL(files[0]);
-    			this.image = new Image;
+    			var url = URL.createObjectURL(files[0]);
+    			this.imageUrl = new Image;
     			
-    			this.image.src = imageUrl;
+    			this.imageUrl.src = url;
 
 				this.file = files[0];
     		},
@@ -64,6 +64,10 @@
 
         created() {
         	EventBus.$on('imageSave', (resolve, reject) => {
+        		if (!this.selectedFile) {
+        			resolve();
+        			return;
+        		}
         		const formData = new FormData()
   				formData.append('file', this.selectedFile);
     			axios.post('dashboard/image/upload', formData, {
@@ -91,6 +95,7 @@
 
 	.image {
 		padding: 7px;
+		background-image: url("/img/default_cover.png");
 		background-size: cover;
 		position: relative;
 		width: 357px;

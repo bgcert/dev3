@@ -36,7 +36,6 @@ class VenueController extends Controller
     public function store(Request $request)
     {
     	$venue = \Auth::user()->company->venues()->create($request->all());
-    	// return $request->images;
     	$images = [];
     	foreach ($request->images as $image) {
     		array_push($images, ['filename' => $image]);
@@ -64,7 +63,10 @@ class VenueController extends Controller
      */
     public function edit($id)
     {
-        //
+    	$venue = \App\Venue::find($id);
+    	$data[0] = $venue;
+    	$data[1] = $venue->venue_images;
+        return $data[0];
     }
 
     /**
@@ -76,7 +78,32 @@ class VenueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $venue = \App\Venue::find($id);
+
+        $venue->update($request->all());
+
+        $images = [];
+
+        if ($request->images) {
+        	foreach ($request->images as $image) {
+    			array_push($images, ['filename' => $image]);
+	    	}
+	    	$venue->venue_images()->createMany($images);
+        }
+
+        if ($request->detached) {
+        	foreach ($request->detached as $detached) {
+        		$venue->venue_images()->where('id', $detached)->delete();
+        	}
+        }      
+
+        return $venue;
+    	// $images = [];
+    	// foreach ($request->images as $image) {
+    	// 	array_push($images, ['filename' => $image]);
+    	// }
+    	// $venue->venue_images()->createMany($images);
+    	// return $venue;
     }
 
     /**

@@ -2,31 +2,38 @@
 	<div>
 		<div class="ui segments">
 			<div class="ui segment">
-				<h4>Редактиране на тема</h4>
+				<h4>Редактиране на зала</h4>
 			</div>
 			
-			<div class="ui segment" v-if="!loading">
-				<el-form ref="form" label-width="120px">
-					<el-form-item label="Заглавие">
-						<el-input v-model="theme.title"></el-input>
+			<div class="ui segment" v-if="venue">
+				<el-form label-width="160px">
+					<el-form-item label="Наименование">
+						<el-input v-model="venue.name"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Категория">
-						<el-select v-model="theme.category_id" placeholder="Изберете категория">
-							<template v-for="category in categories">
-								<el-option :label="category.name" :value="category.id"></el-option>	
-							</template>
-						</el-select>
+					<el-form-item label="Основна снимка">
+						<ImageUpload
+							:image="venue.cover">
+						</ImageUpload>
+					</el-form-item>
+
+					<el-form-item label="Капацитет">
+						<el-input v-model="venue.capacity"></el-input>
 					</el-form-item>
 					
-					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="theme.body"></el-input>
+					<el-form-item label="Описание">
+						<el-input type="textarea" :rows="12" v-model="venue.description"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Корица">
-							<ImageUpload
-								:img="theme.cover">
-							</ImageUpload>
+					<el-form-item label="Цена">
+						<el-input v-model="venue.price"></el-input>
+					</el-form-item>
+
+					<el-form-item label="Допълнителни снимки">
+						<UploadMany
+							:images="venue.venue_images"
+							@detachClick="handleDetach">
+						</UploadMany>
 					</el-form-item>
 
 					<el-form-item>
@@ -34,7 +41,7 @@
 							<div class="ui right floated primary button" @click="save">
 					        	Запиши
 					        </div>
-							<router-link to="/themes" class="item">
+							<router-link to="/venues" class="item">
 								<div class="ui right floated basic button">
 						        	Откажи
 						        </div>
@@ -42,93 +49,93 @@
 						</div>
 					</el-form-item>
 				</el-form>
-
 			</div>
 		</div>
 	</div>
 </template>
+
 <script>
-	import { EventBus } from '../../app'
-	import ImageUpload from '../../components/ImageUploadComponent.vue'
+	import { EventBus } from '../../app';
+	import ImageUpload from '../../components/UploadComponent.vue'
+	import UploadMany from '../../components/UploadManyComponent.vue'
     export default {
     	components: {
-			ImageUpload
+			ImageUpload, UploadMany
 		},
     	data: function () {
     		return {
-    			show: false,
     			loading: true,
-    			selectedFile: null,
-    			categories: [],
-    			theme: [],
+    			venue: {},
+				imageList: [],
+				detached: []
     		}
     	},
 
     	methods: {
-    		save() {
+    		uploadCover() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    			return promise;
+    		},
+    		uploadImages() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
+    			return promise;
+    		},
+    		async save() {
     			let vm = this;
-    			let image;
 
-    			let formData = new FormData();
-    			// Needed for patch request with form data
-    			formData.append('_method', 'patch');
-				formData.append('title', this.theme.title);
-				formData.append('body', this.theme.body);
-				formData.append('category_id', this.theme.category_id);
+    			let data = {
+    				_method: 'PUT',
+					name: vm.venue.name,
+					description: vm.venue.description,
+					capacity: vm.venue.capacity,
+    			}
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+    			this.cover = await this.uploadCover();
+    			this.imageList = await this.uploadImages();
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    			if (this.imageList) {
+    				data.images = this.imageList;
+    			}
+    			if (this.cover) {
+    				data.cover = this.cover;
+    			}
+    			if (this.detached) {
+    				data.detached = this.detached;
+    			}
 
-				upload.then((data) => {
-					// Append if file selected
-					if (data) {
-						formData.append('file', data);
-					}
 
-					let route = '/dashboard/themes/' + this.$route.params.id;
-					axios.post(route, formData)
-	    			.then(function (response) {
-	    				console.log(response);
-	    				vm.$message('Темата е редактирана успешно.');
-	    				vm.$router.push('/themes');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
+    			let route = '/dashboard/venues/' + this.$route.params.id;
+
+    			axios.post(route, data)
+    			.then(function (response) {
+    				console.log(response);
+    				vm.$message('Залата е добавена успешно.');
+    				vm.$router.push('/venues');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
+    		},
+    		handleDetach(id) {
+    			this.detached.push(id);
     		}
     	},
 
         mounted() {
-            console.log('Edit theme view mounted.');
+            console.log('New venue view mounted.')
         },
 
         created() {
-
-        	var vm = this;
-            var route = '/dashboard/themes/' + this.$route.params.id + '/edit';
-        	axios.get(route).then(function (response) {
-        		vm.theme = response.data[0];
-        		vm.categories = response.data[1];
-        		vm.loading = false;
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+        	let vm = this;
+        	let route = '/dashboard/venues/' + this.$route.params.id + '/edit';
+        	axios.get(route)
+    			.then(function (response) {
+    				vm.venue = response.data;
+    				vm.imageList = response.data[1];
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
         }
     };
 </script>
-
-<style>
-	
-</style>
-

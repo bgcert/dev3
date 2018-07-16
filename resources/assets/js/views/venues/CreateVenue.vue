@@ -99,7 +99,7 @@
     			.then(function (response) {
     				console.log(response);
     				vm.$message('Залата е добавена успешно.');
-    				// vm.$router.push('/venues');
+    				vm.$router.push('/venues');
     			})
     			.catch(function (error) {
     				console.log(error);
