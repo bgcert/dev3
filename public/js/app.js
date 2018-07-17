@@ -57337,12 +57337,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         event_publish: vm.form.user.company.event_publish,
         venue_publish: vm.form.user.company.venue_publish
       }).then(function (response) {
-        console.log(response);
         vm.$message('Данните са променени.');
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
       }).catch(function (error) {
         console.log(error);
       });
-      console.log(this.company);
     }
   },
 
@@ -109068,7 +109069,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.user.verified
+  return !_vm.user.token
     ? _c(
         "span",
         {

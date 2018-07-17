@@ -1,5 +1,5 @@
 <template>
-	<span class="item notification-icon" @click="listNotifications" v-if="user.verified">
+	<span class="item notification-icon" @click="listNotifications" v-if="!user.token">
 		<el-popover
 			placement="bottom-end"
 			trigger="click">

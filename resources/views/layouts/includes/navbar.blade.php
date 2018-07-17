@@ -22,13 +22,12 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
-
 				<div class="ui dropdown item">
 					{{ Auth::user()->name }} <i class="dropdown icon"></i>
 					<div class="menu">
-						@if(auth::user()->verified())
+
 						<a href="/users/settings#/notifications" class="item">Акаунт</a>
-						@endif
+
 						@if(Auth::user()->role_id == 2)
 						<a href="/dashboard#/home" class="item">Контролен панел</a>
 						@endif

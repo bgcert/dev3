@@ -101,13 +101,14 @@
     					venue_publish: vm.form.user.company.venue_publish
     				})
 				.then(function (response) {
-					console.log(response);
 					vm.$message('Данните са променени.');
+					setTimeout(function() {
+						location.reload();
+					}, 2000);
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
-    			console.log(this.company);
     		},
     	},
 
