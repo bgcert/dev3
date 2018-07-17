@@ -48,7 +48,7 @@
     		handleDelete(id, index) {
     			let vm = this;
     			axios.delete('dashboard/venues/' + id).then( function (response) {
-    				vm.veneus.splice(index, 1);
+    				vm.venues.splice(index, 1);
     			});
     		},
 

@@ -53842,7 +53842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleDelete: function handleDelete(id, index) {
             var vm = this;
             axios.delete('dashboard/venues/' + id).then(function (response) {
-                vm.veneus.splice(index, 1);
+                vm.venues.splice(index, 1);
             });
         },
         handleShow: function handleShow(id) {
@@ -54975,7 +54975,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.cover { margin: 10px;\n}\n.image {\n\tpadding: 7px;\n\tbackground-image: url(\"/img/default_cover.png\");\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.cover { margin: 10px;\n}\n.background {\n\tpadding: 7px;\n\tbackground-image: url(\"/img/default_cover.png\");\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -55092,7 +55092,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "image",
+          staticClass: "background",
           style: {
             "background-image": "url(" + _vm.imageUrl.src + ")",
             "background-position": "center center"
@@ -55370,7 +55370,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "ui basic button",
+              staticClass: "ui small basic button",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -55378,7 +55378,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Remove")]
+            [_vm._v("Премахни")]
           )
         ])
       }),
@@ -55400,7 +55400,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "ui basic button",
+                staticClass: "ui small basic button",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -55408,7 +55408,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Remove")]
+              [_vm._v("Премахни")]
             )
           ],
           1
@@ -55803,7 +55803,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
                                 axios.post(route, data).then(function (response) {
-                                    console.log(response);
                                     vm.$message('Залата е добавена успешно.');
                                     vm.$router.push('/venues');
                                 }).catch(function (error) {

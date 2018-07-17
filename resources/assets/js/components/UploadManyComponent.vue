@@ -8,7 +8,7 @@
 							'background-position': 'center center'
 						}">
 			</div>
-			<button class="ui basic button" @click.prevent="detach(index, image.id)">Remove</button>
+			<button class="ui small basic button" @click.prevent="detach(index, image.id)">Премахни</button>
 		</div>
 
 		<div v-for="(image, index) in imageList">
@@ -20,7 +20,7 @@
 						}">
 			</div>
 			<el-progress :percentage="image.progress"></el-progress>
-			<button class="ui basic button" @click.prevent="remove(index)">Remove</button>
+			<button class="ui small basic button" @click.prevent="remove(index)">Премахни</button>
 		</div>
 
 		<div>

@@ -107,14 +107,13 @@
     			let route = '/dashboard/venues/' + this.$route.params.id;
 
     			axios.post(route, data)
-    			.then(function (response) {
-    				console.log(response);
-    				vm.$message('Залата е добавена успешно.');
-    				vm.$router.push('/venues');
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			})
+	    			.then(function (response) {
+	    				vm.$message('Залата е добавена успешно.');
+	    				vm.$router.push('/venues');
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			})
     		},
     		handleDetach(id) {
     			this.detached.push(id);

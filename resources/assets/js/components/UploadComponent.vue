@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div
-			class="image"
+			class="background"
 			:style="{
 						'background-image': 'url(' + imageUrl.src + ')',
 						'background-position': 'center center'
@@ -93,7 +93,7 @@
 <style>
 	.cover { margin: 10px; }
 
-	.image {
+	.background {
 		padding: 7px;
 		background-image: url("/img/default_cover.png");
 		background-size: cover;

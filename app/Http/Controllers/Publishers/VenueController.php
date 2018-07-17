@@ -98,12 +98,6 @@ class VenueController extends Controller
         }      
 
         return $venue;
-    	// $images = [];
-    	// foreach ($request->images as $image) {
-    	// 	array_push($images, ['filename' => $image]);
-    	// }
-    	// $venue->venue_images()->createMany($images);
-    	// return $venue;
     }
 
     /**
@@ -114,6 +108,6 @@ class VenueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Venue::destroy($id);
     }
 }
