@@ -19,8 +19,6 @@ window.flash = (message, type) => {
 	EventBus.$emit('flash', message, type);
 }
 
-window.auth = { auth: '{{ auth()->check() }}' }
-
 import router from './router.js' // Importing routes
 import StoreData from './store';
 

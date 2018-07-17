@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -11,6 +12,15 @@ class PublicController extends Controller
     	// $events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
     	//$categories = \App\Category::all();
     	return view('home');
+    }
+
+    // Verify account
+    public function verify($token) {
+
+    	User::where('token', $token)->firstOrFail()
+    		->update(['token' => null]);
+
+    	return redirect()->route('home');
     }
 
 	public function themes()
@@ -66,4 +76,9 @@ class PublicController extends Controller
     public function categories() {
     	return \DB::table('categories')->get();
     }
+
+    public function notVerified()
+    {
+    	return view('verify');
+    }   
 }

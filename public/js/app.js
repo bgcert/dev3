@@ -212,8 +212,6 @@ window.flash = function (message, type) {
   EventBus.$emit('flash', message, type);
 };
 
-window.auth = { auth: '{{ auth()->check() }}' };
-
  // Importing routes
 
 
@@ -49834,11 +49832,25 @@ var routes = [{ path: '/home', component: __webpack_require__(117) }, { path: '/
 // Messanger
 { path: '/t/:id?', component: __webpack_require__(212) }];
 
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
+var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     routes: routes
     // To remove hashtag from urls
     //mode: 'history',
-}));
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (router);
+
+router.beforeEach(function (to, from, next) {
+    if (window.auth) {
+        if (window.user.token != null) {
+            next(false);
+        } else {
+            next();
+        }
+    } else {
+        next(false);
+    }
+});
 
 /***/ }),
 /* 117 */
@@ -105608,7 +105620,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -105617,10 +105628,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {
 		Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
 	},
-	props: ['auth'],
 
 	data: function data() {
 		return {
+			auth: window.auth,
 			boolean: true,
 			events: {},
 			cities: [],
@@ -107287,12 +107298,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    props: {
       id: { required: true },
       title: { type: [String], required: name },
-      auth: { type: [Boolean], required: true },
       classes: [String, Number]
    },
 
    data: function data() {
       return {
+         auth: window.auth,
          dialogVisible: false,
          contactPerson: '',
          contactNumber: '',
@@ -108623,10 +108634,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['auth', 'type', 'id', 'user_id'],
+  props: ['type', 'id', 'user_id'],
 
   data: function data() {
     return {
+      auth: window.auth,
       comments: [],
       body: ''
     };
@@ -108703,7 +108715,7 @@ var render = function() {
       "div",
       { staticClass: "ui reply form" },
       [
-        _vm.auth == 1
+        _vm.auth
           ? [
               _c("el-input", {
                 attrs: {
@@ -108986,6 +108998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
+      user: window.user,
       loading: false,
       notifications: [],
       notificationsCount: 0
@@ -109022,7 +109035,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     axios.get('/users/notifications/check').then(function (response) {
       vm.notificationsCount = response.data;
-      console.log(response);
     }).catch(function (error) {
       console.log(error);
     });
@@ -109056,103 +109068,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    {
-      staticClass: "item notification-icon",
-      on: { click: _vm.listNotifications }
-    },
-    [
-      _c(
-        "el-popover",
-        { attrs: { placement: "bottom-end", trigger: "click" } },
+  return _vm.user.verified
+    ? _c(
+        "span",
+        {
+          staticClass: "item notification-icon",
+          on: { click: _vm.listNotifications }
+        },
         [
           _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "loading",
-                  rawName: "v-loading",
-                  value: _vm.loading,
-                  expression: "loading"
-                }
-              ]
-            },
+            "el-popover",
+            { attrs: { placement: "bottom-end", trigger: "click" } },
             [
               _c(
                 "div",
-                { staticClass: "ui middle aligned divided list" },
-                _vm._l(_vm.notifications, function(notification) {
-                  return _c(
-                    "div",
+                {
+                  directives: [
                     {
-                      staticClass: "item",
-                      class: { unread: notification.read_at == null }
+                      name: "loading",
+                      rawName: "v-loading",
+                      value: _vm.loading,
+                      expression: "loading"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "ui middle aligned divided list" },
+                    _vm._l(_vm.notifications, function(notification) {
+                      return _c(
+                        "div",
+                        {
+                          staticClass: "item",
+                          class: { unread: notification.read_at == null }
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "large github middle aligned icon"
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "content" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "header",
+                                attrs: {
+                                  href: "/users/settings#/notifications"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.markAsRead(notification.id)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(notification.data.message))]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "description" }, [
+                              _vm._v(_vm._s(notification.created_at))
+                            ])
+                          ])
+                        ]
+                      )
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "ui tiny fluid button",
+                      attrs: { href: "/users/settings#/notifications" }
                     },
-                    [
-                      _c("i", {
-                        staticClass: "large github middle aligned icon"
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "content" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "header",
-                            attrs: { href: "/users/settings#/notifications" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.markAsRead(notification.id)
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(notification.data.message))]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "description" }, [
-                          _vm._v(_vm._s(notification.created_at))
-                        ])
-                      ])
-                    ]
+                    [_vm._v("Всички известия")]
                   )
-                })
+                ]
               ),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "ui tiny fluid button",
-                  attrs: { href: "/users/settings#/notifications" }
-                },
-                [_vm._v("Всички известия")]
-              )
+              _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
+                _c("div", { staticStyle: { position: "relative" } }, [
+                  _c("i", {
+                    staticClass: "bell icon",
+                    class: {
+                      orange: this.notificationsCount > 0,
+                      outline: this.notificationsCount == 0
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.notificationsCount > 0
+                    ? _c("span", { staticClass: "notification-label" }, [
+                        _vm._v(_vm._s(_vm.notificationsCount))
+                      ])
+                    : _vm._e()
+                ])
+              ])
             ]
-          ),
-          _vm._v(" "),
-          _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
-            _c("div", { staticStyle: { position: "relative" } }, [
-              _c("i", {
-                staticClass: "bell icon",
-                class: {
-                  orange: this.notificationsCount > 0,
-                  outline: this.notificationsCount == 0
-                }
-              }),
-              _vm._v(" "),
-              _vm.notificationsCount > 0
-                ? _c("span", { staticClass: "notification-label" }, [
-                    _vm._v(_vm._s(_vm.notificationsCount))
-                  ])
-                : _vm._e()
-            ])
-          ])
-        ]
+          )
+        ],
+        1
       )
-    ],
-    1
-  )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -109975,12 +109991,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     data: function data() {
         return {
+            innerVisible: false,
             dialogFormVisible: false,
             loading: false,
             form: {
@@ -110018,11 +110044,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 password_confirmation: vm.form.confirmPassword
             }).then(function (response) {
                 vm.dialogFormVisible = false;
-                location.reload();
+                vm.innerVisible = true;
+                setTimeout(function () {
+                    location.reload();
+                }, 4000);
             }).catch(function (error) {
                 console.log(error);
             });
-            console.log('submit!');
         },
         callLogin: function callLogin() {
             this.dialogFormVisible = false;
@@ -110065,6 +110093,30 @@ var render = function() {
           }
         },
         [_vm._v(" Регистрация")]
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            width: "30%",
+            title: "Inner Dialog",
+            visible: _vm.innerVisible,
+            "append-to-body": ""
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.innerVisible = $event
+            }
+          }
+        },
+        [
+          _c("h3", [
+            _vm._v(
+              "Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл."
+            )
+          ])
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -110418,6 +110470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
+      user: window.user,
       activeTab: this.$route.path,
       form: {
         publisher: false,
@@ -110524,77 +110577,84 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "ui top attached tabular menu" },
-      [
+  return !_vm.user.token
+    ? _c("div", [
         _c(
-          "router-link",
-          {
-            staticClass: "item",
-            class: { active: _vm.$route.path == "/notifications" },
-            attrs: { to: "/notifications" }
-          },
-          [_vm._v("\n\t\t\tИзвестия\n\t\t")]
+          "div",
+          { staticClass: "ui top attached tabular menu" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/notifications" },
+                attrs: { to: "/notifications" }
+              },
+              [_vm._v("\n\t\t\tИзвестия\n\t\t")]
+            ),
+            _vm._v(" "),
+            _vm.user.role_id == 2
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "item",
+                    attrs: { href: "/dashboard#/profile", target: "_blank" }
+                  },
+                  [_vm._v("Фирмен панел")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/settings" },
+                attrs: { to: "/settings" }
+              },
+              [_vm._v("\n\t\t\tНастройки\n\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/change-pass" },
+                attrs: { to: "/change-pass" }
+              },
+              [_vm._v("\n\t\t\tПромяна на парола\n\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/change-email" },
+                attrs: { to: "/change-email" }
+              },
+              [_vm._v("\n\t\t\tПромяна на email\n\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/deactivate" },
+                attrs: { to: "/deactivate" }
+              },
+              [_vm._v("\n\t\t\tДеактивиране\n\t\t")]
+            )
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
-          "a",
-          { staticClass: "item", attrs: { href: "/dashboard#/profile" } },
-          [_vm._v("Фирмен панел")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "item",
-            class: { active: _vm.$route.path == "/settings" },
-            attrs: { to: "/settings" }
-          },
-          [_vm._v("\n\t\t\tНастройки\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "item",
-            class: { active: _vm.$route.path == "/change-pass" },
-            attrs: { to: "/change-pass" }
-          },
-          [_vm._v("\n\t\t\tПромяна на парола\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "item",
-            class: { active: _vm.$route.path == "/change-email" },
-            attrs: { to: "/change-email" }
-          },
-          [_vm._v("\n\t\t\tПромяна на email\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "item",
-            class: { active: _vm.$route.path == "/deactivate" },
-            attrs: { to: "/deactivate" }
-          },
-          [_vm._v("\n\t\t\tДеактивиране\n\t\t")]
+          "div",
+          { staticClass: "ui bottom attached active tab segment" },
+          [_c("keep-alive", [_c("router-view")], 1)],
+          1
         )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui bottom attached active tab segment" },
-      [_c("keep-alive", [_c("router-view")], 1)],
-      1
-    )
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

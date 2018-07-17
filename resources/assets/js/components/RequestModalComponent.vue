@@ -74,12 +74,12 @@
     	props: {
     		id: { required: true },
     		title: { type: [String], required: name },
-    		auth: { type: [Boolean], required: true},
     		classes: [String, Number]
     	},
 
     	data: function () {
     		return {
+    			auth: window.auth,
     			dialogVisible: false,
     			contactPerson: '',
     			contactNumber: '',

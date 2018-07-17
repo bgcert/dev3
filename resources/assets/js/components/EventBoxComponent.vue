@@ -56,9 +56,10 @@
 
 <script>
     export default {
-    	props: ['auth', 'item'],
+    	props: ['item'],
     	data: function () {
     		return {
+    			auth: window.auth,
     			event: this.item,
     		}
     	},

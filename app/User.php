@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role_id', 'name', 'email', 'password', 'picture', 'verified',
+        'role_id', 'name', 'email', 'password', 'token', 'picture', 'verified',
     ];
 
     /**
@@ -26,8 +27,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'verification_token', 'verified'
+        'password', 'remember_token', 'verification_token'
     ];
+
+    public function verified()
+    {
+    	return $this->token === null;
+    }
+
+    public function sendVerificationEmail()
+    {
+    	$this->notify(new VerifyEmail($this)); // <$this> is probably this instance
+    }
 
     // Relations
     public function company()

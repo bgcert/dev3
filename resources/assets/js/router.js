@@ -44,8 +44,23 @@ let routes = [
     { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
 ];
 
-export default new VueRouter({
+const router = new VueRouter({
     routes,
     // To remove hashtag from urls
     //mode: 'history',
+});
+
+export default router
+
+router.beforeEach((to, from, next) => {
+	if (window.auth) {
+		if (window.user.token != null) {
+			next(false);
+		} else {
+			next();
+		}
+	} else {
+		next(false);
+	}
+	
 });

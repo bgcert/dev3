@@ -88,5 +88,5 @@
 				this.dialogFormVisible = true;
 			});
         }
-    }
+    };
 </script>

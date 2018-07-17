@@ -34,9 +34,25 @@
     @stack('header-scripts')
 </head>
 <body>
+	<script>
+		window.auth = @json(auth()->check());
+	</script>
+	@auth
+	<script>
+	    window.user = @json(auth()->user());
+	</script>
+	@endauth
     <div id="app">
     	<!-- <flash message="{{ session('flash') }}"></flash> -->
         @include('layouts.includes.navbar')
+
+        @if(auth()->check() && !auth()->user()->verified())
+        	<div class="ui container">
+        		<div class="ui basic segment">
+        			<div class="ui orange message">Account is not verified</div>
+        		</div>
+        	</div>
+        @endif
 
         @yield('content')
         

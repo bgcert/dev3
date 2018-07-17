@@ -1,5 +1,5 @@
 <template>
-	<span class="item notification-icon" @click="listNotifications">
+	<span class="item notification-icon" @click="listNotifications" v-if="user.verified">
 		<el-popover
 			placement="bottom-end"
 			trigger="click">
@@ -34,6 +34,7 @@
     	
     	data: function () {
     		return {
+    			user: window.user,
     			loading: false,
     			notifications: [],
     			notificationsCount: 0
@@ -70,7 +71,6 @@
 			var vm = this;
         	axios.get('/users/notifications/check').then(function (response) {
         		vm.notificationsCount = response.data;
-        		console.log(response);
 			})
 			.catch(function (error) {
 				console.log(error);

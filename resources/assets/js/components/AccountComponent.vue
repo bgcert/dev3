@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="!user.token">
 		<div class="ui top attached tabular menu">
 			<router-link
 				to="/notifications"
@@ -8,7 +8,7 @@
 				Известия
 			</router-link>
 			
-			<a href="/dashboard#/profile" class="item">Фирмен панел</a>
+			<a href="/dashboard#/profile" class="item" target="_blank" v-if="user.role_id == 2">Фирмен панел</a>
 
 			<router-link
 				to="/settings"
@@ -55,6 +55,7 @@
 
     	data: function () {
     		return {
+    			user: window.user,
     			activeTab: this.$route.path,
     			form: {
     				publisher: false,

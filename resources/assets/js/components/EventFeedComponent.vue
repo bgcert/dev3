@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<div class="ui vertical segment">
 
 			<div class="ui center aligned grid container">
@@ -87,10 +86,10 @@
     	components: {
 			Like, BoxHover
 		},
-    	props: ['auth'],
 
     	data: function () {
     		return {
+    			auth: window.auth,
     			boolean: true,
     			events: {},
     			cities: [],

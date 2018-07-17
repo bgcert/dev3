@@ -16,14 +16,6 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
-
-        'App\Events\UserRegistered' => [
-        'App\Listeners\SendVerificationEmail',
-        
-	    ],
-	    'App\Events\UserRequestedVerificationEmail' => [
-	        'App\Listeners\SendVerificationEmail',
-	    ],
     ];
 
     /**

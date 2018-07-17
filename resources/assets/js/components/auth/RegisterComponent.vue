@@ -2,7 +2,16 @@
 	<div>
 		<a href="#" class="item" @click.prevent="dialogFormVisible = true"> Регистрация</a>
 
+		<el-dialog
+			width="30%"
+			title="Inner Dialog"
+			:visible.sync="innerVisible"
+			append-to-body>
+			<h3>Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл.</h3>
+		</el-dialog>
+
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
+
 			<el-form ref="form" label-position="left" label-width="180px">
 				<el-form-item label="Име">
 					<el-input v-model="form.name"></el-input>
@@ -56,6 +65,7 @@
 
     	data: function () {
     		return {
+    			innerVisible: false,
     			dialogFormVisible: false,
     			loading: false,
     			form: {
@@ -93,12 +103,14 @@
         		})
         		.then(function (response) {
         			vm.dialogFormVisible = false;
-        			location.reload();
+        			vm.innerVisible = true;
+        			setTimeout(function() {
+        				location.reload();
+        			}, 4000);
         		})
         		.catch(function (error) {
         			console.log(error);
         		});
-        		console.log('submit!');
         	},
 
         	callLogin() {
@@ -114,5 +126,5 @@
 				this.dialogFormVisible = true;
 			});
         }
-    }
+    };
 </script>

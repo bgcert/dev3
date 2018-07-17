@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(3));
+// Auth::login(\App\User::find(3));
 
 // Route::get('/query', function () {
 //     $id = \Auth::id();
@@ -27,7 +27,7 @@ Route::get('/home', function () {
 });
 
 // PUBLIC ROUTES
-Route::get('/', 'PublicController@home');
+Route::get('/', 'PublicController@home')->name('home');
 
 Route::get('/t', 'PublicController@themes');
 Route::get('/e', 'PublicController@events');
@@ -42,16 +42,18 @@ Route::get('/venue/{id}', 'PublicController@showVenue');
 // Load venue images
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');
 
-// Verification routes
-Route::get('email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
-Route::get('email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
+// Verification route
+// Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
+Route::get('/verify/{token}', 'PublicController@verify')->name('verify');
 
 Auth::routes();
+
+Route::get('/not-verified', 'PublicController@notVerified');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
 // USER ROUTES
-Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['auth', 'isVerified']], function () {
+Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
 	// Load data routes
 	Route::get('/load/user/', 'SettingsController@getUserData');
@@ -85,7 +87,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => ['au
 });
 
 // Messanger group
-Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => ['auth', 'isVerified']], function () {
+Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => 'auth'], function () {
 	Route::get('/', 'MessageController@index');
 	Route::get('/threads', 'MessageController@getThreads');
 	Route::get('/thread/{id}', 'MessageController@getThreadByUser');

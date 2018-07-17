@@ -2,7 +2,7 @@
 	<div>
 		<h4>Коментари</h4>
 		<div class="ui reply form">
-			<template v-if="auth == 1">
+			<template v-if="auth">
 				<el-input
 					type="textarea"
 					autosize
@@ -54,10 +54,11 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['auth', 'type', 'id', 'user_id'],
+    	props: ['type', 'id', 'user_id'],
 
     	data: function () {
     		return {
+    			auth: window.auth,
     			comments: [],
     			body: '',
     		}

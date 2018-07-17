@@ -150,7 +150,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Jrean\UserVerification\UserVerificationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
         /*
@@ -215,7 +214,6 @@ return [
          * Package aliases...
          */
 
-        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
     ],

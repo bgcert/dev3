@@ -26,7 +26,9 @@
 				<div class="ui dropdown item">
 					{{ Auth::user()->name }} <i class="dropdown icon"></i>
 					<div class="menu">
+						@if(auth::user()->verified())
 						<a href="/users/settings#/notifications" class="item">Акаунт</a>
+						@endif
 						@if(Auth::user()->role_id == 2)
 						<a href="/dashboard#/home" class="item">Контролен панел</a>
 						@endif
@@ -43,28 +45,30 @@
 				</div>
 
 				@if(Auth::user()->role_id == 2)
-				<div class="ui dropdown icon item">
-					<i class="plus square icon"></i>
-					<div class="menu">
-						<div class="item">
-							Събитие
-						</div>
-						<div class="item">
-							Тема
-						</div>
-						<div class="item">
-							Лектор
-						</div>
-						<div class="item">
-							Зала
+					<div class="ui dropdown icon item">
+						<i class="plus square icon"></i>
+						<div class="menu">
+							<div class="item">
+								Събитие
+							</div>
+							<div class="item">
+								Тема
+							</div>
+							<div class="item">
+								Лектор
+							</div>
+							<div class="item">
+								Зала
+							</div>
 						</div>
 					</div>
-				</div>
 				@endif
 
-				<a href="/messages#/t" class="item">
-					<i class="paper plane outline icon"></i>
-				</a>
+				@if(auth::user()->verified())
+					<a href="/messages#/t" class="item">
+						<i class="paper plane outline icon"></i>
+					</a>
+				@endif
 
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				@endguest
