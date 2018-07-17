@@ -8,7 +8,7 @@
 				Известия
 			</router-link>
 			
-			<a href="http://dev1.oo/dashboard#/profile" class="item">Фирмен панел</a>
+			<a href="/dashboard#/profile" class="item">Фирмен панел</a>
 
 			<router-link
 				to="/settings"

@@ -110541,10 +110541,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "a",
-          {
-            staticClass: "item",
-            attrs: { href: "http://dev1.oo/dashboard#/profile" }
-          },
+          { staticClass: "item", attrs: { href: "/dashboard#/profile" } },
           [_vm._v("Фирмен панел")]
         ),
         _vm._v(" "),
