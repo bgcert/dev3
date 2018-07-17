@@ -105620,7 +105620,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -105724,10 +105723,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['auth', 'likes', 'liked', 'item_id', 'route'],
+    props: ['likes', 'liked', 'item_id', 'route'],
 
     data: function data() {
         return {
+            auth: window.auth,
             isLiked: this.liked,
             count: this.likes
         };
@@ -105773,7 +105773,7 @@ var render = function() {
   return _c(
     "span",
     [
-      _vm.auth == 1
+      _vm.auth
         ? [
             _c(
               "span",
@@ -106322,12 +106322,11 @@ var render = function() {
                   [
                     _c("Like", {
                       attrs: {
-                        auth: _vm.auth,
                         likes:
                           event.theme.like_count != null
                             ? event.theme.like_count.count
                             : "",
-                        liked: event.theme.is_liked.length,
+                        liked: event.theme.is_liked != null,
                         item_id: event.theme.id,
                         route: "/users/like/theme"
                       }

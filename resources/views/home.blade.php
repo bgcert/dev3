@@ -12,10 +12,8 @@
 			<carousel></carousel>		
 		</div>
 	</div>
+
+	<event-feed></event-feed>
 	
-    <event-feed
-		auth="{{ auth()->check() }}"
-		>
-	</event-feed>
 </div>
 @endsection

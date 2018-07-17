@@ -1,6 +1,6 @@
 <template>
 	<span>
-		<template v-if="auth == 1">
+		<template v-if="auth">
 			<span @click.prevent="toggle"> 
 				<template v-if="isLiked == 1">
 						<i class="heart red like icon"></i>
@@ -24,10 +24,11 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['auth', 'likes', 'liked', 'item_id', 'route'],
+    	props: ['likes', 'liked', 'item_id', 'route'],
 
     	data: function () {
     		return {
+                auth: window.auth,
     			isLiked: this.liked,
     			count: this.likes,
     		}

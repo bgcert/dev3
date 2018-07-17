@@ -33,9 +33,13 @@ class Event extends Model
     // Usage Event::byCompany(<company_id>)->get();
     public function scopeByCompany($query, $id)
     {
-        return $query->with('theme')->whereHas('theme', function ($query) use ($id) {
-			        	$query->where('company_id', $id);
-			        });
+        return $query
+                    ->with('theme')
+                    ->whereHas('theme', function ($query) use ($id)
+                        {
+        	               $query->where('company_id', $id);
+                        }
+                    );
     }
 
     public function scopeOfCity($query, $city_id)

@@ -106,7 +106,8 @@ trait Likable
 
     public function isLiked()
     {
-    	return $this->likes()->where('user_id', \Auth::id());
+    	return $this->morphOne('App\Like', 'likable');
+    	return $this->likes()->where('user_id', \Auth::id())->count();
     }
 
     private function incrementLikeCount()

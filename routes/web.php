@@ -11,16 +11,13 @@
 |
 */
 
-// Auth::login(\App\User::find(3));
+Auth::login(\App\User::find(9));
 
-// Route::get('/query', function () {
-//     $id = \Auth::id();
-//     	$items = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
-// 			        	$q->where('user_id', $id);
-// 			        })->orderBy('created_at')->get();
-
-//     return view('query', compact('items'));
-// });
+Route::get('/query', function () {
+    
+	$items = \App\Event::with('theme.likeCount', 'theme.company.company_detail')->get();
+    return view('query', compact('items'));
+});
 
 Route::get('/home', function () {
     return 'hard to remove /home route';

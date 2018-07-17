@@ -58,9 +58,8 @@
 					<div class="extra content">
 						<span class="right floated">
 							<Like
-								:auth="auth"
 								:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
-								:liked="event.theme.is_liked.length"
+								:liked="event.theme.is_liked != null"
 								:item_id="event.theme.id"
 								:route="'/users/like/theme'">
 							</Like>
