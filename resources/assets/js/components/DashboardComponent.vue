@@ -27,7 +27,7 @@
 						:class="{ active: $route.path == '/events' }">
 						Календар
 					</router-link>
-					<router-link
+					<router-link v-if="venuePublish"
 						to="/venues"
 						class="item"
 						:class="{ active: $route.path == '/venues' }">
@@ -56,6 +56,7 @@
 
     	data: function () {
     		return {
+    			venuePublish: window.company.venue_publish,
     			isCollapse: false
     		}
     	},
