@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    
     <div class="ui container">
     	<h2>{{ \Auth::user()->company->name }}'s dashboard</h2>
     	<div class="row">

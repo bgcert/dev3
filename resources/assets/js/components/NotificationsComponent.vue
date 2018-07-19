@@ -82,7 +82,6 @@
 
                 		// play sound
 						ion.sound.play("button_tiny");
-                		console.log('new notification');
                 });
 
 			// init bunch of sounds

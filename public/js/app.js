@@ -49840,6 +49840,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
 
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
+// Redirecting if email not validated
 router.beforeEach(function (to, from, next) {
     if (window.auth) {
         if (window.user.token != null) {
@@ -106475,11 +106476,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -106488,10 +106484,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
   },
-  props: ['auth'],
 
   data: function data() {
     return {
+      auth: window.auth,
       venues: {}
     };
   },
@@ -106523,95 +106519,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("request-modal", { attrs: { auth: "1" } }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "ui three stackable cards" },
-        [
-          _vm._l(_vm.venues, function(venue) {
-            return [
-              _c("div", { staticClass: "card" }, [
-                _c(
-                  "div",
-                  { staticClass: "extra content" },
-                  [
-                    _c("box-hover", {
-                      attrs: { id: venue.company.id, name: venue.company.name }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "image" }, [
-                  _c("img", { attrs: { src: venue.cover } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
+  return _c("div", [
+    _vm.venues
+      ? _c(
+          "div",
+          { staticClass: "ui three stackable cards" },
+          [
+            _vm._l(_vm.venues, function(venue) {
+              return [
+                _c("div", { staticClass: "card" }, [
                   _c(
-                    "a",
-                    {
-                      staticClass: "header",
-                      attrs: { href: "/venue/" + venue.id }
-                    },
-                    [_vm._v(_vm._s(venue.name))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "extra content" }, [
-                  _c(
-                    "span",
-                    { staticClass: "right floated" },
+                    "div",
+                    { staticClass: "extra content" },
                     [
-                      _c("like", {
+                      _c("box-hover", {
                         attrs: {
-                          auth: _vm.auth,
-                          likes:
-                            venue.like_count != null
-                              ? venue.like_count.count
-                              : "",
-                          liked: venue.is_liked.length,
-                          item_id: venue.id,
-                          route: "/users/like/venue"
+                          id: venue.company.id,
+                          name: venue.company.name
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "/venue/" + venue.id + "/#comments" }
-                          },
-                          [
-                            _c("i", { staticClass: "comment outline icon" }),
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(
-                                  venue.comment_count != null
-                                    ? venue.comment_count.count
-                                    : 0
-                                ) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ])
+                      })
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "image" }, [
+                    _c("img", { attrs: { src: venue.cover } })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "content" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "header",
+                        attrs: { href: "/venue/" + venue.id }
+                      },
+                      [_vm._v(_vm._s(venue.name))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "extra content" }, [
+                    _c(
+                      "span",
+                      { staticClass: "right floated" },
+                      [
+                        _c("like", {
+                          attrs: {
+                            auth: _vm.auth,
+                            likes:
+                              venue.like_count != null
+                                ? venue.like_count.count
+                                : "",
+                            liked: venue.is_liked != null,
+                            item_id: venue.id,
+                            route: "/users/like/venue"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/venue/" + venue.id + "/#comments"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "comment outline icon" }),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t" +
+                                  _vm._s(
+                                    venue.comment_count != null
+                                      ? venue.comment_count.count
+                                      : 0
+                                  ) +
+                                  "\n\t\t\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ])
                 ])
-              ])
-            ]
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
+              ]
+            })
+          ],
+          2
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -109044,7 +109041,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // play sound
       ion.sound.play("button_tiny");
-      console.log('new notification');
     });
 
     // init bunch of sounds
@@ -110822,6 +110818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            venuePublish: window.company.venue_publish,
             isCollapse: false
         };
     },
@@ -110889,15 +110886,17 @@ var render = function() {
               [_vm._v("\n\t\t\t\t\tКалендар\n\t\t\t\t")]
             ),
             _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/venues" },
-                attrs: { to: "/venues" }
-              },
-              [_vm._v("\n\t\t\t\t\tЗали\n\t\t\t\t")]
-            ),
+            _vm.venuePublish
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass: "item",
+                    class: { active: _vm.$route.path == "/venues" },
+                    attrs: { to: "/venues" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tЗали\n\t\t\t\t")]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "router-link",

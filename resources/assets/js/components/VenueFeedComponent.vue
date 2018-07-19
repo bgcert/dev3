@@ -1,11 +1,6 @@
 <template>
 	<div>
-		<request-modal
-			auth="1"
-			>
-		</request-modal>
-
-		<div class="ui three stackable cards">
+		<div class="ui three stackable cards" v-if="venues">
 			<template v-for="venue in venues">
 				<div class="card">
 					<div class="extra content">
@@ -26,7 +21,7 @@
 							<like
 								:auth="auth"
 								:likes="(venue.like_count != null) ? venue.like_count.count : ''"
-								:liked="venue.is_liked.length"
+								:liked="venue.is_liked != null"
 								:item_id="venue.id"
 								:route="'/users/like/venue'"
 								>
@@ -54,10 +49,10 @@
     	components: {
 			Like, BoxHover
 		},
-    	props: ['auth'],
 
     	data: function () {
     		return {
+    			auth: window.auth,
     			venues: {},
     		}
     	},
@@ -82,5 +77,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

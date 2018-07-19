@@ -52,6 +52,7 @@ const router = new VueRouter({
 
 export default router
 
+// Redirecting if email not validated
 router.beforeEach((to, from, next) => {
 	if (window.auth) {
 		if (window.user.token != null) {

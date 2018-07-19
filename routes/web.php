@@ -11,11 +11,11 @@
 |
 */
 
-Auth::login(\App\User::find(9));
+// Auth::login(\App\User::find(9));
 
 Route::get('/query', function () {
     
-	$items = \App\Event::with('theme.likeCount', 'theme.company.company_detail')->get();
+	$items = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company.company_detail')->get();
     return view('query', compact('items'));
 });
 
