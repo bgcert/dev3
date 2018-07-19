@@ -3,7 +3,7 @@
 /public/js
 /public/test
 /public/hot
-/public/storage
+/public/storage/*
 /storage/*.key
 /vendor
 /.idea
