@@ -23,7 +23,7 @@
 				</div> -->
 				@else
 				<div class="ui dropdown item">
-					{{ Auth::user()->name }} <i class="dropdown icon"></i>
+					{{ Auth::user()->firstname }} <i class="dropdown icon"></i>
 					<div class="menu">
 
 						<a href="/users/settings#/notifications" class="item">Акаунт</a>

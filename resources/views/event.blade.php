@@ -55,7 +55,9 @@
 					<div class="ui segment">
 						<div class="flex">
 							<div class="logo">
-								<a href="/c/{{ $event->theme->company->slug }}"><img class="ui tiny rounded image" src="{{ $event->theme->company->company_detail->logo }}"></a>
+								<a href="/c/{{ $event->theme->company->slug }}">
+									<img class="ui tiny rounded image" src="{{ $event->theme->company->company_detail->logo }}">
+								</a>
 							</div>
 							<div class="company-details">
 								<h3>{{ $event->theme->company->name }}</h3>

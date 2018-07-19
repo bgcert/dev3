@@ -106475,7 +106475,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -109996,6 +109995,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -110005,16 +110044,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             innerVisible: false,
             dialogFormVisible: false,
             loading: false,
+            checked: false,
             form: {
-                name: '',
+                firstname: '',
+                lastname: '',
                 email: '',
                 publisher: false,
                 event_publish: true,
                 venue_publish: false,
-                activities: [],
                 password: '',
                 passwordConfirm: '',
-                companyName: ''
+                companyName: '',
+                slug: ''
             }
         };
     },
@@ -110029,7 +110070,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.loading = true;
             var vm = this;
             axios.post('/register', {
-                name: vm.form.name,
+                firstname: vm.form.firstname,
+                lastname: vm.form.lastname,
                 email: vm.form.email,
                 publisher: vm.form.publisher,
                 event_publish: vm.form.event_publish,
@@ -110107,7 +110149,7 @@ var render = function() {
           }
         },
         [
-          _c("h3", [
+          _c("p", [
             _vm._v(
               "Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл."
             )
@@ -110119,7 +110161,7 @@ var render = function() {
         "el-dialog",
         {
           attrs: {
-            width: "30%",
+            width: "500px",
             title: "Регистрация",
             visible: _vm.dialogFormVisible
           },
@@ -110130,152 +110172,281 @@ var render = function() {
           }
         },
         [
-          _c(
-            "el-form",
-            {
-              ref: "form",
-              attrs: { "label-position": "left", "label-width": "180px" }
-            },
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "Име" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
+          _c("form", { staticClass: "ui form" }, [
+            _c("h4", { staticClass: "ui dividing header" }, [
+              _vm._v("Вид акаунт")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "two fields" }, [
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _c(
+                      "el-radio",
+                      {
+                        attrs: { label: false },
+                        model: {
+                          value: _vm.form.publisher,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "publisher", $$v)
+                          },
+                          expression: "form.publisher"
+                        }
                       },
-                      expression: "form.name"
+                      [
+                        _vm._v(
+                          "\n  \t\t\t\t\t\t\t\tИндивидуален потребител\n  \t\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _c(
+                      "el-radio",
+                      {
+                        attrs: { label: true },
+                        model: {
+                          value: _vm.form.publisher,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "publisher", $$v)
+                          },
+                          expression: "form.publisher"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\tБизнес потребител\n\t\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field" }, [
+              _c("label", [_vm._v("Имена")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "two fields" }, [
+                _c("div", { staticClass: "field" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.firstname,
+                        expression: "form.firstname"
+                      }
+                    ],
+                    attrs: { type: "text", placeholder: "Име" },
+                    domProps: { value: _vm.form.firstname },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "firstname", $event.target.value)
+                      }
                     }
                   })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "E-mail" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.lastname,
+                        expression: "form.lastname"
+                      }
+                    ],
+                    attrs: { type: "text", placeholder: "Фамилия" },
+                    domProps: { value: _vm.form.lastname },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "lastname", $event.target.value)
+                      }
                     }
                   })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.email,
+                    expression: "form.email"
+                  }
                 ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Парола" } },
-                [
-                  _c("el-input", {
-                    model: {
+                attrs: { type: "email", placeholder: "E-mail" },
+                domProps: { value: _vm.form.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "email", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "two fields" }, [
+              _c("div", { staticClass: "field" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
                       value: _vm.form.password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password", $$v)
-                      },
                       expression: "form.password"
                     }
-                  })
-                ],
-                1
-              ),
+                  ],
+                  attrs: { type: "password", placeholder: "Парола" },
+                  domProps: { value: _vm.form.password },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "password", $event.target.value)
+                    }
+                  }
+                })
+              ]),
               _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Потвърдете паролата" } },
-                [
-                  _c("el-input", {
-                    model: {
+              _c("div", { staticClass: "field" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
                       value: _vm.form.confirmPassword,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "confirmPassword", $$v)
-                      },
                       expression: "form.confirmPassword"
                     }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Организация" } },
-                [
-                  _c("el-switch", {
-                    model: {
-                      value: _vm.form.publisher,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "publisher", $$v)
-                      },
-                      expression: "form.publisher"
+                  ],
+                  attrs: {
+                    type: "password",
+                    placeholder: "Повторете паролата"
+                  },
+                  domProps: { value: _vm.form.confirmPassword },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "confirmPassword", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui divider" }),
+          _vm._v(" "),
+          _vm.form.publisher
+            ? _c("div", { staticClass: "ui yellow message" }, [
+                _vm._v(
+                  '\n\t\t\t\tИзползвайте опцията "Бизнес акаунт", ако бизнесът Ви е свързан с организиране на обучения и/или отдаване под наем на конферентни зали, както и други пространства подходящи за реализацията на събития.\n\t\t\t'
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.publisher
+            ? _c("form", { staticClass: "ui form" }, [
+                _c("div", { staticClass: "field" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.companyName,
+                        expression: "form.companyName"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      placeholder: "Име на организацията"
+                    },
+                    domProps: { value: _vm.form.companyName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "companyName", $event.target.value)
+                      }
                     }
                   })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm.form.publisher
-                ? [
-                    _c(
-                      "el-form-item",
-                      { attrs: { label: "Име на организацията" } },
-                      [
-                        _c("el-input", {
-                          model: {
-                            value: _vm.form.companyName,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "companyName", $$v)
-                            },
-                            expression: "form.companyName"
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [
+                  _c("div", { staticClass: "ui labeled right icon input" }, [
+                    _c("div", { staticClass: "ui label" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\thttp://seminari365.com/\n\t\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.slug,
+                          expression: "form.slug"
+                        }
+                      ],
+                      attrs: {
+                        type: "text",
+                        placeholder: "Адрес на профила (пр: test-ltd)"
+                      },
+                      domProps: { value: _vm.form.slug },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
+                          _vm.$set(_vm.form, "slug", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "ui dividing header" }, [
+                  _vm._v("Настройка на финкционалност")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [
+                  _c("div", { staticClass: "two fields" }, [
                     _c(
-                      "el-form-item",
-                      { attrs: { label: "Адрес" } },
+                      "div",
+                      { staticClass: "field" },
                       [
-                        _c(
-                          "el-input",
-                          {
-                            attrs: {
-                              size: "medium",
-                              placeholder: "Въведете адрес"
-                            },
-                            model: {
-                              value: _vm.form.slug,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "slug", $$v)
-                              },
-                              expression: "form.slug"
-                            }
+                        _c("el-checkbox", {
+                          attrs: {
+                            label: "Публикуване на обучения",
+                            border: ""
                           },
-                          [
-                            _c("template", { slot: "prepend" }, [
-                              _vm._v("http://seminari365.com/")
-                            ])
-                          ],
-                          2
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      { attrs: { label: "Публикуване на обучения" } },
-                      [
-                        _c("el-switch", {
                           model: {
                             value: _vm.form.event_publish,
                             callback: function($$v) {
@@ -110289,10 +110460,11 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "el-form-item",
-                      { attrs: { label: "Публикуване на събития" } },
+                      "div",
+                      { staticClass: "field" },
                       [
-                        _c("el-switch", {
+                        _c("el-checkbox", {
+                          attrs: { label: "Публикуване на зали", border: "" },
                           model: {
                             value: _vm.form.venue_publish,
                             callback: function($$v) {
@@ -110304,42 +110476,62 @@ var render = function() {
                       ],
                       1
                     )
-                  ]
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { size: "large" } },
-                [
-                  _c(
-                    "el-button",
-                    {
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.callLogin($event)
-                        }
-                      }
-                    },
-                    [_vm._v(" Вход")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      attrs: { type: "primary", loading: _vm.loading },
-                      on: { click: _vm.onSubmit }
-                    },
-                    [_vm._v("Регистрация")]
-                  )
-                ],
-                1
-              )
-            ],
-            2
-          )
-        ],
-        1
+                  ])
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("form", { staticClass: "ui form" }, [
+            _c(
+              "div",
+              { staticClass: "field" },
+              [
+                _c(
+                  "el-checkbox",
+                  {
+                    model: {
+                      value: _vm.checked,
+                      callback: function($$v) {
+                        _vm.checked = $$v
+                      },
+                      expression: "checked"
+                    }
+                  },
+                  [_vm._v("Съгласявам се с условията за ползване")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "ui large fluid primary button",
+                class: { loading: _vm.loading },
+                on: { click: _vm.onSubmit }
+              },
+              [_vm._v("Регистрация")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "ui horizontal divider" }, [
+              _vm._v(" Или")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "ui large fluid basic button",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.callLogin($event)
+                  }
+                }
+              },
+              [_vm._v("Влезте в профила си")]
+            )
+          ])
+        ]
       )
     ],
     1

@@ -23,8 +23,7 @@
 								:likes="(venue.like_count != null) ? venue.like_count.count : ''"
 								:liked="venue.is_liked != null"
 								:item_id="venue.id"
-								:route="'/users/like/venue'"
-								>
+								:route="'/users/like/venue'">
 							</like>
 							<span>
 								<a :href="'/venue/' + venue.id + '/#comments'">

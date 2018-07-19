@@ -7,54 +7,94 @@
 			title="Inner Dialog"
 			:visible.sync="innerVisible"
 			append-to-body>
-			<h3>Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл.</h3>
+			<p>Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл.</p>
 		</el-dialog>
 
-		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
+		<el-dialog width="500px" title="Регистрация" :visible.sync="dialogFormVisible">
 
-			<el-form ref="form" label-position="left" label-width="180px">
-				<el-form-item label="Име">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
+			<form class="ui form">
+  				<h4 class="ui dividing header">Вид акаунт</h4>
+  				<div class="field">
+  					<div class="two fields">
+  						<div class="field">
+  							<el-radio v-model="form.publisher" :label="false">
+  								Индивидуален потребител
+  							</el-radio>
+  						</div>
+  						<div class="field">
+							<el-radio v-model="form.publisher" :label="true">
+								Бизнес потребител
+							</el-radio>
+  						</div>
+  					</div>
+  				</div>
+				
+  				<div class="field">
+  					<label>Имена</label>
+  					<div class="two fields">
+  						<div class="field">
+  							<input type="text" v-model="form.firstname" placeholder="Име">
+  						</div>
+  						<div class="field">
+  							<input type="text" v-model="form.lastname" placeholder="Фамилия">
+  						</div>
+  					</div>
+  				</div>
 
-				<el-form-item label="E-mail">
-					<el-input v-model="form.email"></el-input>
-				</el-form-item>
-				<el-form-item label="Парола">
-					<el-input v-model="form.password"></el-input>
-				</el-form-item>
-				<el-form-item label="Потвърдете паролата">
-					<el-input v-model="form.confirmPassword"></el-input>
-				</el-form-item>
+  				<div class="field">
+					<input type="email" v-model="form.email" placeholder="E-mail">
+				</div>
 
-				<el-form-item label="Организация">
-					<el-switch v-model="form.publisher"></el-switch>
-				</el-form-item>
+				<div class="two fields">
+					<div class="field">
+						<input type="password" v-model="form.password" placeholder="Парола">
+					</div>
+					<div class="field">
+						<input type="password" v-model="form.confirmPassword" placeholder="Повторете паролата">
+					</div>
+				</div>
+  			</form>
 
-				<template v-if="form.publisher">
-					<el-form-item label="Име на организацията">
-						<el-input v-model="form.companyName"></el-input>
-					</el-form-item>
-					<el-form-item label="Адрес">
-						<el-input size="medium" placeholder="Въведете адрес" v-model="form.slug">
-							<template slot="prepend">http://seminari365.com/</template>
-						</el-input>
-					</el-form-item>
+  			<div class="ui divider"></div>
 
-					<el-form-item label="Публикуване на обучения">
-						<el-switch v-model="form.event_publish"></el-switch>
-					</el-form-item>
+  			<div class="ui yellow message" v-if="form.publisher">
+				Използвайте опцията "Бизнес акаунт", ако бизнесът Ви е свързан с организиране на обучения и/или отдаване под наем на конферентни зали, както и други пространства подходящи за реализацията на събития.
+			</div>
 
-					<el-form-item label="Публикуване на събития">
-						<el-switch v-model="form.venue_publish"></el-switch>
-					</el-form-item>
+  			<form class="ui form" v-if="form.publisher">
+  				<div class="field">
+					<input type="text" v-model="form.companyName" placeholder="Име на организацията">
+				</div>
+				<div class="field">
+					<div class="ui labeled right icon input">
+						<div class="ui label">
+							http://seminari365.com/
+						</div>
+						<input type="text" v-model="form.slug" placeholder="Адрес на профила (пр: test-ltd)">
+					</div>
+				</div>
 
-				</template>
-				<el-form-item size="large">
-					<el-button @click.prevent="callLogin"> Вход</el-button>
-					<el-button type="primary" @click="onSubmit" :loading="loading">Регистрация</el-button>
-				</el-form-item>
-			</el-form>
+				<h4 class="ui dividing header">Настройка на финкционалност</h4>
+  				<div class="field">
+  					<div class="two fields">
+  						<div class="field">
+  							<el-checkbox v-model="form.event_publish" label="Публикуване на обучения" border></el-checkbox>
+  						</div>
+  						<div class="field">
+  							<el-checkbox v-model="form.venue_publish" label="Публикуване на зали" border></el-checkbox>
+  						</div>
+  					</div>
+  				</div>
+  			</form>
+
+  			<form class="ui form">
+  				<div class="field">
+					<el-checkbox v-model="checked">Съгласявам се с условията за ползване</el-checkbox>
+				</div>
+				<button class="ui large fluid primary button"  @click="onSubmit" :class="{ loading: loading }">Регистрация</button>
+				<div class="ui horizontal divider"> Или</div>
+				<button class="ui large fluid basic button" @click.prevent="callLogin">Влезте в профила си</button>
+  			</form>
 		</el-dialog>
 	</div>
 </template>
@@ -68,16 +108,18 @@
     			innerVisible: false,
     			dialogFormVisible: false,
     			loading: false,
+    			checked: false,
     			form: {
-    				name: '',
+    				firstname: '',
+    				lastname: '',
     				email: '',
     				publisher: false,
     				event_publish: true,
     				venue_publish: false,
-    				activities: [],
     				password: '',
     				passwordConfirm: '',
     				companyName: '',
+    				slug: ''
     			}
     		}
     	},
@@ -91,7 +133,8 @@
         		this.loading = true;
         		let vm = this;
         		axios.post('/register', {
-        			name: vm.form.name,
+        			firstname: vm.form.firstname,
+        			lastname: vm.form.lastname,
         			email: vm.form.email,
         			publisher: vm.form.publisher,
         			event_publish: vm.form.event_publish,

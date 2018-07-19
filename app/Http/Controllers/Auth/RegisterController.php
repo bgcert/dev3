@@ -51,7 +51,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
         	'role_id' => 'integer|max:3',
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'picture' => 'string'
@@ -70,7 +71,8 @@ class RegisterController extends Controller
 
         $user = User::create([
         	'role_id' => $role,
-            'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'token' => str_random(25)
