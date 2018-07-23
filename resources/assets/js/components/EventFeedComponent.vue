@@ -56,20 +56,21 @@
 						<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 					</div>
 					<div class="extra content">
-						<span class="right floated">
+						<div class="flex">
+							<div>
+								<i class="eye icon"></i> 54
+							</div>
 							<Like
 								:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
 								:liked="event.theme.is_liked != null"
 								:item_id="event.theme.id"
 								:route="'/users/like/theme'">
 							</Like>
-							<span>
-								<a :href="'/event/' + event.id + '/#comments'">
-									<i class="comment outline icon"></i>
-									{{ (event.theme.comment_count != null) ? event.theme.comment_count.count : 0 }}
-								</a>
-							</span>
-						</span>
+							<a :href="'/event/' + event.id + '/#comments'">
+								<i class="comment outline icon"></i>
+								{{ (event.theme.comment_count != null) ? event.theme.comment_count.count : 0 }}
+							</a>
+						</div>
 					</div>
 				</div>
 			</template>
@@ -158,5 +159,10 @@
 		height: 178px;
 		background-size: cover !important;
 		background-position: center center !important;
+	}
+
+	.flex {
+		display: flex;
+		justify-content: space-around;
 	}
 </style>

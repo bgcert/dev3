@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'role_id', 'firstname', 'lastname', 'email', 'password', 'token', 'picture', 'verified',
+        'role_id', 'firstname', 'lastname', 'email', 'password', 'token', 'picture',
     ];
 
     /**
@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'verification_token'
+        'password', 'remember_token', 'token'
     ];
 
     public function verified()

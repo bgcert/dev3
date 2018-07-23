@@ -36207,17 +36207,21 @@ function required(rule, value, source, errors, options, type) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(410)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(323)
 /* template */
-var __vue_template__ = __webpack_require__(324)
+var __vue_template__ = __webpack_require__(412)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-c4921382"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -105526,7 +105530,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n", ""]);
+exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n", ""]);
 
 // exports
 
@@ -105542,6 +105546,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue__);
+//
 //
 //
 //
@@ -105716,11 +105721,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -105764,68 +105764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 324 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    [
-      _vm.auth
-        ? [
-            _c(
-              "span",
-              {
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.toggle($event)
-                  }
-                }
-              },
-              [
-                _vm.isLiked == 1
-                  ? [_c("i", { staticClass: "heart red like icon" })]
-                  : [_c("i", { staticClass: "heart outline like icon" })]
-              ],
-              2
-            )
-          ]
-        : [
-            _c(
-              "span",
-              {
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.login($event)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "heart outline like icon" })]
-            )
-          ],
-      _vm._v(" "),
-      _vm.count ? [_c("span", [_vm._v(_vm._s(_vm.count))])] : _vm._e()
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c4921382", module.exports)
-  }
-}
-
-/***/ }),
+/* 324 */,
 /* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -106318,9 +106257,11 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "extra content" }, [
                 _c(
-                  "span",
-                  { staticClass: "right floated" },
+                  "div",
+                  { staticClass: "flex" },
                   [
+                    _vm._m(0, true),
+                    _vm._v(" "),
                     _c("Like", {
                       attrs: {
                         likes:
@@ -106333,26 +106274,22 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("span", [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "/event/" + event.id + "/#comments" }
-                        },
-                        [
-                          _c("i", { staticClass: "comment outline icon" }),
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t" +
-                              _vm._s(
-                                event.theme.comment_count != null
-                                  ? event.theme.comment_count.count
-                                  : 0
-                              ) +
-                              "\n\t\t\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    ])
+                    _c(
+                      "a",
+                      { attrs: { href: "/event/" + event.id + "/#comments" } },
+                      [
+                        _c("i", { staticClass: "comment outline icon" }),
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t" +
+                            _vm._s(
+                              event.theme.comment_count != null
+                                ? event.theme.comment_count.count
+                                : 0
+                            ) +
+                            "\n\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
                   ],
                   1
                 )
@@ -106365,7 +106302,17 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("i", { staticClass: "eye icon" }),
+      _vm._v(" 54\n\t\t\t\t\t\t")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -111220,6 +111167,126 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(411);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("0a91b4d0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4921382\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LikeComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c4921382\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./LikeComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.liked[data-v-c4921382] {\n\tcolor: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "span",
+    [
+      _vm.auth
+        ? [
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.toggle($event)
+                  }
+                }
+              },
+              [
+                _c("i", {
+                  staticClass: "thumbs up outline like icon",
+                  class: { liked: _vm.isLiked }
+                })
+              ]
+            )
+          ]
+        : [
+            _c(
+              "span",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
+                  }
+                }
+              },
+              [_c("i", { staticClass: "thumbs up outline like icon" })]
+            )
+          ],
+      _vm._v(" "),
+      _vm.count ? [_c("span", [_vm._v(_vm._s(_vm.count))])] : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c4921382", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

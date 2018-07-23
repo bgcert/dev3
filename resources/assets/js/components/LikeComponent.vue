@@ -2,17 +2,12 @@
 	<span>
 		<template v-if="auth">
 			<span @click.prevent="toggle"> 
-				<template v-if="isLiked == 1">
-						<i class="heart red like icon"></i>
-				</template>
-				<template v-else>
-						<i class="heart outline like icon"></i>
-				</template>
+				<i class="thumbs up outline like icon" :class="{ liked: isLiked }"></i>
 			</span>	
 		</template>
 		<template v-else>
 			<span href="#" @click.prevent="login">
-				<i class="heart outline like icon"></i>
+				<i class="thumbs up outline like icon"></i>
 			</span>
 		</template>
 		<template v-if="count">
@@ -66,3 +61,9 @@
         }
     };
 </script>
+
+<style scoped>
+	.liked {
+		color: red;
+	}
+</style>
