@@ -1,67 +1,91 @@
 <template>
 	<div>
-		<div class="ui segment messanger">
+		<div class="messanger">
 			<div class="threads">
-
-				<!-- Search -->
-				<form class="ui form">
-					<div class="field">
-						<input type="text" name="first-name" placeholder="Намери потребител" v-model="searchInput" @focus="focus = true" @blur="focus = false">
-					</div>
-				</form>
+				<div class="search">
+					<input type="test" name="search" placeholder="Намери потребител" v-model="searchInput" @focus="focus = true" @blur="focus = false">
+				</div>
 				<div class="ui active centered inline small loader" v-show="loading"></div>
 
 				<div class="ui middle aligned selection list" v-for="item in searchResults">
 					<div class="item" @click.prevent="newUser(item)">
 						<img class="ui avatar image" :src="item.picture">
 						<div class="content">
-							<div class="header">{{ item.name }}</div>
+							<div class="header">{{ item.full_name }}</div>
 						</div>
 					</div>
 				</div>
 
-				<!-- Thread List -->
-					
-				<ul  v-show="!focus && (searchInput == '')">
-					<li v-for="thread in threads" @click.prevent="selectThread(thread)" :class="{ 'selected': thread.id == selectedThread, 'unread': thread.unread }">
-						<router-link :to="'/t/' + thread.id">
-							<div class="picture">
-								<img :src="thread.first_contact.user.picture">
-							</div>
-							<div class="details">
-								<p class="name">{{ thread.first_contact.user.name }}</p>
-								<p v-if="thread.last_message">{{ thread.last_message.body }}</p>
-							</div>
-						</router-link>
-					</li>
-				</ul>
-			</div>
+				<div
+					v-show="!focus && (searchInput == '')"
+					v-for="thread in threads"
+					@click.prevent="selectThread(thread)"
+					:class="{ 'selected': thread.id == selectedThread, 'unread': thread.unread }">
 
-			<!-- Messages Feed -->
-			<div class="feed-container">
-				<div class="ui divided items" v-if="contact">
-					<div class="item">
-						<div class="ui tiny circular image">
+					<router-link :to="'/t/' + thread.id" class="item">
+						<div class="avatar">
+							<img :src="thread.first_contact.user.picture">
+						</div>
+						<div class="info">
+							<div class="name">
+								{{ thread.first_contact.user.full_name }}
+							</div>
+							<div class="last-message">
+								{{ thread.last_message.body }}
+							</div>
+						</div>
+						<div class="details">
+							<div class="tools"></div>
+							<div class="sent">5 min</div>
+						</div>
+					</router-link>
+				</div>
+			</div>
+			<div class="feed">
+				<div class="header" v-if="contact">
+					{{ contact.full_name }}
+				</div>
+				<div class="messages" v-for="message in messages">
+					<div class="item"  :class="{ 'sent': message.sent == userId, 'received': message.sent != userId }">
+						<div class="avatar" v-if="message.sent != userId">
 							<img :src="contact.picture">
 						</div>
-						<div class="middle aligned content">
-							{{ contact.name }}
+						<div class="message">
+							{{ message.body }}
 						</div>
 					</div>
 				</div>
-
-				<div  class="messages-feed" ref="feed">
-					<ul>
-						<li v-for="message in messages" :class=" { 'message sent': message.sent == userId, 'message received': message.sent != userId }">
-							<div class="text">
-			                    {{ message.body }}
-			                </div>
-						</li>
-					</ul>	
+				<div class="input-box">
+					<input type="text" name="new-message" placeholder="Въведете съобщение" v-model="input" @keydown.enter.prevent="(contactIsNew) ? newMessage() : send()">
+					<div>
+						<button @click.prevent="(contactIsNew) ? newMessage() : send()">Send</button>
+					</div>
 				</div>
-				<textarea v-model="input" @keydown.enter.prevent="(contactIsNew) ? newMessage() : send()"></textarea>
+			</div>
+			<div class="details">
+				<div class="header" v-if="contact">
+					<div class="avatar">
+						<img :src="contact.picture">
+					</div>
+					<div class="name">
+						{{ contact.full_name}}
+					</div>
+				</div>
+				
+				<div class="company" v-if="contact.company != null">
+					<div class="logo">
+						<img :src="contact.company.company_detail.logo">
+					</div>
+					<div class="name">
+						{{ contact.company.name }}
+					</div>
+					<div class="city">
+						Sofia, Bulgaria
+					</div>
+				</div>
 			</div>
 		</div>
+
 	</div>
 </template>
 
@@ -189,119 +213,212 @@
     };
 </script>
 
-<style lang="scss" scoped>
-	.unread {
-		border: 3px solid red;
-	}
-	.messanger {
+<style lang="scss">
+
+.messanger {
+	max-width: 1300px;
+	display: flex;
+	margin: 0 auto;
+}
+
+.threads {
+	flex: 3;
+	background-color: #282f36;
+
+	.search {
 		display: flex;
-		height: 700px;
+		align-items: center;
+		justify-content: center;
+		height: 80px;
+		padding: 0 25px;
+		border-bottom: 1px solid #41464d;
+	}
 
-		.threads {
-		    flex: 2;
-		    overflow-y: scroll;
-		    border-right: 1px solid #a6a6a6;
-		    
-		    ul {
-		        list-style-type: none;
-		        padding-left: 0;
-		        li {
-		        	&.selected {
-		                background: #e9ebee;
-		            }
-		        }
-		        li a {
-		            display: flex;
-		            padding: 2px;
-		            border-bottom: 1px solid #f1f1f1;
-		            height: 80px;
-		            position: relative;
-		            cursor: pointer;
-		            .picture {
-		                flex: 1;
-		                display: flex;
-		                align-items: center;
-		                img {
-		                    width: 35px;
-		                    border-radius: 50%;
-		                    margin: 0 auto;
-		                }
-		            }
-		            .details {
-		                flex: 3;
-		                font-size: 14px;
-		                overflow: hidden;
-		                display: flex;
-		                flex-direction: column;
-		                justify-content: center;
-		                p {
-		                    margin: 0;
-		                    &.name {
-		                        font-weight: bold;
-		                    }
-		                }
-		            }
-		        }
-		    }
+	input[name=search] {
+	    background-color: #363d45;
+	    border-radius: 25px;
+	    border: none;
+	    width: 100%;
+	    padding: 15px;
+	}
+
+	.item {
+		padding: 25px;
+		color: #fff;
+		display: flex;
+		align-items: center;
+
+		.avatar img {
+			border-radius: 50%;
+			width: 52px;
+			height: 52px;
 		}
 
-		.feed-container {
-			flex: 5;
+		.info {
+			margin-left: 17px;
+
+			.last-message {
+				color: #95989c;
+				font-size: 0.8rem;
+			}
 		}
 
-		.ui.divided.items {
-			border-bottom: 1px solid #e9ebee;
-			margin: 0;
-			padding: 10px;
+		.details {
+			margin-left: 17px;
+
+			.tools:after {
+				content: '\00b7\00b7\00b7';
+			}
+
+			.sent {
+				color: #51575d;
+				font-size: 0.8rem;
+			}
+		}
+	}
+}
+
+/* Feed */
+
+.feed {
+	flex: 5;
+	background-color: #edeff3;
+
+	.header {
+		display: flex;
+		align-items: center;
+		height: 80px;
+		border-bottom: 1px solid #d5d7da;
+		color: #50575d;
+		padding-left: 30px;
+		font-weight: bold;
+	}
+
+	.messages {
+		padding: 30px;
+
+		.item {
+			display: flex;
+			color: #252525;
+			font-size: 0.9rem;
+			margin-bottom: 20px;
+
+			.avatar img {
+				border-radius: 50%;
+				width: 36px;
+				height: 36px;
+			}
+
+			.message {
+				background-color: #fff;
+				margin-left: 20px;
+				padding: 20px;
+				border-radius: 4px;
+				position: relative;
+				max-width: 60%;
+			}
 		}
 
-		textarea {
-		    width: 96%;
-		    margin: 10px;
-		    resize: none;
-		    border-radius: 3px;
-		    border: 1px solid lightgray;
-		    padding: 6px;
+		.sent .message:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 16px;
+			border: 10px solid transparent;
+			border-right-color: #fff;
+			border-left: 0;
+			margin-top: -6px;
+			margin-left: -6px;
 		}
 
-		.messages-feed {
-		    height: 100%;
-		    max-height: 520px;
-		    overflow-y: scroll;
-		    ul {
-		        list-style-type: none;
-		        padding: 5px;
-		        li {
-		            &.message {
-		                margin: 10px 0;
-		                width: 100%;
-		                .text {
-		                    max-width: 200px;
-		                    border-radius: 5px;
-		                    padding: 12px;
-		                    display: inline-block;
-		                }
-		                &.received {
-		                    text-align: right;
-		                    .text {
-		                        background: #b2b2b2;
-		                        color: #fff;
-		                    }
-		                }
-		                &.sent {
-		                    text-align: left;
-		                    .text {
-		                        background: #81c4f9;
-		                    }
-		                }
-		            }
-		        }
-		    }
+		.received {
+			flex-direction: row-reverse;
+
+			.message {
+				background-color: #0084ff;
+				margin-right: 20px;
+				color: #fff;
+			}
+
+			.message:after {
+				content: '';
+				position: absolute;
+				right: 0;
+				top: 16px;
+				border: 10px solid transparent;
+				border-left-color: #0084ff;
+				border-right: 0;
+				margin-top: -6px;
+				margin-right: -6px;
+			}
 		}
 	}
 
-	::-webkit-scrollbar {
-	    width: 0px;  /* remove scrollbar space */
-	    background: transparent;  /* optional: just make scrollbar invisible */
+	.input-box {
+		background-color: #fbfcfc;
+		border-top: 1px solid #e0e3e2;
+		height: 80px;
+		display: flex;
+		align-items: center;
+		padding: 0 30px;
+
+		input {
+			width: 90%;
+			height: 50px;
+		}
+
+		button {
+			margin-left: 20px;
+		}
 	}
+}
+
+.details {
+	flex: 2;
+	text-align: center;
+
+	.header {
+		height: 80px;
+		border-bottom: 1px solid #d5d7da;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.avatar img {
+			border-radius: 50%;
+			width: 40px;
+			height: 40px;
+		}
+
+		.name {
+			color: #696e73;
+			margin-left: 17px;
+		}
+	}
+
+	
+
+	.company {
+		margin-top: 28px;
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: #293037;
+
+		.logo img {
+			margin-top: 30px;
+			border-radius: 50%;
+			height: 122px;
+			width: 122px;
+		}
+
+		.name {
+
+		}
+
+		.city {
+			color: #696e73;
+			font-size: 0.9rem;
+		}
+	}
+}
 </style>

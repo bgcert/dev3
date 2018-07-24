@@ -2,7 +2,9 @@
 	<span>
 		<template v-if="auth">
 			<span @click.prevent="toggle"> 
-				<i class="thumbs up outline like icon" :class="{ liked: isLiked }"></i>
+				
+					<i class="thumbs up like icon" :class="{ liked: isLiked, outline: !isLiked }"></i>
+				
 			</span>	
 		</template>
 		<template v-else>
@@ -64,6 +66,6 @@
 
 <style scoped>
 	.liked {
-		color: red;
+		color: #ff851b;
 	}
 </style>

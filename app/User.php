@@ -21,6 +21,8 @@ class User extends Authenticatable
         'role_id', 'firstname', 'lastname', 'email', 'password', 'token', 'picture',
     ];
 
+    protected $appends = ['full_name'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -56,5 +58,10 @@ class User extends Authenticatable
     {
     	return $this->attributes['picture'] = (!empty($value)) ? $value : '/img/default_user.png';
     }
+
+    public function getFullNameAttribute()
+	{
+	    return "{$this->firstname} {$this->lastname}";
+	}
 
 }

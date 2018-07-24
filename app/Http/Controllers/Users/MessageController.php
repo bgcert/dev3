@@ -23,7 +23,7 @@ class MessageController extends Controller
 
     public function getThreads()
     {
-    	$threads = Thread::with('firstContact.user', 'lastMessage.user')
+    	$threads = Thread::with('firstContact.user.company.company_detail', 'lastMessage.user')
     				->whereHas('contacts', function ($q)
     				{
     					$q->where('user_id', \Auth::id());
@@ -100,7 +100,10 @@ class MessageController extends Controller
 
     public function search()
     {
-    	$users = \App\User::where('name', 'LIKE', '%' . request()->searchQuery . '%')->limit(5)->get();
+    	$users = \App\User::where('firstname', 'LIKE', '%' . request()->searchQuery . '%')
+    						->orWhere('lastname', 'LIKE', '%' . request()->searchQuery . '%')
+    						->limit(5)
+    						->get();
     	return $users;
     }
 }

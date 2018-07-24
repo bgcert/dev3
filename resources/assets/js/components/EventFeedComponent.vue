@@ -58,16 +58,24 @@
 					<div class="extra content">
 						<div class="flex">
 							<div>
-								<i class="eye icon"></i> 54
+								<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
+									<i class="eye icon"></i>
+								</el-tooltip>
+									54
 							</div>
-							<Like
-								:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
-								:liked="event.theme.is_liked != null"
-								:item_id="event.theme.id"
-								:route="'/users/like/theme'">
-							</Like>
+							<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
+								<Like
+									:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
+									:liked="event.theme.is_liked != null"
+									:item_id="event.theme.id"
+									:route="'/users/like/theme'">
+								</Like>
+							</el-tooltip>
+							
 							<a :href="'/event/' + event.id + '/#comments'">
-								<i class="comment outline icon"></i>
+								<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
+									<i class="comment outline icon"></i>
+								</el-tooltip>
 								{{ (event.theme.comment_count != null) ? event.theme.comment_count.count : 0 }}
 							</a>
 						</div>
