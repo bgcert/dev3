@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="ui container">
-	<messanger></messanger>
+	<messanger :owner="{{ auth()->user() }}"></messanger>
 </div>
 
 @endsection

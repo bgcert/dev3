@@ -40,8 +40,8 @@ let routes = [
     { path: '/change-email', component: require('./views/account/ChangeEmail.vue') },
     { path: '/deactivate', component: require('./views/account/Deactivate.vue') },
 
-    // Messanger
-    { path: '/t/:id?', component: require('./views/messanger/Index.vue') },
+    // // Messenger
+    // { path: '/t/:id?', component: require('./views/messenger/Index.vue') },
 ];
 
 const router = new VueRouter({

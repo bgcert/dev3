@@ -53,6 +53,15 @@ class User extends Authenticatable
     	return $this->belongsToMany('App\Company', 'followers')->withTimestamps();
     }
 
+    // Get current user's messenger threads
+    public function getThreadsAttribute() {
+    	$user_id = \Auth::id();
+    	return \App\Thread::with('first_participant.user', 'lastMessage')
+    						->whereHas('participants', function ($q) use ($user_id) {
+					    		$q->where('user_id', $user_id);
+					    	})->orderBy('updated_at', 'desc')->get();
+    }
+
     // Attribute modification
     public function getPictureAttribute($value)
     {

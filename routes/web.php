@@ -11,11 +11,11 @@
 |
 */
 
-// Auth::login(\App\User::find(9));
+// Auth::login(\App\User::find(4));
 
 Route::get('/query', function () {
     
-	$items = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company.company_detail')->get();
+	$items = Auth::user()->threads->where('id', 1)->first()->append('read');
     return view('query', compact('items'));
 });
 
@@ -81,6 +81,19 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::get('/notifications/check', 'UserController@notification_check');
 	Route::get('/notifications/{id}', 'UserController@notification_read');
 
+});
+
+
+// Messanger new group
+Route::group(['namespace' => 'Users', 'prefix' => 'msgr',  'middleware' => 'auth'], function () {
+	Route::get('/threads', 'MessengerController@threads');
+	Route::get('/thread/{id}', 'MessengerController@thread');
+	Route::get('/thread/{id}/messages', 'MessengerController@messages');
+	Route::post('/thread', 'MessengerController@newThread'); // For later
+	Route::post('/thread/{id}/message/add', 'MessengerController@addMessage');
+	Route::post('/thread/message/new', 'MessengerController@newMessage');
+	Route::post('/thread/seen', 'MessengerController@seen');
+	Route::post('/search', 'MessengerController@search');
 });
 
 // Messanger group
