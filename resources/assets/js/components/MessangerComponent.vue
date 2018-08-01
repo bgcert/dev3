@@ -4,8 +4,8 @@
     		<div>
     			<h3>Messenger: {{ owner.full_name }}</h3>
     			<!-- Search -->
-    			<div class="ui fluid icon input loading">
-    				<input type="text" name="search" placeholder="Search..." v-model="searchText" @focus="focus = true" @blur="focus = false">
+    			<div class="ui fluid icon input">
+    				<input type="text" placeholder="Search..." v-model="searchInput" @focus="focusOnSearch = true" @blur="focusOnSearch = false">
     				<i class="search icon"></i>
     			</div>
 
@@ -14,19 +14,31 @@
     				<div class="ui middle aligned selection list">
     					<h4>Search results</h4>
 	    				<div class="item" v-for="result in searchResults" @click.prevent="selectUser(result)">
-	    					<img class="ui avatar image" src="https://placeimg.com/200/200/2">
+	    					<img class="ui avatar image" :src="result.picture">
 	    					<div class="content">
 	    						<div class="header" >{{ result.full_name }}</div>
 	    					</div>
 	    				</div>
 	    			</div>
     			</div>
-    			<hr>
+
+    			<!-- Filtered contacts -->
+	    		<div v-if="filteredThreads.length > 0">
+	    			<h4>Contacts</h4>
+	    			<div class="ui middle aligned selection list" >
+	    				<div class="item" v-for="thread in filteredThreads">
+	    					<img class="ui avatar image" :src="thread.first_participant.user.picture">
+	    					<div class="content">
+	    						<div class="header" >{{ thread.first_participant.user.full_name }}</div>
+	    					</div>
+	    				</div>
+	    			</div>
+	    		</div>
     		</div>
 
     		<!-- Thread list -->
-    		<div v-if="activeThread.id && !focus">
-    			<h4>Contacts</h4>
+    		<div v-if="activeThread.id && !focusOnSearch">
+    			<h4>Conversations</h4>
     			<div class="ui middle aligned selection list" >
     				<div class="item" v-for="thread in threads" :class="{ selected: (!isNewThread && activeThread.id == thread.id) }" @click.prevent="setThread(thread)">
     					<img class="ui avatar image" :src="thread.first_participant.user.picture">
@@ -37,9 +49,7 @@
     				</div>
     			</div>
     		</div>
-    		<div v-else>
-    			loading ...
-    		</div>
+
     	</div>
 
     	<div class="feed-box">
@@ -51,7 +61,7 @@
 
 	    		<div class="ui feed">
 	    			<template v-for="message in messages">
-		    			<!-- if is me -->
+		    			<!-- if current user -->
 		    			<div class="event reverse" v-if="message.user_id == owner.id">
 				    			<div class="label">
 				    				<img :src="owner.picture">
@@ -65,7 +75,7 @@
 			    					</div>
 				    			</div>
 		    			</div>
-		    			<!-- if not me -->
+		    			<!-- if not current user -->
 		    			<div class="event" v-else>
 		    				<div class="label">
 			    				<img :src="activeParticipant.picture">
@@ -105,17 +115,19 @@
 
     	data: function () {
     		return {
+    			test: false,
     			loading: false,
-    			threads: {},
+    			threads: [],
+    			filteredThreads: [],
     			messages: [],
     			activeThread: {},
     			activeParticipant: {},
-    			searchText: '',
+    			searchInput: '',
     			searchResults: [],
     			messageText: '',
     			isNewThread: false,
     			lastMessageIsRead: false,
-    			focus: false
+    			focusOnSearch: false
     		}
     	},
 
@@ -135,17 +147,8 @@
 
     		setThread(thread) {
     			let vm = this;
-    			console.log(thread);
     			this.activeThread = thread;
 	    		this.activeParticipant = thread.first_participant.user;
-    	// 		axios.get('/msgr/thread/' + id)
-	    // 			.then(function (response) {
-	    // 				vm.activeThread = response.data;
-	    // 				vm.activeParticipant = response.data.first_participant.user;
-					// })
-					// .catch(function (error) {
-					//     console.log(error);
-					// })
     		},
 
     		getMessages(id) {
@@ -178,7 +181,6 @@
 	    			});
 	    			return;
 	    		}
-
     			
 				// New message
     			route = '/msgr/thread/message/new';
@@ -200,36 +202,57 @@
     		},
 
     		searchUsers() {
-    			console.log('searching for users ...');
     			let vm = this;
     			axios.post('/msgr/search', {
-    				text: vm.searchText
+    				text: vm.searchInput
     			})
     			.then(function (response) {
-    				vm.searchResults = response.data
+    				vm.filterThreads();
+    				vm.filterResults(response.data);
+    				// vm.searchResults = response.data;
     			})
     			.catch(function (error) {
     				console.log(error);
     			});
     		},
 
+    		searchAfterDebounce: _.debounce(
+	            function () {
+	                this.searchUsers()
+	            }, 800 // 800 milliseconds
+	        ),
+
     		selectUser(user) {
     			// Check if thread with this user exist
-    			let res = this.threads.find( thread => thread.first_participant.user.id === user.id);
-    			if (res) {
-    				this.setThread(res.id);
+    			let result = this.threads.find( thread => thread.first_participant.user.id === user.id);
+    			if (result) {
+    				this.setThread(result.id);
     			} else {
     				this.isNewThread = true;
-    				this.searchText = '';
+    				this.searchInput = '';
     				this.activeParticipant = user;
     				this.messages = [];
     			}
     			this.searchResults = [];
-    			// console.log(user);
     		},
 
-    		filteredContacts() {
+    		filterThreads() {
+    			let vm = this;
+    			let result = this.threads.find( function(thread) {
+    				return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
+    			});
+    			if (result) {
+    				this.filteredThreads.push(result);
+    			}
+    		},
 
+    		filterResults(results) {
+    			let existing = this.threads.map(p => p.first_participant.user_id);
+    			console.log(existing);
+
+    			let filtered = results.filter(f => !existing.includes(f.id));
+    			console.log(filtered);
+    			this.searchResults = filtered;
     		},
 
     		seen() {
@@ -268,9 +291,9 @@
 		    	this.getMessages(val.id);
 		    },
 
-		    searchText: function (val) {
+		    searchInput: function (val) {
 		    	if (val.length > 2) {
-		    		this.searchUsers();
+		    		this.searchAfterDebounce();
 		    	}
 		    }
 		},

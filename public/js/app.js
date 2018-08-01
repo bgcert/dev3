@@ -110821,187 +110821,217 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['owner'],
+   props: ['owner'],
 
-    data: function data() {
-        return {
-            loading: false,
-            threads: {},
-            messages: [],
-            activeThread: {},
-            activeParticipant: {},
-            searchText: '',
-            searchResults: [],
-            messageText: '',
-            isNewThread: false,
-            lastMessageIsRead: false,
-            focus: false
-        };
-    },
+   data: function data() {
+      return {
+         test: false,
+         loading: false,
+         threads: [],
+         filteredThreads: [],
+         messages: [],
+         activeThread: {},
+         activeParticipant: {},
+         searchInput: '',
+         searchResults: [],
+         messageText: '',
+         isNewThread: false,
+         lastMessageIsRead: false,
+         focusOnSearch: false
+      };
+   },
 
-    methods: {
-        allThreadsByCurrentUser: function allThreadsByCurrentUser() {
-            return new Promise(function (resolve, reject) {
-                axios.get('/msgr/threads').then(function (response) {
-                    resolve(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                    reject('user threads not loaded');
-                });
-            });
-        },
-        setThread: function setThread(thread) {
-            var vm = this;
-            console.log(thread);
-            this.activeThread = thread;
-            this.activeParticipant = thread.first_participant.user;
-            // 		axios.get('/msgr/thread/' + id)
-            // 			.then(function (response) {
-            // 				vm.activeThread = response.data;
-            // 				vm.activeParticipant = response.data.first_participant.user;
-            // })
-            // .catch(function (error) {
-            //     console.log(error);
-            // })
-        },
-        getMessages: function getMessages(id) {
-            var vm = this;
-            axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
-                vm.messages = response.data;
+   methods: {
+      allThreadsByCurrentUser: function allThreadsByCurrentUser() {
+         return new Promise(function (resolve, reject) {
+            axios.get('/msgr/threads').then(function (response) {
+               resolve(response.data);
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
+               reject('user threads not loaded');
             });
-        },
-        send: function send() {
-            var vm = this;
-            var route = void 0;
-            // Add message
-            if (!this.isNewThread) {
-                route = '/msgr/thread/' + this.activeThread.id + '/message/add';
-                axios.post(route, {
-                    body: vm.messageText
-                }).then(function (response) {
-                    console.log(response.data);
-                    vm.messages.push(response.data);
-                    vm.messageText = '';
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                return;
-            }
-
-            // New message
-            route = '/msgr/thread/message/new';
+         });
+      },
+      setThread: function setThread(thread) {
+         var vm = this;
+         this.activeThread = thread;
+         this.activeParticipant = thread.first_participant.user;
+      },
+      getMessages: function getMessages(id) {
+         var vm = this;
+         axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
+            vm.messages = response.data;
+         }).catch(function (error) {
+            console.log(error);
+         });
+      },
+      send: function send() {
+         var vm = this;
+         var route = void 0;
+         // Add message
+         if (!this.isNewThread) {
+            route = '/msgr/thread/' + this.activeThread.id + '/message/add';
             axios.post(route, {
-                user_id: vm.activeParticipant.id,
-                body: vm.messageText
+               body: vm.messageText
             }).then(function (response) {
-                vm.threads.unshift(response.data);
-                vm.setThread(response.data);
-                vm.messageText = '';
-                vm.isNewThread = false;
+               console.log(response.data);
+               vm.messages.push(response.data);
+               vm.messageText = '';
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
             });
-        },
-        searchUsers: function searchUsers() {
-            console.log('searching for users ...');
-            var vm = this;
-            axios.post('/msgr/search', {
-                text: vm.searchText
+            return;
+         }
+
+         // New message
+         route = '/msgr/thread/message/new';
+         axios.post(route, {
+            user_id: vm.activeParticipant.id,
+            body: vm.messageText
+         }).then(function (response) {
+            vm.threads.unshift(response.data);
+            vm.setThread(response.data);
+            vm.messageText = '';
+            vm.isNewThread = false;
+         }).catch(function (error) {
+            console.log(error);
+         });
+      },
+      searchUsers: function searchUsers() {
+         var vm = this;
+         axios.post('/msgr/search', {
+            text: vm.searchInput
+         }).then(function (response) {
+            vm.filterThreads();
+            vm.filterResults(response.data);
+            // vm.searchResults = response.data;
+         }).catch(function (error) {
+            console.log(error);
+         });
+      },
+
+
+      searchAfterDebounce: _.debounce(function () {
+         this.searchUsers();
+      }, 800 // 800 milliseconds
+      ),
+
+      selectUser: function selectUser(user) {
+         // Check if thread with this user exist
+         var result = this.threads.find(function (thread) {
+            return thread.first_participant.user.id === user.id;
+         });
+         if (result) {
+            this.setThread(result.id);
+         } else {
+            this.isNewThread = true;
+            this.searchInput = '';
+            this.activeParticipant = user;
+            this.messages = [];
+         }
+         this.searchResults = [];
+      },
+      filterThreads: function filterThreads() {
+         var vm = this;
+         var result = this.threads.find(function (thread) {
+            return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
+         });
+         if (result) {
+            this.filteredThreads.push(result);
+         }
+      },
+      filterResults: function filterResults(results) {
+         var existing = this.threads.map(function (p) {
+            return p.first_participant.user_id;
+         });
+         console.log(existing);
+
+         var filtered = results.filter(function (f) {
+            return !existing.includes(f.id);
+         });
+         console.log(filtered);
+         this.searchResults = filtered;
+      },
+      seen: function seen() {
+         if (this.isNewThread) {
+            return;
+         }
+         var vm = this;
+         if (!this.lastMessageIsRead) {
+            var route = '/msgr/thread/seen';
+            axios.post(route, {
+               thread_id: vm.activeThread.id,
+               read_message_id: vm.messages[vm.messages.length - 1].id // last message id
             }).then(function (response) {
-                vm.searchResults = response.data;
+               vm.lastMessageIsRead = true;
+               console.log(response.data);
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
             });
-        },
-        selectUser: function selectUser(user) {
-            // Check if thread with this user exist
-            var res = this.threads.find(function (thread) {
-                return thread.first_participant.user.id === user.id;
-            });
-            if (res) {
-                this.setThread(res.id);
-            } else {
-                this.isNewThread = true;
-                this.searchText = '';
-                this.activeParticipant = user;
-                this.messages = [];
-            }
-            this.searchResults = [];
-            // console.log(user);
-        },
-        filteredContacts: function filteredContacts() {},
-        seen: function seen() {
-            if (this.isNewThread) {
-                return;
-            }
-            var vm = this;
-            if (!this.lastMessageIsRead) {
-                var route = '/msgr/thread/seen';
-                axios.post(route, {
-                    thread_id: vm.activeThread.id,
-                    read_message_id: vm.messages[vm.messages.length - 1].id // last message id
-                }).then(function (response) {
-                    vm.lastMessageIsRead = true;
-                    console.log(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            }
-        },
-        load: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.allThreadsByCurrentUser();
+         }
+      },
+      load: function () {
+         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+               while (1) {
+                  switch (_context.prev = _context.next) {
+                     case 0:
+                        _context.next = 2;
+                        return this.allThreadsByCurrentUser();
 
-                            case 2:
-                                this.threads = _context.sent;
+                     case 2:
+                        this.threads = _context.sent;
 
 
-                                // This will run after previous is fully loaded!
-                                if (this.threads.length > 0) {
-                                    this.setThread(this.threads[0]);
-                                }
-
-                            case 4:
-                            case 'end':
-                                return _context.stop();
+                        // This will run after previous is fully loaded!
+                        if (this.threads.length > 0) {
+                           this.setThread(this.threads[0]);
                         }
-                    }
-                }, _callee, this);
-            }));
 
-            function load() {
-                return _ref.apply(this, arguments);
-            }
+                     case 4:
+                     case 'end':
+                        return _context.stop();
+                  }
+               }
+            }, _callee, this);
+         }));
 
-            return load;
-        }()
-    },
+         function load() {
+            return _ref.apply(this, arguments);
+         }
 
-    watch: {
-        activeThread: function activeThread(val) {
-            this.getMessages(val.id);
-        },
+         return load;
+      }()
+   },
 
-        searchText: function searchText(val) {
-            if (val.length > 2) {
-                this.searchUsers();
-            }
-        }
-    },
+   watch: {
+      activeThread: function activeThread(val) {
+         this.getMessages(val.id);
+      },
 
-    mounted: function mounted() {
-        console.log('Messenger mounted.');
-        this.load();
-    }
+      searchInput: function searchInput(val) {
+         if (val.length > 2) {
+            this.searchAfterDebounce();
+         }
+      }
+   },
+
+   mounted: function mounted() {
+      console.log('Messenger mounted.');
+      this.load();
+   }
 });
 
 /***/ }),
@@ -111017,30 +111047,30 @@ var render = function() {
       _c("div", [
         _c("h3", [_vm._v("Messenger: " + _vm._s(_vm.owner.full_name))]),
         _vm._v(" "),
-        _c("div", { staticClass: "ui fluid icon input loading" }, [
+        _c("div", { staticClass: "ui fluid icon input" }, [
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.searchText,
-                expression: "searchText"
+                value: _vm.searchInput,
+                expression: "searchInput"
               }
             ],
-            attrs: { type: "text", name: "search", placeholder: "Search..." },
-            domProps: { value: _vm.searchText },
+            attrs: { type: "text", placeholder: "Search..." },
+            domProps: { value: _vm.searchInput },
             on: {
               focus: function($event) {
-                _vm.focus = true
+                _vm.focusOnSearch = true
               },
               blur: function($event) {
-                _vm.focus = false
+                _vm.focusOnSearch = false
               },
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.searchText = $event.target.value
+                _vm.searchInput = $event.target.value
               }
             }
           }),
@@ -111071,7 +111101,7 @@ var render = function() {
                       [
                         _c("img", {
                           staticClass: "ui avatar image",
-                          attrs: { src: "https://placeimg.com/200/200/2" }
+                          attrs: { src: result.picture }
                         }),
                         _vm._v(" "),
                         _c("div", { staticClass: "content" }, [
@@ -111088,12 +111118,35 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _c("hr")
+        _vm.filteredThreads.length > 0
+          ? _c("div", [
+              _c("h4", [_vm._v("Contacts")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "ui middle aligned selection list" },
+                _vm._l(_vm.filteredThreads, function(thread) {
+                  return _c("div", { staticClass: "item" }, [
+                    _c("img", {
+                      staticClass: "ui avatar image",
+                      attrs: { src: thread.first_participant.user.picture }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "content" }, [
+                      _c("div", { staticClass: "header" }, [
+                        _vm._v(_vm._s(thread.first_participant.user.full_name))
+                      ])
+                    ])
+                  ])
+                })
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
-      _vm.activeThread.id && !_vm.focus
+      _vm.activeThread.id && !_vm.focusOnSearch
         ? _c("div", [
-            _c("h4", [_vm._v("Contacts")]),
+            _c("h4", [_vm._v("Conversations")]),
             _vm._v(" "),
             _c(
               "div",
@@ -111138,7 +111191,7 @@ var render = function() {
               })
             )
           ])
-        : _c("div", [_vm._v("\n    \t\t\tloading ...\n    \t\t")])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "feed-box" }, [
