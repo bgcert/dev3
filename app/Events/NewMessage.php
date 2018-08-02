@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Messanger\Message;
+use App\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -34,7 +34,7 @@ class NewMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('messages.' . $this->message->thread->firstContact->user_id);
+        return new PrivateChannel('messages.' . $this->message->thread->first_participant->user_id);
     }
 
     public function broadcastWith()

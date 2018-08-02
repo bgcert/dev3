@@ -5,9 +5,11 @@
     			<h3>Messenger: {{ owner.full_name }}</h3>
     			<!-- Search -->
     			<div class="ui fluid icon input">
-    				<input type="text" placeholder="Search..." v-model="searchInput" @focus="focusOnSearch = true" @blur="focusOnSearch = false">
-    				<i class="search icon"></i>
+    				<input type="text" placeholder="Search..." v-model="searchInput">
+    				<i class="close icon"></i>
     			</div>
+
+    			<button class="ui basic button" @click="clearSearch()">clear</button>
 
     			<!-- Search searchResults -->
     			<div v-if="searchResults.length > 0">
@@ -27,7 +29,7 @@
     		<div v-if="activeThread != {}">
     			<h4>Conversations</h4>
     			<div class="ui middle aligned selection list" >
-    				<div class="item" v-for="thread in threads" :class="{ selected: (activeThread.id == thread.id) }" @click.prevent="setThread(thread)">
+    				<div class="item" v-for="thread in filteredThreads" :class="{ selected: (activeThread.id == thread.id) }" @click.prevent="setThread(thread)">
     					<img class="ui avatar image" :src="thread.first_participant.user.picture">
     					<div class="content">
     						<div class="header" >{{ thread.first_participant.user.full_name }}</div>
@@ -112,17 +114,16 @@
     			searchInput: '',
     			searchResults: [],
     			messageText: '',
-    			isNewThread: false,
     			lastMessageIsRead: false,
     			focusOnSearch: false
     		}
     	},
 
-    	computed: {
-			threads: function () {
-				return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
-			}
-		},
+  //   	computed: {
+		// 	threads: function () {
+		// 		return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
+		// 	}
+		// },
 
     	methods: {
     		allThreadsByCurrentUser() {
@@ -142,7 +143,6 @@
     			let vm = this;
     			this.activeThread = thread;
 	    		this.activeParticipant = thread.first_participant.user;
-	    		this.isNewThread = false;
     		},
 
     		getMessages(id) {
@@ -160,7 +160,7 @@
     			let vm = this;
     			let route;
     			// Add message
-    			if (!this.isNewThread) {
+    			if (this.activeThread.id != null) {
 	    			route = '/msgr/thread/' + this.activeThread.id + '/message/add';
 	    			axios.post(route, {
 	    				body: vm.messageText
@@ -185,7 +185,6 @@
     				vm.threadList.unshift(response.data);
     				vm.setThread(response.data);
     				vm.messageText = '';
-    				vm.isNewThread = false;
     			})
     			.catch(function (error) {
     				console.log(error);
@@ -215,19 +214,17 @@
 	            }, 800 // 800 milliseconds
 	        ),
 
+	        clearSearch() {
+	        	this.searchInput = '';
+	        	this.filteredThreads = this.threadList;
+	        	this.searchResults = [];
+	        },
+
     		selectUser(user) {
-    			// Check if thread with this user exist
-    			let result = this.threadList.find( thread => thread.first_participant.user.id === user.id);
-    			if (result) {
-    				this.setThread(result.id);
-    			} else {
-    				this.isNewThread = true;
-    				this.searchInput = '';
-    				this.activeParticipant = user;
-    				this.activeThread = { id: null };
-    				this.messages = [];
-    			}
-    			this.searchResults = [];
+    			this.messages = [];
+				this.activeParticipant = user;
+    			this.activeThread = { id: null };
+    			this.clearSearch();
     		},
 
     		filterThreads() {
@@ -236,12 +233,13 @@
     				return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
     			});
     			if (result) {
+    				this.filteredThreads = [];
     				this.filteredThreads.push(result);
     			}
     		},
 
     		seen() {
-    			if (this.isNewThread) {
+    			if (this.activeThread.id == null) {
     				return;
     			}
     			let vm = this;
@@ -263,6 +261,7 @@
 
     		async load() {
     			this.threadList = await this.allThreadsByCurrentUser();
+    			this.filteredThreads = this.threadList;
 
     			// This will run after previous is fully loaded!
     			if (this.threadList.length > 0) {
@@ -273,7 +272,9 @@
 
     	watch: {
 		    activeThread: function (val) {
-		    	this.getMessages(val.id);
+		    	if (val.id != null) {
+		    		this.getMessages(val.id);
+		    	}
 		    },
 
 		    searchInput: function (val) {
@@ -286,6 +287,26 @@
         mounted() {
             console.log('Messenger mounted.');
             this.load();
+        },
+
+        created() {
+        	Echo.private('messages.' + this.owner.id)
+                	.listen('NewMessage', (e) => {
+                		console.log(e.message.thread_id);
+                		if (e.message.thread_id == this.activeThread.id) {
+                			this.messages.push(e.message)
+                		}
+                });
+
+            Echo.private('threads.' + this.owner.id)
+                	.listen('NewThread', (e) => {
+                		console.log('new thread');
+                		let route = 'msgr/thread/' + e.thread_id;
+			        	axios.get(route)
+			        		.then((response) => {
+			        			this.threadList.unshift(response.data);
+			        		});
+                });
         }
     };
 </script>

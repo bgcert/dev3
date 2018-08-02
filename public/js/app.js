@@ -110818,202 +110818,218 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   props: ['owner'],
+    props: ['owner'],
 
-   data: function data() {
-      return {
-         test: false,
-         loading: false,
-         threadList: [],
-         filteredThreads: [],
-         messages: [],
-         activeThread: {},
-         activeParticipant: {},
-         searchInput: '',
-         searchResults: [],
-         messageText: '',
-         isNewThread: false,
-         lastMessageIsRead: false,
-         focusOnSearch: false
-      };
-   },
+    data: function data() {
+        return {
+            test: false,
+            loading: false,
+            threadList: [],
+            filteredThreads: [],
+            messages: [],
+            activeThread: {},
+            activeParticipant: {},
+            searchInput: '',
+            searchResults: [],
+            messageText: '',
+            lastMessageIsRead: false,
+            focusOnSearch: false
+        };
+    },
 
-   computed: {
-      threads: function threads() {
-         return this.filteredThreads.length > 0 ? this.filteredThreads : this.threadList;
-      }
-   },
+    //   	computed: {
+    // 	threads: function () {
+    // 		return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
+    // 	}
+    // },
 
-   methods: {
-      allThreadsByCurrentUser: function allThreadsByCurrentUser() {
-         return new Promise(function (resolve, reject) {
-            axios.get('/msgr/threads').then(function (response) {
-               resolve(response.data);
-            }).catch(function (error) {
-               console.log(error);
-               reject('user threads not loaded');
+    methods: {
+        allThreadsByCurrentUser: function allThreadsByCurrentUser() {
+            return new Promise(function (resolve, reject) {
+                axios.get('/msgr/threads').then(function (response) {
+                    resolve(response.data);
+                }).catch(function (error) {
+                    console.log(error);
+                    reject('user threads not loaded');
+                });
             });
-         });
-      },
-      setThread: function setThread(thread) {
-         var vm = this;
-         this.activeThread = thread;
-         this.activeParticipant = thread.first_participant.user;
-         this.isNewThread = false;
-      },
-      getMessages: function getMessages(id) {
-         var vm = this;
-         axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
-            vm.messages = response.data;
-         }).catch(function (error) {
-            console.log(error);
-         });
-      },
-      send: function send() {
-         var vm = this;
-         var route = void 0;
-         // Add message
-         if (!this.isNewThread) {
-            route = '/msgr/thread/' + this.activeThread.id + '/message/add';
+        },
+        setThread: function setThread(thread) {
+            var vm = this;
+            this.activeThread = thread;
+            this.activeParticipant = thread.first_participant.user;
+        },
+        getMessages: function getMessages(id) {
+            var vm = this;
+            axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
+                vm.messages = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        send: function send() {
+            var vm = this;
+            var route = void 0;
+            // Add message
+            if (this.activeThread.id != null) {
+                route = '/msgr/thread/' + this.activeThread.id + '/message/add';
+                axios.post(route, {
+                    body: vm.messageText
+                }).then(function (response) {
+                    vm.messages.push(response.data);
+                    vm.messageText = '';
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                return;
+            }
+
+            // New message
+            route = '/msgr/thread/message/new';
             axios.post(route, {
-               body: vm.messageText
+                user_id: vm.activeParticipant.id,
+                body: vm.messageText
             }).then(function (response) {
-               vm.messages.push(response.data);
-               vm.messageText = '';
+                vm.threadList.unshift(response.data);
+                vm.setThread(response.data);
+                vm.messageText = '';
             }).catch(function (error) {
-               console.log(error);
+                console.log(error);
             });
-            return;
-         }
-
-         // New message
-         route = '/msgr/thread/message/new';
-         axios.post(route, {
-            user_id: vm.activeParticipant.id,
-            body: vm.messageText
-         }).then(function (response) {
-            vm.threadList.unshift(response.data);
-            vm.setThread(response.data);
-            vm.messageText = '';
-            vm.isNewThread = false;
-         }).catch(function (error) {
-            console.log(error);
-         });
-      },
-      searchUsers: function searchUsers() {
-         var vm = this;
-         axios.post('/msgr/search', {
-            text: vm.searchInput
-         }).then(function (response) {
-            vm.filterThreads();
-            // vm.filterResults(response.data);
-            vm.searchResults = response.data;
-         }).catch(function (error) {
-            console.log(error);
-         });
-      },
+        },
+        searchUsers: function searchUsers() {
+            var vm = this;
+            axios.post('/msgr/search', {
+                text: vm.searchInput
+            }).then(function (response) {
+                vm.filterThreads();
+                // vm.filterResults(response.data);
+                vm.searchResults = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
 
 
-      searchAfterDebounce: _.debounce(function () {
-         this.searchUsers();
-      }, 800 // 800 milliseconds
-      ),
+        searchAfterDebounce: _.debounce(function () {
+            this.searchUsers();
+        }, 800 // 800 milliseconds
+        ),
 
-      selectUser: function selectUser(user) {
-         // Check if thread with this user exist
-         var result = this.threadList.find(function (thread) {
-            return thread.first_participant.user.id === user.id;
-         });
-         if (result) {
-            this.setThread(result.id);
-         } else {
-            this.isNewThread = true;
+        clearSearch: function clearSearch() {
             this.searchInput = '';
+            this.filteredThreads = this.threadList;
+            this.searchResults = [];
+        },
+        selectUser: function selectUser(user) {
+            this.messages = [];
             this.activeParticipant = user;
             this.activeThread = { id: null };
-            this.messages = [];
-         }
-         this.searchResults = [];
-      },
-      filterThreads: function filterThreads() {
-         var vm = this;
-         var result = this.threadList.find(function (thread) {
-            return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
-         });
-         if (result) {
-            this.filteredThreads.push(result);
-         }
-      },
-      seen: function seen() {
-         if (this.isNewThread) {
-            return;
-         }
-         var vm = this;
-         if (!this.lastMessageIsRead) {
-            var route = '/msgr/thread/seen';
-            axios.post(route, {
-               thread_id: vm.activeThread.id,
-               read_message_id: vm.messages[vm.messages.length - 1].id // last message id
-            }).then(function (response) {
-               vm.lastMessageIsRead = true;
-               console.log(response.data);
-            }).catch(function (error) {
-               console.log(error);
+            this.clearSearch();
+        },
+        filterThreads: function filterThreads() {
+            var vm = this;
+            var result = this.threadList.find(function (thread) {
+                return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
             });
-         }
-      },
-      load: function () {
-         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-               while (1) {
-                  switch (_context.prev = _context.next) {
-                     case 0:
-                        _context.next = 2;
-                        return this.allThreadsByCurrentUser();
+            if (result) {
+                this.filteredThreads = [];
+                this.filteredThreads.push(result);
+            }
+        },
+        seen: function seen() {
+            if (this.activeThread.id == null) {
+                return;
+            }
+            var vm = this;
+            if (!this.lastMessageIsRead) {
+                var route = '/msgr/thread/seen';
+                axios.post(route, {
+                    thread_id: vm.activeThread.id,
+                    read_message_id: vm.messages[vm.messages.length - 1].id // last message id
+                }).then(function (response) {
+                    vm.lastMessageIsRead = true;
+                    console.log(response.data);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        },
+        load: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return this.allThreadsByCurrentUser();
 
-                     case 2:
-                        this.threadList = _context.sent;
+                            case 2:
+                                this.threadList = _context.sent;
 
+                                this.filteredThreads = this.threadList;
 
-                        // This will run after previous is fully loaded!
-                        if (this.threadList.length > 0) {
-                           this.setThread(this.threadList[0]);
+                                // This will run after previous is fully loaded!
+                                if (this.threadList.length > 0) {
+                                    this.setThread(this.threadList[0]);
+                                }
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
                         }
+                    }
+                }, _callee, this);
+            }));
 
-                     case 4:
-                     case 'end':
-                        return _context.stop();
-                  }
-               }
-            }, _callee, this);
-         }));
+            function load() {
+                return _ref.apply(this, arguments);
+            }
 
-         function load() {
-            return _ref.apply(this, arguments);
-         }
+            return load;
+        }()
+    },
 
-         return load;
-      }()
-   },
+    watch: {
+        activeThread: function activeThread(val) {
+            if (val.id != null) {
+                this.getMessages(val.id);
+            }
+        },
 
-   watch: {
-      activeThread: function activeThread(val) {
-         this.getMessages(val.id);
-      },
+        searchInput: function searchInput(val) {
+            if (val.length > 2) {
+                this.searchAfterDebounce();
+            }
+        }
+    },
 
-      searchInput: function searchInput(val) {
-         if (val.length > 2) {
-            this.searchAfterDebounce();
-         }
-      }
-   },
+    mounted: function mounted() {
+        console.log('Messenger mounted.');
+        this.load();
+    },
+    created: function created() {
+        var _this = this;
 
-   mounted: function mounted() {
-      console.log('Messenger mounted.');
-      this.load();
-   }
+        Echo.private('messages.' + this.owner.id).listen('NewMessage', function (e) {
+            console.log(e.message.thread_id);
+            if (e.message.thread_id == _this.activeThread.id) {
+                _this.messages.push(e.message);
+            }
+        });
+
+        Echo.private('threads.' + this.owner.id).listen('NewThread', function (e) {
+            console.log('new thread');
+            var route = 'msgr/thread/' + e.thread_id;
+            axios.get(route).then(function (response) {
+                _this.threadList.unshift(response.data);
+            });
+        });
+    }
 });
 
 /***/ }),
@@ -111042,12 +111058,6 @@ var render = function() {
             attrs: { type: "text", placeholder: "Search..." },
             domProps: { value: _vm.searchInput },
             on: {
-              focus: function($event) {
-                _vm.focusOnSearch = true
-              },
-              blur: function($event) {
-                _vm.focusOnSearch = false
-              },
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -111057,8 +111067,21 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("i", { staticClass: "search icon" })
+          _c("i", { staticClass: "close icon" })
         ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui basic button",
+            on: {
+              click: function($event) {
+                _vm.clearSearch()
+              }
+            }
+          },
+          [_vm._v("clear")]
+        ),
         _vm._v(" "),
         _vm.searchResults.length > 0
           ? _c("div", [
@@ -111108,7 +111131,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "ui middle aligned selection list" },
-              _vm._l(_vm.threads, function(thread) {
+              _vm._l(_vm.filteredThreads, function(thread) {
                 return _c(
                   "div",
                   {

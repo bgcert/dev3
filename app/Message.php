@@ -10,7 +10,7 @@ class Message extends Model
 
     public function thread()
     {
-    	return $this->belongsTo('App\Messenger\Thread');
+    	return $this->belongsTo('App\Thread');
     }
 
     public function user()

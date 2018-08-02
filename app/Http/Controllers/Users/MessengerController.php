@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Users;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Events\NewMessage;
+use App\Events\NewThread;
 
 class MessengerController extends Controller
 {
@@ -26,7 +28,9 @@ class MessengerController extends Controller
 
 	public function addMessage($id)
     {
-    	return $this->thread($id)->newMessage(request()->body);
+    	$message = $this->thread($id)->newMessage(request()->body);
+    	broadcast(new NewMessage($message));
+    	return $message;
     }
 
 	public function newThreadWith($user_id)
@@ -39,6 +43,8 @@ class MessengerController extends Controller
     		['user_id' => $user_id], // $user_id is the new participant id
     		['user_id' => Auth::user()->id]
     	]);
+
+    	broadcast(new NewThread($thread, $user_id));
 
     	return $thread;
 	}    
