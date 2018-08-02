@@ -110703,7 +110703,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.reverse {\n  -webkit-box-orient: horizontal !important;\n  -webkit-box-direction: reverse !important;\n      -ms-flex-direction: row-reverse !important;\n          flex-direction: row-reverse !important;\n}\n.messenger {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: calc(100vh - 100px);\n}\n.messenger .threads {\n    padding: 20px;\n    border-right: 1px solid grey;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n}\n.messenger .threads .content .description {\n      font-weight: normal;\n      font-style: italic;\n}\n.messenger .threads .selected {\n      background-color: rebeccapurple !important;\n      font-weight: bold;\n}\n.messenger .threads .selected .content .header {\n        color: white;\n}\n.messenger .threads .selected .content .description {\n        color: white;\n}\n.messenger .feed-box {\n    -webkit-box-flex: 2;\n        -ms-flex: 2;\n            flex: 2;\n    background-color: white;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.messenger .feed-box .header {\n      border-bottom: 1px solid grey;\n      padding: 15px;\n}\n.messenger .feed-box .conversation {\n      -webkit-box-flex: 1;\n          -ms-flex: 1 1 0%;\n              flex: 1 1 0%;\n      padding: 15px;\n}\n.messenger .feed-box .message-box {\n      padding: 15px;\n      border-top: 1px solid grey;\n}\n.messenger .details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    background-color: green;\n}\n", ""]);
+exports.push([module.i, "\n.reverse {\n  -webkit-box-orient: horizontal !important;\n  -webkit-box-direction: reverse !important;\n      -ms-flex-direction: row-reverse !important;\n          flex-direction: row-reverse !important;\n}\n.messenger {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: calc(100vh - 100px);\n}\n.messenger .threads {\n    padding: 20px;\n    border-right: 1px solid grey;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n}\n.messenger .threads .content .description {\n      font-weight: normal;\n      font-style: italic;\n}\n.messenger .threads .selected {\n      background-color: rebeccapurple !important;\n      font-weight: bold;\n}\n.messenger .threads .selected .content .header {\n        color: white;\n}\n.messenger .threads .selected .content .description {\n        color: white;\n}\n.messenger .feed-box {\n    -webkit-box-flex: 2;\n        -ms-flex: 2;\n            flex: 2;\n    background-color: white;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.messenger .feed-box .header {\n      border-bottom: 1px solid grey;\n      padding: 15px;\n}\n.messenger .feed-box .conversation {\n      overflow-y: scroll;\n      -webkit-box-flex: 1;\n          -ms-flex: 1 1 0%;\n              flex: 1 1 0%;\n      padding: 15px;\n}\n.messenger .feed-box .message-box {\n      padding: 15px;\n      border-top: 1px solid grey;\n}\n.messenger .details {\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    background-color: green;\n}\n", ""]);
 
 // exports
 
@@ -110720,8 +110720,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -111080,21 +111078,15 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("i", { staticClass: "close icon" })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "ui basic button",
+          _c("i", {
+            staticClass: "close link icon",
             on: {
               click: function($event) {
                 _vm.clearSearch()
               }
             }
-          },
-          [_vm._v("clear")]
-        ),
+          })
+        ]),
         _vm._v(" "),
         _vm.searchResults.length > 0
           ? _c("div", [

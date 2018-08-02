@@ -6,10 +6,8 @@
     			<!-- Search -->
     			<div class="ui fluid icon input">
     				<input type="text" placeholder="Search..." v-model="searchInput">
-    				<i class="close icon"></i>
+    				<i class="close link icon" @click="clearSearch()"></i>
     			</div>
-
-    			<button class="ui basic button" @click="clearSearch()">clear</button>
 
     			<!-- Search searchResults -->
     			<div v-if="searchResults.length > 0">
@@ -374,6 +372,7 @@
    			}
 
    			.conversation {
+   				overflow-y: scroll;
    				flex: 1 1 0%;
    				padding: 15px;
    			}
