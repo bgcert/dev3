@@ -287,24 +287,39 @@
         mounted() {
             console.log('Messenger mounted.');
             this.load();
+
+            // init bunch of sounds
+			ion.sound({
+				sounds: [
+					{name: "water_droplet_3"},
+				],
+
+			    // main config
+			    path: "/sounds/",
+			    preload: true,
+			    multiplay: true,
+			    volume: 0.9
+			});
         },
 
         created() {
         	Echo.private('messages.' + this.owner.id)
                 	.listen('NewMessage', (e) => {
-                		console.log(e.message.thread_id);
                 		if (e.message.thread_id == this.activeThread.id) {
-                			this.messages.push(e.message)
+                			this.messages.push(e.message);
+                			// play sound
+							ion.sound.play("water_droplet_3");
                 		}
                 });
 
             Echo.private('threads.' + this.owner.id)
                 	.listen('NewThread', (e) => {
-                		console.log('new thread');
                 		let route = 'msgr/thread/' + e.thread_id;
 			        	axios.get(route)
 			        		.then((response) => {
 			        			this.threadList.unshift(response.data);
+			        			// play sound
+								ion.sound.play("water_droplet_3");
 			        		});
                 });
         }

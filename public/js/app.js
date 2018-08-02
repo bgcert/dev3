@@ -111011,22 +111011,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {
         console.log('Messenger mounted.');
         this.load();
+
+        // init bunch of sounds
+        ion.sound({
+            sounds: [{ name: "water_droplet_3" }],
+
+            // main config
+            path: "/sounds/",
+            preload: true,
+            multiplay: true,
+            volume: 0.9
+        });
     },
     created: function created() {
         var _this = this;
 
         Echo.private('messages.' + this.owner.id).listen('NewMessage', function (e) {
-            console.log(e.message.thread_id);
             if (e.message.thread_id == _this.activeThread.id) {
                 _this.messages.push(e.message);
+                // play sound
+                ion.sound.play("water_droplet_3");
             }
         });
 
         Echo.private('threads.' + this.owner.id).listen('NewThread', function (e) {
-            console.log('new thread');
             var route = 'msgr/thread/' + e.thread_id;
             axios.get(route).then(function (response) {
                 _this.threadList.unshift(response.data);
+                // play sound
+                ion.sound.play("water_droplet_3");
             });
         });
     }
