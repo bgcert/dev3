@@ -21,26 +21,13 @@
 	    				</div>
 	    			</div>
     			</div>
-
-    			<!-- Filtered contacts -->
-	    		<div v-if="filteredThreads.length > 0">
-	    			<h4>Contacts</h4>
-	    			<div class="ui middle aligned selection list" >
-	    				<div class="item" v-for="thread in filteredThreads">
-	    					<img class="ui avatar image" :src="thread.first_participant.user.picture">
-	    					<div class="content">
-	    						<div class="header" >{{ thread.first_participant.user.full_name }}</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		</div>
     		</div>
 
     		<!-- Thread list -->
-    		<div v-if="activeThread.id && !focusOnSearch">
+    		<div v-if="activeThread != {}">
     			<h4>Conversations</h4>
     			<div class="ui middle aligned selection list" >
-    				<div class="item" v-for="thread in threads" :class="{ selected: (!isNewThread && activeThread.id == thread.id) }" @click.prevent="setThread(thread)">
+    				<div class="item" v-for="thread in threads" :class="{ selected: (activeThread.id == thread.id) }" @click.prevent="setThread(thread)">
     					<img class="ui avatar image" :src="thread.first_participant.user.picture">
     					<div class="content">
     						<div class="header" >{{ thread.first_participant.user.full_name }}</div>
@@ -117,7 +104,7 @@
     		return {
     			test: false,
     			loading: false,
-    			threads: [],
+    			threadList: [],
     			filteredThreads: [],
     			messages: [],
     			activeThread: {},
@@ -130,6 +117,12 @@
     			focusOnSearch: false
     		}
     	},
+
+    	computed: {
+			threads: function () {
+				return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
+			}
+		},
 
     	methods: {
     		allThreadsByCurrentUser() {
@@ -149,6 +142,7 @@
     			let vm = this;
     			this.activeThread = thread;
 	    		this.activeParticipant = thread.first_participant.user;
+	    		this.isNewThread = false;
     		},
 
     		getMessages(id) {
@@ -172,7 +166,6 @@
 	    				body: vm.messageText
 	    			})
 	    			.then(function (response) {
-	    				console.log(response.data);
 	    				vm.messages.push(response.data);
 	    				vm.messageText = '';
 	    			})
@@ -189,7 +182,7 @@
     				body: vm.messageText
     			})
     			.then(function (response) {
-    				vm.threads.unshift(response.data);
+    				vm.threadList.unshift(response.data);
     				vm.setThread(response.data);
     				vm.messageText = '';
     				vm.isNewThread = false;
@@ -208,8 +201,8 @@
     			})
     			.then(function (response) {
     				vm.filterThreads();
-    				vm.filterResults(response.data);
-    				// vm.searchResults = response.data;
+    				// vm.filterResults(response.data);
+    				vm.searchResults = response.data;
     			})
     			.catch(function (error) {
     				console.log(error);
@@ -224,13 +217,14 @@
 
     		selectUser(user) {
     			// Check if thread with this user exist
-    			let result = this.threads.find( thread => thread.first_participant.user.id === user.id);
+    			let result = this.threadList.find( thread => thread.first_participant.user.id === user.id);
     			if (result) {
     				this.setThread(result.id);
     			} else {
     				this.isNewThread = true;
     				this.searchInput = '';
     				this.activeParticipant = user;
+    				this.activeThread = { id: null };
     				this.messages = [];
     			}
     			this.searchResults = [];
@@ -238,21 +232,12 @@
 
     		filterThreads() {
     			let vm = this;
-    			let result = this.threads.find( function(thread) {
+    			let result = this.threadList.find( function(thread) {
     				return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
     			});
     			if (result) {
     				this.filteredThreads.push(result);
     			}
-    		},
-
-    		filterResults(results) {
-    			let existing = this.threads.map(p => p.first_participant.user_id);
-    			console.log(existing);
-
-    			let filtered = results.filter(f => !existing.includes(f.id));
-    			console.log(filtered);
-    			this.searchResults = filtered;
     		},
 
     		seen() {
@@ -277,11 +262,11 @@
     		},
 
     		async load() {
-    			this.threads = await this.allThreadsByCurrentUser();
+    			this.threadList = await this.allThreadsByCurrentUser();
 
     			// This will run after previous is fully loaded!
-    			if (this.threads.length > 0) {
-    				this.setThread(this.threads[0]);
+    			if (this.threadList.length > 0) {
+    				this.setThread(this.threadList[0]);
     			}
     		}
     	},

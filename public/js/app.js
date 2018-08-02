@@ -110818,19 +110818,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
    props: ['owner'],
@@ -110839,7 +110826,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       return {
          test: false,
          loading: false,
-         threads: [],
+         threadList: [],
          filteredThreads: [],
          messages: [],
          activeThread: {},
@@ -110851,6 +110838,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
          lastMessageIsRead: false,
          focusOnSearch: false
       };
+   },
+
+   computed: {
+      threads: function threads() {
+         return this.filteredThreads.length > 0 ? this.filteredThreads : this.threadList;
+      }
    },
 
    methods: {
@@ -110868,6 +110861,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
          var vm = this;
          this.activeThread = thread;
          this.activeParticipant = thread.first_participant.user;
+         this.isNewThread = false;
       },
       getMessages: function getMessages(id) {
          var vm = this;
@@ -110886,7 +110880,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             axios.post(route, {
                body: vm.messageText
             }).then(function (response) {
-               console.log(response.data);
                vm.messages.push(response.data);
                vm.messageText = '';
             }).catch(function (error) {
@@ -110901,7 +110894,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             user_id: vm.activeParticipant.id,
             body: vm.messageText
          }).then(function (response) {
-            vm.threads.unshift(response.data);
+            vm.threadList.unshift(response.data);
             vm.setThread(response.data);
             vm.messageText = '';
             vm.isNewThread = false;
@@ -110915,8 +110908,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             text: vm.searchInput
          }).then(function (response) {
             vm.filterThreads();
-            vm.filterResults(response.data);
-            // vm.searchResults = response.data;
+            // vm.filterResults(response.data);
+            vm.searchResults = response.data;
          }).catch(function (error) {
             console.log(error);
          });
@@ -110930,7 +110923,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       selectUser: function selectUser(user) {
          // Check if thread with this user exist
-         var result = this.threads.find(function (thread) {
+         var result = this.threadList.find(function (thread) {
             return thread.first_participant.user.id === user.id;
          });
          if (result) {
@@ -110939,30 +110932,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.isNewThread = true;
             this.searchInput = '';
             this.activeParticipant = user;
+            this.activeThread = { id: null };
             this.messages = [];
          }
          this.searchResults = [];
       },
       filterThreads: function filterThreads() {
          var vm = this;
-         var result = this.threads.find(function (thread) {
+         var result = this.threadList.find(function (thread) {
             return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
          });
          if (result) {
             this.filteredThreads.push(result);
          }
-      },
-      filterResults: function filterResults(results) {
-         var existing = this.threads.map(function (p) {
-            return p.first_participant.user_id;
-         });
-         console.log(existing);
-
-         var filtered = results.filter(function (f) {
-            return !existing.includes(f.id);
-         });
-         console.log(filtered);
-         this.searchResults = filtered;
       },
       seen: function seen() {
          if (this.isNewThread) {
@@ -110992,12 +110974,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         return this.allThreadsByCurrentUser();
 
                      case 2:
-                        this.threads = _context.sent;
+                        this.threadList = _context.sent;
 
 
                         // This will run after previous is fully loaded!
-                        if (this.threads.length > 0) {
-                           this.setThread(this.threads[0]);
+                        if (this.threadList.length > 0) {
+                           this.setThread(this.threadList[0]);
                         }
 
                      case 4:
@@ -111116,35 +111098,10 @@ var render = function() {
                 2
               )
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.filteredThreads.length > 0
-          ? _c("div", [
-              _c("h4", [_vm._v("Contacts")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "ui middle aligned selection list" },
-                _vm._l(_vm.filteredThreads, function(thread) {
-                  return _c("div", { staticClass: "item" }, [
-                    _c("img", {
-                      staticClass: "ui avatar image",
-                      attrs: { src: thread.first_participant.user.picture }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "content" }, [
-                      _c("div", { staticClass: "header" }, [
-                        _vm._v(_vm._s(thread.first_participant.user.full_name))
-                      ])
-                    ])
-                  ])
-                })
-              )
-            ])
           : _vm._e()
       ]),
       _vm._v(" "),
-      _vm.activeThread.id && !_vm.focusOnSearch
+      _vm.activeThread != {}
         ? _c("div", [
             _c("h4", [_vm._v("Conversations")]),
             _vm._v(" "),
@@ -111156,10 +111113,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "item",
-                    class: {
-                      selected:
-                        !_vm.isNewThread && _vm.activeThread.id == thread.id
-                    },
+                    class: { selected: _vm.activeThread.id == thread.id },
                     on: {
                       click: function($event) {
                         $event.preventDefault()

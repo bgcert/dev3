@@ -58,8 +58,11 @@ class MessengerController extends Controller
 
 	public function search()
     {
-    	return \App\User::where('id', '!=', Auth::user()->id)
-    						->where('firstname', 'like', '%'.request()->text.'%')
+    	$existing = $this->threads()->pluck('first_participant.user_id')->toArray();
+
+    	return \App\User::where('firstname', 'like', '%'.request()->text.'%')
+    						->where('id', '!=', Auth::user()->id)
+    						->whereNotIn('id', $existing)
     						->limit(10)
     						->get();
     }
