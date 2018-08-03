@@ -37,6 +37,8 @@
 		@endforeach
 	</div>
 
+	<div id="search"></div>
+
 	<event-feed></event-feed>
 	
 </div>

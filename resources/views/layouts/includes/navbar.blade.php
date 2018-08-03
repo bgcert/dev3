@@ -1,10 +1,10 @@
-<div id="nav-header">
+<div id="nav-header" class="ui sticky">
 	<div class="ui container">
 		<div class="ui secondary menu">
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/e" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
-			<category-menu></category-menu>
+			<search></search>
 
 			<!-- <div class="ui mini form">
 				<div class="ui action left icon input">

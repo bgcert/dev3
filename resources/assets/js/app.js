@@ -57,6 +57,7 @@ Vue.component('company-view', require('./components/CompanyViewComponent.vue'));
 Vue.component('comments', require('./components/CommentsComponent.vue'));
 Vue.component('notifications', require('./components/NotificationsComponent.vue'));
 Vue.component('modal', require('./components/ModalComponent.vue'));
+Vue.component('search', require('./components/SearchComponent.vue'));
 
 Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 

@@ -250,6 +250,7 @@ Vue.component('company-view', __webpack_require__(346));
 Vue.component('comments', __webpack_require__(351));
 Vue.component('notifications', __webpack_require__(356));
 Vue.component('modal', __webpack_require__(361));
+Vue.component('search', __webpack_require__(409));
 
 Vue.component('google-map', __webpack_require__(366));
 
@@ -111309,6 +111310,264 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(412)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(410)
+/* template */
+var __vue_template__ = __webpack_require__(411)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SearchComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-add0f0e4", Component.options)
+  } else {
+    hotAPI.reload("data-v-add0f0e4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 410 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      loading: false,
+      input: '',
+      events: []
+    };
+  },
+
+  methods: {
+    search: function search() {
+      var vm = this;
+      var route = '/api/event/search';
+      var search = this.input;
+      axios.post(route, {
+        searchQuery: search
+      }).then(function (response) {
+        vm.events = response.data;
+        vm.loading = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    openEvent: function openEvent(id) {
+      window.location.href = "/event/" + id;
+    },
+    clearSearch: function clearSearch() {
+      var vm = this;
+      setTimeout(function () {
+        vm.input = '';
+        vm.events = [];
+        console.log(this.events);
+      }, 100);
+    }
+  },
+
+  watch: {
+    // whenever question changes, this function will run
+    input: function input(val) {
+      if (this.input.length > 2) {
+        this.loading = true;
+        this.search();
+      }
+    }
+  },
+
+  created: function created() {
+    console.log('Search component mounted');
+  }
+});
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "search-container" }, [
+    _c(
+      "div",
+      { staticClass: "ui fluid icon input", class: { loading: _vm.loading } },
+      [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.input,
+              expression: "input"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Search..." },
+          domProps: { value: _vm.input },
+          on: {
+            blur: _vm.clearSearch,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.input = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("i", { staticClass: "search icon" })
+      ]
+    ),
+    _vm._v(" "),
+    _vm.events.length > 0
+      ? _c(
+          "div",
+          { staticClass: "ui segments search-results" },
+          _vm._l(_vm.events, function(event) {
+            return _c(
+              "div",
+              {
+                staticClass: "ui segment",
+                on: {
+                  click: function($event) {
+                    _vm.openEvent(event.id)
+                  }
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v(
+                    _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
+                  )
+                ])
+              ]
+            )
+          })
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-add0f0e4", module.exports)
+  }
+}
+
+/***/ }),
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(413);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("2e5135ff", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-add0f0e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-add0f0e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 413 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.search-container {\n\twidth: 100% !important;\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\ttop: 30px;\n\tleft: 0;\n\tz-index: 100;\n\twidth: 100%;\n\tcursor: pointer;\n}\n.ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
