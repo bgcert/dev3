@@ -10,7 +10,7 @@
 			align-items: center;
 			justify-content: center;
 			height: 250px;
-			background: linear-gradient(0deg,rgba(0,0,0,0.2), rgba(0,0,0,0.2))
+			color: white;
 		}
 	</style>
 @endpush
@@ -24,12 +24,12 @@
 
 	<div class="ui hidden divider"></div>
 
-	<div class="ui four column padded grid">
+	<div class="ui four column grid">
 		@foreach($categories as $category)
 		<div class="column">
-			<div class="category-box" style="background: url(https://placeimg.com/300/250/{{ $category->id }});">
-				<h1><a href="#" style="color: white;">{{ $category->name }}</a></h1>
-			</div>
+			<a href="#" class="category-box" style="background-image: linear-gradient(0deg,rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://placeimg.com/300/250/{{ $category->id }});">
+				<h1 class="ui inverted header">{{ $category->name }}</h1>
+			</a>
 		</div>
 		@endforeach
 	</div>
