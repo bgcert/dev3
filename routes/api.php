@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/testimage', 'Publishers\ThemeController@saveImage');
 
 Route::get('/categories', 'PublicController@categories');
-Route::get('/eventlist', 'DataController@eventList');
+Route::get('/eventlist/{slug?}', 'DataController@eventList');
 Route::post('/event/search', 'DataController@eventSearch');
 Route::get('/venuelist', 'DataController@venueList');
 Route::post('/relatedeventlist', 'DataController@relatedEventList');

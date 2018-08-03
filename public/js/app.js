@@ -105050,6 +105050,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
 	},
 
+	props: ['slug'],
+
 	data: function data() {
 		return {
 			auth: window.auth,
@@ -105102,7 +105104,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	created: function created() {
 		var vm = this;
-		axios.get('/api/eventlist').then(function (response) {
+		var route = this.slug ? '/api/eventlist/' + this.slug : '/api/eventlist';
+		axios.get(route).then(function (response) {
 			vm.events = response.data[0];
 			vm.cities = response.data[1];
 		}).catch(function (error) {

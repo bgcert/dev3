@@ -8,11 +8,27 @@ class DataController extends Controller
 {
     public function eventList()
     {
-    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
+    	if (request()->slug) {
+    		$cat = \App\Category::where('slug', request()->slug)->first();
+	    	$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')
+							    	->whereHas('theme', function ($q) use ($cat) {
+										    $q->where('category_id', $cat->id);
+									})
+	    							->get();
+    	} else
+    	{
+    		$events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')->get();
+    	}
+
     	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
 
     	$data = [$events, $cities];
     	return $data;
+
+
+    	$posts = App\Post::whereHas('comments', function ($query) {
+			    $query->where('content', 'like', 'foo%');
+			})->get();
     }
 
     public function eventSearch()

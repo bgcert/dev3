@@ -95,6 +95,8 @@
 			Like, BoxHover
 		},
 
+		props: ['slug'],
+
     	data: function () {
     		return {
     			auth: window.auth,
@@ -150,14 +152,16 @@
     	},
 
         created() {
-            var vm = this;
-        	axios.get('/api/eventlist').then(function (response) {
-        		vm.events = response.data[0];
-        		vm.cities = response.data[1];
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+            let vm = this;
+            let route = (this.slug) ? '/api/eventlist/' + this.slug : '/api/eventlist';
+        	axios.get(route)
+	        	.then(function (response) {
+	        		vm.events = response.data[0];
+	        		vm.cities = response.data[1];
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
         }
     };
 </script>
