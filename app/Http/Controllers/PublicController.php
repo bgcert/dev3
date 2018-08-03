@@ -10,8 +10,8 @@ class PublicController extends Controller
 	public function home()
     {
     	// $events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
-    	//$categories = \App\Category::all();
-    	return view('home');
+    	$categories = \App\Category::all();
+    	return view('home', compact('categories'));
     }
 
     // Verify account
