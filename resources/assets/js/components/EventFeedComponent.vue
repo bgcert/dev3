@@ -9,7 +9,7 @@
 							<i class="dropdown icon"></i>
 							<div class="default text">Подреди по:</div>
 							<div class="menu">
-								<div class="item" @click="sort('theme.like_count', 'asc')">Най-популярни</div>
+								<div class="item" @click="sort('theme.like_count.count', 'asc')">Най-популярни</div>
 								<div class="item" @click="sort('begin_at', 'asc')">Най-нови</div>
 								<div class="item" @click="sort('price', 'asc')">Цена възх.</div>
 								<div class="item" @click="sort('price', 'desc')">Цена низх.</div>
@@ -48,8 +48,8 @@
 					</div>
 
 					<div class="image"
-						:style="`background: url(${event.cover})`"
-						>
+						:style="`background: url(${event.cover})`">
+						<div style="display:inline-block; padding: 5px; margin: 3px; background-color: white;">{{ event.price }} лв.</div>
 					</div>
 					<div class="content">
 						<p style="text-transform: uppercase;">
@@ -164,13 +164,6 @@
     	computed: {
     		sortedEvents: function() {
     			return _.orderBy(this.events, this.currentSort, this.currentSortDir);
-    			return this.events.sort((a,b) => {
-    				let modifier = 1;
-    				if(this.currentSortDir === 'desc') modifier = -1;
-    				if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-    				if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-    				return 0;
-    			});
     		}
     	},
 

@@ -105116,16 +105116,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     sortedEvents: function sortedEvents() {
-      var _this = this;
-
       return _.orderBy(this.events, this.currentSort, this.currentSortDir);
-      return this.events.sort(function (a, b) {
-        var modifier = 1;
-        if (_this.currentSortDir === 'desc') modifier = -1;
-        if (a[_this.currentSort] < b[_this.currentSort]) return -1 * modifier;
-        if (a[_this.currentSort] > b[_this.currentSort]) return 1 * modifier;
-        return 0;
-      });
     }
   },
 
@@ -105685,7 +105676,7 @@ var render = function() {
                     staticClass: "item",
                     on: {
                       click: function($event) {
-                        _vm.sort("theme.like_count", "asc")
+                        _vm.sort("theme.like_count.count", "asc")
                       }
                     }
                   },
@@ -105808,10 +105799,27 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", {
-                staticClass: "image",
-                style: "background: url(" + event.cover + ")"
-              }),
+              _c(
+                "div",
+                {
+                  staticClass: "image",
+                  style: "background: url(" + event.cover + ")"
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        display: "inline-block",
+                        padding: "5px",
+                        margin: "3px",
+                        "background-color": "white"
+                      }
+                    },
+                    [_vm._v(_vm._s(event.price) + " лв.")]
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "content" }, [
                 _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
