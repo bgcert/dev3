@@ -105066,7 +105066,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       searchQuery: '',
       fullscreenLoading: false,
       // Sorting
-      currentSort: 'name',
+      currentSort: 'id',
       currentSortDir: 'asc'
     };
   },
@@ -105108,13 +105108,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    sort: function sort(_sort) {
-      console.log('sort');
-      //if s == current sort, reverse
-      if (_sort === this.currentSort) {
-        this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc';
-      }
-      this.currentSort = _sort;
+    sort: function sort(col, dir) {
+      this.currentSort = col;
+      this.currentSortDir = dir;
     }
   },
 
@@ -105122,6 +105118,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     sortedEvents: function sortedEvents() {
       var _this = this;
 
+      return _.orderBy(this.events, this.currentSort, this.currentSortDir);
       return this.events.sort(function (a, b) {
         var modifier = 1;
         if (_this.currentSortDir === 'desc') modifier = -1;
@@ -105682,7 +105679,18 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "menu" }, [
-                _c("div", { staticClass: "item" }, [_vm._v("Най-популярни")]),
+                _c(
+                  "div",
+                  {
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        _vm.sort("theme.like_count", "asc")
+                      }
+                    }
+                  },
+                  [_vm._v("Най-популярни")]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -105690,7 +105698,7 @@ var render = function() {
                     staticClass: "item",
                     on: {
                       click: function($event) {
-                        _vm.sort("begin_at")
+                        _vm.sort("begin_at", "asc")
                       }
                     }
                   },
@@ -105703,14 +105711,25 @@ var render = function() {
                     staticClass: "item",
                     on: {
                       click: function($event) {
-                        _vm.sort("price")
+                        _vm.sort("price", "asc")
                       }
                     }
                   },
                   [_vm._v("Цена възх.")]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "item" }, [_vm._v("Цена низх.")])
+                _c(
+                  "div",
+                  {
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        _vm.sort("price", "desc")
+                      }
+                    }
+                  },
+                  [_vm._v("Цена низх.")]
+                )
               ])
             ])
           ]),
@@ -105774,7 +105793,7 @@ var render = function() {
       [
         _vm._l(_vm.sortedEvents, function(event) {
           return [
-            _c("div", { staticClass: "card" }, [
+            _c("div", { key: event.id, staticClass: "card" }, [
               _c(
                 "div",
                 { staticClass: "extra content" },

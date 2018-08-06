@@ -9,10 +9,10 @@
 							<i class="dropdown icon"></i>
 							<div class="default text">Подреди по:</div>
 							<div class="menu">
-								<div class="item">Най-популярни</div>
-								<div class="item" @click="sort('begin_at')">Най-нови</div>
-								<div class="item" @click="sort('price')">Цена възх.</div>
-								<div class="item">Цена низх.</div>
+								<div class="item" @click="sort('theme.like_count', 'asc')">Най-популярни</div>
+								<div class="item" @click="sort('begin_at', 'asc')">Най-нови</div>
+								<div class="item" @click="sort('price', 'asc')">Цена възх.</div>
+								<div class="item" @click="sort('price', 'desc')">Цена низх.</div>
 							</div>
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">
 			<template v-for="event in sortedEvents">
-				<div class="card">
+				<div class="card" :key="event.id">
 					<div class="extra content">
 						<BoxHover
 							:id="event.theme.company.id"
@@ -110,7 +110,7 @@
     			searchQuery: '',
     			fullscreenLoading: false,
     			// Sorting
-    			currentSort: 'name',
+    			currentSort: 'id',
   				currentSortDir: 'asc'
     		}
     	},
@@ -155,18 +155,15 @@
 					});
     		},
 
-    		sort: function(sort) {
-    			console.log('sort');
-			    //if s == current sort, reverse
-			    if(sort === this.currentSort) {
-			    	this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
-			    }
-			    this.currentSort = sort;
+    		sort: function(col, dir) {
+    			this.currentSort = col;
+    			this.currentSortDir = dir;
 			}
     	},
 
     	computed: {
-    		sortedEvents:function() {
+    		sortedEvents: function() {
+    			return _.orderBy(this.events, this.currentSort, this.currentSortDir);
     			return this.events.sort((a,b) => {
     				let modifier = 1;
     				if(this.currentSortDir === 'desc') modifier = -1;
