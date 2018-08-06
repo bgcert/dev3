@@ -64,10 +64,9 @@
     <script>
     	$('.ui.dropdown').dropdown();
     	$('.ui.sticky')
-		  .sticky({
-		  	context: '#search'
-		  })
-		;
+	    	.sticky({
+	    		context: '#search'
+	    	});
     </script>
 
     <!-- Push Scripts -->

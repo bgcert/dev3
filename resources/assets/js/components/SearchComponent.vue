@@ -23,6 +23,12 @@
     	},
 
     	methods: {
+    		searchAfterDebounce: _.debounce(
+	            function () {
+	                this.search();
+	            }, 800 // 800 milliseconds
+	        ),
+
     		search() {
     			let vm = this;
     			let route = '/api/event/search';
@@ -50,16 +56,15 @@
     				vm.input = '';
     				vm.events = [];
     				console.log(this.events);
-    			}, 100);
+    			}, 200);
     		}
     	},
 
     	watch: {
-		    // whenever question changes, this function will run
 		    input: function (val) {
-		    	if (this.input.length > 2) {
+		    	if (val.length > 2) {
 		    		this.loading = true;
-		    		this.search();
+		    		this.searchAfterDebounce();
 		    	}
 		    }
 		},
@@ -72,7 +77,7 @@
 
 <style>
 	.search-container {
-		width: 100% !important;
+		width: 30% !important;
 		position: relative;
 	}
 
@@ -85,7 +90,7 @@
 		cursor: pointer;
 	}
 
-	.ui .segment:hover {
+	.search-container .ui .segment:hover {
 		background: #F8F8FA;
 	}
 </style>

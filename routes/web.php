@@ -26,7 +26,7 @@ Route::get('/home', function () {
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@home')->name('home');
 
-Route::get('/browse/{slug}', 'PublicController@events');
+Route::get('/browse/{slug?}', 'PublicController@events');
 Route::get('/t', 'PublicController@themes');
 Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');

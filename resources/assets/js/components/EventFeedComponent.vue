@@ -1,42 +1,44 @@
 <template>
 	<div>
-		<div class="ui vertical segment">
-
-			<div class="ui center aligned grid container">
-				<div class="column">
-					<h3 class="ui header">
-						Semantic is growing fast. Want to see just how much? Sign up and we'll let you know
-					</h3>
-
-					<div class="ui big form">
-						<div class="field">
-							<span class="ui icon input" style="width: 450px;">
-								<i class="search icon"></i>
-					    		<input placeholder="Търсене" type="text" v-model="searchQuery">
-							</span>
-					    	<span>
-					    		<el-select
-					    			v-model="selectedCity"
-					    			filterable
-					    			clearable
-					    			no-match-text="Няма открити"
-					    			placeholder="Всички градове">
-									<el-option
-										v-for="city in cities"
-										:key="city.id"
-										:label="city.name + ' (' + city.events_count + ')'"
-										:value="city.id">
-									</el-option>
-								</el-select>
-					    	</span>
-					    </div>
+		<div class="ui segment">
+			<div class="ui form">
+				<div class="fields">
+					<div class="field">
+						<div class="ui selection dropdown">
+							<input type="hidden" name="gender">
+							<i class="dropdown icon"></i>
+							<div class="default text">Подреди по:</div>
+							<div class="menu">
+								<div class="item">Най-популярни</div>
+								<div class="item" @click="sort('begin_at')">Най-нови</div>
+								<div class="item" @click="sort('price')">Цена възх.</div>
+								<div class="item">Цена низх.</div>
+							</div>
+						</div>
 					</div>
+					<div class="field">
+						<div class="ui selection dropdown">
+							<input type="hidden" name="gender">
+							<i class="dropdown icon"></i>
+							<div class="default text">Град</div>
+							<div class="menu">
+								<div
+									class="item"
+									v-for="city in cities"
+									v-model="selectedCity"
+									:key="city.id"
+									:value="city.id">
+										{{ city.name + ' (' + city.events_count + ')' }}
+								</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-		<br>
 		<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">
-			<template v-for="event in events">
+			<template v-for="event in sortedEvents">
 				<div class="card">
 					<div class="extra content">
 						<BoxHover
@@ -101,12 +103,15 @@
     		return {
     			auth: window.auth,
     			boolean: true,
-    			events: {},
+    			events: [],
     			cities: [],
     			selectedCity: null,
     			company: [],
     			searchQuery: '',
-    			fullscreenLoading: false
+    			fullscreenLoading: false,
+    			// Sorting
+    			currentSort: 'name',
+  				currentSortDir: 'asc'
     		}
     	},
 
@@ -149,6 +154,27 @@
 						vm.fullscreenLoading = false;
 					});
     		},
+
+    		sort: function(sort) {
+    			console.log('sort');
+			    //if s == current sort, reverse
+			    if(sort === this.currentSort) {
+			    	this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+			    }
+			    this.currentSort = sort;
+			}
+    	},
+
+    	computed: {
+    		sortedEvents:function() {
+    			return this.events.sort((a,b) => {
+    				let modifier = 1;
+    				if(this.currentSortDir === 'desc') modifier = -1;
+    				if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+    				if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+    				return 0;
+    			});
+    		}
     	},
 
         created() {

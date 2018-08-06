@@ -34,23 +34,11 @@ class DataController extends Controller
     public function eventSearch()
     {
     	$string = request()->searchQuery;
-    	// $city = request()->city_id;
-    	// $events = \App\Event::with('theme.likeCount', 'theme.commentCount', 'theme.isLiked', 'theme.company')
-    	// 					->when($city, function ($query) use ($city) {
-			  //                   return $query->where('city_id', $city);
-			  //               })
-			  //               ->when($string, function ($query) use ($string) {
-			  //                   return $query->whereHas('theme', function ($query) use ($string) {
-					// 	    		$query->where('title', 'like', '%'. $string . '%');
-					// 			});
-			  //               })
-					// 		->get();
     	$events = \App\Event::with('theme')->whereHas('theme', function($q) use ($string) {
 					    		$q->where('title', 'like', '%'.$string.'%');
 					    	})
     						->limit(10)
 							->get();
-
     	return $events;
     }
 

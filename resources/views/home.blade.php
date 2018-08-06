@@ -22,6 +22,14 @@
 		</div>
 	</div>
 
+	<div class="ui center aligned grid">
+		<div class="column">
+			<h3 class="ui header">
+				Seminari365 is growing fast. Want to see just how much? Sign up and we'll let you know
+			</h3>
+		</div>
+	</div>
+
 	<div class="ui hidden divider"></div>
 
 	<div class="ui four column grid">
