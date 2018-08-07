@@ -14,6 +14,8 @@ class Event extends Model
         'theme_id', 'begin_at', 'end_at', 'cover', 'position', 'price'
     ];
 
+    protected $appends = ['begin'];
+
     public function theme()
     {
     	return $this->belongsTo('App\Theme');
@@ -60,7 +62,7 @@ class Event extends Model
 
     public function getBeginAttribute()
     {
-    	return Carbon::parse($this->begin_at)->format('d M');
+    	return Carbon::parse($this->begin_at)->format('d M, Y');
     }
 
     public function getEndAttribute()

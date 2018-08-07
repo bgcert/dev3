@@ -26,7 +26,6 @@ class PublicController extends Controller
 	public function themes()
     {
     	$themes = \App\Theme::with('isLiked')->get();
-    	dd($themes);
     	return view('themes', compact('themes'));
     }
 

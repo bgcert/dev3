@@ -9,7 +9,7 @@
 							<i class="dropdown icon"></i>
 							<div class="default text">Подреди по:</div>
 							<div class="menu">
-								<div class="item" @click="sort('theme.like_count.count', 'asc')">Най-популярни</div>
+								<div class="item" @click="sort('theme.only_like_count', 'desc')">Най-популярни</div>
 								<div class="item" @click="sort('begin_at', 'asc')">Най-нови</div>
 								<div class="item" @click="sort('price', 'asc')">Цена възх.</div>
 								<div class="item" @click="sort('price', 'desc')">Цена низх.</div>
@@ -24,11 +24,17 @@
 							<div class="menu">
 								<div
 									class="item"
+									@click="filterByCity(null)">
+									Всички
+								</div>
+								<div
+									class="item"
 									v-for="city in cities"
 									v-model="selectedCity"
 									:key="city.id"
-									:value="city.id">
-										{{ city.name + ' (' + city.events_count + ')' }}
+									:value="city.id"
+									@click="filterByCity(city.id)">
+									{{ city.name + ' (' + city.events_count + ')' }}
 								</div>
 							</div>
 						</div>
@@ -53,7 +59,7 @@
 					</div>
 					<div class="content">
 						<p style="text-transform: uppercase;">
-							{{ event.begin_at }}
+							{{ event.begin }}
 						</p>
 						<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 					</div>
@@ -67,7 +73,7 @@
 							</div>
 							<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 								<Like
-									:likes="(event.theme.like_count != null) ? event.theme.like_count.count : ''"
+									:likes="event.theme.only_like_count"
 									:liked="event.theme.is_liked != null"
 									:item_id="event.theme.id"
 									:route="'/users/like/theme'">
@@ -78,7 +84,7 @@
 								<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
 									<i class="comment outline icon"></i>
 								</el-tooltip>
-								{{ (event.theme.comment_count != null) ? event.theme.comment_count.count : 0 }}
+								{{ event.theme.only_comment_count }}
 							</a>
 						</div>
 					</div>
@@ -111,7 +117,8 @@
     			fullscreenLoading: false,
     			// Sorting
     			currentSort: 'id',
-  				currentSortDir: 'asc'
+  				currentSortDir: 'asc',
+  				city_id: null
     		}
     	},
 
@@ -158,12 +165,20 @@
     		sort: function(col, dir) {
     			this.currentSort = col;
     			this.currentSortDir = dir;
-			}
+			},
+
+			filterByCity(id) {
+				this.city_id = id;
+    		}
     	},
 
     	computed: {
     		sortedEvents: function() {
-    			return _.orderBy(this.events, this.currentSort, this.currentSortDir);
+    			let filtered = _.orderBy(this.events, this.currentSort, this.currentSortDir);
+    			if (this.city_id) {
+    				filtered = _.filter(filtered, { city_id: this.city_id });
+    			}
+    			return filtered;
     		}
     	},
 

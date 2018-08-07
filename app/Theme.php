@@ -17,6 +17,8 @@ class Theme extends Model
         'company_id', 'category_id', 'title', 'body', 'cover', 'position',
     ];
 
+    protected $appends = ['only_like_count', 'only_comment_count'];
+
     public function company()
     {
     	return $this->belongsTo('App\Company');
@@ -31,4 +33,14 @@ class Theme extends Model
     {
     	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
     }
+
+    public function getOnlyLikeCountAttribute()
+	{
+	    return $this->likeCount ? $this->likeCount->count : 0;
+	}
+
+	public function getOnlyCommentCountAttribute()
+	{
+	    return $this->commentCount ? $this->commentCount->count : 0;
+	}
 }

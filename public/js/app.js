@@ -105044,6 +105044,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -105067,7 +105073,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       fullscreenLoading: false,
       // Sorting
       currentSort: 'id',
-      currentSortDir: 'asc'
+      currentSortDir: 'asc',
+      city_id: null
     };
   },
 
@@ -105111,12 +105118,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     sort: function sort(col, dir) {
       this.currentSort = col;
       this.currentSortDir = dir;
+    },
+
+    filterByCity: function filterByCity(id) {
+      this.city_id = id;
     }
   },
 
   computed: {
     sortedEvents: function sortedEvents() {
-      return _.orderBy(this.events, this.currentSort, this.currentSortDir);
+      var filtered = _.orderBy(this.events, this.currentSort, this.currentSortDir);
+      if (this.city_id) {
+        filtered = _.filter(filtered, { city_id: this.city_id });
+      }
+      return filtered;
     }
   },
 
@@ -105676,7 +105691,7 @@ var render = function() {
                     staticClass: "item",
                     on: {
                       click: function($event) {
-                        _vm.sort("theme.like_count.count", "asc")
+                        _vm.sort("theme.only_like_count", "desc")
                       }
                     }
                   },
@@ -105736,30 +105751,51 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "menu" },
-                _vm._l(_vm.cities, function(city) {
-                  return _c(
+                [
+                  _c(
                     "div",
                     {
-                      key: city.id,
                       staticClass: "item",
-                      attrs: { value: city.id },
-                      model: {
-                        value: _vm.selectedCity,
-                        callback: function($$v) {
-                          _vm.selectedCity = $$v
-                        },
-                        expression: "selectedCity"
+                      on: {
+                        click: function($event) {
+                          _vm.filterByCity(null)
+                        }
                       }
                     },
-                    [
-                      _vm._v(
-                        "\n\t\t\t\t\t\t\t\t\t" +
-                          _vm._s(city.name + " (" + city.events_count + ")") +
-                          "\n\t\t\t\t\t\t\t"
-                      )
-                    ]
-                  )
-                })
+                    [_vm._v("\n\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.cities, function(city) {
+                    return _c(
+                      "div",
+                      {
+                        key: city.id,
+                        staticClass: "item",
+                        attrs: { value: city.id },
+                        on: {
+                          click: function($event) {
+                            _vm.filterByCity(city.id)
+                          }
+                        },
+                        model: {
+                          value: _vm.selectedCity,
+                          callback: function($$v) {
+                            _vm.selectedCity = $$v
+                          },
+                          expression: "selectedCity"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t" +
+                            _vm._s(city.name + " (" + city.events_count + ")") +
+                            "\n\t\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
               )
             ])
           ])
@@ -105824,7 +105860,7 @@ var render = function() {
               _c("div", { staticClass: "content" }, [
                 _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
                   _vm._v(
-                    "\n\t\t\t\t\t\t" + _vm._s(event.begin_at) + "\n\t\t\t\t\t"
+                    "\n\t\t\t\t\t\t" + _vm._s(event.begin) + "\n\t\t\t\t\t"
                   )
                 ]),
                 _vm._v(" "),
@@ -105876,10 +105912,7 @@ var render = function() {
                       [
                         _c("Like", {
                           attrs: {
-                            likes:
-                              event.theme.like_count != null
-                                ? event.theme.like_count.count
-                                : "",
+                            likes: event.theme.only_like_count,
                             liked: event.theme.is_liked != null,
                             item_id: event.theme.id,
                             route: "/users/like/theme"
@@ -105907,11 +105940,7 @@ var render = function() {
                         ),
                         _vm._v(
                           "\n\t\t\t\t\t\t\t" +
-                            _vm._s(
-                              event.theme.comment_count != null
-                                ? event.theme.comment_count.count
-                                : 0
-                            ) +
+                            _vm._s(event.theme.only_comment_count) +
                             "\n\t\t\t\t\t\t"
                         )
                       ],
