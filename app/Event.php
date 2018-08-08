@@ -44,9 +44,17 @@ class Event extends Model
                     );
     }
 
-    public function scopeOfCity($query, $city_id)
+    public function scopeByCity($query, $city_id)
     {
         return $query->where('city_id', '==', $city_id);
+    }
+
+    public function scopeByCategory($query, $slug)
+    {
+    	$cat = \App\Category::where('slug', $slug)->first();
+    	return $query->whereHas('theme', function ($q) use ($cat) {
+							    $q->where('category_id', $cat->id);
+						});
     }
 
     public function getCoverAttribute($value)

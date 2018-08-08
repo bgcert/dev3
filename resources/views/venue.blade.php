@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @push('header-scripts')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/locale/bg.js"></script>
-
 	<style>
 		.flex { display: flex; }
 		.logo { flex: 1; }
@@ -46,7 +43,7 @@
 					    	<tbody>
 					    		<tr>
 					    			<td>Капацитет</td>
-					    			<td class="center aligned">120 места</td>
+					    			<td class="center aligned">{{ $venue->capacity }} места</td>
 					    		</tr>
 					    		<tr>
 					    			<td>Мултимедия</td>

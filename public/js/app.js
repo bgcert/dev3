@@ -105973,6 +105973,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(414)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(330)
@@ -105981,7 +105985,7 @@ var __vue_template__ = __webpack_require__(331)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -106068,6 +106072,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -106080,7 +106141,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       auth: window.auth,
-      venues: {}
+      venues: [],
+      cities: [],
+      // Sorting
+      currentSort: 'id',
+      currentSortDir: 'asc',
+      city_id: null,
+      range: [0, 100]
     };
   },
 
@@ -106088,15 +106155,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     request: function request(id) {
       __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('testlog', 'some message');
       console.log('request ' + id);
+    },
+
+
+    sort: function sort(col, dir) {
+      this.currentSort = col;
+      this.currentSortDir = dir;
+    },
+
+    filterByCity: function filterByCity(id) {
+      this.city_id = id;
+    }
+  },
+
+  computed: {
+    sortedVenues: function sortedVenues() {
+      var filtered = _.orderBy(this.venues, this.currentSort, this.currentSortDir);
+      var min = this.range[0];
+      var max = this.range[1] < 100 ? this.range[1] : 2000;
+      filtered = _.filter(filtered, function (o) {
+        return o.capacity > min && o.capacity < max;
+      });
+      if (this.city_id) {
+        filtered = _.filter(filtered, { city_id: this.city_id });
+      }
+      return filtered;
     }
   },
 
   created: function created() {
     var vm = this;
     axios.get('/api/venuelist').then(function (response) {
-      vm.venues = response.data;
-      console.log('event list');
-      console.log(vm.events);
+      vm.venues = response.data[0];
+      vm.cities = response.data[1];
     }).catch(function (error) {
       console.log(error);
     });
@@ -106112,14 +106203,146 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "ui segment" }, [
+      _c("div", { staticClass: "ui form" }, [
+        _c("div", { staticClass: "fields" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "ui selection dropdown" }, [
+              _c("input", { attrs: { type: "hidden", name: "gender" } }),
+              _vm._v(" "),
+              _c("i", { staticClass: "dropdown icon" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "default text" }, [
+                _vm._v("Подреди по:")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "menu" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        _vm.sort("only_like_count", "desc")
+                      }
+                    }
+                  },
+                  [_vm._v("Най-популярни")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        _vm.sort("price", "asc")
+                      }
+                    }
+                  },
+                  [_vm._v("Цена възх.")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "item",
+                    on: {
+                      click: function($event) {
+                        _vm.sort("price", "desc")
+                      }
+                    }
+                  },
+                  [_vm._v("Цена низх.")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("div", { staticClass: "ui selection dropdown" }, [
+              _c("input", { attrs: { type: "hidden", name: "gender" } }),
+              _vm._v(" "),
+              _c("i", { staticClass: "dropdown icon" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "default text" }, [_vm._v("Град")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "menu" },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "item",
+                      on: {
+                        click: function($event) {
+                          _vm.filterByCity(null)
+                        }
+                      }
+                    },
+                    [_vm._v("\n\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.cities, function(city) {
+                    return _c(
+                      "div",
+                      {
+                        key: city.id,
+                        staticClass: "item",
+                        attrs: { value: city.id },
+                        on: {
+                          click: function($event) {
+                            _vm.filterByCity(city.id)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t" +
+                            _vm._s(city.name + " (" + city.venues_count + ")") +
+                            "\n\t\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "field" },
+          [
+            _c("label", [_vm._v("Капацитет")]),
+            _vm._v(" "),
+            _c("el-slider", {
+              attrs: { range: "", "show-stops": "", max: 100, min: 5 },
+              model: {
+                value: _vm.range,
+                callback: function($$v) {
+                  _vm.range = $$v
+                },
+                expression: "range"
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
     _vm.venues
       ? _c(
           "div",
           { staticClass: "ui three stackable cards" },
           [
-            _vm._l(_vm.venues, function(venue) {
+            _vm._l(_vm.sortedVenues, function(venue) {
               return [
-                _c("div", { staticClass: "card" }, [
+                _c("div", { key: venue.id, staticClass: "card" }, [
                   _c(
                     "div",
                     { staticClass: "extra content" },
@@ -106134,9 +106357,27 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "image" }, [
-                    _c("img", { attrs: { src: venue.cover } })
-                  ]),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "image",
+                      style: "background: url(" + venue.cover + ")"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            display: "inline-block",
+                            padding: "5px",
+                            margin: "3px",
+                            "background-color": "white"
+                          }
+                        },
+                        [_vm._v(_vm._s(venue.price) + " лв.")]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "content" }, [
                     _c(
@@ -106150,48 +106391,59 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "extra content" }, [
-                    _c(
-                      "span",
-                      { staticClass: "right floated" },
-                      [
-                        _c("like", {
-                          attrs: {
-                            auth: _vm.auth,
-                            likes:
-                              venue.like_count != null
-                                ? venue.like_count.count
-                                : "",
-                            liked: venue.is_liked != null,
-                            item_id: venue.id,
-                            route: "/users/like/venue"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", [
+                    _c("div", { staticClass: "flex" }, [
+                      _c(
+                        "div",
+                        [
                           _c(
-                            "a",
+                            "el-tooltip",
                             {
+                              staticClass: "item",
                               attrs: {
-                                href: "/venue/" + venue.id + "/#comments"
+                                effect: "dark",
+                                content: "Прегледан",
+                                placement: "top"
                               }
                             },
-                            [
-                              _c("i", { staticClass: "comment outline icon" }),
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t" +
-                                  _vm._s(
-                                    venue.comment_count != null
-                                      ? venue.comment_count.count
-                                      : 0
-                                  ) +
-                                  "\n\t\t\t\t\t\t\t"
-                              )
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
+                            [_c("i", { staticClass: "eye icon" })]
+                          ),
+                          _vm._v("\n\t\t\t\t\t\t\t\t54\n\t\t\t\t\t\t")
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        [
+                          _c("like", {
+                            attrs: {
+                              likes: venue.only_like_count,
+                              liked: venue.is_liked != null,
+                              item_id: venue.id,
+                              route: "/users/like/venue"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "/venue/" + venue.id + "/#comments" }
+                          },
+                          [
+                            _c("i", { staticClass: "comment outline icon" }),
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t" +
+                                _vm._s(venue.only_comment_count) +
+                                "\n\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      ])
+                    ])
                   ])
                 ])
               ]
@@ -111644,6 +111896,64 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(415);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("9e8b08e8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-212f22f2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./VenueFeedComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-212f22f2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./VenueFeedComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 415 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

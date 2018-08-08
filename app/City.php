@@ -9,6 +9,14 @@ class City extends Model
     public $timestamps = false;
 
     public function events() {
-    	return $this->HasMany('App\Event');
+    	return $this->hasMany('App\Event');
+    }
+
+    public function venues() {
+    	return $this->hasMany('App\Venue');
+    }
+
+    public function event() {
+    	return $this->hasMany('App\Event');
     }
 }

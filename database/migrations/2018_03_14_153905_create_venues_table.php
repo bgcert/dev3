@@ -16,13 +16,16 @@ class CreateVenuesTable extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
+            $table->integer('city_id')->unsigned()->nullable();
             $table->string('name');
             $table->text('description');
             $table->integer('capacity');
+            $table->integer('price')->unsigned()->nullable();
             $table->string('cover')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 

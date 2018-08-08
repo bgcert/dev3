@@ -140,4 +140,14 @@ trait Likable
 			// }
 		}
 	}
+
+	public function getOnlyLikeCountAttribute()
+	{
+	    return $this->likeCount ? $this->likeCount->count : 0;
+	}
+
+	public function getOnlyCommentCountAttribute()
+	{
+	    return $this->commentCount ? $this->commentCount->count : 0;
+	}
 }

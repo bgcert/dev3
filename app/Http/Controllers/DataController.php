@@ -9,18 +9,20 @@ class DataController extends Controller
     public function eventList()
     {
     	if (request()->slug) {
-    		$cat = \App\Category::where('slug', request()->slug)->first();
-	    	$events = \App\Event::with('theme', 'theme', 'theme.isLiked', 'theme.company')
-							    	->whereHas('theme', function ($q) use ($cat) {
-										    $q->where('category_id', $cat->id);
-									})
-	    							->get();
+    		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company')->get();
+    		// $cat = \App\Category::where('slug', request()->slug)->first();
+	    	// $events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')
+						// 	    	->whereHas('theme', function ($q) use ($cat) {
+						// 				    $q->where('category_id', $cat->id);
+						// 			})
+	    	// 						->get();
+
+			$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	} else
     	{
-    		$events = \App\Event::with('theme', 'theme', 'theme.isLiked', 'theme.company')->get();
+    		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')->get();
+    		$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	}
-
-    	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
 
     	$data = [$events, $cities];
     	return $data;
@@ -39,13 +41,15 @@ class DataController extends Controller
 
     public function venueList()
     {
-    	$venues = \App\Venue::with('likeCount', 'commentCount', 'isLiked', 'company')->get();
-    	return $venues;
+    	$venues = \App\Venue::with('isLiked', 'company')->get();
+    	$cities = \App\City::has('venues', '>' , 0)->withCount('venues')->get();
+    	$data = [$venues, $cities];
+    	return $data;
     }
 
     public function relatedEventList()
     {
-    	$events = \App\Event::ByCompany(request()->company_id)->get();
+    	$events = \App\Event::byCompany(request()->company_id)->get();
     	return $events;
     }
 
