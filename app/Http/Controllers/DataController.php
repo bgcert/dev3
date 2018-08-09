@@ -10,22 +10,12 @@ class DataController extends Controller
     {
     	if (request()->slug) {
     		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company')->get();
-    		// $cat = \App\Category::where('slug', request()->slug)->first();
-	    	// $events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')
-						// 	    	->whereHas('theme', function ($q) use ($cat) {
-						// 				    $q->where('category_id', $cat->id);
-						// 			})
-	    	// 						->get();
-
-			$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	} else
     	{
     		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')->get();
-    		$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	}
-
-    	$data = [$events, $cities];
-    	return $data;
+    	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
+    	return [$events, $cities];
     }
 
     public function eventSearch()
@@ -43,8 +33,7 @@ class DataController extends Controller
     {
     	$venues = \App\Venue::with('isLiked', 'company')->get();
     	$cities = \App\City::has('venues', '>' , 0)->withCount('venues')->get();
-    	$data = [$venues, $cities];
-    	return $data;
+    	return [$venues, $cities];
     }
 
     public function relatedEventList()
