@@ -32,7 +32,7 @@
 									:key="city.id"
 									:value="city.id"
 									@click="filterByCity(city.id)">
-									{{ city.name + ' (' + city.venues_count + ')' }}
+									{{ city.name }}
 								</div>
 							</div>
 						</div>
