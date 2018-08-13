@@ -110206,6 +110206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -110265,7 +110266,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, 300);
         },
         closeConfirm: function closeConfirm() {
-            this.innerVisible == false;
+            this.innerVisible = false;
             location.reload();
         }
     },
@@ -110314,6 +110315,7 @@ var render = function() {
             "append-to-body": ""
           },
           on: {
+            close: _vm.closeConfirm,
             "update:visible": function($event) {
               _vm.innerVisible = $event
             }
@@ -110321,7 +110323,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "ui segment" }, [
-            _c("p", [
+            _c("h4", [
               _vm._v("Изпратен е линк за потвърждение на "),
               _c("b", [_vm._v(_vm._s(_vm.form.email))]),
               _vm._v(

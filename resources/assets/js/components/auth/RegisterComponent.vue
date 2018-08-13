@@ -4,10 +4,11 @@
 
 		<el-dialog
 			width="30%"
+			@close="closeConfirm"
 			:visible.sync="innerVisible"
 			append-to-body>
 			<div class="ui segment">
-				<p>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</p>
+				<h4>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</h4>
 				<button class="ui basic button" @click="closeConfirm">OK</button>
 			</div>
 		</el-dialog>
@@ -159,7 +160,7 @@
         	},
 
         	closeConfirm() {
-        		this.innerVisible == false;
+        		this.innerVisible = false;
         		location.reload();
         	}
         },
