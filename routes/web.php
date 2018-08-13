@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::login(\App\User::find(16));
+// Auth::login(\App\User::find(1));
 
 Route::get('/query', function () {
     
@@ -25,6 +25,7 @@ Route::get('/home', function () {
 
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@home')->name('home');
+Route::view('/terms', 'terms');
 
 Route::get('/browse/{slug?}', 'PublicController@events');
 Route::get('/t', 'PublicController@themes');

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         	}
 	    });
 
-	    factory('App\Category', 12)->create();
+	    // factory('App\Category', 12)->create();
 
 	    factory('App\Theme', 40)->create()->each(function ($t) {
 	    	for ($i=0; $i < rand(1, 30); $i++) {

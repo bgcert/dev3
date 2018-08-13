@@ -44,55 +44,12 @@
 					<div class="field">
 						<div class="ui checkbox">
 							<input type="checkbox" tabindex="0" class="hidden">
-							<label>Съгласявам се с условията за ползване.</label>
+							<label>Съгласявам се с <a href="terms" target="_blank">условията за ползване.</a></label>
 						</div>
 					</div>
 					<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
 				</form>
-				
-
-	  			<!-- <div class="ui divider"></div>
-
-	  			<div class="ui yellow message" v-if="form.publisher">
-					Използвайте опцията "Бизнес акаунт", ако бизнесът Ви е свързан с организиране на обучения и/или отдаване под наем на конферентни зали, както и други пространства подходящи за реализацията на събития.
-				</div>
-
-	  			<form class="ui form" v-if="form.publisher">
-	  				<div class="field">
-						<input type="text" v-model="form.companyName" placeholder="Име на организацията">
-					</div>
-					<div class="field">
-						<div class="ui labeled right icon input">
-							<div class="ui label">
-								http://seminari365.com/
-							</div>
-							<input type="text" v-model="form.slug" placeholder="Адрес на профила (пр: test-ltd)">
-						</div>
-					</div>
-
-					<h4 class="ui dividing header">Настройка на финкционалност</h4>
-	  				<div class="field">
-	  					<div class="two fields">
-	  						<div class="field">
-	  							<el-checkbox v-model="form.event_publish" label="Публикуване на обучения" border></el-checkbox>
-	  						</div>
-	  						<div class="field">
-	  							<el-checkbox v-model="form.venue_publish" label="Публикуване на зали" border></el-checkbox>
-	  						</div>
-	  					</div>
-	  				</div>
-	  			</form>
-
-	  			<form class="ui form">
-	  				<div class="field">
-						<el-checkbox v-model="checked">Съгласявам се с условията за ползване</el-checkbox>
-					</div>
-					<button class="ui large fluid primary button"  @click="onSubmit" :class="{ loading: loading }">Регистрация</button>
-					<div class="ui horizontal divider"> Или</div>
-					<button class="ui large fluid basic button" @click.prevent="callLogin">Влезте в профила си</button>
-	  			</form> -->
 			</div>
-
 			
 		</el-dialog>
 	</div>

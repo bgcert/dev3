@@ -64,9 +64,7 @@
     <script>
     	$('.ui.dropdown').dropdown();
     	$('.ui.sticky')
-	    	.sticky({
-	    		context: '#search'
-	    	});
+	    	.sticky();
     </script>
 
     <!-- Push Scripts -->

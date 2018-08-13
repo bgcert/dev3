@@ -32,19 +32,6 @@
 
 	<div class="ui hidden divider"></div>
 
-	<div class="ui four column grid">
-		@foreach($categories as $category)
-		<div class="column">
-			<a
-				href="/browse/{{ $category->slug }}"
-				class="category-box"
-				style="background-image: linear-gradient(0deg,rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://placeimg.com/300/150/{{ $category->id }});">
-				<h1 class="ui inverted header">{{ $category->name }}</h1>
-			</a>
-		</div>
-		@endforeach
-	</div>
-
 	<div id="search"></div>
 
 	<event-feed></event-feed>

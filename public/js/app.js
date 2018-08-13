@@ -104938,7 +104938,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n", ""]);
+exports.push([module.i, "\n.image {\n\t\theight: 178px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n}\n.flex {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.category-header {\n\t\tcolor: white;\n\t\tmargin-bottom: 20px;\n\t\tbackground: url(https://picsum.photos/2000/250/?image=78);\n\t\theight: 150px;\n    \tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.overlay {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground: rgba(0, 0, 0, 0.3);\n}\n.category-box {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\tborder-radius: 3px;\n\t\t-webkit-box-align: center;\n\t\t    -ms-flex-align: center;\n\t\t        align-items: center;\n\t\t-webkit-box-pack: center;\n\t\t    -ms-flex-pack: center;\n\t\t        justify-content: center;\n\t\theight: 150px;\n\t\tcolor: white;\n}\n", ""]);
 
 // exports
 
@@ -105050,6 +105050,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -105064,7 +105092,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       auth: window.auth,
-      boolean: true,
+      category: '',
       events: [],
       cities: [],
       selectedCity: null,
@@ -105141,6 +105169,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     axios.get(route).then(function (response) {
       vm.events = response.data[0];
       vm.cities = response.data[1];
+      vm.categories = response.data[2];
+      vm.category = response.data[3];
     }).catch(function (error) {
       console.log(error);
     });
@@ -105671,291 +105701,356 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui segment" }, [
-      _c("div", { staticClass: "ui form" }, [
-        _c("div", { staticClass: "fields" }, [
-          _c("div", { staticClass: "field" }, [
-            _c("div", { staticClass: "ui selection dropdown" }, [
-              _c("input", { attrs: { type: "hidden", name: "gender" } }),
-              _vm._v(" "),
-              _c("i", { staticClass: "dropdown icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "default text" }, [
-                _vm._v("Подреди по:")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "menu" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "item",
-                    on: {
-                      click: function($event) {
-                        _vm.sort("theme.only_like_count", "desc")
-                      }
-                    }
-                  },
-                  [_vm._v("Най-популярни")]
-                ),
+    _vm.category != ""
+      ? _c("div", { staticClass: "category-header" }, [
+          _c("div", { staticClass: "overlay" }, [
+            _c("div", { staticClass: "ui container" }, [
+              _c("div", { staticClass: "ui basic segment" }, [
+                _c("div", { staticClass: "ui breadcrumb" }, [
+                  _c("a", { staticClass: "section", attrs: { href: "/" } }, [
+                    _vm._v("Начало")
+                  ]),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "right angle icon divider" }),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    { staticClass: "section", attrs: { href: "/browse" } },
+                    [_vm._v("Обучения")]
+                  ),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "right angle icon divider" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "active section" }, [
+                    _vm._v(_vm._s(_vm.category.name))
+                  ])
+                ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "item",
-                    on: {
-                      click: function($event) {
-                        _vm.sort("begin_at", "asc")
-                      }
-                    }
-                  },
-                  [_vm._v("Най-нови")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "item",
-                    on: {
-                      click: function($event) {
-                        _vm.sort("price", "asc")
-                      }
-                    }
-                  },
-                  [_vm._v("Цена възх.")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "item",
-                    on: {
-                      click: function($event) {
-                        _vm.sort("price", "desc")
-                      }
-                    }
-                  },
-                  [_vm._v("Цена низх.")]
-                )
+                _c("h1", [_vm._v(_vm._s(_vm.category.name))])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("div", { staticClass: "ui selection dropdown" }, [
-              _c("input", { attrs: { type: "hidden", name: "gender" } }),
-              _vm._v(" "),
-              _c("i", { staticClass: "dropdown icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "default text" }, [_vm._v("Град")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "menu" },
-                [
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "ui container" }, [
+      _vm.category == ""
+        ? _c(
+            "div",
+            { staticClass: "ui four column grid" },
+            _vm._l(_vm.categories, function(category) {
+              return _c("div", { staticClass: "column" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "category-box",
+                    style:
+                      "background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://placeimg.com/300/150/" +
+                      category.id +
+                      ");",
+                    attrs: { href: "/browse/" + category.slug }
+                  },
+                  [
+                    _c("h2", { staticClass: "ui inverted header" }, [
+                      _vm._v(_vm._s(category.name))
+                    ])
+                  ]
+                )
+              ])
+            })
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui segment" }, [
+        _c("div", { staticClass: "ui form" }, [
+          _c("div", { staticClass: "fields" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "ui selection dropdown" }, [
+                _c("input", { attrs: { type: "hidden", name: "gender" } }),
+                _vm._v(" "),
+                _c("i", { staticClass: "dropdown icon" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "default text" }, [
+                  _vm._v("Подреди по:")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "menu" }, [
                   _c(
                     "div",
                     {
                       staticClass: "item",
                       on: {
                         click: function($event) {
-                          _vm.filterByCity(null)
+                          _vm.sort("theme.only_like_count", "desc")
                         }
                       }
                     },
-                    [_vm._v("\n\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t")]
+                    [_vm._v("Най-популярни")]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.cities, function(city) {
-                    return _c(
-                      "div",
-                      {
-                        key: city.id,
-                        staticClass: "item",
-                        attrs: { value: city.id },
-                        on: {
-                          click: function($event) {
-                            _vm.filterByCity(city.id)
-                          }
-                        },
-                        model: {
-                          value: _vm.selectedCity,
-                          callback: function($$v) {
-                            _vm.selectedCity = $$v
-                          },
-                          expression: "selectedCity"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(city.name) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "loading",
-            rawName: "v-loading.fullscreen.lock",
-            value: _vm.fullscreenLoading,
-            expression: "fullscreenLoading",
-            modifiers: { fullscreen: true, lock: true }
-          }
-        ],
-        staticClass: "ui three stackable cards"
-      },
-      [
-        _vm._l(_vm.sortedEvents, function(event) {
-          return [
-            _c("div", { key: event.id, staticClass: "card" }, [
-              _c(
-                "div",
-                { staticClass: "extra content" },
-                [
-                  _c("BoxHover", {
-                    attrs: {
-                      id: event.theme.company.id,
-                      name: event.theme.company.name
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "image",
-                  style: "background: url(" + event.cover + ")"
-                },
-                [
                   _c(
                     "div",
                     {
-                      staticStyle: {
-                        display: "inline-block",
-                        padding: "5px",
-                        margin: "3px",
-                        "background-color": "white"
+                      staticClass: "item",
+                      on: {
+                        click: function($event) {
+                          _vm.sort("begin_at", "asc")
+                        }
                       }
                     },
-                    [_vm._v(_vm._s(event.price) + " лв.")]
+                    [_vm._v("Най-нови")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "item",
+                      on: {
+                        click: function($event) {
+                          _vm.sort("price", "asc")
+                        }
+                      }
+                    },
+                    [_vm._v("Цена възх.")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "item",
+                      on: {
+                        click: function($event) {
+                          _vm.sort("price", "desc")
+                        }
+                      }
+                    },
+                    [_vm._v("Цена низх.")]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t" + _vm._s(event.begin) + "\n\t\t\t\t\t"
-                  )
-                ]),
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "ui selection dropdown" }, [
+                _c("input", { attrs: { type: "hidden", name: "gender" } }),
+                _vm._v(" "),
+                _c("i", { staticClass: "dropdown icon" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "default text" }, [_vm._v("Град")]),
                 _vm._v(" "),
                 _c(
-                  "a",
-                  {
-                    staticClass: "header",
-                    attrs: { href: "/event/" + event.id }
-                  },
-                  [_vm._v(_vm._s(event.theme.title))]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "extra content" }, [
-                _c(
                   "div",
-                  { staticClass: "flex" },
+                  { staticClass: "menu" },
                   [
                     _c(
                       "div",
-                      [
-                        _c(
-                          "el-tooltip",
-                          {
-                            staticClass: "item",
-                            attrs: {
-                              effect: "dark",
-                              content: "Прегледан",
-                              placement: "top"
-                            }
-                          },
-                          [_c("i", { staticClass: "eye icon" })]
-                        ),
-                        _vm._v("\n\t\t\t\t\t\t\t\t54\n\t\t\t\t\t\t")
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-tooltip",
                       {
                         staticClass: "item",
-                        attrs: {
-                          effect: "dark",
-                          content: "Харесай",
-                          placement: "top"
+                        on: {
+                          click: function($event) {
+                            _vm.filterByCity(null)
+                          }
                         }
                       },
-                      [
-                        _c("Like", {
-                          attrs: {
-                            likes: event.theme.only_like_count,
-                            liked: event.theme.is_liked != null,
-                            item_id: event.theme.id,
-                            route: "/users/like/theme"
-                          }
-                        })
-                      ],
-                      1
+                      [_vm._v("\n\t\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t\t")]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "a",
-                      { attrs: { href: "/event/" + event.id + "/#comments" } },
-                      [
-                        _c(
-                          "el-tooltip",
-                          {
-                            staticClass: "item",
-                            attrs: {
-                              effect: "dark",
-                              content: "Коментари",
-                              placement: "top"
+                    _vm._l(_vm.cities, function(city) {
+                      return _c(
+                        "div",
+                        {
+                          key: city.id,
+                          staticClass: "item",
+                          attrs: { value: city.id },
+                          on: {
+                            click: function($event) {
+                              _vm.filterByCity(city.id)
                             }
                           },
-                          [_c("i", { staticClass: "comment outline icon" })]
-                        ),
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t" +
-                            _vm._s(event.theme.only_comment_count) +
-                            "\n\t\t\t\t\t\t"
-                        )
-                      ],
-                      1
-                    )
+                          model: {
+                            value: _vm.selectedCity,
+                            callback: function($$v) {
+                              _vm.selectedCity = $$v
+                            },
+                            expression: "selectedCity"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(city.name) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    })
                   ],
-                  1
+                  2
                 )
               ])
             ])
-          ]
-        })
-      ],
-      2
-    )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "loading",
+              rawName: "v-loading.fullscreen.lock",
+              value: _vm.fullscreenLoading,
+              expression: "fullscreenLoading",
+              modifiers: { fullscreen: true, lock: true }
+            }
+          ],
+          staticClass: "ui three stackable cards"
+        },
+        [
+          _vm._l(_vm.sortedEvents, function(event) {
+            return [
+              _c("div", { key: event.id, staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "extra content" },
+                  [
+                    _c("BoxHover", {
+                      attrs: {
+                        id: event.theme.company.id,
+                        name: event.theme.company.name
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "image",
+                    style: "background: url(" + event.cover + ")"
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticStyle: {
+                          display: "inline-block",
+                          padding: "5px",
+                          margin: "3px",
+                          "background-color": "white"
+                        }
+                      },
+                      [_vm._v(_vm._s(event.price) + " лв.")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
+                    _vm._v(
+                      "\n\t\t\t\t\t\t\t" +
+                        _vm._s(event.begin) +
+                        "\n\t\t\t\t\t\t"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "header",
+                      attrs: { href: "/event/" + event.id }
+                    },
+                    [_vm._v(_vm._s(event.theme.title))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "extra content" }, [
+                  _c(
+                    "div",
+                    { staticClass: "flex" },
+                    [
+                      _c(
+                        "div",
+                        [
+                          _c(
+                            "el-tooltip",
+                            {
+                              staticClass: "item",
+                              attrs: {
+                                effect: "dark",
+                                content: "Прегледан",
+                                placement: "top"
+                              }
+                            },
+                            [_c("i", { staticClass: "eye icon" })]
+                          ),
+                          _vm._v("\n\t\t\t\t\t\t\t\t\t54\n\t\t\t\t\t\t\t")
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-tooltip",
+                        {
+                          staticClass: "item",
+                          attrs: {
+                            effect: "dark",
+                            content: "Харесай",
+                            placement: "top"
+                          }
+                        },
+                        [
+                          _c("Like", {
+                            attrs: {
+                              likes: event.theme.only_like_count,
+                              liked: event.theme.is_liked != null,
+                              item_id: event.theme.id,
+                              route: "/users/like/theme"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/event/" + event.id + "/#comments" }
+                        },
+                        [
+                          _c(
+                            "el-tooltip",
+                            {
+                              staticClass: "item",
+                              attrs: {
+                                effect: "dark",
+                                content: "Коментари",
+                                placement: "top"
+                              }
+                            },
+                            [_c("i", { staticClass: "comment outline icon" })]
+                          ),
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t" +
+                              _vm._s(event.theme.only_comment_count) +
+                              "\n\t\t\t\t\t\t\t"
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ]
+          })
+        ],
+        2
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -110164,49 +110259,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -110494,7 +110546,10 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("label", [
-                    _vm._v("Съгласявам се с условията за ползване.")
+                    _vm._v("Съгласявам се с "),
+                    _c("a", { attrs: { href: "terms", target: "_blank" } }, [
+                      _vm._v("условията за ползване.")
+                    ])
                   ])
                 ])
               ]),

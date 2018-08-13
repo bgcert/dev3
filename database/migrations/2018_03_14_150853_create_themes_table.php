@@ -20,6 +20,17 @@ class CreateThemesTable extends Migration
 			$table->timestamps();
 		});
 
+		DB::table('categories')->insert([
+            ['name' => 'Бизнес', 'slug' => 'business'],
+            ['name' => 'IT & Софтуер', 'slug' => 'it-software'],
+            ['name' => 'Личностно развитие', 'slug' => 'personal-development'],
+            ['name' => 'Дизайн', 'slug' => 'design'],
+            ['name' => 'Маркетинг', 'slug' => 'marketing'],
+            ['name' => 'Изкуства', 'slug' => 'arts'],
+            ['name' => 'Здраве & Фитнесс', 'slug' => 'health-fitness'],
+            ['name' => 'Чужди езици', 'slug' => 'language'],
+        ]);
+
         Schema::create('themes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
