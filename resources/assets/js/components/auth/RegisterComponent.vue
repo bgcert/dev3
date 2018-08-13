@@ -44,7 +44,7 @@
 							<label>Съгласявам се с условията за ползване.</label>
 						</div>
 					</div>
-					<button class="ui positive fluid button" type="submit">Регистрирай се</button>
+					<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
 				</form>
 				
 
@@ -132,13 +132,13 @@
         			firstname: vm.form.firstname,
         			lastname: vm.form.lastname,
         			email: vm.form.email,
-        			publisher: vm.form.publisher,
-        			event_publish: vm.form.event_publish,
-        			venue_publish: vm.form.venue_publish,
-        			company_name: vm.form.companyName,
-        			slug: vm.form.slug,
+        			// publisher: vm.form.publisher,
+        			// event_publish: vm.form.event_publish,
+        			// venue_publish: vm.form.venue_publish,
+        			// company_name: vm.form.companyName,
+        			// slug: vm.form.slug,
         			password: vm.form.password,
-        			password_confirmation: vm.form.confirmPassword
+        			password_confirmation: vm.form.passwordConfirm
         		})
         		.then(function (response) {
         			vm.dialogFormVisible = false;

@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required',
             'picture' => 'string'
         ]);
     }
@@ -67,10 +68,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-    	$role = ($data['publisher']) ? 2 : 1;
+    	// dd($data);
+    	// $role = ($data['publisher']) ? 2 : 1;
 
         $user = User::create([
-        	'role_id' => $role,
+        	'role_id' => 1,
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
@@ -78,14 +80,14 @@ class RegisterController extends Controller
             'token' => str_random(25)
         ]);
 
-        if ($data['publisher']) {
-        	$user->company()->create([
-        		'name' => $data['company_name'],
-        		'slug' => $data['slug'],
-        		'event_publish' => $data['event_publish'],
-        		'venue_publish' => $data['venue_publish'],
-        	]);
-        }
+        // if ($data['publisher']) {
+        // 	$user->company()->create([
+        // 		'name' => $data['company_name'],
+        // 		'slug' => $data['slug'],
+        // 		'event_publish' => $data['event_publish'],
+        // 		'venue_publish' => $data['venue_publish'],
+        // 	]);
+        // }
 
         $user->sendVerificationEmail();
 
