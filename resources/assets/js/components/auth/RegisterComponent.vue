@@ -4,10 +4,12 @@
 
 		<el-dialog
 			width="30%"
-			title="Inner Dialog"
 			:visible.sync="innerVisible"
 			append-to-body>
-			<p>Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл.</p>
+			<div class="ui segment">
+				<p>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</p>
+				<button class="ui basic button" @click="closeConfirm">OK</button>
+			</div>
 		</el-dialog>
 
 		<el-dialog width="640px" :visible.sync="dialogFormVisible">
@@ -143,9 +145,6 @@
         		.then(function (response) {
         			vm.dialogFormVisible = false;
         			vm.innerVisible = true;
-        			setTimeout(function() {
-        				location.reload();
-        			}, 4000);
         		})
         		.catch(function (error) {
         			console.log(error);
@@ -157,6 +156,11 @@
         		setTimeout( function(){
 					EventBus.$emit('loginClicked');
 				}, 300 );
+        	},
+
+        	closeConfirm() {
+        		this.innerVisible == false;
+        		location.reload();
         	}
         },
 

@@ -110204,6 +110204,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -110252,9 +110254,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 vm.dialogFormVisible = false;
                 vm.innerVisible = true;
-                setTimeout(function () {
-                    location.reload();
-                }, 4000);
             }).catch(function (error) {
                 console.log(error);
             });
@@ -110264,6 +110263,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
                 __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
             }, 300);
+        },
+        closeConfirm: function closeConfirm() {
+            this.innerVisible == false;
+            location.reload();
         }
     },
 
@@ -110307,7 +110310,6 @@ var render = function() {
         {
           attrs: {
             width: "30%",
-            title: "Inner Dialog",
             visible: _vm.innerVisible,
             "append-to-body": ""
           },
@@ -110318,9 +110320,22 @@ var render = function() {
           }
         },
         [
-          _c("p", [
-            _vm._v(
-              "Моля, потвърдете регистрацията си, като кликнете върху линка, изпратен на посочения от Вас и-мейл."
+          _c("div", { staticClass: "ui segment" }, [
+            _c("p", [
+              _vm._v("Изпратен е линк за потвърждение на "),
+              _c("b", [_vm._v(_vm._s(_vm.form.email))]),
+              _vm._v(
+                ". За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията."
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "ui basic button",
+                on: { click: _vm.closeConfirm }
+              },
+              [_vm._v("OK")]
             )
           ])
         ]
