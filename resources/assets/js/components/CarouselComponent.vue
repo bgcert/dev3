@@ -56,32 +56,32 @@
 
 <style>
 .carousel_overlay {
-	background: linear-gradient(to bottom right,#002f4b,#dc4225);
-	opacity: .6;
+	background-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);
 	height: 100%;
 }
 
 .el-carousel__item {
 	color: white;
+	text-shadow: 0 2px 3px rgba(41,48,59,.2);
 	background-size: cover !important;
     background-position: center center !important;
 	background-color: #99a9bf;
 }
 
-.el-carousel__item {
+/*.el-carousel__item {
     content: '';
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-}
+}*/
 
 .carousel_title {
 	font-size: 4rem;
 }
 
-.carousel_title {
+.carousel_body {
 	font-size: 3rem;
 }
 /*.el-carousel__item:nth-child(2n+1) {
