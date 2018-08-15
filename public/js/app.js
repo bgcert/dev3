@@ -57296,6 +57296,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -57323,7 +57327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     setName: function setName() {
       var vm = this;
       var route = '/users/set/user/name';
-      axios.post(route, { name: vm.form.user.name }).then(function (response) {
+      axios.post(route, { firstname: vm.form.user.firstname, lastname: vm.form.user.lastname }).then(function (response) {
         console.log(response);
         vm.$message('Името е променено.');
       }).catch(function (error) {
@@ -57357,7 +57361,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     var route = '/users/load/user/';
     axios.get(route).then(function (response) {
-      console.log(response.data);
       vm.form.user = response.data;
       if (response.data.company) {
         vm.form.user.company = response.data.company;
@@ -57392,18 +57395,43 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.form.user.name,
-                expression: "form.user.name"
+                value: _vm.form.user.firstname,
+                expression: "form.user.firstname"
               }
             ],
             attrs: { type: "text" },
-            domProps: { value: _vm.form.user.name },
+            domProps: { value: _vm.form.user.firstname },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.form.user, "name", $event.target.value)
+                _vm.$set(_vm.form.user, "firstname", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Фамилия")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.user.lastname,
+                expression: "form.user.lastname"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.user.lastname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form.user, "lastname", $event.target.value)
               }
             }
           })
@@ -104609,7 +104637,7 @@ function injectStyle (ssrContext) {
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(418)
 /* template */
 var __vue_template__ = __webpack_require__(310)
 /* template functional */
@@ -104684,7 +104712,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.el-carousel__item h3 {\r\n\tcolor: #475669;\r\n\tfont-size: 18px;\r\n\topacity: 0.75;\r\n\tline-height: 300px;\r\n\tmargin: 0;\n}\n.el-carousel__item:nth-child(2n) {\r\n\tbackground-color: #99a9bf;\n}\n.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\n}\r\n", ""]);
+exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground: -webkit-gradient(linear,left top, right bottom,from(#002f4b),to(#dc4225));\r\n\tbackground: linear-gradient(to bottom right,#002f4b,#dc4225);\r\n\topacity: .6;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tcolor: white;\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\n.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\n}\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_title {\r\n\tfont-size: 3rem;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -104699,11 +104727,28 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "el-carousel",
-    { attrs: { interval: 5000, arrow: "always", height: "400px" } },
-    _vm._l(4, function(item) {
-      return _c("el-carousel-item", { key: item }, [
-        _c("h3", [_vm._v(_vm._s(item))])
-      ])
+    { attrs: { interval: 5000, arrow: "always", height: "500px" } },
+    _vm._l(_vm.items, function(item) {
+      return _c(
+        "el-carousel-item",
+        {
+          key: item.id,
+          style: "background: url(/img/slider/" + item.cover + ")"
+        },
+        [
+          _c("div", { staticClass: "carousel_overlay" }, [
+            _c("div", { staticClass: "ui container" }, [
+              _c("h1", { staticClass: "carousel_title" }, [
+                _vm._v(_vm._s(item.title))
+              ]),
+              _vm._v(" "),
+              _c("h3", { staticClass: "carousel_body" }, [
+                _vm._v(_vm._s(item.body))
+              ])
+            ])
+          ])
+        ]
+      )
     })
   )
 }
@@ -105093,6 +105138,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       auth: window.auth,
       category: '',
+      categories: {},
       events: [],
       cities: [],
       selectedCity: null,
@@ -111359,227 +111405,234 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['owner'],
+   props: ['owner'],
 
-    data: function data() {
-        return {
-            test: false,
-            loading: false,
-            threadList: [],
-            filteredThreads: [],
-            messages: [],
-            activeThread: {},
-            activeParticipant: {},
-            searchInput: '',
-            searchResults: [],
-            messageText: '',
-            lastMessageIsRead: false,
-            focusOnSearch: false
-        };
-    },
+   data: function data() {
+      return {
+         test: false,
+         loading: false,
+         threadList: [],
+         filteredThreads: [],
+         messages: [],
+         activeThread: {},
+         activeParticipant: {},
+         searchInput: '',
+         searchResults: [],
+         messageText: '',
+         lastMessageIsRead: false,
+         focusOnSearch: false,
+         sending: false
+      };
+   },
 
-    //   	computed: {
-    // 	threads: function () {
-    // 		return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
-    // 	}
-    // },
+   //   	computed: {
+   // 	threads: function () {
+   // 		return (this.filteredThreads.length > 0) ? this.filteredThreads : this.threadList;
+   // 	}
+   // },
 
-    methods: {
-        allThreadsByCurrentUser: function allThreadsByCurrentUser() {
-            return new Promise(function (resolve, reject) {
-                axios.get('/msgr/threads').then(function (response) {
-                    resolve(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                    reject('user threads not loaded');
-                });
-            });
-        },
-        setThread: function setThread(thread) {
-            var vm = this;
-            this.activeThread = thread;
-            this.activeParticipant = thread.first_participant.user;
-        },
-        getMessages: function getMessages(id) {
-            var vm = this;
-            axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
-                vm.messages = response.data;
+   methods: {
+      allThreadsByCurrentUser: function allThreadsByCurrentUser() {
+         return new Promise(function (resolve, reject) {
+            axios.get('/msgr/threads').then(function (response) {
+               resolve(response.data);
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
+               reject('user threads not loaded');
             });
-        },
-        send: function send() {
-            var vm = this;
-            var route = void 0;
-            // Add message
-            if (this.activeThread.id != null) {
-                route = '/msgr/thread/' + this.activeThread.id + '/message/add';
-                axios.post(route, {
-                    body: vm.messageText
-                }).then(function (response) {
-                    vm.messages.push(response.data);
-                    vm.messageText = '';
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                return;
-            }
-
-            // New message
-            route = '/msgr/thread/message/new';
+         });
+      },
+      setThread: function setThread(thread) {
+         var vm = this;
+         this.activeThread = thread;
+         this.activeParticipant = thread.first_participant.user;
+      },
+      getMessages: function getMessages(id) {
+         var vm = this;
+         axios.get('/msgr/thread/' + id + '/messages').then(function (response) {
+            vm.messages = response.data;
+         }).catch(function (error) {
+            console.log(error);
+         });
+      },
+      send: function send() {
+         if (!this.messageText) return;
+         var vm = this;
+         var route = void 0;
+         // Add message
+         if (this.activeThread.id != null) {
+            route = '/msgr/thread/' + this.activeThread.id + '/message/add';
             axios.post(route, {
-                user_id: vm.activeParticipant.id,
-                body: vm.messageText
+               body: vm.messageText
             }).then(function (response) {
-                vm.threadList.unshift(response.data);
-                vm.setThread(response.data);
-                vm.messageText = '';
+               vm.messages.push(response.data);
+               vm.messageText = '';
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
             });
-        },
-        searchUsers: function searchUsers() {
-            var vm = this;
-            axios.post('/msgr/search', {
-                text: vm.searchInput
+            return;
+         }
+
+         // New message
+         route = '/msgr/thread/message/new';
+         if (!this.sending) {
+            this.sending = true;
+            axios.post(route, {
+               user_id: vm.activeParticipant.id,
+               body: vm.messageText
             }).then(function (response) {
-                vm.filterThreads();
-                // vm.filterResults(response.data);
-                vm.searchResults = response.data;
+               vm.threadList.unshift(response.data);
+               vm.setThread(response.data);
+               vm.messageText = '';
+            }).then(function () {
+               vm.sending = false;
             }).catch(function (error) {
-                console.log(error);
+               console.log(error);
             });
-        },
+         }
+      },
+      searchUsers: function searchUsers() {
+         var vm = this;
+         axios.post('/msgr/search', {
+            text: vm.searchInput
+         }).then(function (response) {
+            vm.filterThreads();
+            // vm.filterResults(response.data);
+            vm.searchResults = response.data;
+         }).catch(function (error) {
+            console.log(error);
+         });
+      },
 
 
-        searchAfterDebounce: _.debounce(function () {
-            this.searchUsers();
-        }, 800 // 800 milliseconds
-        ),
+      searchAfterDebounce: _.debounce(function () {
+         this.searchUsers();
+      }, 800 // 800 milliseconds
+      ),
 
-        clearSearch: function clearSearch() {
-            this.searchInput = '';
-            this.filteredThreads = this.threadList;
-            this.searchResults = [];
-        },
-        selectUser: function selectUser(user) {
-            this.messages = [];
-            this.activeParticipant = user;
-            this.activeThread = { id: null };
-            this.clearSearch();
-        },
-        filterThreads: function filterThreads() {
-            var vm = this;
-            var result = this.threadList.find(function (thread) {
-                return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
+      clearSearch: function clearSearch() {
+         this.searchInput = '';
+         this.filteredThreads = this.threadList;
+         this.searchResults = [];
+      },
+      selectUser: function selectUser(user) {
+         this.messages = [];
+         this.activeParticipant = user;
+         this.activeThread = { id: null };
+         this.clearSearch();
+      },
+      filterThreads: function filterThreads() {
+         var vm = this;
+         var result = this.threadList.filter(function (thread) {
+            return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
+         });
+         if (result) {
+            this.filteredThreads = [];
+            this.filteredThreads = result;
+         }
+      },
+      seen: function seen() {
+         if (this.activeThread.id == null) {
+            return;
+         }
+         var vm = this;
+         if (!this.lastMessageIsRead) {
+            var route = '/msgr/thread/seen';
+            axios.post(route, {
+               thread_id: vm.activeThread.id,
+               read_message_id: vm.messages[vm.messages.length - 1].id // last message id
+            }).then(function (response) {
+               vm.lastMessageIsRead = true;
+               console.log(response.data);
+            }).catch(function (error) {
+               console.log(error);
             });
-            if (result) {
-                this.filteredThreads = [];
-                this.filteredThreads.push(result);
-            }
-        },
-        seen: function seen() {
-            if (this.activeThread.id == null) {
-                return;
-            }
-            var vm = this;
-            if (!this.lastMessageIsRead) {
-                var route = '/msgr/thread/seen';
-                axios.post(route, {
-                    thread_id: vm.activeThread.id,
-                    read_message_id: vm.messages[vm.messages.length - 1].id // last message id
-                }).then(function (response) {
-                    vm.lastMessageIsRead = true;
-                    console.log(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                });
-            }
-        },
-        load: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.allThreadsByCurrentUser();
+         }
+      },
+      load: function () {
+         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+               while (1) {
+                  switch (_context.prev = _context.next) {
+                     case 0:
+                        _context.next = 2;
+                        return this.allThreadsByCurrentUser();
 
-                            case 2:
-                                this.threadList = _context.sent;
+                     case 2:
+                        this.threadList = _context.sent;
 
-                                this.filteredThreads = this.threadList;
+                        this.filteredThreads = this.threadList;
 
-                                // This will run after previous is fully loaded!
-                                if (this.threadList.length > 0) {
-                                    this.setThread(this.threadList[0]);
-                                }
-
-                            case 5:
-                            case 'end':
-                                return _context.stop();
+                        // This will run after previous is fully loaded!
+                        if (this.threadList.length > 0) {
+                           this.setThread(this.threadList[0]);
                         }
-                    }
-                }, _callee, this);
-            }));
 
-            function load() {
-                return _ref.apply(this, arguments);
-            }
+                     case 5:
+                     case 'end':
+                        return _context.stop();
+                  }
+               }
+            }, _callee, this);
+         }));
 
-            return load;
-        }()
-    },
+         function load() {
+            return _ref.apply(this, arguments);
+         }
 
-    watch: {
-        activeThread: function activeThread(val) {
-            if (val.id != null) {
-                this.getMessages(val.id);
-            }
-        },
+         return load;
+      }()
+   },
 
-        searchInput: function searchInput(val) {
-            if (val.length > 2) {
-                this.searchAfterDebounce();
-            }
-        }
-    },
+   watch: {
+      activeThread: function activeThread(val) {
+         if (val.id != null) {
+            this.getMessages(val.id);
+         }
+      },
 
-    mounted: function mounted() {
-        console.log('Messenger mounted.');
-        this.load();
+      searchInput: function searchInput(val) {
+         if (val.length > 2) {
+            this.searchAfterDebounce();
+         }
+      }
+   },
 
-        // init bunch of sounds
-        ion.sound({
-            sounds: [{ name: "water_droplet_3" }],
+   mounted: function mounted() {
+      console.log('Messenger mounted.');
+      this.load();
 
-            // main config
-            path: "/sounds/",
-            preload: true,
-            multiplay: true,
-            volume: 0.9
-        });
-    },
-    created: function created() {
-        var _this = this;
+      // init bunch of sounds
+      ion.sound({
+         sounds: [{ name: "water_droplet_3" }],
 
-        Echo.private('messages.' + this.owner.id).listen('NewMessage', function (e) {
-            if (e.message.thread_id == _this.activeThread.id) {
-                _this.messages.push(e.message);
-                // play sound
-                ion.sound.play("water_droplet_3");
-            }
-        });
+         // main config
+         path: "/sounds/",
+         preload: true,
+         multiplay: true,
+         volume: 0.9
+      });
+   },
+   created: function created() {
+      var _this = this;
 
-        Echo.private('threads.' + this.owner.id).listen('NewThread', function (e) {
-            var route = 'msgr/thread/' + e.thread_id;
-            axios.get(route).then(function (response) {
-                _this.threadList.unshift(response.data);
-                // play sound
-                ion.sound.play("water_droplet_3");
-            });
-        });
-    }
+      Echo.private('messages.' + this.owner.id).listen('NewMessage', function (e) {
+         if (e.message.thread_id == _this.activeThread.id) {
+            _this.messages.push(e.message);
+            // play sound
+            ion.sound.play("water_droplet_3");
+         }
+      });
+
+      Echo.private('threads.' + this.owner.id).listen('NewThread', function (e) {
+         var route = 'msgr/thread/' + e.thread_id;
+         axios.get(route).then(function (response) {
+            _this.threadList.unshift(response.data);
+            // play sound
+            ion.sound.play("water_droplet_3");
+         });
+      });
+   }
 });
 
 /***/ }),
@@ -111605,7 +111658,7 @@ var render = function() {
                 expression: "searchInput"
               }
             ],
-            attrs: { type: "text", placeholder: "Search..." },
+            attrs: { type: "text", placeholder: "Намери потребител ..." },
             domProps: { value: _vm.searchInput },
             on: {
               input: function($event) {
@@ -111803,7 +111856,7 @@ var render = function() {
                   expression: "messageText"
                 }
               ],
-              attrs: { name: "message", placeholder: "Write a message ..." },
+              attrs: { name: "message", placeholder: "Въведете съобщение ..." },
               domProps: { value: _vm.messageText },
               on: {
                 keyup: function($event) {
@@ -111845,6 +111898,85 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    data: function data() {
+        return {
+            items: {
+                0: {
+                    id: 1,
+                    title: 'first test title',
+                    body: 'example test body',
+                    cover: '1.jpeg'
+                },
+                1: {
+                    id: 2,
+                    title: 'second test title',
+                    body: 'second example test body ',
+                    cover: '2.jpeg'
+                }
+            }
+        };
+    },
+
+    mounted: function mounted() {
+        console.log('Carousel mounter');
+    },
+
+
+    methods: {},
+
+    created: function created() {
+        //     	let vm = this;
+        //     	axios.get('/api/categories').then(function (response) {
+        // 				vm.categories = response.data;
+        // })
+        // .catch(function (error) {
+        // 	console.log(error);
+        // });
+    }
+});
 
 /***/ })
 /******/ ]);

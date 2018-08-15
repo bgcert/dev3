@@ -15,13 +15,9 @@
 	</style>
 @endpush
 
+<carousel></carousel>
 <div class="ui container">
-	<div class="ui grid">
-		<div class="column">
-			<carousel></carousel>		
-		</div>
-	</div>
-
+	
 	<div class="ui center aligned grid">
 		<div class="column">
 			<h3 class="ui header">

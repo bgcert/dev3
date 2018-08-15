@@ -22,10 +22,11 @@ class SettingsController extends Controller
     public function setName()
     {
     	$user = \App\User::find(\Auth::id());
-    	$user->name = request()->name;
+    	$user->firstname = request()->firstname;
+    	$user->lastname = request()->lastname;
     	$user->save();
 
-    	return $user->name;
+    	return $user->id;
     }
 
     // Maybe putting part of this in user/company model should be better!

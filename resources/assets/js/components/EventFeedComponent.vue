@@ -137,6 +137,7 @@
     		return {
     			auth: window.auth,
     			category: '',
+    			categories: {},
     			events: [],
     			cities: [],
     			selectedCity: null,

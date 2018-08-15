@@ -3,7 +3,11 @@
 		<form class="ui form">
 			<div class="field">
 				<label>Име</label>
-				<input type="text" v-model="form.user.name">
+				<input type="text" v-model="form.user.firstname">
+			</div>
+			<div class="field">
+				<label>Фамилия</label>
+				<input type="text" v-model="form.user.lastname">
 			</div>
 			<div class="field">
 				<button class="ui basic button" @click.prevent="setName"> Промени</button>
@@ -79,7 +83,7 @@
     		setName() {
     			var vm = this;
     			var route = '/users/set/user/name';
-    			axios.post(route, { name: vm.form.user.name })
+    			axios.post(route, { firstname: vm.form.user.firstname, lastname: vm.form.user.lastname })
 				.then(function (response) {
 					console.log(response);
 					vm.$message('Името е променено.');
@@ -120,7 +124,6 @@
             var vm = this;
             var route = '/users/load/user/';
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
         		vm.form.user = response.data;
         		if (response.data.company) {
         			vm.form.user.company = response.data.company;

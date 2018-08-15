@@ -5,7 +5,7 @@
     			<h3>Messenger: {{ owner.full_name }}</h3>
     			<!-- Search -->
     			<div class="ui fluid icon input">
-    				<input type="text" placeholder="Search..." v-model="searchInput">
+    				<input type="text" placeholder="Намери потребител ..." v-model="searchInput">
     				<i class="close link icon" @click="clearSearch()"></i>
     			</div>
 
@@ -87,7 +87,7 @@
 	    					v-model="messageText"
 	    					@keyup.enter="send"
 	    					@focus="seen"
-	    					placeholder="Write a message ...">
+	    					placeholder="Въведете съобщение ...">
 	    				</input>
 	    			</div>
 	    		</div>
@@ -113,7 +113,8 @@
     			searchResults: [],
     			messageText: '',
     			lastMessageIsRead: false,
-    			focusOnSearch: false
+    			focusOnSearch: false,
+    			sending: false
     		}
     	},
 
@@ -155,6 +156,7 @@
     		},
 
     		send() {
+    			if (!this.messageText) return;
     			let vm = this;
     			let route;
     			// Add message
@@ -175,20 +177,24 @@
     			
 				// New message
     			route = '/msgr/thread/message/new';
-    			axios.post(route, {
-    				user_id: vm.activeParticipant.id,
-    				body: vm.messageText
-    			})
-    			.then(function (response) {
-    				vm.threadList.unshift(response.data);
-    				vm.setThread(response.data);
-    				vm.messageText = '';
-    			})
-    			.catch(function (error) {
-    				console.log(error);
-    			});
-
-    			
+    			if(!this.sending) {
+    				this.sending = true;
+	    			axios.post(route, {
+	    				user_id: vm.activeParticipant.id,
+	    				body: vm.messageText
+	    			})
+	    			.then(function (response) {
+	    				vm.threadList.unshift(response.data);
+	    				vm.setThread(response.data);
+	    				vm.messageText = '';
+	    			})
+	    			.then(function () {
+	    				vm.sending = false;
+	    			})
+	    			.catch(function (error) {
+	    				console.log(error);
+	    			});
+	    		}
     		},
 
     		searchUsers() {
@@ -227,12 +233,12 @@
 
     		filterThreads() {
     			let vm = this;
-    			let result = this.threadList.find( function(thread) {
+    			let result = this.threadList.filter( function(thread) {
     				return thread.first_participant.user.full_name.toLowerCase().includes(vm.searchInput);
     			});
     			if (result) {
     				this.filteredThreads = [];
-    				this.filteredThreads.push(result);
+    				this.filteredThreads = result;
     			}
     		},
 
