@@ -28,8 +28,7 @@
 @endpush
 
 <carousel></carousel>
-<div class="ui container">
-	
+<div class="ui container mt-20">
 	<div class="ui center aligned grid">
 		<div class="column">
 			<h3 class="ui header">

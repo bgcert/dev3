@@ -16,7 +16,7 @@
 		</el-carousel>
 		<div class="publish">
 			<div style="text-align: center;">
-				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <a href="#">Вижте как?</a></h4>
+				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <span><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
 			</div>
 		</div>
 	</div>
@@ -109,6 +109,10 @@
 	background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
 	padding: 16px 0;
 	margin: 0 auto;
+}
+
+.publish_link {
+	color: white !important;
 }
 /*.el-carousel__item:nth-child(2n+1) {
 	background-color: #d3dce6;

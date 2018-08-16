@@ -104712,7 +104712,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 47, 75, 0.7)), to(rgba(220, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 16px 0;\r\n\tmargin: 0 auto;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
+exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 47, 75, 0.7)), to(rgba(220, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 16px 0;\r\n\tmargin: 0 auto;\n}\n.publish_link {\r\n\tcolor: white !important;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -104861,7 +104861,13 @@ var staticRenderFns = [
       _c("div", { staticStyle: { "text-align": "center" } }, [
         _c("h4", [
           _vm._v("Публикувайте Вашите обучения или зали в Семинари 365. "),
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Вижте как?")])
+          _c("span", [
+            _c(
+              "a",
+              { staticClass: "ui inverted button", attrs: { href: "#" } },
+              [_vm._v("Вижте как?")]
+            )
+          ])
         ])
       ])
     ])
@@ -109716,7 +109722,7 @@ var render = function() {
               expression: "input"
             }
           ],
-          attrs: { type: "text", placeholder: "Search..." },
+          attrs: { type: "text", placeholder: "Търсене..." },
           domProps: { value: _vm.input },
           on: {
             blur: _vm.clearSearch,

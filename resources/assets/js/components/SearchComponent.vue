@@ -1,7 +1,7 @@
 <template>
 	<div class="search-container">
 		<div class="ui fluid icon input" :class="{ loading: loading }">
-		  <input type="text" v-model="input" placeholder="Search..." @blur="clearSearch">
+		  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
 		  <i class="search icon"></i>
 		</div>
 		<div class="ui segments search-results" v-if="events.length > 0">
