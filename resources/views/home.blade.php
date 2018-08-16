@@ -4,6 +4,18 @@
 
 @push('header-scripts')
     <style>
+    	#nav-header {
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		right: 0;
+    		margin: 0 auto;
+    		z-index: 10;
+    		background-color: transparent;
+    		border: none;
+    		box-shadow: none;
+    	}
+
 		.category-box {
 			display: flex;
 			border-radius: 3px;

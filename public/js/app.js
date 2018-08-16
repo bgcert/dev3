@@ -104712,7 +104712,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 47, 75, 0.7)), to(rgba(220, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 3rem;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
+exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 47, 75, 0.7)), to(rgba(220, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 16px 0;\r\n\tmargin: 0 auto;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -104737,6 +104737,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -104746,8 +104757,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: {
                 0: {
                     id: 1,
-                    title: 'first test title',
-                    body: 'example test body',
+                    title: 'Семинари 365',
+                    body: 'Постоянно развитие',
                     cover: '1.jpeg'
                 },
                 1: {
@@ -104787,33 +104798,75 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-carousel",
-    { attrs: { interval: 5000, arrow: "always", height: "500px" } },
-    _vm._l(_vm.items, function(item) {
-      return _c(
-        "el-carousel-item",
-        {
-          key: item.id,
-          style: "background: url(/img/slider/" + item.cover + ")"
-        },
-        [
-          _c("div", { staticClass: "carousel_overlay" }, [
-            _c("div", { staticClass: "ui container" }, [
-              _c("h1", { staticClass: "carousel_title" }, [
-                _vm._v(_vm._s(item.title))
-              ]),
-              _vm._v(" "),
-              _c("h3", { staticClass: "carousel_body" }, [
-                _vm._v(_vm._s(item.body))
+    "div",
+    [
+      _c(
+        "el-carousel",
+        { attrs: { interval: 5000, arrow: "always", height: "500px" } },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "el-carousel-item",
+            {
+              key: item.id,
+              style: "background: url(/img/slider/" + item.cover + ")"
+            },
+            [
+              _c("div", { staticClass: "carousel_overlay" }, [
+                _c("div", { staticClass: "carousel_container" }, [
+                  _c("div", { staticStyle: { "text-align": "center" } }, [
+                    _c("h1", { staticClass: "carousel_title" }, [
+                      _vm._v(_vm._s(item.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("h3", { staticClass: "carousel_body" }, [
+                      _vm._v(_vm._s(item.body))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui huge inverted button",
+                        attrs: { href: "#" }
+                      },
+                      [_vm._v("Регистрация")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "ui huge inverted button",
+                        attrs: { href: "#" }
+                      },
+                      [_vm._v("Вход")]
+                    )
+                  ])
+                ])
               ])
-            ])
-          ])
-        ]
-      )
-    })
+            ]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "publish" }, [
+      _c("div", { staticStyle: { "text-align": "center" } }, [
+        _c("h4", [
+          _vm._v("Публикувайте Вашите обучения или зали в Семинари 365. "),
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Вижте как?")])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -105807,7 +105860,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "mt-20" }, [
     _vm.category != ""
       ? _c("div", { staticClass: "category-header" }, [
           _c("div", { staticClass: "overlay" }, [

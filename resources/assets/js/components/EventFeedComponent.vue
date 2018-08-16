@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="mt-20">
 		<div class="category-header" v-if="category != ''">
 			<div class="overlay">
 				<div class="ui container">

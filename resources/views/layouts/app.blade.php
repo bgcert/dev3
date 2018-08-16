@@ -63,8 +63,6 @@
 
     <script>
     	$('.ui.dropdown').dropdown();
-    	$('.ui.sticky')
-	    	.sticky();
     </script>
 
     <!-- Push Scripts -->

@@ -1,14 +1,25 @@
 <template>
-	<el-carousel :interval="5000" arrow="always" height="500px">
-		<el-carousel-item v-for="item in items" :key="item.id" :style="'background: url(/img/slider/' + item.cover + ')'">
-			<div class="carousel_overlay">
-				<div class="ui container">
-					<h1 class="carousel_title">{{ item.title }}</h1>
-					<h3 class="carousel_body">{{ item.body }}</h3>
+	<div>
+		<el-carousel :interval="5000" arrow="always" height="500px">
+			<el-carousel-item v-for="item in items" :key="item.id" :style="'background: url(/img/slider/' + item.cover + ')'">
+				<div class="carousel_overlay">
+					<div class="carousel_container">
+						<div style="text-align: center;">
+							<h1 class="carousel_title">{{ item.title }}</h1>
+							<h3 class="carousel_body">{{ item.body }}</h3>
+							<a href="#" class="ui huge inverted button">Регистрация</a>
+							<a href="#" class="ui huge inverted button">Вход</a>
+						</div>
+					</div>
 				</div>
+			</el-carousel-item>
+		</el-carousel>
+		<div class="publish">
+			<div style="text-align: center;">
+				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <a href="#">Вижте как?</a></h4>
 			</div>
-		</el-carousel-item>
-	</el-carousel>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -20,8 +31,8 @@
     			items: {
     				0: {
     					id: 1,
-    					title: 'first test title',
-    					body: 'example test body',
+    					title: 'Семинари 365',
+    					body: 'Постоянно развитие',
     					cover: '1.jpeg'
     				},
     				1: {
@@ -60,6 +71,13 @@
 	height: 100%;
 }
 
+.carousel_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
 .el-carousel__item {
 	color: white;
 	text-shadow: 0 2px 3px rgba(41,48,59,.2);
@@ -82,7 +100,15 @@
 }
 
 .carousel_body {
-	font-size: 3rem;
+	font-size: 2.2rem;
+}
+
+.publish {
+	color: white;
+	background-color: #FFE53B;
+	background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+	padding: 16px 0;
+	margin: 0 auto;
 }
 /*.el-carousel__item:nth-child(2n+1) {
 	background-color: #d3dce6;
