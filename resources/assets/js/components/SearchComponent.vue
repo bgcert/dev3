@@ -1,6 +1,6 @@
 <template>
 	<div class="search-container">
-		<div class="ui fluid icon input" :class="{ loading: loading }">
+		<div class="ui fluid icon input" :class="{ big: big, loading: loading }">
 		  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
 		  <i class="search icon"></i>
 		</div>
@@ -14,6 +14,8 @@
 
 <script>
     export default {
+    	props: ['big'],
+
     	data: function () {
     		return {
     			loading: false,

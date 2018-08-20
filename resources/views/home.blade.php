@@ -34,6 +34,9 @@
 			<h3 class="ui header">
 				Seminari365 is growing fast. Want to see just how much? Sign up and we'll let you know
 			</h3>
+			<div style="text-align: center;">
+				<search :big="true"></search>
+			</div>
 		</div>
 	</div>
 

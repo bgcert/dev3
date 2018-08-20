@@ -12,10 +12,10 @@ class DataController extends Controller
     	$categories = \App\Category::all();
     	if (request()->slug) {
     		$category = \App\Category::where('slug', request()->slug)->first();
-    		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company')->get();
+    		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company.company_detail')->get();
     	} else
     	{
-    		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')->get();
+    		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company.company_detail')->get();
     	}
     	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	return [$events, $cities, $categories, $category];

@@ -4,11 +4,11 @@
 			<el-carousel-item v-for="item in items" :key="item.id" :style="'background: url(/img/slider/' + item.cover + ')'">
 				<div class="carousel_overlay">
 					<div class="carousel_container">
-						<div style="text-align: center;">
+						<div class="carousel_heading">
 							<h1 class="carousel_title">{{ item.title }}</h1>
 							<h3 class="carousel_body">{{ item.body }}</h3>
-							<a href="#" class="ui huge inverted button">Регистрация</a>
-							<a href="#" class="ui huge inverted button">Вход</a>
+							<a href="#" class="ui big inverted button">Регистрация</a>
+							<a href="#" class="ui big inverted button">Вход</a>
 						</div>
 					</div>
 				</div>
@@ -16,7 +16,7 @@
 		</el-carousel>
 		<div class="publish">
 			<div style="text-align: center;">
-				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <span><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
+				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <span style="margin-left: 10px;"><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 
 <style>
 .carousel_overlay {
-	background-image: linear-gradient(to bottom right, rgba(0, 47, 75, 0.7) 0%, rgba(220, 66, 37, 0.40) 100%);
+	background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);
 	height: 100%;
 }
 
@@ -79,8 +79,6 @@
 }
 
 .el-carousel__item {
-	color: white;
-	text-shadow: 0 2px 3px rgba(41,48,59,.2);
 	background-size: cover !important;
     background-position: center center !important;
 	background-color: #99a9bf;
@@ -103,11 +101,17 @@
 	font-size: 2.2rem;
 }
 
+.carousel_heading {
+	text-align: center;
+	color: white;
+	text-shadow: 0 2px 3px rgba(41,48,59,.2);
+}
+
 .publish {
 	color: white;
 	background-color: #FFE53B;
 	background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
-	padding: 16px 0;
+	padding: 14px 0;
 	margin: 0 auto;
 }
 

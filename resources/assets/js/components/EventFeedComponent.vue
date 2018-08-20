@@ -70,6 +70,9 @@
 					</div>
 				</div>
 			</div>
+			<div class="ui four stackable cards">
+				<box :item="event" v-for="event in events" :key="event.id"></box>
+			</div>
 			<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">
 				<template v-for="event in sortedEvents">
 					<div class="card" :key="event.id">
@@ -124,11 +127,12 @@
 
 <script>
 	import { EventBus } from '../app';
+	import Box from './BoxComponent.vue'
 	import Like from './LikeComponent.vue'
 	import BoxHover from './BoxHoverComponent.vue'
     export default {
     	components: {
-			Like, BoxHover
+			Box, Like, BoxHover
 		},
 
 		props: ['slug'],
