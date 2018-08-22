@@ -1,14 +1,14 @@
 <template>
 	<div class="ui card">
-		<div class="image image_container" :style="`background: url(${item.cover})`">
-			<a class="owner" :href="/c/ + item.theme.company.slug">
-				<div class="logo" :style="'background-image: url(' + item.theme.company.company_detail.logo + ')'"></div>
+		<a :href="/event/ + id" class="image image_container" :style="`background: url(${cover})`">
+			<a class="owner" :href="/c/ + slug">
+				<div class="logo" :style="'background-image: url(' + logo + ')'"></div>
 			</a>
-			<span class="price">{{ item.price }} лв.</span>
-		</div>
+		</a>
+		<span class="price">{{ price }} лв.</span>
 		<div class="content content_box">
-			<a :href="'/event/' + item.id" class="header">{{ item.theme.title }}</a>
-			<p style="text-transform: uppercase;"> {{ item.begin }}</p>
+			<a :href="'/event/' + id" class="header">{{ title }}</a>
+			<p style="text-transform: uppercase;"> {{ start_date }}</p>
 		</div>
 		<div class="extra content">
 			<div class="flex">
@@ -20,14 +20,14 @@
 				</div>
 				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 					<Like
-						:likes="item.theme.only_like_count"
-						:liked="item.theme.is_liked != null"
-						:item_id="item.theme.id"
+						:likes="like_count"
+						:liked="is_liked != null"
+						:item_id="likable_id"
 						:route="'/users/like/theme'">
 					</Like>
 				</el-tooltip>
 				
-				<a :href="'/event/' + item.id + '/#comments'">
+				<a :href="'/event/' + id + '/#comments'">
 					<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
 						<i class="comment outline icon"></i>
 					</el-tooltip>
@@ -43,7 +43,20 @@
 	import Like from './LikeComponent.vue'
     export default {
     	components: { Like },
-    	props: ['item'],
+    	props: [
+    			'id',
+    			'likable_id',
+    			'slug',
+    			'title',
+    			'cover',
+    			'logo',
+    			'start_date',
+    			'price',
+    			'like_count',
+    			'is_liked',
+    			'route',
+    			'item'
+    			],
     	data: function () {
     		return {
 
@@ -115,7 +128,7 @@
 		background: #fff;
 		position: absolute;
 		right: 10px;
-		bottom: 10px;
+		top: 10px;
 		padding: 5px;
 		border-radius: 2px;
 		border: 1px solid #E1E1E1;

@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="ui container">
-			<div class="ui four column grid" v-if="category == ''">
+			<div class="ui four column stackable grid" v-if="category == ''">
 				<div class="column" v-for="category in categories">
 					<a
 						:href="'/browse/' + category.slug"
@@ -71,55 +71,22 @@
 				</div>
 			</div>
 			<div class="ui four stackable cards">
-				<box :item="event" v-for="event in events" :key="event.id"></box>
-			</div>
-			<div class="ui three stackable cards" v-loading.fullscreen.lock="fullscreenLoading">
-				<template v-for="event in sortedEvents">
-					<div class="card" :key="event.id">
-						<div class="extra content">
-							<BoxHover
-								:id="event.theme.company.id"
-								:name="event.theme.company.name">
-							</BoxHover>
-						</div>
-
-						<div class="image"
-							:style="`background: url(${event.cover})`">
-							<div style="display:inline-block; padding: 5px; margin: 3px; background-color: white;">{{ event.price }} лв.</div>
-						</div>
-						<div class="content">
-							<p style="text-transform: uppercase;">
-								{{ event.begin }}
-							</p>
-							<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
-						</div>
-						<div class="extra content">
-							<div class="flex">
-								<div>
-									<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
-										<i class="eye icon"></i>
-									</el-tooltip>
-										54
-								</div>
-								<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
-									<Like
-										:likes="event.theme.only_like_count"
-										:liked="event.theme.is_liked != null"
-										:item_id="event.theme.id"
-										:route="'/users/like/theme'">
-									</Like>
-								</el-tooltip>
-								
-								<a :href="'/event/' + event.id + '/#comments'">
-									<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
-										<i class="comment outline icon"></i>
-									</el-tooltip>
-									{{ event.theme.only_comment_count }}
-								</a>
-							</div>
-						</div>
-					</div>
-				</template>
+				<box
+					v-for="event in events"
+					:key="event.id"
+					:item="event"
+					:id="event.id"
+					:likable_id="event.theme.id"
+					:slug="event.theme.company.slug"
+					:title="event.theme.title"
+					:cover="event.cover"
+					:logo="event.theme.company.company_detail.logo"
+					:start_date="event.begin"
+					:price="event.price"
+					:like_count="event.theme.only_like_count"
+					:is_liked="event.theme.is_liked"
+					:route="'/users/like/theme'">
+				</box>
 			</div>
 		</div>
 	</div>

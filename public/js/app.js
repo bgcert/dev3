@@ -104799,6 +104799,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "computer only" },
     [
       _c(
         "el-carousel",
@@ -105215,39 +105216,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -105435,7 +105403,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.content_box {\n\t\tpadding-top: 40px !important;\n}\n.box {\n\t\tbackground-color: #fff;\n\t\tborder-radius: 3px;\n    \theight: 360px;\n\t\t-webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\t        box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 96px;\n\t\tleft: 20px;\n\t\tpadding: 6px;\n\t\twidth: 64px;\n\t\theight: 64px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\tbottom: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.likes {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.comments {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.content_box {\n\t\tpadding-top: 40px !important;\n}\n.box {\n\t\tbackground-color: #fff;\n\t\tborder-radius: 3px;\n    \theight: 360px;\n\t\t-webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\t        box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 96px;\n\t\tleft: 20px;\n\t\tpadding: 6px;\n\t\twidth: 64px;\n\t\theight: 64px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.likes {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.comments {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n", ""]);
 
 // exports
 
@@ -105493,7 +105461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { Like: __WEBPACK_IMPORTED_MODULE_0__LikeComponent_vue___default.a },
-    props: ['item'],
+    props: ['id', 'likable_id', 'slug', 'title', 'cover', 'logo', 'start_date', 'price', 'like_count', 'is_liked', 'route', 'item'],
     data: function data() {
         return {};
     },
@@ -105689,44 +105657,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ui card" }, [
     _c(
-      "div",
+      "a",
       {
         staticClass: "image image_container",
-        style: "background: url(" + _vm.item.cover + ")"
+        style: "background: url(" + _vm.cover + ")",
+        attrs: { href: /event/ + _vm.id }
       },
       [
-        _c(
-          "a",
-          {
-            staticClass: "owner",
-            attrs: { href: /c/ + _vm.item.theme.company.slug }
-          },
-          [
-            _c("div", {
-              staticClass: "logo",
-              style:
-                "background-image: url(" +
-                _vm.item.theme.company.company_detail.logo +
-                ")"
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("span", { staticClass: "price" }, [
-          _vm._v(_vm._s(_vm.item.price) + " лв.")
+        _c("a", { staticClass: "owner", attrs: { href: /c/ + _vm.slug } }, [
+          _c("div", {
+            staticClass: "logo",
+            style: "background-image: url(" + _vm.logo + ")"
+          })
         ])
       ]
     ),
     _vm._v(" "),
+    _c("span", { staticClass: "price" }, [_vm._v(_vm._s(_vm.price) + " лв.")]),
+    _vm._v(" "),
     _c("div", { staticClass: "content content_box" }, [
-      _c(
-        "a",
-        { staticClass: "header", attrs: { href: "/event/" + _vm.item.id } },
-        [_vm._v(_vm._s(_vm.item.theme.title))]
-      ),
+      _c("a", { staticClass: "header", attrs: { href: "/event/" + _vm.id } }, [
+        _vm._v(_vm._s(_vm.title))
+      ]),
       _vm._v(" "),
       _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-        _vm._v(" " + _vm._s(_vm.item.begin))
+        _vm._v(" " + _vm._s(_vm.start_date))
       ])
     ]),
     _vm._v(" "),
@@ -105764,9 +105719,9 @@ var render = function() {
             [
               _c("Like", {
                 attrs: {
-                  likes: _vm.item.theme.only_like_count,
-                  liked: _vm.item.theme.is_liked != null,
-                  item_id: _vm.item.theme.id,
+                  likes: _vm.like_count,
+                  liked: _vm.is_liked != null,
+                  item_id: _vm.likable_id,
                   route: "/users/like/theme"
                 }
               })
@@ -105776,7 +105731,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { attrs: { href: "/event/" + _vm.item.id + "/#comments" } },
+            { attrs: { href: "/event/" + _vm.id + "/#comments" } },
             [
               _c(
                 "el-tooltip",
@@ -106203,7 +106158,7 @@ var render = function() {
       _vm.category == ""
         ? _c(
             "div",
-            { staticClass: "ui four column grid" },
+            { staticClass: "ui four column stackable grid" },
             _vm._l(_vm.categories, function(category) {
               return _c("div", { staticClass: "column" }, [
                 _c(
@@ -106363,166 +106318,24 @@ var render = function() {
         "div",
         { staticClass: "ui four stackable cards" },
         _vm._l(_vm.events, function(event) {
-          return _c("box", { key: event.id, attrs: { item: event } })
-        })
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "loading",
-              rawName: "v-loading.fullscreen.lock",
-              value: _vm.fullscreenLoading,
-              expression: "fullscreenLoading",
-              modifiers: { fullscreen: true, lock: true }
+          return _c("box", {
+            key: event.id,
+            attrs: {
+              item: event,
+              id: event.id,
+              likable_id: event.theme.id,
+              slug: event.theme.company.slug,
+              title: event.theme.title,
+              cover: event.cover,
+              logo: event.theme.company.company_detail.logo,
+              start_date: event.begin,
+              price: event.price,
+              like_count: event.theme.only_like_count,
+              is_liked: event.theme.is_liked,
+              route: "/users/like/theme"
             }
-          ],
-          staticClass: "ui three stackable cards"
-        },
-        [
-          _vm._l(_vm.sortedEvents, function(event) {
-            return [
-              _c("div", { key: event.id, staticClass: "card" }, [
-                _c(
-                  "div",
-                  { staticClass: "extra content" },
-                  [
-                    _c("BoxHover", {
-                      attrs: {
-                        id: event.theme.company.id,
-                        name: event.theme.company.name
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "image",
-                    style: "background: url(" + event.cover + ")"
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticStyle: {
-                          display: "inline-block",
-                          padding: "5px",
-                          margin: "3px",
-                          "background-color": "white"
-                        }
-                      },
-                      [_vm._v(_vm._s(event.price) + " лв.")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t" +
-                        _vm._s(event.begin) +
-                        "\n\t\t\t\t\t\t"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "header",
-                      attrs: { href: "/event/" + event.id }
-                    },
-                    [_vm._v(_vm._s(event.theme.title))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "extra content" }, [
-                  _c(
-                    "div",
-                    { staticClass: "flex" },
-                    [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "el-tooltip",
-                            {
-                              staticClass: "item",
-                              attrs: {
-                                effect: "dark",
-                                content: "Прегледан",
-                                placement: "top"
-                              }
-                            },
-                            [_c("i", { staticClass: "eye icon" })]
-                          ),
-                          _vm._v("\n\t\t\t\t\t\t\t\t\t54\n\t\t\t\t\t\t\t")
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-tooltip",
-                        {
-                          staticClass: "item",
-                          attrs: {
-                            effect: "dark",
-                            content: "Харесай",
-                            placement: "top"
-                          }
-                        },
-                        [
-                          _c("Like", {
-                            attrs: {
-                              likes: event.theme.only_like_count,
-                              liked: event.theme.is_liked != null,
-                              item_id: event.theme.id,
-                              route: "/users/like/theme"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "/event/" + event.id + "/#comments" }
-                        },
-                        [
-                          _c(
-                            "el-tooltip",
-                            {
-                              staticClass: "item",
-                              attrs: {
-                                effect: "dark",
-                                content: "Коментари",
-                                placement: "top"
-                              }
-                            },
-                            [_c("i", { staticClass: "comment outline icon" })]
-                          ),
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t" +
-                              _vm._s(event.theme.only_comment_count) +
-                              "\n\t\t\t\t\t\t\t"
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ]
           })
-        ],
-        2
+        })
       )
     ])
   ])
@@ -110018,7 +109831,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "search-container" }, [
+  return _c("div", { staticClass: "search-container item" }, [
     _c(
       "div",
       {

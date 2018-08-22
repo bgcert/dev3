@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="computer only">
 		<el-carousel :interval="5000" arrow="always" height="500px">
 			<el-carousel-item v-for="item in items" :key="item.id" :style="'background: url(/img/slider/' + item.cover + ')'">
 				<div class="carousel_overlay">
