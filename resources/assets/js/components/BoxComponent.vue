@@ -1,13 +1,13 @@
 <template>
 	<div class="ui card">
-		<a :href="/event/ + id" class="image image_container" :style="`background: url(${cover})`">
+		<a :href="'/' + type + '/' + id" class="image image_container" :style="`background: url(${cover})`">
 			<a class="owner" :href="/c/ + slug">
 				<div class="logo" :style="'background-image: url(' + logo + ')'"></div>
 			</a>
 		</a>
 		<span class="price">{{ price }} лв.</span>
 		<div class="content content_box">
-			<a :href="'/event/' + id" class="header">{{ title }}</a>
+			<a :href="'/' + type + '/' + id" class="header">{{ title }}</a>
 			<p style="text-transform: uppercase;"> {{ start_date }}</p>
 		</div>
 		<div class="extra content">
@@ -23,15 +23,15 @@
 						:likes="like_count"
 						:liked="is_liked != null"
 						:item_id="likable_id"
-						:route="'/users/like/theme'">
+						:route="route">
 					</Like>
 				</el-tooltip>
 				
-				<a :href="'/event/' + id + '/#comments'">
+				<a :href="'/' + type + '/' + id + '/#comments'">
 					<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
 						<i class="comment outline icon"></i>
 					</el-tooltip>
-					{{ item.theme.only_comment_count }}
+					{{ comment_count }}
 				</a>
 			</div>
 		</div>
@@ -39,13 +39,13 @@
 </template>
 
 <script>
-
 	import Like from './LikeComponent.vue'
     export default {
     	components: { Like },
     	props: [
     			'id',
     			'likable_id',
+    			'type',
     			'slug',
     			'title',
     			'cover',
@@ -54,8 +54,8 @@
     			'price',
     			'like_count',
     			'is_liked',
+    			'comment_count',
     			'route',
-    			'item'
     			],
     	data: function () {
     		return {
@@ -103,9 +103,9 @@
 		position: absolute;
 		top: 96px;
 		left: 20px;
-		padding: 6px;
-		width: 64px;
-		height: 64px;
+		padding: 4px;
+		width: 62px;
+		height: 62px;
 		background: #fff;
 		border: 1px solid #E1E1E1;
 		border-radius: 3px;
@@ -154,15 +154,7 @@
 		justify-content: space-around;
 	}
 
-	.views {
-		flex: 1;
-	}
-
-	.likes {
-		flex: 1;
-	}
-
-	.comments {
-		flex: 1;
-	}
+	.views { flex: 1; }
+	.likes { flex: 1; }
+	.comments { flex: 1; }
 </style>

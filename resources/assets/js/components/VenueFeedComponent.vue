@@ -51,47 +51,23 @@
 			</div>
 		</div>
 
-		<div class="ui three stackable cards" v-if="venues">
-			<template v-for="venue in sortedVenues">
-				<div class="card" :key="venue.id">
-					<div class="extra content">
-						<box-hover
-							:id="venue.company.id"
-							:name="venue.company.name">
-						</box-hover>
-					</div>
-					<div class="image" :style="`background: url(${venue.cover})`">
-						<div style="display:inline-block; padding: 5px; margin: 3px; background-color: white;">{{ venue.price }} лв.</div>
-					</div>
-					<div class="content">
-						<a :href="'/venue/' + venue.id" class="header">{{ venue.name }}</a>
-					</div>
-					<div class="extra content">
-						<div class="flex">
-							<div>
-								<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
-									<i class="eye icon"></i>
-								</el-tooltip>
-									54
-							</div>
-							<div>
-								<like
-									:likes="venue.only_like_count"
-									:liked="venue.is_liked != null"
-									:item_id="venue.id"
-									:route="'/users/like/venue'">
-								</like>
-							</div>	
-							<div>
-								<a :href="'/venue/' + venue.id + '/#comments'">
-									<i class="comment outline icon"></i>
-									{{ venue.only_comment_count }}
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</template>
+		<div class="ui four stackable cards" v-if="venues">
+			<box
+				v-for="venue in sortedVenues"
+				:key="venue.id"
+				:id="venue.id"
+				:type="'venue'"
+				:likable_id="venue.id"
+				:slug="venue.company.slug"
+				:title="venue.name"
+				:cover="venue.cover"
+				:logo="venue.company.company_detail.logo"
+				:price="venue.price"
+				:like_count="venue.only_like_count"
+				:is_liked="venue.is_liked"
+				:comment_count="venue.only_comment_count"
+				:route="'/users/like/venue'">
+			</box>
 		</div>
 
 	</div>
@@ -99,11 +75,12 @@
 
 <script>
 	import { EventBus } from '../app';
+	import Box from './BoxComponent.vue'
 	import Like from './LikeComponent.vue'
 	import BoxHover from './BoxHoverComponent.vue'
     export default {
     	components: {
-			Like, BoxHover
+			Box, Like, BoxHover
 		},
 
     	data: function () {

@@ -74,7 +74,7 @@
 				<box
 					v-for="event in events"
 					:key="event.id"
-					:item="event"
+					:type="'event'"
 					:id="event.id"
 					:likable_id="event.theme.id"
 					:slug="event.theme.company.slug"
@@ -85,6 +85,7 @@
 					:price="event.price"
 					:like_count="event.theme.only_like_count"
 					:is_liked="event.theme.is_liked"
+					:comment_count="event.theme.only_comment_count"
 					:route="'/users/like/theme'">
 				</box>
 			</div>

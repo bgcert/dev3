@@ -34,7 +34,7 @@ class DataController extends Controller
 
     public function venueList()
     {
-    	$venues = \App\Venue::with('isLiked', 'company')->get();
+    	$venues = \App\Venue::with('isLiked', 'company.company_detail')->get();
     	$cities = \App\City::has('venues', '>' , 0)->withCount('venues')->get();
     	return [$venues, $cities];
     }

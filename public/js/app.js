@@ -105216,6 +105216,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -105403,7 +105404,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.content_box {\n\t\tpadding-top: 40px !important;\n}\n.box {\n\t\tbackground-color: #fff;\n\t\tborder-radius: 3px;\n    \theight: 360px;\n\t\t-webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\t        box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 96px;\n\t\tleft: 20px;\n\t\tpadding: 6px;\n\t\twidth: 64px;\n\t\theight: 64px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.likes {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n.comments {\n\t\t-webkit-box-flex: 1;\n\t\t    -ms-flex: 1;\n\t\t        flex: 1;\n}\n", ""]);
+exports.push([module.i, "\n.content_box {\n\t\tpadding-top: 40px !important;\n}\n.box {\n\t\tbackground-color: #fff;\n\t\tborder-radius: 3px;\n    \theight: 360px;\n\t\t-webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\t        box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 96px;\n\t\tleft: 20px;\n\t\tpadding: 4px;\n\t\twidth: 62px;\n\t\theight: 62px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.likes { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.comments { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n", ""]);
 
 // exports
 
@@ -105458,10 +105459,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { Like: __WEBPACK_IMPORTED_MODULE_0__LikeComponent_vue___default.a },
-    props: ['id', 'likable_id', 'slug', 'title', 'cover', 'logo', 'start_date', 'price', 'like_count', 'is_liked', 'route', 'item'],
+    props: ['id', 'likable_id', 'type', 'slug', 'title', 'cover', 'logo', 'start_date', 'price', 'like_count', 'is_liked', 'comment_count', 'route'],
     data: function data() {
         return {};
     },
@@ -105661,7 +105661,7 @@ var render = function() {
       {
         staticClass: "image image_container",
         style: "background: url(" + _vm.cover + ")",
-        attrs: { href: /event/ + _vm.id }
+        attrs: { href: "/" + _vm.type + "/" + _vm.id }
       },
       [
         _c("a", { staticClass: "owner", attrs: { href: /c/ + _vm.slug } }, [
@@ -105676,9 +105676,14 @@ var render = function() {
     _c("span", { staticClass: "price" }, [_vm._v(_vm._s(_vm.price) + " лв.")]),
     _vm._v(" "),
     _c("div", { staticClass: "content content_box" }, [
-      _c("a", { staticClass: "header", attrs: { href: "/event/" + _vm.id } }, [
-        _vm._v(_vm._s(_vm.title))
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "header",
+          attrs: { href: "/" + _vm.type + "/" + _vm.id }
+        },
+        [_vm._v(_vm._s(_vm.title))]
+      ),
       _vm._v(" "),
       _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
         _vm._v(" " + _vm._s(_vm.start_date))
@@ -105722,7 +105727,7 @@ var render = function() {
                   likes: _vm.like_count,
                   liked: _vm.is_liked != null,
                   item_id: _vm.likable_id,
-                  route: "/users/like/theme"
+                  route: _vm.route
                 }
               })
             ],
@@ -105731,7 +105736,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "a",
-            { attrs: { href: "/event/" + _vm.id + "/#comments" } },
+            { attrs: { href: "/" + _vm.type + "/" + _vm.id + "/#comments" } },
             [
               _c(
                 "el-tooltip",
@@ -105745,11 +105750,7 @@ var render = function() {
                 },
                 [_c("i", { staticClass: "comment outline icon" })]
               ),
-              _vm._v(
-                "\n\t\t\t\t" +
-                  _vm._s(_vm.item.theme.only_comment_count) +
-                  "\n\t\t\t"
-              )
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.comment_count) + "\n\t\t\t")
             ],
             1
           )
@@ -106321,7 +106322,7 @@ var render = function() {
           return _c("box", {
             key: event.id,
             attrs: {
-              item: event,
+              type: "event",
               id: event.id,
               likable_id: event.theme.id,
               slug: event.theme.company.slug,
@@ -106332,6 +106333,7 @@ var render = function() {
               price: event.price,
               like_count: event.theme.only_like_count,
               is_liked: event.theme.is_liked,
+              comment_count: event.theme.only_comment_count,
               route: "/users/like/theme"
             }
           })
@@ -106448,10 +106450,12 @@ exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BoxComponent_vue__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BoxComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BoxComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BoxHoverComponent_vue__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__BoxHoverComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__BoxHoverComponent_vue__);
 //
 //
 //
@@ -106527,37 +106531,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Like: __WEBPACK_IMPORTED_MODULE_1__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_2__BoxHoverComponent_vue___default.a
+    Box: __WEBPACK_IMPORTED_MODULE_1__BoxComponent_vue___default.a, Like: __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue___default.a, BoxHover: __WEBPACK_IMPORTED_MODULE_3__BoxHoverComponent_vue___default.a
   },
 
   data: function data() {
@@ -106760,118 +106741,26 @@ var render = function() {
     _vm.venues
       ? _c(
           "div",
-          { staticClass: "ui three stackable cards" },
-          [
-            _vm._l(_vm.sortedVenues, function(venue) {
-              return [
-                _c("div", { key: venue.id, staticClass: "card" }, [
-                  _c(
-                    "div",
-                    { staticClass: "extra content" },
-                    [
-                      _c("box-hover", {
-                        attrs: {
-                          id: venue.company.id,
-                          name: venue.company.name
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "image",
-                      style: "background: url(" + venue.cover + ")"
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          staticStyle: {
-                            display: "inline-block",
-                            padding: "5px",
-                            margin: "3px",
-                            "background-color": "white"
-                          }
-                        },
-                        [_vm._v(_vm._s(venue.price) + " лв.")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "content" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "header",
-                        attrs: { href: "/venue/" + venue.id }
-                      },
-                      [_vm._v(_vm._s(venue.name))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "extra content" }, [
-                    _c("div", { staticClass: "flex" }, [
-                      _c(
-                        "div",
-                        [
-                          _c(
-                            "el-tooltip",
-                            {
-                              staticClass: "item",
-                              attrs: {
-                                effect: "dark",
-                                content: "Прегледан",
-                                placement: "top"
-                              }
-                            },
-                            [_c("i", { staticClass: "eye icon" })]
-                          ),
-                          _vm._v("\n\t\t\t\t\t\t\t\t54\n\t\t\t\t\t\t")
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        [
-                          _c("like", {
-                            attrs: {
-                              likes: venue.only_like_count,
-                              liked: venue.is_liked != null,
-                              item_id: venue.id,
-                              route: "/users/like/venue"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("div", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "/venue/" + venue.id + "/#comments" }
-                          },
-                          [
-                            _c("i", { staticClass: "comment outline icon" }),
-                            _vm._v(
-                              "\n\t\t\t\t\t\t\t\t" +
-                                _vm._s(venue.only_comment_count) +
-                                "\n\t\t\t\t\t\t\t"
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ]
+          { staticClass: "ui four stackable cards" },
+          _vm._l(_vm.sortedVenues, function(venue) {
+            return _c("box", {
+              key: venue.id,
+              attrs: {
+                id: venue.id,
+                type: "venue",
+                likable_id: venue.id,
+                slug: venue.company.slug,
+                title: venue.name,
+                cover: venue.cover,
+                logo: venue.company.company_detail.logo,
+                price: venue.price,
+                like_count: venue.only_like_count,
+                is_liked: venue.is_liked,
+                comment_count: venue.only_comment_count,
+                route: "/users/like/venue"
+              }
             })
-          ],
-          2
+          })
         )
       : _vm._e()
   ])
