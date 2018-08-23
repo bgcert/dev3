@@ -51576,7 +51576,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51674,6 +51674,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			formData.append('_method', 'patch');
 			formData.append('title', this.theme.title);
 			formData.append('body', this.theme.body);
+			formData.append('excerpt', this.form.excerpt);
+			formData.append('duration', this.form.duration);
 			formData.append('category_id', this.theme.category_id);
 
 			var config = {
@@ -53080,13 +53082,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    ImageUpload: __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue___default.a
-  },
+  components: { ImageUpload: __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue___default.a },
   data: function data() {
     return {
       loading: true,
@@ -53098,8 +53101,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         theme: '',
         date: '',
         data1: '',
-        type: [],
-        cover: 'https://picsum.photos/800/400/?image=293'
+        cover: 'https://picsum.photos/800/400/?image=293',
+        price: null
       }
     };
   },
@@ -53111,6 +53114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var formData = new FormData();
       formData.append('theme_id', this.selectedTheme);
+      formData.append('price', this.form.price);
       formData.append('teachers', this.selectedTeachers);
       formData.append('begin_at', this.form.date[0]);
       formData.append('end_at', this.form.date[1]);
@@ -53268,6 +53272,23 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Цена" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "price", $$v)
+                      },
+                      expression: "form.price"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c("el-form-item", [
                 _c(
                   "div",
@@ -53415,7 +53436,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53429,6 +53450,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue__);
+//
+//
+//
+//
 //
 //
 //
@@ -53504,17 +53529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       themes: [],
       teachers: [],
       selectedTeachers: [],
-      date: [],
-      form: {
-        theme: '',
-        region: '',
-        date: '',
-        data1: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        cover: 'https://picsum.photos/800/400/?image=293'
-      }
+      date: []
     };
   },
 
@@ -53529,6 +53544,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // Needed for patch request with form data
       formData.append('_method', 'patch');
       formData.append('teachers', this.selectedTeachers);
+      formData.append('price', this.event.price);
       formData.append('begin_at', this.date[0]);
       formData.append('end_at', this.date[1]);
 
@@ -53673,6 +53689,23 @@ var render = function() {
                                 _vm.date = $$v
                               },
                               expression: "date"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Цена" } },
+                        [
+                          _c("el-input", {
+                            model: {
+                              value: _vm.event.price,
+                              callback: function($$v) {
+                                _vm.$set(_vm.event, "price", $$v)
+                              },
+                              expression: "event.price"
                             }
                           })
                         ],
@@ -111126,8 +111159,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -111257,17 +111288,6 @@ var render = function() {
               },
               [_vm._v("\n\t\t\tИзвестия\n\t\t")]
             ),
-            _vm._v(" "),
-            _vm.user.role_id == 2
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "item",
-                    attrs: { href: "/dashboard#/profile", target: "_blank" }
-                  },
-                  [_vm._v("Фирмен панел")]
-                )
-              : _vm._e(),
             _vm._v(" "),
             _c(
               "router-link",
@@ -111522,7 +111542,7 @@ var render = function() {
                 class: { active: _vm.$route.path == "/profile" },
                 attrs: { to: "/profile" }
               },
-              [_vm._v("\n\t\t\t\t\tФирмен профил\n\t\t\t\t")]
+              [_vm._v("\n\t\t\t\t\tФирмени данни\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(

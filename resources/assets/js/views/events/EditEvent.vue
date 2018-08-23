@@ -39,6 +39,10 @@
 							</el-date-picker>
 						</el-form-item>
 
+						<el-form-item label="Цена">
+							<el-input v-model="event.price"></el-input>
+						</el-form-item>
+
 						<el-form-item>
 							<div class="right floated">
 								<div class="ui right floated primary button" @click="save">
@@ -74,16 +78,6 @@
     			teachers: [],
     			selectedTeachers: [],
     			date: [],
-    			form: {
-    				theme: '',
-    				region: '',
-    				date: '',
-    				data1: '',
-    				delivery: false,
-    				type: [],
-    				resource: '',
-    				cover: 'https://picsum.photos/800/400/?image=293'
-    			}
     		}
     	},
 
@@ -96,6 +90,7 @@
     			// Needed for patch request with form data
     			formData.append('_method', 'patch');
 				formData.append('teachers', this.selectedTeachers);
+				formData.append('price', this.event.price);
 				formData.append('begin_at', this.date[0]);
 				formData.append('end_at', this.date[1]);
 

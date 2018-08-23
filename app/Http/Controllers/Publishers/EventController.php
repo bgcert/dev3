@@ -49,7 +49,7 @@ class EventController extends Controller
     	$requestData['teachers'] = explode(',', $requestData['teachers']);
 
 		$event = \Auth::user()->company->events()->create($requestData);
-    	if (empty($requestData['teachers'])) {
+    	if (!empty($requestData['teachers'])) {
     		$event->teachers()->attach($requestData['teachers']);
     	}
     	
@@ -98,8 +98,12 @@ class EventController extends Controller
     	$event = \App\Event::where('id', $id)->first();
 		$event->update($request->except(['teachers']));
 
-        $event->teachers()->detach();
-    	return $event->teachers()->attach($request->teachers);
+		if (!empty($request->teachers)) {
+        	$teachers = explode(',', $request->teachers);
+    		$event->teachers()->sync($teachers);
+    	}
+
+    	return $event;
     }
 
     /**

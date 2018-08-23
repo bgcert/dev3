@@ -7,8 +7,6 @@
 				:class="{ active: $route.path == '/notifications' }">
 				Известия
 			</router-link>
-			
-			<a href="/dashboard#/profile" class="item" target="_blank" v-if="user.role_id == 2">Фирмен панел</a>
 
 			<router-link
 				to="/settings"

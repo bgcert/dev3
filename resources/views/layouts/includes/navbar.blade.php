@@ -22,15 +22,17 @@
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
 				</div> -->
 				@else
+				@if(Auth::user()->role_id == 2)
+					<a href="/dashboard#/home" class="item">Бизнес панел</a>
+				@endif
 				<div class="ui dropdown item">
-					{{ Auth::user()->firstname }} <i class="dropdown icon"></i>
+					<div class="text">
+						<img class="ui avatar image" src="https://picsum.photos/80/80/?image=106"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
+					</div>
 					<div class="menu">
 
 						<a href="/users/settings#/notifications" class="item">Акаунт</a>
 
-						@if(Auth::user()->role_id == 2)
-						<a href="/dashboard#/home" class="item">Контролен панел</a>
-						@endif
 						<a class="item" href="{{ route('logout') }}"
 	                       onclick="event.preventDefault();
 	                                     document.getElementById('logout-form').submit();">

@@ -7,7 +7,7 @@
 						to="/profile"
 						class="item"
 						:class="{ active: $route.path == '/profile' }">
-						Фирмен профил
+						Фирмени данни
 					</router-link>
 					<router-link
 						to="/themes"

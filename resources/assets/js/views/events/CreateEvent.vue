@@ -39,8 +39,11 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload>
-							</ImageUpload>
+							<ImageUpload></ImageUpload>
+					</el-form-item>
+
+					<el-form-item label="Цена">
+						<el-input v-model="form.price"></el-input>
 					</el-form-item>
 
 					<el-form-item>
@@ -65,9 +68,7 @@
 	import { EventBus } from '../../app';
 	import ImageUpload from '../../components/ImageUploadComponent.vue'
     export default {
-    	components: {
-			ImageUpload
-		},
+    	components: { ImageUpload },
     	data: function () {
     		return {
     			loading: true,
@@ -79,8 +80,8 @@
     				theme: '',
     				date: '',
     				data1: '',
-    				type: [],
-    				cover: 'https://picsum.photos/800/400/?image=293'
+    				cover: 'https://picsum.photos/800/400/?image=293',
+    				price: null,
     			}
     		}
     	},
@@ -92,6 +93,7 @@
 
     			let formData = new FormData();
 				formData.append('theme_id', this.selectedTheme);
+				formData.append('price', this.form.price);
 				formData.append('teachers', this.selectedTeachers);
 				formData.append('begin_at', this.form.date[0]);
 				formData.append('end_at', this.form.date[1]);
