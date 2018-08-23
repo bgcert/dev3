@@ -39,7 +39,7 @@
 			ref="popover"
 			placement="right"
 			width="300"
-			open-delay="800"
+			:open-delay="800"
 			trigger="hover">
 				<img  class="p_logo" :src="item.theme.company.company_detail.logo">
 				<h3>{{ item.theme.title }}</h3>
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<h4>Кратко описание:</h4>
-				<p>{{ item.theme.body }}</p>
+				<p>{{ item.theme.excerpt }}</p>
 		</el-popover>
 	</div>
 </template>

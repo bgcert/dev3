@@ -105772,7 +105772,7 @@ var render = function() {
           attrs: {
             placement: "right",
             width: "300",
-            "open-delay": "800",
+            "open-delay": 800,
             trigger: "hover"
           }
         },
@@ -105827,7 +105827,7 @@ var render = function() {
           _vm._v(" "),
           _c("h4", [_vm._v("Кратко описание:")]),
           _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.item.theme.body))])
+          _c("p", [_vm._v(_vm._s(_vm.item.theme.excerpt))])
         ]
       )
     ],
@@ -106465,8 +106465,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -106629,7 +106627,7 @@ var render = function() {
           attrs: {
             placement: "right",
             width: "300",
-            "open-delay": "800",
+            "open-delay": 800,
             trigger: "hover"
           }
         },
@@ -106680,11 +106678,7 @@ var render = function() {
                 _vm._v("\n\t\t\t\t\t\tОзвучение\n\t\t\t\t\t")
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("h4", [_vm._v("Кратко описание:")]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.item.description))])
+          ])
         ]
       )
     ],
