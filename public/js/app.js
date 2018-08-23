@@ -51576,7 +51576,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51590,6 +51590,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ImageUploadComponent_vue__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51792,6 +51798,31 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
+                    { attrs: { label: "Корица" } },
+                    [_c("ImageUpload", { attrs: { img: _vm.theme.cover } })],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "Кратко описание" } },
+                    [
+                      _c("el-input", {
+                        attrs: { type: "textarea", rows: 3 },
+                        model: {
+                          value: _vm.theme.excerpt,
+                          callback: function($$v) {
+                            _vm.$set(_vm.theme, "excerpt", $$v)
+                          },
+                          expression: "theme.excerpt"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
                     { attrs: { label: "Съдържание" } },
                     [
                       _c("el-input", {
@@ -51810,8 +51841,18 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "Корица" } },
-                    [_c("ImageUpload", { attrs: { img: _vm.theme.cover } })],
+                    { attrs: { label: "Продължителност" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.theme.duration,
+                          callback: function($$v) {
+                            _vm.$set(_vm.theme, "duration", $$v)
+                          },
+                          expression: "theme.duration"
+                        }
+                      })
+                    ],
                     1
                   ),
                   _vm._v(" "),

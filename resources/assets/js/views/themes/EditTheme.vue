@@ -18,15 +18,21 @@
 							</template>
 						</el-select>
 					</el-form-item>
+
+					<el-form-item label="Корица">
+							<ImageUpload :img="theme.cover"></ImageUpload>
+					</el-form-item>
+
+					<el-form-item label="Кратко описание">
+						<el-input type="textarea" :rows="3" v-model="theme.excerpt"></el-input>
+					</el-form-item>
 					
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="theme.body"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Корица">
-							<ImageUpload
-								:img="theme.cover">
-							</ImageUpload>
+					<el-form-item label="Продължителност">
+						<el-input v-model="theme.duration"></el-input>
 					</el-form-item>
 
 					<el-form-item>
