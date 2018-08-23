@@ -14,7 +14,7 @@ class Theme extends Model
     use LogsActivity;
     
     protected $fillable = [
-        'company_id', 'category_id', 'title', 'body', 'cover', 'position',
+        'company_id', 'category_id', 'title', 'excerpt', 'body', 'cover', 'duration',
     ];
 
     protected $appends = ['only_like_count', 'only_comment_count'];

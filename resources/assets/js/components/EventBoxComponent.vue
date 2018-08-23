@@ -39,6 +39,7 @@
 			ref="popover"
 			placement="right"
 			width="300"
+			open-delay="800"
 			trigger="hover">
 				<img  class="p_logo" :src="item.theme.company.company_detail.logo">
 				<h3>{{ item.theme.title }}</h3>
@@ -60,7 +61,7 @@
 					<div class="item">
 						<i class="clock outline icon"></i>
 						<div class="content">
-							50 часа
+							{{ item.theme.duration }} часа
 						</div>
 					</div>
 				</div>

@@ -85,6 +85,7 @@
 
 	.search-results {
 		position: absolute !important;
+		color: rgba(0,0,0,.87) !important;
 		top: 30px;
 		left: 0;
 		z-index: 100;

@@ -6,7 +6,7 @@
 			</div>
 			
 			<div class="ui segment">
-				<el-form ref="form" :model="form" label-width="120px">
+				<el-form ref="form" :model="form" label-width="160px">
 					<el-form-item label="Заглавие">
 						<el-input v-model="form.title"></el-input>
 					</el-form-item>
@@ -20,13 +20,21 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload>
-							</ImageUpload>
+							<ImageUpload></ImageUpload>
+					</el-form-item>
+
+					<el-form-item label="Кратко описание">
+						<el-input type="textarea" :rows="3" v-model="form.excerpt"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Съдържание">
 						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
 					</el-form-item>
+
+					<el-form-item label="Продължителност">
+						<el-input v-model="form.duration"></el-input>
+					</el-form-item>
+
 					<el-form-item>
 						<div class="right floated">
 							<div class="ui right floated primary button" @click="save">
@@ -60,9 +68,10 @@
     				title: '',
     				category: '',
     				body: '',
+    				excerpt: '',
     				type: [],
-    				resource: '',
-    				cover: 'https://picsum.photos/800/400/?image=293'
+    				cover: 'https://picsum.photos/800/400/?image=293',
+    				duration: null
     			}
     		}
     	},
@@ -75,6 +84,8 @@
     			let formData = new FormData();
 				formData.append('title', this.form.title);
 				formData.append('body', this.form.body);
+				formData.append('excerpt', this.form.excerpt);
+				formData.append('duration', this.form.duration);
 				formData.append('category_id', this.form.category);
 
     			let config =

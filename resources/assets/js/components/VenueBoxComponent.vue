@@ -38,6 +38,7 @@
 			ref="popover"
 			placement="right"
 			width="300"
+			open-delay="800"
 			trigger="hover">
 				<img  class="p_logo" :src="item.company.company_detail.logo">
 				<h3>{{ item.name }}</h3>

@@ -11,7 +11,7 @@
 |
 */
 
-Auth::login(\App\User::find(1));
+// Auth::login(\App\User::find(1));
 
 Route::get('/query', function () {
     

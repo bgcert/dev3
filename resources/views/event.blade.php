@@ -45,9 +45,7 @@
 				<div class="flex-center ten wide column ">
 					<div class="info">
 						<h1 class="title">{{ $event->theme->title }}</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-						</p>
+						<p>{{ $event->theme->excerpt }}</p>
 						<h3>{{ $event->begin }} - {{ $event->end }}</h3>
 					</div>	
 				</div>
@@ -66,8 +64,10 @@
 						</div>
 						<div class="ui divider"></div>
 						<div>
-							<p>Wed, 12 Jan, 18</p>
-							<p>07.00 - 17.00 ч.</p>
+							<div class="ui list">
+								<div class="item">{{ $event->begin }} - {{ $event->end }}</div>
+								<div class="item">{{ $event->theme->duration }} учебни часа</div>
+							</div>
 						</div>
 						<div class="ui horizontal statistics">
 							<div class="statistic">
