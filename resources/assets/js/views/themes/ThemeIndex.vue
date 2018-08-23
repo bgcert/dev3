@@ -19,6 +19,7 @@
 							:image="theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
+							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази тема?'"
 							@show="handleShow(theme.id)"
 							@deleteClick="handleDelete(theme.id, index)"
 							>

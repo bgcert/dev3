@@ -19,6 +19,7 @@
 							:image="teacher.image"
 							:title="teacher.name"
 							:edit_link="'/teachers/edit/' + teacher.id"
+							:confirmMessage="'Сигурни ли сте, че желаете да изтриете този лектор?'"
 							@show="handleShow(theme.id)"
 							@deleteClick="handleDelete(teacher.id, index)"
 							>
@@ -70,5 +71,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

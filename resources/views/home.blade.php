@@ -10,7 +10,7 @@
     		left: 0;
     		right: 0;
     		margin: 0 auto;
-    		z-index: 10;
+    		z-index: 3000; /*Less than 2010 conflicts with semantic-ui*/
     		background-color: transparent;
     		border: none;
     		box-shadow: none;

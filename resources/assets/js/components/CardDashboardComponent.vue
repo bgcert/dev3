@@ -35,7 +35,7 @@
 
 <script>
     export default {
-    	props: ['image', 'date', 'title', 'edit_link'],
+    	props: ['image', 'date', 'title', 'edit_link', 'confirmMessage'],
     	data: function () {
     		return {
 
@@ -48,7 +48,7 @@
 
         methods: {
         	emitDelete() {
-        		var result = confirm("Press a button!");
+        		var result = confirm(this.confirmMessage);
 			    if (result) {
 			    	this.$emit('deleteClick');   
 			    } else {

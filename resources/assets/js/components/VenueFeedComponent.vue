@@ -52,22 +52,11 @@
 		</div>
 
 		<div class="ui four stackable cards" v-if="venues">
-			<box
+			<venueBox
 				v-for="venue in sortedVenues"
 				:key="venue.id"
-				:id="venue.id"
-				:type="'venue'"
-				:likable_id="venue.id"
-				:slug="venue.company.slug"
-				:title="venue.name"
-				:cover="venue.cover"
-				:logo="venue.company.company_detail.logo"
-				:price="venue.price"
-				:like_count="venue.only_like_count"
-				:is_liked="venue.is_liked"
-				:comment_count="venue.only_comment_count"
-				:route="'/users/like/venue'">
-			</box>
+				:item="venue">
+			</venueBox>
 		</div>
 
 	</div>
@@ -75,12 +64,11 @@
 
 <script>
 	import { EventBus } from '../app';
-	import Box from './BoxComponent.vue'
+	import VenueBox from './VenueBoxComponent.vue'
 	import Like from './LikeComponent.vue'
-	import BoxHover from './BoxHoverComponent.vue'
     export default {
     	components: {
-			Box, Like, BoxHover
+			VenueBox, Like
 		},
 
     	data: function () {

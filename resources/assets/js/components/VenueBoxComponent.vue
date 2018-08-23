@@ -1,14 +1,13 @@
 <template>
-	<div class="ui card">
-		<a :href="'/' + type + '/' + id" class="image image_container" :style="`background: url(${cover})`">
-			<a class="owner" :href="/c/ + slug">
-				<div class="logo" :style="'background-image: url(' + logo + ')'"></div>
+	<div class="ui card" v-popover:popover>
+		<div class="image image_container" :style="`background: url(${item.cover})`">
+			<a class="owner" :href="/c/ + item.company.slug">
+				<div class="logo" :style="'background-image: url(' + item.company.company_detail.logo + ')'"></div>
 			</a>
-		</a>
-		<span class="price">{{ price }} лв.</span>
+			<span class="price">{{ item.price }} лв.</span>
+		</div>
 		<div class="content content_box">
-			<a :href="'/' + type + '/' + id" class="header">{{ title }}</a>
-			<p style="text-transform: uppercase;"> {{ start_date }}</p>
+			<a :href="'/venue/' + item.id" class="header">{{ item.name }}</a>
 		</div>
 		<div class="extra content">
 			<div class="flex">
@@ -20,21 +19,53 @@
 				</div>
 				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 					<Like
-						:likes="like_count"
-						:liked="is_liked != null"
-						:item_id="likable_id"
-						:route="route">
+						:likes="item.only_like_count"
+						:liked="item.is_liked != null"
+						:item_id="item.id"
+						:route="'/users/like/venue'">
 					</Like>
 				</el-tooltip>
 				
-				<a :href="'/' + type + '/' + id + '/#comments'">
+				<a :href="'/venue/' + item.id + '/#comments'">
 					<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
 						<i class="comment outline icon"></i>
 					</el-tooltip>
-					{{ comment_count }}
+					{{ item.only_comment_count }}
 				</a>
 			</div>
 		</div>
+		<el-popover
+			ref="popover"
+			placement="right"
+			width="300"
+			trigger="hover">
+				<img  class="p_logo" :src="item.company.company_detail.logo">
+				<h3>{{ item.name }}</h3>
+				<a class="ui primary button" :href="'/venue/' + item.id">Допълнителна информация</a>
+				<div class="ui divider"></div>
+				<div class="ui list">
+					<div class="item">
+						<i class="globe icon"></i>
+						<div class="content">
+							{{ item.capacity }} места
+						</div>
+					</div>
+					<div class="item">
+						<i class="tv icon"></i>
+						<div class="content">
+							Телевизор
+						</div>
+					</div>
+					<div class="item">
+						<i class="microphone icon"></i>
+						<div class="content">
+							Озвучение
+						</div>
+					</div>
+				</div>
+				<h4>Кратко описание:</h4>
+				<p>{{ item.description }}</p>
+		</el-popover>
 	</div>
 </template>
 
@@ -42,24 +73,11 @@
 	import Like from './LikeComponent.vue'
     export default {
     	components: { Like },
-    	props: [
-    			'id',
-    			'likable_id',
-    			'type',
-    			'slug',
-    			'title',
-    			'cover',
-    			'logo',
-    			'start_date',
-    			'price',
-    			'like_count',
-    			'is_liked',
-    			'comment_count',
-    			'route',
-    			],
+    	props: ['item'],
     	data: function () {
     		return {
-
+    			// visible: false,
+    			loading: true
     		}
     	},
 
@@ -68,6 +86,10 @@
         },
 
         methods: {
+        	test() {
+        		console.log('enter');
+        		this.showPopper = true;
+        	}
         	
         },
 
@@ -82,11 +104,8 @@
 		padding-top: 40px !important;
 	}
 
-	.box {
-		background-color: #fff;
-		border-radius: 3px;
+	.ui .card {
     	height: 360px;
-		box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
 		cursor: pointer;
 	}
 
@@ -101,9 +120,9 @@
 
 	.owner {
 		position: absolute;
-		top: 96px;
+		top: 101px;
 		left: 20px;
-		padding: 4px;
+		padding: 5px;
 		width: 62px;
 		height: 62px;
 		background: #fff;
@@ -157,4 +176,10 @@
 	.views { flex: 1; }
 	.likes { flex: 1; }
 	.comments { flex: 1; }
+
+	/* Popover */
+	.p_logo {
+		max-height: 62px;
+	}
+
 </style>

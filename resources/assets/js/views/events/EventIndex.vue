@@ -20,6 +20,7 @@
 							:date="event.begin_at"
 							:title="event.theme.title"
 							:edit_link="'/events/edit/' + event.id"
+							:confirmMessage="'Сигурни ли сте, че желаете да изтриете това събитие?'"
 							@show="handleShow(event.id)"
 							@deleteClick="handleDelete(event.id, index)"
 							>

@@ -21,8 +21,7 @@
 	                <div class="extra content">
                 		<Follow
 	                        :followed="company.is_followed"
-	                        :company_id="company.id"
-	                        >
+	                        :company_id="company.id">
 	                    </Follow>
 	                    
 	                    <template v-for="follower in company.first_five_followers">

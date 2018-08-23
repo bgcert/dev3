@@ -71,23 +71,11 @@
 				</div>
 			</div>
 			<div class="ui four stackable cards">
-				<box
+				<eventBox
 					v-for="event in events"
 					:key="event.id"
-					:type="'event'"
-					:id="event.id"
-					:likable_id="event.theme.id"
-					:slug="event.theme.company.slug"
-					:title="event.theme.title"
-					:cover="event.cover"
-					:logo="event.theme.company.company_detail.logo"
-					:start_date="event.begin"
-					:price="event.price"
-					:like_count="event.theme.only_like_count"
-					:is_liked="event.theme.is_liked"
-					:comment_count="event.theme.only_comment_count"
-					:route="'/users/like/theme'">
-				</box>
+					:item="event">
+				</eventBox>
 			</div>
 		</div>
 	</div>
@@ -95,12 +83,11 @@
 
 <script>
 	import { EventBus } from '../app';
-	import Box from './BoxComponent.vue'
+	import EventBox from './EventBoxComponent.vue'
 	import Like from './LikeComponent.vue'
-	import BoxHover from './BoxHoverComponent.vue'
     export default {
     	components: {
-			Box, Like, BoxHover
+			EventBox, Like
 		},
 
 		props: ['slug'],
