@@ -80,6 +80,8 @@
     			formData.append('_method', 'patch');
 				formData.append('title', this.theme.title);
 				formData.append('body', this.theme.body);
+				formData.append('excerpt', this.form.excerpt);
+				formData.append('duration', this.form.duration);
 				formData.append('category_id', this.theme.category_id);
 
     			let config =
