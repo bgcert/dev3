@@ -56186,6 +56186,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        handleDelete: function handleDelete(id, index) {
+            var vm = this;
+            var result = confirm('Сигурни ли сте, че желаете да изтриете заявката?');
+            if (result) {
+                axios.delete('dashboard/orders/' + id).then(function (response) {
+                    vm.orders.splice(index, 1);
+                });
+            } else {
+                console.log('canceled');
+            }
+        },
+
+
         statusText: function statusText(status) {
             if (status == 1) {
                 return 'Платена';
@@ -56206,7 +56219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var vm = this;
         var route = '/dashboard/orders';
         axios.get(route).then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             vm.orders = response.data;
             // vm.loading = false;
         }).catch(function (error) {
@@ -56269,7 +56282,7 @@ var render = function() {
           [
             _vm._m(0),
             _vm._v(" "),
-            _vm._l(_vm.orders, function(order) {
+            _vm._l(_vm.orders, function(order, index) {
               return _c("tbody", [
                 _c("tr", [
                   _c("td", [_vm._v(_vm._s(order.created_at))]),
@@ -56332,10 +56345,15 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c(
-                          "router-link",
+                          "button",
                           {
                             staticClass: "ui button",
-                            attrs: { to: "/orders/" + order.id + "/delete" }
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.handleDelete(order.id, index)
+                              }
+                            }
                           },
                           [_c("i", { staticClass: "trash icon" })]
                         )
@@ -56576,7 +56594,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setStatus: function setStatus() {
             var vm = this;
             axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value }).then(function (response) {
-                console.log(response.data);
+                vm.$notify({
+                    message: 'Статусът е променен.',
+                    type: 'success'
+                });
             }).catch(function (error) {
                 console.log(error);
             });
@@ -104760,7 +104781,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.carousel_heading {\r\n\ttext-align: center;\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 14px 0;\r\n\tmargin: 0 auto;\n}\n.publish_link {\r\n\tcolor: white !important;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
+exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.carousel_title, .carousel_body {\r\n\ttext-align: center;\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 14px 0;\r\n\tmargin: 0 auto;\n}\n.publish_link {\r\n\tcolor: white !important;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -104772,6 +104793,22 @@ exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gr
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -104847,28 +104884,51 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "computer only" },
     [
       _c(
         "el-carousel",
-        { attrs: { interval: 5000, arrow: "always", height: "500px" } },
-        _vm._l(_vm.items, function(item) {
-          return _c(
+        { attrs: { arrow: "always", height: "500px" } },
+        [
+          _c(
             "el-carousel-item",
-            {
-              key: item.id,
-              style: "background: url(/img/slider/" + item.cover + ")"
-            },
+            { style: "background: url(/img/slider/1.jpeg)" },
+            [
+              _c("div", { staticClass: "carousel_overlay" }, [
+                _c("div", { staticClass: "carousel_container" }, [
+                  _c(
+                    "div",
+                    { staticClass: "carousel_heading" },
+                    [
+                      _c("h1", { staticClass: "carousel_title" }, [
+                        _vm._v("Семинари 365")
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "carousel_body" }, [
+                        _vm._v("Открий курс днес. Бъди успешен утре.")
+                      ]),
+                      _vm._v(" "),
+                      _c("search", { attrs: { big: true } })
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "el-carousel-item",
+            { style: "background: url(/img/slider/2.jpeg)" },
             [
               _c("div", { staticClass: "carousel_overlay" }, [
                 _c("div", { staticClass: "carousel_container" }, [
                   _c("div", { staticClass: "carousel_heading" }, [
                     _c("h1", { staticClass: "carousel_title" }, [
-                      _vm._v(_vm._s(item.title))
+                      _vm._v("Семинари 365")
                     ]),
                     _vm._v(" "),
                     _c("h3", { staticClass: "carousel_body" }, [
-                      _vm._v(_vm._s(item.body))
+                      _vm._v("Открий курс днес. Бъди успешен утре.")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -104893,7 +104953,8 @@ var render = function() {
               ])
             ]
           )
-        })
+        ],
+        1
       ),
       _vm._v(" "),
       _vm._m(0)
@@ -109934,7 +109995,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.search-container {\n\twidth: 30% !important;\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\tcolor: rgba(0,0,0,.87) !important;\n\ttop: 30px;\n\tleft: 0;\n\tz-index: 100;\n\twidth: 100%;\n\tcursor: pointer;\n}\n.search-container .ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
+exports.push([module.i, "\n.search-container {\n\t/*width: 30% !important;*/\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\tcolor: rgba(0,0,0,.87) !important;\n\ttop: 24px;\n\tleft: 0;\n\tz-index: 2400;\n\twidth: 100%;\n\tcursor: pointer;\n}\n.top {\n\ttop: 38px;\n}\n.search-container .ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
 
 // exports
 
@@ -109945,6 +110006,8 @@ exports.push([module.i, "\n.search-container {\n\twidth: 30% !important;\n\tposi
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -110025,66 +110088,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "search-container item" }, [
-    _c(
-      "div",
-      {
-        staticClass: "ui fluid icon input",
-        class: { big: _vm.big, loading: _vm.loading }
-      },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.input,
-              expression: "input"
-            }
-          ],
-          attrs: { type: "text", placeholder: "Търсене..." },
-          domProps: { value: _vm.input },
-          on: {
-            blur: _vm.clearSearch,
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.input = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("i", { staticClass: "search icon" })
-      ]
-    ),
-    _vm._v(" "),
-    _vm.events.length > 0
-      ? _c(
-          "div",
-          { staticClass: "ui segments search-results" },
-          _vm._l(_vm.events, function(event) {
-            return _c(
-              "div",
+  return _c("div", { staticClass: "item" }, [
+    _c("div", { staticClass: "search-container" }, [
+      _c(
+        "div",
+        {
+          staticClass: "ui icon input",
+          class: { huge: _vm.big, fluid: _vm.big, loading: _vm.loading }
+        },
+        [
+          _c("input", {
+            directives: [
               {
-                staticClass: "ui segment",
-                on: {
-                  click: function($event) {
-                    _vm.openEvent(event.id)
-                  }
+                name: "model",
+                rawName: "v-model",
+                value: _vm.input,
+                expression: "input"
+              }
+            ],
+            attrs: { type: "text", placeholder: "Търсене..." },
+            domProps: { value: _vm.input },
+            on: {
+              blur: _vm.clearSearch,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              },
-              [
-                _c("p", [
-                  _vm._v(
-                    _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
-                  )
-                ])
-              ]
-            )
-          })
-        )
-      : _vm._e()
+                _vm.input = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("i", { staticClass: "search icon" })
+        ]
+      ),
+      _vm._v(" "),
+      _vm.events.length > 0
+        ? _c(
+            "div",
+            {
+              staticClass: "ui segments search-results",
+              class: { top: _vm.big }
+            },
+            _vm._l(_vm.events, function(event) {
+              return _c(
+                "div",
+                {
+                  staticClass: "ui segment",
+                  on: {
+                    click: function($event) {
+                      _vm.openEvent(event.id)
+                    }
+                  }
+                },
+                [
+                  _c("p", [
+                    _vm._v(
+                      _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
+                    )
+                  ])
+                ]
+              )
+            })
+          )
+        : _vm._e()
+    ])
   ])
 }
 var staticRenderFns = []

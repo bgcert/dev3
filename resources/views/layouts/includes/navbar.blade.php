@@ -1,6 +1,6 @@
 <div id="nav-header">
 	<div class="ui container">
-		<div class="ui stackable secondary @if (Request::is('/')) {{'inverted'}} @endif menu">
+		<div class="ui stackable secondary menu">
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/browse" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>

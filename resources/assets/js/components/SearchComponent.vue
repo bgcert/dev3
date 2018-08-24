@@ -1,12 +1,14 @@
 <template>
-	<div class="search-container item">
-		<div class="ui fluid icon input" :class="{ big: big, loading: loading }">
-		  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
-		  <i class="search icon"></i>
-		</div>
-		<div class="ui segments search-results" v-if="events.length > 0">
-			<div class="ui segment" v-for="event in events" @click="openEvent(event.id)">
-				<p>{{ event.theme.title }} - {{ event.begin_at }}</p>
+	<div class="item">
+		<div class="search-container">
+			<div class="ui icon input" :class="{ huge: big, fluid: big, loading: loading }">
+			  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
+			  <i class="search icon"></i>
+			</div>
+			<div class="ui segments search-results" v-if="events.length > 0" :class="{ top: big }">
+				<div class="ui segment" v-for="event in events" @click="openEvent(event.id)">
+					<p>{{ event.theme.title }} - {{ event.begin_at }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -79,18 +81,22 @@
 
 <style>
 	.search-container {
-		width: 30% !important;
+		/*width: 30% !important;*/
 		position: relative;
 	}
 
 	.search-results {
 		position: absolute !important;
 		color: rgba(0,0,0,.87) !important;
-		top: 30px;
+		top: 24px;
 		left: 0;
-		z-index: 100;
+		z-index: 2400;
 		width: 100%;
 		cursor: pointer;
+	}
+
+	.top {
+		top: 38px;
 	}
 
 	.search-container .ui .segment:hover {

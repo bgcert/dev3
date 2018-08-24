@@ -21,7 +21,7 @@
 						<th></th>
 					</tr>
 				</thead>
-				<tbody v-for="order in orders">
+				<tbody v-for="(order, index) in orders">
 					<tr>
 						<td>{{ order.created_at }}</td>
 						<td>
@@ -42,9 +42,9 @@
 								<router-link :to="'/orders/' + order.id" class="ui button">
 									<i class="edit icon"></i>
 								</router-link>
-								<router-link :to="'/orders/' + order.id + '/delete'" class="ui button">
+								<button class="ui button" @click.prevent="handleDelete(order.id, index)">
 									<i class="trash icon"></i>
-								</router-link>
+								</button>
 							</div>
 						</td>
 					</tr>
@@ -64,6 +64,18 @@
     	},
 
     	methods: {
+    		handleDelete(id, index) {
+    			let vm = this;
+    			var result = confirm('Сигурни ли сте, че желаете да изтриете заявката?');
+			    if (result) {
+			    	axios.delete('dashboard/orders/' + id).then( function (response) {
+	    				vm.orders.splice(index, 1);
+	    			});
+			    } else {
+			        console.log('canceled');
+			    }
+    		},
+
     		statusText: function (status) {
 		    	if(status == 1) {
 		    		return 'Платена'
@@ -85,7 +97,7 @@
         	var vm = this;
             var route = '/dashboard/orders';
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
+        		// console.log(response.data);
         		vm.orders = response.data;
         		// vm.loading = false;
 			})

@@ -83,7 +83,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\Order::destroy($id);
     }
 
     public function setStatus()

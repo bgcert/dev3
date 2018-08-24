@@ -4,17 +4,17 @@
 
 @push('header-scripts')
     <style>
-    	#nav-header {
+/*    	#nav-header {
     		position: absolute;
     		top: 0;
     		left: 0;
     		right: 0;
     		margin: 0 auto;
-    		z-index: 3000; /*Less than 2010 conflicts with semantic-ui*/
+    		z-index: 3000; Less than 2010 conflicts with semantic-ui
     		background-color: transparent;
     		border: none;
     		box-shadow: none;
-    	}
+    	}*/
 
 		.category-box {
 			display: flex;
@@ -41,8 +41,6 @@
 	</div>
 
 	<div class="ui hidden divider"></div>
-
-	<div id="search"></div>
 
 	<event-feed></event-feed>
 	

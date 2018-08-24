@@ -1,19 +1,35 @@
 <template>
-	<div class="computer only">
-		<el-carousel :interval="5000" arrow="always" height="500px">
-			<el-carousel-item v-for="item in items" :key="item.id" :style="'background: url(/img/slider/' + item.cover + ')'">
+	<div>
+
+		<el-carousel arrow="always" height="500px">
+
+			<el-carousel-item :style="'background: url(/img/slider/1.jpeg)'">
 				<div class="carousel_overlay">
 					<div class="carousel_container">
 						<div class="carousel_heading">
-							<h1 class="carousel_title">{{ item.title }}</h1>
-							<h3 class="carousel_body">{{ item.body }}</h3>
+							<h1 class="carousel_title">Семинари 365</h1>
+							<h3 class="carousel_body">Открий курс днес. Бъди успешен утре.</h3>
+							<search :big="true"></search>
+						</div>
+					</div>
+				</div>
+			</el-carousel-item>
+
+			<el-carousel-item :style="'background: url(/img/slider/2.jpeg)'">
+				<div class="carousel_overlay">
+					<div class="carousel_container">
+						<div class="carousel_heading">
+							<h1 class="carousel_title">Семинари 365</h1>
+							<h3 class="carousel_body">Открий курс днес. Бъди успешен утре.</h3>
 							<a href="#" class="ui big inverted button">Регистрация</a>
 							<a href="#" class="ui big inverted button">Вход</a>
 						</div>
 					</div>
 				</div>
 			</el-carousel-item>
+
 		</el-carousel>
+
 		<div class="publish">
 			<div style="text-align: center;">
 				<h4>Публикувайте Вашите обучения или зали. <span style="margin-left: 10px;"><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
@@ -101,7 +117,7 @@
 	font-size: 2.2rem;
 }
 
-.carousel_heading {
+.carousel_title, .carousel_body {
 	text-align: center;
 	color: white;
 	text-shadow: 0 2px 3px rgba(41,48,59,.2);

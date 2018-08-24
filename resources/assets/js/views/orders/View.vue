@@ -139,7 +139,10 @@
     		setStatus() {
     			let vm = this;
     			axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value  }).then(function (response) {
-    				console.log(response.data);
+    				vm.$notify({
+			        	message: 'Статусът е променен.',
+			        	type: 'success'
+			        });
 				})
 				.catch(function (error) {
 					console.log(error);
