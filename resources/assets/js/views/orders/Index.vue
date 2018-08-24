@@ -26,11 +26,17 @@
 						<td>{{ order.created_at }}</td>
 						<td>
 							<router-link :to="'/orders/' + order.id">
-								{{ order.event.begin_at }} - {{ order.event.theme.title }}
+								{{ order.event_begin_at }} - {{ order.theme_title }}
 							</router-link>
 						</td>
 						<td>{{ order.participants_count }}</td>
-						<td><div class="ui mini green horizontal label">Платена</div></td>
+						<td>
+							<div
+								class="ui mini horizontal label"
+								:class="{ green: order.status == 1, orange: order.status == 2, red: order.status == 3 }">
+								{{ statusText(order.status) }}
+							</div>
+						</td>
 						<td>
 							<div class="ui mini basic icon buttons">
 								<router-link :to="'/orders/' + order.id" class="ui button">
@@ -43,15 +49,7 @@
 						</td>
 					</tr>
 				</tbody>
-					<tfoot>
-						<tr><th>3 People</th>
-							<th>2 Approved</th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
-					</tfoot>
-				</table>
+			</table>
 		</div>
 	</div>
 </template>
@@ -66,7 +64,17 @@
     	},
 
     	methods: {
-
+    		statusText: function (status) {
+		    	if(status == 1) {
+		    		return 'Платена'
+		    	} else if(status == 2) {
+		    		return 'Потвърдена'
+		    	} else if(status == 3) {
+		    		return 'Отказана'
+		    	} else {
+		    		return 'Необработена'
+		    	}
+			}
     	},
 
         mounted() {

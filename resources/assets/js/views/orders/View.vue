@@ -1,12 +1,12 @@
 <template>
 	<div class="ui segments">
 		<div class="ui clearing segment">
-			<h3 style="float: left;">Заявка ID</h3>
+			<h3 style="float: left;">Заявка {{ order.id }}</h3>
 		</div>
 		<div class="ui segment" v-if="order.id">
 			<div class="ui grid">
 				<div class="ten wide column">
-					<h4>{{ order.event.theme.title }} - {{ order.event.begin_at }}</h4>
+					<h4>{{ order.theme_title }} - {{ order.event_begin_at }}</h4>
 					<table class="ui table">
 						<thead>
 							<tr>
@@ -18,7 +18,7 @@
 						<tbody>
 							<tr>
 								<td>{{ order.created_at }}</td>
-								<td>{{ order.event.price }}.00 лв.</td>
+								<td>{{ order.event_price }}.00 лв.</td>
 								<td>{{ order.participants_count }}</td>
 							</tr>
 						</tbody>
@@ -26,7 +26,7 @@
 							<tr>
 								<th></th>
 								<th><h4>Общо:</h4></th>
-								<th><h4>{{ order.event.price * order.participants_count }}.00 лв.</h4></th>
+								<th><h4>{{ order.event_price * order.participants_count }}.00 лв.</h4></th>
 							</tr>
 						</tfoot>
 					</table>
@@ -47,7 +47,7 @@
 									<td>{{ order.contact_number }}</td>
 								</tr>
 							</tbody>
-							<template v-if="order.invoice">
+							<template v-if="order.invoice == 1">
 								<thead>
 									<tr>
 										<th colspan="2">Данни за фактура</th>
@@ -100,7 +100,7 @@
 				</div>
   				<div class="six wide column">
   					<div class="ui secondary segment">
-  						<el-select v-model="value" placeholder="Select">
+  						<el-select v-model="value" placeholder="Статус">
 	  						<el-option
 	  							v-for="item in options"
 	  							:key="item.value"
@@ -108,6 +108,7 @@
 	  							:value="item.value">
 	  						</el-option>
 	  					</el-select>
+	  					<button class="ui small basic button" @click="setStatus">Промени</button>
   					</div>
   				</div>
 			</div>
@@ -120,32 +121,40 @@
     	data: function () {
     		return {
     			options: [{
-    				value: 'Option1',
+    				value: 1,
     				label: 'Платена'
     			}, {
-    				value: 'Option2',
+    				value: 2,
     				label: 'Потвърдена'
     			}, {
-    				value: 'Option3',
+    				value: 3,
     				label: 'Отказана'
     			}],
-    			value: '',
+    			value: null,
     			order: {}
     		}
     	},
 
     	methods: {
-
+    		setStatus() {
+    			let vm = this;
+    			axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value  }).then(function (response) {
+    				console.log(response.data);
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+    		}
     	},
 
         mounted() {
-            console.log('Orders create mounted.');
+            // console.log('Orders create mounted.');
 
             var vm = this;
             var route = '/dashboard/orders/' + this.$route.params.id;
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
         		vm.order = response.data;
+        		vm.value = response.data.status;
         		// vm.loading = false;
 			})
 			.catch(function (error) {
@@ -155,8 +164,6 @@
 
         created() {
 
-
-        	
         }
     };
 </script>

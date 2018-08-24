@@ -56176,8 +56176,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56187,7 +56185,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    methods: {},
+    methods: {
+        statusText: function statusText(status) {
+            if (status == 1) {
+                return 'Платена';
+            } else if (status == 2) {
+                return 'Потвърдена';
+            } else if (status == 3) {
+                return 'Отказана';
+            } else {
+                return 'Необработена';
+            }
+        }
+    },
 
     mounted: function mounted() {
         console.log('Orders index mounted.');
@@ -56273,9 +56283,9 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t\t" +
-                              _vm._s(order.event.begin_at) +
+                              _vm._s(order.event_begin_at) +
                               " - " +
-                              _vm._s(order.event.theme.title) +
+                              _vm._s(order.theme_title) +
                               "\n\t\t\t\t\t\t"
                           )
                         ]
@@ -56286,7 +56296,26 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(order.participants_count))]),
                   _vm._v(" "),
-                  _vm._m(1, true),
+                  _c("td", [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "ui mini horizontal label",
+                        class: {
+                          green: order.status == 1,
+                          orange: order.status == 2,
+                          red: order.status == 3
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t" +
+                            _vm._s(_vm.statusText(order.status)) +
+                            "\n\t\t\t\t\t\t"
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("td", [
                     _c(
@@ -56316,9 +56345,7 @@ var render = function() {
                   ])
                 ])
               ])
-            }),
-            _vm._v(" "),
-            _vm._m(2)
+            })
           ],
           2
         )
@@ -56340,34 +56367,6 @@ var staticRenderFns = [
         _c("th", [_c("i", { staticClass: "user icon" })]),
         _vm._v(" "),
         _c("th", [_vm._v("Статус")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("div", { staticClass: "ui mini green horizontal label" }, [
-        _vm._v("Платена")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tfoot", [
-      _c("tr", [
-        _c("th", [_vm._v("3 People")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("2 Approved")]),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
         _vm._v(" "),
         _c("th")
       ])
@@ -56553,35 +56552,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             options: [{
-                value: 'Option1',
+                value: 1,
                 label: 'Платена'
             }, {
-                value: 'Option2',
+                value: 2,
                 label: 'Потвърдена'
             }, {
-                value: 'Option3',
+                value: 3,
                 label: 'Отказана'
             }],
-            value: '',
+            value: null,
             order: {}
         };
     },
 
-    methods: {},
+    methods: {
+        setStatus: function setStatus() {
+            var vm = this;
+            axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value }).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
 
     mounted: function mounted() {
-        console.log('Orders create mounted.');
+        // console.log('Orders create mounted.');
 
         var vm = this;
         var route = '/dashboard/orders/' + this.$route.params.id;
         axios.get(route).then(function (response) {
-            console.log(response.data);
             vm.order = response.data;
+            vm.value = response.data.status;
             // vm.loading = false;
         }).catch(function (error) {
             console.log(error);
@@ -56599,7 +56608,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "ui segments" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "ui clearing segment" }, [
+      _c("h3", { staticStyle: { float: "left" } }, [
+        _vm._v("Заявка " + _vm._s(_vm.order.id))
+      ])
+    ]),
     _vm._v(" "),
     _vm.order.id
       ? _c("div", { staticClass: "ui segment" }, [
@@ -56607,21 +56620,21 @@ var render = function() {
             _c("div", { staticClass: "ten wide column" }, [
               _c("h4", [
                 _vm._v(
-                  _vm._s(_vm.order.event.theme.title) +
+                  _vm._s(_vm.order.theme_title) +
                     " - " +
-                    _vm._s(_vm.order.event.begin_at)
+                    _vm._s(_vm.order.event_begin_at)
                 )
               ]),
               _vm._v(" "),
               _c("table", { staticClass: "ui table" }, [
-                _vm._m(1),
+                _vm._m(0),
                 _vm._v(" "),
                 _c("tbody", [
                   _c("tr", [
                     _c("td", [_vm._v(_vm._s(_vm.order.created_at))]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s(_vm.order.event.price) + ".00 лв.")
+                      _vm._v(_vm._s(_vm.order.event_price) + ".00 лв.")
                     ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(_vm.order.participants_count))])
@@ -56632,13 +56645,13 @@ var render = function() {
                   _c("tr", [
                     _c("th"),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("th", [
                       _c("h4", [
                         _vm._v(
                           _vm._s(
-                            _vm.order.event.price * _vm.order.participants_count
+                            _vm.order.event_price * _vm.order.participants_count
                           ) + ".00 лв."
                         )
                       ])
@@ -56651,7 +56664,7 @@ var render = function() {
                 "table",
                 { staticClass: "ui celled table" },
                 [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("tbody", [
                     _c("tr", [
@@ -56667,9 +56680,9 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm.order.invoice
+                  _vm.order.invoice == 1
                     ? [
-                        _vm._m(4),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("tbody", [
                           _c("tr", [
@@ -56716,7 +56729,7 @@ var render = function() {
                 "table",
                 { staticClass: "ui collapsing table" },
                 [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _vm._l(_vm.order.participants, function(participant, index) {
                     return _c("tbody", [
@@ -56731,7 +56744,7 @@ var render = function() {
                 2
               ),
               _vm._v(" "),
-              _vm._m(6)
+              _vm._m(5)
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "six wide column" }, [
@@ -56742,7 +56755,7 @@ var render = function() {
                   _c(
                     "el-select",
                     {
-                      attrs: { placeholder: "Select" },
+                      attrs: { placeholder: "Статус" },
                       model: {
                         value: _vm.value,
                         callback: function($$v) {
@@ -56757,6 +56770,15 @@ var render = function() {
                         attrs: { label: item.label, value: item.value }
                       })
                     })
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "ui small basic button",
+                      on: { click: _vm.setStatus }
+                    },
+                    [_vm._v("Промени")]
                   )
                 ],
                 1
@@ -56768,14 +56790,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui clearing segment" }, [
-      _c("h3", { staticStyle: { float: "left" } }, [_vm._v("Заявка ID")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -104792,7 +104806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 0: {
                     id: 1,
                     title: 'Семинари 365',
-                    body: 'Постоянно развитие',
+                    body: 'Открий курс днес. Бъди успешен утре.',
                     cover: '1.jpeg'
                 },
                 1: {
@@ -104895,7 +104909,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "publish" }, [
       _c("div", { staticStyle: { "text-align": "center" } }, [
         _c("h4", [
-          _vm._v("Публикувайте Вашите обучения или зали в Семинари 365. "),
+          _vm._v("Публикувайте Вашите обучения или зали. "),
           _c("span", { staticStyle: { "margin-left": "10px" } }, [
             _c(
               "a",

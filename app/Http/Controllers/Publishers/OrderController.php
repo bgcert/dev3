@@ -14,10 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$id = \Auth::id();
-    	$orders = \App\Order::with('event.theme.company')->withCount('participants')->whereHas('event.theme.company', function ($q) use ($id) {
-			        	$q->where('user_id', $id);
-			        })->orderByDesc('created_at')->get();
+    	$id = \Auth::user()->company->id;
+    	$orders = \App\Order::withCount('participants')->where('company_id', $id)->orderByDesc('created_at')->get();
 
         return $orders;
     }
@@ -51,7 +49,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	return \App\Order::with('user', 'event.theme', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
+    	return \App\Order::with('user', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
     }
 
     /**
@@ -86,5 +84,14 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setStatus()
+    {
+    	$order = \App\Order::find(request()->order);
+
+    	$order->status = request()->status;
+    	$order->save();
+    	return $order;
     }
 }

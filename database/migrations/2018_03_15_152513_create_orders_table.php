@@ -16,17 +16,21 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('event_id')->unsigned();
+            $table->integer('company_id')->unsigned();
+            $table->string('theme_title')->nullable();
+            $table->timestamp('event_begin_at')->nullable();
+            $table->integer('event_price')->unsigned()->nullable();
             $table->string('contact_person');
             $table->string('contact_number');
             $table->text('comment')->nullable();
             $table->text('note')->nullable();
+            $table->integer('status')->unsigned()->nullable();
             $table->boolean('paid')->default(0);
             $table->boolean('invoice')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            // $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 

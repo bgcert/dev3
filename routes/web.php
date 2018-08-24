@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::login(\App\User::find(1));
+// Auth::login(\App\User::find(4));
 
 Route::get('/query', function () {
     
@@ -129,6 +129,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Save image from upload component
 	Route::post('/image/save', 'DashboardController@saveImage');
 	Route::post('/image/upload', 'DashboardController@upload');
+
+	// Set order status
+	Route::post('/orders/status', 'OrderController@setStatus');
 
 });
 

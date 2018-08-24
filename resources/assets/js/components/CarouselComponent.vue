@@ -16,7 +16,7 @@
 		</el-carousel>
 		<div class="publish">
 			<div style="text-align: center;">
-				<h4>Публикувайте Вашите обучения или зали в Семинари 365. <span style="margin-left: 10px;"><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
+				<h4>Публикувайте Вашите обучения или зали. <span style="margin-left: 10px;"><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
 			</div>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
     				0: {
     					id: 1,
     					title: 'Семинари 365',
-    					body: 'Постоянно развитие',
+    					body: 'Открий курс днес. Бъди успешен утре.',
     					cover: '1.jpeg'
     				},
     				1: {
