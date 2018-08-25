@@ -104781,7 +104781,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\n.carousel_container {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\theight: 100%;\n}\n.el-carousel__item {\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.carousel_title, .carousel_body {\r\n\ttext-align: center;\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 14px 0;\r\n\tmargin: 0 auto;\n}\n.publish_link {\r\n\tcolor: white !important;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
+exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);\r\n\theight: 100%;\n}\r\n\r\n/*.carousel_container {\r\n\tdisplay: flex;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\theight: 100%;\r\n}*/\n.promo {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n    -webkit-box-align: center;\r\n        -ms-flex-align: center;\r\n            align-items: center;\r\n    -webkit-box-pack: center;\r\n        -ms-flex-pack: center;\r\n            justify-content: center;\r\n\tposition: relative;\r\n\theight: 500px;\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\n}\n.promo .overlay {\r\n\tposition: absolute;\r\n\tbackground-image: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 66, 37, 0.40)));\r\n\tbackground-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);\r\n\theight: 100%;\r\n\twidth: 100%;\n}\n.promo_title {\r\n\tfont-size: 3.4rem;\n}\n.promo_body {\r\n\tfont-size: 2.4rem;\n}\n.promo_title, .promo_body {\r\n\tposition: relative;\r\n\tz-index: 2000;\r\n\ttext-align: center;\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\n}\r\n\r\n/*.el-carousel__item {\r\n\tbackground-size: cover !important;\r\n    background-position: center center !important;\r\n\tbackground-color: #99a9bf;\r\n}*/\r\n\r\n/*.el-carousel__item {\r\n    content: '';\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n}*/\n.carousel_title {\r\n\tfont-size: 4rem;\n}\n.carousel_body {\r\n\tfont-size: 2.2rem;\n}\n.carousel_title, .carousel_body {\r\n\ttext-align: center;\r\n\tcolor: white;\r\n\ttext-shadow: 0 2px 3px rgba(41,48,59,.2);\n}\n.publish {\r\n\tcolor: white;\r\n\tbackground-color: #FFE53B;\r\n\tbackground-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);\r\n\tpadding: 14px 0;\r\n\tmargin: 0 auto;\n}\n.publish_link {\r\n\tcolor: white !important;\n}\r\n/*.el-carousel__item:nth-child(2n+1) {\r\n\tbackground-color: #d3dce6;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -104793,12 +104793,6 @@ exports.push([module.i, "\n.carousel_overlay {\r\n\tbackground-image: -webkit-gr
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -104882,105 +104876,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "el-carousel",
-        { attrs: { arrow: "always", height: "500px" } },
-        [
-          _c(
-            "el-carousel-item",
-            { style: "background: url(/img/slider/1.jpeg)" },
-            [
-              _c("div", { staticClass: "carousel_overlay" }, [
-                _c("div", { staticClass: "carousel_container" }, [
-                  _c(
-                    "div",
-                    { staticClass: "carousel_heading" },
-                    [
-                      _c("h1", { staticClass: "carousel_title" }, [
-                        _vm._v("Семинари 365")
-                      ]),
-                      _vm._v(" "),
-                      _c("h3", { staticClass: "carousel_body" }, [
-                        _vm._v("Открий курс днес. Бъди успешен утре.")
-                      ]),
-                      _vm._v(" "),
-                      _c("search", { attrs: { big: true } })
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "el-carousel-item",
-            { style: "background: url(/img/slider/2.jpeg)" },
-            [
-              _c("div", { staticClass: "carousel_overlay" }, [
-                _c("div", { staticClass: "carousel_container" }, [
-                  _c("div", { staticClass: "carousel_heading" }, [
-                    _c("h1", { staticClass: "carousel_title" }, [
-                      _vm._v("Семинари 365")
-                    ]),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "carousel_body" }, [
-                      _vm._v("Открий курс днес. Бъди успешен утре.")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui big inverted button",
-                        attrs: { href: "#" }
-                      },
-                      [_vm._v("Регистрация")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui big inverted button",
-                        attrs: { href: "#" }
-                      },
-                      [_vm._v("Вход")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._m(0)
-    ],
-    1
-  )
+  return _c("div", [
+    _c(
+      "section",
+      { staticClass: "promo", style: "background: url(/img/slider/1.jpeg)" },
+      [
+        _c("div", { staticClass: "overlay" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "promo_container" },
+          [
+            _c("h1", { staticClass: "promo_title" }, [_vm._v("Семинари 365")]),
+            _vm._v(" "),
+            _c("h3", { staticClass: "promo_body" }, [
+              _vm._v("Открий курс днес. Бъди успешен утре.")
+            ]),
+            _vm._v(" "),
+            _c("search", { attrs: { big: true } })
+          ],
+          1
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "publish" }, [
-      _c("div", { staticStyle: { "text-align": "center" } }, [
-        _c("h4", [
-          _vm._v("Публикувайте Вашите обучения или зали. "),
-          _c("span", { staticStyle: { "margin-left": "10px" } }, [
-            _c(
-              "a",
-              { staticClass: "ui inverted button", attrs: { href: "#" } },
-              [_vm._v("Вижте как?")]
-            )
+    return _c(
+      "div",
+      { staticClass: "publish", staticStyle: { display: "none" } },
+      [
+        _c("div", { staticStyle: { "text-align": "center" } }, [
+          _c("h4", [
+            _vm._v("Публикувайте Вашите обучения или зали. "),
+            _c("span", { staticStyle: { "margin-left": "10px" } }, [
+              _c(
+                "a",
+                { staticClass: "ui inverted button", attrs: { href: "#" } },
+                [_vm._v("Вижте как?")]
+              )
+            ])
           ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -109995,7 +109940,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.search-container {\n\t/*width: 30% !important;*/\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\tcolor: rgba(0,0,0,.87) !important;\n\ttop: 24px;\n\tleft: 0;\n\tz-index: 2400;\n\twidth: 100%;\n\tcursor: pointer;\n}\n.top {\n\ttop: 38px;\n}\n.search-container .ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
+exports.push([module.i, "\n.search-container {\n\t/*width: 30% !important;*/\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\tcolor: rgba(0,0,0,.87) !important;\n\ttop: 24px;\n\tleft: 0;\n\tz-index: 12200;\n\twidth: 200%;\n\tcursor: pointer;\n}\n.top {\n\ttop: 38px;\n\twidth: 100%;\n}\n.search-container .ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
 
 // exports
 

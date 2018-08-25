@@ -1,7 +1,14 @@
 <template>
 	<div>
-
-		<el-carousel arrow="always" height="500px">
+		<section class="promo" :style="'background: url(/img/slider/1.jpeg)'">
+			<div class="overlay"></div>
+			<div class="promo_container">
+				<h1 class="promo_title">Семинари 365</h1>
+				<h3 class="promo_body">Открий курс днес. Бъди успешен утре.</h3>
+				<search :big="true"></search>
+			</div>
+		</section>
+<!-- 		<el-carousel autoplay="false" height="500px" style="position: relative;">
 
 			<el-carousel-item :style="'background: url(/img/slider/1.jpeg)'">
 				<div class="carousel_overlay">
@@ -15,22 +22,9 @@
 				</div>
 			</el-carousel-item>
 
-			<el-carousel-item :style="'background: url(/img/slider/2.jpeg)'">
-				<div class="carousel_overlay">
-					<div class="carousel_container">
-						<div class="carousel_heading">
-							<h1 class="carousel_title">Семинари 365</h1>
-							<h3 class="carousel_body">Открий курс днес. Бъди успешен утре.</h3>
-							<a href="#" class="ui big inverted button">Регистрация</a>
-							<a href="#" class="ui big inverted button">Вход</a>
-						</div>
-					</div>
-				</div>
-			</el-carousel-item>
+		</el-carousel> -->
 
-		</el-carousel>
-
-		<div class="publish">
+		<div class="publish" style="display: none;">
 			<div style="text-align: center;">
 				<h4>Публикувайте Вашите обучения или зали. <span style="margin-left: 10px;"><a class="ui inverted button" href="#">Вижте как?</a></span></h4>
 			</div>
@@ -87,18 +81,52 @@
 	height: 100%;
 }
 
-.carousel_container {
+/*.carousel_container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-}
+}*/
 
-.el-carousel__item {
+.promo {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	position: relative;
+	height: 500px;
 	background-size: cover !important;
     background-position: center center !important;
 	background-color: #99a9bf;
 }
+
+.promo .overlay {
+	position: absolute;
+	background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 66, 37, 0.40) 100%);
+	height: 100%;
+	width: 100%;
+}
+
+.promo_title {
+	font-size: 3.4rem;
+}
+
+.promo_body {
+	font-size: 2.4rem;
+}
+
+.promo_title, .promo_body {
+	position: relative;
+	z-index: 2000;
+	text-align: center;
+	color: white;
+	text-shadow: 0 2px 3px rgba(41,48,59,.2);
+}
+
+/*.el-carousel__item {
+	background-size: cover !important;
+    background-position: center center !important;
+	background-color: #99a9bf;
+}*/
 
 /*.el-carousel__item {
     content: '';

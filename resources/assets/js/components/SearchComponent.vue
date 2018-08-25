@@ -90,13 +90,14 @@
 		color: rgba(0,0,0,.87) !important;
 		top: 24px;
 		left: 0;
-		z-index: 2400;
-		width: 100%;
+		z-index: 12200;
+		width: 200%;
 		cursor: pointer;
 	}
 
 	.top {
 		top: 38px;
+		width: 100%;
 	}
 
 	.search-container .ui .segment:hover {
