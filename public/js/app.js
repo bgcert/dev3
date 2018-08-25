@@ -54183,6 +54183,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   description: vm.description,
                   capacity: vm.capacity,
                   cover: vm.cover,
+                  price: vm.price,
                   images: vm.imageList
 
                 }).then(function (response) {
@@ -55824,7 +55825,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     _method: 'PUT',
                                     name: vm.venue.name,
                                     description: vm.venue.description,
-                                    capacity: vm.venue.capacity
+                                    capacity: vm.venue.capacity,
+                                    price: vm.venue.price
                                 };
                                 _context.next = 4;
                                 return this.uploadCover();
@@ -105761,9 +105763,7 @@ var render = function() {
               _c("div", {
                 staticClass: "logo",
                 style:
-                  "background-image: url(" +
-                  _vm.item.theme.company.company_detail.logo +
-                  ")"
+                  "background-image: url(" + _vm.item.theme.company.logo + ")"
               })
             ]
           ),
@@ -105806,7 +105806,7 @@ var render = function() {
                   },
                   [_c("i", { staticClass: "eye icon" })]
                 ),
-                _vm._v("\n\t\t\t\t\t54\n\t\t\t")
+                _vm._v("\n\t\t\t\t\t0\n\t\t\t")
               ],
               1
             ),
@@ -105873,7 +105873,7 @@ var render = function() {
         [
           _c("img", {
             staticClass: "p_logo",
-            attrs: { src: _vm.item.theme.company.company_detail.logo }
+            attrs: { src: _vm.item.theme.company.logo }
           }),
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.item.theme.title))]),
@@ -105890,22 +105890,6 @@ var render = function() {
           _c("div", { staticClass: "ui divider" }),
           _vm._v(" "),
           _c("div", { staticClass: "ui list" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "globe icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v("\n\t\t\t\t\t\tПрисъствено, online\n\t\t\t\t\t")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "sliders horizontal icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v("\n\t\t\t\t\t\tЗа начинаещи\n\t\t\t\t\t")
-              ])
-            ]),
-            _vm._v(" "),
             _c("div", { staticClass: "item" }, [
               _c("i", { staticClass: "clock outline icon" }),
               _vm._v(" "),
@@ -106619,10 +106603,7 @@ var render = function() {
             [
               _c("div", {
                 staticClass: "logo",
-                style:
-                  "background-image: url(" +
-                  _vm.item.company.company_detail.logo +
-                  ")"
+                style: "background-image: url(" + _vm.item.company.logo + ")"
               })
             ]
           ),
@@ -106728,7 +106709,7 @@ var render = function() {
         [
           _c("img", {
             staticClass: "p_logo",
-            attrs: { src: _vm.item.company.company_detail.logo }
+            attrs: { src: _vm.item.company.logo }
           }),
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.item.name))]),
@@ -106798,7 +106779,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui segment" }, [
+    _c("div", { staticClass: "ui segment mt-20" }, [
       _c("div", { staticClass: "ui form" }, [
         _c("div", { staticClass: "fields" }, [
           _c("div", { staticClass: "field" }, [
@@ -108337,23 +108318,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -108534,388 +108498,370 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui grid" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "column" }, [
-          _c(
-            "div",
-            {
-              staticClass: "cover-container",
-              style:
-                "background: url(" +
-                _vm.company.company_detail.cover +
-                ") center / cover no-repeat;"
-            },
-            [
-              _c("div", { staticClass: "overlay" }, [
-                _c("div", { staticClass: "data-container" }, [
-                  _c("div", { staticClass: "logo-container" }, [
-                    _c("img", {
-                      staticClass: "company-logo",
-                      attrs: { src: _vm.company.company_detail.logo }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "company-name" }, [
-                    _c("h2", [_vm._v(_vm._s(_vm.company.name))])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        position: "absolute",
-                        right: "40px",
-                        bottom: "20px"
-                      }
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "ui mini orange button",
-                          attrs: { href: "/messages#/t/" + _vm.company.user.id }
-                        },
-                        [_vm._v("Изпрати съобщение")]
-                      ),
-                      _vm._v(" "),
-                      _c("Follow", {
-                        attrs: {
-                          followed: _vm.company.is_followed.length > 0,
-                          company_id: _vm.company.id
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ])
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "two column row" }, [
-        _c(
-          "div",
-          { staticClass: "twelve wide column" },
-          [
-            _c(
-              "el-tabs",
-              {
-                attrs: { type: "card" },
-                on: { "tab-click": _vm.handleClick },
-                model: {
-                  value: _vm.activeName,
-                  callback: function($$v) {
-                    _vm.activeName = $$v
-                  },
-                  expression: "activeName"
-                }
-              },
-              [
-                _c("el-tab-pane", { attrs: { label: "Инфо", name: "info" } }, [
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.company.company_detail.description))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "extra" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui facebook mini button",
-                        attrs: {
-                          href:
-                            "http://www.facebook.com/" +
-                            _vm.company.company_detail.facebook
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "facebook icon" }),
-                        _vm._v("\n\t\t\t\t\t\t\t\tFacebook\n\t\t\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui instagram mini button",
-                        attrs: {
-                          href:
-                            "instagram.com/" +
-                            _vm.company.company_detail.instagram
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "instagram icon" }),
-                        _vm._v("\n\t\t\t\t\t\t\t\tInstagram\n\t\t\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui linkedin mini button",
-                        attrs: {
-                          href:
-                            "http://linkedin.com/" +
-                            _vm.company.company_detail.linkedin
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "linkedin icon" }),
-                        _vm._v("\n\t\t\t\t\t\t\t\tLinkedIn\n\t\t\t\t\t\t\t")
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "ui youtube mini button",
-                        attrs: {
-                          href:
-                            "http://youtube.com/" +
-                            _vm.company.company_detail.youtube
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "youtube icon" }),
-                        _vm._v("\n\t\t\t\t\t\t\t\tYouTube\n\t\t\t\t\t\t\t")
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "el-tab-pane",
-                  { attrs: { label: "Теми", name: "themes" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "ui items" },
-                      [
-                        _vm._l(_vm.company.themes, function(theme) {
-                          return [
-                            _c("div", { staticClass: "item" }, [
-                              _c("div", { staticClass: "ui small image" }, [
-                                _c("img", { attrs: { src: theme.cover } })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "content" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "header",
-                                    attrs: { href: "/theme/" + theme.id }
-                                  },
-                                  [_vm._v(_vm._s(theme.title))]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "meta" }, [
-                                  _c("span", [_vm._v(_vm._s(theme.body))])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "description" }, [
-                                  _c("p")
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "extra" }, [
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-tab-pane",
-                  { attrs: { label: "Събития", name: "events" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "ui items" },
-                      [
-                        _vm._l(_vm.company.events, function(event) {
-                          return [
-                            _c("div", { staticClass: "item" }, [
-                              _c("div", { staticClass: "ui small image" }, [
-                                _c("img", { attrs: { src: event.cover } })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "content" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "header",
-                                    attrs: { href: "/event/" + event.id }
-                                  },
-                                  [_vm._v(_vm._s(event.title))]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "meta" }, [
-                                  _c("span", [_vm._v(_vm._s(event.body))])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "description" }, [
-                                  _c("p")
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "extra" }, [
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-tab-pane",
-                  { attrs: { label: "Зали", name: "venues" } },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "ui items" },
-                      [
-                        _vm._l(_vm.company.venues, function(venue) {
-                          return [
-                            _c("div", { staticClass: "item" }, [
-                              _c("div", { staticClass: "ui small image" }, [
-                                _c("img", { attrs: { src: venue.cover } })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "content" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "header",
-                                    attrs: { href: "/venue/" + venue.id }
-                                  },
-                                  [_vm._v(_vm._s(venue.name))]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "meta" }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "description" }, [
-                                  _c("p")
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "extra" }, [
-                                  _vm._v(
-                                    "\n\t\t\t\t\t\t\t\t\t\t\tAdditional Details\n\t\t\t\t\t\t\t\t\t\t"
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        })
-                      ],
-                      2
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "four wide column" }, [
-          _c("h5", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tПоследователи\n\t\t\t\t")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ui huge horizontal list" },
-            [
-              _vm._l(_vm.company.followers, function(follower) {
-                return [
-                  _c(
-                    "el-tooltip",
-                    {
-                      staticClass: "item follower",
-                      attrs: {
-                        effect: "dark",
-                        content: follower.name,
-                        placement: "top"
-                      }
-                    },
-                    [
-                      _c("div", { staticClass: "item" }, [
+    _vm.company.id
+      ? _c("div", { staticClass: "ui grid" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "cover-container",
+                  style:
+                    "background: url(" +
+                    _vm.company.cover +
+                    ") center / cover no-repeat;"
+                },
+                [
+                  _c("div", { staticClass: "overlay" }, [
+                    _c("div", { staticClass: "data-container" }, [
+                      _c("div", { staticClass: "logo-container" }, [
                         _c("img", {
-                          staticClass: "ui avatar image",
-                          attrs: { src: follower.picture }
+                          staticClass: "company-logo",
+                          attrs: { src: _vm.company.logo }
                         })
-                      ])
-                    ]
-                  )
-                ]
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui segment" }, [
-            _c("div", { staticClass: "ui list" }, [
-              _c("div", { staticClass: "item" }, [
-                _c("i", { staticClass: "phone icon" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t" +
-                      _vm._s(_vm.company.company_detail.phone) +
-                      "\n\t\t\t\t\t\t\t"
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("i", { staticClass: "marker icon" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _vm._v(
-                    "\n\t\t\t\t\t\t\t\t" +
-                      _vm._s(_vm.company.company_detail.address) +
-                      "\n\t\t\t\t\t\t\t"
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "item" }, [
-                _c("i", { staticClass: "mail icon" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "content" }, [
-                  _c("a", { attrs: { href: "mailto:jack@semantic-ui.com" } }, [
-                    _vm._v(_vm._s(_vm.company.company_detail.email))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "company-name" }, [
+                        _c("h2", [_vm._v(_vm._s(_vm.company.name))])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            position: "absolute",
+                            right: "40px",
+                            bottom: "20px"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "ui mini orange button",
+                              attrs: {
+                                href: "/messages#/t/" + _vm.company.user.id
+                              }
+                            },
+                            [_vm._v("Изпрати съобщение")]
+                          ),
+                          _vm._v(" "),
+                          _c("Follow", {
+                            attrs: {
+                              followed: _vm.company.is_followed.length > 0,
+                              company_id: _vm.company.id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
                   ])
-                ])
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
+                ]
+              )
             ])
           ]),
           _vm._v(" "),
-          _c("h5", { staticClass: "ui dividing header" }, [
-            _vm._v("\n\t\t\t\t\tКарта\n\t\t\t\t")
+          _c("div", { staticClass: "two column row" }, [
+            _c(
+              "div",
+              { staticClass: "twelve wide column" },
+              [
+                _c(
+                  "el-tabs",
+                  {
+                    attrs: { type: "card" },
+                    model: {
+                      value: _vm.activeName,
+                      callback: function($$v) {
+                        _vm.activeName = $$v
+                      },
+                      expression: "activeName"
+                    }
+                  },
+                  [
+                    _c(
+                      "el-tab-pane",
+                      { attrs: { label: "Инфо", name: "info" } },
+                      [
+                        _vm.company.description
+                          ? _c("p", [_vm._v(_vm._s(_vm.company.description))])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.company.name))])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.company.themes.length > 0
+                      ? _c(
+                          "el-tab-pane",
+                          { attrs: { label: "Теми", name: "themes" } },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "ui items" },
+                              [
+                                _vm._l(_vm.company.themes, function(theme) {
+                                  return [
+                                    _c("div", { staticClass: "item" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ui small image" },
+                                        [
+                                          _c("img", {
+                                            attrs: { src: theme.cover }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "content" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "header",
+                                            attrs: {
+                                              href: "/theme/" + theme.id
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(theme.title))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "meta" }, [
+                                          _c("span", [
+                                            _vm._v(_vm._s(theme.body))
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "description" },
+                                          [_c("p")]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                })
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.company.events.length > 0
+                      ? _c(
+                          "el-tab-pane",
+                          { attrs: { label: "Събития", name: "events" } },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "ui items" },
+                              [
+                                _vm._l(_vm.company.events, function(event) {
+                                  return [
+                                    _c("div", { staticClass: "item" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ui small image" },
+                                        [
+                                          _c("img", {
+                                            attrs: { src: event.cover }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "content" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "header",
+                                            attrs: {
+                                              href: "/event/" + event.id
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(event.theme.title))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "meta" }, [
+                                          _c("span", [
+                                            _vm._v(_vm._s(event.begin))
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "description" },
+                                          [_c("p")]
+                                        )
+                                      ])
+                                    ])
+                                  ]
+                                })
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.company.venues.length > 0
+                      ? _c(
+                          "el-tab-pane",
+                          { attrs: { label: "Зали", name: "venues" } },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "ui items" },
+                              [
+                                _vm._l(_vm.company.venues, function(venue) {
+                                  return [
+                                    _c("div", { staticClass: "item" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "ui small image" },
+                                        [
+                                          _c("img", {
+                                            attrs: { src: venue.cover }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "content" }, [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "header",
+                                            attrs: {
+                                              href: "/venue/" + venue.id
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(venue.name))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "meta" }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "description" },
+                                          [_c("p")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "extra" }, [
+                                          _vm._v(
+                                            "\n\t\t\t\t\t\t\t\t\t\t\t" +
+                                              _vm._s(venue.capacity) +
+                                              " места\n\t\t\t\t\t\t\t\t\t\t"
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ]
+                                })
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "four wide column",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("h5", { staticClass: "ui dividing header" }, [
+                  _vm._v("\n\t\t\t\t\tПоследователи\n\t\t\t\t")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "ui huge horizontal list" },
+                  [
+                    _vm._l(_vm.company.followers, function(follower) {
+                      return [
+                        _c(
+                          "el-tooltip",
+                          {
+                            staticClass: "item follower",
+                            attrs: {
+                              effect: "dark",
+                              content: follower.name,
+                              placement: "top"
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "item" }, [
+                              _c("img", {
+                                staticClass: "ui avatar image",
+                                attrs: { src: follower.picture }
+                              })
+                            ])
+                          ]
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui segment" }, [
+                  _c("div", { staticClass: "ui list" }, [
+                    _c("div", { staticClass: "item" }, [
+                      _c("i", { staticClass: "phone icon" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "content" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t" +
+                            _vm._s(_vm.company.phone) +
+                            "\n\t\t\t\t\t\t\t"
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "item" }, [
+                      _c("i", { staticClass: "marker icon" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "content" }, [
+                        _vm._v(
+                          "\n\t\t\t\t\t\t\t\t" +
+                            _vm._s(_vm.company.address) +
+                            "\n\t\t\t\t\t\t\t"
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "item" }, [
+                      _c("i", { staticClass: "mail icon" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "content" }, [
+                        _c(
+                          "a",
+                          { attrs: { href: "mailto:jack@semantic-ui.com" } },
+                          [_vm._v(_vm._s(_vm.company.email))]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h5", { staticClass: "ui dividing header" }, [
+                  _vm._v("\n\t\t\t\t\tКарта\n\t\t\t\t")
+                ])
+              ]
+            )
           ])
         ])
-      ])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -109291,7 +109237,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("delete")]
+                            [_vm._v("Изтрий")]
                           )
                         ]
                       : _vm._e()
@@ -109965,8 +109911,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['big'],
@@ -110033,71 +109977,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "item" }, [
-    _c("div", { staticClass: "search-container" }, [
-      _c(
-        "div",
-        {
-          staticClass: "ui icon input",
-          class: { huge: _vm.big, fluid: _vm.big, loading: _vm.loading }
-        },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.input,
-                expression: "input"
-              }
-            ],
-            attrs: { type: "text", placeholder: "Търсене..." },
-            domProps: { value: _vm.input },
-            on: {
-              blur: _vm.clearSearch,
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.input = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("i", { staticClass: "search icon" })
-        ]
-      ),
-      _vm._v(" "),
-      _vm.events.length > 0
-        ? _c(
-            "div",
+  return _c("div", { staticClass: "search-container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "ui icon input",
+        class: { huge: _vm.big, fluid: _vm.big, loading: _vm.loading }
+      },
+      [
+        _c("input", {
+          directives: [
             {
-              staticClass: "ui segments search-results",
-              class: { top: _vm.big }
-            },
-            _vm._l(_vm.events, function(event) {
-              return _c(
-                "div",
-                {
-                  staticClass: "ui segment",
-                  on: {
-                    click: function($event) {
-                      _vm.openEvent(event.id)
-                    }
+              name: "model",
+              rawName: "v-model",
+              value: _vm.input,
+              expression: "input"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Търсене..." },
+          domProps: { value: _vm.input },
+          on: {
+            blur: _vm.clearSearch,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.input = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("i", { staticClass: "search icon" })
+      ]
+    ),
+    _vm._v(" "),
+    _vm.events.length > 0
+      ? _c(
+          "div",
+          {
+            staticClass: "ui segments search-results",
+            class: { top: _vm.big }
+          },
+          _vm._l(_vm.events, function(event) {
+            return _c(
+              "div",
+              {
+                staticClass: "ui segment",
+                on: {
+                  click: function($event) {
+                    _vm.openEvent(event.id)
                   }
-                },
-                [
-                  _c("p", [
-                    _vm._v(
-                      _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
-                    )
-                  ])
-                ]
-              )
-            })
-          )
-        : _vm._e()
-    ])
+                }
+              },
+              [
+                _c("p", [
+                  _vm._v(
+                    _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
+                  )
+                ])
+              ]
+            )
+          })
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -110447,14 +110389,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "item" },
     [
       _c(
-        "a",
+        "button",
         {
-          staticClass: "item",
-          attrs: { href: "#" },
+          staticClass: "mini ui basic button",
           on: {
             click: function($event) {
+              $event.preventDefault()
               _vm.dialogFormVisible = true
             }
           }
@@ -110689,7 +110632,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.el-dialog {\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\n\t\tbackground-size: cover;\n    \tbackground-position: center center;\n}\n.el-dialog__header {\n\t\tposition: absolute;\n\t\t/*z-index: 1;*/\n\t\ttop: 0;\n\t\tright: 0;\n}\n.el-dialog__body {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\tpadding: 0;\n}\n.signup-cover {\n\t\tpadding: 50px 30px;\n\t\t-webkit-box-flex: 5;\n\t\t    -ms-flex: 5;\n\t\t        flex: 5;\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-webkit-box-align: center;\n\t\t    -ms-flex-align: center;\n\t\t        align-items: center;\n\t\t-webkit-box-pack: center;\n\t\t    -ms-flex-pack: center;\n\t\t        justify-content: center\n}\n.signup-form {\n\t\tpadding: 50px 30px;\n\t\tbackground-color: white;\n\t\t-webkit-box-flex: 7;\n\t\t    -ms-flex: 7;\n\t\t        flex: 7;\n}\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -110841,12 +110784,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "item" },
     [
       _c(
-        "a",
+        "button",
         {
-          staticClass: "item",
-          attrs: { href: "#" },
+          staticClass: "mini ui button",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -110897,7 +110840,7 @@ var render = function() {
       _c(
         "el-dialog",
         {
-          attrs: { width: "640px", visible: _vm.dialogFormVisible },
+          attrs: { width: "440px", visible: _vm.dialogFormVisible },
           on: {
             "update:visible": function($event) {
               _vm.dialogFormVisible = $event
@@ -110915,7 +110858,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "signup-form" }, [
+          _c("div", { staticClass: "signup-form mt-20" }, [
             _c("form", { staticClass: "ui form" }, [
               _c("div", { staticClass: "fields" }, [
                 _c("div", { staticClass: "field" }, [

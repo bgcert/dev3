@@ -19,6 +19,12 @@ class CreateCompaniesTable extends Migration
             
             $table->string('name');
             $table->string('slug');
+            $table->string('logo')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->text('address')->nullable();
+            $table->text('description')->nullable();
+            $table->string('cover')->nullable();
             $table->boolean('event_publish')->default(1);
             $table->boolean('venue_publish')->default(0);
             $table->timestamps();

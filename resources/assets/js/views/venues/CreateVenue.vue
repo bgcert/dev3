@@ -93,6 +93,7 @@
 					description: vm.description,
 					capacity: vm.capacity,
 					cover: vm.cover,
+					price: vm.price,
 					images: vm.imageList
 
 				})

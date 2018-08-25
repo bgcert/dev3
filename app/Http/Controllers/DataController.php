@@ -12,10 +12,10 @@ class DataController extends Controller
     	$categories = \App\Category::all();
     	if (request()->slug) {
     		$category = \App\Category::where('slug', request()->slug)->first();
-    		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company.company_detail')->get();
+    		$events = \App\Event::byCategory(request()->slug)->with('theme', 'theme.isLiked', 'theme.company')->get();
     	} else
     	{
-    		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company.company_detail')->get();
+    		$events = \App\Event::with('theme', 'theme.isLiked', 'theme.company')->get();
     	}
     	$cities = \App\City::has('events', '>' , 0)->withCount('events')->get();
     	return [$events, $cities, $categories, $category];
@@ -34,7 +34,7 @@ class DataController extends Controller
 
     public function venueList()
     {
-    	$venues = \App\Venue::with('isLiked', 'company.company_detail')->get();
+    	$venues = \App\Venue::with('isLiked', 'company')->get();
     	$cities = \App\City::has('venues', '>' , 0)->withCount('venues')->get();
     	return [$venues, $cities];
     }
@@ -47,7 +47,7 @@ class DataController extends Controller
 
     public function getCompany()
     {
-    	$company = \App\Company::with('company_detail', 'firstFiveFollowers')
+    	$company = \App\Company::with('firstFiveFollowers')
 				    			->where('id', request()->id)
 				    			->first();
     	return $company;
@@ -55,7 +55,7 @@ class DataController extends Controller
 
     public function getCompanyDetails()
     {
-    	$company = \App\Company::with('company_detail', 'user', 'themes', 'events', 'venues', 'followers')
+    	$company = \App\Company::with('user', 'themes', 'events.theme', 'venues', 'followers')
     							->where('slug', request()->slug)
     							->first();
     	return $company;

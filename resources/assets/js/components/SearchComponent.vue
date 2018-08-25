@@ -1,5 +1,4 @@
 <template>
-	<div class="item">
 		<div class="search-container">
 			<div class="ui icon input" :class="{ huge: big, fluid: big, loading: loading }">
 			  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
@@ -11,7 +10,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </template>
 
 <script>

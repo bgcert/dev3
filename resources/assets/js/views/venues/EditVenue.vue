@@ -88,6 +88,7 @@
 					name: vm.venue.name,
 					description: vm.venue.description,
 					capacity: vm.venue.capacity,
+					price: vm.venue.price
     			}
 
     			this.cover = await this.uploadCover();

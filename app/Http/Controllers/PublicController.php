@@ -31,7 +31,7 @@ class PublicController extends Controller
 
     public function events()
     {
-    	$events = \App\Event::with('theme.likeCount', 'theme.company.company_detail')->get();
+    	$events = \App\Event::with('theme.likeCount', 'theme.company')->get();
     	return view('events', compact('events'));
     }
 
@@ -43,7 +43,7 @@ class PublicController extends Controller
 
     public function company()
     {
-		$company = \App\Company::where('slug', request()->slug)->first();
+		$company = \App\Company::with('user')->where('slug', request()->slug)->first();
     	return view('company', compact('company'));
     }
 

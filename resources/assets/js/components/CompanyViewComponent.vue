@@ -1,14 +1,14 @@
 <template>
 	<div>
-		<div class="ui grid">
+		<div class="ui grid" v-if="company.id">
 			<div class="row">
 
 				<div class="column">
-					<div class="cover-container" :style="'background: url(' + company.company_detail.cover + ') center / cover no-repeat;'">
+					<div class="cover-container" :style="'background: url(' + company.cover + ') center / cover no-repeat;'">
 						<div class="overlay">
 							<div class="data-container">
 								<div class="logo-container">
-									<img class="company-logo" :src="company.company_detail.logo">
+									<img class="company-logo" :src="company.logo">
 								</div>
 								<div class="company-name">
 									<h2>{{ company.name }}</h2>
@@ -30,29 +30,12 @@
 
 			<div class="two column row">
 				<div class="twelve wide column">
-					<el-tabs type="card" v-model="activeName" @tab-click="handleClick">
+					<el-tabs type="card" v-model="activeName">
 						<el-tab-pane label="Инфо" name="info">
-							<p>{{ company.company_detail.description }}</p>
-							<div class="extra">
-								<a :href="'http://www.facebook.com/' + company.company_detail.facebook" class="ui facebook mini button">
-									<i class="facebook icon"></i>
-									Facebook
-								</a>
-								<a :href="'instagram.com/' + company.company_detail.instagram" class="ui instagram mini button">
-									<i class="instagram icon"></i>
-									Instagram
-								</a>
-								<a :href="'http://linkedin.com/' + company.company_detail.linkedin" class="ui linkedin mini button">
-									<i class="linkedin icon"></i>
-									LinkedIn
-								</a>
-								<a :href="'http://youtube.com/' + company.company_detail.youtube" class="ui youtube mini button">
-									<i class="youtube icon"></i>
-									YouTube
-								</a>
-							</div>
+							<p v-if="company.description">{{ company.description }}</p>
+							<p>{{ company.name }}</p>
 						</el-tab-pane>
-						<el-tab-pane label="Теми" name="themes">
+						<el-tab-pane label="Теми" name="themes" v-if="company.themes.length > 0">
 							<div class="ui items">
 								<template v-for="theme in company.themes">
 									<div class="item">
@@ -67,15 +50,15 @@
 											<div class="description">
 												<p></p>
 											</div>
-											<div class="extra">
+											<!-- <div class="extra">
 												Additional Details
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</template>
 							</div>
 						</el-tab-pane>
-						<el-tab-pane label="Събития" name="events">
+						<el-tab-pane label="Събития" name="events" v-if="company.events.length > 0">
 							<div class="ui items">
 								<template v-for="event in company.events">
 									<div class="item">
@@ -83,22 +66,22 @@
 											<img :src="event.cover">
 										</div>
 										<div class="content">
-											<a :href="'/event/' + event.id" class="header">{{ event.title }}</a>
+											<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
 											<div class="meta">
-												<span>{{ event.body }}</span>
+												<span>{{ event.begin }}</span>
 											</div>
 											<div class="description">
 												<p></p>
 											</div>
-											<div class="extra">
+											<!-- <div class="extra">
 												Additional Details
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</template>
 							</div>
 						</el-tab-pane>
-						<el-tab-pane label="Зали" name="venues">
+						<el-tab-pane label="Зали" name="venues" v-if="company.venues.length > 0">
 							<div class="ui items">
 								<template v-for="venue in company.venues">
 									<div class="item">
@@ -113,7 +96,7 @@
 												<p></p>
 											</div>
 											<div class="extra">
-												Additional Details
+												{{ venue.capacity }} места
 											</div>
 										</div>
 									</div>
@@ -123,7 +106,7 @@
 					</el-tabs>
 				</div>
 
-				<div class="four wide column">
+				<div class="four wide column" style="display: none;">
 					<h5 class="ui dividing header">
 						Последователи
 					</h5>
@@ -141,19 +124,19 @@
 							<div class="item">
 								<i class="phone icon"></i>
 								<div class="content">
-									{{ company.company_detail.phone }}
+									{{ company.phone }}
 								</div>
 							</div>
 							<div class="item">
 								<i class="marker icon"></i>
 								<div class="content">
-									{{ company.company_detail.address }}
+									{{ company.address }}
 								</div>
 							</div>
 							<div class="item">
 								<i class="mail icon"></i>
 								<div class="content">
-									<a href="mailto:jack@semantic-ui.com">{{ company.company_detail.email }}</a>
+									<a href="mailto:jack@semantic-ui.com">{{ company.email }}</a>
 								</div>
 							</div>
 							<div class="item">

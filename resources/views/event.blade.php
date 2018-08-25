@@ -54,7 +54,7 @@
 						<div class="flex">
 							<div class="logo">
 								<a href="/c/{{ $event->theme->company->slug }}">
-									<img class="ui tiny rounded image" src="{{ $event->theme->company->company_detail->logo }}">
+									<img class="ui tiny rounded image" src="{{ $event->theme->company->logo }}">
 								</a>
 							</div>
 							<div class="company-details">
@@ -110,20 +110,20 @@
 			    		</tr>
 			    		<tr>
 			    			<td>Цена</td>
-			    			<td>240.00 лв. с включен ДДС</td>
+			    			<td>{{ $event->price }}.00 лв. с включен ДДС</td>
 			    		</tr>
-			    		<tr>
+			    		<!-- <tr>
 			    			<td>Метод на обучение</td>
 			    			<td>Присъствен, Онлайн</td>
-			    		</tr>
+			    		</tr> -->
 			    		<tr>
 			    			<td>Продължителност</td>
-			    			<td>20 дни, 160 учебни часа</td>
+			    			<td>{{ $event->theme->duration }} учебни часа</td>
 			    		</tr>
-			    		<tr>
+			    		<!-- <tr>
 			    			<td>Сертификат</td>
 			    			<td>Издава се</td>
-			    		</tr>
+			    		</tr> -->
 			    	</tbody>
 			    </table>
 
@@ -137,7 +137,7 @@
 				    </h3>
 				    <p>{{ $teacher->details }}</p>
 			    @endforeach
-			    <google-map></google-map>
+			    <!-- <google-map></google-map> -->
 			    <div class="ui divider"></div>
 			    <div id="comments">
 			    	<comments
@@ -153,8 +153,7 @@
 				<h3 class="ui dividing header">Популярни обучения</h3>
 				<related-feed
 					auth="{{ auth()->check() }}"
-					company_id="{{ $event->theme->company->id }}"
-					>
+					company_id="{{ $event->theme->company->id }}">
 				</related-feed>
 			</div>
 		</div>

@@ -35,7 +35,7 @@
 						<div class="metadata">
 							<div class="date">{{ comment.created_at }}</div>
 							<template v-if="comment.user.id == user_id">
-								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">delete</a>
+								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">Изтрий</a>
 							</template>
 						</div>
 						<div class="text">

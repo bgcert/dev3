@@ -2,7 +2,7 @@
 	<div class="ui card" v-popover:popover>
 		<div class="image image_container" :style="`background: url(${item.cover})`">
 			<a class="owner" :href="/c/ + item.theme.company.slug">
-				<div class="logo" :style="'background-image: url(' + item.theme.company.company_detail.logo + ')'"></div>
+				<div class="logo" :style="'background-image: url(' + item.theme.company.logo + ')'"></div>
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</div>
@@ -16,7 +16,7 @@
 					<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
 						<i class="eye icon"></i>
 					</el-tooltip>
-						54
+						0
 				</div>
 				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 					<Like
@@ -41,23 +41,23 @@
 			width="300"
 			:open-delay="800"
 			trigger="hover">
-				<img  class="p_logo" :src="item.theme.company.company_detail.logo">
+				<img  class="p_logo" :src="item.theme.company.logo">
 				<h3>{{ item.theme.title }}</h3>
 				<a class="ui primary button" :href="'/event/' + item.id">Допълнителна информация</a>
 				<div class="ui divider"></div>
 				<div class="ui list">
-					<div class="item">
+					<!-- <div class="item">
 						<i class="globe icon"></i>
 						<div class="content">
 							Присъствено, online
 						</div>
-					</div>
-					<div class="item">
+					</div> -->
+					<!-- <div class="item">
 						<i class="sliders horizontal icon"></i>
 						<div class="content">
 							За начинаещи
 						</div>
-					</div>
+					</div> -->
 					<div class="item">
 						<i class="clock outline icon"></i>
 						<div class="content">

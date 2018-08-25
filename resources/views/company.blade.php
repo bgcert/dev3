@@ -12,9 +12,6 @@
 </div>
 
 <div class="ui container">
-	<company-view
-		slug="{{ $company->slug }}"
-		>
-	</company-view>
+	<company-view slug="{{ $company->slug }}"></company-view>
 </div>
 @endsection

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="ui segment">
+		<div class="ui segment mt-20">
 			<div class="ui form">
 				<div class="fields">
 					<div class="field">

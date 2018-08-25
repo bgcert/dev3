@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<a href="#" class="item" @click.prevent="dialogFormVisible = true"> Регистрация</a>
+	<div class="item">
+		<button class="mini ui button" @click.prevent="dialogFormVisible = true"> Регистрация</button>
 
 		<el-dialog
 			width="30%"
@@ -13,7 +13,7 @@
 			</div>
 		</el-dialog>
 
-		<el-dialog width="640px" :visible.sync="dialogFormVisible">
+		<el-dialog width="440px" :visible.sync="dialogFormVisible">
 			<div class="signup-cover">
 				<div>
 					<h2>Добре дошли в Seminari365</h2>
@@ -21,7 +21,7 @@
 					<h4>Регистрирайте се, за да продължите напред.</h4>
 				</div>
 			</div>
-			<div class="signup-form">
+			<div class="signup-form mt-20">
 				<form class="ui form">
 					<div class="fields">
 						<div class="field">
@@ -131,15 +131,8 @@
 </script>
 
 <style>
-	.el-dialog {
-		background: url(https://picsum.photos/500/500/?image=347);
-		background-size: cover;
-    	background-position: center center;
-	}
-
-	.el-dialog__header {
+/*	.el-dialog__header {
 		position: absolute;
-		/*z-index: 1;*/
 		top: 0;
 		right: 0;
 	}
@@ -150,6 +143,9 @@
 	}
 
 	.signup-cover {
+		background: url(https://picsum.photos/500/500/?image=347);
+		background-size: cover;
+    	background-position: center center;
 		padding: 50px 30px;
 		flex: 5;
 		display: flex;
@@ -161,7 +157,7 @@
 		padding: 50px 30px;
 		background-color: white;
 		flex: 7;
-	}
+	}*/
 
 
 </style>

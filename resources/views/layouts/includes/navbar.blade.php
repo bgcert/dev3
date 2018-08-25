@@ -4,7 +4,9 @@
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/browse" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
-			<search></search>
+			<div class="item">
+				<search></search>
+			</div>
 
 			<!-- <div class="ui mini form">
 				<div class="ui action left icon input">
@@ -27,7 +29,7 @@
 				@endif
 				<div class="ui dropdown item">
 					<div class="text">
-						<img class="ui avatar image" src="https://picsum.photos/80/80/?image=106"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
+						<img class="ui avatar image" src="/img/default_user.png"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
 					</div>
 					<div class="menu">
 
@@ -46,7 +48,7 @@
 				</div>
 
 				@if(Auth::user()->role_id == 2)
-					<div class="ui dropdown icon item">
+					<!-- <div class="ui dropdown icon item">
 						<i class="plus square icon"></i>
 						<div class="menu">
 							<div class="item">
@@ -62,7 +64,7 @@
 								Зала
 							</div>
 						</div>
-					</div>
+					</div> -->
 				@endif
 
 				@if(auth::user()->verified())
@@ -74,7 +76,7 @@
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				@endguest
 
-				<div class="ui dropdown icon item">
+				<!-- <div class="ui dropdown icon item">
 					<i class="question outline circle icon"></i>
 					<div class="menu">
 						<div class="item">
@@ -87,7 +89,7 @@
 							Контакти
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
