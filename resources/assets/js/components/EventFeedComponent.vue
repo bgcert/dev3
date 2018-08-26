@@ -22,8 +22,8 @@
 					<a
 						:href="'/browse/' + category.slug"
 						class="category-box"
-						:style="'background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://placeimg.com/300/150/' + category.id + ');'">
-						<h2 class="ui inverted header">{{ category.name }}</h2>
+						:style="'background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/categories/' + category.cover + ');'">
+						<h4 class="ui inverted header">{{ category.name }}</h4>
 					</a>
 				</div>
 			</div>

@@ -106155,13 +106155,13 @@ var render = function() {
                   {
                     staticClass: "category-box",
                     style:
-                      "background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://placeimg.com/300/150/" +
-                      category.id +
+                      "background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/categories/" +
+                      category.cover +
                       ");",
                     attrs: { href: "/browse/" + category.slug }
                   },
                   [
-                    _c("h2", { staticClass: "ui inverted header" }, [
+                    _c("h4", { staticClass: "ui inverted header" }, [
                       _vm._v(_vm._s(category.name))
                     ])
                   ]

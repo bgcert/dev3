@@ -52,7 +52,8 @@ class VerifyEmail extends Notification
         			->subject('Добре дошли в Seminari365')
                     ->line('Моля, потвърдете Вашия акаунт, за да завършите регистрацията.')
                     ->action('Потвърждавам', route('verify', $this->user->token))
-                    ->line('Благодарим, че използвате нашата платформа.');
+                    ->line('Благодарим, че използвате нашата платформа.')
+                    ->markdown('vendor.mail.verify');
     }
 
     /**

@@ -17,18 +17,19 @@ class CreateThemesTable extends Migration
 			$table->increments('id');
 			$table->string('name', 36);
 			$table->string('slug', 36);
+			$table->string('cover')->nullable();
 			$table->timestamps();
 		});
 
 		DB::table('categories')->insert([
-            ['name' => 'Бизнес', 'slug' => 'business'],
-            ['name' => 'IT & Софтуер', 'slug' => 'it-software'],
-            ['name' => 'Личностно развитие', 'slug' => 'personal-development'],
-            ['name' => 'Дизайн', 'slug' => 'design'],
-            ['name' => 'Маркетинг', 'slug' => 'marketing'],
-            ['name' => 'Изкуства', 'slug' => 'arts'],
-            ['name' => 'Здраве & Фитнесс', 'slug' => 'health-fitness'],
-            ['name' => 'Чужди езици', 'slug' => 'language'],
+            ['name' => 'Бизнес и продажби', 'slug' => 'business-sales', 'cover' => 'business.png'],
+            ['name' => 'Маркетинг и комуникации', 'slug' => 'marketing-communications', 'cover' => 'marketing.png'],
+            ['name' => 'IT и Софтуер', 'slug' => 'it-software', 'cover' => 'it.png'],
+            ['name' => 'Счетоводство и финанси', 'slug' => 'accounting-finance', 'cover' => 'finance.png'],
+            ['name' => 'Законодателство', 'slug' => 'law', 'cover' => 'legislation.png'],
+            ['name' => 'Туризъм и ресторантьорство', 'slug' => 'Tourism and catering', 'cover' => 'catering.png'],
+            ['name' => 'Креативни изкуства и дизайн', 'slug' => 'art-design', 'cover' => 'art.png'],
+            ['name' => 'Личностно развитие', 'slug' => 'personal-development', 'cover' => 'personal-developement.png'],
         ]);
 
         Schema::create('themes', function (Blueprint $table) {
