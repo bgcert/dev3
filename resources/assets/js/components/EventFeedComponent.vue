@@ -204,8 +204,6 @@
 		margin-bottom: 20px;
 		background: url(https://picsum.photos/2000/250/?image=78);
 		height: 150px;
-    	background-size: cover !important;
-    	background-position: center center !important;
 	}
 
 	.overlay {
@@ -221,5 +219,7 @@
 		justify-content: center;
 		height: 150px;
 		color: white;
+		background-size: cover !important;
+    	background-position: center center !important;
 	}
 </style>
