@@ -1,11 +1,11 @@
 <template>
 	<div class="ui card" v-popover:popover>
-		<div class="image image_container" :style="`background: url(${item.cover})`">
+		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${item.cover})`">
 			<a class="owner" :href="/c/ + item.theme.company.slug">
 				<div class="logo" :style="'background-image: url(' + item.theme.company.logo + ')'"></div>
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
-		</div>
+		</a>
 		<div class="content content_box">
 			<a :href="'/event/' + item.id" class="header">{{ item.theme.title }}</a>
 			<p style="text-transform: uppercase;"> {{ item.begin }}</p>
@@ -16,7 +16,7 @@
 					<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
 						<i class="eye icon"></i>
 					</el-tooltip>
-						0
+						--
 				</div>
 				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 					<Like

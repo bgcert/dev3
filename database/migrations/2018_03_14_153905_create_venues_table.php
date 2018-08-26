@@ -16,9 +16,10 @@ class CreateVenuesTable extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
-            $table->integer('city_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned();
             $table->string('name');
             $table->text('description');
+            $table->text('address');
             $table->integer('capacity');
             $table->integer('price')->unsigned()->nullable();
             $table->string('cover')->nullable();

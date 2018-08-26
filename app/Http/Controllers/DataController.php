@@ -81,4 +81,11 @@ class DataController extends Controller
     	$images = \App\VenueImage::where('venue_id', request()->id)->get();
     	return $images;
     }
+
+    // Load cities
+    public function cities()
+    {
+    	$cities = \App\City::all();
+    	return $cities;
+    }
 }

@@ -12,13 +12,28 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<ImageUpload
-							:image="venue.cover">
-						</ImageUpload>
+						<ImageUpload :image="venue.cover"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
-						<el-input v-model="venue.capacity"></el-input>
+						<el-input v-model="venue.capacity" style="width: 160px;">
+							<template slot="append">места</template>
+						</el-input>
+					</el-form-item>
+
+					<el-form-item label="Град">
+						<el-select v-model="cityId" placeholder="Изберете град">
+							<el-option
+								v-for="city in cities"
+								:key="city.id"
+								:label="city.name"
+								:value="city.id">
+							</el-option>
+						</el-select>
+					</el-form-item>
+
+					<el-form-item label="Адрес">
+						<el-input v-model="venue.address"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Описание">
@@ -26,7 +41,9 @@
 					</el-form-item>
 
 					<el-form-item label="Цена">
-						<el-input v-model="venue.price"></el-input>
+						<el-input v-model="venue.price" style="width: 200px;">
+							<template slot="append">.00 лв. с ДДС</template>
+						</el-input>
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
@@ -67,6 +84,8 @@
     			loading: true,
     			venue: {},
 				imageList: [],
+				cities: null,
+				cityId: null,
 				detached: []
     		}
     	},
@@ -87,6 +106,8 @@
     				_method: 'PUT',
 					name: vm.venue.name,
 					description: vm.venue.description,
+					city_id: vm.cityId,
+					address: vm.venue.address,
 					capacity: vm.venue.capacity,
 					price: vm.venue.price
     			}
@@ -130,8 +151,10 @@
         	let route = '/dashboard/venues/' + this.$route.params.id + '/edit';
         	axios.get(route)
     			.then(function (response) {
-    				vm.venue = response.data;
+    				vm.venue = response.data[0];
     				vm.imageList = response.data[1];
+    				vm.cities = response.data[2];
+    				vm.cityId = response.data[0].city_id;
     			})
     			.catch(function (error) {
     				console.log(error);

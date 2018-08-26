@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="ui segments">
+		<div class="ui segments" v-if="cities != null">
 			<div class="ui segment">
 				<h4>Нова зала</h4>
 			</div>
@@ -12,12 +12,28 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<ImageUpload>
-						</ImageUpload>
+						<ImageUpload></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
-						<el-input v-model="capacity"></el-input>
+						<el-input v-model="capacity" style="width: 160px;">
+							<template slot="append">места</template>
+						</el-input>
+					</el-form-item>
+
+					<el-form-item label="Град">
+						<el-select v-model="cityId" placeholder="Изберете град">
+							<el-option
+								v-for="city in cities"
+								:key="city.id"
+								:label="city.name"
+								:value="city.id">
+							</el-option>
+						</el-select>
+					</el-form-item>
+
+					<el-form-item label="Адрес">
+						<el-input v-model="address"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Описание">
@@ -25,7 +41,9 @@
 					</el-form-item>
 
 					<el-form-item label="Цена">
-						<el-input v-model="price"></el-input>
+						<el-input v-model="price" style="width: 200px;">
+							<template slot="append">.00 лв. с ДДС</template>
+						</el-input>
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
@@ -63,6 +81,9 @@
     			loading: true,
 				name: '',
 				description: '',
+				cities: null,
+				cityId: null,
+				address: '',
 				capacity: null,
 				price: null,
 				cover: 'https://picsum.photos/800/400/?image=293',
@@ -76,21 +97,23 @@
     			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
     			return promise;
     		},
+
     		uploadImages() {
     			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
     			return promise;
     		},
+
     		async save() {
     			let vm = this;
 
     			this.cover = await this.uploadCover();
     			this.imageList = await this.uploadImages();
 
-    			console.log(this.imageList);
-
     			axios.post('/dashboard/venues', {
 					name: vm.name,
 					description: vm.description,
+					city_id: vm.cityId,
+					address: vm.address,
 					capacity: vm.capacity,
 					cover: vm.cover,
 					price: vm.price,
@@ -98,7 +121,6 @@
 
 				})
     			.then(function (response) {
-    				console.log(response);
     				vm.$message('Залата е добавена успешно.');
     				vm.$router.push('/venues');
     			})
@@ -109,7 +131,16 @@
     	},
 
         mounted() {
-            console.log('New venue view mounted.')
+            console.log('New venue view mounted.');
+
+            let vm = this;
+            axios.get('/api/cities')
+            .then(function (response) {
+            	vm.cities = response.data;
+			})
+			.catch(function (error) {
+			    console.log(error);
+			});
         },
 
         created() {

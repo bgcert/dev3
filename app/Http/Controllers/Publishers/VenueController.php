@@ -63,10 +63,12 @@ class VenueController extends Controller
      */
     public function edit($id)
     {
+    	$cities = \App\City::all();
     	$venue = \App\Venue::find($id);
-    	$data[0] = $venue;
-    	$data[1] = $venue->venue_images;
-        return $data[0];
+    	// $data[0] = $venue;
+    	// $data[1] = $venue->venue_images;
+    	// $data[2] = $cities;
+        return [$venue, $venue->venue_images, $cities];
     }
 
     /**

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="ui grid" v-if="company.id">
+		<div class="ui grid" v-if="company != null">
 			<div class="row">
 
 				<div class="column">
@@ -14,12 +14,11 @@
 									<h2>{{ company.name }}</h2>
 								</div>
 								<div style="position: absolute; right: 40px; bottom: 20px;">
-									<a :href="'/messages#/t/' + company.user.id" class="ui mini orange button">Изпрати съобщение</a>
-									<Follow
+									<a :href="'/messages#/' + company.user.id" class="ui mini orange button">Изпрати съобщение</a>
+									<!-- <Follow
 										:followed="company.is_followed.length > 0"
-										:company_id="company.id"
-										>
-									</Follow>
+										:company_id="company.id">
+									</Follow> -->
 								</div>
 							</div>
 						</div>
@@ -169,7 +168,7 @@
 
     	data: function () {
     		return {
-    			company: [],
+    			company: null,
     			activeName: 'info'
     		}
     	},
@@ -187,7 +186,7 @@
 			let route = '/api/company/details/' + this.slug;
 			axios.get(route).then(function (response) {
         		vm.company = response.data;
-				console.log(response.data);
+				// console.log(response.data);
 			})
 			.catch(function (error) {
 				console.log(error);

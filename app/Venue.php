@@ -12,13 +12,18 @@ class Venue extends Model
 	use Commentable;
     use LogsActivity;
 
-    protected $fillable = ['company_id', 'name', 'description', 'capacity', 'price', 'cover'];
+    protected $fillable = ['company_id', 'name', 'description', 'city_id', 'address', 'capacity', 'price', 'cover'];
 
     protected $appends = ['only_like_count', 'only_comment_count'];
 
     public function company()
     {
     	return $this->belongsTo('App\Company');
+    }
+
+    public function city()
+    {
+    	return $this->belongsTo('App\City');
     }
 
     public function venue_images()

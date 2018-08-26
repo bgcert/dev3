@@ -21,6 +21,7 @@ Route::get('/testimage', 'Publishers\ThemeController@saveImage');
 
 Route::get('/categories', 'PublicController@categories');
 Route::get('/eventlist/{slug?}', 'DataController@eventList');
+Route::get('/cities', 'DataController@cities');
 Route::post('/event/search', 'DataController@eventSearch');
 Route::get('/venuelist', 'DataController@venueList');
 Route::post('/relatedeventlist', 'DataController@relatedEventList');

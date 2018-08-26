@@ -17,7 +17,7 @@
 					</el-form-item>
 
 					<el-form-item label="Лектори">
-						<el-select v-model="selectedTeachers" multiple placeholder="Select">
+						<el-select v-model="selectedTeachers" multiple placeholder="Избери преподавател(и)">
 							<el-option
 								v-for="teacher in teachers"
 								:key="teacher.id"

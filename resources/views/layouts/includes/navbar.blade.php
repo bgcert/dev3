@@ -1,5 +1,5 @@
 <div id="nav-header">
-	<div class="ui container">
+	<div class="ui container fluid" style="padding: 0 20px;">
 		<div class="ui stackable secondary menu">
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/browse" class="item"> Обучения</a>
