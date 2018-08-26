@@ -2,6 +2,6 @@
 
 @section('content')
 	<div class="ui container">
-		<h2>Please verify your email.</h2>
+		<h2>Моля, потвърдете Вашият e-mail.</h2>
 	</div>
 @endsection

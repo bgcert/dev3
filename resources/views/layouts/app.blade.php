@@ -49,7 +49,7 @@
         @if(auth()->check() && !auth()->user()->verified())
         	<div class="ui container">
         		<div class="ui basic segment">
-        			<div class="ui orange message">Account is not verified</div>
+        			<div class="ui orange message">Моля, потвърдете Вашият e-mail.</div>
         		</div>
         	</div>
         @endif
