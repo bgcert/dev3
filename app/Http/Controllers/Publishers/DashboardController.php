@@ -33,8 +33,7 @@ class DashboardController extends Controller
 
     	$company->update($data);
     	
-    	// $company->company_detail->update($data);
-    	return 'ok';
+    	return $company;
     }
 
     public function upload()

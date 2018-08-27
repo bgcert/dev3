@@ -8,13 +8,13 @@
 				</div>
 				
 				<div class="ui segment">
-					<h3>{{ event.theme.title }}</h3>
-					<el-form ref="form" :model="form" label-width="120px">
+					<el-form label-width="120px">
+						<el-form-item>
+							<h3>Тема: {{ event.theme.title }}</h3>
+						</el-form-item>
 
 						<el-form-item label="Корица">
-							<ImageUpload
-								:img="event.cover">
-							</ImageUpload>
+							<ImageUpload :img="event.cover"></ImageUpload>
 						</el-form-item>
 
 						<el-form-item label="Лектори">
@@ -28,19 +28,67 @@
 							</el-select>
 						</el-form-item>
 
-						<el-form-item label="Дати">
-							<el-date-picker
-								v-model="date"
-								type="datetimerange"
-								range-separator="To"
-								start-placeholder="Начална дата"
-								end-placeholder="Крайна дата"
-								value-format="yyyy-MM-dd HH:mm:ss">
-							</el-date-picker>
+						<el-form-item label="Град">
+							<el-select v-model="event.city_id" placeholder="Изберете град">
+								<el-option
+									v-for="city in cities"
+									:key="city.id"
+									:label="city.name"
+									:value="city.id">
+								</el-option>
+							</el-select>
 						</el-form-item>
 
-						<el-form-item label="Цена">
-							<el-input v-model="event.price"></el-input>
+						<el-form-item label="Адрес">
+							<el-input v-model="event.address"></el-input>
+						</el-form-item>
+
+						<el-form-item label="Начална дата">
+							<div class="block">
+								<el-date-picker
+									v-model="event.start_date"
+									type="date"
+									placeholder="Начална дата"
+									value-format="yyyy-MM-dd">
+								</el-date-picker>
+							</div>
+						</el-form-item>
+
+						<el-form-item label="Крайна дата">
+							<div class="block">
+								<el-date-picker
+									v-model="event.end_date"
+									type="date"
+									placeholder="Крайна дата"
+									value-format="yyyy-MM-dd">
+								</el-date-picker>
+							</div>
+						</el-form-item>
+
+						<el-form-item label="Начален час">
+							<el-time-select
+								v-model="event.start_at"
+								:picker-options="{
+										start: '08:30',
+										step: '00:15',
+										end: '18:30'
+									}"
+								placeholder="Начален час"
+								value-format="HH:mm">
+							</el-time-select>
+						</el-form-item>
+
+						<el-form-item label="Краен час">
+							<el-time-select
+								v-model="event.end_at"
+								:picker-options="{
+										start: '08:30',
+										step: '00:15',
+										end: '18:30'
+									}"
+								placeholder="Начален час"
+								value-format="HH:mm">
+							</el-time-select>
 						</el-form-item>
 
 						<el-form-item label="Цена">
@@ -88,8 +136,9 @@
     			event: {},
     			themes: [],
     			teachers: [],
+    			cities: null,
     			selectedTeachers: [],
-    			date: [],
+    			// date: [],
     		}
     	},
 
@@ -101,10 +150,15 @@
     			let formData = new FormData();
     			// Needed for patch request with form data
     			formData.append('_method', 'patch');
-				formData.append('teachers', this.selectedTeachers);
+
+				formData.append('city_id', this.event.city_id);
+				formData.append('address', this.event.address);
 				formData.append('price', this.event.price);
-				formData.append('begin_at', this.date[0]);
-				formData.append('end_at', this.date[1]);
+				formData.append('teachers', this.selectedTeachers);
+				formData.append('start_date', this.event.start_date);
+				formData.append('end_date', this.event.end_date);
+				formData.append('start_at', this.event.start_at);
+				formData.append('end_at', this.event.end_at);
 
     			let config =
 					{
@@ -124,7 +178,6 @@
 					let route = '/dashboard/events/' + this.$route.params.id;
 					axios.post(route, formData, config)
 	    			.then(function (response) {
-	    				console.log(response);
 	    				vm.$message('Събитието е редактирано.');
     					vm.$router.push('/events');
 	    			})
@@ -146,16 +199,14 @@
         	var vm = this;
             var route = '/dashboard/events/' + this.$route.params.id + '/edit';
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
         		vm.event = response.data[0];
         		
         		for (let key in response.data[0].teachers) {
 				    vm.selectedTeachers.push(response.data[0].teachers[key].id);
 				}
 
-        		vm.date[0] = response.data[0].begin_at;
-        		vm.date[1] = response.data[0].end_at;
         		vm.teachers = response.data[1];
+        		vm.cities = response.data[2];
         		vm.loading = false;
 			})
 			.catch(function (error) {

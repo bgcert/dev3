@@ -52787,6 +52787,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -52799,10 +52851,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       teachers: [],
       selectedTeachers: {},
       selectedTheme: '',
+      cities: null,
       form: {
         theme: '',
-        date: '',
-        data1: '',
+        cityId: null,
+        address: '',
+        start_date: '',
+        end_date: '',
+        start_at: '',
+        end_at: '',
         cover: 'https://picsum.photos/800/400/?image=293',
         price: null
       }
@@ -52816,10 +52873,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var formData = new FormData();
       formData.append('theme_id', this.selectedTheme);
+      formData.append('city_id', this.form.cityId);
+      formData.append('address', this.form.address);
       formData.append('price', this.form.price);
       formData.append('teachers', this.selectedTeachers);
-      formData.append('begin_at', this.form.date[0]);
-      formData.append('end_at', this.form.date[1]);
+      formData.append('start_date', this.form.start_date);
+      formData.append('end_date', this.form.end_date);
+      formData.append('start_at', this.form.start_at);
+      formData.append('end_at', this.form.end_at);
 
       var config = {
         header: {
@@ -52858,6 +52919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(response.data);
       vm.themes = response.data[0];
       vm.teachers = response.data[1];
+      vm.cities = response.data[2];
       vm.loading = false;
     }).catch(function (error) {
       console.log(error);
@@ -52948,22 +53010,142 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "Дати" } },
+                { attrs: { label: "Град" } },
                 [
-                  _c("el-date-picker", {
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { placeholder: "Изберете град" },
+                      model: {
+                        value: _vm.form.cityId,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "cityId", $$v)
+                        },
+                        expression: "form.cityId"
+                      }
+                    },
+                    _vm._l(_vm.cities, function(city) {
+                      return _c("el-option", {
+                        key: city.id,
+                        attrs: { label: city.name, value: city.id }
+                      })
+                    })
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Адрес" } },
+                [
+                  _c("el-input", {
+                    model: {
+                      value: _vm.form.address,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "address", $$v)
+                      },
+                      expression: "form.address"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("el-form-item", { attrs: { label: "Начална дата" } }, [
+                _c(
+                  "div",
+                  { staticClass: "block" },
+                  [
+                    _c("el-date-picker", {
+                      attrs: {
+                        type: "date",
+                        placeholder: "Начална дата",
+                        "value-format": "yyyy-MM-dd"
+                      },
+                      model: {
+                        value: _vm.form.start_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "start_date", $$v)
+                        },
+                        expression: "form.start_date"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("el-form-item", { attrs: { label: "Крайна дата" } }, [
+                _c(
+                  "div",
+                  { staticClass: "block" },
+                  [
+                    _c("el-date-picker", {
+                      attrs: {
+                        type: "date",
+                        placeholder: "Крайна дата",
+                        "value-format": "yyyy-MM-dd"
+                      },
+                      model: {
+                        value: _vm.form.end_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "end_date", $$v)
+                        },
+                        expression: "form.end_date"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Начален час" } },
+                [
+                  _c("el-time-select", {
                     attrs: {
-                      type: "datetimerange",
-                      "range-separator": "To",
-                      "start-placeholder": "Начална дата",
-                      "end-placeholder": "Крайна дата",
-                      "value-format": "yyyy-MM-dd HH:mm:ss"
+                      "picker-options": {
+                        start: "08:30",
+                        step: "00:15",
+                        end: "18:30"
+                      },
+                      placeholder: "Начален час",
+                      "value-format": "HH:mm"
                     },
                     model: {
-                      value: _vm.form.date,
+                      value: _vm.form.start_at,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "date", $$v)
+                        _vm.$set(_vm.form, "start_at", $$v)
                       },
-                      expression: "form.date"
+                      expression: "form.start_at"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form-item",
+                { attrs: { label: "Краен час" } },
+                [
+                  _c("el-time-select", {
+                    attrs: {
+                      "picker-options": {
+                        start: "08:30",
+                        step: "00:15",
+                        end: "18:30"
+                      },
+                      placeholder: "Начален час",
+                      "value-format": "HH:mm"
+                    },
+                    model: {
+                      value: _vm.form.end_at,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "end_at", $$v)
+                      },
+                      expression: "form.end_at"
                     }
                   })
                 ],
@@ -53155,7 +53337,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53246,6 +53428,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53259,8 +53489,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       event: {},
       themes: [],
       teachers: [],
-      selectedTeachers: [],
-      date: []
+      cities: null,
+      selectedTeachers: []
+      // date: [],
     };
   },
 
@@ -53274,10 +53505,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var formData = new FormData();
       // Needed for patch request with form data
       formData.append('_method', 'patch');
-      formData.append('teachers', this.selectedTeachers);
+
+      formData.append('city_id', this.event.city_id);
+      formData.append('address', this.event.address);
       formData.append('price', this.event.price);
-      formData.append('begin_at', this.date[0]);
-      formData.append('end_at', this.date[1]);
+      formData.append('teachers', this.selectedTeachers);
+      formData.append('start_date', this.event.start_date);
+      formData.append('end_date', this.event.end_date);
+      formData.append('start_at', this.event.start_at);
+      formData.append('end_at', this.event.end_at);
 
       var config = {
         header: {
@@ -53297,7 +53533,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var route = '/dashboard/events/' + _this.$route.params.id;
         axios.post(route, formData, config).then(function (response) {
-          console.log(response);
           vm.$message('Събитието е редактирано.');
           vm.$router.push('/events');
         }).catch(function (error) {
@@ -53317,16 +53552,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     var route = '/dashboard/events/' + this.$route.params.id + '/edit';
     axios.get(route).then(function (response) {
-      console.log(response.data);
       vm.event = response.data[0];
 
       for (var key in response.data[0].teachers) {
         vm.selectedTeachers.push(response.data[0].teachers[key].id);
       }
 
-      vm.date[0] = response.data[0].begin_at;
-      vm.date[1] = response.data[0].end_at;
       vm.teachers = response.data[1];
+      vm.cities = response.data[2];
       vm.loading = false;
     }).catch(function (error) {
       console.log(error);
@@ -53354,15 +53587,16 @@ var render = function() {
                 "div",
                 { staticClass: "ui segment" },
                 [
-                  _c("h3", [_vm._v(_vm._s(_vm.event.theme.title))]),
-                  _vm._v(" "),
                   _c(
                     "el-form",
-                    {
-                      ref: "form",
-                      attrs: { model: _vm.form, "label-width": "120px" }
-                    },
+                    { attrs: { "label-width": "120px" } },
                     [
+                      _c("el-form-item", [
+                        _c("h3", [
+                          _vm._v("Тема: " + _vm._s(_vm.event.theme.title))
+                        ])
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "el-form-item",
                         { attrs: { label: "Корица" } },
@@ -53404,22 +53638,116 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "el-form-item",
-                        { attrs: { label: "Дати" } },
+                        { attrs: { label: "Град" } },
                         [
-                          _c("el-date-picker", {
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { placeholder: "Изберете град" },
+                              model: {
+                                value: _vm.event.city_id,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.event, "city_id", $$v)
+                                },
+                                expression: "event.city_id"
+                              }
+                            },
+                            _vm._l(_vm.cities, function(city) {
+                              return _c("el-option", {
+                                key: city.id,
+                                attrs: { label: city.name, value: city.id }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Адрес" } },
+                        [
+                          _c("el-input", {
+                            model: {
+                              value: _vm.event.address,
+                              callback: function($$v) {
+                                _vm.$set(_vm.event, "address", $$v)
+                              },
+                              expression: "event.address"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("el-form-item", { attrs: { label: "Начална дата" } }, [
+                        _c(
+                          "div",
+                          { staticClass: "block" },
+                          [
+                            _c("el-date-picker", {
+                              attrs: {
+                                type: "date",
+                                placeholder: "Начална дата",
+                                "value-format": "yyyy-MM-dd"
+                              },
+                              model: {
+                                value: _vm.event.start_date,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.event, "start_date", $$v)
+                                },
+                                expression: "event.start_date"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("el-form-item", { attrs: { label: "Крайна дата" } }, [
+                        _c(
+                          "div",
+                          { staticClass: "block" },
+                          [
+                            _c("el-date-picker", {
+                              attrs: {
+                                type: "date",
+                                placeholder: "Крайна дата",
+                                "value-format": "yyyy-MM-dd"
+                              },
+                              model: {
+                                value: _vm.event.end_date,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.event, "end_date", $$v)
+                                },
+                                expression: "event.end_date"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Начален час" } },
+                        [
+                          _c("el-time-select", {
                             attrs: {
-                              type: "datetimerange",
-                              "range-separator": "To",
-                              "start-placeholder": "Начална дата",
-                              "end-placeholder": "Крайна дата",
-                              "value-format": "yyyy-MM-dd HH:mm:ss"
+                              "picker-options": {
+                                start: "08:30",
+                                step: "00:15",
+                                end: "18:30"
+                              },
+                              placeholder: "Начален час",
+                              "value-format": "HH:mm"
                             },
                             model: {
-                              value: _vm.date,
+                              value: _vm.event.start_at,
                               callback: function($$v) {
-                                _vm.date = $$v
+                                _vm.$set(_vm.event, "start_at", $$v)
                               },
-                              expression: "date"
+                              expression: "event.start_at"
                             }
                           })
                         ],
@@ -53428,15 +53756,24 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "el-form-item",
-                        { attrs: { label: "Цена" } },
+                        { attrs: { label: "Краен час" } },
                         [
-                          _c("el-input", {
-                            model: {
-                              value: _vm.event.price,
-                              callback: function($$v) {
-                                _vm.$set(_vm.event, "price", $$v)
+                          _c("el-time-select", {
+                            attrs: {
+                              "picker-options": {
+                                start: "08:30",
+                                step: "00:15",
+                                end: "18:30"
                               },
-                              expression: "event.price"
+                              placeholder: "Начален час",
+                              "value-format": "HH:mm"
+                            },
+                            model: {
+                              value: _vm.event.end_at,
+                              callback: function($$v) {
+                                _vm.$set(_vm.event, "end_at", $$v)
+                              },
+                              expression: "event.end_at"
                             }
                           })
                         ],
@@ -105125,7 +105462,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\t\theight: 178px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n}\n.flex {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.category-header {\n\t\tcolor: white;\n\t\tmargin-bottom: 20px;\n\t\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\t\theight: 200px;\n}\n.inverted-breadcrumb * {\n\t\tcolor: white !important;\n}\n\n\t/*.overlay {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground: rgba(0, 0, 0, 0.3);\n\t}*/\n\n\t/*.category-box {\n\t\tdisplay: flex;\n\t\tborder-radius: 3px;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tcolor: white;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n\t}*/\n", ""]);
+exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n.category-header {\n\tcolor: white;\n\tmargin-bottom: 20px;\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\theight: 200px;\n}\n.inverted-breadcrumb * {\n\tcolor: white !important;\n}\n.category-segment {\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\tpadding: 40px 0;\n}\n.filter-segment {\n\tbackground: white;\n\tpadding: 10px 0;\n\tborder: 1px solid #e1e1e1;\n}\n", ""]);
 
 // exports
 
@@ -105141,6 +105478,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventBoxComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__EventBoxComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -105742,7 +106088,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-          _vm._v(" " + _vm._s(_vm.item.begin))
+          _vm._v(" " + _vm._s(_vm.item.start_dateCarbon))
         ])
       ]),
       _vm._v(" "),
@@ -105857,7 +106203,7 @@ var render = function() {
                 _vm._v(
                   "\n\t\t\t\t\t\t" +
                     _vm._s(_vm.item.theme.duration) +
-                    " часа\n\t\t\t\t\t"
+                    " учебни часа\n\t\t\t\t\t"
                 )
               ])
             ])
@@ -105921,158 +106267,177 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "ui container mt-20" }, [
-      _vm.category == ""
-        ? _c(
-            "div",
-            { staticClass: "ui three column stackable grid" },
-            _vm._l(_vm.categories, function(category) {
-              return _c("div", { staticClass: "column" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "ui huge basic fluid button",
-                    attrs: { href: "/browse/" + category.slug }
-                  },
-                  [_vm._v(_vm._s(category.name))]
-                )
-              ])
-            })
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "ui segment" }, [
-        _c("div", { staticClass: "ui form" }, [
-          _c("div", { staticClass: "fields" }, [
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "ui selection dropdown" }, [
-                _c("input", { attrs: { type: "hidden", name: "gender" } }),
-                _vm._v(" "),
-                _c("i", { staticClass: "dropdown icon" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "default text" }, [
-                  _vm._v("Подреди по:")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "menu" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "item",
-                      on: {
-                        click: function($event) {
-                          _vm.sort("theme.only_like_count", "desc")
-                        }
-                      }
-                    },
-                    [_vm._v("Най-популярни")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "item",
-                      on: {
-                        click: function($event) {
-                          _vm.sort("begin_at", "asc")
-                        }
-                      }
-                    },
-                    [_vm._v("Най-нови")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "item",
-                      on: {
-                        click: function($event) {
-                          _vm.sort("price", "asc")
-                        }
-                      }
-                    },
-                    [_vm._v("Цена възх.")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "item",
-                      on: {
-                        click: function($event) {
-                          _vm.sort("price", "desc")
-                        }
-                      }
-                    },
-                    [_vm._v("Цена низх.")]
-                  )
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c("div", { staticClass: "ui selection dropdown" }, [
-                _c("input", { attrs: { type: "hidden", name: "gender" } }),
-                _vm._v(" "),
-                _c("i", { staticClass: "dropdown icon" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "default text" }, [_vm._v("Град")]),
-                _vm._v(" "),
-                _c(
+    _c("section", { staticClass: "category-segment" }, [
+      _c(
+        "div",
+        { staticClass: "ui container" },
+        [
+          _vm.category == ""
+            ? _vm._l(_vm.categories, function(category) {
+                return _c(
                   "div",
-                  { staticClass: "menu" },
+                  { staticClass: "ui relaxed horizontal list" },
                   [
+                    _c("div", { staticClass: "item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "ui large basic inverted button",
+                          attrs: { href: "/browse/" + category.slug }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    ])
+                  ]
+                )
+              })
+            : _vm._e()
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "filter-segment" }, [
+      _c("div", { staticClass: "ui container" }, [
+        _c("div", { staticClass: "ui big form" }, [
+          _c(
+            "div",
+            { staticClass: "inline fields", staticStyle: { margin: "0" } },
+            [
+              _c("div", { staticClass: "field" }, [
+                _c("label", [_vm._v("Филтри:")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui selection dropdown" }, [
+                  _c("input", { attrs: { type: "hidden", name: "gender" } }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "dropdown icon" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "default text" }, [
+                    _vm._v("Подреди по:")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "menu" }, [
                     _c(
                       "div",
                       {
                         staticClass: "item",
                         on: {
                           click: function($event) {
-                            _vm.filterByCity(null)
+                            _vm.sort("theme.only_like_count", "desc")
                           }
                         }
                       },
-                      [_vm._v("\n\t\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t\t")]
+                      [_vm._v("Най-популярни")]
                     ),
                     _vm._v(" "),
-                    _vm._l(_vm.cities, function(city) {
-                      return _c(
+                    _c(
+                      "div",
+                      {
+                        staticClass: "item",
+                        on: {
+                          click: function($event) {
+                            _vm.sort("begin_at", "asc")
+                          }
+                        }
+                      },
+                      [_vm._v("Най-нови")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "item",
+                        on: {
+                          click: function($event) {
+                            _vm.sort("price", "asc")
+                          }
+                        }
+                      },
+                      [_vm._v("Цена възх.")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "item",
+                        on: {
+                          click: function($event) {
+                            _vm.sort("price", "desc")
+                          }
+                        }
+                      },
+                      [_vm._v("Цена низх.")]
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "field" }, [
+                _c("div", { staticClass: "ui selection dropdown" }, [
+                  _c("input", { attrs: { type: "hidden", name: "gender" } }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "dropdown icon" }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "default text" }, [_vm._v("Град")]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "menu" },
+                    [
+                      _c(
                         "div",
                         {
-                          key: city.id,
                           staticClass: "item",
-                          attrs: { value: city.id },
                           on: {
                             click: function($event) {
-                              _vm.filterByCity(city.id)
+                              _vm.filterByCity(null)
                             }
-                          },
-                          model: {
-                            value: _vm.selectedCity,
-                            callback: function($$v) {
-                              _vm.selectedCity = $$v
-                            },
-                            expression: "selectedCity"
                           }
                         },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t" +
-                              _vm._s(city.name) +
-                              "\n\t\t\t\t\t\t\t\t"
-                          )
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                )
+                        [_vm._v("\n\t\t\t\t\t\t\t\t\tВсички\n\t\t\t\t\t\t\t\t")]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.cities, function(city) {
+                        return _c(
+                          "div",
+                          {
+                            key: city.id,
+                            staticClass: "item",
+                            attrs: { value: city.id },
+                            on: {
+                              click: function($event) {
+                                _vm.filterByCity(city.id)
+                              }
+                            },
+                            model: {
+                              value: _vm.selectedCity,
+                              callback: function($$v) {
+                                _vm.selectedCity = $$v
+                              },
+                              expression: "selectedCity"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t\t\t\t" +
+                                _vm._s(city.name) +
+                                "\n\t\t\t\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
               ])
-            ])
-          ])
+            ]
+          )
         ])
-      ]),
-      _vm._v(" "),
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "ui container mt-20" }, [
       _c(
         "div",
         { staticClass: "ui four stackable cards" },

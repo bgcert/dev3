@@ -33,7 +33,7 @@
 			<i class="right angle icon divider"></i>
 			<a href="/e" class="section">Събития</a>
 			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $event->theme->title }} - {{ $event->begin }} - {{ $event->end }}</div>
+			<div class="active section">{{ $event->theme->title }} - {{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</div>
 		</div>
 	</div>
 </div>
@@ -46,7 +46,7 @@
 					<div class="info">
 						<h1 class="title">{{ $event->theme->title }}</h1>
 						<p>{{ $event->theme->excerpt }}</p>
-						<h3>{{ $event->begin }} - {{ $event->end }}</h3>
+						<h3>{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</h3>
 					</div>	
 				</div>
 				<div class="six wide column">
@@ -65,7 +65,7 @@
 						<div class="ui divider"></div>
 						<div>
 							<div class="ui list">
-								<div class="item">{{ $event->begin }} - {{ $event->end }}</div>
+								<div class="item">{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</div>
 								<div class="item">{{ $event->theme->duration }} учебни часа</div>
 							</div>
 						</div>
@@ -102,11 +102,11 @@
 			    	<tbody>
 			    		<tr>
 			    			<td>Дати на провеждане</td>
-			    			<td>{{ $event->begin }} - {{ $event->end }}</td>
+			    			<td>{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</td>
 			    		</tr>
 			    		<tr>
 			    			<td>Начален час / Краен час</td>
-			    			<td>09.00 / 17.00 ч.</td>
+			    			<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
 			    		</tr>
 			    		<tr>
 			    			<td>Цена</td>

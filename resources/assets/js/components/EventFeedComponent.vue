@@ -14,17 +14,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="ui container mt-20">
-			<div class="ui three column stackable grid" v-if="category == ''">
-				<div class="column" v-for="category in categories">
-					<a class="ui huge basic fluid button" :href="'/browse/' + category.slug">{{ category.name }}</a>
-
-				</div>
+		<section class="category-segment">
+			<div class="ui container">
+				<template v-if="category == ''">
+					<div class="ui relaxed horizontal list" v-for="category in categories">
+						<div class="item">
+							<a class="ui large basic inverted button" :href="'/browse/' + category.slug">{{ category.name }}</a>
+						</div>
+					</div>
+				</template>
 			</div>
-			<div class="ui segment">
-				<div class="ui form">
-					<div class="fields">
+		</section>
+		<div class="filter-segment">
+			<div class="ui container">
+
+				<div class="ui big form">
+					<div class="inline fields" style="margin: 0;">
 						<div class="field">
+							<label>Филтри:</label>
 							<div class="ui selection dropdown">
 								<input type="hidden" name="gender">
 								<i class="dropdown icon"></i>
@@ -64,6 +71,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="ui container mt-20">
 			<div class="ui four stackable cards">
 				<eventBox
 					v-for="event in events"
@@ -204,19 +213,14 @@
 		color: white !important;
 	}
 
-	/*.overlay {
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.3);
-	}*/
+	.category-segment {
+		background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
+		padding: 40px 0;
+	}
 
-	/*.category-box {
-		display: flex;
-		border-radius: 3px;
-		align-items: center;
-		justify-content: center;
-		color: white;
-		background-size: cover !important;
-    	background-position: center center !important;
-	}*/
+	.filter-segment {
+		background: white;
+		padding: 10px 0;
+		border: 1px solid #e1e1e1;
+	}
 </style>

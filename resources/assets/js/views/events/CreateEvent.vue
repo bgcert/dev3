@@ -27,15 +27,67 @@
 						</el-select>
 					</el-form-item>
 
-					<el-form-item label="Дати">
-						<el-date-picker
-							v-model="form.date"
-							type="datetimerange"
-							range-separator="To"
-							start-placeholder="Начална дата"
-							end-placeholder="Крайна дата"
-							value-format="yyyy-MM-dd HH:mm:ss">
-						</el-date-picker>
+					<el-form-item label="Град">
+						<el-select v-model="form.cityId" placeholder="Изберете град">
+							<el-option
+								v-for="city in cities"
+								:key="city.id"
+								:label="city.name"
+								:value="city.id">
+							</el-option>
+						</el-select>
+					</el-form-item>
+
+					<el-form-item label="Адрес">
+						<el-input v-model="form.address"></el-input>
+					</el-form-item>
+
+					<el-form-item label="Начална дата">
+						<div class="block">
+							<el-date-picker
+								v-model="form.start_date"
+								type="date"
+								placeholder="Начална дата"
+								value-format="yyyy-MM-dd">
+							</el-date-picker>
+						</div>
+					</el-form-item>
+
+					<el-form-item label="Крайна дата">
+						<div class="block">
+							<el-date-picker
+								v-model="form.end_date"
+								type="date"
+								placeholder="Крайна дата"
+								value-format="yyyy-MM-dd">
+							</el-date-picker>
+						</div>
+					</el-form-item>
+
+					<el-form-item label="Начален час">
+						<el-time-select
+							v-model="form.start_at"
+							:picker-options="{
+									start: '08:30',
+									step: '00:15',
+									end: '18:30'
+								}"
+							placeholder="Начален час"
+							value-format="HH:mm">
+						</el-time-select>
+					</el-form-item>
+
+					<el-form-item label="Краен час">
+						<el-time-select
+							v-model="form.end_at"
+							:picker-options="{
+									start: '08:30',
+									step: '00:15',
+									end: '18:30'
+								}"
+							placeholder="Начален час"
+							value-format="HH:mm">
+						</el-time-select>
 					</el-form-item>
 
 					<el-form-item label="Корица">
@@ -84,10 +136,15 @@
     			teachers: [],
     			selectedTeachers: {},
     			selectedTheme: '',
+    			cities: null,
     			form: {
     				theme: '',
-    				date: '',
-    				data1: '',
+    				cityId: null,
+    				address: '',
+    				start_date: '',
+    				end_date: '',
+    				start_at: '',
+    				end_at: '',
     				cover: 'https://picsum.photos/800/400/?image=293',
     				price: null,
     			}
@@ -101,10 +158,14 @@
 
     			let formData = new FormData();
 				formData.append('theme_id', this.selectedTheme);
+				formData.append('city_id', this.form.cityId);
+				formData.append('address', this.form.address);
 				formData.append('price', this.form.price);
 				formData.append('teachers', this.selectedTeachers);
-				formData.append('begin_at', this.form.date[0]);
-				formData.append('end_at', this.form.date[1]);
+				formData.append('start_date', this.form.start_date);
+				formData.append('end_date', this.form.end_date);
+				formData.append('start_at', this.form.start_at);
+				formData.append('end_at', this.form.end_at);
 
     			let config =
 					{
@@ -145,6 +206,7 @@
         		console.log(response.data);
         		vm.themes = response.data[0];
         		vm.teachers = response.data[1];
+        		vm.cities = response.data[2];
         		vm.loading = false;
 			})
 			.catch(function (error) {

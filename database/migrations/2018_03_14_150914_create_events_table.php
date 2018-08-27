@@ -18,9 +18,12 @@ class CreateEventsTable extends Migration
             $table->integer('theme_id')->unsigned();
             $table->integer('city_id')->unsigned()->nullable();
             $table->string('cover')->nullable();
+            $table->text('address')->nullable();
             $table->integer('price')->unsigned()->nullable();
-            $table->timestamp('begin_at')->nullable();
-            $table->timestamp('end_at')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->time('start_at')->nullable();
+            $table->time('end_at')->nullable();
             $table->timestamps();
 
             $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');

@@ -11,10 +11,10 @@ class Event extends Model
 	use LogsActivity;
 
 	protected $fillable = [
-        'theme_id', 'begin_at', 'end_at', 'cover', 'position', 'price'
+        'theme_id', 'city_id', 'address', 'start_date', 'end_date', 'start_at', 'end_at', 'cover', 'position', 'price'
     ];
 
-    protected $appends = ['begin'];
+    protected $appends = ['start_date_carbon'];
 
     public function theme()
     {
@@ -63,23 +63,23 @@ class Event extends Model
     	return $this->attributes['cover'] = (!empty($value)) ? $value : $this->theme->cover; // This is cool!
     }
 
-    public function getPositionAttribute($value)
+    public function getStartDateCarbonAttribute($value)
     {
-    	return $this->attributes['position'] = (!empty($value)) ? $value : $this->theme->position;
+    	return Carbon::parse($this->attributes['start_date'])->format('d M, Y');
     }
 
-    public function getBeginAttribute()
+    public function getEndDateCarbonAttribute($value)
     {
-    	return Carbon::parse($this->begin_at)->format('d M, Y');
+    	return Carbon::parse($this->attributes['end_date'])->format('d M, Y');
     }
 
-    public function getEndAttribute()
+    public function getStartAtCarbonAttribute()
     {
-    	return Carbon::parse($this->end_at)->format('d M, Y');
+    	return Carbon::parse($this->start_at)->format('h:i');
     }
 
-    // public function getEndAtAttribute($value)
-    // {
-    // 	return $this->attributes['end_at'] = Carbon::parse($value)->format('D, d M Y');
-    // }
+    public function getEndAtCarbonAttribute()
+    {
+    	return Carbon::parse($this->end_at)->format('h:i');
+    }
 }
