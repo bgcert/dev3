@@ -19,7 +19,7 @@
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="teacher.details"></el-input>
+						<el-input type="textarea" :rows="6" v-model="teacher.details"></el-input>
 					</el-form-item>
 					<el-form-item>
 						<div class="right floated">

@@ -28,11 +28,11 @@
 					</el-form-item>
 					
 					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="theme.body"></el-input>
+						<el-input type="textarea" :rows="6" v-model="theme.body"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Продължителност">
-						<el-input v-model="theme.duration"></el-input>
+						<el-input v-model="theme.duration" style="width: 100px;"></el-input>
 					</el-form-item>
 
 					<el-form-item>

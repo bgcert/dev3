@@ -43,7 +43,15 @@
 					</el-form-item>
 
 					<el-form-item label="Цена">
-						<el-input v-model="form.price"></el-input>
+						<el-input v-model="form.price" style="width: 150px;">
+							<template slot="append">лв.</template>
+						</el-input>
+					</el-form-item>
+
+					<el-form-item>
+						<div class="ui warning message">
+							Моля, посочете крайната цена с начислен ДДС.
+						</div>
 					</el-form-item>
 
 					<el-form-item>

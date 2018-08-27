@@ -20,7 +20,7 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload></ImageUpload>
+						<ImageUpload></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
@@ -28,11 +28,11 @@
 					</el-form-item>
 					
 					<el-form-item label="Съдържание">
-						<el-input type="textarea" :rows="12" v-model="form.body"></el-input>
+						<el-input type="textarea" :rows="6" v-model="form.body"></el-input>
 					</el-form-item>
 
-					<el-form-item label="Продължителност">
-						<el-input v-model="form.duration"></el-input>
+					<el-form-item label="Учебни часове">
+						<el-input v-model="form.duration" style="width: 100px;"></el-input>
 					</el-form-item>
 
 					<el-form-item>
