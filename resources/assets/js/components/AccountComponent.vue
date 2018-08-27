@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!user.token">
+	<div class="mt-20" v-if="!user.token">
 		<div class="ui top attached tabular menu">
 			<router-link
 				to="/notifications"

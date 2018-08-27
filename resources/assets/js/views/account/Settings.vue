@@ -49,6 +49,7 @@
 			
 			<div class="field">
 				<button class="ui basic button" @click.prevent="setPublisher"> Промени</button>
+				<a v-if="showDashboard" class="ui orange button" href="/dashboard#/profile"> Бизнес панел</a>
 			</div>
 			
 		</form>
@@ -75,7 +76,8 @@
     				slug: '',
     				event_publish: false,
     				venue_publish: false
-				}
+				},
+				showDashboard: false
     		}
     	},
 
@@ -85,7 +87,6 @@
     			var route = '/users/set/user/name';
     			axios.post(route, { firstname: vm.form.user.firstname, lastname: vm.form.user.lastname })
 				.then(function (response) {
-					console.log(response);
 					vm.$message('Името е променено.');
 				})
 				.catch(function (error) {
@@ -108,7 +109,7 @@
 					vm.$message('Данните са променени.');
 					setTimeout(function() {
 						location.reload();
-					}, 2000);
+					}, 1500);
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -125,11 +126,20 @@
             var route = '/users/load/user/';
         	axios.get(route).then(function (response) {
         		vm.form.user = response.data;
+        		console.log(response.data);
         		if (response.data.company) {
         			vm.form.user.company = response.data.company;
         		} else {
         			vm.form.user.company = vm.company;
         		}
+
+        		if (response.data.role_id == 2) {
+        			vm.showDashboard = true;
+        		} else {
+        			vm.showDashboard = false;
+        		}
+        		
+
         		vm.form.publisher = (response.data.role_id == 2) ? true : false;
 			})
 			.catch(function (error) {
