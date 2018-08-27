@@ -105462,7 +105462,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n.category-header {\n\tcolor: white;\n\tmargin-bottom: 20px;\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\theight: 200px;\n}\n.inverted-breadcrumb * {\n\tcolor: white !important;\n}\n.category-segment {\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\tpadding: 40px 0;\n}\n.filter-segment {\n\tbackground: white;\n\tpadding: 10px 0;\n\tborder: 1px solid #e1e1e1;\n}\n", ""]);
+exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n.category-header {\n\tcolor: white;\n\t/*margin-bottom: 20px;*/\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\theight: 200px;\n}\n.inverted-breadcrumb * {\n\tcolor: white !important;\n}\n.category-segment {\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\tpadding: 40px 0;\n}\n.filter-segment {\n\tbackground: white;\n\tpadding: 10px 0;\n\tborder: 1px solid #e1e1e1;\n}\n", ""]);
 
 // exports
 
@@ -106267,13 +106267,13 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("section", { staticClass: "category-segment" }, [
-      _c(
-        "div",
-        { staticClass: "ui container" },
-        [
-          _vm.category == ""
-            ? _vm._l(_vm.categories, function(category) {
+    _vm.category == ""
+      ? _c("section", { staticClass: "category-segment" }, [
+          _c(
+            "div",
+            { staticClass: "ui container" },
+            [
+              _vm._l(_vm.categories, function(category) {
                 return _c(
                   "div",
                   { staticClass: "ui relaxed horizontal list" },
@@ -106291,11 +106291,11 @@ var render = function() {
                   ]
                 )
               })
-            : _vm._e()
-        ],
-        2
-      )
-    ]),
+            ],
+            2
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "filter-segment" }, [
       _c("div", { staticClass: "ui container" }, [

@@ -14,9 +14,9 @@
 				</div>
 			</div>
 		</div>
-		<section class="category-segment">
+		<section class="category-segment" v-if="category == ''">
 			<div class="ui container">
-				<template v-if="category == ''">
+				<template>
 					<div class="ui relaxed horizontal list" v-for="category in categories">
 						<div class="item">
 							<a class="ui large basic inverted button" :href="'/browse/' + category.slug">{{ category.name }}</a>
@@ -204,7 +204,7 @@
 
 	.category-header {
 		color: white;
-		margin-bottom: 20px;
+		/*margin-bottom: 20px;*/
 		background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
 		height: 200px;
 	}
