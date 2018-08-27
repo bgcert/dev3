@@ -43,11 +43,6 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
-    	// return (new MailMessage)
-     //        ->from('info@seminari365.com', 'Admin')
-     //        ->subject('Добре дошли в Seminari365')
-     //        ->markdown('vendor.mail.verify', ['user' => $this->user->firstname]);
-
         return (new MailMessage)
         			->subject('Добре дошли в Seminari365')
                     ->line('Моля, потвърдете Вашия акаунт, за да завършите регистрацията.')

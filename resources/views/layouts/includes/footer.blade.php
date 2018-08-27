@@ -3,23 +3,24 @@
 		<div class="ui grid">
 			<div class="two wide column">
 				<h4>Услуги</h4>
-				<div class="ui inverted list">
+				<div class="ui list">
 					<a href="#" class="item">Събития</a>
 					<a href="#" class="item">Зали</a>
+					<a href="#" class="item">Бизнес акаунт</a>
 					<a href="#" class="item">Регистрация</a>
 					<a href="#" class="item">Вход</a>
 				</div>
 			</div>
 			<div class="four wide column">
 				<h4>Допълнителна информация</h4>
-				<div class="ui inverted list">
+				<div class="ui list">
 					<a href="#" class="item">За нас</a>
 					<a href="#" class="item">Контакти</a>
 				</div>
 			</div>
 			<div class="four wide column">
 				<h4>Техническа поддръжка</h4>
-				<div class="ui inverted list">
+				<div class="ui list">
 					<a href="mailto:support@seminari365.com" class="item">support@seminari365.com</a>
 					<div href="#" class="item"> 02/ 403 2405</div>
 				</div>
@@ -31,12 +32,12 @@
 				</div>
 			</div>
 			<div class="six wide column">
-				<div class="ui inverted list">
+				<div class="ui list">
 					<div class="item">
-						<a href="#" class="ui large fluid basic inverted button">Добавете събитие</a>
+						<a href="#" class="ui large fluid basic orange button">Добавете събитие</a>
 					</div>
 					<div class="item">
-						<a href="#" class="ui large fluid basic inverted button">Добавете зала</a>
+						<a href="#" class="ui large fluid basic orange button">Добавете зала</a>
 					</div>
 				</div>
 			</div>

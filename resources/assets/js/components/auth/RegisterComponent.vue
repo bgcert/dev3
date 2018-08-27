@@ -7,13 +7,11 @@
 			@close="closeConfirm"
 			:visible.sync="innerVisible"
 			append-to-body>
-			<div class="ui segment">
-				<h4>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</h4>
-				<button class="ui basic button" @click="closeConfirm">OK</button>
-			</div>
+			<p>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</p>
+			<button class="ui basic button" @click="closeConfirm">OK</button>
 		</el-dialog>
 
-		<el-dialog width="440px" :visible.sync="dialogFormVisible">
+		<el-dialog width="400px" :visible.sync="dialogFormVisible">
 			<div class="signup-cover">
 				<div>
 					<h2>Добре дошли в Seminari365</h2>

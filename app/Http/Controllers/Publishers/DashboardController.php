@@ -18,21 +18,22 @@ class DashboardController extends Controller
 
     public function getCompany()
     {
-    	return \App\Company::with('company_detail')->where('user_id', \Auth::id())->first();
+    	return \App\Company::where('user_id', \Auth::id())->first();
     }
 
     public function saveCompany()
     {
     	$company = \App\Company::where('user_id', \Auth::id())->first();
     	$data = request()->all();
-    	$company->update(request()->all());
     	if (request()->file) {
     		$name = $this->saveImage(request()->file, 357, 178);
     		$name = '/test/' . $name;
     		$data['logo'] = $name;
     	}
 
-    	$company->company_detail->update($data);
+    	$company->update($data);
+    	
+    	// $company->company_detail->update($data);
     	return 'ok';
     }
 

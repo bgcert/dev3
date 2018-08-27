@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script> -->
 
 	<!-- Google map script -->
 	<script>
@@ -49,7 +49,7 @@
         @if(auth()->check() && !auth()->user()->verified())
         	<div class="ui container">
         		<div class="ui basic segment">
-        			<div class="ui orange message">Моля, потвърдете Вашият e-mail.</div>
+        			<div class="ui orange message">Моля, потвърдете Вашия e-mail.</div>
         		</div>
         	</div>
         @endif

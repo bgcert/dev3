@@ -49713,8 +49713,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(61);
 
 
-var routes = [{ path: '/home', component: __webpack_require__(115) }, { path: '/about', component: __webpack_require__(118) },
-
+var routes = [
 // Profile routes
 { path: '/profile', component: __webpack_require__(121) },
 
@@ -49758,166 +49757,12 @@ router.beforeEach(function (to, from, next) {
 });
 
 /***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(116)
-/* template */
-var __vue_template__ = __webpack_require__(117)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\views\\Home.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-11c5acec", Component.options)
-  } else {
-    hotAPI.reload("data-v-11c5acec", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("Hello World")])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-11c5acec", module.exports)
-  }
-}
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(119)
-/* template */
-var __vue_template__ = __webpack_require__(120)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\views\\About.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5b755950", Component.options)
-  } else {
-    hotAPI.reload("data-v-5b755950", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({});
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("About")])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5b755950", module.exports)
-  }
-}
-
-/***/ }),
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50027,38 +49872,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -50083,14 +49896,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // formData.append('_method', 'patch');
       formData.append('name', this.company.name);
       formData.append('slug', this.company.slug);
-      formData.append('address', this.company_details.address);
-      formData.append('description', this.company_details.description);
-      formData.append('email', this.company_details.email);
-      formData.append('phone', this.company_details.phone);
-      formData.append('facebook', this.company_details.facebook);
-      formData.append('instagram', this.company_details.instagram);
-      formData.append('linkedin', this.company_details.linkedin);
-      formData.append('youtube', this.company_details.youtube);
+      formData.append('address', this.address);
+      formData.append('description', this.description);
+      formData.append('email', this.email);
+      formData.append('phone', this.phone);
 
       var config = {
         header: {
@@ -50109,13 +49918,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         axios.post('/dashboard/save/company/data', formData, config).then(function (response) {
-          console.log(response);
-          vm.$message('Данните са записани.');
+          vm.$message('Данните са запазени.');
         }).catch(function (error) {
           console.log(error);
         });
       }, function (error) {
-        console.log('Promise rejected.');
         vm.$message('Невалидно изображение');
       });
     }
@@ -50128,13 +49935,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var vm = this;
     var route = '/dashboard/load/company';
     axios.get(route).then(function (response) {
-      console.log(response.data);
-      var data = response.data;
-      vm.company_details = data.company_detail;
-      delete data.is_followed;
-      delete data.followers;
-      delete data.company_detail;
       vm.company = response.data;
+      // let data = response.data;
+      // vm.company_details = data.company_detail;
+      // delete data.is_followed;
+      // delete data.followers;
+      // vm.company = response.data;
     }).catch(function (error) {
       console.log(error);
     });
@@ -50350,9 +50156,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.company.id
-    ? _c("div", { staticClass: "ui segment" }, [
+    ? _c("div", { staticClass: "ui clearing segment" }, [
         _c("form", { staticClass: "ui form" }, [
-          _c("div", { staticClass: "field" }, [
+          _c("div", { staticClass: "field", staticStyle: { width: "300px" } }, [
             _c("label", [_vm._v("Име на организацията")]),
             _vm._v(" "),
             _c("input", {
@@ -50377,7 +50183,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
+          _c("div", { staticClass: "field", staticStyle: { width: "400px" } }, [
             _c("label", [_vm._v("Адрес (URL) на профила в Seminari365")]),
             _vm._v(" "),
             _c("div", { staticClass: "ui labeled right input" }, [
@@ -50414,7 +50220,7 @@ var render = function() {
             [
               _c("label", [_vm._v("Лого")]),
               _vm._v(" "),
-              _c("ImageUpload", { attrs: { img: _vm.company_details.logo } })
+              _c("ImageUpload", { attrs: { img: _vm.company.logo } })
             ],
             1
           ),
@@ -50427,74 +50233,73 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.company_details.description,
-                  expression: "company_details.description"
+                  value: _vm.company.description,
+                  expression: "company.description"
                 }
               ],
-              domProps: { value: _vm.company_details.description },
+              attrs: { rows: "6" },
+              domProps: { value: _vm.company.description },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(
-                    _vm.company_details,
-                    "description",
-                    $event.target.value
-                  )
+                  _vm.$set(_vm.company, "description", $event.target.value)
                 }
               }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("E-mail")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.company_details.email,
-                  expression: "company_details.email"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.company_details.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c("div", { staticClass: "equal width fields" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("label", [_vm._v("E-mail")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.company.email,
+                    expression: "company.email"
                   }
-                  _vm.$set(_vm.company_details, "email", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("Телефон")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.company_details.phone,
-                  expression: "company_details.phone"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.company_details.phone },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.company.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.company, "email", $event.target.value)
                   }
-                  _vm.$set(_vm.company_details, "phone", $event.target.value)
                 }
-              }
-            })
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "field" }, [
+              _c("label", [_vm._v("Телефон")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.company.phone,
+                    expression: "company.phone"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.company.phone },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.company, "phone", $event.target.value)
+                  }
+                }
+              })
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
@@ -50505,145 +50310,38 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.company_details.address,
-                  expression: "company_details.address"
+                  value: _vm.company.address,
+                  expression: "company.address"
                 }
               ],
               attrs: { rows: "2" },
-              domProps: { value: _vm.company_details.address },
+              domProps: { value: _vm.company.address },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.company_details, "address", $event.target.value)
+                  _vm.$set(_vm.company, "address", $event.target.value)
                 }
               }
             })
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("Facebook")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui labeled right input" }, [
-              _c("div", { staticClass: "ui label" }, [
-                _vm._v("\n\t\t\t\t\thttp://facebook.com/\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company_details.facebook,
-                    expression: "company_details.facebook"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.company_details.facebook },
+            _c(
+              "button",
+              {
+                staticClass: "ui labeled icon button",
+                staticStyle: { float: "right" },
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.company_details,
-                      "facebook",
-                      $event.target.value
-                    )
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.save($event)
                   }
                 }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("Instagram")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui labeled right input" }, [
-              _c("div", { staticClass: "ui label" }, [
-                _vm._v("\n\t\t\t\t\thttp://instagram.com/\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company_details.instagram,
-                    expression: "company_details.instagram"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.company_details.instagram },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.company_details,
-                      "instagram",
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("LinkedIn")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ui labeled right input" }, [
-              _c("div", { staticClass: "ui label" }, [
-                _vm._v("\n\t\t\t\t\thttp://linkedin.com/company/\n\t\t\t\t")
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company_details.linkedin,
-                    expression: "company_details.linkedin"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.company_details.linkedin },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.company_details,
-                      "linkedin",
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("div", { staticClass: "ui basic clearing segment" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "ui labeled icon button",
-                  staticStyle: { float: "right" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.save($event)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "icon save" }), _vm._v(" Запиши")]
-              )
-            ])
+              },
+              [_c("i", { staticClass: "icon save" }), _vm._v(" Запиши")]
+            )
           ])
         ])
       ])
@@ -105339,7 +105037,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\t\theight: 178px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n}\n.flex {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.category-header {\n\t\tcolor: white;\n\t\tmargin-bottom: 20px;\n\t\tbackground: url(https://picsum.photos/2000/250/?image=78);\n\t\theight: 150px;\n}\n.overlay {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground: rgba(0, 0, 0, 0.3);\n}\n.category-box {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\tborder-radius: 3px;\n\t\t-webkit-box-align: center;\n\t\t    -ms-flex-align: center;\n\t\t        align-items: center;\n\t\t-webkit-box-pack: center;\n\t\t    -ms-flex-pack: center;\n\t\t        justify-content: center;\n\t\theight: 150px;\n\t\tcolor: white;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n", ""]);
+exports.push([module.i, "\n.image {\n\t\theight: 178px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n}\n.flex {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.category-header {\n\t\tcolor: white;\n\t\tmargin-bottom: 20px;\n\t\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\t\theight: 200px;\n}\n.inverted-breadcrumb * {\n\t\tcolor: white !important;\n}\n\n\t/*.overlay {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground: rgba(0, 0, 0, 0.3);\n\t}*/\n\n\t/*.category-box {\n\t\tdisplay: flex;\n\t\tborder-radius: 3px;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tcolor: white;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n\t}*/\n", ""]);
 
 // exports
 
@@ -105355,12 +105053,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventBoxComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__EventBoxComponent_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LikeComponent_vue__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -106110,61 +105802,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mt-20" }, [
+  return _c("div", [
     _vm.category != ""
       ? _c("div", { staticClass: "category-header" }, [
-          _c("div", { staticClass: "overlay" }, [
-            _c("div", { staticClass: "ui container" }, [
-              _c("div", { staticClass: "ui basic segment" }, [
-                _c("div", { staticClass: "ui breadcrumb" }, [
-                  _c("a", { staticClass: "section", attrs: { href: "/" } }, [
-                    _vm._v("Начало")
-                  ]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "right angle icon divider" }),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    { staticClass: "section", attrs: { href: "/browse" } },
-                    [_vm._v("Обучения")]
-                  ),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "right angle icon divider" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "active section" }, [
-                    _vm._v(_vm._s(_vm.category.name))
-                  ])
+          _c("div", { staticClass: "ui container" }, [
+            _c("div", { staticClass: "ui basic segment" }, [
+              _c("div", { staticClass: "ui breadcrumb inverted-breadcrumb" }, [
+                _c("a", { staticClass: "section", attrs: { href: "/" } }, [
+                  _vm._v("Начало")
                 ]),
                 _vm._v(" "),
-                _c("h1", [_vm._v(_vm._s(_vm.category.name))])
-              ])
+                _c("i", { staticClass: "right angle icon divider" }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "section", attrs: { href: "/browse" } },
+                  [_vm._v("Обучения")]
+                ),
+                _vm._v(" "),
+                _c("i", { staticClass: "right angle icon divider" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "active section" }, [
+                  _vm._v(_vm._s(_vm.category.name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("h1", [_vm._v(_vm._s(_vm.category.name))])
             ])
           ])
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "ui container" }, [
+    _c("div", { staticClass: "ui container mt-20" }, [
       _vm.category == ""
         ? _c(
             "div",
-            { staticClass: "ui four column stackable grid" },
+            { staticClass: "ui three column stackable grid" },
             _vm._l(_vm.categories, function(category) {
               return _c("div", { staticClass: "column" }, [
                 _c(
                   "a",
                   {
-                    staticClass: "category-box",
-                    style:
-                      "background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/categories/" +
-                      category.cover +
-                      ");",
+                    staticClass: "ui huge basic fluid button",
                     attrs: { href: "/browse/" + category.slug }
                   },
-                  [
-                    _c("h4", { staticClass: "ui inverted header" }, [
-                      _vm._v(_vm._s(category.name))
-                    ])
-                  ]
+                  [_vm._v(_vm._s(category.name))]
                 )
               ])
             })
@@ -110803,7 +110485,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -110815,8 +110497,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
 //
 //
 //
@@ -110987,31 +110667,26 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "ui segment" }, [
-            _c("h4", [
-              _vm._v("Изпратен е линк за потвърждение на "),
-              _c("b", [_vm._v(_vm._s(_vm.form.email))]),
-              _vm._v(
-                ". За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията."
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "ui basic button",
-                on: { click: _vm.closeConfirm }
-              },
-              [_vm._v("OK")]
+          _c("p", [
+            _vm._v("Изпратен е линк за потвърждение на "),
+            _c("b", [_vm._v(_vm._s(_vm.form.email))]),
+            _vm._v(
+              ". За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията."
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "ui basic button", on: { click: _vm.closeConfirm } },
+            [_vm._v("OK")]
+          )
         ]
       ),
       _vm._v(" "),
       _c(
         "el-dialog",
         {
-          attrs: { width: "440px", visible: _vm.dialogFormVisible },
+          attrs: { width: "400px", visible: _vm.dialogFormVisible },
           on: {
             "update:visible": function($event) {
               _vm.dialogFormVisible = $event
@@ -111670,7 +111345,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "ui grid" }, [
+    _c("div", { staticClass: "ui grid mt-20" }, [
       _c("div", { staticClass: "four wide column" }, [
         _c(
           "div",

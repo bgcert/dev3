@@ -22,14 +22,16 @@ class CreateThemesTable extends Migration
 		});
 
 		DB::table('categories')->insert([
-            ['name' => 'Бизнес и продажби', 'slug' => 'business-sales', 'cover' => 'business.png'],
-            ['name' => 'Маркетинг и комуникации', 'slug' => 'marketing-communications', 'cover' => 'marketing.png'],
-            ['name' => 'IT и Софтуер', 'slug' => 'it-software', 'cover' => 'it.png'],
-            ['name' => 'Счетоводство и финанси', 'slug' => 'accounting-finance', 'cover' => 'finance.png'],
-            ['name' => 'Законодателство', 'slug' => 'law', 'cover' => 'legislation.png'],
-            ['name' => 'Туризъм и ресторантьорство', 'slug' => 'Tourism and catering', 'cover' => 'catering.png'],
-            ['name' => 'Креативни изкуства и дизайн', 'slug' => 'art-design', 'cover' => 'art.png'],
-            ['name' => 'Личностно развитие', 'slug' => 'personal-development', 'cover' => 'personal-developement.png'],
+            ['name' => 'Бизнес и продажби', 'slug' => 'business-sales'],
+            ['name' => 'Маркетинг и комуникации', 'slug' => 'marketing-communications'],
+            ['name' => 'IT и Софтуер', 'slug' => 'it-software'],
+            ['name' => 'Счетоводство и финанси', 'slug' => 'accounting-finance'],
+            ['name' => 'Сертификация и стандарти', 'slug' => 'certification'],
+            ['name' => 'Закони и регламенти', 'slug' => 'legislation'],
+            ['name' => 'Туризъм и ресторантьорство', 'slug' => 'Tourism and catering'],
+            ['name' => 'Креативни изкуства и дизайн', 'slug' => 'art-design'],
+            ['name' => 'Личностно развитие', 'slug' => 'personal-development'],
+            ['name' => 'Езиково обучение', 'slug' => 'language'],
         ]);
 
         Schema::create('themes', function (Blueprint $table) {

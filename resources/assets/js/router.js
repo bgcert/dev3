@@ -1,9 +1,6 @@
 import VueRouter from 'vue-router';
 
 let routes = [
-    { path: '/home', component: require('./views/Home.vue') },
-    { path: '/about', component: require('./views/About.vue') },
-
     // Profile routes
     { path: '/profile', component: require('./views/profile/Profile.vue') },
 

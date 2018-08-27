@@ -1,6 +1,6 @@
 <div id="nav-header">
 	<div class="ui container fluid" style="padding: 0 20px;">
-		<div class="ui stackable secondary menu">
+		<div class="ui large stackable secondary menu">
 			<a href="/" class="active item"> Seminari 365</a>
 			<a href="/browse" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
@@ -25,7 +25,7 @@
 				</div> -->
 				@else
 				@if(Auth::user()->role_id == 2)
-					<a href="/dashboard#/home" class="item">Бизнес панел</a>
+					<a href="/dashboard#/profile" class="item">Бизнес панел</a>
 				@endif
 				<div class="ui dropdown item">
 					<div class="text">

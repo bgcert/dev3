@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="ui grid">
+		<div class="ui grid mt-20">
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
 					<router-link

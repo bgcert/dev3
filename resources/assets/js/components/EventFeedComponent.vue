@@ -1,30 +1,24 @@
 <template>
-	<div class="mt-20">
+	<div>
 		<div class="category-header" v-if="category != ''">
-			<div class="overlay">
-				<div class="ui container">
-					<div class="ui basic segment">
-						<div class="ui breadcrumb">
-							<a href="/" class="section">Начало</a>
-							<i class="right angle icon divider"></i>
-							<a href="/browse" class="section">Обучения</a>
-							<i class="right angle icon divider"></i>
-							<div class="active section">{{ category.name }}</div>
-						</div>
-						<h1>{{ category.name }}</h1>
+			<div class="ui container">
+				<div class="ui basic segment">
+					<div class="ui breadcrumb inverted-breadcrumb">
+						<a href="/" class="section">Начало</a>
+						<i class="right angle icon divider"></i>
+						<a href="/browse" class="section">Обучения</a>
+						<i class="right angle icon divider"></i>
+						<div class="active section">{{ category.name }}</div>
 					</div>
+					<h1>{{ category.name }}</h1>
 				</div>
 			</div>
 		</div>
-		<div class="ui container">
-			<div class="ui four column stackable grid" v-if="category == ''">
+		<div class="ui container mt-20">
+			<div class="ui three column stackable grid" v-if="category == ''">
 				<div class="column" v-for="category in categories">
-					<a
-						:href="'/browse/' + category.slug"
-						class="category-box"
-						:style="'background-image: linear-gradient(0deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/img/categories/' + category.cover + ');'">
-						<h4 class="ui inverted header">{{ category.name }}</h4>
-					</a>
+					<a class="ui huge basic fluid button" :href="'/browse/' + category.slug">{{ category.name }}</a>
+
 				</div>
 			</div>
 			<div class="ui segment">
@@ -202,24 +196,27 @@
 	.category-header {
 		color: white;
 		margin-bottom: 20px;
-		background: url(https://picsum.photos/2000/250/?image=78);
-		height: 150px;
+		background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
+		height: 200px;
 	}
 
-	.overlay {
+	.inverted-breadcrumb * {
+		color: white !important;
+	}
+
+	/*.overlay {
 		width: 100%;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.3);
-	}
+	}*/
 
-	.category-box {
+	/*.category-box {
 		display: flex;
 		border-radius: 3px;
 		align-items: center;
 		justify-content: center;
-		height: 150px;
 		color: white;
 		background-size: cover !important;
     	background-position: center center !important;
-	}
+	}*/
 </style>

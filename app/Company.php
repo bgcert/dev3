@@ -9,8 +9,7 @@ class Company extends Model
 {
 	use Notifiable;
 	
-	protected $fillable = [
-        'name', 'slug', 'event_publish', 'venue_publish',
+	protected $fillable = ['name', 'slug', 'logo', 'address', 'phone', 'email', 'event_publish', 'venue_publish',
     ];
     
     protected $appends = ['is_followed']; // This should be changed!
@@ -18,11 +17,6 @@ class Company extends Model
     public function user()
     {
     	return $this->belongsTo('App\User');
-    }
-
-    public function company_detail()
-    {
-        return $this->hasOne('App\CompanyDetail');
     }
 
     public function themes()
