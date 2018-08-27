@@ -1,6 +1,6 @@
 <template>
 	<div class="item">
-		<button class="mini ui button" @click.prevent="dialogFormVisible = true"> Регистрация</button>
+		<button class="ui basic orange button" @click.prevent="dialogFormVisible = true"> Регистрация</button>
 
 		<el-dialog
 			width="30%"

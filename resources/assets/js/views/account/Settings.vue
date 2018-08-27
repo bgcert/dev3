@@ -1,16 +1,18 @@
 <template>
 	<div>
 		<form class="ui form">
-			<div class="field">
-				<label>Име</label>
-				<input type="text" v-model="form.user.firstname">
+			<div class="fields">
+				<div class="field">
+					<label>Име</label>
+					<input type="text" v-model="form.user.firstname">
+				</div>
+				<div class="field">
+					<label>Фамилия</label>
+					<input type="text" v-model="form.user.lastname">
+				</div>
 			</div>
 			<div class="field">
-				<label>Фамилия</label>
-				<input type="text" v-model="form.user.lastname">
-			</div>
-			<div class="field">
-				<button class="ui basic button" @click.prevent="setName"> Промени</button>
+				<button class="ui basic button" @click.prevent="setName"> Запиши промените</button>
 			</div>
 			<div class="ui section divider"></div>
 			<div class="field">
@@ -20,11 +22,11 @@
 				</div>
 			</div>
 			<template v-if="form.publisher">
-				<div class="field">
+				<div class="field" style="width: 200px;">
 					<label>Име на организацията</label>
 					<input type="text" v-model="form.user.company.name">
 				</div>
-				<div class="field">
+				<div class="field" style="width: 300px;">
 					<label>Адрес на профила</label>
 					<div class="ui labeled right input">
 						<div class="ui label">
@@ -48,8 +50,8 @@
 			</template>
 			
 			<div class="field">
-				<button class="ui basic button" @click.prevent="setPublisher"> Промени</button>
-				<a v-if="showDashboard" class="ui orange button" href="/dashboard#/profile"> Бизнес панел</a>
+				<button class="ui basic button" @click.prevent="setPublisher"> Запиши промените</button>
+				<!-- <a v-if="showDashboard" class="ui orange button" href="/dashboard#/profile"> Бизнес панел</a> -->
 			</div>
 			
 		</form>

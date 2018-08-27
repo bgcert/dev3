@@ -57314,6 +57314,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -57409,54 +57411,56 @@ var render = function() {
       "form",
       { staticClass: "ui form" },
       [
-        _c("div", { staticClass: "field" }, [
-          _c("label", [_vm._v("Име")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.user.firstname,
-                expression: "form.user.firstname"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.user.firstname },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+        _c("div", { staticClass: "fields" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("label", [_vm._v("Име")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.user.firstname,
+                  expression: "form.user.firstname"
                 }
-                _vm.$set(_vm.form.user, "firstname", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c("label", [_vm._v("Фамилия")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.user.lastname,
-                expression: "form.user.lastname"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.user.lastname },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              ],
+              attrs: { type: "text" },
+              domProps: { value: _vm.form.user.firstname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form.user, "firstname", $event.target.value)
                 }
-                _vm.$set(_vm.form.user, "lastname", $event.target.value)
               }
-            }
-          })
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("label", [_vm._v("Фамилия")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.user.lastname,
+                  expression: "form.user.lastname"
+                }
+              ],
+              attrs: { type: "text" },
+              domProps: { value: _vm.form.user.lastname },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form.user, "lastname", $event.target.value)
+                }
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -57471,7 +57475,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(" Промени")]
+            [_vm._v(" Запиши промените")]
           )
         ]),
         _vm._v(" "),
@@ -57526,54 +57530,23 @@ var render = function() {
         _vm._v(" "),
         _vm.form.publisher
           ? [
-              _c("div", { staticClass: "field" }, [
-                _c("label", [_vm._v("Име на организацията")]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.user.company.name,
-                      expression: "form.user.company.name"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.form.user.company.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.user.company,
-                        "name",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("label", [_vm._v("Адрес на профила")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui labeled right input" }, [
-                  _c("div", { staticClass: "ui label" }, [
-                    _vm._v("\n\t\t\t\t\t\thttp://seminari365.com/\n\t\t\t\t\t")
-                  ]),
+              _c(
+                "div",
+                { staticClass: "field", staticStyle: { width: "200px" } },
+                [
+                  _c("label", [_vm._v("Име на организацията")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.user.company.slug,
-                        expression: "form.user.company.slug"
+                        value: _vm.form.user.company.name,
+                        expression: "form.user.company.name"
                       }
                     ],
-                    attrs: { type: "text", placeholder: "company.ltd" },
-                    domProps: { value: _vm.form.user.company.slug },
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.form.user.company.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -57581,14 +57554,55 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form.user.company,
-                          "slug",
+                          "name",
                           $event.target.value
                         )
                       }
                     }
                   })
-                ])
-              ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "field", staticStyle: { width: "300px" } },
+                [
+                  _c("label", [_vm._v("Адрес на профила")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ui labeled right input" }, [
+                    _c("div", { staticClass: "ui label" }, [
+                      _vm._v(
+                        "\n\t\t\t\t\t\thttp://seminari365.com/\n\t\t\t\t\t"
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.user.company.slug,
+                          expression: "form.user.company.slug"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "company.ltd" },
+                      domProps: { value: _vm.form.user.company.slug },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.user.company,
+                            "slug",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
                 _c("div", { staticClass: "ui toggle checkbox" }, [
@@ -57710,19 +57724,8 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(" Промени")]
-          ),
-          _vm._v(" "),
-          _vm.showDashboard
-            ? _c(
-                "a",
-                {
-                  staticClass: "ui orange button",
-                  attrs: { href: "/dashboard#/profile" }
-                },
-                [_vm._v(" Бизнес панел")]
-              )
-            : _vm._e()
+            [_vm._v(" Запиши промените")]
+          )
         ])
       ],
       2
@@ -110332,7 +110335,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "mini ui basic button",
+          staticClass: "ui basic primary button",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -110725,7 +110728,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "mini ui button",
+          staticClass: "ui basic orange button",
           on: {
             click: function($event) {
               $event.preventDefault()
