@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="ui container mt-20">
+	<div class="ui three column centered grid">
+		<div class="column">
+			<div class="ui segment">
+				<h2>Регистрация</h2>
+				<register></register>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="container">
 	@if(Session::has('alert'))
 	<div class="alert alert-success">
 	    {{ Session::get('alert') }}
@@ -81,5 +91,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection

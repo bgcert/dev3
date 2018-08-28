@@ -121,7 +121,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 	Route::get('/categories', 'ThemeController@categories');
 	Route::get('/load/company', 'DashboardController@getCompany');
-	Route::post('/save/company/data', 'DashboardController@saveCompany');
+	Route::patch('/save/company/data', 'DashboardController@saveCompany');
 
 	// Theme cover change
 	Route::post('/themes/set/cover', 'ThemeController@setCover');

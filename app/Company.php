@@ -9,7 +9,7 @@ class Company extends Model
 {
 	use Notifiable;
 	
-	protected $fillable = ['name', 'slug', 'logo', 'address', 'phone', 'email', 'event_publish', 'venue_publish',
+	protected $fillable = ['name', 'slug', 'logo', 'address', 'phone', 'email', 'description', 'event_publish', 'venue_publish',
     ];
     
     protected $appends = ['is_followed']; // This should be changed!

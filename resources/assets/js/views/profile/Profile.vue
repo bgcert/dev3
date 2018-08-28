@@ -62,7 +62,6 @@
     	data: function () {
     		return {
     			company: [],
-    			company_details: []
     		}
     	},
 
@@ -73,13 +72,13 @@
 
     			let formData = new FormData();
     			// Needed for patch request with form data
-    			// formData.append('_method', 'patch');
+    			formData.append('_method', 'patch');
     			formData.append('name', this.company.name);
     			formData.append('slug', this.company.slug);
-    			formData.append('address', this.address);
-    			formData.append('description', this.description);
-    			formData.append('email', this.email);
-    			formData.append('phone', this.phone);
+    			formData.append('address', this.company.address);
+    			formData.append('description', this.company.description);
+    			formData.append('email', this.company.email);
+    			formData.append('phone', this.company.phone);
 
     			let config =
 					{
@@ -96,15 +95,16 @@
 						formData.append('file', data);
 					}
 
-					axios.post('/dashboard/save/company/data', formData , config)
-	    			.then(function (response) {
-	    				vm.$message('Данните са запазени.');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					vm.$message('Невалидно изображение');
+					axios.post('dashboard/save/company/data', formData , config)
+		    			.then(function (response) {
+		    				console.log(response.data);
+		    				vm.$message('Данните са запазени.');
+		    			})
+		    			.catch(function (error) {
+		    				console.log(error);
+		    			});
+					}, (error) => {
+						vm.$message('Невалидно изображение');
 				});
     		}
     	},

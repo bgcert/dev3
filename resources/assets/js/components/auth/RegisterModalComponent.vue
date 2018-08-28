@@ -1,5 +1,6 @@
 <template>
 	<div class="item">
+		<button class="ui basic orange button" @click.prevent="dialogFormVisible = true"> Регистрация</button>
 
 		<el-dialog
 			width="30%"
@@ -10,43 +11,45 @@
 			<button class="ui basic button" @click="closeConfirm">OK</button>
 		</el-dialog>
 
-		<div class="signup-cover">
-			<div>
-				<h2>Добре дошли в Seminari365</h2>
-				<div class="ui divider"></div>
-				<h4>Регистрирайте се, за да продължите напред.</h4>
+		<el-dialog width="400px" :visible.sync="dialogFormVisible">
+			<div class="signup-cover">
+				<div>
+					<h2>Добре дошли в Seminari365</h2>
+					<div class="ui divider"></div>
+					<h4>Регистрирайте се, за да продължите напред.</h4>
+				</div>
 			</div>
-		</div>
-
-		<div class="signup-form mt-20">
-			<form class="ui form">
-				<div class="fields">
+			<div class="signup-form mt-20">
+				<form class="ui form">
+					<div class="fields">
+						<div class="field">
+							<input type="text" v-model="form.firstname" placeholder="Име">
+						</div>
+						<div class="field">
+							<input type="text" v-model="form.lastname" placeholder="Фамилия">
+						</div>
+					</div>
+					
 					<div class="field">
-						<input type="text" v-model="form.firstname" placeholder="Име">
+						<input type="email" v-model="form.email" placeholder="E-mail">
 					</div>
 					<div class="field">
-						<input type="text" v-model="form.lastname" placeholder="Фамилия">
+						<input type="password" v-model="form.password" placeholder="Парола">
 					</div>
-				</div>
-				
-				<div class="field">
-					<input type="email" v-model="form.email" placeholder="E-mail">
-				</div>
-				<div class="field">
-					<input type="password" v-model="form.password" placeholder="Парола">
-				</div>
-				<div class="field">
-					<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
-				</div>
-				<div class="field">
-					<div class="ui checkbox">
-						<input type="checkbox" tabindex="0" class="hidden">
-						<label>Съгласявам се с <a href="terms" target="_blank">условията за ползване.</a></label>
+					<div class="field">
+						<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
 					</div>
-				</div>
-				<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
-			</form>
-		</div>
+					<div class="field">
+						<div class="ui checkbox">
+							<input type="checkbox" tabindex="0" class="hidden">
+							<label>Съгласявам се с <a href="terms" target="_blank">условията за ползване.</a></label>
+						</div>
+					</div>
+					<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
+				</form>
+			</div>
+			
+		</el-dialog>
 	</div>
 </template>
 

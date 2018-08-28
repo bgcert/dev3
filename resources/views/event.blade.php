@@ -155,7 +155,6 @@
 				    <p>{{ $teacher->details }}</p>
 			    @endforeach
 			    <!-- <google-map></google-map> -->
-			    <div class="ui divider"></div>
 			    <div id="comments">
 			    	<comments
 			    		auth="{{ Auth::check() }}"

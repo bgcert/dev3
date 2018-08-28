@@ -1,11 +1,11 @@
 <template>
 	<div class="ui card" v-popover:popover>
-		<div class="image image_container" :style="`background: url(${item.cover})`">
+		<a :href="'/venue/' + item.id" class="image image_container" :style="`background: url(${item.cover})`">
 			<a class="owner" :href="/c/ + item.company.slug">
 				<div class="logo" :style="'background-image: url(' + item.company.logo + ')'"></div>
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
-		</div>
+		</a>
 		<div class="content content_box">
 			<a :href="'/venue/' + item.id" class="header">{{ item.name }}</a>
 		</div>

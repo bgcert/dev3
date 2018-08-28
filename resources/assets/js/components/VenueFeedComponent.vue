@@ -44,7 +44,7 @@
 						v-model="range"
 						range
 						show-stops
-						:max="100"
+						:max="500"
 						:min="5">
 					</el-slider>
 				</div>
@@ -80,7 +80,7 @@
     			currentSort: 'id',
   				currentSortDir: 'asc',
   				city_id: null,
-  				range: [0, 100]
+  				range: [0, 500]
     		}
     	},
 

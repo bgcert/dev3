@@ -43,19 +43,11 @@
 					    	<tbody>
 					    		<tr>
 					    			<td>Капацитет</td>
-					    			<td class="center aligned">{{ $venue->capacity }} места</td>
+					    			<td>{{ $venue->capacity }} места</td>
 					    		</tr>
 					    		<tr>
-					    			<td>Мултимедия</td>
-					    			<td class="center aligned"><i class="large green checkmark icon"></i></td>
-					    		</tr>
-					    		<tr>
-					    			<td>Телевизор</td>
-					    			<td class="center aligned"><i class="large green checkmark icon"></i></td>
-					    		</tr>
-					    		<tr>
-					    			<td>Озвучение</td>
-					    			<td class="center aligned"><i class="large green checkmark icon"></i></td>
+					    			<td>Адрес</td>
+					    			<td>{{ $venue->city->name }}, {{ $venue->address }}</td>
 					    		</tr>
 					    	</tbody>
 					    </table>
@@ -63,7 +55,8 @@
 				</div>
 				
 				<div class="row">
-					<google-map></google-map>
+					<!-- <google-map></google-map> -->
+					<div class="ui divider"></div>
 					<div id="comments">
 				    	<comments
 				    		auth="{{ Auth::check() }}"
@@ -79,7 +72,7 @@
 				<div class="ui segment">
 					<div class="flex">
 						<div class="logo">
-							<a href="/c/{{ $venue->company->slug }}"><img class="ui tiny rounded image" src="{{ $venue->company->company_detail->logo }}"></a>
+							<a href="/c/{{ $venue->company->slug }}"><img class="ui tiny rounded image" src="{{ $venue->company->logo }}"></a>
 						</div>
 						<div class="company-details">
 							<h3>{{ $venue->company->name }}</h3>
@@ -98,15 +91,15 @@
 							<p>
 								<button class="ui fluid labeled icon big primary button">
 									<i class="mobile alternate icon"></i>
-									08xx xxx xxx
+									{{ $venue->company->phone }}
 								</button>
 							</p>
 						</div>
 					</div>
 				</div>
-				<div>
+				<!-- <div>
 					<a href="#"><i class="flag icon"></i> Докладвай</a>
-				</div>
+				</div> -->
 				<h3 class="ui dividing header">Популярни обучения</h3>
 				<related-feed
 					auth="{{ auth()->check() }}"

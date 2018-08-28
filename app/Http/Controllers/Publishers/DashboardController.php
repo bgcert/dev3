@@ -23,6 +23,7 @@ class DashboardController extends Controller
 
     public function saveCompany()
     {
+    	// return request()->all();
     	$company = \App\Company::where('user_id', \Auth::id())->first();
     	$data = request()->all();
     	if (request()->file) {

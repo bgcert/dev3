@@ -19,8 +19,8 @@
 			</div> -->
 			<div class="right menu">
 				@guest
-				<register></register>			
-				<login></login>
+				<register-modal></register-modal>
+				<login-modal></login-modal>
 				<!-- <div class="item">
 					<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
 					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                

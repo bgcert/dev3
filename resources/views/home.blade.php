@@ -19,17 +19,21 @@
 
 <div class="ui hidden divider"></div>
 
-<div class="ui container segment mt-20">
+<div class="ui container mt-20">
 	<div class="ui equal width center aligned divided grid">
 		<div class="column">
-			<h1>Публикувайте курс</h1>
-			<p>test test </p>
-			<a class="ui large button" href="#">Регистрация</a>
+			<div class="ui purple inverted segment">
+				<h2>Публикувайте обучение</h2>
+				<p>Добавете Вашите актуални обучение в Семинари 365</p>
+				<a class="ui large basic inverted button" href="/register">Регистрация</a>
+			</div>
 		</div>
 		<div class="column">
-			<h1>Открийте подходящата зала </h1>
-			<p>test test </p>
-			<a class="ui large button" href="#">Зали</a>
+			<div class="ui orange inverted segment">
+				<h2>Зали и конферентни центрове</h2>
+				<p>Открийте подходящата зала за Вашето събитие</p>
+				<a class="ui large basic inverted button" href="/v">Зали</a>
+			</div>
 		</div>
 	</div>
 </div>

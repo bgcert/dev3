@@ -1,30 +1,35 @@
 <template>
 	<div class="item">
-		<template v-if="errorMessage">
-			<el-alert
-				:title="errorMessage"
-				type="error"
-				show-icon>
-			</el-alert>
-		</template>
+		<button class="ui basic primary button" @click.prevent="dialogFormVisible = true"> Вход</button>
 
-		<el-form ref="form" label-position="left" label-width="140px" action="/">
-				
-			<el-form-item label="E-mail">
-				<el-input type="text" v-model="form.email" name="email"></el-input>
-			</el-form-item>
-			<el-form-item label="Парола">
-				<el-input type="password" v-model="form.password" name="password"></el-input>
-				<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
-			</el-form-item>
+		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 
-			<el-form-item size="large">
-				<el-button @click.prevent="callRegister"> Регистрация</el-button>
-				<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
-				<el-button type="text"> Забравена парола.</el-button>
-			</el-form-item>
-		</el-form>
-		
+			<template v-if="errorMessage">
+				<el-alert
+					:title="errorMessage"
+					type="error"
+					show-icon>
+				</el-alert>
+			</template>
+
+			<el-form ref="form" label-position="left" label-width="140px" action="/">
+					
+				<el-form-item label="E-mail">
+					<el-input type="text" v-model="form.email" name="email"></el-input>
+				</el-form-item>
+				<el-form-item label="Парола">
+					<el-input type="password" v-model="form.password" name="password"></el-input>
+					<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
+				</el-form-item>
+
+				<el-form-item size="large">
+					<el-button @click.prevent="callRegister"> Регистрация</el-button>
+					<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
+					<el-button type="text"> Забравена парола.</el-button>
+				</el-form-item>
+			</el-form>
+
+		</el-dialog>
 	</div>
 </template>
 

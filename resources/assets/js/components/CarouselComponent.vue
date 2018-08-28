@@ -4,7 +4,7 @@
 			<div class="overlay"></div>
 			<div class="promo_container">
 				<h1 class="promo_title">Семинари 365</h1>
-				<h3 class="promo_body">Открий курс днес. Бъди успешен утре.</h3>
+				<h2 class="promo_body">Открий курс днес. Бъди успешен утре.</h2>
 				<search :big="true"></search>
 			</div>
 		</section>

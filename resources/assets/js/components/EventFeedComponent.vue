@@ -75,7 +75,7 @@
 		<div class="ui container mt-20">
 			<div class="ui four stackable cards">
 				<eventBox
-					v-for="event in events"
+					v-for="event in sortedEvents"
 					:key="event.id"
 					:item="event">
 				</eventBox>

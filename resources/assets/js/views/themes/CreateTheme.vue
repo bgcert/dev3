@@ -70,7 +70,6 @@
     				body: '',
     				excerpt: '',
     				type: [],
-    				cover: 'https://picsum.photos/800/400/?image=293',
     				duration: null
     			}
     		}
@@ -104,7 +103,6 @@
 					
 					axios.post('/dashboard/themes', formData, config)
 	    			.then(function (response) {
-	    				console.log(response);
 	    				vm.$message('Темата е добавена успешно.');
 	    				vm.$router.push('/themes');
 	    			})

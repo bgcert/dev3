@@ -59,11 +59,13 @@ Vue.component('notifications', require('./components/NotificationsComponent.vue'
 Vue.component('modal', require('./components/ModalComponent.vue'));
 Vue.component('search', require('./components/SearchComponent.vue'));
 
-Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
+// Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
 // Auth
 Vue.component('login', require('./components/auth/LoginComponent.vue'));
 Vue.component('register', require('./components/auth/RegisterComponent.vue'));
+Vue.component('login-modal', require('./components/auth/LoginModalComponent.vue'));
+Vue.component('register-modal', require('./components/auth/RegisterModalComponent.vue'));
 
 // Account
 Vue.component('account', require('./components/AccountComponent.vue'));
