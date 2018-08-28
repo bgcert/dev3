@@ -31,9 +31,9 @@
 						<img class="rounded" :src="comment.user.picture">
 					</a>
 					<div class="content">
-						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.name }}</a>
+						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.firstname }}</a>
 						<div class="metadata">
-							<div class="date">{{ comment.created_at }}</div>
+							<div class="date">{{ comment.updated_at_carbon }}</div>
 							<template v-if="comment.user.id == user_id">
 								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">Изтрий</a>
 							</template>

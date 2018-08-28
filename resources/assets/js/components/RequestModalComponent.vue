@@ -2,7 +2,7 @@
 	<div>
 		<div v-if="!auth">
 			<a href="#" :class="classes" @click.prevent="login">
-				Записвам се
+				Заявявам участие
 			</a>
 		</div>
 		<div v-else>

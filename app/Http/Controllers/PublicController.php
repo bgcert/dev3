@@ -61,7 +61,7 @@ class PublicController extends Controller
 
     public function showEvent()
     {
-    	$event = \App\Event::where('id', request()->id)->with('teachers', 'theme.company', 'theme.comments.user')->first();
+    	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.comments.user')->first();
     	return view('event', compact('event'));
     }
 

@@ -209,10 +209,6 @@
 		height: 200px;
 	}
 
-	.inverted-breadcrumb * {
-		color: white !important;
-	}
-
 	.category-segment {
 		background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
 		padding: 40px 0;

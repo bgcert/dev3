@@ -6,7 +6,7 @@
 			</div>
 			<div class="ui segments search-results" v-if="events.length > 0" :class="{ top: big }">
 				<div class="ui segment" v-for="event in events" @click="openEvent(event.id)">
-					<p>{{ event.theme.title }} - {{ event.begin_at }}</p>
+					<p>{{ event.theme.title }} - {{ event.start_date_carbon }}</p>
 				</div>
 			</div>
 		</div>

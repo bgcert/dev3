@@ -26,21 +26,18 @@
 @endpush
 
 @section('content')
-<div class="ui segment">
-	<div class="ui container">
-		<div class="ui breadcrumb">
-			<a href="/" class="section">Начало</a>
-			<i class="right angle icon divider"></i>
-			<a href="/e" class="section">Събития</a>
-			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $event->theme->title }} - {{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</div>
-		</div>
-	</div>
-</div>
-
 <div class="cover" style="background-image: url({{ $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
+			<div class="ui basic segment">
+				<div class="ui breadcrumb inverted-breadcrumb">
+					<a href="/" class="section">Начало</a>
+					<i class="right angle icon divider"></i>
+					<a href="/browse" class="section">Обучения</a>
+					<i class="right angle icon divider"></i>
+					<div class="active section">{{ $event->theme->title }} - {{ $event->start_date_carbon }}</div>
+				</div>
+			</div>
 			<div class="ui grid event-header">
 				<div class="flex-center ten wide column ">
 					<div class="info">
@@ -65,8 +62,24 @@
 						<div class="ui divider"></div>
 						<div>
 							<div class="ui list">
-								<div class="item">{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</div>
-								<div class="item">{{ $event->theme->duration }} учебни часа</div>
+								<div class="item">
+									<i class="map marker alternate icon"></i>
+									<div class="content">
+										{{ $event->city->name }}, {{ $event->address }}
+									</div>
+								</div>
+								<div class="item">
+									<i class="calendar outline icon"></i>
+									<div class="content">
+										{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}
+									</div>
+								</div>
+								<div class="item">
+									<i class="redo alternate icon"></i>
+									<div class="content">
+										{{ $event->theme->duration }} учебни часа
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="ui horizontal statistics">
@@ -109,6 +122,10 @@
 			    			<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
 			    		</tr>
 			    		<tr>
+			    			<td>Място</td>
+			    			<td>{{ $event->city->name }}, {{ $event->address }}</td>
+			    		</tr>
+			    		<tr>
 			    			<td>Цена</td>
 			    			<td>{{ $event->price }}.00 лв. с включен ДДС</td>
 			    		</tr>
@@ -144,8 +161,7 @@
 			    		auth="{{ Auth::check() }}"
 			    		type="theme"
 				    	id="{{ $event->theme->id }}"
-				    	user_id="{{ auth()->id() }}"
-				    	>
+				    	user_id="{{ auth()->id() }}">
 				    </comments>	
 			    </div>
 			</div>

@@ -1,7 +1,9 @@
 <div id="nav-header">
 	<div class="ui container fluid" style="padding: 0 20px;">
 		<div class="ui large stackable secondary menu">
-			<a href="/" class="active item"> Seminari 365</a>
+			<a class="item" href="/">
+				<img src="/img/logo-s365.png" style="width: 100%;">
+			</a>
 			<a href="/browse" class="item"> Обучения</a>
 			<a href="/v" class="item"> Зали</a>
 			<div class="item">

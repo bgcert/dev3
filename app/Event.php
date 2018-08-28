@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Carbon\Carbon;
+use Jenssegers\Date\Date;
 
 class Event extends Model
 {
@@ -19,6 +19,11 @@ class Event extends Model
     public function theme()
     {
     	return $this->belongsTo('App\Theme');
+    }
+
+    public function city()
+    {
+    	return $this->belongsTo('App\City');
     }
 
     public function teachers()
@@ -65,21 +70,22 @@ class Event extends Model
 
     public function getStartDateCarbonAttribute($value)
     {
-    	return Carbon::parse($this->attributes['start_date'])->format('d M, Y');
+    	// Carbon::setLocale('ru');
+    	return Date::parse($this->attributes['start_date'])->format('d M, Y');
     }
 
     public function getEndDateCarbonAttribute($value)
     {
-    	return Carbon::parse($this->attributes['end_date'])->format('d M, Y');
+    	return Date::parse($this->attributes['end_date'])->format('d M, Y');
     }
 
     public function getStartAtCarbonAttribute()
     {
-    	return Carbon::parse($this->start_at)->format('h:i');
+    	return Date::parse($this->start_at)->format('h:i');
     }
 
     public function getEndAtCarbonAttribute()
     {
-    	return Carbon::parse($this->end_at)->format('h:i');
+    	return Date::parse($this->end_at)->format('h:i');
     }
 }

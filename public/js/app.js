@@ -105462,7 +105462,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n.category-header {\n\tcolor: white;\n\t/*margin-bottom: 20px;*/\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\theight: 200px;\n}\n.inverted-breadcrumb * {\n\tcolor: white !important;\n}\n.category-segment {\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\tpadding: 40px 0;\n}\n.filter-segment {\n\tbackground: white;\n\tpadding: 10px 0;\n\tborder: 1px solid #e1e1e1;\n}\n", ""]);
+exports.push([module.i, "\n.image {\n\theight: 178px;\n\tbackground-size: cover !important;\n\tbackground-position: center center !important;\n}\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-pack: distribute;\n\t    justify-content: space-around;\n}\n.category-header {\n\tcolor: white;\n\t/*margin-bottom: 20px;*/\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\theight: 200px;\n}\n.category-segment {\n\tbackground: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);\n\tpadding: 40px 0;\n}\n.filter-segment {\n\tbackground: white;\n\tpadding: 10px 0;\n\tborder: 1px solid #e1e1e1;\n}\n", ""]);
 
 // exports
 
@@ -106088,7 +106088,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("p", { staticStyle: { "text-transform": "uppercase" } }, [
-          _vm._v(" " + _vm._s(_vm.item.start_dateCarbon))
+          _vm._v(" " + _vm._s(_vm.item.start_date_carbon))
         ])
       ]),
       _vm._v(" "),
@@ -108020,7 +108020,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n\t\t\tЗаписвам се\n\t\t")]
+            [_vm._v("\n\t\t\tЗаявявам участие\n\t\t")]
           )
         ])
       : _c(
@@ -109518,7 +109518,7 @@ var render = function() {
                     staticClass: "author",
                     attrs: { href: "/user/" + comment.user.id }
                   },
-                  [_vm._v(_vm._s(comment.user.name))]
+                  [_vm._v(_vm._s(comment.user.firstname))]
                 ),
                 _vm._v(" "),
                 _c(
@@ -109526,7 +109526,7 @@ var render = function() {
                   { staticClass: "metadata" },
                   [
                     _c("div", { staticClass: "date" }, [
-                      _vm._v(_vm._s(comment.created_at))
+                      _vm._v(_vm._s(comment.updated_at_carbon))
                     ]),
                     _vm._v(" "),
                     comment.user.id == _vm.user_id
@@ -110338,7 +110338,9 @@ var render = function() {
               [
                 _c("p", [
                   _vm._v(
-                    _vm._s(event.theme.title) + " - " + _vm._s(event.begin_at)
+                    _vm._s(event.theme.title) +
+                      " - " +
+                      _vm._s(event.start_date_carbon)
                   )
                 ])
               ]

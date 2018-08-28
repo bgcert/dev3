@@ -8,7 +8,7 @@
 		</a>
 		<div class="content content_box">
 			<a :href="'/event/' + item.id" class="header">{{ item.theme.title }}</a>
-			<p style="text-transform: uppercase;"> {{ item.start_dateCarbon }}</p>
+			<p style="text-transform: uppercase;"> {{ item.start_date_carbon }}</p>
 		</div>
 		<div class="extra content">
 			<div class="flex">
