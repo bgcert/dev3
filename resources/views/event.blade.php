@@ -101,7 +101,7 @@
 	</div>
 </div>
 
-<div class="ui container">
+<div class="ui container mt-20">
 	
 	<div class="ui segment padded grid">
 
