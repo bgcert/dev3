@@ -16,13 +16,12 @@
 				<div class="ui three stackable cards">
 					<template v-for="(theme, index) in themes">
 						<CardDashboard
-							:image="theme.cover"
+							:image="'/photos/th/m/' + theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази тема?'"
 							@show="handleShow(theme.id)"
-							@deleteClick="handleDelete(theme.id, index)"
-							>
+							@deleteClick="handleDelete(theme.id, index)">
 						</CardDashboard>
 					</template>
 				</div>

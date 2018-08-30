@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('event_id')->nullable();
             $table->integer('company_id')->unsigned();
             $table->string('theme_title')->nullable();
-            $table->timestamp('event_begin_at')->nullable();
+            $table->timestamp('event_start_date')->nullable();
             $table->integer('event_price')->unsigned()->nullable();
             $table->string('contact_person');
             $table->string('contact_number');

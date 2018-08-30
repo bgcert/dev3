@@ -23,12 +23,10 @@ class DashboardController extends Controller
 
     public function saveCompany()
     {
-    	// return request()->all();
     	$company = \App\Company::where('user_id', \Auth::id())->first();
     	$data = request()->all();
     	if (request()->file) {
-    		$name = $this->saveImage(request()->file, 357, 178);
-    		$name = '/test/' . $name;
+    		$name = $this->saveImage(request()->file);
     		$data['logo'] = $name;
     	}
 
@@ -40,9 +38,8 @@ class DashboardController extends Controller
     public function upload()
     {
     	if (request()->file) {
-    		$name = $this->saveImage(request()->file, 357, 178);
-    		$name = '/test/' . $name;
+    		$filename = $this->saveVenueImage(request()->file);
     	}
-    	return $name;
+    	return $filename;
     }
 }

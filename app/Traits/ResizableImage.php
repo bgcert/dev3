@@ -6,32 +6,151 @@ use Image;
 
 trait ResizableImage
 {
-	public function saveImage($file, $w, $h)
+	public function resize($image, $w, $h)
     {
-    	$extension = $file->getClientOriginalExtension();
-    	$img = Image::make($file);
-
-    	$relation = $w / $h;
+		$relation = $w / $h;
 
     	$resizeWidth = $w * $relation;
     	$resizeHeight = $h * $relation;
 
-    	if ($img->width() / $img->height() < $relation) {
-    		$img->resize($w, null, function ($constraint) {
+    	if ($image->width() / $image->height() < $relation) {
+    		$image->resize($w, null, function ($constraint) {
 			    $constraint->aspectRatio();
+			    $constraint->upsize();
 			});
     	} else {
-    		$img->resize(null, $h, function ($constraint) {
+    		$image->resize(null, $h, function ($constraint) {
 			    $constraint->aspectRatio();
+			    $constraint->upsize();
 			});
     	}
-		
-		// Generate random name
-		$newName = md5(microtime()) . '.' . $extension;
 
-		// finally we save the image as a new file
-		$img->save(public_path('test/') . $newName);
-
-    	return $newName;
+    	// Return resized image
+		return $image;
     }
+
+    public function save($image, $filename, $path)
+    {
+		return $image->save(public_path('/photos' . $path) . $filename);
+    }
+
+    public function unique_hash()
+    {
+    	return md5(microtime());
+    }
+
+    public function saveThemeCover($file, $theme_id)
+    {
+    	$prefix = 'th' . $theme_id . '_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/or/');
+
+    	// Resize to m size
+    	$this->resize($image, 300, 160);
+    	$this->save($image, $filename, '/th/m/');
+
+    	// New image instance. Old one is already resized. Wtf?
+    	$image = Image::make($file);
+    	// Resize to l size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename, '/th/l/');
+
+    	return $filename;
+    }
+
+    public function saveEventCover($file, $event_id)
+    {
+    	$prefix = 'ev' . $event_id . '_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/or/');
+
+    	// Resize to m size
+    	$this->resize($image, 300, 160);
+    	$this->save($image, $filename, '/ev/m/');
+
+    	// New image instance. Old one is already resized. Wtf?
+    	$image = Image::make($file);
+    	// Resize to l size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename, '/ev/l/');
+
+    	return $filename;
+    }
+
+    public function saveTeacherPhoto($file, $teacher_id)
+    {
+    	$prefix = 'te' . $teacher_id . '_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/or/');
+
+    	// Resize to m size
+    	$this->resize($image, 300, 300);
+    	$this->save($image, $filename, '/te/');
+
+    	return $filename;
+    }
+
+    public function saveVenueCover($file, $venue_id)
+    {
+    	$prefix = 've' . $venue_id . '_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/or/');
+
+    	// Resize to m size
+    	$this->resize($image, 300, 160);
+    	$this->save($image, $filename, '/ve/m/');
+
+    	// New image instance. Old one is already resized. Wtf?
+    	$image = Image::make($file);
+    	// Resize to l size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename, '/ve/l/');
+
+    	return $filename;
+    }
+
+    public function saveVenueImage($file)
+    {
+    	$prefix = 'vi_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/or/');
+
+    	// Resize to m size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename, '/vi/');
+
+    	// // New image instance. Old one is already resized. Wtf?
+    	// $image = Image::make($file);
+    	// // Resize to l size
+    	// $this->resize($image, 1200, 400);
+    	// $this->save($image, $filename, '/ve/l/');
+
+    	return $filename;
+    }
+    
 }

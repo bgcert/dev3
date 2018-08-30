@@ -14,7 +14,7 @@
 						</el-form-item>
 
 						<el-form-item label="Корица">
-							<ImageUpload :img="event.cover"></ImageUpload>
+							<ImageUpload :img="'photos/ev/m/' + event.cover"></ImageUpload>
 						</el-form-item>
 
 						<el-form-item label="Лектори">

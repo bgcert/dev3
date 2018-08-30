@@ -23,13 +23,9 @@
     		return {
     			image:
 	    			{
-	    				src: this.img ? this.img : 'img/default_cover.png'
+	    				src: this.img ? this.img : 'default_cover.png'
 	    			},
     			mouseDown: false,
-    			start_y: null,
-    			newPos: null,
-    			deviation: null,
-    			curPos: this.position,
     			file: null,
     			filename: null,
     			data: null

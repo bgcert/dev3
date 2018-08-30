@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(event, index) in events">
 						<CardDashboard
-							:image="event.cover"
+							:image="'/photos/ev/m/' + event.cover"
 							:date="event.begin_at"
 							:title="event.theme.title"
 							:edit_link="'/events/edit/' + event.id"

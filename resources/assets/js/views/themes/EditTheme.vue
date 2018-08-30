@@ -20,7 +20,7 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload :img="theme.cover"></ImageUpload>
+							<ImageUpload :img="'/photos/th/m/' + theme.cover"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
@@ -80,8 +80,8 @@
     			formData.append('_method', 'patch');
 				formData.append('title', this.theme.title);
 				formData.append('body', this.theme.body);
-				formData.append('excerpt', this.form.excerpt);
-				formData.append('duration', this.form.duration);
+				formData.append('excerpt', this.theme.excerpt);
+				formData.append('duration', this.theme.duration);
 				formData.append('category_id', this.theme.category_id);
 
     			let config =

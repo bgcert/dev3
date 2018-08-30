@@ -71,11 +71,7 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: {
-    		id: { required: true },
-    		title: { type: [String], required: name },
-    		classes: [String, Number]
-    	},
+    	props: ['id', 'title', 'classes'],
 
     	data: function () {
     		return {
@@ -127,7 +123,7 @@
     		},
 
     		handleClose(done) {
-    			this.$confirm('Are you sure to close this dialog?')
+    			this.$confirm('Сигурни ли сте, че желаете да затворите заявката?')
     			.then(_ => {
     				done();
     			})

@@ -12,7 +12,7 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<ImageUpload></ImageUpload>
+						<ImageUpload :img="'/img/default_cover.png'"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -70,7 +70,7 @@
 
 <script>
 	import { EventBus } from '../../app';
-	import ImageUpload from '../../components/UploadComponent.vue'
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
 	import UploadMany from '../../components/UploadManyComponent.vue'
     export default {
     	components: {
@@ -86,7 +86,6 @@
 				address: '',
 				capacity: null,
 				price: null,
-				cover: 'https://picsum.photos/800/400/?image=293',
 				extraImages: 1,
 				imageList: []
     		}
@@ -106,20 +105,35 @@
     		async save() {
     			let vm = this;
 
-    			this.cover = await this.uploadCover();
+    			let formData = new FormData();
+				formData.append('name', this.name);
+				formData.append('description', this.description);
+				formData.append('city_id', this.cityId);
+				formData.append('address', this.address);
+				formData.append('capacity', this.capacity);
+				formData.append('price', this.price);
+				formData.append('capacity', this.capacity);
+
+				let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+
+    			let cover = await this.uploadCover();
     			this.imageList = await this.uploadImages();
 
-    			axios.post('/dashboard/venues', {
-					name: vm.name,
-					description: vm.description,
-					city_id: vm.cityId,
-					address: vm.address,
-					capacity: vm.capacity,
-					cover: vm.cover,
-					price: vm.price,
-					images: vm.imageList
+    			if (cover) {
+    				formData.append('cover', cover);
+    			}
 
-				})
+    			if (this.imageList.length > 0) {
+    				// console.log(this.imageList);
+    				formData.append('images', this.imageList);
+    			}
+
+    			axios.post('/dashboard/venues', formData, config)
     			.then(function (response) {
     				vm.$message('Залата е добавена успешно.');
     				vm.$router.push('/venues');

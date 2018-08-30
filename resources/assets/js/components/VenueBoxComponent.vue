@@ -1,6 +1,6 @@
 <template>
 	<div class="ui card" v-popover:popover>
-		<a :href="'/venue/' + item.id" class="image image_container" :style="`background: url(${item.cover})`">
+		<a :href="'/venue/' + item.id" class="image image_container" :style="`background: url(${'/photos/ve/' + item.cover})`">
 			<a class="owner" :href="/c/ + item.company.slug">
 				<div class="logo" :style="'background-image: url(' + item.company.logo + ')'"></div>
 			</a>

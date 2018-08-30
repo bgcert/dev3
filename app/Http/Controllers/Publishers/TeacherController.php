@@ -37,12 +37,15 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-    	$requestData = $request->all();
+    	$teacher = \Auth::user()->company->teachers()->create($request->all());
+
     	if ($request->file) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$requestData['image'] = '/test/' . $name;
+    		$filename = $this->saveTeacherPhoto($request->file, $teacher->id);
+    		$teacher->image = $filename;
+    		$teacher->save();
     	}
-        return \Auth::user()->company->teachers()->create($requestData);
+
+    	return $teacher;
     }
 
     /**
@@ -76,18 +79,16 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$requestData = $request->all();
+    	$teacher = \App\Teacher::find($id);
+
+    	$teacher->update($request->all());
     	if ($request->file) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$requestData['image'] = '/test/' . $name;
+    		$filename = $this->saveTeacherPhoto($request->file, $teacher->id);
+    		$teacher->image = $filename;
+    		$teacher->save();
     	}
 
-    	$teacher = \App\Teacher::where('id', $id)->first();
-
-    	// return \Auth::user()->company->themes()->create($requestData);
-    	$teacher->update($requestData);
-
-        return 'saved';
+    	return $teacher;
     }
 
     /**

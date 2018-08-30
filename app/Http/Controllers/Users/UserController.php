@@ -15,9 +15,15 @@ class UserController extends Controller
 
     public function order()
     {
+    	$event = \App\Event::find(request()->event_id);
+
     	$order = new \App\Order;
+    	$order->company_id = $event->theme->company_id;
     	$order->user_id = \Auth::id();
     	$order->event_id = request()->event_id;
+    	$order->theme_title = $event->theme->title;
+    	$order->event_start_date = $event->start_date;
+    	$order->event_price = $event->price;
     	$order->contact_person = request()->contact_person;
     	$order->contact_number = request()->contact_number;
     	$order->invoice = request()->invoice;

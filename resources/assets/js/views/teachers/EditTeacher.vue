@@ -12,10 +12,7 @@
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<ImageUpload
-							:img="teacher.image"
-							>
-						</ImageUpload>
+						<ImageUpload :img="'/photos/te/' + teacher.image"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">

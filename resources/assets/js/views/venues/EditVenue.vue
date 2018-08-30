@@ -5,14 +5,13 @@
 				<h4>Редактиране на зала</h4>
 			</div>
 			
-			<div class="ui segment" v-if="venue">
+			<div class="ui segment" v-if="!loading">
 				<el-form label-width="160px">
 					<el-form-item label="Наименование">
 						<el-input v-model="venue.name"></el-input>
 					</el-form-item>
-
 					<el-form-item label="Основна снимка">
-						<ImageUpload :image="venue.cover"></ImageUpload>
+						<ImageUpload :img="'/photos/ve/m/' + venue.cover"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -73,7 +72,7 @@
 
 <script>
 	import { EventBus } from '../../app';
-	import ImageUpload from '../../components/UploadComponent.vue'
+	import ImageUpload from '../../components/ImageUploadComponent.vue'
 	import UploadMany from '../../components/UploadManyComponent.vue'
     export default {
     	components: {
@@ -82,7 +81,7 @@
     	data: function () {
     		return {
     			loading: true,
-    			venue: {},
+    			venue: [],
 				imageList: [],
 				cities: null,
 				cityId: null,
@@ -95,31 +94,51 @@
     			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
     			return promise;
     		},
+
     		uploadImages() {
     			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
     			return promise;
     		},
+
     		async save() {
     			let vm = this;
 
-    			let data = {
-    				_method: 'PUT',
-					name: vm.venue.name,
-					description: vm.venue.description,
-					city_id: vm.cityId,
-					address: vm.venue.address,
-					capacity: vm.venue.capacity,
-					price: vm.venue.price
-    			}
+    			let formData = new FormData();
+    			formData.append('_method', 'patch');
+				formData.append('name', this.venue.name);
+				formData.append('description', this.venue.description);
+				formData.append('city_id', this.cityId);
+				formData.append('address', this.venue.address);
+				formData.append('capacity', this.venue.capacity);
+				formData.append('price', this.venue.price);
+				formData.append('capacity', this.venue.capacity);
 
-    			this.cover = await this.uploadCover();
+				let config =
+					{
+						header : {
+							'Content-Type' : 'multipart/form-data'
+						}
+					}
+    	// 		let data = {
+    	// 			_method: 'PUT',
+					// name: vm.venue.name,
+					// description: vm.venue.description,
+					// city_id: vm.cityId,
+					// address: vm.venue.address,
+					// capacity: vm.venue.capacity,
+					// price: vm.venue.price
+    	// 		}
+
+    			let cover = await this.uploadCover();
     			this.imageList = await this.uploadImages();
 
     			if (this.imageList) {
-    				data.images = this.imageList;
+    				formData.append('images', this.imageList)
+    				// data.images = this.imageList;
     			}
-    			if (this.cover) {
-    				data.cover = this.cover;
+    			if (cover) {
+    				formData.append('cover', cover)
+    				// data.cover = this.cover;
     			}
     			if (this.detached) {
     				data.detached = this.detached;
@@ -128,7 +147,7 @@
 
     			let route = '/dashboard/venues/' + this.$route.params.id;
 
-    			axios.post(route, data)
+    			axios.post(route, formData, config)
 	    			.then(function (response) {
 	    				vm.$message('Залата е добавена успешно.');
 	    				vm.$router.push('/venues');
@@ -155,6 +174,7 @@
     				vm.imageList = response.data[1];
     				vm.cities = response.data[2];
     				vm.cityId = response.data[0].city_id;
+    				vm.loading = false;
     			})
     			.catch(function (error) {
     				console.log(error);

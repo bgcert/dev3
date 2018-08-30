@@ -20,7 +20,7 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<ImageUpload></ImageUpload>
+						<ImageUpload :img="'/img/default_cover.png'"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">

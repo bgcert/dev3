@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Traits\ResizableImage;
 
 class VenueController extends Controller
 {
+	use ResizableImage;
     /**
      * Display a listing of the resource.
      *
@@ -35,12 +37,24 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-    	$venue = \Auth::user()->company->venues()->create($request->all());
-    	$images = [];
-    	foreach ($request->images as $image) {
-    		array_push($images, ['filename' => $image]);
+    	$venue = \Auth::user()->company->venues()->create($request->except('images'));
+
+    	if ($request->cover) {
+    		$filename = $this->saveVenueCover($request->cover, $venue->id);
+    		$venue->cover = $filename;
+    		$venue->save();
     	}
-    	$venue->venue_images()->createMany($images);
+
+    	if ($request->images) {
+    		$images_array = explode(",", $request->images);
+	    	$images = [];
+	    	foreach ($images_array as $filename) {
+	    		array_push($images, ['filename' => $filename]);
+	    	}
+
+	    	$venue->venue_images()->createMany($images);
+    	}
+
     	return $venue;
     }
 
@@ -65,9 +79,6 @@ class VenueController extends Controller
     {
     	$cities = \App\City::all();
     	$venue = \App\Venue::find($id);
-    	// $data[0] = $venue;
-    	// $data[1] = $venue->venue_images;
-    	// $data[2] = $cities;
         return [$venue, $venue->venue_images, $cities];
     }
 
@@ -80,7 +91,38 @@ class VenueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $venue = \App\Venue::find($id);
+
+    	$venue = \App\Venue::find($id);
+
+    	if ($request->cover) {
+    		$filename = $this->saveVenueCover($request->cover, $venue->id);
+    		$venue->cover = $filename;
+    		$venue->save();
+    	}
+
+    	if ($request->images) {
+	    	$images_array = explode(",", $request->images);
+	    	$images = [];
+	    	foreach ($images_array as $filename) {
+	    		array_push($images, ['filename' => $filename]);
+	    	}
+
+	    	$venue->venue_images()->createMany($images);
+    	}
+
+    	if ($request->detached) {
+        	foreach ($request->detached as $detached) {
+        		$venue->venue_images()->where('id', $detached)->delete();
+        	}
+        }
+
+    	return $venue;
+
+
+
+
+    	// 
+        
 
         $venue->update($request->all());
 
@@ -111,5 +153,10 @@ class VenueController extends Controller
     public function destroy($id)
     {
         return \App\Venue::destroy($id);
+    }
+
+    public function imageUpload()
+    {
+    	return $filename = $this->saveVenueImage(request()->file);
     }
 }

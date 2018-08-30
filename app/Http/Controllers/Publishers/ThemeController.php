@@ -37,13 +37,15 @@ class ThemeController extends Controller
      */
     public function store(Request $request)
     {
-    	$requestData = $request->all();
+    	$theme = \Auth::user()->company->themes()->create($request->all());
+
     	if ($request->file) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$requestData['cover'] = '/test/' . $name;
+    		$filename = $this->saveThemeCover($request->file, $theme->id);
+    		$theme->cover = $filename;
+    		$theme->save();
     	}
 
-    	return \Auth::user()->company->themes()->create($requestData);
+    	return $theme;
     }
 
     /**
@@ -80,14 +82,22 @@ class ThemeController extends Controller
     public function update(Request $request, $id)
     {
     	$theme = \App\Theme::find($id);
-    	$requestData = $request->all();
-    	if (isset($request->file)) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$requestData['cover'] = '/test/' . $name;
+    	// $requestData = $request->all();
+    	$theme->update($request->all());
+
+    	if ($request->file) {
+    		$filename = $this->saveThemeCover($request->file, $theme->id);
+    		$theme->cover = $filename;
+    		$theme->save();
     	}
-    	
-    	$theme->update($requestData);
-    	return 'saved';
+
+    	// if (isset($request->file)) {
+    	// 	$prefix = 't_' . 'c' . \Auth::user()->company()->id . '_';
+    	// 	$name = $this->saveImage($request->file, $prefix);
+    	// 	$requestData['cover'] = $name;
+    	// }
+    
+    	return $theme;
     }
 
     /**

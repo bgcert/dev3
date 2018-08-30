@@ -91,7 +91,7 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload></ImageUpload>
+							<ImageUpload :img="'/img/default_cover.png'"></ImageUpload>
 					</el-form-item>
 
 					<el-form-item label="Цена">
@@ -181,7 +181,6 @@
 
 					axios.post('/dashboard/events', formData, config)
 	    			.then(function (response) {
-	    				console.log(response);
 	    				vm.$message('Събитието е създадено успешно.');
     					vm.$router.push('/events');
 	    			})
@@ -213,5 +212,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

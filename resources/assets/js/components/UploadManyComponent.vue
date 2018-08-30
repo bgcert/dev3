@@ -4,18 +4,18 @@
 			<div
 				class="images"
 				:style="{
-							'background-image': 'url(' + image.filename + ')',
+							'background-image': 'url(/photos/vi/' + image.filename + ')',
 							'background-position': 'center center'
 						}">
 			</div>
 			<button class="ui small basic button" @click.prevent="detach(index, image.id)">Премахни</button>
 		</div>
 
-		<div v-for="(image, index) in imageList">
+		<div v-for="(image, index) in images">
 			<div
 				class="images"
 				:style="{
-							'background-image': 'url(' + image.filename + ')',
+							'background-image': 'url(/photos/vi/' + image.filename + ')',
 							'background-position': 'center center'
 						}">
 			</div>
@@ -77,7 +77,7 @@
     			return new Promise((resolve, reject) => {
     				let formData = new FormData();
     				formData.append('file', file);
-	    			axios.post('dashboard/image/upload', formData, {
+	    			axios.post('dashboard/venue/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
 	    					vm.imageList[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}

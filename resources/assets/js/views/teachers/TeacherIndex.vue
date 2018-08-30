@@ -16,13 +16,12 @@
 				<div class="ui three stackable cards">
 					<template v-for="(teacher, index) in teachers">
 						<CardDashboard
-							:image="teacher.image"
+							:image="'/photos/te/' + teacher.image"
 							:title="teacher.name"
 							:edit_link="'/teachers/edit/' + teacher.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете този лектор?'"
 							@show="handleShow(theme.id)"
-							@deleteClick="handleDelete(teacher.id, index)"
-							>
+							@deleteClick="handleDelete(teacher.id, index)">
 						</CardDashboard>
 					</template>
 				</div>

@@ -13,9 +13,9 @@
 
 					<el-form-item label="Снимка">
 						<ImageUpload
+							:img="'/img/default_user.png'"
 							:canvasWidth="200"
-							:canvasHeight="200"
-							>
+							:canvasHeight="200">
 						</ImageUpload>
 					</el-form-item>
 

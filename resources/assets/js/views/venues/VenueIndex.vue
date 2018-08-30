@@ -16,13 +16,12 @@
 				<div class="ui three stackable cards">
 					<template v-for="(venue, index) in venues">
 						<CardDashboard
-							:image="venue.cover"
+							:image="'/photos/ve/m/' + venue.cover"
 							:title="venue.name"
 							:edit_link="'/venues/edit/' + venue.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
 							@show="handleShow(venue.id)"
-							@deleteClick="handleDelete(venue.id, index)"
-							>
+							@deleteClick="handleDelete(venue.id, index)">
 						</CardDashboard>
 					</template>
 				</div>

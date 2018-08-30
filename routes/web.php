@@ -27,6 +27,8 @@ Route::get('/home', function () {
 Route::get('/', 'PublicController@home')->name('home');
 Route::view('/terms', 'terms');
 
+Route::view('/multiupload', 'multiupload');
+
 Route::get('/browse/{slug?}', 'PublicController@events');
 Route::get('/t', 'PublicController@themes');
 Route::get('/v', 'PublicController@venues');
@@ -127,8 +129,8 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::post('/themes/set/cover', 'ThemeController@setCover');
 
 	// Save image from upload component
-	Route::post('/image/save', 'DashboardController@saveImage');
-	Route::post('/image/upload', 'DashboardController@upload');
+	// Route::post('/image/save', 'DashboardController@saveImage');
+	Route::post('/venue/image/upload', 'VenueController@imageUpload');
 
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');

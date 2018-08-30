@@ -41,23 +41,21 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-    	$requestData = $request->all();
+    	$event = \Auth::user()->company->events()->create($request->all());
 
     	// Save cover and return filename
     	if ($request->file) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$requestData['cover'] = '/test/' . $name;
+    		$filename = $this->saveEventCover($request->file, $event->id);
+    		$event->cover = $filename;
+    		$event->save();
+    	}
+
+    	if ($request->teachers) {
+    		$teachers = explode(',', $request->teachers);
+    		$event->teachers()->attach($teachers);
     	}
     	
-    	$requestData['teachers'] = explode(',', $requestData['teachers']);
-
-		$event = \Auth::user()->company->events()->create($requestData);
-
-    	if (!empty($requestData['teachers'])) {
-    		$event->teachers()->attach($requestData['teachers']);
-    	}
-    	
-    	return 'saved maybe';
+    	return $event;
     }
 
     /**
@@ -94,24 +92,25 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	if (isset($request->file)) {
-    		$name = $this->saveImage($request->file, 357, 178);
-    		$name = '/test/' . $name;
-    		$request->merge([ 'cover' => $name ]);
+
+    	$event = \App\Event::find($id);
+    	$event->update($request->all());
+
+    	// Save cover and return filename
+    	if ($request->file) {
+    		$filename = $this->saveEventCover($request->file, $event->id);
+    		$event->cover = $filename;
+    		$event->save();
     	}
 
-    	$event = \App\Event::where('id', $id)->first();
-
-		$event->update($request->except(['teachers']));
-
-		if (!empty($request->teachers)) {
-        	$teachers = explode(',', $request->teachers);
-        	$event->teachers()->sync($teachers);
+    	if ($request->teachers) {
+    		$teachers = explode(',', $request->teachers);
+    		$event->teachers()->sync($teachers);
     	} else
     	{
     		$event->teachers()->sync($request->teachers);
     	}
-
+    	
     	return $event;
     }
 

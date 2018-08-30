@@ -26,7 +26,7 @@
 @endpush
 
 @section('content')
-<div class="cover" style="background-image: url({{ $event->cover }});">
+<div class="cover" style="background-image: url({{ '/photos/ev/l/' . $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">
@@ -149,7 +149,7 @@
 			    </h3>
 			    @foreach($event->teachers as $teacher)
 				    <h3 class="ui header">
-				    	<img src="{{ $teacher->image }}" class="ui circular image">
+				    	<img src="/photos/te/{{ $teacher->image }}" class="ui circular image">
 				    	{{ $teacher->name }}
 				    </h3>
 				    <p>{{ $teacher->details }}</p>
