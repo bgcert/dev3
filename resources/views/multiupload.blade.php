@@ -6,7 +6,7 @@
 
 	<multi-image-upload
 		:multi="true"
-		:route="'/upload/route'"
+		:route="'/dashboard/venue/image/upload'"
 		:base-url="'/test/'"
 		:image="'image1.jpg'"
 		:images="['image1.jpg', 'image2.png']">

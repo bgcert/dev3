@@ -110246,7 +110246,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.single-image, .multi-image {\n\tbackground-position: center center;\n\theight: 200px;\n\twidth: 300px;\n}\n.multi-image {\n\tmargin-top: 20px;\n\tposition: relative;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.single-image, .multi-image {\n\tbackground-size: cover;\n\tbackground-position: center center;\n\theight: 200px;\n\twidth: 300px;\n}\n.multi-image {\n\tmargin-top: 20px;\n\tposition: relative;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -110321,137 +110321,190 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   props: ['multi', 'route', 'base-url', 'image', 'images'],
+    props: ['multi', 'route', 'base-url', 'image', 'images'],
 
-   data: function data() {
-      return {
-         selectedFiles: [],
-         existingImages: this.images,
-         newImages: [],
-         removed: [],
-         uploadedImages: [],
-         file: null
-      };
-   },
+    data: function data() {
+        return {
+            selectedFiles: [],
+            existingImages: this.images,
+            newImages: [],
+            removed: [],
+            uploadedImages: [],
+            file: [],
+            results: []
+        };
+    },
 
-   watch: {
-      images: function images(val) {
-         return this.uploadedImages = val;
-      }
-   },
+    watch: {
+        images: function images(val) {
+            return this.uploadedImages = val;
+        }
+    },
 
-   methods: {
-      onFileChange: function onFileChange(e) {
-         this.selectedFiles.push(event.target.files[0]);
-         var vm = this;
+    methods: {
+        onFileChange: function onFileChange(e) {
+            this.selectedFiles.push(event.target.files[0]);
+            var vm = this;
 
-         var files = e.target.files || e.dataTransfer.files;
-         var imageUrl = URL.createObjectURL(files[0]);
-         this.newImages.push({ 'filename': imageUrl, 'progress': 0 });
+            var files = e.target.files || e.dataTransfer.files;
+            var imageUrl = URL.createObjectURL(files[0]);
+            this.newImages.push({ 'filename': imageUrl, 'progress': 0 });
 
-         this.file = files[0];
-      },
-      remove: function remove(index) {
-         this.existingImages.splice(index, 1);
-         this.removed.push(index);
-         this.selectedFiles.splice(index, 1);
-         this.file = null;
-      },
-      removeNew: function removeNew(index) {
-         this.newImages.splice(index, 1);
-         this.selectedFiles.splice(index, 1);
-         this.file = null;
-      },
-      detach: function detach(index, id) {
-         this.uploadedImages.splice(index, 1);
-         this.$emit('detachClick', id);
-      },
-      uploadImage: function uploadImage(file, index) {
-         var vm = this;
-         return new Promise(function (resolve, reject) {
-            var formData = new FormData();
-            formData.append('file', file);
-            axios.post(vm.route, formData, {
-               onUploadProgress: function onUploadProgress(progressEvent) {
-                  vm.imageList[index].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-               }
-            }).then(function (responce) {
-               resolve(responce.data);
-            }).catch(function (error) {
-               console.log(error);
-            });
-         });
-      },
-      getNames: function () {
-         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var imageList, arr, i, len, name;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-               while (1) {
-                  switch (_context.prev = _context.next) {
-                     case 0:
-                        imageList = [];
-                        arr = this.selectedFiles;
-                        i = 0, len = arr.length;
+            this.file.push(files[0]);
+        },
+        remove: function remove(index) {
+            this.existingImages.splice(index, 1);
+            this.removed.push(index);
+            this.selectedFiles.splice(index, 1);
+            this.file = null;
+        },
+        removeNew: function removeNew(index) {
+            this.newImages.splice(index, 1);
+            this.selectedFiles.splice(index, 1);
+            this.file = null;
+        },
+        detach: function detach(index, id) {
+            this.uploadedImages.splice(index, 1);
+            this.$emit('detachClick', id);
+        },
+        uploadAll: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var filename, i, len;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                filename = void 0;
+                                i = 0, len = this.file.length;
 
-                     case 3:
-                        if (!(i < len)) {
-                           _context.next = 11;
-                           break;
+                            case 2:
+                                if (!(i < len)) {
+                                    _context.next = 10;
+                                    break;
+                                }
+
+                                _context.next = 5;
+                                return this.uploadImage(this.file[i], i);
+
+                            case 5:
+                                filename = _context.sent;
+
+                                this.results.push(filename);
+
+                            case 7:
+                                i++;
+                                _context.next = 2;
+                                break;
+
+                            case 10:
+
+                                console.log('finish uploading');
+
+                            case 11:
+                            case 'end':
+                                return _context.stop();
                         }
+                    }
+                }, _callee, this);
+            }));
 
-                        _context.next = 6;
-                        return this.uploadImage(arr[i], i);
+            function uploadAll() {
+                return _ref.apply(this, arguments);
+            }
 
-                     case 6:
-                        name = _context.sent;
+            return uploadAll;
+        }(),
+        uploadImage: function uploadImage(file, index) {
+            var _this = this;
 
-                        imageList.push(name);
+            return new Promise(function (resolve, reject) {
+                var vm = _this;
+                var formData = new FormData();
+                formData.append('file', file);
+                axios.post(vm.route, formData, {
+                    onUploadProgress: function onUploadProgress(progressEvent) {
+                        vm.newImages[index].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                    }
+                }).then(function (responce) {
+                    resolve(responce.data);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            });
+        },
+        getNames: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var imageList, arr, i, len, name;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                imageList = [];
+                                arr = this.selectedFiles;
+                                i = 0, len = arr.length;
 
-                     case 8:
-                        i++;
-                        _context.next = 3;
-                        break;
+                            case 3:
+                                if (!(i < len)) {
+                                    _context2.next = 11;
+                                    break;
+                                }
 
-                     case 11:
-                        return _context.abrupt('return', imageList);
+                                _context2.next = 6;
+                                return this.uploadImage(arr[i], i);
 
-                     case 12:
-                     case 'end':
-                        return _context.stop();
-                  }
-               }
-            }, _callee, this);
-         }));
+                            case 6:
+                                name = _context2.sent;
 
-         function getNames() {
-            return _ref.apply(this, arguments);
-         }
+                                imageList.push(name);
 
-         return getNames;
-      }()
-   },
+                            case 8:
+                                i++;
+                                _context2.next = 3;
+                                break;
 
-   mounted: function mounted() {
-      console.log('MultiImageUpload component mounted.');
-   },
-   created: function created() {
-      var _this = this;
+                            case 11:
+                                return _context2.abrupt('return', imageList);
 
-      console.log();
-      __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('imageSaveMany', function (resolve, reject) {
-         if (_this.selectedFiles == null) {
-            resolve();
-            return;
-         }
-         resolve(_this.getNames());
-      });
-   },
-   destroyed: function destroyed() {
-      __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$off('imageSaveMany');
-   }
+                            case 12:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function getNames() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return getNames;
+        }()
+    },
+
+    mounted: function mounted() {
+        console.log('MultiImageUpload component mounted.');
+    },
+    created: function created() {
+        var _this2 = this;
+
+        console.log();
+        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('imageSaveMany', function (resolve, reject) {
+            if (_this2.selectedFiles == null) {
+                resolve();
+                return;
+            }
+            resolve(_this2.getNames());
+        });
+    },
+    destroyed: function destroyed() {
+        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$off('imageSaveMany');
+    }
 });
 
 /***/ }),
@@ -110523,6 +110576,22 @@ var render = function() {
                         }
                       },
                       [_c("i", { staticClass: "red trash icon" })]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "progress" },
+                      [
+                        _c("el-progress", {
+                          attrs: {
+                            "text-inside": true,
+                            "stroke-width": 18,
+                            percentage: _vm.newImages[index].progress,
+                            color: "rgba(142, 113, 199, 0.7)"
+                          }
+                        })
+                      ],
+                      1
                     )
                   ]
                 )
@@ -110535,12 +110604,22 @@ var render = function() {
               staticClass: "inputfile",
               attrs: { type: "file", name: "files", id: "files" },
               on: { change: _vm.onFileChange }
-            }),
-            _vm._v(" "),
-            _c("button", { staticClass: "ui basic button" }, [
-              _vm._v("Добави изображение")
-            ])
-          ]
+            })
+          ],
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "ui basic button",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.uploadAll()
+            }
+          }
+        },
+        [_vm._v("Upload")]
+      )
     ],
     2
   )
@@ -110556,7 +110635,7 @@ var staticRenderFns = [
         staticClass: "ui small icon button add-image",
         attrs: { for: "files" }
       },
-      [_c("i", { staticClass: "camera icon" }), _vm._v(" Добави")]
+      [_c("i", { staticClass: "camera icon" }), _vm._v(" Добави изображение")]
     )
   }
 ]

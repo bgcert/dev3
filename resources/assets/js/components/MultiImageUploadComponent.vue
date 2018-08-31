@@ -19,12 +19,15 @@
 					<button class="ui icon small button delete-button" @click.prevent="removeNew(index)">
 						<i class="red trash icon"></i>
 					</button>
+					<div class="progress">
+						<el-progress :text-inside="true" :stroke-width="18" :percentage="newImages[index].progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
+					</div>
 				</div>
 			</div>
-			<label for="files" class="ui small icon button add-image" ><i class="camera icon"></i> Добави</label>
+			<label for="files" class="ui small icon button add-image" ><i class="camera icon"></i> Добави изображение</label>
 			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
-			<button class="ui basic button">Добави изображение</button>
 		</template>
+		<button class="ui basic button" @click.prevent="uploadAll()">Upload</button>
 		<!-- <div v-for="(image, index) in uploadedImages">
 			<div
 				class="images"
@@ -67,7 +70,8 @@
     			newImages: [],
     			removed: [],
     			uploadedImages: [],
-    			file: null,
+    			file: [],
+    			results: []
     		}
     	},
 
@@ -86,7 +90,7 @@
     			var imageUrl = URL.createObjectURL(files[0]);
     			this.newImages.push({ 'filename': imageUrl, 'progress': 0 });
 
-				this.file = files[0];
+				this.file.push(files[0]);
     		},
 
     		remove(index) {
@@ -107,14 +111,24 @@
     			this.$emit('detachClick', id);
     		},
 
+    		async uploadAll() {
+    			let filename;
+    			for (var i = 0, len = this.file.length; i < len; i++) {
+    				filename = await this.uploadImage(this.file[i], i);
+    				this.results.push(filename);
+    			}
+
+    			console.log('finish uploading');
+    		},
+
     		uploadImage(file, index) {
-    			let vm = this;
     			return new Promise((resolve, reject) => {
-    				let formData = new FormData();
-    				formData.append('file', file);
+	    			let vm = this;
+	    			let formData = new FormData();
+					formData.append('file', file);
 	    			axios.post(vm.route, formData, {
 	    				onUploadProgress: progressEvent => {
-	    					vm.imageList[index].progress =  Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    					vm.newImages[index].progress = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
 	    			})
 	    			.then(function (responce) {
@@ -160,6 +174,7 @@
 
 <style>
 	.single-image, .multi-image {
+		background-size: cover;
 		background-position: center center;
 		height: 200px;
 		width: 300px;
@@ -184,6 +199,14 @@
 		position: relative;
 		width: 357px;
 		height: 178px;
+	}
+
+	.progress {
+		position: absolute !important;
+		height: 40px;
+		padding: 10px;
+		width: 100%;
+		bottom: 0;
 	}
 
 	.inputfile {

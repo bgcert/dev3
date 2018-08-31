@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Publishers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
+use Image;
 
 class VenueController extends Controller
 {
@@ -153,6 +154,31 @@ class VenueController extends Controller
     public function destroy($id)
     {
         return \App\Venue::destroy($id);
+    }
+
+    public function saveVenueCover()
+    {
+    	$file = request()->file;
+    	$prefix = 've_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/original/');
+
+    	// Resize to m size
+    	$this->resize($image, 300, 160);
+    	$this->save($image, $filename);
+
+    	// New image instance. Old one is already resized. Wtf?
+    	$image = Image::make($file);
+    	// Resize to l size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename);
+
+    	return $filename;
     }
 
     public function imageUpload()

@@ -29,9 +29,13 @@ trait ResizableImage
 		return $image;
     }
 
-    public function save($image, $filename, $path)
+    public function save($image, $filename, $path = null)
     {
-		return $image->save(public_path('/photos' . $path) . $filename);
+    	if ($path) {
+    		return $image->save(public_path('/photos' . $path) . $filename);
+    	}
+
+    	return $image->save(public_path('/photos/') . $filename);
     }
 
     public function unique_hash()
@@ -105,29 +109,7 @@ trait ResizableImage
     	return $filename;
     }
 
-    public function saveVenueCover($file, $venue_id)
-    {
-    	$prefix = 've' . $venue_id . '_c' . \Auth::user()->company->id . '_';
-    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
-
-    	// Make image from file
-    	$image = Image::make($file);
-
-    	// Save original file
-    	$this->save($image, $filename, '/or/');
-
-    	// Resize to m size
-    	$this->resize($image, 300, 160);
-    	$this->save($image, $filename, '/ve/m/');
-
-    	// New image instance. Old one is already resized. Wtf?
-    	$image = Image::make($file);
-    	// Resize to l size
-    	$this->resize($image, 1200, 400);
-    	$this->save($image, $filename, '/ve/l/');
-
-    	return $filename;
-    }
+    
 
     public function saveVenueImage($file)
     {
