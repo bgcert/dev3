@@ -38,21 +38,21 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
+    	return $request->all();
     	$venue = \Auth::user()->company->venues()->create($request->except('images'));
 
     	if ($request->cover) {
-    		$filename = $this->saveVenueCover($request->cover, $venue->id);
-    		$venue->cover = $filename;
+    		$venue->cover = $request->cover;
     		$venue->save();
     	}
 
+    	// return $request->images;
     	if ($request->images) {
     		$images_array = explode(",", $request->images);
 	    	$images = [];
-	    	foreach ($images_array as $filename) {
+	    	foreach ($request->images as $filename) {
 	    		array_push($images, ['filename' => $filename]);
 	    	}
-
 	    	$venue->venue_images()->createMany($images);
     	}
 
@@ -96,8 +96,8 @@ class VenueController extends Controller
     	$venue = \App\Venue::find($id);
 
     	if ($request->cover) {
-    		$filename = $this->saveVenueCover($request->cover, $venue->id);
-    		$venue->cover = $filename;
+    		// $filename = $this->saveVenueCover($request->cover, $venue->id);
+    		$venue->cover = $request->cover;
     		$venue->save();
     	}
 
@@ -175,6 +175,24 @@ class VenueController extends Controller
     	// New image instance. Old one is already resized. Wtf?
     	$image = Image::make($file);
     	// Resize to l size
+    	$this->resize($image, 1200, 400);
+    	$this->save($image, $filename);
+
+    	return $filename;
+    }
+
+    public function saveVenueImage()
+    {
+    	$file = request()->file;
+    	$prefix = 'vi_c' . \Auth::user()->company->id . '_';
+    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+
+    	// Make image from file
+    	$image = Image::make($file);
+
+    	// Save original file
+    	$this->save($image, $filename, '/original/');
+
     	$this->resize($image, 1200, 400);
     	$this->save($image, $filename);
 

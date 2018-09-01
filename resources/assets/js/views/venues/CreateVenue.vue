@@ -12,7 +12,13 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<ImageUpload :img="'/img/default_cover.png'"></ImageUpload>
+						<image-upload
+							:index="1"
+							:key="1"
+							:imageUrl="'/img/default_cover.png'"
+							:route="'/dashboard/venue/cover/upload'">
+						</image-upload>
+						<!-- <ImageUpload :img="'/img/default_cover.png'"></ImageUpload> -->
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -47,7 +53,14 @@
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
-						<UploadMany></UploadMany>
+						<image-upload
+							v-for="image in extraImages"
+							:key="image + 1"
+							:index="image + 1"
+							:imageUrl="'/img/default_cover.png'"
+							:route="'/dashboard/venue/image/upload'">
+						</image-upload>
+						<button class="ui basic button" @click.prevent="add">Добави изображение</button>
 					</el-form-item>
 
 					<el-form-item>
@@ -92,56 +105,67 @@
     	},
 
     	methods: {
+    		add() {
+    			if (this.extraImages <= 11) {
+    				this.extraImages++;
+    			}
+    		},
+
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+
     		uploadCover() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
     			return promise;
     		},
 
     		uploadImages() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
     			return promise;
     		},
 
     		async save() {
     			let vm = this;
+				let data = {
+					name: this.name,
+					description: this.description,
+					city_id: this.cityId,
+					address: this.address,
+					capacity: this.capacity,
+					price: this.price,
+					capacity: this.capacity
+				}
 
-    			let formData = new FormData();
-				formData.append('name', this.name);
-				formData.append('description', this.description);
-				formData.append('city_id', this.cityId);
-				formData.append('address', this.address);
-				formData.append('capacity', this.capacity);
-				formData.append('price', this.price);
-				formData.append('capacity', this.capacity);
+				let cover = await this.upload();
 
-				let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				let image;
+				let images = [];
+				for (var i = 1; i <= this.extraImages; i++) {
+					image = await this.upload();
+					images.push(image);
 
-    			let cover = await this.uploadCover();
-    			this.imageList = await this.uploadImages();
+				}
 
-    			if (cover) {
-    				formData.append('cover', cover);
+    			if (images.length > 0) {
+    				data.images = images;
     			}
 
-    			if (this.imageList.length > 0) {
-    				// console.log(this.imageList);
-    				formData.append('images', this.imageList);
-    			}
-
-    			axios.post('/dashboard/venues', formData, config)
+    			axios.post('/dashboard/venues', data)
     			.then(function (response) {
+    				console.log('kjhkj');
     				vm.$message('Залата е добавена успешно.');
-    				vm.$router.push('/venues');
+    				// vm.$router.push('/venues');
     			})
     			.catch(function (error) {
     				console.log(error);
     			})
-    		}
+    		},
+
+    		destroyed() {
+				EventBus.$off('upload');
+			}
     	},
 
         mounted() {

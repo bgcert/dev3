@@ -2,8 +2,12 @@
 	<div>
 		<h2>Multi image upload</h2>
 		<template v-if="!multi">
-			<div class="single-image" :style="'background-image: url(' + baseUrl + image + ');'">
-				
+			<div class="single-image" :style="'background-image: url(' + singleImage.filename + ');'">
+				<label for="files" class="ui small purple icon button" ><i class="camera icon"></i> Качи изображение</label>
+				<input type="file" name="files" id="files" class="inputfile" @change="addSingleImage">
+				<div class="progress" v-if="singleImage.progress >= 0">
+					<el-progress :text-inside="true" :stroke-width="18" :percentage="singleImage.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
+				</div>
 			</div>
 		</template>
 		<template v-else>
@@ -27,7 +31,7 @@
 			<label for="files" class="ui small icon button add-image" ><i class="camera icon"></i> Добави изображение</label>
 			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
 		</template>
-		<button class="ui basic button" @click.prevent="uploadAll()">Upload</button>
+		<button class="ui basic button" @click.prevent="upload()">Upload</button>
 		<!-- <div v-for="(image, index) in uploadedImages">
 			<div
 				class="images"
@@ -67,6 +71,7 @@
     		return {
     			selectedFiles: [],
     			existingImages: this.images,
+    			singleImage: { 'filename': this.image, 'progress': -1 },
     			newImages: [],
     			removed: [],
     			uploadedImages: [],
@@ -82,12 +87,26 @@
     	},
 
     	methods: {
-    		onFileChange(e) {
-    			this.selectedFiles.push(event.target.files[0]);
+    		addSingleImage(e) {
+    			// this.selectedFiles.push(event.target.files[0]);
     			let vm = this;
 
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
+    			this.singleImage = { 'filename': imageUrl, 'progress': 0 };
+
+				this.file.push(files[0]);
+    		},
+
+    		onFileChange(e) {
+    			// this.selectedFiles.push(event.target.files[0]);
+    			let vm = this;
+
+    			var files = e.target.files || e.dataTransfer.files;
+    			var imageUrl = URL.createObjectURL(files[0]);
+    			if (!this.multi) {
+
+    			}
     			this.newImages.push({ 'filename': imageUrl, 'progress': 0 });
 
 				this.file.push(files[0]);
@@ -111,14 +130,14 @@
     			this.$emit('detachClick', id);
     		},
 
-    		async uploadAll() {
+    		async upload() {
     			let filename;
+    			let results = [];
     			for (var i = 0, len = this.file.length; i < len; i++) {
     				filename = await this.uploadImage(this.file[i], i);
-    				this.results.push(filename);
+    				results.push(filename);
     			}
-
-    			console.log('finish uploading');
+    			return results;
     		},
 
     		uploadImage(file, index) {
@@ -156,13 +175,13 @@
         },
 
         created() {
-        	console.log()
-        	EventBus.$on('imageSaveMany', (resolve, reject) => {
-        		if (this.selectedFiles == null) {
+        	EventBus.$on('upload', (resolve, reject) => {
+        		if (this.newImages.length == 0) {
         			resolve();
         			return;
         		}
-        		resolve(this.getNames());
+        		let results = this.uploadMany();
+        		resolve(results);
         	});
         },
 
@@ -174,6 +193,7 @@
 
 <style>
 	.single-image, .multi-image {
+		position: relative;
 		background-size: cover;
 		background-position: center center;
 		height: 200px;
@@ -182,7 +202,6 @@
 
 	.multi-image {
 		margin-top: 20px;
-		position: relative;
 	}
 
 	.multi-image .delete-button {

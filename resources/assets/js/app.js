@@ -59,6 +59,9 @@ Vue.component('notifications', require('./components/NotificationsComponent.vue'
 Vue.component('modal', require('./components/ModalComponent.vue'));
 Vue.component('search', require('./components/SearchComponent.vue'));
 Vue.component('multi-image-upload', require('./components/MultiImageUploadComponent.vue'));
+Vue.component('image-upload', require('./components/ImageUploadComponent.vue'));
+Vue.component('test', require('./components/TestComponent.vue'));
+Vue.component('test1', require('./components/Test1Component.vue'));
 
 // Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 

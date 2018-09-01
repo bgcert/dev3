@@ -130,7 +130,8 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 	// Save image from upload component
 	// Route::post('/image/save', 'DashboardController@saveImage');
-	Route::post('/venue/image/upload', 'VenueController@saveVenueCover');
+	Route::post('/venue/cover/upload', 'VenueController@saveVenueCover');
+	Route::post('/venue/image/upload', 'VenueController@saveVenueImage');
 
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');
