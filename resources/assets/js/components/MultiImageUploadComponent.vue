@@ -1,122 +1,53 @@
 <template>
 	<div>
-		<h2>Multi image upload</h2>
-		<template v-if="!multi">
-			<div class="single-image" :style="'background-image: url(' + singleImage.filename + ');'">
-				<label for="files" class="ui small purple icon button" ><i class="camera icon"></i> Качи изображение</label>
-				<input type="file" name="files" id="files" class="inputfile" @change="addSingleImage">
-				<div class="progress" v-if="singleImage.progress >= 0">
-					<el-progress :text-inside="true" :stroke-width="18" :percentage="singleImage.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
-				</div>
-			</div>
-		</template>
-		<template v-else>
-			<div v-for="(image, index) in existingImages">
-				<div class="multi-image" :style="'background-image: url(' + baseUrl + image + ');'">
-					<button class="ui icon small button delete-button" @click.prevent="remove(index)">
-						<i class="red trash icon"></i>
-					</button>
-				</div>
-			</div>
-			<div v-for="(image, index) in newImages">
-				<div class="multi-image" :style="'background-image: url(' + image.filename + ');'">
-					<button class="ui icon small button delete-button" @click.prevent="removeNew(index)">
-						<i class="red trash icon"></i>
-					</button>
-					<div class="progress">
-						<el-progress :text-inside="true" :stroke-width="18" :percentage="newImages[index].progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
-					</div>
-				</div>
-			</div>
-			<label for="files" class="ui small icon button add-image" ><i class="camera icon"></i> Добави изображение</label>
-			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
-		</template>
-		<button class="ui basic button" @click.prevent="upload()">Upload</button>
-		<!-- <div v-for="(image, index) in uploadedImages">
-			<div
-				class="images"
-				:style="{
-							'background-image': 'url(' + base-url + image + ')',
-							'background-position': 'center center'
-						}">
-			</div>
-			<button class="ui small basic button" @click.prevent="detach(index, image.id)">Премахни</button>
-		</div>
-
-		<div v-for="(image, index) in images">
-			<div
-				class="images"
-				:style="{
-							'background-image': 'url(' + base-url + image + ')',
-							'background-position': 'center center'
-						}">
-			</div>
-			<el-progress :percentage="image.progress"></el-progress>
-			<button class="ui small basic button" @click.prevent="remove(index)">Премахни</button>
+		<div class="multi-image existing" :style="'background-image: url(/photos/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
+			<button class="ui button" @click.prevent="detach(index, item.id)"> Премахни</button>
 		</div>
 
 		<div>
-			<label for="files" class="ui small icon button cover" ><i class="camera icon"></i> Добави</label>
-			<input type="file" name="files" id="files" class="inputfile" @change="onFileChange">
-		</div> -->
+			<div class="multi-image" :style="'background-image: url(' + image.filename + ');'" v-for="(image, index) in images" :key="index">
+				<div class="progress" v-if="image.progress >= 0">
+					<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
+				</div>
+				<button class="ui button" @click.prevent="remove(index)"> Премахни</button>
+			</div>
+			<label :for="'multi-image'" class="ui small button"> Добави изображение</label>
+			<input type="file" :id="'multi-image'" class="inputfile" @change="onFileChange">
+		</div>
 	</div>
 </template>
 
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['multi', 'route', 'base-url', 'image', 'images'],
+    	props: ['route', 'existingImages'],
 
     	data: function () {
     		return {
     			selectedFiles: [],
-    			existingImages: this.images,
-    			singleImage: { 'filename': this.image, 'progress': -1 },
     			newImages: [],
-    			removed: [],
     			uploadedImages: [],
-    			file: [],
-    			results: []
-    		}
-    	},
-
-    	watch: {
-    		images: function (val) {
-    			return this.uploadedImages = val;
+    			result: [],
+    			images: [],
+    			existing: this.existingImages
     		}
     	},
 
     	methods: {
-    		addSingleImage(e) {
-    			// this.selectedFiles.push(event.target.files[0]);
-    			let vm = this;
-
-    			var files = e.target.files || e.dataTransfer.files;
-    			var imageUrl = URL.createObjectURL(files[0]);
-    			this.singleImage = { 'filename': imageUrl, 'progress': 0 };
-
-				this.file.push(files[0]);
+    		add() {
+    			this.images.push({ filename: this.imageUrl, progress: -1 });
     		},
 
     		onFileChange(e) {
-    			// this.selectedFiles.push(event.target.files[0]);
     			let vm = this;
-
+    			let index = this.images.length - 1;
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			if (!this.multi) {
-
-    			}
-    			this.newImages.push({ 'filename': imageUrl, 'progress': 0 });
-
-				this.file.push(files[0]);
+    			this.images.push({ filename: imageUrl, progress: 0, file: files[0] });
     		},
 
     		remove(index) {
-    			this.existingImages.splice(index, 1);
-    			this.removed.push(index);
-    			this.selectedFiles.splice(index, 1);
-    			this.file = null;
+    			this.images.splice(index, 1);;
     		},
 
     		removeNew(index) {
@@ -126,28 +57,35 @@
     		},
 
     		detach(index, id) {
-    			this.uploadedImages.splice(index, 1);
+    			this.existing.splice(index, 1);
     			this.$emit('detachClick', id);
     		},
 
-    		async upload() {
-    			let filename;
-    			let results = [];
-    			for (var i = 0, len = this.file.length; i < len; i++) {
-    				filename = await this.uploadImage(this.file[i], i);
-    				results.push(filename);
+    		async getFilenames() {
+    			let filenames = [];
+
+    			for (let i = 0; i < this.images.length; i++) {
+    				let filename = await this.upload(i);
+    				filenames.push(filename);
     			}
-    			return results;
+    			return filenames;
     		},
 
-    		uploadImage(file, index) {
+    		upload(i) {
     			return new Promise((resolve, reject) => {
 	    			let vm = this;
-	    			let formData = new FormData();
-					formData.append('file', file);
+
+	    			let result;
+	    			let config = {
+					    				headers: {
+					    					'Content-Type': 'multipart/form-data'
+					    				}
+					    			}
+					let formData = new FormData();
+					formData.append('file', vm.images[i].file);
 	    			axios.post(vm.route, formData, {
 	    				onUploadProgress: progressEvent => {
-	    					vm.newImages[index].progress = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	    					vm.images[i].progress = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
 	    			})
 	    			.then(function (responce) {
@@ -158,41 +96,31 @@
 	    			})
     			});
     		},
-
-    		async getNames() {
-    			let imageList = [];
-    			let arr = this.selectedFiles;
-        		for (var i = 0, len = arr.length; i < len; i++) {
-					let name = await this.uploadImage(arr[i], i);
-					imageList.push(name);
-				}
-				return imageList;
-    		}
     	},
 
         mounted() {
-            console.log('MultiImageUpload component mounted.');
+            console.log('ImageUpload component mounted.');
         },
 
         created() {
-        	EventBus.$on('upload', (resolve, reject) => {
-        		if (this.newImages.length == 0) {
-        			resolve();
+        	EventBus.$on('multi-upload', (resolve, reject) => {
+        		if (this.images.length == 0) {
+        			resolve(null);
         			return;
         		}
-        		let results = this.uploadMany();
+        		let results = this.getFilenames();
         		resolve(results);
         	});
         },
 
         destroyed() {
-			EventBus.$off('imageSaveMany');
+			EventBus.$off('multi-upload');
 		}
     };
 </script>
 
 <style>
-	.single-image, .multi-image {
+	.multi-image {
 		position: relative;
 		background-size: cover;
 		background-position: center center;

@@ -11,7 +11,10 @@
 						<el-input v-model="venue.name"></el-input>
 					</el-form-item>
 					<el-form-item label="Основна снимка">
-						<ImageUpload :img="'/photos/ve/m/' + venue.cover"></ImageUpload>
+						<imageUpload
+							:imageUrl="'/photos/' + venue.cover"
+							:route="'/dashboard/venue/cover/upload'">
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -46,10 +49,11 @@
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
-						<UploadMany
-							:images="venue.venue_images"
+						<multi-image-upload
+							:existingImages="venue.venue_images"
+							:route="'/dashboard/venue/image/upload'"
 							@detachClick="handleDetach">
-						</UploadMany>
+						</multi-image-upload>
 					</el-form-item>
 
 					<el-form-item>
@@ -73,10 +77,10 @@
 <script>
 	import { EventBus } from '../../app';
 	import ImageUpload from '../../components/ImageUploadComponent.vue'
-	import UploadMany from '../../components/UploadManyComponent.vue'
+	import MultiImageUpload from '../../components/MultiImageUploadComponent.vue'
     export default {
     	components: {
-			ImageUpload, UploadMany
+			ImageUpload, MultiImageUpload
 		},
     	data: function () {
     		return {
@@ -90,72 +94,56 @@
     	},
 
     	methods: {
-    		uploadCover() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
     			return promise;
     		},
 
-    		uploadImages() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('imageSaveMany', resolve, reject));
+    		multiUpload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('multi-upload', resolve, reject));
     			return promise;
     		},
 
     		async save() {
     			let vm = this;
+				let data = {
+					name: this.venue.name,
+					description: this.venue.description,
+					city_id: this.cityId,
+					address: this.venue.address,
+					capacity: this.venue.capacity,
+					price: this.venue.price,
+					capacity: this.venue.capacity
+				}
 
-    			let formData = new FormData();
-    			formData.append('_method', 'patch');
-				formData.append('name', this.venue.name);
-				formData.append('description', this.venue.description);
-				formData.append('city_id', this.cityId);
-				formData.append('address', this.venue.address);
-				formData.append('capacity', this.venue.capacity);
-				formData.append('price', this.venue.price);
-				formData.append('capacity', this.venue.capacity);
+				let images = await this.multiUpload();
 
-				let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
-    	// 		let data = {
-    	// 			_method: 'PUT',
-					// name: vm.venue.name,
-					// description: vm.venue.description,
-					// city_id: vm.cityId,
-					// address: vm.venue.address,
-					// capacity: vm.venue.capacity,
-					// price: vm.venue.price
-    	// 		}
+				if (images != null) {
+					data.images = images;
+				}
 
-    			let cover = await this.uploadCover();
-    			this.imageList = await this.uploadImages();
+				let cover = await this.upload();
 
-    			if (this.imageList) {
-    				formData.append('images', this.imageList)
-    				// data.images = this.imageList;
-    			}
-    			if (cover) {
-    				formData.append('cover', cover)
-    				// data.cover = this.cover;
-    			}
-    			if (this.detached) {
-    				data.detached = this.detached;
-    			}
+				if (cover) {
+					data.cover = cover;
+				}
 
+				if (this.detached) {
+					data.detached = this.detached;
+				}
 
-    			let route = '/dashboard/venues/' + this.$route.params.id;
+				let route = '/dashboard/venues/' + this.$route.params.id;
 
-    			axios.post(route, formData, config)
-	    			.then(function (response) {
-	    				vm.$message('Залата е добавена успешно.');
-	    				vm.$router.push('/venues');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			})
+    			axios.patch(route, data)
+    			.then(function (response) {
+    				vm.$message('Залата е редактирана успешно.');
+    				vm.$router.push('/venues');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		},
+
     		handleDetach(id) {
     			this.detached.push(id);
     		}

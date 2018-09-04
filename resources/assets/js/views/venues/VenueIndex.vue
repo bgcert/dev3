@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(venue, index) in venues">
 						<CardDashboard
-							:image="'/photos/ve/m/' + venue.cover"
+							:image="'/photos/' + venue.cover"
 							:title="venue.name"
 							:edit_link="'/venues/edit/' + venue.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
@@ -66,7 +66,6 @@
         	var vm = this;
             var route = '/dashboard/venues';
         	axios.get(route).then(function (response) {
-        		console.log(response.data);
         		vm.venues = response.data;
         		vm.loading = false;
 			})

@@ -12,13 +12,10 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<image-upload
-							:index="1"
-							:key="1"
+						<imageUpload
 							:imageUrl="'/img/default_cover.png'"
 							:route="'/dashboard/venue/cover/upload'">
-						</image-upload>
-						<!-- <ImageUpload :img="'/img/default_cover.png'"></ImageUpload> -->
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -53,14 +50,10 @@
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
-						<image-upload
-							v-for="image in extraImages"
-							:key="image + 1"
-							:index="image + 1"
+						<multi-image-upload
 							:imageUrl="'/img/default_cover.png'"
 							:route="'/dashboard/venue/image/upload'">
-						</image-upload>
-						<button class="ui basic button" @click.prevent="add">Добави изображение</button>
+						</multi-image-upload>
 					</el-form-item>
 
 					<el-form-item>
@@ -84,10 +77,10 @@
 <script>
 	import { EventBus } from '../../app';
 	import ImageUpload from '../../components/ImageUploadComponent.vue'
-	import UploadMany from '../../components/UploadManyComponent.vue'
+	import MultiImageUpload from '../../components/MultiImageUploadComponent.vue'
     export default {
     	components: {
-			ImageUpload, UploadMany
+			ImageUpload, MultiImageUpload
 		},
     	data: function () {
     		return {
@@ -99,73 +92,53 @@
 				address: '',
 				capacity: null,
 				price: null,
-				extraImages: 1,
-				imageList: []
+				imageList: [],
+				data: {}
     		}
     	},
 
     	methods: {
-    		add() {
-    			if (this.extraImages <= 11) {
-    				this.extraImages++;
-    			}
-    		},
-
     		upload() {
     			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
     			return promise;
     		},
 
-    		uploadCover() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
-    			return promise;
-    		},
-
-    		uploadImages() {
-    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    		multiUpload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('multi-upload', resolve, reject));
     			return promise;
     		},
 
     		async save() {
     			let vm = this;
-				let data = {
+				this.data = {
 					name: this.name,
 					description: this.description,
 					city_id: this.cityId,
 					address: this.address,
 					capacity: this.capacity,
 					price: this.price,
-					capacity: this.capacity
+					capacity: this.capacity,
+				}
+
+				let images = await this.multiUpload();
+				if (images.length > 0) {
+					this.data.images = images;
 				}
 
 				let cover = await this.upload();
-
-				let image;
-				let images = [];
-				for (var i = 1; i <= this.extraImages; i++) {
-					image = await this.upload();
-					images.push(image);
-
+				if (cover) {
+					this.data.cover = cover;
 				}
 
-    			if (images.length > 0) {
-    				data.images = images;
-    			}
-
-    			axios.post('/dashboard/venues', data)
+    			axios.post('/dashboard/venues', vm.data)
     			.then(function (response) {
-    				console.log('kjhkj');
     				vm.$message('Залата е добавена успешно.');
-    				// vm.$router.push('/venues');
+    				vm.$router.push('/venues');
     			})
     			.catch(function (error) {
     				console.log(error);
     			})
-    		},
-
-    		destroyed() {
-				EventBus.$off('upload');
-			}
+    		}
     	},
 
         mounted() {

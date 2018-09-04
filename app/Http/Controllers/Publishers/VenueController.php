@@ -38,17 +38,14 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-    	return $request->all();
     	$venue = \Auth::user()->company->venues()->create($request->except('images'));
 
-    	if ($request->cover) {
-    		$venue->cover = $request->cover;
-    		$venue->save();
-    	}
+    	// if (isset($request->cover)) {
+    	// 	$venue->cover = $request->cover;
+    	// 	$venue->save();
+    	// }
 
-    	// return $request->images;
-    	if ($request->images) {
-    		$images_array = explode(",", $request->images);
+    	if (isset($request->images)) {
 	    	$images = [];
 	    	foreach ($request->images as $filename) {
 	    		array_push($images, ['filename' => $filename]);
@@ -95,54 +92,29 @@ class VenueController extends Controller
 
     	$venue = \App\Venue::find($id);
 
-    	if ($request->cover) {
-    		// $filename = $this->saveVenueCover($request->cover, $venue->id);
-    		$venue->cover = $request->cover;
-    		$venue->save();
+    	if (isset($request->cover)) {
+    		$this->deleteImage($venue->cover);
     	}
 
-    	if ($request->images) {
-	    	$images_array = explode(",", $request->images);
+    	$venue->update($request->all());
+
+    	if (isset($request->images)) {
 	    	$images = [];
-	    	foreach ($images_array as $filename) {
+	    	foreach ($request->images as $filename) {
 	    		array_push($images, ['filename' => $filename]);
 	    	}
-
 	    	$venue->venue_images()->createMany($images);
     	}
 
     	if ($request->detached) {
         	foreach ($request->detached as $detached) {
-        		$venue->venue_images()->where('id', $detached)->delete();
+        		$image = $venue->venue_images()->where('id', $detached)->first();
+        		$this->deleteImage($image->filename);
+        		$image->delete();
         	}
         }
 
     	return $venue;
-
-
-
-
-    	// 
-        
-
-        $venue->update($request->all());
-
-        $images = [];
-
-        if ($request->images) {
-        	foreach ($request->images as $image) {
-    			array_push($images, ['filename' => $image]);
-	    	}
-	    	$venue->venue_images()->createMany($images);
-        }
-
-        if ($request->detached) {
-        	foreach ($request->detached as $detached) {
-        		$venue->venue_images()->where('id', $detached)->delete();
-        	}
-        }      
-
-        return $venue;
     }
 
     /**
@@ -153,7 +125,18 @@ class VenueController extends Controller
      */
     public function destroy($id)
     {
-        return \App\Venue::destroy($id);
+    	$venue = \App\Venue::find($id);
+
+    	$this->deleteImage($venue->cover);
+
+    	if (!empty($venue->venue_images)) {
+    		foreach ($venue->venue_images as $image) {
+    			$this->deleteImage($image->filename);
+    		}
+    	}
+    	
+    	$venue->delete();
+        return 'deleted';
     }
 
     public function saveVenueCover()
@@ -202,5 +185,18 @@ class VenueController extends Controller
     public function imageUpload()
     {
     	return $filename = $this->saveVenueImage(request()->file);
+    }
+
+    public function deleteImage($filename)
+    {
+    	$path = public_path() . '/photos/' . $filename;
+    	$original = public_path() . '/photos/original/' . $filename;
+    	if (file_exists($path)) {
+    		rename($path, $path . '.deleted');
+    	}
+
+    	if (file_exists($original)) {
+    		rename($original, $original . '.deleted');
+    	}
     }
 }
