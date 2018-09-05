@@ -140,6 +140,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Save teacher image from upload component
 	Route::post('/teacher/cover/upload', 'TeacherController@saveTeacherCover');
 
+	// Save company logo from upload component
+	Route::post('/company/logo/upload', 'DashboardController@saveCompanyLogo');
+
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');
 
