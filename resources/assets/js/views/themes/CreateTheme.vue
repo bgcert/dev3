@@ -20,7 +20,10 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<ImageUpload :img="'/img/default_cover.png'"></ImageUpload>
+						<imageUpload
+							:imageUrl="'/img/default_cover.png'"
+							:route="'/dashboard/theme/cover/upload'">
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
@@ -71,49 +74,81 @@
     				excerpt: '',
     				type: [],
     				duration: null
-    			}
+    			},
+    			data: {}
     		}
     	},
 
     	methods: {
-    		save() {
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+
+    		async save() {
     			let vm = this;
-    			let image;
 
-    			let formData = new FormData();
-				formData.append('title', this.form.title);
-				formData.append('body', this.form.body);
-				formData.append('excerpt', this.form.excerpt);
-				formData.append('duration', this.form.duration);
-				formData.append('category_id', this.form.category);
+				this.data = {
+					title: this.form.title,
+					body: this.form.body,
+					excerpt: this.form.excerpt,
+					duration: this.form.duration,
+					category_id: this.form.category,
+				}
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				let cover = await this.upload();
+				if (cover) {
+					this.data.cover = cover;
+				}
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+    			axios.post('/dashboard/themes', vm.data)
+    			.then(function (response) {
+    				vm.$message('Темата е добавена успешно.');
+    				vm.$router.push('/themes');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
+    		},
 
-				upload.then((data) => {
-					if (data) {
-						formData.append('file', data);	
-					}
+    // 		save() {
+    // 			let vm = this;
+    // 			let image;
+
+    // 			let formData = new FormData();
+				// formData.append('title', this.form.title);
+				// formData.append('body', this.form.body);
+				// formData.append('excerpt', this.form.excerpt);
+				// formData.append('duration', this.form.duration);
+				// formData.append('category_id', this.form.category);
+
+    // 			let config =
+				// 	{
+				// 		header : {
+				// 			'Content-Type' : 'multipart/form-data'
+				// 		}
+				// 	}
+
+    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				// upload.then((data) => {
+				// 	if (data) {
+				// 		formData.append('file', data);	
+				// 	}
 					
-					axios.post('/dashboard/themes', formData, config)
-	    			.then(function (response) {
-	    				vm.$message('Темата е добавена успешно.');
-	    				vm.$router.push('/themes');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
-    		}
+				// 	axios.post('/dashboard/themes', formData, config)
+	   //  			.then(function (response) {
+	   //  				vm.$message('Темата е добавена успешно.');
+	   //  				vm.$router.push('/themes');
+	   //  			})
+	   //  			.catch(function (error) {
+	   //  				console.log(error);
+	   //  			});
+				// }, (error) => {
+				// 	console.log('Promise rejected.');
+				// 	vm.$message('Невалидно изображение');
+				// });
+    // 		}
     	},
 
         mounted() {

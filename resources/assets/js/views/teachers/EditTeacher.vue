@@ -12,7 +12,10 @@
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<ImageUpload :img="'/photos/te/' + teacher.image"></ImageUpload>
+						<imageUpload
+							:imageUrl="'/photos/' + teacher.image"
+							:route="'/dashboard/teacher/cover/upload'">
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
@@ -51,45 +54,34 @@
     	},
 
     	methods: {
-    		save() {
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+    		
+    		async save() {
     			let vm = this;
-    			let image;
+				let data = {
+					name: this.teacher.name,
+					details: this.teacher.details,
+				}
 
-    			let formData = new FormData();
-    			// Needed for patch request with form data
-    			formData.append('_method', 'patch');
-    			formData.append('name', this.teacher.name);
-				formData.append('details', this.teacher.details);
+				let image = await this.upload();
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				if (image) {
+					data.image = image;
+				}
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+				let route = '/dashboard/teachers/' + this.$route.params.id;
 
-				upload.then((data) => {
-					// Append if file selected
-					if (data) {
-						formData.append('file', data);
-					}
-
-					let route = '/dashboard/teachers/' + this.$route.params.id;
-					axios.post(route, formData, config)
-		    			.then(function (response) {
-		    				console.log(response);
-		    				vm.$message('Данните са редактирани успешно.');
-		    				vm.$router.push('/teachers');
-		    			})
-		    			.catch(function (error) {
-		    				console.log(error);
-		    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
+    			axios.patch(route, data)
+    			.then(function (response) {
+    				vm.$message('Лекторът е редактиран успешно.');
+    				vm.$router.push('/teachers');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		}
     	},
 
@@ -110,5 +102,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

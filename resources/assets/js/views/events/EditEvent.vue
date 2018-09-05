@@ -14,7 +14,10 @@
 						</el-form-item>
 
 						<el-form-item label="Корица">
-							<ImageUpload :img="'photos/ev/m/' + event.cover"></ImageUpload>
+							<imageUpload
+								:imageUrl="'/photos/' + event.cover"
+								:route="'/dashboard/event/cover/upload'">
+							</imageUpload>
 						</el-form-item>
 
 						<el-form-item label="Лектори">
@@ -138,56 +141,46 @@
     			teachers: [],
     			cities: null,
     			selectedTeachers: [],
-    			// date: [],
     		}
     	},
 
     	methods: {
-    		save() {
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+    		
+    		async save() {
     			let vm = this;
-    			let image;
 
-    			let formData = new FormData();
-    			// Needed for patch request with form data
-    			formData.append('_method', 'patch');
+    			let data = {
+					theme_id: this.selectedTheme,
+					city_id: this.event.city_id,
+					address: this.event.address,
+					price: this.event.price,
+					teachers: this.selectedTeachers,
+					start_date: this.event.start_date,
+					end_date: this.event.end_date,
+					start_at: this.event.start_at,
+					end_at: this.event.end_at
+				}
 
-				formData.append('city_id', this.event.city_id);
-				formData.append('address', this.event.address);
-				formData.append('price', this.event.price);
-				formData.append('teachers', this.selectedTeachers);
-				formData.append('start_date', this.event.start_date);
-				formData.append('end_date', this.event.end_date);
-				formData.append('start_at', this.event.start_at);
-				formData.append('end_at', this.event.end_at);
+				let cover = await this.upload();
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				if (cover) {
+					data.cover = cover;
+				}
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+				let route = '/dashboard/events/' + this.$route.params.id;
 
-				upload.then((data) => {
-					// Append if file selected
-					if (data) {
-						formData.append('file', data);
-					}
-
-					let route = '/dashboard/events/' + this.$route.params.id;
-					axios.post(route, formData, config)
-	    			.then(function (response) {
-	    				vm.$message('Събитието е редактирано.');
-    					vm.$router.push('/events');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
+    			axios.patch(route, data)
+    			.then(function (response) {
+    				vm.$message('Събитиети е редактирано успешно.');
+    				vm.$router.push('/events');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		}
     	},
 

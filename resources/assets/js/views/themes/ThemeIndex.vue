@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(theme, index) in themes">
 						<CardDashboard
-							:image="'/photos/th/m/' + theme.cover"
+							:image="'/photos/' + theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази тема?'"

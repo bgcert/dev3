@@ -40,11 +40,6 @@ class VenueController extends Controller
     {
     	$venue = \Auth::user()->company->venues()->create($request->except('images'));
 
-    	// if (isset($request->cover)) {
-    	// 	$venue->cover = $request->cover;
-    	// 	$venue->save();
-    	// }
-
     	if (isset($request->images)) {
 	    	$images = [];
 	    	foreach ($request->images as $filename) {

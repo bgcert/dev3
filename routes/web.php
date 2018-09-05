@@ -13,11 +13,11 @@
 
 // Auth::login(\App\User::find(1));
 
-Route::get('/query', function () {
+// Route::get('/query', function () {
     
-	$items = Auth::user()->threads->where('id', 1)->first()->append('read');
-    return view('query', compact('items'));
-});
+// 	$items = Auth::user()->threads->where('id', 1)->first()->append('read');
+//     return view('query', compact('items'));
+// });
 
 Route::get('/home', function () {
     return 'hard to remove /home route';
@@ -26,8 +26,6 @@ Route::get('/home', function () {
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@home')->name('home');
 Route::view('/terms', 'terms');
-
-Route::view('/multiupload', 'multiupload');
 
 Route::get('/browse/{slug?}', 'PublicController@events');
 Route::get('/t', 'PublicController@themes');
@@ -128,10 +126,19 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Theme cover change
 	Route::post('/themes/set/cover', 'ThemeController@setCover');
 
-	// Save image from upload component
+	// Save venue images from upload and multi upload components
 	// Route::post('/image/save', 'DashboardController@saveImage');
 	Route::post('/venue/cover/upload', 'VenueController@saveVenueCover');
 	Route::post('/venue/image/upload', 'VenueController@saveVenueImage');
+
+	// Save theme image from upload component
+	Route::post('/theme/cover/upload', 'ThemeController@saveThemeCover');
+
+	// Save event image from upload component
+	Route::post('/event/cover/upload', 'EventController@saveEventCover');
+
+	// Save teacher image from upload component
+	Route::post('/teacher/cover/upload', 'TeacherController@saveTeacherCover');
 
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');

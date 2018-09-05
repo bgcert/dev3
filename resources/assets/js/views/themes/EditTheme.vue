@@ -20,7 +20,10 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<ImageUpload :img="'/photos/th/m/' + theme.cover"></ImageUpload>
+							<imageUpload
+								:imageUrl="'/photos/' + theme.cover"
+								:route="'/dashboard/theme/cover/upload'">
+							</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
@@ -60,6 +63,7 @@
     	components: {
 			ImageUpload
 		},
+
     	data: function () {
     		return {
     			show: false,
@@ -71,49 +75,82 @@
     	},
 
     	methods: {
-    		save() {
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+    		
+    		async save() {
     			let vm = this;
-    			let image;
+				let data = {
+					title: this.theme.title,
+					body: this.theme.body,
+					excerpt: this.theme.excerpt,
+					duration: this.theme.duration,
+					category_id: this.theme.category_id,
+				}
 
-    			let formData = new FormData();
-    			// Needed for patch request with form data
-    			formData.append('_method', 'patch');
-				formData.append('title', this.theme.title);
-				formData.append('body', this.theme.body);
-				formData.append('excerpt', this.theme.excerpt);
-				formData.append('duration', this.theme.duration);
-				formData.append('category_id', this.theme.category_id);
+				let cover = await this.upload();
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				if (cover) {
+					data.cover = cover;
+				}
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+				let route = '/dashboard/themes/' + this.$route.params.id;
 
-				upload.then((data) => {
-					// Append if file selected
-					if (data) {
-						formData.append('file', data);
-					}
-
-					let route = '/dashboard/themes/' + this.$route.params.id;
-					axios.post(route, formData)
-	    			.then(function (response) {
-	    				console.log(response);
-	    				vm.$message('Темата е редактирана успешно.');
-	    				vm.$router.push('/themes');
-	    			})
-	    			.catch(function (error) {
-	    				console.log(error);
-	    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
+    			axios.patch(route, data)
+    			.then(function (response) {
+    				vm.$message('Темата е редактирана успешно.');
+    				vm.$router.push('/themes');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		}
+
+    // 		save() {
+    // 			let vm = this;
+    // 			let image;
+
+    // 			let formData = new FormData();
+    // 			// Needed for patch request with form data
+    // 			formData.append('_method', 'patch');
+				// formData.append('title', this.theme.title);
+				// formData.append('body', this.theme.body);
+				// formData.append('excerpt', this.theme.excerpt);
+				// formData.append('duration', this.theme.duration);
+				// formData.append('category_id', this.theme.category_id);
+
+    // 			let config =
+				// 	{
+				// 		header : {
+				// 			'Content-Type' : 'multipart/form-data'
+				// 		}
+				// 	}
+
+    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				// upload.then((data) => {
+				// 	// Append if file selected
+				// 	if (data) {
+				// 		formData.append('file', data);
+				// 	}
+
+				// 	let route = '/dashboard/themes/' + this.$route.params.id;
+				// 	axios.post(route, formData)
+	   //  			.then(function (response) {
+	   //  				console.log(response);
+	   //  				vm.$message('Темата е редактирана успешно.');
+	   //  				vm.$router.push('/themes');
+	   //  			})
+	   //  			.catch(function (error) {
+	   //  				console.log(error);
+	   //  			});
+				// }, (error) => {
+				// 	console.log('Promise rejected.');
+				// 	vm.$message('Невалидно изображение');
+				// });
+    // 		}
     	},
 
         mounted() {

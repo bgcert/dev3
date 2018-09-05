@@ -12,11 +12,10 @@
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<ImageUpload
-							:img="'/img/default_user.png'"
-							:canvasWidth="200"
-							:canvasHeight="200">
-						</ImageUpload>
+						<imageUpload
+							:imageUrl="'/img/default_cover.png'"
+							:route="'/dashboard/teacher/cover/upload'">
+						</imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
@@ -53,55 +52,76 @@
     			form: {
     				name: '',
     				details: '',
-    				region: '',
-    				date1: '',
-    				date2: '',
-    				delivery: false,
-    				type: [],
-    				resource: '',
-    				cover: 'https://picsum.photos/800/400/?image=293'
     			}
     		}
     	},
 
     	methods: {
-    		save() {
+    		upload() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
+    			return promise;
+    		},
+
+    		async save() {
     			let vm = this;
-    			let image;
 
-    			let formData = new FormData();
-    			// Needed for patch request with form data
-    			formData.append('name', this.form.name);
-				formData.append('details', this.form.details);
+				let data = {
+					name: this.form.name,
+					details: this.form.details,
+				}
 
-    			let config =
-					{
-						header : {
-							'Content-Type' : 'multipart/form-data'
-						}
-					}
+				let image = await this.upload();
+				if (image) {
+					data.image = image;
+				}
 
-    			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				upload.then((data) => {
-					// Append if file selected
-					if (data) {
-						formData.append('file', data);
-					}
-
-					axios.post('/dashboard/teachers', formData, config)
-		    			.then(function (response) {
-		    				vm.$message('Лекторът е добавен.');
-    						vm.$router.push('/teachers');
-		    			})
-		    			.catch(function (error) {
-		    				console.log(error);
-		    			});
-				}, (error) => {
-					console.log('Promise rejected.');
-					vm.$message('Невалидно изображение');
-				});
+    			axios.post('/dashboard/teachers', data)
+    			.then(function (response) {
+    				vm.$message('Лекторът е добавен успешно.');
+    				vm.$router.push('/teachers');
+    			})
+    			.catch(function (error) {
+    				console.log(error);
+    			})
     		}
+
+    // 		save() {
+    // 			let vm = this;
+    // 			let image;
+
+    // 			let formData = new FormData();
+    // 			// Needed for patch request with form data
+    // 			formData.append('name', this.form.name);
+				// formData.append('details', this.form.details);
+
+    // 			let config =
+				// 	{
+				// 		header : {
+				// 			'Content-Type' : 'multipart/form-data'
+				// 		}
+				// 	}
+
+    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
+
+				// upload.then((data) => {
+				// 	// Append if file selected
+				// 	if (data) {
+				// 		formData.append('file', data);
+				// 	}
+
+				// 	axios.post('/dashboard/teachers', formData, config)
+		  //   			.then(function (response) {
+		  //   				vm.$message('Лекторът е добавен.');
+    // 						vm.$router.push('/teachers');
+		  //   			})
+		  //   			.catch(function (error) {
+		  //   				console.log(error);
+		  //   			});
+				// }, (error) => {
+				// 	console.log('Promise rejected.');
+				// 	vm.$message('Невалидно изображение');
+				// });
+    // 		}
     	},
 
         mounted() {
