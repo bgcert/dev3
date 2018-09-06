@@ -108,7 +108,7 @@ class ThemeController extends Controller
     	$image = Image::make($file);
 
     	// Save original file
-    	$this->save($image, $filename, '/original/');
+    	$this->save($image, $filename, 'original');
 
     	// Resize to m size
     	$this->resize($image, 300, 160);
