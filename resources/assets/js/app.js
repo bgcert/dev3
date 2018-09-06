@@ -38,6 +38,7 @@ const store = new Vuex.Store(StoreData);
 
 Vue.use(ElementUI);
 
+Vue.prototype.$storagePath = '/storage/photos/';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -80,7 +81,6 @@ Vue.component('messanger', require('./components/MessangerComponent.vue'));
 
 const app = new Vue({
     el: '#app',
-
     router,
     store
 });

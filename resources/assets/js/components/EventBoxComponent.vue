@@ -1,8 +1,8 @@
 <template>
 	<div class="ui card" v-popover:popover>
-		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${'/photos/ev/m/' + item.cover})`">
+		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${ $storagePath + item.cover })`">
 			<a class="owner" :href="/c/ + item.theme.company.slug">
-				<div class="logo" :style="'background-image: url(' + item.theme.company.logo + ')'"></div>
+				<div class="logo" :style="'background-image: url(' + $storagePath + item.theme.company.logo + ')'"></div>
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
@@ -41,7 +41,7 @@
 			width="300"
 			:open-delay="800"
 			trigger="hover">
-				<img  class="p_logo" :src="item.theme.company.logo">
+				<img  class="p_logo" :src="$storagePath + item.theme.company.logo">
 				<h3>{{ item.theme.title }}</h3>
 				<a class="ui primary button" :href="'/event/' + item.id">Допълнителна информация</a>
 				<div class="ui divider"></div>

@@ -17,6 +17,7 @@
 				<el-input
 					@focus="login"
 					type="textarea"
+					autosize
 					placeholder="Добавете коментар ...">
 				</el-input>
 				<a href="#" class="ui small right floated basic button" @click.prevent="login">

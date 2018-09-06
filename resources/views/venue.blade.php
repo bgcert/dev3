@@ -62,8 +62,7 @@
 				    		auth="{{ Auth::check() }}"
 				    		type="venue"
 					    	id="{{ $venue->id }}"
-					    	user_id="{{ auth()->id() }}"
-					    	>
+					    	user_id="{{ auth()->id() }}">
 					    </comments>
 				    </div>
 				</div>
@@ -72,7 +71,7 @@
 				<div class="ui segment">
 					<div class="flex">
 						<div class="logo">
-							<a href="/c/{{ $venue->company->slug }}"><img class="ui tiny rounded image" src="{{ $venue->company->logo }}"></a>
+							<a href="/c/{{ $venue->company->slug }}"><img class="ui tiny rounded image" src="{{ config('app.photo_storage') . $venue->company->logo }}"></a>
 						</div>
 						<div class="company-details">
 							<h3>{{ $venue->company->name }}</h3>

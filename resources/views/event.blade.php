@@ -26,7 +26,7 @@
 @endpush
 
 @section('content')
-<div class="cover" style="background-image: url({{ '/photos/ev/l/' . $event->cover }});">
+<div class="cover" style="background-image: url({{ '/photos/' . $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">
@@ -51,7 +51,7 @@
 						<div class="flex">
 							<div class="logo">
 								<a href="/c/{{ $event->theme->company->slug }}">
-									<img class="ui tiny rounded image" src="{{ $event->theme->company->logo }}">
+									<img class="ui tiny image" src="/photos/{{ $event->theme->company->logo }}">
 								</a>
 							</div>
 							<div class="company-details">
@@ -149,7 +149,7 @@
 			    </h3>
 			    @foreach($event->teachers as $teacher)
 				    <h3 class="ui header">
-				    	<img src="/photos/te/{{ $teacher->image }}" class="ui circular image">
+				    	<img src="/photos/{{ $teacher->image }}" class="ui circular image">
 				    	{{ $teacher->name }}
 				    </h3>
 				    <p>{{ $teacher->details }}</p>

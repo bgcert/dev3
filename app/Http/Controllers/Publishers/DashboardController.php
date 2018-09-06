@@ -25,24 +25,17 @@ class DashboardController extends Controller
     public function saveCompany()
     {
     	$company = \App\Company::where('user_id', \Auth::id())->first();
-    	// $data = request()->all();
-    	// if (request()->file) {
-    	// 	$name = $this->saveImage(request()->file);
-    	// 	$data['logo'] = $name;
-    	// }
-
     	$company->update(request()->all());
-    	
     	return $company;
     }
 
-    public function upload()
-    {
-    	if (request()->file) {
-    		$filename = $this->saveVenueImage(request()->file);
-    	}
-    	return $filename;
-    }
+    // public function upload()
+    // {
+    // 	if (request()->file) {
+    // 		$filename = $this->saveVenueImage(request()->file);
+    // 	}
+    // 	return $filename;
+    // }
 
     public function saveCompanyLogo()
     {

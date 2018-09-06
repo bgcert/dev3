@@ -4,12 +4,10 @@
 			<div class="row">
 
 				<div class="column">
-					<div class="cover-container" :style="'background: url(' + company.cover + ') center / cover no-repeat;'">
+					<div class="cover-container" :style="'background: url('+ $storagePath + company.cover + ') center / cover no-repeat;'">
 						<div class="overlay">
 							<div class="data-container">
-								<div class="logo-container">
-									<img class="company-logo" :src="company.logo">
-								</div>
+								<div class="logo-container" :style="'background: url('+ $storagePath + company.logo + ');'"></div>
 								<div class="company-name">
 									<h2>{{ company.name }}</h2>
 								</div>
@@ -39,7 +37,7 @@
 								<template v-for="theme in company.themes">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="theme.cover">
+											<img :src="$storagePath + theme.cover">
 										</div>
 										<div class="content">
 											<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
@@ -62,7 +60,7 @@
 								<template v-for="event in company.events">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="event.cover">
+											<img :src="$storagePath + event.cover">
 										</div>
 										<div class="content">
 											<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
@@ -85,7 +83,7 @@
 								<template v-for="venue in company.venues">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="venue.cover">
+											<img :src="$storagePath + venue.cover">
 										</div>
 										<div class="content">
 											<a :href="'/venue/' + venue.id" class="header">{{ venue.name }}</a>
@@ -186,7 +184,6 @@
 			let route = '/api/company/details/' + this.slug;
 			axios.get(route).then(function (response) {
         		vm.company = response.data;
-				// console.log(response.data);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -199,8 +196,23 @@
 
 	.data-container { padding: 30px; height: 260px; }
 
-	.logo-container { display: inline-block; float: left; margin-right: 30px; }
-	.logo-container img { border: 2px solid white; }
+	.logo-container {
+		background-size: cover !important;
+    	background-position: center center !important;
+    	border-radius: 50%;
+		display: inline-block;
+		float: left;
+		margin-right: 30px;
+		border: 2px solid white;
+		width: 200px;
+		height: 200px;
+	}
+	.logo-container img {
+		border: 2px solid white;
+		
+		/*width: 200px;
+		height: 200px;*/
+	}
 
 	.company-logo { border-radius: 50%; height: 200px; }
 
