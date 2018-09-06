@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "seminari365-189510",
+  "private_key_id": "a18be8a8eb30d1e4b56aee0c6fa87fa0f4917b77",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0EoulBrqU2Uyo\nFuCkZRPxoIhWCqvaIeJai9W5edYv0OzH1QLT+p1cOT/AR0QBkPaRXTLxRDdcS3Y+\nZDrtDuasX1v+WDPKM+WEBGtQB7EMzYuuV+hiRXkXW0hTWvASVIjKpBfW/l2rGnIp\n52q/c59E/37p1JN6Z+iavel0EkmEgWITr6M+zfH4bwUwwaacW8v/j11QNroVQYul\n43sANJ33yIPzN/hr7KBvRF8av5f9SkORc4NT8GJ1efRz2ZteSBVKaF3JAEgIxEwS\nnDoNBkvyXOwXMGKb0knWsD/58HQ6EG9ymRRRiutKodG1A/IITe7WQe/qVr29PYbv\nSkEOmAolAgMBAAECggEAI/359f4CkKpfUVCjTZCbfCYRYhtHbrXrm5wMF8LDvjJ1\nBVss8chLqCmUNb8411RNiFAX1NQE+bhmlcFsasIZ9rWnuk6QaXfWhfzpIymqaIv0\nAaC2BOBse+/lpK2OQyes4M4MKs+UUtUaIQiNlF9MpBqqWBwCb0qyGi3f6fCWy7pG\n8p/Fhg/HPZZUQ+7VxT5OVGKJ3pHykyqo92El2zx4eSdeCW+h5+D/8FYo1P7rWUiz\ng8kDLQPapOOJOqAkGjnBNns6l67V++5Zc10d9sCEQZzq3M4fZHZdE/cJ+bo8QWnA\nIKSYPxXAsOrCMDwjAFV8CcX5vyIk0PLlKCp48RgG2QKBgQD39+lXZEkP0TtCpUKA\nufRgDVYb24P9d22IcSHeP0GWjqWu2Nln9KvvmaHXsm0cBVZSqx+yhBTdmlz/702d\nG6HMGxs+tkiDadMiLh4dxs7+TUFDKWDHyFtCZkTvAkM6LdKoujhv77atZFfPvDe7\nXPecwTOdVy0JqUZocY76JU3ZyQKBgQC556ibgTiCCHMi32SsQaBTKqvt/XHikmaQ\nS/dlLOYn3U2qzQi1rPlBJ1y6Oe/Gaz8X0zB1REFxYuAifCBV52zV0nU/LyUKQKtb\npSbv2bkOABPqmWUSS9cwqy2a7tRMcxs35rv6nhIZn87Q0PKmdNduBNq89yNGVPYn\nkBW66vibfQKBgQCXErtfOwIoWNk56WVy99gjDP0BS+RGcJSTJBn2RaO4DoBy3jrW\nUwLNn1QzDcnb4ISPKSLOqBnuSTWP2EP5C/SvXXRj6LqVFcxEbsR6b718waSZPoRw\nM2kmMxicZUyADZrioVHxIKKzUQcO0SVDSYiyQCMqIQqXcEItL8JkNIYRwQKBgA0W\nmDJKiLXu7lw4KhhOjoEMcgpRW6E9+WaTUpmW7aVE2WD7Cm/v+6RwpwCdb5oiltCQ\nl8rJwWnAMlN7NbOWlX0AUizentb38piDKhic1YB81OohXpJJMJ9GjfFoex3exL3M\nytM8Kb4QGDlvXIYHl9sxEE1ZgOxEswfaBw2f2VzpAoGAKJOyR4QfwXLYPz//xmQ3\ne8S/mxlv7I33m9NNzYv2cjwL4PBRJW1lndeIl40CZ9fWOcEAX5bm7F3ZgnFPeqK6\n4ZKP52ob/79ADwvERoje1rhfOsiAFnyjcXg/UsJ49yaqVUU+wUteGENcTWuK3IWZ\n0g1C/cs43EjsDkq2r71eKts=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloud-bucket@seminari365-189510.iam.gserviceaccount.com",
+  "client_id": "110404332122334187664",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-bucket%40seminari365-189510.iam.gserviceaccount.com"
+}
