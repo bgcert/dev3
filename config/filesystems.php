@@ -67,8 +67,10 @@ return [
         'gcs' => [
 		    'driver' => 'gcs',
 		    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'seminari365-189510'),
-		    'key_file' => base_path('seminari365-244de891a1f1.json'), //env('GOOGLE_CLOUD_KEY_FILE', '/public/key.json'), 
-		    'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'seminari365-main-storage'),
+		    'key_file' => base_path('seminari365-6b0eb9c5ecfd.json'), //env('GOOGLE_CLOUD_KEY_FILE', '/public/key.json'), 
+		    'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'seminari365-image-store'),
+		    // 'base_url' => env('GCS_BASE_URL','your-base-url'),
+		    // 'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', 'http://storage.googleapis.com') // see: Public URLs below
 		],
 
     ],

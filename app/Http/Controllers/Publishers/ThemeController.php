@@ -101,9 +101,8 @@ class ThemeController extends Controller
     public function saveThemeCover()
     {
     	$file = request()->file;
-    	// $uploaded = \CloudImage::upload($file);
-    	$uploaded = \CloudImage::upload($file, 'photos/test.jpg');
-    	return $uploaded->url;
+    	$uploaded = \CloudImage::upload($file);
+    	return $uploaded->path;
 
     	$prefix = 't_c' . \Auth::user()->company->id . '_';
     	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
