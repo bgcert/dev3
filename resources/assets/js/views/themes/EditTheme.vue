@@ -21,7 +21,7 @@
 
 					<el-form-item label="Корица">
 							<imageUpload
-								:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + theme.cover">
+								:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover">
 							</imageUpload>
 					</el-form-item>
 

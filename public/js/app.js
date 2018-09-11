@@ -56271,7 +56271,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
                         theme.cover,
                       title: theme.title,
                       edit_link: "/themes/edit/" + theme.id,
@@ -57097,7 +57097,7 @@ var render = function() {
                       _c("imageUpload", {
                         attrs: {
                           imageUrl:
-                            "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                            "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
                             _vm.theme.cover
                         }
                       })
@@ -57410,7 +57410,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
                         teacher.image,
                       title: teacher.name,
                       edit_link: "/teachers/edit/" + teacher.id,
@@ -58023,7 +58023,7 @@ var render = function() {
                       _c("imageUpload", {
                         attrs: {
                           imageUrl:
-                            "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                            "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
                             _vm.teacher.image
                         }
                       })
@@ -110922,7 +110922,7 @@ var render = function() {
           staticClass: "image image_container",
           style:
             "background: url(" +
-            ("https://d3cwccg7mi8onu.cloudfront.net/fit-in/266x132/" +
+            ("https://d3cwccg7mi8onu.cloudfront.net/266x132/" +
               _vm.item.cover) +
             ")",
           attrs: { href: "/event/" + _vm.item.id }
@@ -110938,7 +110938,7 @@ var render = function() {
               _c("div", {
                 staticClass: "logo",
                 style:
-                  "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/" +
+                  "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/50x50/" +
                   _vm.item.theme.company.logo +
                   ")"
               })
@@ -111781,7 +111781,11 @@ var render = function() {
         "a",
         {
           staticClass: "image image_container",
-          style: "background: url(" + (_vm.$storagePath + _vm.item.cover) + ")",
+          style:
+            "background: url(" +
+            ("https://d3cwccg7mi8onu.cloudfront.net/266x132/" +
+              _vm.item.cover) +
+            ")",
           attrs: { href: "/venue/" + _vm.item.id }
         },
         [
@@ -112286,7 +112290,7 @@ var render = function() {
             _c("div", {
               staticClass: "img-container",
               style:
-                "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/1200x400/" +
+                "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/1200x400/" +
                 image.filename +
                 ")"
             }),

@@ -1,8 +1,8 @@
 <template>
 	<div class="ui card" v-popover:popover>
-		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${ 'https://d3cwccg7mi8onu.cloudfront.net/fit-in/266x132/' + item.cover })`">
+		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${ 'https://d3cwccg7mi8onu.cloudfront.net/266x132/' + item.cover })`">
 			<a class="owner" :href="/c/ + item.theme.company.slug">
-				<div class="logo" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/' + item.theme.company.logo + ')'"></div>
+				<div class="logo" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/50x50/' + item.theme.company.logo + ')'"></div>
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
