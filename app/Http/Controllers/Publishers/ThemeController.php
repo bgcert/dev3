@@ -101,28 +101,30 @@ class ThemeController extends Controller
     public function saveThemeCover()
     {
     	$file = request()->file;
-    	$uploaded = \CloudImage::upload($file);
-    	return $uploaded->path;
+    	return \Storage::disk('s3')->put('/', $file);
 
-    	$prefix = 't_c' . \Auth::user()->company->id . '_';
-    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
+    	// $uploaded = \CloudImage::upload($file);
+    	// return $uploaded->path;
 
-    	// Make image from file
-    	$image = Image::make($file);
+    	// $prefix = 't_c' . \Auth::user()->company->id . '_';
+    	// $filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
 
-    	// Save original file
-    	$this->save($image, $filename, 'original/');
+    	// // Make image from file
+    	// $image = Image::make($file);
 
-    	// Resize to m size
-    	$this->resize($image, 300, 160);
-    	$this->save($image, $filename);
+    	// // Save original file
+    	// $this->save($image, $filename, 'original/');
 
-    	// New image instance. Old one is already resized. Wtf?
-    	$image = Image::make($file);
-    	// Resize to l size
-    	$this->resize($image, 1200, 400);
-    	$this->save($image, $filename);
+    	// // Resize to m size
+    	// $this->resize($image, 300, 160);
+    	// $this->save($image, $filename);
 
-    	return $filename;
+    	// // New image instance. Old one is already resized. Wtf?
+    	// $image = Image::make($file);
+    	// // Resize to l size
+    	// $this->resize($image, 1200, 400);
+    	// $this->save($image, $filename);
+
+    	// return $filename;
     }
 }

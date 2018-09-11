@@ -61,4 +61,10 @@ class DashboardController extends Controller
 
     	return $filename;
     }
+
+    public function saveImage()
+    {
+    	$file = request()->file;
+    	return \Storage::disk('s3')->put('/', $file);
+    }
 }

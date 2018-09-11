@@ -12,6 +12,7 @@
         "jrean/laravel-user-verification": "dev-master",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "makeabledk/laravel-cloud-images": "^0.6.0",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-activitylog": "^2.5"

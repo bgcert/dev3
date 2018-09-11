@@ -56270,7 +56270,8 @@ var render = function() {
                 return [
                   _c("CardDashboard", {
                     attrs: {
-                      image: "/photos/" + theme.cover,
+                      image:
+                        "image-store.seminari365.com/250x150/" + theme.cover,
                       title: theme.title,
                       edit_link: "/themes/edit/" + theme.id,
                       confirmMessage:

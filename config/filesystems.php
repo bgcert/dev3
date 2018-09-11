@@ -61,17 +61,17 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-        ],
+            // 'url' => env('AWS_URL'),
+        ]
 
-        'gcs' => [
-		    'driver' => 'gcs',
-		    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'fifth-glazing-215809'),
-		    'key_file' => base_path('238c40786509.json'), //env('GOOGLE_CLOUD_KEY_FILE', '/public/key.json'), 
-		    'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 's365-test-bucket'),
-		    // 'base_url' => env('GCS_BASE_URL','your-base-url'),
-		    // 'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', 'http://storage.googleapis.com') // see: Public URLs below
-		],
+  //       'gcs' => [
+		//     'driver' => 'gcs',
+		//     'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'fifth-glazing-215809'),
+		//     'key_file' => base_path('238c40786509.json'), //env('GOOGLE_CLOUD_KEY_FILE', '/public/key.json'), 
+		//     'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 's365-test-bucket'),
+		//     // 'base_url' => env('GCS_BASE_URL','your-base-url'),
+		//     // 'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', 'http://storage.googleapis.com') // see: Public URLs below
+		// ],
 
     ],
 
