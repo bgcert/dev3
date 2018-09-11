@@ -13,8 +13,7 @@
 
 					<el-form-item label="Снимка">
 						<imageUpload
-							:imageUrl="'/img/default_cover.png'"
-							:route="'/dashboard/teacher/cover/upload'">
+							:imageUrl="'/img/default_cover.png'">
 						</imageUpload>
 					</el-form-item>
 

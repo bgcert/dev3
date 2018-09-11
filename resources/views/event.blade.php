@@ -26,7 +26,7 @@
 @endpush
 
 @section('content')
-<div class="cover" style="background-image: url({{ 'https://image-store.seminari365.com/600x600/' . $event->cover }});">
+<div class="cover" style="background-image: url({{ 'http://image-store.seminari365.com/2000x400/' . $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">
@@ -51,7 +51,7 @@
 						<div class="flex">
 							<div class="logo">
 								<a href="/c/{{ $event->theme->company->slug }}">
-									<img class="ui tiny image" src="/photos/{{ $event->theme->company->logo }}">
+									<img class="ui tiny image" src="http://image-store.seminari365.com/100x100/{{ $event->theme->company->logo }}">
 								</a>
 							</div>
 							<div class="company-details">

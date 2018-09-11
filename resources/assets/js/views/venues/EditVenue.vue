@@ -12,8 +12,7 @@
 					</el-form-item>
 					<el-form-item label="Основна снимка">
 						<imageUpload
-							:imageUrl="'/photos/' + venue.cover"
-							:route="'/dashboard/venue/cover/upload'">
+							:imageUrl="'http://image-store.seminari365.com/250x150/' + venue.cover">
 						</imageUpload>
 					</el-form-item>
 
@@ -51,7 +50,6 @@
 					<el-form-item label="Допълнителни снимки">
 						<multi-image-upload
 							:existingImages="venue.venue_images"
-							:route="'/dashboard/venue/image/upload'"
 							@detachClick="handleDetach">
 						</multi-image-upload>
 					</el-form-item>

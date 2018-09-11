@@ -102,8 +102,7 @@
 				<h3 class="ui dividing header">Популярни обучения</h3>
 				<related-feed
 					auth="{{ auth()->check() }}"
-					company_id="{{ $venue->company->id }}"
-					>
+					company_id="{{ $venue->company->id }}">
 				</related-feed>
 			</div>
 		</div>

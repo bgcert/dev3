@@ -55460,7 +55460,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.single-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-position: center center;\n\theight: 200px;\n\twidth: 300px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.single-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-position: center center;\n\twidth: 250px;\n\theight: 150px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -57548,7 +57548,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 
 
@@ -57705,10 +57704,7 @@ var render = function() {
                 { attrs: { label: "Снимка" } },
                 [
                   _c("imageUpload", {
-                    attrs: {
-                      imageUrl: "/img/default_cover.png",
-                      route: "/dashboard/teacher/cover/upload"
-                    }
+                    attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
                 1
@@ -59994,8 +59990,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 
 
@@ -60141,7 +60135,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.multi-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-position: center center;\n\theight: 200px;\n\twidth: 300px;\n}\n.multi-image {\n\tmargin-top: 20px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.multi-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-position: center center;\n\twidth: 250px;\n\theight: 150px;\n}\n.multi-image {\n\tmargin-top: 20px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -60181,7 +60175,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['route', 'existingImages'],
+    props: ['existingImages'],
 
     data: function data() {
         return {
@@ -60277,7 +60271,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 };
                 var formData = new FormData();
                 formData.append('file', vm.images[i].file);
-                axios.post(vm.route, formData, {
+                axios.post('dashboard/image/upload', formData, {
                     onUploadProgress: function onUploadProgress(progressEvent) {
                         vm.images[i].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
                     }
@@ -60327,7 +60321,10 @@ var render = function() {
           {
             key: index,
             staticClass: "multi-image existing",
-            style: "background-image: url(/photos/" + item.filename + ");"
+            style:
+              "background-image: url(http://image-store.seminari365.com/250x150/" +
+              item.filename +
+              ");"
           },
           [
             _c(
@@ -60465,10 +60462,7 @@ var render = function() {
                     { attrs: { label: "Основна снимка" } },
                     [
                       _c("imageUpload", {
-                        attrs: {
-                          imageUrl: "/img/default_cover.png",
-                          route: "/dashboard/venue/cover/upload"
-                        }
+                        attrs: { imageUrl: "/img/default_cover.png" }
                       })
                     ],
                     1
@@ -60591,10 +60585,7 @@ var render = function() {
                     { attrs: { label: "Допълнителни снимки" } },
                     [
                       _c("multi-image-upload", {
-                        attrs: {
-                          imageUrl: "/img/default_cover.png",
-                          route: "/dashboard/venue/image/upload"
-                        }
+                        attrs: { imageUrl: "/img/default_cover.png" }
                       })
                     ],
                     1
@@ -60732,8 +60723,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -60973,8 +60962,9 @@ var render = function() {
                     [
                       _c("imageUpload", {
                         attrs: {
-                          imageUrl: "/photos/" + _vm.venue.cover,
-                          route: "/dashboard/venue/cover/upload"
+                          imageUrl:
+                            "http://image-store.seminari365.com/250x150/" +
+                            _vm.venue.cover
                         }
                       })
                     ],
@@ -61098,10 +61088,7 @@ var render = function() {
                     { attrs: { label: "Допълнителни снимки" } },
                     [
                       _c("multi-image-upload", {
-                        attrs: {
-                          existingImages: _vm.venue.venue_images,
-                          route: "/dashboard/venue/image/upload"
-                        },
+                        attrs: { existingImages: _vm.venue.venue_images },
                         on: { detachClick: _vm.handleDetach }
                       })
                     ],
@@ -112293,8 +112280,7 @@ var render = function() {
             _c("div", {
               staticClass: "img-container",
               style:
-                "background-image: url(" +
-                _vm.$storagePath +
+                "background-image: url(http://image-store.seminari365.com/1200x400/" +
                 image.filename +
                 ")"
             }),

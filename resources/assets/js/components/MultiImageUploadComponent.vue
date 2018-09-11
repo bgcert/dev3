@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="multi-image existing" :style="'background-image: url(/photos/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
+		<div class="multi-image existing" :style="'background-image: url(http://image-store.seminari365.com/250x150/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
 			<button class="ui button" @click.prevent="detach(index, item.id)"> Премахни</button>
 		</div>
 
@@ -20,7 +20,7 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['route', 'existingImages'],
+    	props: ['existingImages'],
 
     	data: function () {
     		return {
@@ -83,7 +83,7 @@
 					    			}
 					let formData = new FormData();
 					formData.append('file', vm.images[i].file);
-	    			axios.post(vm.route, formData, {
+	    			axios.post('dashboard/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
 	    					vm.images[i].progress = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}
@@ -124,8 +124,8 @@
 		position: relative;
 		background-size: cover;
 		background-position: center center;
-		height: 200px;
-		width: 300px;
+		width: 250px;
+		height: 150px;
 	}
 
 	.multi-image {
@@ -139,14 +139,6 @@
 	}
 
 	.add-image { margin-top: 20px !important; }
-
-	.images {
-		padding: 7px;
-		background-size: cover;
-		position: relative;
-		width: 357px;
-		height: 178px;
-	}
 
 	.progress {
 		position: absolute !important;

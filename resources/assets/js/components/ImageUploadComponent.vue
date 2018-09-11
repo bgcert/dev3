@@ -77,8 +77,8 @@
 		position: relative;
 		background-size: cover;
 		background-position: center center;
-		height: 200px;
-		width: 300px;
+		width: 250px;
+		height: 150px;
 	}
 
 	.multi-image .delete-button {

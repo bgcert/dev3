@@ -2,7 +2,7 @@
 	<div>
 		<el-carousel height="380px" :autoplay="false" arrow="always">
 			<el-carousel-item v-for="image in images" :key="image.id">
-				<div class="img-container" :style="'background-image: url('+ $storagePath + image.filename + ')'">
+				<div class="img-container" :style="'background-image: url(http://image-store.seminari365.com/1200x400/' + image.filename + ')'">
 					
 				</div>
 				<img :src="image.filename">

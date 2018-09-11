@@ -13,8 +13,7 @@
 
 					<el-form-item label="Основна снимка">
 						<imageUpload
-							:imageUrl="'/img/default_cover.png'"
-							:route="'/dashboard/venue/cover/upload'">
+							:imageUrl="'/img/default_cover.png'">
 						</imageUpload>
 					</el-form-item>
 
@@ -51,8 +50,7 @@
 
 					<el-form-item label="Допълнителни снимки">
 						<multi-image-upload
-							:imageUrl="'/img/default_cover.png'"
-							:route="'/dashboard/venue/image/upload'">
+							:imageUrl="'/img/default_cover.png'">
 						</multi-image-upload>
 					</el-form-item>
 
