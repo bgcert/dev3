@@ -56271,7 +56271,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://image-store.seminari365.com/250x150/" +
+                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
                         theme.cover,
                       title: theme.title,
                       edit_link: "/themes/edit/" + theme.id,
@@ -57410,7 +57410,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://image-store.seminari365.com/250x150/" +
+                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
                         teacher.image,
                       title: teacher.name,
                       edit_link: "/teachers/edit/" + teacher.id,
@@ -58304,7 +58304,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://image-store.seminari365.com/250x150/" +
+                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
                         event.cover,
                       date: event.begin_at,
                       title: event.theme.title,
@@ -59814,7 +59814,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://image-store.seminari365.com/250x150/" +
+                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
                         venue.cover,
                       title: venue.name,
                       edit_link: "/venues/edit/" + venue.id,
@@ -112280,7 +112280,7 @@ var render = function() {
             _c("div", {
               staticClass: "img-container",
               style:
-                "background-image: url(http://image-store.seminari365.com/1200x400/" +
+                "background-image: url(http://res.cloudinary.com/dysfpnppg/image/upload/w_1200,h_400,c_fill/" +
                 image.filename +
                 ")"
             }),

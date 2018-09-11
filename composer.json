@@ -10,6 +10,7 @@
         "intervention/image": "^2.4",
         "jenssegers/date": "^3.4",
         "jrean/laravel-user-verification": "dev-master",
+        "jrm2k6/cloudder": "^0.6.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",

@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(venue, index) in venues">
 						<CardDashboard
-							:image="'http://image-store.seminari365.com/250x150/' + venue.cover"
+							:image="'http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/' + venue.cover"
 							:title="venue.name"
 							:edit_link="'/venues/edit/' + venue.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
