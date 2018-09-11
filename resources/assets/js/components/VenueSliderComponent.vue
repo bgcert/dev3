@@ -2,8 +2,7 @@
 	<div>
 		<el-carousel height="380px" :autoplay="false" arrow="always">
 			<el-carousel-item v-for="image in images" :key="image.id">
-				<div class="img-container" :style="'background-image: url(http://res.cloudinary.com/dysfpnppg/image/upload/w_1200,h_400,c_fill/' + image.filename + ')'">
-					
+				<div class="img-container" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/1200x400/' + image.filename + ')'">
 				</div>
 				<img :src="image.filename">
 			</el-carousel-item>

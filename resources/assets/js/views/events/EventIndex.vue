@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(event, index) in events">
 						<CardDashboard
-							:image="'http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/' + event.cover"
+							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"
 							:date="event.begin_at"
 							:title="event.theme.title"
 							:edit_link="'/events/edit/' + event.id"

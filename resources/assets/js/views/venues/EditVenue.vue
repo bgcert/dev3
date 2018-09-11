@@ -12,7 +12,7 @@
 					</el-form-item>
 					<el-form-item label="Основна снимка">
 						<imageUpload
-							:imageUrl="'http://image-store.seminari365.com/250x150/' + venue.cover">
+							:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + venue.cover">
 						</imageUpload>
 					</el-form-item>
 

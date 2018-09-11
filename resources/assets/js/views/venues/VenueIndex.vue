@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(venue, index) in venues">
 						<CardDashboard
-							:image="'http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/' + venue.cover"
+							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + venue.cover"
 							:title="venue.name"
 							:edit_link="'/venues/edit/' + venue.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"

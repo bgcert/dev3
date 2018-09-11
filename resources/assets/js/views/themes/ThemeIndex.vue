@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(theme, index) in themes">
 						<CardDashboard
-							:image="'http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/' + theme.cover"
+							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + theme.cover"
 							:title="theme.title"
 							:edit_link="'/themes/edit/' + theme.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази тема?'"

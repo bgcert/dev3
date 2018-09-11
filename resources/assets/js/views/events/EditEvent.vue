@@ -15,8 +15,7 @@
 
 						<el-form-item label="Корица">
 							<imageUpload
-								:imageUrl="'/photos/' + event.cover"
-								:route="'/dashboard/event/cover/upload'">
+								:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover">
 							</imageUpload>
 						</el-form-item>
 

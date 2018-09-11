@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="multi-image existing" :style="'background-image: url(http://image-store.seminari365.com/250x150/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
+		<div class="multi-image existing" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
 			<button class="ui button" @click.prevent="detach(index, item.id)"> Премахни</button>
 		</div>
 

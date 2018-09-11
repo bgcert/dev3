@@ -16,7 +16,7 @@
 				<div class="ui three stackable cards">
 					<template v-for="(teacher, index) in teachers">
 						<CardDashboard
-							:image="'http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/' + teacher.image"
+							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + teacher.image"
 							:title="teacher.name"
 							:edit_link="'/teachers/edit/' + teacher.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете този лектор?'"

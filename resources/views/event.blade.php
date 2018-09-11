@@ -26,7 +26,7 @@
 @endpush
 
 @section('content')
-<div class="cover" style="background-image: url({{ 'http://res.cloudinary.com/dysfpnppg/image/upload/w_2000,h_400,c_fill/' . $event->cover }});">
+<div class="cover" style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/fit-in/2000x400/' . $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">

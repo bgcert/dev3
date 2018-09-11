@@ -66,9 +66,10 @@ class DashboardController extends Controller
     {
     	$file = request()->file;
 
+        return \Storage::disk('s3')->put('/', $file);
+        
     	\Cloudder::upload($file, null);
     	$image = \Cloudder::getResult();
     	return $image['public_id'] . '.' . $image['format'];
-    	// return \Storage::disk('s3')->put('/', $file);
     }
 }

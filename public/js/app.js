@@ -56271,7 +56271,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
                         theme.cover,
                       title: theme.title,
                       edit_link: "/themes/edit/" + theme.id,
@@ -56802,7 +56802,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56822,7 +56822,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
 //
 //
 //
@@ -57097,8 +57096,9 @@ var render = function() {
                     [
                       _c("imageUpload", {
                         attrs: {
-                          imageUrl: "/photos/" + _vm.theme.cover,
-                          route: "/dashboard/theme/cover/upload"
+                          imageUrl:
+                            "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                            _vm.theme.cover
                         }
                       })
                     ],
@@ -57410,7 +57410,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
                         teacher.image,
                       title: teacher.name,
                       edit_link: "/teachers/edit/" + teacher.id,
@@ -57891,7 +57891,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 
 
@@ -58023,8 +58022,9 @@ var render = function() {
                     [
                       _c("imageUpload", {
                         attrs: {
-                          imageUrl: "/photos/" + _vm.teacher.image,
-                          route: "/dashboard/teacher/cover/upload"
+                          imageUrl:
+                            "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                            _vm.teacher.image
                         }
                       })
                     ],
@@ -58304,7 +58304,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
                         event.cover,
                       date: event.begin_at,
                       title: event.theme.title,
@@ -59052,7 +59052,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59072,7 +59072,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
 //
 //
 //
@@ -59339,8 +59338,9 @@ var render = function() {
                         [
                           _c("imageUpload", {
                             attrs: {
-                              imageUrl: "/photos/" + _vm.event.cover,
-                              route: "/dashboard/event/cover/upload"
+                              imageUrl:
+                                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                                _vm.event.cover
                             }
                           })
                         ],
@@ -59814,7 +59814,7 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "http://res.cloudinary.com/dysfpnppg/image/upload/w_250,h_150,c_fill/" +
+                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
                         venue.cover,
                       title: venue.name,
                       edit_link: "/venues/edit/" + venue.id,
@@ -60322,7 +60322,7 @@ var render = function() {
             key: index,
             staticClass: "multi-image existing",
             style:
-              "background-image: url(http://image-store.seminari365.com/250x150/" +
+              "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/" +
               item.filename +
               ");"
           },
@@ -60963,7 +60963,7 @@ var render = function() {
                       _c("imageUpload", {
                         attrs: {
                           imageUrl:
-                            "http://image-store.seminari365.com/250x150/" +
+                            "https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/" +
                             _vm.venue.cover
                         }
                       })
@@ -110920,7 +110920,11 @@ var render = function() {
         "a",
         {
           staticClass: "image image_container",
-          style: "background: url(" + (_vm.$storagePath + _vm.item.cover) + ")",
+          style:
+            "background: url(" +
+            ("https://d3cwccg7mi8onu.cloudfront.net/fit-in/266x132/" +
+              _vm.item.cover) +
+            ")",
           attrs: { href: "/event/" + _vm.item.id }
         },
         [
@@ -110934,8 +110938,7 @@ var render = function() {
               _c("div", {
                 staticClass: "logo",
                 style:
-                  "background-image: url(" +
-                  _vm.$storagePath +
+                  "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/" +
                   _vm.item.theme.company.logo +
                   ")"
               })
@@ -111047,7 +111050,11 @@ var render = function() {
         [
           _c("img", {
             staticClass: "p_logo",
-            attrs: { src: _vm.$storagePath + _vm.item.theme.company.logo }
+            attrs: {
+              src:
+                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/" +
+                _vm.item.theme.company.logo
+            }
           }),
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.item.theme.title))]),
@@ -112230,7 +112237,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -112280,7 +112286,7 @@ var render = function() {
             _c("div", {
               staticClass: "img-container",
               style:
-                "background-image: url(http://res.cloudinary.com/dysfpnppg/image/upload/w_1200,h_400,c_fill/" +
+                "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/1200x400/" +
                 image.filename +
                 ")"
             }),
