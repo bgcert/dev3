@@ -21,8 +21,7 @@
 
 					<el-form-item label="Корица">
 						<imageUpload
-							:imageUrl="'/img/default_cover.png'"
-							:route="'/dashboard/theme/cover/upload'">
+							:imageUrl="'/img/default_cover.png'">
 						</imageUpload>
 					</el-form-item>
 
@@ -109,46 +108,7 @@
     			.catch(function (error) {
     				console.log(error);
     			})
-    		},
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-				// formData.append('title', this.form.title);
-				// formData.append('body', this.form.body);
-				// formData.append('excerpt', this.form.excerpt);
-				// formData.append('duration', this.form.duration);
-				// formData.append('category_id', this.form.category);
-
-    // 			let config =
-				// 	{
-				// 		header : {
-				// 			'Content-Type' : 'multipart/form-data'
-				// 		}
-				// 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				// upload.then((data) => {
-				// 	if (data) {
-				// 		formData.append('file', data);	
-				// 	}
-					
-				// 	axios.post('/dashboard/themes', formData, config)
-	   //  			.then(function (response) {
-	   //  				vm.$message('Темата е добавена успешно.');
-	   //  				vm.$router.push('/themes');
-	   //  			})
-	   //  			.catch(function (error) {
-	   //  				console.log(error);
-	   //  			});
-				// }, (error) => {
-				// 	console.log('Promise rejected.');
-				// 	vm.$message('Невалидно изображение');
-				// });
-    // 		}
+    		}
     	},
 
         mounted() {

@@ -13,7 +13,7 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['route', 'imageUrl'],
+    	props: ['imageUrl'],
 
     	data: function () {
     		return {
@@ -36,7 +36,7 @@
 	    			let vm = this;
 	    			let formData = new FormData();
 					formData.append('file', vm.image.file);
-	    			axios.post(vm.route, formData, {
+	    			axios.post('/dashboard/image/upload', formData, {
 	    				onUploadProgress: progressEvent => {
 	    					vm.image.progress = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
 	    				}

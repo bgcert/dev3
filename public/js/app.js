@@ -55520,7 +55520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['route', 'imageUrl'],
+    props: ['imageUrl'],
 
     data: function data() {
         return {
@@ -55544,7 +55544,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var vm = _this;
                 var formData = new FormData();
                 formData.append('file', vm.image.file);
-                axios.post(vm.route, formData, {
+                axios.post('/dashboard/image/upload', formData, {
                     onUploadProgress: function onUploadProgress(progressEvent) {
                         vm.image.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
                     }
@@ -56271,7 +56271,8 @@ var render = function() {
                   _c("CardDashboard", {
                     attrs: {
                       image:
-                        "image-store.seminari365.com/250x150/" + theme.cover,
+                        "http://image-store.seminari365.com/250x150/" +
+                        theme.cover,
                       title: theme.title,
                       edit_link: "/themes/edit/" + theme.id,
                       confirmMessage:
@@ -56368,7 +56369,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
 //
 //
 //
@@ -56595,10 +56595,7 @@ var render = function() {
                 { attrs: { label: "Корица" } },
                 [
                   _c("imageUpload", {
-                    attrs: {
-                      imageUrl: "/img/default_cover.png",
-                      route: "/dashboard/theme/cover/upload"
-                    }
+                    attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
                 1
@@ -57412,7 +57409,9 @@ var render = function() {
                 return [
                   _c("CardDashboard", {
                     attrs: {
-                      image: "/photos/" + teacher.image,
+                      image:
+                        "http://image-store.seminari365.com/250x150/" +
+                        teacher.image,
                       title: teacher.name,
                       edit_link: "/teachers/edit/" + teacher.id,
                       confirmMessage:
@@ -58308,7 +58307,9 @@ var render = function() {
                 return [
                   _c("CardDashboard", {
                     attrs: {
-                      image: "/photos/" + event.cover,
+                      image:
+                        "http://image-store.seminari365.com/250x150/" +
+                        event.cover,
                       date: event.begin_at,
                       title: event.theme.title,
                       edit_link: "/events/edit/" + event.id,
@@ -58534,7 +58535,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 
 
@@ -58622,48 +58622,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       return save;
     }()
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // formData.append('theme_id', this.selectedTheme);
-    // formData.append('city_id', this.form.cityId);
-    // formData.append('address', this.form.address);
-    // formData.append('price', this.form.price);
-    // formData.append('teachers', this.selectedTeachers);
-    // formData.append('start_date', this.form.start_date);
-    // formData.append('end_date', this.form.end_date);
-    // formData.append('start_at', this.form.start_at);
-    // formData.append('end_at', this.form.end_at);
-
-    // 			let config =
-    // 	{
-    // 		header : {
-    // 			'Content-Type' : 'multipart/form-data'
-    // 		}
-    // 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-    // upload.then((data) => {
-    // 	formData.append('file', data);
-
-    // 	axios.post('/dashboard/events', formData, config)
-    //  			.then(function (response) {
-    //  				vm.$message('Събитието е създадено успешно.');
-    // 					vm.$router.push('/events');
-    //  			})
-    //  			.catch(function (error) {
-    //  				console.log(error);
-    //  			});
-    // }, (error) => {
-    // 	console.log(error);
-    // 	vm.$message('Невалидно изображение');
-    // });
-    // 		},
-
   },
 
   mounted: function mounted() {
@@ -58914,10 +58872,7 @@ var render = function() {
                 { attrs: { label: "Корица" } },
                 [
                   _c("imageUpload", {
-                    attrs: {
-                      imageUrl: "/img/default_cover.png",
-                      route: "/dashboard/event/cover/upload"
-                    }
+                    attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
                 1
@@ -59862,7 +59817,9 @@ var render = function() {
                 return [
                   _c("CardDashboard", {
                     attrs: {
-                      image: "/photos/" + venue.cover,
+                      image:
+                        "http://image-store.seminari365.com/250x150/" +
+                        venue.cover,
                       title: venue.name,
                       edit_link: "/venues/edit/" + venue.id,
                       confirmMessage:

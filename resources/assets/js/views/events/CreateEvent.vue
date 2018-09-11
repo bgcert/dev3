@@ -92,8 +92,7 @@
 
 					<el-form-item label="Корица">
 						<imageUpload
-							:imageUrl="'/img/default_cover.png'"
-							:route="'/dashboard/event/cover/upload'">
+							:imageUrl="'/img/default_cover.png'">
 						</imageUpload>
 					</el-form-item>
 
@@ -189,47 +188,6 @@
     				console.log(error);
     			})
     		}
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-				// formData.append('theme_id', this.selectedTheme);
-				// formData.append('city_id', this.form.cityId);
-				// formData.append('address', this.form.address);
-				// formData.append('price', this.form.price);
-				// formData.append('teachers', this.selectedTeachers);
-				// formData.append('start_date', this.form.start_date);
-				// formData.append('end_date', this.form.end_date);
-				// formData.append('start_at', this.form.start_at);
-				// formData.append('end_at', this.form.end_at);
-
-    // 			let config =
-				// 	{
-				// 		header : {
-				// 			'Content-Type' : 'multipart/form-data'
-				// 		}
-				// 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				// upload.then((data) => {
-				// 	formData.append('file', data);
-
-				// 	axios.post('/dashboard/events', formData, config)
-	   //  			.then(function (response) {
-	   //  				vm.$message('Събитието е създадено успешно.');
-    // 					vm.$router.push('/events');
-	   //  			})
-	   //  			.catch(function (error) {
-	   //  				console.log(error);
-	   //  			});
-				// }, (error) => {
-				// 	console.log(error);
-				// 	vm.$message('Невалидно изображение');
-				// });
-    // 		},
     	},
 
         mounted() {

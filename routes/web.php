@@ -131,6 +131,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::post('/venue/cover/upload', 'VenueController@saveVenueCover');
 	Route::post('/venue/image/upload', 'VenueController@saveVenueImage');
 
+	// Save theme image route!!!
+	Route::post('/image/upload', 'DashboardController@saveImage');
+
 	// Save theme image from upload component
 	Route::post('/theme/cover/upload', 'ThemeController@saveThemeCover');
 

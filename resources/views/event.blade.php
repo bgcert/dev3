@@ -26,7 +26,7 @@
 @endpush
 
 @section('content')
-<div class="cover" style="background-image: url({{ '/photos/' . $event->cover }});">
+<div class="cover" style="background-image: url({{ 'https://image-store.seminari365.com/600x600/' . $event->cover }});">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">
