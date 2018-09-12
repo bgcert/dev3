@@ -76,6 +76,7 @@
 	.single-image {
 		position: relative;
 		background-size: cover;
+		background-repeat: no-repeat;
 		background-position: center center;
 		width: 250px;
 		height: 150px;

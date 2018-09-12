@@ -19,7 +19,7 @@
 		.info { color: white; }
 		.details { border: 1px solid red; flex: 1; }
 		.flex { display: flex; }
-		.logo { flex: 1; }
+		.logo { flex: 2; }
 		.company-details { flex: 3; text-align: center; }
 		.event-header { padding: 30px 0 !important; }
 	</style>
@@ -51,7 +51,7 @@
 						<div class="flex">
 							<div class="logo">
 								<a href="/c/{{ $event->theme->company->slug }}">
-									<img class="ui tiny image" src="http://image-store.seminari365.com/100x100/{{ $event->theme->company->logo }}">
+									<img class="ui image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $event->theme->company->logo }}">
 								</a>
 							</div>
 							<div class="company-details">

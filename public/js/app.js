@@ -54514,9 +54514,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 
 
@@ -54587,49 +54584,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       return save;
     }()
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // 			// Needed for patch request with form data
-    // 			formData.append('_method', 'patch');
-    // 			formData.append('name', this.company.name);
-    // 			formData.append('slug', this.company.slug);
-    // 			formData.append('address', this.company.address);
-    // 			formData.append('description', this.company.description);
-    // 			formData.append('email', this.company.email);
-    // 			formData.append('phone', this.company.phone);
-
-    // 			let config =
-    // 	{
-    // 		header : {
-    // 			'Content-Type' : 'multipart/form-data'
-    // 		}
-    // 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-    // upload.then((data) => {
-    // 	// Append if file selected
-    // 	if (data) {
-    // 		formData.append('file', data);
-    // 	}
-
-    // 	axios.post('dashboard/save/company/data', formData , config)
-    //   			.then(function (response) {
-    //   				console.log(response.data);
-    //   				vm.$message('Данните са запазени.');
-    //   			})
-    //   			.catch(function (error) {
-    //   				console.log(error);
-    //   			});
-    // 	}, (error) => {
-    // 		vm.$message('Невалидно изображение');
-    // });
-    // 		}
-
   },
 
   mounted: function mounted() {
@@ -55460,7 +55414,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.single-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-position: center center;\n\twidth: 250px;\n\theight: 150px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
+exports.push([module.i, "\n.single-image {\n\tposition: relative;\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center center;\n\twidth: 250px;\n\theight: 150px;\n}\n.multi-image .delete-button {\n\tposition: absolute;\n\ttop: 10px;\n\tright: 10px;\n}\n.add-image { margin-top: 20px !important;\n}\n.images {\n\tpadding: 7px;\n\tbackground-size: cover;\n\tposition: relative;\n\twidth: 357px;\n\theight: 178px;\n}\n.progress {\n\tposition: absolute !important;\n\theight: 40px;\n\tpadding: 10px;\n\twidth: 100%;\n\tbottom: 0;\n}\n.inputfile {\n\twidth: 0.1px;\n\theight: 0.1px;\n\topacity: 0;\n\toverflow: hidden;\n\tposition: absolute;\n\tz-index: -1;\n}\n.inputfile + label {\n\tfont-size: 1.25em;\n\tfont-weight: 700;\n\tcolor: white;\n\tbackground-color: black;\n\tdisplay: inline-block;\n}\n.inputfile:focus + label,\n.inputfile + label:hover {\n\tbackground-color: red;\n}\n", ""]);
 
 // exports
 
@@ -55714,8 +55668,9 @@ var render = function() {
               _vm._v(" "),
               _c("imageUpload", {
                 attrs: {
-                  imageUrl: "/photos/" + _vm.company.logo,
-                  route: "/dashboard/company/logo/upload"
+                  imageUrl:
+                    "https://d3cwccg7mi8onu.cloudfront.net/250x250/" +
+                    _vm.company.logo
                 }
               })
             ],
@@ -59986,10 +59941,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -60470,6 +60421,13 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
+                    { attrs: { label: "Допълнителни снимки" } },
+                    [_c("multi-image-upload")],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
                     { attrs: { label: "Капацитет" } },
                     [
                       _c(
@@ -60576,17 +60534,6 @@ var render = function() {
                         ],
                         2
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Допълнителни снимки" } },
-                    [
-                      _c("multi-image-upload", {
-                        attrs: { imageUrl: "/img/default_cover.png" }
-                      })
                     ],
                     1
                   ),
@@ -60723,8 +60670,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -60973,6 +60918,18 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
+                    { attrs: { label: "Допълнителни снимки" } },
+                    [
+                      _c("multi-image-upload", {
+                        attrs: { existingImages: _vm.venue.venue_images },
+                        on: { detachClick: _vm.handleDetach }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
                     { attrs: { label: "Капацитет" } },
                     [
                       _c(
@@ -61079,18 +61036,6 @@ var render = function() {
                         ],
                         2
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Допълнителни снимки" } },
-                    [
-                      _c("multi-image-upload", {
-                        attrs: { existingImages: _vm.venue.venue_images },
-                        on: { detachClick: _vm.handleDetach }
-                      })
                     ],
                     1
                   ),
@@ -110935,12 +110880,12 @@ var render = function() {
               attrs: { href: /c/ + _vm.item.theme.company.slug }
             },
             [
-              _c("div", {
-                staticClass: "logo",
-                style:
-                  "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/50x50/" +
-                  _vm.item.theme.company.logo +
-                  ")"
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://d3cwccg7mi8onu.cloudfront.net/50x50/" +
+                    _vm.item.theme.company.logo
+                }
               })
             ]
           ),
@@ -111052,7 +110997,7 @@ var render = function() {
             staticClass: "p_logo",
             attrs: {
               src:
-                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/" +
+                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/" +
                 _vm.item.theme.company.logo
             }
           }),
@@ -111733,6 +111678,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -111796,13 +111742,12 @@ var render = function() {
               attrs: { href: /c/ + _vm.item.company.slug }
             },
             [
-              _c("div", {
-                staticClass: "logo",
-                style:
-                  "background-image: url(" +
-                  _vm.$storagePath +
-                  _vm.item.company.logo +
-                  ")"
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://d3cwccg7mi8onu.cloudfront.net/50x50/" +
+                    _vm.item.company.logo
+                }
               })
             ]
           ),
@@ -111908,7 +111853,11 @@ var render = function() {
         [
           _c("img", {
             staticClass: "p_logo",
-            attrs: { src: _vm.$storagePath + _vm.item.company.logo }
+            attrs: {
+              src:
+                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/" +
+                _vm.item.company.logo
+            }
           }),
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.item.name))]),
@@ -113342,7 +113291,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.logo-container {\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n    \tborder-radius: 50%;\n\t\tdisplay: inline-block;\n\t\tfloat: left;\n\t\tmargin-right: 30px;\n\t\tborder: 2px solid white;\n\t\twidth: 200px;\n\t\theight: 200px;\n}\n.logo-container img {\n\t\tborder: 2px solid white;\n\t\t\n\t\t/*width: 200px;\n\t\theight: 200px;*/\n}\n.company-logo { border-radius: 50%; height: 200px;\n}\n.company-name {\n\t\tbackground: rgba(0,0,0,.8);\n\t\tcolor: white;\n\t\tpadding: 4px 7px;\n\t\tfloat: left;\n}\n.overlay {\n\t\tbackground: linear-gradient(45deg, rgba(26, 0, 0, 0.6) 0%, rgba(26, 0, 0, 0.2) 100%);\n}\n.follower {\n\t\tmargin-left: -12px !important;\n}\n.follower.item img {\n\t\tborder: 2px solid white !important;\n}\n", ""]);
+exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.logo-container {\n\t\tbackground-size: contain !important;\n    \tbackground-position: center center !important;\n    \tbackground-repeat: no-repeat !important;\n    \t/*border-radius: 50%;*/\n\t\tdisplay: inline-block;\n\t\tfloat: left;\n\t\tmargin-right: 30px;\n\t\t/*border: 2px solid white;*/\n\t\twidth: 200px;\n\t\theight: 200px;\n}\n.logo-container img {\n\t\tborder: 2px solid white;\n}\n.company-logo { border-radius: 50%; height: 200px;\n}\n.company-name {\n\t\tbackground: rgba(0,0,0,.8);\n\t\tcolor: white;\n\t\tpadding: 4px 7px;\n\t\tfloat: left;\n}\n.overlay {\n\t\tbackground: linear-gradient(45deg, rgba(26, 0, 0, 0.6) 0%, rgba(26, 0, 0, 0.2) 100%);\n}\n.follower {\n\t\tmargin-left: -12px !important;\n}\n.follower.item img {\n\t\tborder: 2px solid white !important;\n}\n", ""]);
 
 // exports
 
@@ -113355,6 +113304,8 @@ exports.push([module.i, "\n.data-container { padding: 30px; height: 260px;\n}\n.
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FollowComponent_vue__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FollowComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FollowComponent_vue__);
+//
+//
 //
 //
 //
@@ -113701,22 +113652,22 @@ var render = function() {
                 {
                   staticClass: "cover-container",
                   style:
-                    "background: url(" +
-                    _vm.$storagePath +
+                    "background: url(https://d3cwccg7mi8onu.cloudfront.net/1200x300/" +
                     _vm.company.cover +
                     ") center / cover no-repeat;"
                 },
                 [
                   _c("div", { staticClass: "overlay" }, [
                     _c("div", { staticClass: "data-container" }, [
-                      _c("div", {
-                        staticClass: "logo-container",
-                        style:
-                          "background: url(" +
-                          _vm.$storagePath +
-                          _vm.company.logo +
-                          ");"
-                      }),
+                      _c("div", { staticClass: "logo-container" }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://d3cwccg7mi8onu.cloudfront.net/fit-in/200x200/" +
+                              _vm.company.logo
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "company-name" }, [
                         _c("h2", [_vm._v(_vm._s(_vm.company.name))])

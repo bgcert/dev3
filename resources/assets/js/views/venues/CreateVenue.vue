@@ -12,9 +12,11 @@
 					</el-form-item>
 
 					<el-form-item label="Основна снимка">
-						<imageUpload
-							:imageUrl="'/img/default_cover.png'">
-						</imageUpload>
+						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
+					</el-form-item>
+
+					<el-form-item label="Допълнителни снимки">
+						<multi-image-upload></multi-image-upload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -46,12 +48,6 @@
 						<el-input v-model="price" style="width: 200px;">
 							<template slot="append">.00 лв. с ДДС</template>
 						</el-input>
-					</el-form-item>
-
-					<el-form-item label="Допълнителни снимки">
-						<multi-image-upload
-							:imageUrl="'/img/default_cover.png'">
-						</multi-image-upload>
 					</el-form-item>
 
 					<el-form-item>

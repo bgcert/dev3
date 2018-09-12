@@ -11,9 +11,14 @@
 						<el-input v-model="venue.name"></el-input>
 					</el-form-item>
 					<el-form-item label="Основна снимка">
-						<imageUpload
-							:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + venue.cover">
-						</imageUpload>
+						<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + venue.cover"></imageUpload>
+					</el-form-item>
+
+					<el-form-item label="Допълнителни снимки">
+						<multi-image-upload
+							:existingImages="venue.venue_images"
+							@detachClick="handleDetach">
+						</multi-image-upload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -45,13 +50,6 @@
 						<el-input v-model="venue.price" style="width: 200px;">
 							<template slot="append">.00 лв. с ДДС</template>
 						</el-input>
-					</el-form-item>
-
-					<el-form-item label="Допълнителни снимки">
-						<multi-image-upload
-							:existingImages="venue.venue_images"
-							@detachClick="handleDetach">
-						</multi-image-upload>
 					</el-form-item>
 
 					<el-form-item>

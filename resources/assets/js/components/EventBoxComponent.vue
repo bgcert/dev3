@@ -2,7 +2,7 @@
 	<div class="ui card" v-popover:popover>
 		<a :href="'/event/' + item.id" class="image image_container" :style="`background: url(${ 'https://d3cwccg7mi8onu.cloudfront.net/266x132/' + item.cover })`">
 			<a class="owner" :href="/c/ + item.theme.company.slug">
-				<div class="logo" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/50x50/' + item.theme.company.logo + ')'"></div>
+				<img :src="'https://d3cwccg7mi8onu.cloudfront.net/50x50/' + item.theme.company.logo">
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
@@ -41,7 +41,7 @@
 			width="300"
 			:open-delay="800"
 			trigger="hover">
-				<img  class="p_logo" :src="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/50x50/' + item.theme.company.logo">
+				<img  class="p_logo" :src="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/' + item.theme.company.logo">
 				<h3>{{ item.theme.title }}</h3>
 				<a class="ui primary button" :href="'/event/' + item.id">Допълнителна информация</a>
 				<div class="ui divider"></div>

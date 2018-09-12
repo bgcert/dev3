@@ -4,10 +4,12 @@
 			<div class="row">
 
 				<div class="column">
-					<div class="cover-container" :style="'background: url('+ $storagePath + company.cover + ') center / cover no-repeat;'">
+					<div class="cover-container" :style="'background: url(https://d3cwccg7mi8onu.cloudfront.net/1200x300/' + company.cover + ') center / cover no-repeat;'">
 						<div class="overlay">
 							<div class="data-container">
-								<div class="logo-container" :style="'background: url('+ $storagePath + company.logo + ');'"></div>
+								<div class="logo-container">
+									<img :src="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/200x200/' + company.logo">
+								</div>
 								<div class="company-name">
 									<h2>{{ company.name }}</h2>
 								</div>
@@ -197,21 +199,19 @@
 	.data-container { padding: 30px; height: 260px; }
 
 	.logo-container {
-		background-size: cover !important;
+		background-size: contain !important;
     	background-position: center center !important;
-    	border-radius: 50%;
+    	background-repeat: no-repeat !important;
+    	/*border-radius: 50%;*/
 		display: inline-block;
 		float: left;
 		margin-right: 30px;
-		border: 2px solid white;
+		/*border: 2px solid white;*/
 		width: 200px;
 		height: 200px;
 	}
 	.logo-container img {
 		border: 2px solid white;
-		
-		/*width: 200px;
-		height: 200px;*/
 	}
 
 	.company-logo { border-radius: 50%; height: 200px; }

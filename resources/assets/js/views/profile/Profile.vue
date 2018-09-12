@@ -18,10 +18,7 @@
 
 			<div class="field">
 				<label>Лого</label>
-				<imageUpload
-					:imageUrl="'/photos/' + company.logo"
-					:route="'/dashboard/company/logo/upload'">
-				</imageUpload>
+				<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x250/' + company.logo"></imageUpload>
 			</div>
 
 			<div class="field">
@@ -102,48 +99,6 @@
     				console.log(error);
     			})
     		}
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // 			// Needed for patch request with form data
-    // 			formData.append('_method', 'patch');
-    // 			formData.append('name', this.company.name);
-    // 			formData.append('slug', this.company.slug);
-    // 			formData.append('address', this.company.address);
-    // 			formData.append('description', this.company.description);
-    // 			formData.append('email', this.company.email);
-    // 			formData.append('phone', this.company.phone);
-
-    // 			let config =
-				// 	{
-				// 		header : {
-				// 			'Content-Type' : 'multipart/form-data'
-				// 		}
-				// 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				// upload.then((data) => {
-				// 	// Append if file selected
-				// 	if (data) {
-				// 		formData.append('file', data);
-				// 	}
-
-				// 	axios.post('dashboard/save/company/data', formData , config)
-		  //   			.then(function (response) {
-		  //   				console.log(response.data);
-		  //   				vm.$message('Данните са запазени.');
-		  //   			})
-		  //   			.catch(function (error) {
-		  //   				console.log(error);
-		  //   			});
-				// 	}, (error) => {
-				// 		vm.$message('Невалидно изображение');
-				// });
-    // 		}
     	},
 
         mounted() {

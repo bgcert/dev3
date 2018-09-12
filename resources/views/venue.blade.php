@@ -3,7 +3,7 @@
 @push('header-scripts')
 	<style>
 		.flex { display: flex; }
-		.logo { flex: 1; }
+		.logo { flex: 2; }
 		.company-details { flex: 3; text-align: center; }
 	</style>
 @endpush
@@ -71,7 +71,7 @@
 				<div class="ui segment">
 					<div class="flex">
 						<div class="logo">
-							<a href="/c/{{ $venue->company->slug }}"><img class="ui tiny rounded image" src="{{ config('app.photo_storage') . $venue->company->logo }}"></a>
+							<img class="ui image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $venue->company->logo }}">
 						</div>
 						<div class="company-details">
 							<h3>{{ $venue->company->name }}</h3>
@@ -87,12 +87,14 @@
 									Изпратете запитване
 								</button>	
 							</p>
+							@if($venue->company->phone != '')
 							<p>
 								<button class="ui fluid labeled icon big primary button">
 									<i class="mobile alternate icon"></i>
 									{{ $venue->company->phone }}
 								</button>
 							</p>
+							@endif
 						</div>
 					</div>
 				</div>
