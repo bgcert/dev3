@@ -10,7 +10,7 @@
 				<label>Адрес (URL) на профила в Seminari365</label>
 				<div class="ui labeled right input">
 					<div class="ui label">
-						http://seminari365.com/
+						http://seminari365.com/c/
 					</div>
 					<input type="text" v-model="company.slug" placeholder="company.ltd">
 				</div>

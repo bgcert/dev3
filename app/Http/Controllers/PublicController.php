@@ -41,6 +41,11 @@ class PublicController extends Controller
     	return view('venues', compact('venues'));
     }
 
+    public function video()
+    {
+    	return view('video');
+    }
+
     public function company()
     {
 		$company = \App\Company::with('user')->where('slug', request()->slug)->first();

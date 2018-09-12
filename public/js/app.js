@@ -55634,7 +55634,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "ui labeled right input" }, [
               _c("div", { staticClass: "ui label" }, [
-                _vm._v("\n\t\t\t\t\thttp://seminari365.com/\n\t\t\t\t")
+                _vm._v("\n\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t")
               ]),
               _vm._v(" "),
               _c("input", {
@@ -62667,7 +62667,7 @@ var render = function() {
                   _c("div", { staticClass: "ui labeled right input" }, [
                     _c("div", { staticClass: "ui label" }, [
                       _vm._v(
-                        "\n\t\t\t\t\t\thttp://seminari365.com/\n\t\t\t\t\t"
+                        "\n\t\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t\t"
                       )
                     ]),
                     _vm._v(" "),
@@ -113751,7 +113751,8 @@ var render = function() {
                                           _c("img", {
                                             attrs: {
                                               src:
-                                                _vm.$storagePath + theme.cover
+                                                "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
+                                                theme.cover
                                             }
                                           })
                                         ]
@@ -113810,7 +113811,8 @@ var render = function() {
                                           _c("img", {
                                             attrs: {
                                               src:
-                                                _vm.$storagePath + event.cover
+                                                "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
+                                                event.cover
                                             }
                                           })
                                         ]
@@ -113869,7 +113871,8 @@ var render = function() {
                                           _c("img", {
                                             attrs: {
                                               src:
-                                                _vm.$storagePath + venue.cover
+                                                "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
+                                                venue.cover
                                             }
                                           })
                                         ]

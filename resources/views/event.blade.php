@@ -148,8 +148,8 @@
 			    	Лектори
 			    </h3>
 			    @foreach($event->teachers as $teacher)
+			    	<img src="https://d3cwccg7mi8onu.cloudfront.net/100x100/{{ $teacher->image }}" class="ui circular image">
 				    <h3 class="ui header">
-				    	<img src="/photos/{{ $teacher->image }}" class="ui circular image">
 				    	{{ $teacher->name }}
 				    </h3>
 				    <p>{{ $teacher->details }}</p>

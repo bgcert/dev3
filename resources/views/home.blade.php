@@ -25,7 +25,15 @@
 			<div class="ui purple inverted segment">
 				<h2>Публикувайте обучение</h2>
 				<p>Добавете Вашите актуални обучение в Семинари 365</p>
+				@if(auth()->check())
+					@if(auth()->user()->role_id == 2)
+					<a class="ui large basic inverted button" href="/dashboard#/events">Календар</a>
+					@else
+					<a class="ui large basic inverted button" href="/users/settings#/settings">Бизнес акаунт</a>
+					@endif
+				@else
 				<a class="ui large basic inverted button" href="/register">Регистрация</a>
+				@endif
 			</div>
 		</div>
 		<div class="column">

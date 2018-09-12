@@ -39,7 +39,7 @@
 								<template v-for="theme in company.themes">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="$storagePath + theme.cover">
+											<img :src="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover">
 										</div>
 										<div class="content">
 											<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
@@ -62,7 +62,7 @@
 								<template v-for="event in company.events">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="$storagePath + event.cover">
+											<img :src="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + event.cover">
 										</div>
 										<div class="content">
 											<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
@@ -85,7 +85,7 @@
 								<template v-for="venue in company.venues">
 									<div class="item">
 										<div class="ui small image">
-											<img :src="$storagePath + venue.cover">
+											<img :src="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + venue.cover">
 										</div>
 										<div class="content">
 											<a :href="'/venue/' + venue.id" class="header">{{ venue.name }}</a>
