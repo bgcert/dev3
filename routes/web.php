@@ -135,18 +135,6 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Save theme image route!!!
 	Route::post('/image/upload', 'DashboardController@saveImage');
 
-	// // Save theme image from upload component
-	// Route::post('/theme/cover/upload', 'ThemeController@saveThemeCover');
-
-	// // Save event image from upload component
-	// Route::post('/event/cover/upload', 'EventController@saveEventCover');
-
-	// // Save teacher image from upload component
-	// Route::post('/teacher/cover/upload', 'TeacherController@saveTeacherCover');
-
-	// // Save company logo from upload component
-	// Route::post('/company/logo/upload', 'DashboardController@saveCompanyLogo');
-
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');
 
