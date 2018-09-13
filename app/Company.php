@@ -56,12 +56,12 @@ class Company extends Model
 
     public function getLogoAttribute($value)
     {
-    	return $this->attributes['logo'] = (!empty($value)) ? $value : '/img/default_logo.png';
+    	return $this->attributes['logo'] = (!empty($value)) ? $value : 'default_logo.png';
     }
 
     public function getCoverAttribute($value)
     {
-    	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
+    	return $this->attributes['cover'] = (!empty($value)) ? $value : 'default_cover.png';
     }
 
     public function getEventPublishAttribute($value)

@@ -5,7 +5,7 @@
 			<template v-for="event in events">
 				<div class="item">
 					<a :href="'/event/' + event.id" class="image">
-						<img :src="event.cover">	
+						<img :src="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/' + event.cover">	
 					</a>
 					<div class="content">
 						<a :href="'/event/' + event.id" class="header">{{ event.theme.title }}</a>
@@ -53,5 +53,5 @@
 				console.log(error);
 			});
         }
-    }
+    };
 </script>

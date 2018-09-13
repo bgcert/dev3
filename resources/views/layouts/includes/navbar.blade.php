@@ -31,7 +31,7 @@
 				@endif
 				<div class="ui dropdown item">
 					<div class="text">
-						<img class="ui avatar image" src="/img/default_user.png"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
+						<img class="ui avatar image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/80x80/{{ Auth::user()->picture }}"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
 					</div>
 					<div class="menu">
 

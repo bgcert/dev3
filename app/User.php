@@ -65,7 +65,7 @@ class User extends Authenticatable
     // Attribute modification
     public function getPictureAttribute($value)
     {
-    	return $this->attributes['picture'] = (!empty($value)) ? $value : '/img/default_user.png';
+    	return $this->attributes['picture'] = (!empty($value)) ? $value : 'default_user.png';
     }
 
     public function getFullNameAttribute()

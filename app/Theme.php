@@ -31,7 +31,7 @@ class Theme extends Model
 
     public function getCoverAttribute($value)
     {
-    	return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
+    	return $this->attributes['cover'] = (!empty($value)) ? $value : 'default_cover.png';
     }
 
     

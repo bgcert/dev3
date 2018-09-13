@@ -9,7 +9,7 @@
 		}
 		.overlay {
 			height: 100%;
-			background-color: rgba(0,0,0,0.6);
+			background-color: rgba(0,0,0,0.2);
 		}
 		.flex-center {
 			 display: flex !important;

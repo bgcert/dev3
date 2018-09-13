@@ -112390,7 +112390,15 @@ var render = function() {
               _c(
                 "a",
                 { staticClass: "image", attrs: { href: "/event/" + event.id } },
-                [_c("img", { attrs: { src: event.cover } })]
+                [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/" +
+                        event.cover
+                    }
+                  })
+                ]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "content" }, [
