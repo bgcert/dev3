@@ -22,9 +22,7 @@
     },
     "dependencies": {
         "element-ui": "^2.4.6",
-        "img-loader": "^3.0.0",
         "ion-sound": "^3.0.7",
-        "jquery-confirm": "^3.3.2",
         "laravel-echo": "^1.4.0",
         "pusher-js": "^4.3.1",
         "semantic-ui": "^2.3.3",

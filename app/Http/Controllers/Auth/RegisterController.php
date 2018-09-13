@@ -68,8 +68,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-    	// dd($data);
-    	// $role = ($data['publisher']) ? 2 : 1;
 
         $user = User::create([
         	'role_id' => 1,
@@ -79,15 +77,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'token' => str_random(25)
         ]);
-
-        // if ($data['publisher']) {
-        // 	$user->company()->create([
-        // 		'name' => $data['company_name'],
-        // 		'slug' => $data['slug'],
-        // 		'event_publish' => $data['event_publish'],
-        // 		'venue_publish' => $data['venue_publish'],
-        // 	]);
-        // }
 
         $user->sendVerificationEmail();
 

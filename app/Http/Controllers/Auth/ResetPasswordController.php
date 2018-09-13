@@ -37,13 +37,11 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    protected function sendResetResponse($response)
-	{
-	    if(!$this->guard()->user()->hasVerifiedEmail()) {
-	        $this->guard()->logout();
-	        return redirect('/login')->withInfo('Password changed successfully. Please verify your email');
-	    }
-	    return redirect($this->redirectPath())
-	                        ->with('status', trans($response));
-	}
+ //    protected function sendResetResponse($response)
+	// {
+	//     $this->guard()->logout();
+	//     // return redirect('/login')->withInfo('Password changed successfully. Please verify your email');
+	//     return redirect($this->redirectPath())
+	//                         ->with('status', trans($response));
+	// }
 }

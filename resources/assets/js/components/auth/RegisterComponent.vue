@@ -38,13 +38,8 @@
 				<div class="field">
 					<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
 				</div>
-				<div class="field">
-					<div class="ui checkbox">
-						<input type="checkbox" tabindex="0" class="hidden">
-						<label>Съгласявам се с <a href="terms" target="_blank">условията за ползване.</a></label>
-					</div>
-				</div>
 				<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
+				<p>С натискане на бутон "Регистрирай се", Вие се съгласявате с <a href="terms" target="_blank">условията за ползване</a>.</p>
 			</form>
 		</div>
 	</div>
@@ -59,7 +54,7 @@
     			innerVisible: false,
     			dialogFormVisible: false,
     			loading: false,
-    			checked: false,
+    			terms: false,
     			form: {
     				firstname: '',
     				lastname: '',

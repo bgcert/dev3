@@ -115317,9 +115317,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var vm = this;
             axios.post('/login', {
                 email: vm.form.email,
-                password: vm.form.password
+                password: vm.form.password,
+                remember: vm.checked
             }).then(function (response) {
-                console.log(response.data);
                 vm.dialogFormVisible = false;
                 window.location.reload();
             }).catch(function (error) {
@@ -115562,7 +115562,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -115621,11 +115621,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -115635,7 +115630,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             innerVisible: false,
             dialogFormVisible: false,
             loading: false,
-            checked: false,
+            terms: false,
             form: {
                 firstname: '',
                 lastname: '',
@@ -115864,8 +115859,6 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -115878,7 +115871,9 @@ var render = function() {
               }
             },
             [_vm._v("Регистрирай се")]
-          )
+          ),
+          _vm._v(" "),
+          _vm._m(1)
         ])
       ])
     ],
@@ -115904,20 +115899,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("div", { staticClass: "ui checkbox" }, [
-        _c("input", {
-          staticClass: "hidden",
-          attrs: { type: "checkbox", tabindex: "0" }
-        }),
-        _vm._v(" "),
-        _c("label", [
-          _vm._v("Съгласявам се с "),
-          _c("a", { attrs: { href: "terms", target: "_blank" } }, [
-            _vm._v("условията за ползване.")
-          ])
-        ])
-      ])
+    return _c("p", [
+      _vm._v('С натискане на бутон "Регистрирай се", Вие се съгласявате с '),
+      _c("a", { attrs: { href: "terms", target: "_blank" } }, [
+        _vm._v("условията за ползване")
+      ]),
+      _vm._v(".")
     ])
   }
 ]
@@ -116213,8 +116200,8 @@ var render = function() {
                     [_vm._v(" Вход")]
                   ),
                   _vm._v(" "),
-                  _c("el-button", { attrs: { type: "text" } }, [
-                    _vm._v(" Забравена парола.")
+                  _c("a", { attrs: { href: "/password/reset" } }, [
+                    _vm._v(" Забравена парола")
                   ])
                 ],
                 1
@@ -116325,7 +116312,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -116387,11 +116374,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -116401,7 +116383,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             innerVisible: false,
             dialogFormVisible: false,
             loading: false,
-            checked: false,
             form: {
                 firstname: '',
                 lastname: '',
@@ -116666,22 +116647,6 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("div", { staticClass: "ui checkbox" }, [
-                  _c("input", {
-                    staticClass: "hidden",
-                    attrs: { type: "checkbox", tabindex: "0" }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [
-                    _vm._v("Съгласявам се с "),
-                    _c("a", { attrs: { href: "terms", target: "_blank" } }, [
-                      _vm._v("условията за ползване.")
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
               _c(
                 "button",
                 {
@@ -116694,7 +116659,17 @@ var render = function() {
                   }
                 },
                 [_vm._v("Регистрирай се")]
-              )
+              ),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  'С натискане на бутон "Регистрирай се", Вие се съгласявате с '
+                ),
+                _c("a", { attrs: { href: "terms", target: "_blank" } }, [
+                  _vm._v("условията за ползване")
+                ]),
+                _vm._v(".")
+              ])
             ])
           ])
         ]

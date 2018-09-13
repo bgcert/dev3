@@ -25,7 +25,7 @@
 				<el-form-item size="large">
 					<el-button @click.prevent="callRegister"> Регистрация</el-button>
 					<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
-					<el-button type="text"> Забравена парола.</el-button>
+					<a href="/password/reset"> Забравена парола</a>
 				</el-form-item>
 			</el-form>
 

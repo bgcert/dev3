@@ -52,10 +52,10 @@
         		let vm = this;
         		axios.post('/login', {
         			email: vm.form.email,
-        			password: vm.form.password
+        			password: vm.form.password,
+        			remember: vm.checked
         		})
         		.then(function (response) {
-        			console.log(response.data);
         			vm.dialogFormVisible = false;
         			window.location.reload();
         		})
