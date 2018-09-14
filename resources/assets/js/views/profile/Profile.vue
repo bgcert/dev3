@@ -42,7 +42,20 @@
 				<label>Адрес</label>
 				<textarea rows="2" v-model="company.address"></textarea>
 			</div>
-			
+
+			<template v-if="errors" v-for="error in errors">
+				 <el-alert
+					 title="Невалидни данни"
+					 type="error"
+					 :description="error"
+					 show-icon>
+				</el-alert>
+				<!-- <el-alert
+					:title="error"
+					type="error">
+				</el-alert> -->
+			</template>
+
 			<div class="field">
 				<button class="ui labeled icon button" @click.prevent="save" style="float: right;"><i class="icon save"></i> Запиши</button>
 			</div>
@@ -62,6 +75,7 @@
     	data: function () {
     		return {
     			company: [],
+    			errors: []
     		}
     	},
 
@@ -83,9 +97,16 @@
 					phone: this.company.phone,
 				}
 
-				let logo = await this.upload();
+				try {
+					let logo = await this.upload();
+				    // let response = await getAllPosts();
+				} catch(e) {
+				    console.log(e);
+				    this.errors = e;
+				    return;
+				}
 
-				if (logo) {
+				if (logo.isResolved) {
 					data.logo = logo;
 				}
 

@@ -57,7 +57,6 @@
 								<a href="/c/{{ $theme->company->slug }}" class="ui basic button">Фирмен профил</a>
 							</div>
 						</div>
-						<!-- <div class="ui divider"></div> -->
 					</div>
 				</div>
 			</div>
@@ -77,6 +76,7 @@
 
 			    <!-- <google-map></google-map> -->
 			    <div id="comments">
+			    	<div class="ui divider"></div>
 			    	<comments
 			    		auth="{{ Auth::check() }}"
 			    		type="theme"
