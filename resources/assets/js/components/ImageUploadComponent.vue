@@ -59,6 +59,7 @@
         created() {
         	EventBus.$on('upload', (resolve, reject) => {
         		if (this.image.file == null) {
+        			// Image is not required. Empty resolve.
         			resolve();
         			return;
         		}

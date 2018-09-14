@@ -55531,6 +55531,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('upload', function (resolve, reject) {
             if (_this2.image.file == null) {
+                // Image is not required. Empty resolve.
                 resolve();
                 return;
             }
@@ -58652,6 +58653,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58673,9 +58699,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         end_date: '',
         start_at: '',
         end_at: '',
-        cover: 'https://picsum.photos/800/400/?image=293',
         price: null
-      }
+      },
+      errors: [],
+      coverErrors: []
     };
   },
 
@@ -58688,7 +58715,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     save: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var vm, cover;
+        var vm;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -58708,29 +58735,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   end_at: this.form.end_at
                 };
 
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return this.upload();
 
-              case 4:
-                cover = _context.sent;
+              case 5:
+                this.data.cover = _context.sent;
+                _context.next = 12;
+                break;
 
-                if (cover) {
-                  this.data.cover = cover;
-                }
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context['catch'](2);
+
+                this.coverErrors = _context.t0;
+                return _context.abrupt('return');
+
+              case 12:
 
                 axios.post('/dashboard/events', vm.data).then(function (response) {
                   vm.$message('Събитието е добавено успешно.');
                   vm.$router.push('/events');
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
+                  // console.log(error);
                 });
 
-              case 7:
+              case 13:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 8]]);
       }));
 
       function save() {
@@ -58783,6 +58819,16 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "Тема" } },
                 [
+                  _vm._l(_vm.errors.theme_id, function(error) {
+                    return _vm.errors.theme_id
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c(
                     "el-select",
                     {
@@ -58807,7 +58853,7 @@ var render = function() {
                     2
                   )
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
@@ -58844,6 +58890,16 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "Град" } },
                 [
+                  _vm._l(_vm.errors.city_id, function(error) {
+                    return _vm.errors.city_id
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c(
                     "el-select",
                     {
@@ -58864,13 +58920,23 @@ var render = function() {
                     })
                   )
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Адрес" } },
                 [
+                  _vm._l(_vm.errors.address, function(error) {
+                    return _vm.errors.address
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-input", {
                     model: {
                       value: _vm.form.address,
@@ -58881,61 +58947,101 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
-              _c("el-form-item", { attrs: { label: "Начална дата" } }, [
-                _c(
-                  "div",
-                  { staticClass: "block" },
-                  [
-                    _c("el-date-picker", {
-                      attrs: {
-                        type: "date",
-                        placeholder: "Начална дата",
-                        "value-format": "yyyy-MM-dd"
-                      },
-                      model: {
-                        value: _vm.form.start_date,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "start_date", $$v)
+              _c(
+                "el-form-item",
+                { attrs: { label: "Начална дата" } },
+                [
+                  _vm._l(_vm.errors.start_date, function(error) {
+                    return _vm.errors.start_date
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "block" },
+                    [
+                      _c("el-date-picker", {
+                        attrs: {
+                          type: "date",
+                          placeholder: "Начална дата",
+                          "value-format": "yyyy-MM-dd"
                         },
-                        expression: "form.start_date"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]),
+                        model: {
+                          value: _vm.form.start_date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "start_date", $$v)
+                          },
+                          expression: "form.start_date"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("el-form-item", { attrs: { label: "Крайна дата" } }, [
-                _c(
-                  "div",
-                  { staticClass: "block" },
-                  [
-                    _c("el-date-picker", {
-                      attrs: {
-                        type: "date",
-                        placeholder: "Крайна дата",
-                        "value-format": "yyyy-MM-dd"
-                      },
-                      model: {
-                        value: _vm.form.end_date,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "end_date", $$v)
+              _c(
+                "el-form-item",
+                { attrs: { label: "Крайна дата" } },
+                [
+                  _vm._l(_vm.errors.end_date, function(error) {
+                    return _vm.errors.end_date
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "block" },
+                    [
+                      _c("el-date-picker", {
+                        attrs: {
+                          type: "date",
+                          placeholder: "Крайна дата",
+                          "value-format": "yyyy-MM-dd"
                         },
-                        expression: "form.end_date"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]),
+                        model: {
+                          value: _vm.form.end_date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "end_date", $$v)
+                          },
+                          expression: "form.end_date"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                2
+              ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Начален час" } },
                 [
+                  _vm._l(_vm.errors.start_at, function(error) {
+                    return _vm.errors.start_at
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-time-select", {
                     attrs: {
                       "picker-options": {
@@ -58955,13 +59061,23 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Краен час" } },
                 [
+                  _vm._l(_vm.errors.end_at, function(error) {
+                    return _vm.errors.end_at
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-time-select", {
                     attrs: {
                       "picker-options": {
@@ -58981,24 +59097,44 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Корица" } },
                 [
+                  _vm._l(_vm.coverErrors, function(error) {
+                    return _vm.coverErrors
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("imageUpload", {
                     attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Цена" } },
                 [
+                  _vm._l(_vm.errors.price, function(error) {
+                    return _vm.errors.price
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c(
                     "el-input",
                     {
@@ -59015,7 +59151,7 @@ var render = function() {
                     2
                   )
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c("el-form-item", [
@@ -59354,7 +59490,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 0:
                 vm = this;
                 data = {
-                  theme_id: this.selectedTheme,
+                  // theme_id: this.selectedTheme,
                   city_id: this.event.city_id,
                   address: this.event.address,
                   price: this.event.price,

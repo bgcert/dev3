@@ -68,24 +68,33 @@ class Event extends Model
     	return $this->attributes['cover'] = (!empty($value)) ? $value : $this->theme->cover; // This is cool!
     }
 
-    public function getStartDateCarbonAttribute($value)
+    public function getStartDateCarbonAttribute()
     {
-    	// Carbon::setLocale('ru');
     	return Date::parse($this->attributes['start_date'])->format('d M, Y');
     }
 
-    public function getEndDateCarbonAttribute($value)
+    public function getEndDateCarbonAttribute()
     {
     	return Date::parse($this->attributes['end_date'])->format('d M, Y');
     }
 
+    public function getStartAtAttribute($value)
+    {
+    	return Date::parse($value)->format('H:i');
+    }
+
+    public function getEndAtAttribute($value)
+    {
+    	return Date::parse($value)->format('H:i');
+    }
+
     public function getStartAtCarbonAttribute()
     {
-    	return Date::parse($this->start_at)->format('h:i');
+    	return Date::parse($this->start_at)->format('H:i');
     }
 
     public function getEndAtCarbonAttribute()
     {
-    	return Date::parse($this->end_at)->format('h:i');
+    	return Date::parse($this->end_at)->format('H:i');
     }
 }

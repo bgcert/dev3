@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
 use Image;
@@ -40,12 +41,11 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
     	$event = \Auth::user()->company->events()->create($request->all());
 
     	if ($request->teachers) {
-    		// $teachers = explode(',', $request->teachers);
     		$event->teachers()->attach($request->teachers);
     	}
     	
@@ -84,7 +84,7 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
 
     	$event = \App\Event::find($id);

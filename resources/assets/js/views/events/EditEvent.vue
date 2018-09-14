@@ -153,7 +153,7 @@
     			let vm = this;
 
     			let data = {
-					theme_id: this.selectedTheme,
+					// theme_id: this.selectedTheme,
 					city_id: this.event.city_id,
 					address: this.event.address,
 					price: this.event.price,
