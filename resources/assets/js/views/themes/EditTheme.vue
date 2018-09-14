@@ -8,10 +8,16 @@
 			<div class="ui segment" v-if="!loading">
 				<el-form ref="form" label-width="120px">
 					<el-form-item label="Заглавие">
+						<template v-if="errors.title" v-for="error in errors.title">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="theme.title"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Категория">
+						<template v-if="errors.category_id" v-for="error in errors.category_id">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-select v-model="theme.category_id" placeholder="Изберете категория">
 							<template v-for="category in categories">
 								<el-option :label="category.name" :value="category.id"></el-option>	
@@ -20,20 +26,30 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<imageUpload
-								:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover">
-							</imageUpload>
+							<template v-if="coverErrors" v-for="error in coverErrors">
+								 <el-alert type="error" :title="error"></el-alert>
+							</template>
+							<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover"></imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
+						<template v-if="errors.excerpt" v-for="error in errors.excerpt">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="3" v-model="theme.excerpt"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Съдържание">
+						<template v-if="errors.body" v-for="error in errors.body">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="6" v-model="theme.body"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Продължителност">
+						<template v-if="errors.duration" v-for="error in errors.duration">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="theme.duration" style="width: 100px;"></el-input>
 					</el-form-item>
 
@@ -70,6 +86,8 @@
     			selectedFile: null,
     			categories: [],
     			theme: [],
+    			errors: [],
+    			coverErrors: []
     		}
     	},
 
@@ -89,10 +107,11 @@
 					category_id: this.theme.category_id,
 				}
 
-				let cover = await this.upload();
-
-				if (cover) {
-					data.cover = cover;
+				try {
+					data.cover = await this.upload();
+				} catch(e) {
+				    this.coverErrors = e;
+				    return;
 				}
 
 				let route = '/dashboard/themes/' + this.$route.params.id;
@@ -103,53 +122,9 @@
     				vm.$router.push('/themes');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // 			// Needed for patch request with form data
-    // 			formData.append('_method', 'patch');
-				// formData.append('title', this.theme.title);
-				// formData.append('body', this.theme.body);
-				// formData.append('excerpt', this.theme.excerpt);
-				// formData.append('duration', this.theme.duration);
-				// formData.append('category_id', this.theme.category_id);
-
-    // 			let config =
-				// 	{
-				// 		header : {
-				// 			'Content-Type' : 'multipart/form-data'
-				// 		}
-				// 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				// upload.then((data) => {
-				// 	// Append if file selected
-				// 	if (data) {
-				// 		formData.append('file', data);
-				// 	}
-
-				// 	let route = '/dashboard/themes/' + this.$route.params.id;
-				// 	axios.post(route, formData)
-	   //  			.then(function (response) {
-	   //  				console.log(response);
-	   //  				vm.$message('Темата е редактирана успешно.');
-	   //  				vm.$router.push('/themes');
-	   //  			})
-	   //  			.catch(function (error) {
-	   //  				console.log(error);
-	   //  			});
-				// }, (error) => {
-				// 	console.log('Promise rejected.');
-				// 	vm.$message('Невалидно изображение');
-				// });
-    // 		}
     	},
 
         mounted() {

@@ -50,10 +50,6 @@
 					 :description="error"
 					 show-icon>
 				</el-alert>
-				<!-- <el-alert
-					:title="error"
-					type="error">
-				</el-alert> -->
 			</template>
 
 			<div class="field">
@@ -98,16 +94,10 @@
 				}
 
 				try {
-					let logo = await this.upload();
-				    // let response = await getAllPosts();
+					data.logo = await this.upload();
 				} catch(e) {
-				    console.log(e);
 				    this.errors = e;
 				    return;
-				}
-
-				if (logo.isResolved) {
-					data.logo = logo;
 				}
 
 				let route = '/dashboard/save/company/data';
@@ -131,11 +121,6 @@
             var route = '/dashboard/load/company';
         	axios.get(route).then(function (response) {
         		vm.company = response.data;
-        		// let data = response.data;
-        		// vm.company_details = data.company_detail;
-        		// delete data.is_followed;
-        		// delete data.followers;
-        		// vm.company = response.data;
 			})
 			.catch(function (error) {
 				console.log(error);

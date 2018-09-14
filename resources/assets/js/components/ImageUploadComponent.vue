@@ -1,11 +1,5 @@
 <template>
 	<div>
-		<!-- <template v-if="errors" v-for="error in errors">
-			<el-alert
-				:title="error"
-				type="error">
-			</el-alert>
-		</template> -->
 		<div class="single-image" :style="'background-image: url(' + image.filename + ');'">
 			<label :for="'image'" class="ui small purple icon button" ><i class="camera icon"></i> Качи изображение</label>
 			<input type="file" :id="'image'" class="inputfile" @change="onFileChange">
@@ -25,7 +19,6 @@
     		return {
     			image: { filename: this.imageUrl, progress: -1, file: null },
     			result: null,
-    			errors: null
     		}
     	},
 

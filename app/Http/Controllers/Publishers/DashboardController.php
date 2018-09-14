@@ -32,14 +32,15 @@ class DashboardController extends Controller
 
     public function saveImage()
     {
-    	$validator = request()->validate(['file' => 'image|mimes:jpeg,png,gif|max:2400']);
+    	$validator = request()->validate(['file' => 'image|mimes:jpeg,png,gif|max:4800']);
 
-    	if (!$validator) {
-    		return $validator;
-        	// return response()->json(['error' => $validator]);
+    	if (!$validator)
+    	{
+    		return $validator; // Automatically returns error 422 with messages!
+        } else
+        {
+        	$file = request()->file;
+        	return \Storage::disk('s3')->put('/', $file);
         }
-
-		$file = request()->file;
-        return \Storage::disk('s3')->put('/', $file);
     }
 }

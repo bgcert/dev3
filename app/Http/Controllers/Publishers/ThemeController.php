@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ThemeRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
 use Image;
@@ -36,10 +37,9 @@ class ThemeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThemeRequest $request)
     {
     	$theme = \Auth::user()->company->themes()->create($request->all());
-
     	return $theme;
     }
 
@@ -74,7 +74,7 @@ class ThemeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ThemeRequest $request, $id)
     {
     	$theme = \App\Theme::find($id);
     	$theme->update($request->all());

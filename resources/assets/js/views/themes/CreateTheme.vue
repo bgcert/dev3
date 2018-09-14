@@ -7,11 +7,18 @@
 			
 			<div class="ui segment">
 				<el-form ref="form" :model="form" label-width="160px">
+
 					<el-form-item label="Заглавие">
+						<template v-if="errors.title" v-for="error in errors.title">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="form.title"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Категория">
+						<template v-if="errors.category_id" v-for="error in errors.category_id">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-select v-model="form.category" placeholder="Изберете категория">
 							<template v-for="category in categories">
 								<el-option :label="category.name" :value="category.id"></el-option>	
@@ -20,20 +27,30 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<imageUpload
-							:imageUrl="'/img/default_cover.png'">
-						</imageUpload>
+						<template v-if="coverErrors" v-for="error in coverErrors">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
+						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Кратко описание">
+						<template v-if="errors.excerpt" v-for="error in errors.excerpt">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="3" v-model="form.excerpt"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Съдържание">
+						<template v-if="errors.body" v-for="error in errors.body">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="6" v-model="form.body"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Учебни часове">
+						<template v-if="errors.duration" v-for="error in errors.duration">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="form.duration" style="width: 100px;"></el-input>
 					</el-form-item>
 
@@ -74,7 +91,9 @@
     				type: [],
     				duration: null
     			},
-    			data: {}
+    			data: {},
+    			errors: [],
+    			coverErrors: []
     		}
     	},
 
@@ -95,9 +114,11 @@
 					category_id: this.form.category,
 				}
 
-				let cover = await this.upload();
-				if (cover) {
-					this.data.cover = cover;
+				try {
+					this.data.cover = await this.upload();
+				} catch(e) {
+				    this.coverErrors = e;
+				    return;
 				}
 
     			axios.post('/dashboard/themes', vm.data)
@@ -106,7 +127,7 @@
     				vm.$router.push('/themes');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
     	},
