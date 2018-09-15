@@ -120,7 +120,6 @@
 @endsection
 
 @push('footer-scripts')
-
 	<script>
 		$('#number').click(function() {
 		    $(this).find('span').text( $(this).data('number') );
