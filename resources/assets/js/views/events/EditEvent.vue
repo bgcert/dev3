@@ -14,9 +14,7 @@
 						</el-form-item>
 
 						<el-form-item label="Корица">
-							<imageUpload
-								:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover">
-							</imageUpload>
+							<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"></imageUpload>
 						</el-form-item>
 
 						<el-form-item label="Лектори">
@@ -31,6 +29,9 @@
 						</el-form-item>
 
 						<el-form-item label="Град">
+							<template v-if="errors.city_id" v-for="error in errors.city_id">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<el-select v-model="event.city_id" placeholder="Изберете град">
 								<el-option
 									v-for="city in cities"
@@ -42,10 +43,16 @@
 						</el-form-item>
 
 						<el-form-item label="Адрес">
+							<template v-if="errors.address" v-for="error in errors.address">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<el-input v-model="event.address"></el-input>
 						</el-form-item>
 
 						<el-form-item label="Начална дата">
+							<template v-if="errors.start_date" v-for="error in errors.start_date">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<div class="block">
 								<el-date-picker
 									v-model="event.start_date"
@@ -57,6 +64,9 @@
 						</el-form-item>
 
 						<el-form-item label="Крайна дата">
+							<template v-if="errors.end_date" v-for="error in errors.end_date">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<div class="block">
 								<el-date-picker
 									v-model="event.end_date"
@@ -68,6 +78,9 @@
 						</el-form-item>
 
 						<el-form-item label="Начален час">
+							<template v-if="errors.start_at" v-for="error in errors.start_at">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<el-time-select
 								v-model="event.start_at"
 								:picker-options="{
@@ -81,6 +94,9 @@
 						</el-form-item>
 
 						<el-form-item label="Краен час">
+							<template v-if="errors.end_at" v-for="error in errors.end_at">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<el-time-select
 								v-model="event.end_at"
 								:picker-options="{
@@ -94,6 +110,9 @@
 						</el-form-item>
 
 						<el-form-item label="Цена">
+							<template v-if="errors.price" v-for="error in errors.price">
+								<el-alert type="error" :title="error"></el-alert>
+							</template>
 							<el-input v-model="event.price" style="width: 150px;">
 								<template slot="append">лв.</template>
 							</el-input>
@@ -140,6 +159,7 @@
     			teachers: [],
     			cities: null,
     			selectedTeachers: [],
+    			errors: [],
     		}
     	},
 
@@ -153,7 +173,6 @@
     			let vm = this;
 
     			let data = {
-					// theme_id: this.selectedTheme,
 					city_id: this.event.city_id,
 					address: this.event.address,
 					price: this.event.price,
@@ -164,10 +183,10 @@
 					end_at: this.event.end_at
 				}
 
-				let cover = await this.upload();
-
-				if (cover) {
-					data.cover = cover;
+				try {
+					data.cover = await this.upload();
+				} catch(e) {
+				    data.cover = null;
 				}
 
 				let route = '/dashboard/events/' + this.$route.params.id;
@@ -178,7 +197,7 @@
     				vm.$router.push('/events');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
     	},

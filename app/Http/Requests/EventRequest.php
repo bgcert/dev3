@@ -29,7 +29,7 @@ class EventRequest extends FormRequest
     {
         $rules = [
         	'city_id' => 'required|integer',
-        	'cover' => 'max:255',
+        	'cover' => 'filled|max:255',
             'address' => 'required|max:255',
             'start_date' => 'required|date_format:"Y-m-d"|after:today',
             'end_date' => 'required|date_format:"Y-m-d"|after:start_date',

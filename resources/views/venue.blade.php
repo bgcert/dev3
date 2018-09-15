@@ -89,9 +89,14 @@
 							</p>
 							@if($venue->company->phone != '')
 							<p>
-								<button class="ui fluid labeled icon big primary button">
+								<button
+									id="number"
+									class="ui fluid labeled icon big primary button"
+									data-number="{{$venue->company->phone}}">
 									<i class="mobile alternate icon"></i>
-									{{ $venue->company->phone }}
+									<span>
+										{{ str_limit($venue->company->phone, 2, str_repeat("X", strlen($venue->company->phone) - 2)) }}
+									</span>
 								</button>
 							</p>
 							@endif
@@ -113,3 +118,12 @@
     
 </div>
 @endsection
+
+@push('footer-scripts')
+
+	<script>
+		$('#number').click(function() {
+		    $(this).find('span').text( $(this).data('number') );
+		});
+	</script>
+@endpush
