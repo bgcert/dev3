@@ -8,16 +8,23 @@
 			<div class="ui segment">
 				<el-form ref="form" :model="form" label-width="120px">
 					<el-form-item label="Име">
+						<template v-if="errors.name" v-for="error in errors.name">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="form.name"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<imageUpload
-							:imageUrl="'/img/default_cover.png'">
-						</imageUpload>
+						<template v-if="imageErrors" v-for="error in imageErrors">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
+						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
+						<template v-if="errors.details" v-for="error in errors.details">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="6" v-model="form.details"></el-input>
 					</el-form-item>
 					<el-form-item>
@@ -51,7 +58,10 @@
     			form: {
     				name: '',
     				details: '',
-    			}
+    			},
+    			data: {},
+    			errors: [],
+    			imageErrors: []
     		}
     	},
 
@@ -64,63 +74,32 @@
     		async save() {
     			let vm = this;
 
-				let data = {
+				this.data = {
 					name: this.form.name,
 					details: this.form.details,
 				}
 
-				let image = await this.upload();
-				if (image) {
-					data.image = image;
+				try {
+					this.data.image = await this.upload();
+				} catch(e) {
+				    this.imageErrors = e;
+				    return;
 				}
 
-    			axios.post('/dashboard/teachers', data)
+				// let image = await this.upload();
+				// if (image) {
+				// 	this.data.image = image;
+				// }
+
+    			axios.post('/dashboard/teachers', vm.data)
     			.then(function (response) {
     				vm.$message('Лекторът е добавен успешно.');
     				vm.$router.push('/teachers');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // 			// Needed for patch request with form data
-    // 			formData.append('name', this.form.name);
-				// formData.append('details', this.form.details);
-
-    // 			let config =
-				// 	{
-				// 		header : {
-				// 			'Content-Type' : 'multipart/form-data'
-				// 		}
-				// 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-				// upload.then((data) => {
-				// 	// Append if file selected
-				// 	if (data) {
-				// 		formData.append('file', data);
-				// 	}
-
-				// 	axios.post('/dashboard/teachers', formData, config)
-		  //   			.then(function (response) {
-		  //   				vm.$message('Лекторът е добавен.');
-    // 						vm.$router.push('/teachers');
-		  //   			})
-		  //   			.catch(function (error) {
-		  //   				console.log(error);
-		  //   			});
-				// }, (error) => {
-				// 	console.log('Promise rejected.');
-				// 	vm.$message('Невалидно изображение');
-				// });
-    // 		}
     	},
 
         mounted() {

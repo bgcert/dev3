@@ -8,16 +8,23 @@
 			<div class="ui segment" v-if="!loading">
 				<el-form ref="form" label-width="120px">
 					<el-form-item label="Име">
+						<template v-if="errors.name" v-for="error in errors.name">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="teacher.name"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<imageUpload
-							:imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image">
-						</imageUpload>
+						<template v-if="imageErrors" v-for="error in imageErrors">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
+						<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"></imageUpload>
 					</el-form-item>
 
 					<el-form-item label="Съдържание">
+						<template v-if="errors.details" v-for="error in errors.details">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="6" v-model="teacher.details"></el-input>
 					</el-form-item>
 					<el-form-item>
@@ -49,6 +56,9 @@
     		return {
     			loading: true,
     			teacher: [],
+    			data: {},
+    			errors: [],
+    			imageErrors: []
     		}
     	},
 
@@ -60,26 +70,27 @@
     		
     		async save() {
     			let vm = this;
-				let data = {
+				this.data = {
 					name: this.teacher.name,
 					details: this.teacher.details,
 				}
 
-				let image = await this.upload();
-
-				if (image) {
-					data.image = image;
+				try {
+					this.data.image = await this.upload();
+				} catch(e) {
+				    this.imageErrors = e;
+				    return;
 				}
 
 				let route = '/dashboard/teachers/' + this.$route.params.id;
 
-    			axios.patch(route, data)
+    			axios.patch(route, vm.data)
     			.then(function (response) {
     				vm.$message('Лекторът е редактиран успешно.');
     				vm.$router.push('/teachers');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
     	},

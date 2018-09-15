@@ -174,6 +174,7 @@
     				end_at: '',
     				price: null,
     			},
+    			data: {},
     			errors: [],
     			coverErrors: []
     		}
@@ -214,7 +215,6 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
-    				// console.log(error);
     			})
     		}
     	},

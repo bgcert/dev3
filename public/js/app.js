@@ -57670,6 +57670,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -57683,7 +57690,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       form: {
         name: '',
         details: ''
-      }
+      },
+      data: {},
+      errors: [],
+      imageErrors: []
     };
   },
 
@@ -57696,39 +57706,55 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     save: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var vm, data, image;
+        var vm;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 vm = this;
-                data = {
+
+
+                this.data = {
                   name: this.form.name,
                   details: this.form.details
                 };
-                _context.next = 4;
+
+                _context.prev = 2;
+                _context.next = 5;
                 return this.upload();
 
-              case 4:
-                image = _context.sent;
+              case 5:
+                this.data.image = _context.sent;
+                _context.next = 12;
+                break;
 
-                if (image) {
-                  data.image = image;
-                }
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context['catch'](2);
 
-                axios.post('/dashboard/teachers', data).then(function (response) {
+                this.imageErrors = _context.t0;
+                return _context.abrupt('return');
+
+              case 12:
+
+                // let image = await this.upload();
+                // if (image) {
+                // 	this.data.image = image;
+                // }
+
+                axios.post('/dashboard/teachers', vm.data).then(function (response) {
                   vm.$message('Лекторът е добавен успешно.');
                   vm.$router.push('/teachers');
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
                 });
 
-              case 7:
+              case 13:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 8]]);
       }));
 
       function save() {
@@ -57737,45 +57763,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
       return save;
     }()
-
-    // 		save() {
-    // 			let vm = this;
-    // 			let image;
-
-    // 			let formData = new FormData();
-    // 			// Needed for patch request with form data
-    // 			formData.append('name', this.form.name);
-    // formData.append('details', this.form.details);
-
-    // 			let config =
-    // 	{
-    // 		header : {
-    // 			'Content-Type' : 'multipart/form-data'
-    // 		}
-    // 	}
-
-    // 			let upload = new Promise((resolve, reject) => EventBus.$emit('imageSave', resolve, reject));
-
-    // upload.then((data) => {
-    // 	// Append if file selected
-    // 	if (data) {
-    // 		formData.append('file', data);
-    // 	}
-
-    // 	axios.post('/dashboard/teachers', formData, config)
-    //   			.then(function (response) {
-    //   				vm.$message('Лекторът е добавен.');
-    // 						vm.$router.push('/teachers');
-    //   			})
-    //   			.catch(function (error) {
-    //   				console.log(error);
-    //   			});
-    // }, (error) => {
-    // 	console.log('Promise rejected.');
-    // 	vm.$message('Невалидно изображение');
-    // });
-    // 		}
-
   },
 
   mounted: function mounted() {
@@ -57808,6 +57795,16 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "Име" } },
                 [
+                  _vm._l(_vm.errors.name, function(error) {
+                    return _vm.errors.name
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-input", {
                     model: {
                       value: _vm.form.name,
@@ -57818,24 +57815,44 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Снимка" } },
                 [
+                  _vm._l(_vm.imageErrors, function(error) {
+                    return _vm.imageErrors
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("imageUpload", {
                     attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Съдържание" } },
                 [
+                  _vm._l(_vm.errors.details, function(error) {
+                    return _vm.errors.details
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-input", {
                     attrs: { type: "textarea", rows: 6 },
                     model: {
@@ -57847,7 +57864,7 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c("el-form-item", [
@@ -58013,6 +58030,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58023,7 +58047,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   data: function data() {
     return {
       loading: true,
-      teacher: []
+      teacher: [],
+      data: {},
+      errors: [],
+      imageErrors: []
     };
   },
 
@@ -58036,43 +58063,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     save: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var vm, data, image, route;
+        var vm, route;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 vm = this;
-                data = {
+
+                this.data = {
                   name: this.teacher.name,
                   details: this.teacher.details
                 };
-                _context.next = 4;
+
+                _context.prev = 2;
+                _context.next = 5;
                 return this.upload();
 
-              case 4:
-                image = _context.sent;
+              case 5:
+                this.data.image = _context.sent;
+                _context.next = 12;
+                break;
 
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context['catch'](2);
 
-                if (image) {
-                  data.image = image;
-                }
+                this.imageErrors = _context.t0;
+                return _context.abrupt('return');
 
+              case 12:
                 route = '/dashboard/teachers/' + this.$route.params.id;
 
 
-                axios.patch(route, data).then(function (response) {
+                axios.patch(route, vm.data).then(function (response) {
                   vm.$message('Лекторът е редактиран успешно.');
                   vm.$router.push('/teachers');
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
                 });
 
-              case 8:
+              case 14:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 8]]);
       }));
 
       function save() {
@@ -58125,6 +58160,16 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Име" } },
                     [
+                      _vm._l(_vm.errors.name, function(error) {
+                        return _vm.errors.name
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         model: {
                           value: _vm.teacher.name,
@@ -58135,13 +58180,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Снимка" } },
                     [
+                      _vm._l(_vm.imageErrors, function(error) {
+                        return _vm.imageErrors
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("imageUpload", {
                         attrs: {
                           imageUrl:
@@ -58150,13 +58205,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Съдържание" } },
                     [
+                      _vm._l(_vm.errors.details, function(error) {
+                        return _vm.errors.details
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { type: "textarea", rows: 6 },
                         model: {
@@ -58168,7 +58233,7 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c("el-form-item", [
@@ -58701,6 +58766,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         end_at: '',
         price: null
       },
+      data: {},
       errors: [],
       coverErrors: []
     };
@@ -58758,7 +58824,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   vm.$router.push('/events');
                 }).catch(function (error) {
                   vm.errors = error.response.data;
-                  // console.log(error);
                 });
 
               case 13:

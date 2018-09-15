@@ -64,7 +64,6 @@ class Event extends Model
 
     public function getCoverAttribute($value)
     {
-    	//return $this->attributes['cover'] = (!empty($value)) ? $value : '/img/default_cover.png';
     	return $this->attributes['cover'] = (!empty($value)) ? $value : $this->theme->cover; // This is cool!
     }
 
