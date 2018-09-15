@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
     public function saveImage()
     {
-    	$validator = request()->validate(['file' => 'image|mimes:jpeg,png,gif|max:4800']);
+    	$validator = request()->validate(['file' => 'image|mimes:jpeg,png,gif|max:3600']);
 
     	if (!$validator)
     	{

@@ -26,9 +26,6 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-							<template v-if="coverErrors" v-for="error in coverErrors">
-								 <el-alert type="error" :title="error"></el-alert>
-							</template>
 							<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover"></imageUpload>
 					</el-form-item>
 
@@ -110,8 +107,7 @@
 				try {
 					data.cover = await this.upload();
 				} catch(e) {
-				    this.coverErrors = e;
-				    return;
+				    data.cover = null;
 				}
 
 				let route = '/dashboard/themes/' + this.$route.params.id;

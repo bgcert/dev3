@@ -27,9 +27,6 @@
 					</el-form-item>
 
 					<el-form-item label="Корица">
-						<template v-if="coverErrors" v-for="error in coverErrors">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
 						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
 					</el-form-item>
 
@@ -117,8 +114,8 @@
 				try {
 					this.data.cover = await this.upload();
 				} catch(e) {
-				    this.coverErrors = e;
-				    return;
+					console.log(e);
+				    this.data.cover = null;
 				}
 
     			axios.post('/dashboard/themes', vm.data)

@@ -34,7 +34,7 @@ class ThemeRequest extends FormRequest
             'title' => 'required|max:255',
             'excerpt' => 'required',
         	'body' => 'required',
-        	'cover' => 'max:255',
+        	'cover' => 'filled|max:255',
         	'duration' => 'required|integer',
         ];
     }
