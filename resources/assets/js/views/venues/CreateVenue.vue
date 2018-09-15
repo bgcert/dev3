@@ -8,6 +8,9 @@
 			<div class="ui segment">
 				<el-form label-width="160px">
 					<el-form-item label="Наименование">
+						<template v-if="errors.name" v-for="error in errors.name">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="name"></el-input>
 					</el-form-item>
 
@@ -20,12 +23,18 @@
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
+						<template v-if="errors.capacity" v-for="error in errors.capacity">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="capacity" style="width: 160px;">
 							<template slot="append">места</template>
 						</el-input>
 					</el-form-item>
 
 					<el-form-item label="Град">
+						<template v-if="errors.city_id" v-for="error in errors.city_id">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-select v-model="cityId" placeholder="Изберете град">
 							<el-option
 								v-for="city in cities"
@@ -37,14 +46,23 @@
 					</el-form-item>
 
 					<el-form-item label="Адрес">
+						<template v-if="errors.address" v-for="error in errors.address">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="address"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Описание">
+						<template v-if="errors.description" v-for="error in errors.description">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="12" v-model="description"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Цена">
+						<template v-if="errors.price" v-for="error in errors.price">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="price" style="width: 200px;">
 							<template slot="append">.00 лв. с ДДС</template>
 						</el-input>
@@ -87,7 +105,9 @@
 				capacity: null,
 				price: null,
 				imageList: [],
-				data: {}
+				data: {},
+    			errors: [],
+    			imagesErrors: []
     		}
     	},
 
@@ -114,14 +134,17 @@
 					capacity: this.capacity,
 				}
 
-				let images = await this.multiUpload();
-				if (images.length > 0) {
-					this.data.images = images;
-				}
+				// try {
+				// 	this.data.images = await this.multiUpload();
+				// } catch(e) {
+				//     this.imagesErrors = e;
+				//     return;
+				// }
 
-				let cover = await this.upload();
-				if (cover) {
-					this.data.cover = cover;
+				try {
+					this.data.cover = await this.upload();
+				} catch(e) {
+				    return;
 				}
 
     			axios.post('/dashboard/venues', vm.data)
@@ -130,7 +153,7 @@
     				vm.$router.push('/venues');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
     	},
@@ -144,7 +167,7 @@
             	vm.cities = response.data;
 			})
 			.catch(function (error) {
-			    console.log(error);
+				vm.errors = error.response.data;
 			});
         },
 

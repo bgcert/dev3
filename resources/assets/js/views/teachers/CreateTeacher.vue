@@ -86,11 +86,6 @@
 				    return;
 				}
 
-				// let image = await this.upload();
-				// if (image) {
-				// 	this.data.image = image;
-				// }
-
     			axios.post('/dashboard/teachers', vm.data)
     			.then(function (response) {
     				vm.$message('Лекторът е добавен успешно.');

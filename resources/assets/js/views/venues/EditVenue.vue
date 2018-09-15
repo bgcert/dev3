@@ -8,6 +8,9 @@
 			<div class="ui segment" v-if="!loading">
 				<el-form label-width="160px">
 					<el-form-item label="Наименование">
+						<template v-if="errors.name" v-for="error in errors.name">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="venue.name"></el-input>
 					</el-form-item>
 					<el-form-item label="Основна снимка">
@@ -22,12 +25,18 @@
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
+						<template v-if="errors.capacity" v-for="error in errors.capacity">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="venue.capacity" style="width: 160px;">
 							<template slot="append">места</template>
 						</el-input>
 					</el-form-item>
 
 					<el-form-item label="Град">
+						<template v-if="errors.city_id" v-for="error in errors.city_id">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-select v-model="cityId" placeholder="Изберете град">
 							<el-option
 								v-for="city in cities"
@@ -39,14 +48,23 @@
 					</el-form-item>
 
 					<el-form-item label="Адрес">
+						<template v-if="errors.address" v-for="error in errors.address">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="venue.address"></el-input>
 					</el-form-item>
 					
 					<el-form-item label="Описание">
+						<template v-if="errors.description" v-for="error in errors.description">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input type="textarea" :rows="12" v-model="venue.description"></el-input>
 					</el-form-item>
 
 					<el-form-item label="Цена">
+						<template v-if="errors.price" v-for="error in errors.price">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<el-input v-model="venue.price" style="width: 200px;">
 							<template slot="append">.00 лв. с ДДС</template>
 						</el-input>
@@ -85,7 +103,9 @@
 				imageList: [],
 				cities: null,
 				cityId: null,
-				detached: []
+				detached: [],
+				data: {},
+				errors: [],
     		}
     	},
 
@@ -102,7 +122,7 @@
 
     		async save() {
     			let vm = this;
-				let data = {
+				this.data = {
 					name: this.venue.name,
 					description: this.venue.description,
 					city_id: this.cityId,
@@ -112,31 +132,31 @@
 					capacity: this.venue.capacity
 				}
 
-				let images = await this.multiUpload();
+				// let images = await this.multiUpload();
 
-				if (images != null) {
-					data.images = images;
-				}
+				// if (images != null) {
+				// 	data.images = images;
+				// }
 
-				let cover = await this.upload();
-
-				if (cover) {
-					data.cover = cover;
+				try {
+					this.data.cover = await this.upload();
+				} catch(e) {
+				    return;
 				}
 
 				if (this.detached) {
-					data.detached = this.detached;
+					this.data.detached = this.detached;
 				}
 
 				let route = '/dashboard/venues/' + this.$route.params.id;
 
-    			axios.patch(route, data)
+    			axios.patch(route, vm.data)
     			.then(function (response) {
     				vm.$message('Залата е редактирана успешно.');
     				vm.$router.push('/venues');
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		},
 

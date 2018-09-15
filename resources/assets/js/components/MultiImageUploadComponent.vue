@@ -1,15 +1,26 @@
 <template>
 	<div>
-		<div class="multi-image existing" :style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'" v-for="(item, index) in existing" :key="index">
+		<div
+			class="multi-image existing"
+			:style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'"
+			v-for="(item, index) in existing"
+			:key="index">
 			<button class="ui button" @click.prevent="detach(index, item.id)"> Премахни</button>
 		</div>
 
 		<div>
-			<div class="multi-image" :style="'background-image: url(' + image.filename + ');'" v-for="(image, index) in images" :key="index">
-				<div class="progress" v-if="image.progress >= 0">
-					<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
+			<div
+				v-for="(image, index) in images"
+				:key="index">
+				<div v-if="imageErrors[index-1]" v-for="error in imageErrors[index-1]" style="margin-top: 10px;">
+					 <el-alert type="error" :title="error"></el-alert>
 				</div>
-				<button class="ui button" @click.prevent="remove(index)"> Премахни</button>
+				<div class="multi-image" :style="'background-image: url(' + image.filename + ');'">
+					<div class="progress" v-if="image.progress >= 0">
+						<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
+					</div>
+					<button class="ui button" @click.prevent="remove(index)"> Премахни</button>
+				</div>
 			</div>
 			<label :for="'multi-image'" class="ui small button"> Добави изображение</label>
 			<input type="file" :id="'multi-image'" class="inputfile" @change="onFileChange">
@@ -29,7 +40,8 @@
     			uploadedImages: [],
     			result: [],
     			images: [],
-    			existing: this.existingImages
+    			existing: this.existingImages,
+    			imageErrors: []
     		}
     	},
 
@@ -65,8 +77,14 @@
     			let filenames = [];
 
     			for (let i = 0; i < this.images.length; i++) {
-    				let filename = await this.upload(i);
-    				filenames.push(filename);
+    				try {
+						let filename = await this.upload(i);
+						filenames.push(filename);
+					} catch(e) {
+					    this.imageErrors.push(e);
+					}
+    				// let filename = await this.upload(i);
+    				// filenames.push(filename);
     			}
     			return filenames;
     		},
@@ -92,7 +110,8 @@
 	    				resolve(responce.data);
 	    			})
 	    			.catch(function (error) {
-	    				console.log(error);
+	    				reject(error.response.data.errors.file);
+	    				// console.log(error);
 	    			})
     			});
     		},

@@ -55482,6 +55482,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -55490,7 +55493,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             image: { filename: this.imageUrl, progress: -1, file: null },
-            result: null
+            result: null,
+            errors: null,
+            uploaded: false,
+            uploadedFileName: null
         };
     },
 
@@ -55501,12 +55507,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var files = e.target.files || e.dataTransfer.files;
             var imageUrl = URL.createObjectURL(files[0]);
             this.image = { filename: imageUrl, progress: 0, file: files[0] };
+            this.uploadedFileName = null;
+            this.errors = null;
         },
         upload: function upload() {
             var _this = this;
 
             return new Promise(function (resolve, reject) {
                 var vm = _this;
+
+                // If this attatched file is already uploaded no need to upload it again
+                if (_this.uploadedFileName != null) {
+                    resolve(_this.uploadedFileName);
+                    return;
+                }
+
                 var formData = new FormData();
                 formData.append('file', vm.image.file);
                 axios.post('/dashboard/image/upload', formData, {
@@ -55514,7 +55529,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         vm.image.progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
                     }
                 }).then(function (responce) {
-                    resolve(responce.data);
+                    vm.uploadedFileName = responce.data;
+                    resolve(vm.uploadedFileName);
                 }).catch(function (error) {
                     vm.errors = error.response.data.errors.file;
                     reject(error.response.data.errors.file);
@@ -55552,49 +55568,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "single-image",
-        style: "background-image: url(" + _vm.image.filename + ");"
-      },
-      [
-        _c(
-          "label",
-          {
-            staticClass: "ui small purple icon button",
-            attrs: { for: "image" }
-          },
-          [_c("i", { staticClass: "camera icon" }), _vm._v(" Качи изображение")]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "inputfile",
-          attrs: { type: "file", id: "image" },
-          on: { change: _vm.onFileChange }
-        }),
-        _vm._v(" "),
-        _vm.image.progress >= 0
-          ? _c(
-              "div",
-              { staticClass: "progress" },
-              [
-                _c("el-progress", {
-                  attrs: {
-                    "text-inside": true,
-                    "stroke-width": 18,
-                    percentage: _vm.image.progress,
-                    color: "rgba(142, 113, 199, 0.7)"
-                  }
-                })
-              ],
-              1
-            )
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.errors, function(error) {
+        return _vm.errors
+          ? [_c("el-alert", { attrs: { type: "error", title: error } })]
           : _vm._e()
-      ]
-    )
-  ])
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "single-image",
+          style: "background-image: url(" + _vm.image.filename + ");"
+        },
+        [
+          _c(
+            "label",
+            {
+              staticClass: "ui small purple icon button",
+              attrs: { for: "image" }
+            },
+            [
+              _c("i", { staticClass: "camera icon" }),
+              _vm._v(" Качи изображение")
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "inputfile",
+            attrs: { type: "file", id: "image" },
+            on: { change: _vm.onFileChange }
+          }),
+          _vm._v(" "),
+          _vm.image.progress >= 0
+            ? _c(
+                "div",
+                { staticClass: "progress" },
+                [
+                  _c("el-progress", {
+                    attrs: {
+                      "text-inside": true,
+                      "stroke-width": 18,
+                      percentage: _vm.image.progress,
+                      color: "rgba(142, 113, 199, 0.7)"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -57736,11 +57765,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return _context.abrupt('return');
 
               case 12:
-
-                // let image = await this.upload();
-                // if (image) {
-                // 	this.data.image = image;
-                // }
 
                 axios.post('/dashboard/teachers', vm.data).then(function (response) {
                   vm.$message('Лекторът е добавен успешно.');
@@ -60308,6 +60332,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -60327,7 +60369,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       capacity: null,
       price: null,
       imageList: [],
-      data: {}
+      data: {},
+      errors: [],
+      imagesErrors: []
     };
   },
 
@@ -60346,7 +60390,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     save: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var vm, images, cover;
+        var vm;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -60362,39 +60406,42 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   price: this.price
                 }, 'capacity', this.capacity);
 
-                _context.next = 4;
-                return this.multiUpload();
+                // try {
+                // 	this.data.images = await this.multiUpload();
+                // } catch(e) {
+                //     this.imagesErrors = e;
+                //     return;
+                // }
 
-              case 4:
-                images = _context.sent;
-
-                if (images.length > 0) {
-                  this.data.images = images;
-                }
-
-                _context.next = 8;
+                _context.prev = 2;
+                _context.next = 5;
                 return this.upload();
 
-              case 8:
-                cover = _context.sent;
+              case 5:
+                this.data.cover = _context.sent;
+                _context.next = 11;
+                break;
 
-                if (cover) {
-                  this.data.cover = cover;
-                }
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context['catch'](2);
+                return _context.abrupt('return');
+
+              case 11:
 
                 axios.post('/dashboard/venues', vm.data).then(function (response) {
                   vm.$message('Залата е добавена успешно.');
                   vm.$router.push('/venues');
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
                 });
 
-              case 11:
+              case 12:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 8]]);
       }));
 
       function save() {
@@ -60412,7 +60459,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     axios.get('/api/cities').then(function (response) {
       vm.cities = response.data;
     }).catch(function (error) {
-      console.log(error);
+      vm.errors = error.response.data;
     });
   },
   created: function created() {}
@@ -60490,6 +60537,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60502,7 +60560,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             uploadedImages: [],
             result: [],
             images: [],
-            existing: this.existingImages
+            existing: this.existingImages,
+            imageErrors: []
         };
     },
 
@@ -60541,32 +60600,41 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 2:
                                 if (!(i < this.images.length)) {
-                                    _context.next = 10;
+                                    _context.next = 16;
                                     break;
                                 }
 
-                                _context.next = 5;
+                                _context.prev = 3;
+                                _context.next = 6;
                                 return this.upload(i);
 
-                            case 5:
+                            case 6:
                                 filename = _context.sent;
 
                                 filenames.push(filename);
+                                _context.next = 13;
+                                break;
 
-                            case 7:
+                            case 10:
+                                _context.prev = 10;
+                                _context.t0 = _context['catch'](3);
+
+                                this.imageErrors.push(_context.t0);
+
+                            case 13:
                                 i++;
                                 _context.next = 2;
                                 break;
 
-                            case 10:
+                            case 16:
                                 return _context.abrupt('return', filenames);
 
-                            case 11:
+                            case 17:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this);
+                }, _callee, this, [[3, 10]]);
             }));
 
             function getFilenames() {
@@ -60596,7 +60664,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }).then(function (responce) {
                     resolve(responce.data);
                 }).catch(function (error) {
-                    console.log(error);
+                    reject(error.response.data.errors.file);
+                    // console.log(error);
                 });
             });
         }
@@ -60668,44 +60737,65 @@ var render = function() {
           _vm._l(_vm.images, function(image, index) {
             return _c(
               "div",
-              {
-                key: index,
-                staticClass: "multi-image",
-                style: "background-image: url(" + image.filename + ");"
-              },
+              { key: index },
               [
-                image.progress >= 0
-                  ? _c(
-                      "div",
-                      { staticClass: "progress" },
-                      [
-                        _c("el-progress", {
-                          attrs: {
-                            "text-inside": true,
-                            "stroke-width": 18,
-                            percentage: image.progress,
-                            color: "rgba(142, 113, 199, 0.7)"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e(),
+                _vm._l(_vm.imageErrors[index - 1], function(error) {
+                  return _vm.imageErrors[index - 1]
+                    ? _c(
+                        "div",
+                        { staticStyle: { "margin-top": "10px" } },
+                        [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                }),
                 _vm._v(" "),
                 _c(
-                  "button",
+                  "div",
                   {
-                    staticClass: "ui button",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.remove(index)
-                      }
-                    }
+                    staticClass: "multi-image",
+                    style: "background-image: url(" + image.filename + ");"
                   },
-                  [_vm._v(" Премахни")]
+                  [
+                    image.progress >= 0
+                      ? _c(
+                          "div",
+                          { staticClass: "progress" },
+                          [
+                            _c("el-progress", {
+                              attrs: {
+                                "text-inside": true,
+                                "stroke-width": 18,
+                                percentage: image.progress,
+                                color: "rgba(142, 113, 199, 0.7)"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "ui button",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.remove(index)
+                          }
+                        }
+                      },
+                      [_vm._v(" Премахни")]
+                    )
+                  ]
                 )
-              ]
+              ],
+              2
             )
           }),
           _vm._v(" "),
@@ -60762,6 +60852,16 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Наименование" } },
                     [
+                      _vm._l(_vm.errors.name, function(error) {
+                        return _vm.errors.name
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         model: {
                           value: _vm.name,
@@ -60772,7 +60872,7 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
@@ -60797,6 +60897,16 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Капацитет" } },
                     [
+                      _vm._l(_vm.errors.capacity, function(error) {
+                        return _vm.errors.capacity
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-input",
                         {
@@ -60813,13 +60923,23 @@ var render = function() {
                         2
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Град" } },
                     [
+                      _vm._l(_vm.errors.city_id, function(error) {
+                        return _vm.errors.city_id
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-select",
                         {
@@ -60840,13 +60960,23 @@ var render = function() {
                         })
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Адрес" } },
                     [
+                      _vm._l(_vm.errors.address, function(error) {
+                        return _vm.errors.address
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         model: {
                           value: _vm.address,
@@ -60857,13 +60987,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Описание" } },
                     [
+                      _vm._l(_vm.errors.description, function(error) {
+                        return _vm.errors.description
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { type: "textarea", rows: 12 },
                         model: {
@@ -60875,13 +61015,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Цена" } },
                     [
+                      _vm._l(_vm.errors.price, function(error) {
+                        return _vm.errors.price
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-input",
                         {
@@ -60902,7 +61052,7 @@ var render = function() {
                         2
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c("el-form-item", [
@@ -61109,6 +61259,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -61124,7 +61292,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       imageList: [],
       cities: null,
       cityId: null,
-      detached: []
+      detached: [],
+      data: {},
+      errors: []
     };
   },
 
@@ -61143,13 +61313,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     save: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-        var vm, data, images, cover, route;
+        var vm, route;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 vm = this;
-                data = _defineProperty({
+
+                this.data = _defineProperty({
                   name: this.venue.name,
                   description: this.venue.description,
                   city_id: this.cityId,
@@ -61157,48 +61328,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   capacity: this.venue.capacity,
                   price: this.venue.price
                 }, 'capacity', this.venue.capacity);
-                _context.next = 4;
-                return this.multiUpload();
 
-              case 4:
-                images = _context.sent;
+                // let images = await this.multiUpload();
 
+                // if (images != null) {
+                // 	data.images = images;
+                // }
 
-                if (images != null) {
-                  data.images = images;
-                }
-
-                _context.next = 8;
+                _context.prev = 2;
+                _context.next = 5;
                 return this.upload();
 
+              case 5:
+                this.data.cover = _context.sent;
+                _context.next = 11;
+                break;
+
               case 8:
-                cover = _context.sent;
+                _context.prev = 8;
+                _context.t0 = _context['catch'](2);
+                return _context.abrupt('return');
 
-
-                if (cover) {
-                  data.cover = cover;
-                }
+              case 11:
 
                 if (this.detached) {
-                  data.detached = this.detached;
+                  this.data.detached = this.detached;
                 }
 
                 route = '/dashboard/venues/' + this.$route.params.id;
 
 
-                axios.patch(route, data).then(function (response) {
+                axios.patch(route, vm.data).then(function (response) {
                   vm.$message('Залата е редактирана успешно.');
                   vm.$router.push('/venues');
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
                 });
 
-              case 13:
+              case 14:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 8]]);
       }));
 
       function save() {
@@ -61255,6 +61427,16 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Наименование" } },
                     [
+                      _vm._l(_vm.errors.name, function(error) {
+                        return _vm.errors.name
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         model: {
                           value: _vm.venue.name,
@@ -61265,7 +61447,7 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
@@ -61299,6 +61481,16 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Капацитет" } },
                     [
+                      _vm._l(_vm.errors.capacity, function(error) {
+                        return _vm.errors.capacity
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-input",
                         {
@@ -61315,13 +61507,23 @@ var render = function() {
                         2
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Град" } },
                     [
+                      _vm._l(_vm.errors.city_id, function(error) {
+                        return _vm.errors.city_id
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-select",
                         {
@@ -61342,13 +61544,23 @@ var render = function() {
                         })
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Адрес" } },
                     [
+                      _vm._l(_vm.errors.address, function(error) {
+                        return _vm.errors.address
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         model: {
                           value: _vm.venue.address,
@@ -61359,13 +61571,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Описание" } },
                     [
+                      _vm._l(_vm.errors.description, function(error) {
+                        return _vm.errors.description
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { type: "textarea", rows: 12 },
                         model: {
@@ -61377,13 +61599,23 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
                     "el-form-item",
                     { attrs: { label: "Цена" } },
                     [
+                      _vm._l(_vm.errors.price, function(error) {
+                        return _vm.errors.price
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
                       _c(
                         "el-input",
                         {
@@ -61404,7 +61636,7 @@ var render = function() {
                         2
                       )
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c("el-form-item", [

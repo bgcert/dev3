@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<template v-if="errors" v-for="error in errors">
+			 <el-alert type="error" :title="error"></el-alert>
+		</template>
 		<div class="single-image" :style="'background-image: url(' + image.filename + ');'">
 			<label :for="'image'" class="ui small purple icon button" ><i class="camera icon"></i> Качи изображение</label>
 			<input type="file" :id="'image'" class="inputfile" @change="onFileChange">
@@ -19,6 +22,9 @@
     		return {
     			image: { filename: this.imageUrl, progress: -1, file: null },
     			result: null,
+    			errors: null,
+    			uploaded: false,
+    			uploadedFileName: null
     		}
     	},
 
@@ -29,11 +35,20 @@
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
     			this.image = { filename: imageUrl, progress: 0, file: files[0] };
+    			this.uploadedFileName = null;
+    			this.errors = null;
     		},
 
     		upload() {
     			return new Promise((resolve, reject) => {
 	    			let vm = this;
+
+	    			// If this attatched file is already uploaded no need to upload it again
+	    			if (this.uploadedFileName != null) {
+	    				resolve(this.uploadedFileName);
+	    				return;
+	    			}
+
 	    			let formData = new FormData();
 					formData.append('file', vm.image.file);
 	    			axios.post('/dashboard/image/upload', formData, {
@@ -42,7 +57,8 @@
 	    				}
 	    			})
 	    			.then(function (responce) {
-	    				resolve(responce.data);
+	    				vm.uploadedFileName = responce.data;
+	    				resolve(vm.uploadedFileName);
 	    			})
 	    			.catch(function (error) {
 	    				vm.errors = error.response.data.errors.file;
