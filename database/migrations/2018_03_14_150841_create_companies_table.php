@@ -32,7 +32,16 @@ class CreateCompaniesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
-        
+        DB::table('companies')->insert(array(
+        	array(
+        		'user_id' => 3,
+		        'name' => 'Тест ООД',
+		        'slug' => 'test.ltd',
+		        'event_publish' => 1,
+		        'venue_publish' => 1
+        	)
+        ));
+
     }
 
     /**

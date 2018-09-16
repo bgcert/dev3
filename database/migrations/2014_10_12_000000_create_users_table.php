@@ -28,6 +28,33 @@ class CreateUsersTable extends Migration
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
+
+        DB::table('users')->insert(array(
+        	array(
+        		'role_id' => 3,
+		        'firstname' => 'Чавдар',
+		        'lastname' => 'Ангелов',
+		        'email' => 'info@seminari365.com',
+		        'password' => Hash::make('password'),
+		        'token' => null
+        	),
+        	array(
+        		'role_id' => 3,
+		        'firstname' => 'Петър',
+		        'lastname' => 'Петров',
+		        'email' => 'bgcert.training@gmail.com',
+		        'password' => Hash::make('password'),
+		        'token' => null
+        	),
+        	array(
+        		'role_id' => 2,
+		        'firstname' => 'Тест',
+		        'lastname' => 'Акаунт',
+		        'email' => 'test@seminari365.com',
+		        'password' => Hash::make('password'),
+		        'token' => null
+        	),
+        ));
     }
 
     /**
