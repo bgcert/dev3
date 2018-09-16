@@ -114,7 +114,6 @@
 				try {
 					this.data.cover = await this.upload();
 				} catch(e) {
-					console.log(e);
 				    this.data.cover = null;
 				}
 

@@ -56521,17 +56521,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 5:
                 this.data.cover = _context.sent;
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
 
-                console.log(_context.t0);
                 this.data.cover = null;
 
-              case 12:
+              case 11:
 
                 axios.post('/dashboard/themes', vm.data).then(function (response) {
                   vm.$message('Темата е добавена успешно.');
@@ -56540,7 +56539,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   vm.errors = error.response.data;
                 });
 
-              case 13:
+              case 12:
               case 'end':
                 return _context.stop();
             }
@@ -57676,9 +57675,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 
 
@@ -57694,8 +57690,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         details: ''
       },
       data: {},
-      errors: [],
-      imageErrors: []
+      errors: []
     };
   },
 
@@ -57727,17 +57722,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 5:
                 this.data.image = _context.sent;
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
 
-                this.imageErrors = _context.t0;
-                return _context.abrupt('return');
+                this.data.image = null;
 
-              case 12:
+              case 11:
 
                 axios.post('/dashboard/teachers', vm.data).then(function (response) {
                   vm.$message('Лекторът е добавен успешно.');
@@ -57746,7 +57740,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   vm.errors = error.response.data;
                 });
 
-              case 13:
+              case 12:
               case 'end':
                 return _context.stop();
             }
@@ -57819,21 +57813,11 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "Снимка" } },
                 [
-                  _vm._l(_vm.imageErrors, function(error) {
-                    return _vm.imageErrors
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
                   _c("imageUpload", {
                     attrs: { imageUrl: "/img/default_cover.png" }
                   })
                 ],
-                2
+                1
               ),
               _vm._v(" "),
               _c(
@@ -58031,9 +58015,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 
 
@@ -58046,8 +58027,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       loading: true,
       teacher: [],
       data: {},
-      errors: [],
-      imageErrors: []
+      errors: []
     };
   },
 
@@ -58078,17 +58058,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 5:
                 this.data.image = _context.sent;
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
 
-                this.imageErrors = _context.t0;
-                return _context.abrupt('return');
+                this.data.image = null;
 
-              case 12:
+              case 11:
                 route = '/dashboard/teachers/' + this.$route.params.id;
 
 
@@ -58099,7 +58078,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   vm.errors = error.response.data;
                 });
 
-              case 14:
+              case 13:
               case 'end':
                 return _context.stop();
             }
@@ -58184,16 +58163,6 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "Снимка" } },
                     [
-                      _vm._l(_vm.imageErrors, function(error) {
-                        return _vm.imageErrors
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
                       _c("imageUpload", {
                         attrs: {
                           imageUrl:
@@ -58202,7 +58171,7 @@ var render = function() {
                         }
                       })
                     ],
-                    2
+                    1
                   ),
                   _vm._v(" "),
                   _c(
@@ -60468,13 +60437,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   price: this.price
                 }, 'capacity', this.capacity);
 
-                // try {
-                // 	this.data.images = await this.multiUpload();
-                // } catch(e) {
-                //     this.imagesErrors = e;
-                //     return;
-                // }
-
                 _context.prev = 2;
                 _context.next = 5;
                 return this.upload();
@@ -60487,7 +60449,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
-                return _context.abrupt('return');
+
+                this.data.cover = null;
 
               case 11:
 
@@ -61336,9 +61299,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 
 
@@ -61391,12 +61351,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   price: this.venue.price
                 }, 'capacity', this.venue.capacity);
 
-                // let images = await this.multiUpload();
-
-                // if (images != null) {
-                // 	data.images = images;
-                // }
-
                 _context.prev = 2;
                 _context.next = 5;
                 return this.upload();
@@ -61409,7 +61363,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
-                return _context.abrupt('return');
+
+                this.data.cover = null;
 
               case 11:
 

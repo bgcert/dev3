@@ -15,9 +15,6 @@
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<template v-if="imageErrors" v-for="error in imageErrors">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
 						<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"></imageUpload>
 					</el-form-item>
 
@@ -57,8 +54,7 @@
     			loading: true,
     			teacher: [],
     			data: {},
-    			errors: [],
-    			imageErrors: []
+    			errors: []
     		}
     	},
 
@@ -78,8 +74,7 @@
 				try {
 					this.data.image = await this.upload();
 				} catch(e) {
-				    this.imageErrors = e;
-				    return;
+				    this.data.image = null;
 				}
 
 				let route = '/dashboard/teachers/' + this.$route.params.id;

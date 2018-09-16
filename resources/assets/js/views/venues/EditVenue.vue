@@ -18,10 +18,7 @@
 					</el-form-item>
 
 					<el-form-item label="Допълнителни снимки">
-						<multi-image-upload
-							:existingImages="venue.venue_images"
-							@detachClick="handleDetach">
-						</multi-image-upload>
+						<multi-image-upload :existingImages="venue.venue_images" @detachClick="handleDetach"></multi-image-upload>
 					</el-form-item>
 
 					<el-form-item label="Капацитет">
@@ -132,16 +129,10 @@
 					capacity: this.venue.capacity
 				}
 
-				// let images = await this.multiUpload();
-
-				// if (images != null) {
-				// 	data.images = images;
-				// }
-
 				try {
 					this.data.cover = await this.upload();
 				} catch(e) {
-				    return;
+				    this.data.cover = null;
 				}
 
 				if (this.detached) {

@@ -134,17 +134,10 @@
 					capacity: this.capacity,
 				}
 
-				// try {
-				// 	this.data.images = await this.multiUpload();
-				// } catch(e) {
-				//     this.imagesErrors = e;
-				//     return;
-				// }
-
 				try {
 					this.data.cover = await this.upload();
 				} catch(e) {
-				    return;
+				    this.data.cover = null;
 				}
 
     			axios.post('/dashboard/venues', vm.data)

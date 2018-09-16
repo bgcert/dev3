@@ -15,9 +15,6 @@
 					</el-form-item>
 
 					<el-form-item label="Снимка">
-						<template v-if="imageErrors" v-for="error in imageErrors">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
 						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
 					</el-form-item>
 
@@ -60,8 +57,7 @@
     				details: '',
     			},
     			data: {},
-    			errors: [],
-    			imageErrors: []
+    			errors: []
     		}
     	},
 
@@ -82,8 +78,7 @@
 				try {
 					this.data.image = await this.upload();
 				} catch(e) {
-				    this.imageErrors = e;
-				    return;
+				    this.data.image = null;
 				}
 
     			axios.post('/dashboard/teachers', vm.data)

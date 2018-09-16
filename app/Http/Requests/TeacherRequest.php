@@ -29,6 +29,7 @@ class TeacherRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:4|max:64',
+            'image' => 'filled|string|max:255',
             'details' => 'required'
         ];
     }
