@@ -6,7 +6,7 @@
 		<div class="ui segment" v-if="order.id">
 			<div class="ui grid">
 				<div class="ten wide column">
-					<h4>{{ order.theme_title }} - {{ order.event_begin_at }}</h4>
+					<h4>{{ order.theme_title }} - {{ order.event_start_date }}</h4>
 					<table class="ui table">
 						<thead>
 							<tr>

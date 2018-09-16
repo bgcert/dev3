@@ -61929,7 +61929,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var vm = this;
         var route = '/dashboard/orders';
         axios.get(route).then(function (response) {
-            // console.log(response.data);
             vm.orders = response.data;
             // vm.loading = false;
         }).catch(function (error) {
@@ -62006,7 +62005,7 @@ var render = function() {
                         [
                           _vm._v(
                             "\n\t\t\t\t\t\t\t" +
-                              _vm._s(order.event_begin_at) +
+                              _vm._s(order.event_start_date) +
                               " - " +
                               _vm._s(order.theme_title) +
                               "\n\t\t\t\t\t\t"
@@ -62353,7 +62352,7 @@ var render = function() {
                 _vm._v(
                   _vm._s(_vm.order.theme_title) +
                     " - " +
-                    _vm._s(_vm.order.event_begin_at)
+                    _vm._s(_vm.order.event_start_date)
                 )
               ]),
               _vm._v(" "),

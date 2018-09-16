@@ -26,7 +26,7 @@
 						<td>{{ order.created_at }}</td>
 						<td>
 							<router-link :to="'/orders/' + order.id">
-								{{ order.event_begin_at }} - {{ order.theme_title }}
+								{{ order.event_start_date }} - {{ order.theme_title }}
 							</router-link>
 						</td>
 						<td>{{ order.participants_count }}</td>
@@ -97,7 +97,6 @@
         	var vm = this;
             var route = '/dashboard/orders';
         	axios.get(route).then(function (response) {
-        		// console.log(response.data);
         		vm.orders = response.data;
         		// vm.loading = false;
 			})
