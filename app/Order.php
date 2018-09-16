@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Order extends Model
 {
+	use SoftDeletes;
 	use LogsActivity;
+	
+	protected $dates = ['deleted_at'];
 
 	protected $fillable = ['contact_person', 'contact_number', 'comment', 'invoice'];
 

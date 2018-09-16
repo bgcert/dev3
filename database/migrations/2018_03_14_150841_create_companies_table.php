@@ -28,6 +28,7 @@ class CreateCompaniesTable extends Migration
             $table->boolean('event_publish')->default(1);
             $table->boolean('venue_publish')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

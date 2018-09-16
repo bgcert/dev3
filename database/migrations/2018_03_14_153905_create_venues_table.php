@@ -24,6 +24,7 @@ class CreateVenuesTable extends Migration
             $table->integer('price')->unsigned()->nullable();
             $table->string('cover')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

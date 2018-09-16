@@ -3,14 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Likable;
 use App\Traits\Commentable;
 use Spatie\Activitylog\Traits\LogsActivity;
+
+
 class Venue extends Model
 {
+	use SoftDeletes;
 	use Likable;
 	use Commentable;
     use LogsActivity;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = ['company_id', 'name', 'description', 'city_id', 'address', 'capacity', 'price', 'cover'];
 

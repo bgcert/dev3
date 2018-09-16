@@ -18,6 +18,7 @@ class CreateVenueImagesTable extends Migration
             $table->integer('venue_id')->unsigned();
             $table->string('filename');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('venue_id')->references('id')->on('venues')->onDelete('cascade');
         });

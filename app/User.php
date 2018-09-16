@@ -6,9 +6,12 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
+	use SoftDeletes;
     use Notifiable;
     use LogsActivity;
 
@@ -17,6 +20,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'role_id', 'firstname', 'lastname', 'email', 'password', 'token', 'picture',
     ];

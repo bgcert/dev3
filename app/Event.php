@@ -3,12 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Jenssegers\Date\Date;
 
 class Event extends Model
 {
+	use SoftDeletes;
 	use LogsActivity;
+
+	protected $dates = ['deleted_at'];
 
 	protected $fillable = [
         'theme_id', 'city_id', 'address', 'start_date', 'end_date', 'start_at', 'end_at', 'cover', 'position', 'price'

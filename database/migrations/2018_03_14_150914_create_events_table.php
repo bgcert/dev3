@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->time('start_at')->nullable();
             $table->time('end_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

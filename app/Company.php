@@ -2,12 +2,16 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Company extends Model
 {
+	use SoftDeletes;
 	use Notifiable;
+
+	protected $dates = ['deleted_at'];
 	
 	protected $fillable = ['name', 'slug', 'logo', 'address', 'phone', 'email', 'description', 'event_publish', 'venue_publish',
     ];

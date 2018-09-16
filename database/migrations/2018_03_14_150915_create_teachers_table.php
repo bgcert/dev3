@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->string('image')->nullable();
             $table->mediumText('details');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('event_teacher', function (Blueprint $table) {

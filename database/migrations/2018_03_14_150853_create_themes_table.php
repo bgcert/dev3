@@ -44,6 +44,7 @@ class CreateThemesTable extends Migration
             $table->string('cover')->nullable();
             $table->text('duration');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');

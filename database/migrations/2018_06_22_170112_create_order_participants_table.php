@@ -19,6 +19,7 @@ class CreateOrderParticipantsTable extends Migration
             
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
