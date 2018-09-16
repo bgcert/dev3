@@ -54523,6 +54523,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -54566,27 +54575,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
               case 5:
                 data.logo = _context.sent;
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context['catch'](2);
 
-                this.errors = _context.t0;
-                return _context.abrupt('return');
+                data.logo = null;
 
-              case 12:
+              case 11:
                 route = '/dashboard/save/company/data';
 
 
                 axios.patch(route, data).then(function (response) {
                   vm.$message('Данните са редактирани успешно.');
+                  location.reload();
                 }).catch(function (error) {
-                  console.log(error);
+                  vm.errors = error.response.data;
                 });
 
-              case 14:
+              case 13:
               case 'end':
                 return _context.stop();
             }
@@ -55645,93 +55654,113 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.company.id
     ? _c("div", { staticClass: "ui clearing segment" }, [
-        _c(
-          "form",
-          { staticClass: "ui form" },
-          [
-            _c(
-              "div",
-              { staticClass: "field", staticStyle: { width: "300px" } },
-              [
-                _c("label", [_vm._v("Име на организацията")]),
+        _c("form", { staticClass: "ui form" }, [
+          _c(
+            "div",
+            { staticClass: "field", staticStyle: { width: "300px" } },
+            [
+              _c("label", [_vm._v("Име на организацията")]),
+              _vm._v(" "),
+              _vm._l(_vm.errors.name, function(error) {
+                return _vm.errors.name
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.company.name,
+                    expression: "company.name"
+                  }
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.company.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.company, "name", $event.target.value)
+                  }
+                }
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field", staticStyle: { width: "400px" } },
+            [
+              _c("label", [_vm._v("Адрес (URL) на профила в Seminari365")]),
+              _vm._v(" "),
+              _vm._l(_vm.errors.slug, function(error) {
+                return _vm.errors.slug
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui labeled right input" }, [
+                _c("div", { staticClass: "ui label" }, [
+                  _vm._v("\n\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t")
+                ]),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.company.name,
-                      expression: "company.name"
+                      value: _vm.company.slug,
+                      expression: "company.slug"
                     }
                   ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.company.name },
+                  attrs: { type: "text", placeholder: "company.ltd" },
+                  domProps: { value: _vm.company.slug },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.company, "name", $event.target.value)
+                      _vm.$set(_vm.company, "slug", $event.target.value)
                     }
                   }
                 })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "field", staticStyle: { width: "400px" } },
-              [
-                _c("label", [_vm._v("Адрес (URL) на профила в Seminari365")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui labeled right input" }, [
-                  _c("div", { staticClass: "ui label" }, [
-                    _vm._v("\n\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.company.slug,
-                        expression: "company.slug"
-                      }
-                    ],
-                    attrs: { type: "text", placeholder: "company.ltd" },
-                    domProps: { value: _vm.company.slug },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.company, "slug", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "field" },
-              [
-                _c("label", [_vm._v("Лого")]),
-                _vm._v(" "),
-                _c("imageUpload", {
-                  attrs: {
-                    imageUrl:
-                      "https://d3cwccg7mi8onu.cloudfront.net/250x250/" +
-                      _vm.company.logo
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
+              ])
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _c("label", [_vm._v("Лого")]),
+              _vm._v(" "),
+              _c("imageUpload", {
+                attrs: {
+                  imageUrl:
+                    "https://d3cwccg7mi8onu.cloudfront.net/250x250/" +
+                    _vm.company.logo
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
               _c("label", [_vm._v("Описание")]),
+              _vm._v(" "),
+              _vm._l(_vm.errors.description, function(error) {
+                return _vm.errors.description
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -55753,11 +55782,26 @@ var render = function() {
                   }
                 }
               })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "equal width fields" }, [
-              _c("div", { staticClass: "field" }, [
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "equal width fields" }, [
+            _c(
+              "div",
+              { staticClass: "field" },
+              [
                 _c("label", [_vm._v("E-mail")]),
+                _vm._v(" "),
+                _vm._l(_vm.errors.email, function(error) {
+                  return _vm.errors.email
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error }
+                        })
+                      ]
+                    : _vm._e()
+                }),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -55779,10 +55823,25 @@ var render = function() {
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "field" },
+              [
                 _c("label", [_vm._v("Телефон")]),
+                _vm._v(" "),
+                _vm._l(_vm.errors.phone, function(error) {
+                  return _vm.errors.phone
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error }
+                        })
+                      ]
+                    : _vm._e()
+                }),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -55804,11 +55863,22 @@ var render = function() {
                     }
                   }
                 })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
               _c("label", [_vm._v("Адрес")]),
+              _vm._v(" "),
+              _vm._l(_vm.errors.address, function(error) {
+                return _vm.errors.address
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
               _vm._v(" "),
               _c("textarea", {
                 directives: [
@@ -55830,42 +55900,27 @@ var render = function() {
                   }
                 }
               })
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.errors, function(error) {
-              return _vm.errors
-                ? [
-                    _c("el-alert", {
-                      attrs: {
-                        title: "Невалидни данни",
-                        type: "error",
-                        description: error,
-                        "show-icon": ""
-                      }
-                    })
-                  ]
-                : _vm._e()
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "ui labeled icon button",
-                  staticStyle: { float: "right" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.save($event)
-                    }
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c(
+              "button",
+              {
+                staticClass: "ui labeled icon button",
+                staticStyle: { float: "right" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.save($event)
                   }
-                },
-                [_c("i", { staticClass: "icon save" }), _vm._v(" Запиши")]
-              )
-            ])
-          ],
-          2
-        )
+                }
+              },
+              [_c("i", { staticClass: "icon save" }), _vm._v(" Запиши")]
+            )
+          ])
+        ])
       ])
     : _vm._e()
 }

@@ -3,11 +3,17 @@
 		<form class="ui form">
 			<div class="field" style="width: 300px;">
 				<label>Име на организацията</label>
+				<template v-if="errors.name" v-for="error in errors.name">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
 				<input type="text" v-model="company.name">
 			</div>
 
 			<div class="field" style="width: 400px;">
 				<label>Адрес (URL) на профила в Seminari365</label>
+				<template v-if="errors.slug" v-for="error in errors.slug">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
 				<div class="ui labeled right input">
 					<div class="ui label">
 						http://seminari365.com/c/
@@ -23,34 +29,37 @@
 
 			<div class="field">
 				<label>Описание</label>
+				<template v-if="errors.description" v-for="error in errors.description">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
 				<textarea rows="6" v-model="company.description"></textarea>
 			</div>
 
 			<div class="equal width fields">
 				<div class="field">
-				<label>E-mail</label>
-				<input type="text" v-model="company.email">
-			</div>
+					<label>E-mail</label>
+					<template v-if="errors.email" v-for="error in errors.email">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<input type="text" v-model="company.email">
+				</div>
 
-			<div class="field">
-				<label>Телефон</label>
-				<input type="text" v-model="company.phone">
-			</div>
+				<div class="field">
+					<label>Телефон</label>
+					<template v-if="errors.phone" v-for="error in errors.phone">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<input type="text" v-model="company.phone">
+				</div>
 			</div>
 			
 			<div class="field">
 				<label>Адрес</label>
+				<template v-if="errors.address" v-for="error in errors.address">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
 				<textarea rows="2" v-model="company.address"></textarea>
 			</div>
-
-			<template v-if="errors" v-for="error in errors">
-				 <el-alert
-					 title="Невалидни данни"
-					 type="error"
-					 :description="error"
-					 show-icon>
-				</el-alert>
-			</template>
 
 			<div class="field">
 				<button class="ui labeled icon button" @click.prevent="save" style="float: right;"><i class="icon save"></i> Запиши</button>
@@ -96,8 +105,7 @@
 				try {
 					data.logo = await this.upload();
 				} catch(e) {
-				    this.errors = e;
-				    return;
+				    data.logo = null;
 				}
 
 				let route = '/dashboard/save/company/data';
@@ -105,9 +113,10 @@
     			axios.patch(route, data)
     			.then(function (response) {
     				vm.$message('Данните са редактирани успешно.');
+    				location.reload();
     			})
     			.catch(function (error) {
-    				console.log(error);
+    				vm.errors = error.response.data;
     			})
     		}
     	},

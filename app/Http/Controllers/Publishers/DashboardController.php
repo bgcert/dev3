@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
 use Illuminate\Support\Facades\Validator;
@@ -23,10 +24,10 @@ class DashboardController extends Controller
     	return \App\Company::where('user_id', \Auth::id())->first();
     }
 
-    public function saveCompany()
+    public function saveCompany(CompanyRequest $request)
     {
     	$company = \App\Company::where('user_id', \Auth::id())->first();
-    	$company->update(request()->all());
+    	$company->update($request->all());
     	return $company;
     }
 
