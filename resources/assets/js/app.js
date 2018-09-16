@@ -61,6 +61,7 @@ Vue.component('modal', require('./components/ModalComponent.vue'));
 Vue.component('search', require('./components/SearchComponent.vue'));
 Vue.component('multi-image-upload', require('./components/MultiImageUploadComponent.vue'));
 Vue.component('image-upload', require('./components/ImageUploadComponent.vue'));
+Vue.component('captcha', require('./components/CaptchaComponent.vue'));
 
 // Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
