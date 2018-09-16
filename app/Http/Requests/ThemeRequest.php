@@ -31,10 +31,10 @@ class ThemeRequest extends FormRequest
     {
         return [
         	'category_id' => 'required|integer',
-            'title' => 'required|max:255',
-            'excerpt' => 'required',
+            'title' => 'required|string|max:255',
+            'excerpt' => 'required|string|max:255',
         	'body' => 'required',
-        	'cover' => 'filled|max:255',
+        	'cover' => 'filled|string|max:255',
         	'duration' => 'required|integer',
         ];
     }

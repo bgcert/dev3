@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class VenueRequest extends FormRequest
+class CompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,12 +28,13 @@ class VenueRequest extends FormRequest
     public function rules()
     {
         return [
-        	'city_id' => 'required|integer',
-            'name' => 'required|string|min:2|max:32',
-            'description' => 'required',
-            'address' => 'required|string|max:255',
-            'capacity' => 'required|integer',
-            'price' => 'nullable|integer'
+        	// 'category_id' => 'required|integer',
+            'name' => 'required|string|min:3|max:32',
+            'slug' => 'required|unique:companies,slug,'. $this->id . '|regex:/^[a-z][a-z0-9]*[.]{0,1}[a-z][a-z]*$/|max:32',
+            'logo' => 'filled|string|max:255',
+            'phone' => 'string|max:255',
+            'email' => 'email|max:32',
+            'address' => 'string|max:255',
         ];
     }
 
@@ -45,12 +46,12 @@ class VenueRequest extends FormRequest
     public function messages()
 	{
 	    return [
-	    	'city_id.required' => 'Не е избран град',
 	    	'name.required' => 'Не е въведено име',
-	    	'name.min' => 'Полето трябва да съдържа поне 2 символа',
-	    	'name.max' => 'Полето не може да съдържа повече от 32 символа',
-	        'description.required' => 'Не е въведено съдържание',
-	        'address.required' => 'Не е въведен адрес'
+	    	'name.min' => 'Полето трябва да съдържа поне 3 символа',
+	    	'name.max' => 'Полето трябва да съдържа максимум 32 символа',
+	    	'slug.required' => 'Полето е задължително',
+	    	'slug.unique' => 'Този адрес вече е зает',
+	    	'slug.regex' => 'Адресът не отговаря на посочените критерии',
 	    ];
 	}
 }

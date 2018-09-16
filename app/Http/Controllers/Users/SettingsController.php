@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,11 +31,11 @@ class SettingsController extends Controller
     }
 
     // Maybe putting part of this in user/company model should be better!
-    public function setPublisher()
+    public function setPublisher(CompanyRequest $request)
     {
     	$user = \App\User::find(\Auth::id());
     	if (request()->publisher) {
-    		$company = $user->company()->updateOrCreate([], request()->all());
+    		$company = $user->company()->updateOrCreate([], $request->all());
 
     		if ($company->exists) {
 				$user->role_id = 2;
@@ -51,8 +52,6 @@ class SettingsController extends Controller
 
     public function changePassword() {
         if (!(Hash::check(request()->old_password, \Auth::user()->password))) {
-            // The passwords matches
-            //return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
             return response()->json(['error' => 'Your current password does not matches with the password you provided. Please try again.']);
         }
  
