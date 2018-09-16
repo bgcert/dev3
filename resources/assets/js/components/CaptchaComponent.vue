@@ -1,6 +1,6 @@
 <template>
 	<div class="ui segment captcha">
-		<p><span>{{ numbers[n1] }} {{ operations[op] }} {{ numbers[n2] }}</span> е равно на</p>
+		<p>{{ hun[randoms[0]] }} {{ dec[randoms[1]] }} и {{ dig[randoms[2]] }}</p>
 		<input type="text" name="result" v-model="input">
 		<button @click.prevent="check()">test</button>
 		<button @click.prevent="load()">refresh</button>
@@ -13,29 +13,19 @@
 
     	data: function () {
     		return {
-    			numbers: ['нула', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
-    			operations: ['плюс', 'минус'],
-    			n1: null,
-    			n2: null,
-    			op: null,
     			input: null,
-    			result: null
+    			result: null,
+    			dig: ['', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
+    			dec: ['', '', 'двадесет', 'тридесет', 'четиредесет', 'петдесет', 'шестдесет', 'седемдесет', 'осемдесет', 'деведесет'] ,
+    			hun: ['', 'сто', 'двеста', 'триста', 'четиристотин', 'петстотин', 'шестстотин', 'седемстотин', 'осемстотин', 'деветстотин'],
+    			randoms: []
+
     		}
     	},
 
     	methods: {
     		random(x) {
-    			return _.random(x);;
-    		},
-
-    		mathResult(n1, n2, op) {
-    			if (op == 0){
-	    			return n1 + n2;	
-	    		} else if (op == 1) {
-	    			return n1 - n2;
-	    		} else {
-	    			console.log('error');
-	    		}
+    			return _.random(x);
     		},
 
     		check() {
@@ -46,10 +36,10 @@
     			}
     		},
     		load() {
-    			this.n1 = this.random(9);
-	    		this.n2 = this.random(9);
-	    		this.op = this.random(1);
-	    		this.result = this.mathResult(this.n1, this.n2, this.op);
+    			this.randoms[0] = _.random(1, 9);
+    			this.randoms[1] = _.random(2, 9);
+    			this.randoms[2] = _.random(1, 9);
+	    		this.result = this.randoms[0] * 100 + this.randoms[1] * 10 + this.randoms[2];
     		}
     	},
 
