@@ -4,9 +4,12 @@
 			  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
 			  <i class="search icon"></i>
 			</div>
-			<div class="ui segments search-results" v-if="events.length > 0" :class="{ top: big }">
+			<div class="ui segments search-results" v-if="events.length > 0 || noResults" :class="{ top: big }">
 				<div class="ui segment" v-for="event in events" @click="openEvent(event.id)">
 					<p>{{ event.theme.title }} - {{ event.start_date_carbon }}</p>
+				</div>
+				<div class="ui segment" v-if="noResults">
+					<p>Няма намерени резултати</p>
 				</div>
 			</div>
 		</div>
@@ -20,7 +23,8 @@
     		return {
     			loading: false,
     			input: '',
-    			events: []
+    			events: [],
+    			noResults: false
     		}
     	},
 
@@ -40,7 +44,12 @@
 	        			searchQuery: search,
 	        		})
 	        		.then(function (response) {
-		        		vm.events = response.data;
+	        			if (response.data.length > 0) {
+	        				vm.events = response.data;
+	        			} else {
+	        				vm.events = [];
+	        				vm.noResults = true;
+	        			}
 		        		vm.loading = false;
 					})
 					.catch(function (error) {
@@ -57,7 +66,7 @@
     			setTimeout(function() {
     				vm.input = '';
     				vm.events = [];
-    				console.log(this.events);
+    				vm.noResults = false;
     			}, 200);
     		}
     	},

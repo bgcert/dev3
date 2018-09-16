@@ -115768,6 +115768,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['big'],
@@ -115776,7 +115779,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       loading: false,
       input: '',
-      events: []
+      events: [],
+      noResults: false
     };
   },
 
@@ -115793,7 +115797,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post(route, {
         searchQuery: search
       }).then(function (response) {
-        vm.events = response.data;
+        if (response.data.length > 0) {
+          vm.events = response.data;
+        } else {
+          vm.events = [];
+          vm.noResults = true;
+        }
         vm.loading = false;
       }).catch(function (error) {
         console.log(error);
@@ -115807,7 +115816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       setTimeout(function () {
         vm.input = '';
         vm.events = [];
-        console.log(this.events);
+        vm.noResults = false;
       }, 200);
     }
   },
@@ -115868,35 +115877,44 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm.events.length > 0
+    _vm.events.length > 0 || _vm.noResults
       ? _c(
           "div",
           {
             staticClass: "ui segments search-results",
             class: { top: _vm.big }
           },
-          _vm._l(_vm.events, function(event) {
-            return _c(
-              "div",
-              {
-                staticClass: "ui segment",
-                on: {
-                  click: function($event) {
-                    _vm.openEvent(event.id)
+          [
+            _vm._l(_vm.events, function(event) {
+              return _c(
+                "div",
+                {
+                  staticClass: "ui segment",
+                  on: {
+                    click: function($event) {
+                      _vm.openEvent(event.id)
+                    }
                   }
-                }
-              },
-              [
-                _c("p", [
-                  _vm._v(
-                    _vm._s(event.theme.title) +
-                      " - " +
-                      _vm._s(event.start_date_carbon)
-                  )
+                },
+                [
+                  _c("p", [
+                    _vm._v(
+                      _vm._s(event.theme.title) +
+                        " - " +
+                        _vm._s(event.start_date_carbon)
+                    )
+                  ])
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm.noResults
+              ? _c("div", { staticClass: "ui segment" }, [
+                  _c("p", [_vm._v("Няма намерени резултати")])
                 ])
-              ]
-            )
-          })
+              : _vm._e()
+          ],
+          2
         )
       : _vm._e()
   ])
