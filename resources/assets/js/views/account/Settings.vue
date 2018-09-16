@@ -22,12 +22,18 @@
 				</div>
 			</div>
 			<template v-if="form.publisher">
+				<template v-if="errors.name" v-for="error in errors.name">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
 				<div class="field" style="width: 200px;">
 					<label>Име на организацията</label>
 					<input type="text" v-model="form.user.company.name">
 				</div>
 				<div class="field" style="width: 300px;">
 					<label>Адрес на профила</label>
+					<template v-if="errors.slug" v-for="error in errors.slug">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
 					<div class="ui labeled right input">
 						<div class="ui label">
 							http://seminari365.com/c/
@@ -79,6 +85,7 @@
     				event_publish: false,
     				venue_publish: false
 				},
+				errors: [],
 				showDashboard: false
     		}
     	},
@@ -114,7 +121,8 @@
 					}, 1500);
 				})
 				.catch(function (error) {
-					console.log(error);
+					vm.errors = error.response.data;
+					// console.log(error);
 				});
     		},
     	},

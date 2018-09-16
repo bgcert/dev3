@@ -63072,6 +63072,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63092,6 +63098,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         event_publish: false,
         venue_publish: false
       },
+      errors: [],
       showDashboard: false
     };
   },
@@ -63121,7 +63128,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           location.reload();
         }, 1500);
       }).catch(function (error) {
-        console.log(error);
+        vm.errors = error.response.data;
+        // console.log(error);
       });
     }
   },
@@ -63286,6 +63294,12 @@ var render = function() {
         _vm._v(" "),
         _vm.form.publisher
           ? [
+              _vm._l(_vm.errors.name, function(error) {
+                return _vm.errors.name
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "field", staticStyle: { width: "200px" } },
@@ -63325,6 +63339,16 @@ var render = function() {
                 [
                   _c("label", [_vm._v("Адрес на профила")]),
                   _vm._v(" "),
+                  _vm._l(_vm.errors.slug, function(error) {
+                    return _vm.errors.slug
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("div", { staticClass: "ui labeled right input" }, [
                     _c("div", { staticClass: "ui label" }, [
                       _vm._v(
@@ -63357,7 +63381,8 @@ var render = function() {
                       }
                     })
                   ])
-                ]
+                ],
+                2
               ),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [

@@ -30,7 +30,7 @@ class CompanyRequest extends FormRequest
         return [
         	// 'category_id' => 'required|integer',
             'name' => 'required|string|min:3|max:32',
-            'slug' => 'required|unique:companies,slug,'. $this->id . '|regex:/^[a-z][a-z0-9]*[.]{0,1}[a-z][a-z]*$/|max:32',
+            'slug' => 'required|unique:companies,id,'. $this->id . '|regex:/^[a-z][a-z0-9]*[.]{0,1}[a-z][a-z]*$/|max:32',
             'logo' => 'filled|string|max:255',
             'phone' => 'string|max:255',
             'email' => 'email|max:32',
