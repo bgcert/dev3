@@ -22,20 +22,35 @@
 			<form class="ui form">
 				<div class="fields">
 					<div class="field">
+						<template v-if="errors.firstname" v-for="error in errors.firstname">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<input type="text" v-model="form.firstname" placeholder="Име">
 					</div>
 					<div class="field">
+						<template v-if="errors.lastname" v-for="error in errors.lastname">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<input type="text" v-model="form.lastname" placeholder="Фамилия">
 					</div>
 				</div>
 				
 				<div class="field">
+					<template v-if="errors.email" v-for="error in errors.email">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
 					<input type="email" v-model="form.email" placeholder="E-mail">
 				</div>
 				<div class="field">
+					<template v-if="errors.password" v-for="error in errors.password">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
 					<input type="password" v-model="form.password" placeholder="Парола">
 				</div>
 				<div class="field">
+					<template v-if="errors.password_confirmation" v-for="error in errors.password_confirmation">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
 					<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
 				</div>
 				<div class="field">
@@ -69,7 +84,8 @@
     				passwordConfirm: '',
     				companyName: '',
     				slug: ''
-    			}
+    			},
+    			errors: []
     		}
     	},
 
@@ -104,6 +120,7 @@
         			vm.innerVisible = true;
         		})
         		.catch(function (error) {
+        			vm.errors = error.response.data.errors;
         			console.log(error);
         		});
         	},

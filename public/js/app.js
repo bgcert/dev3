@@ -116016,7 +116016,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.captcha {\n\tborder: 1px solid green;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116052,73 +116052,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      input: '',
-      result: -11,
-      dig: ['', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
-      dec: ['', '', 'двадесет', 'тридесет', 'четиредесет', 'петдесет', 'шестдесет', 'седемдесет', 'осемдесет', 'деведесет'],
-      hun: ['', 'сто', 'двеста', 'триста', 'четиристотин', 'петстотин', 'шестстотин', 'седемстотин', 'осемстотин', 'деветстотин'],
-      randoms: [],
-      numberString: '',
-      error: ''
-    };
-  },
+   data: function data() {
+      return {
+         input: '',
+         result: -11,
+         dig: ['', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
+         dec: ['', '', 'двадесет', 'тридесет', 'четиредесет', 'петдесет', 'шестдесет', 'седемдесет', 'осемдесет', 'деведесет'],
+         hun: ['', 'сто', 'двеста', 'триста', 'четиристотин', 'петстотин', 'шестстотин', 'седемстотин', 'осемстотин', 'деветстотин'],
+         randoms: [],
+         numberString: '',
+         error: ''
+      };
+   },
 
-  methods: {
-    setNumberString: function setNumberString() {
-      this.numberString = this.hun[this.randoms[0]] + ' ' + this.dec[this.randoms[1]] + ' и ' + this.dig[this.randoms[2]];
-    },
+   methods: {
+      setNumberString: function setNumberString() {
+         this.numberString = this.hun[this.randoms[0]] + ' ' + this.dec[this.randoms[1]] + ' и ' + this.dig[this.randoms[2]];
+      },
 
-    random: function random(x) {
-      return _.random(x);
-    },
-    check: function check() {
+      random: function random(x) {
+         return _.random(x);
+      },
+      load: function load() {
+         this.randoms[0] = _.random(1, 9);
+         this.randoms[1] = _.random(2, 9);
+         this.randoms[2] = _.random(1, 9);
+         this.result = this.randoms[0] * 100 + this.randoms[1] * 10 + this.randoms[2];
+         this.setNumberString();
+      }
+   },
+
+   created: function created() {
       var _this = this;
 
-      return new Promise(function (resolve, reject) {
-        _this.error = '';
-        if (_this.input == '') {
-          _this.error = 'Моля въведете числото';
-          reject();
-          return;
-        }
+      this.load();
 
-        if (_this.result == _this.input) {
-          resolve();
-        } else {
-          _this.error = 'Грешка при валидиране на captcha код';
-          reject();
-        }
+      __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('captcha', function (resolve, reject) {
+         _this.error = '';
+         if (_this.input == '') {
+            _this.error = 'Моля въведете числото';
+            reject();
+            _this.load();
+            return;
+         }
+
+         if (_this.result == _this.input) {
+            resolve();
+         } else {
+            _this.error = 'Грешка при валидиране на captcha код';
+            _this.load();
+            reject();
+         }
       });
-    },
-    load: function load() {
-      this.randoms[0] = _.random(1, 9);
-      this.randoms[1] = _.random(2, 9);
-      this.randoms[2] = _.random(1, 9);
-      this.result = this.randoms[0] * 100 + this.randoms[1] * 10 + this.randoms[2];
-      this.setNumberString();
-    }
-  },
-
-  created: function created() {
-    var _this2 = this;
-
-    this.load();
-
-    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('captcha', function (resolve, reject) {
-      try {
-        _this2.check();
-        resolve();
-      } catch (error) {
-        _this2.load();
-        reject();
-      }
-    });
-  },
-  destroyed: function destroyed() {
-    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('captcha');
-  }
+   },
+   destroyed: function destroyed() {
+      __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('captcha');
+   }
 });
 
 /***/ }),
@@ -116159,7 +116148,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "ui action input" }, [
+      _c("div", { staticClass: "ui input" }, [
         _c("input", {
           directives: [
             {
@@ -116549,7 +116538,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116567,6 +116556,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -116638,7 +116642,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 passwordConfirm: '',
                 companyName: '',
                 slug: ''
-            }
+            },
+            errors: []
         };
     },
 
@@ -116688,6 +116693,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     vm.dialogFormVisible = false;
                                     vm.innerVisible = true;
                                 }).catch(function (error) {
+                                    vm.errors = error.response.data.errors;
                                     console.log(error);
                                 });
 
@@ -116775,121 +116781,184 @@ var render = function() {
       _c("div", { staticClass: "signup-form mt-20" }, [
         _c("form", { staticClass: "ui form" }, [
           _c("div", { staticClass: "fields" }, [
-            _c("div", { staticClass: "field" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.firstname,
-                    expression: "form.firstname"
-                  }
-                ],
-                attrs: { type: "text", placeholder: "Име" },
-                domProps: { value: _vm.form.firstname },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+            _c(
+              "div",
+              { staticClass: "field" },
+              [
+                _vm._l(_vm.errors.firstname, function(error) {
+                  return _vm.errors.firstname
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error }
+                        })
+                      ]
+                    : _vm._e()
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.firstname,
+                      expression: "form.firstname"
                     }
-                    _vm.$set(_vm.form, "firstname", $event.target.value)
+                  ],
+                  attrs: { type: "text", placeholder: "Име" },
+                  domProps: { value: _vm.form.firstname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "firstname", $event.target.value)
+                    }
                   }
-                }
-              })
-            ]),
+                })
+              ],
+              2
+            ),
             _vm._v(" "),
-            _c("div", { staticClass: "field" }, [
+            _c(
+              "div",
+              { staticClass: "field" },
+              [
+                _vm._l(_vm.errors.lastname, function(error) {
+                  return _vm.errors.lastname
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error }
+                        })
+                      ]
+                    : _vm._e()
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.lastname,
+                      expression: "form.lastname"
+                    }
+                  ],
+                  attrs: { type: "text", placeholder: "Фамилия" },
+                  domProps: { value: _vm.form.lastname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "lastname", $event.target.value)
+                    }
+                  }
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _vm._l(_vm.errors.email, function(error) {
+                return _vm.errors.email
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.form.lastname,
-                    expression: "form.lastname"
+                    value: _vm.form.email,
+                    expression: "form.email"
                   }
                 ],
-                attrs: { type: "text", placeholder: "Фамилия" },
-                domProps: { value: _vm.form.lastname },
+                attrs: { type: "email", placeholder: "E-mail" },
+                domProps: { value: _vm.form.email },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.form, "lastname", $event.target.value)
+                    _vm.$set(_vm.form, "email", $event.target.value)
                   }
                 }
               })
-            ])
-          ]),
+            ],
+            2
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.email,
-                  expression: "form.email"
-                }
-              ],
-              attrs: { type: "email", placeholder: "E-mail" },
-              domProps: { value: _vm.form.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _vm._l(_vm.errors.password, function(error) {
+                return _vm.errors.password
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.password,
+                    expression: "form.password"
                   }
-                  _vm.$set(_vm.form, "email", $event.target.value)
+                ],
+                attrs: { type: "password", placeholder: "Парола" },
+                domProps: { value: _vm.form.password },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "password", $event.target.value)
+                  }
                 }
-              }
-            })
-          ]),
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.password,
-                  expression: "form.password"
-                }
-              ],
-              attrs: { type: "password", placeholder: "Парола" },
-              domProps: { value: _vm.form.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _vm._l(_vm.errors.password_confirmation, function(error) {
+                return _vm.errors.password_confirmation
+                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.passwordConfirm,
+                    expression: "form.passwordConfirm"
                   }
-                  _vm.$set(_vm.form, "password", $event.target.value)
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.passwordConfirm,
-                  expression: "form.passwordConfirm"
-                }
-              ],
-              attrs: { type: "password", placeholder: "Повторете паролата" },
-              domProps: { value: _vm.form.passwordConfirm },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                attrs: { type: "password", placeholder: "Повторете паролата" },
+                domProps: { value: _vm.form.passwordConfirm },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "passwordConfirm", $event.target.value)
                   }
-                  _vm.$set(_vm.form, "passwordConfirm", $event.target.value)
                 }
-              }
-            })
-          ]),
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [_c("captcha")], 1),
           _vm._v(" "),
@@ -117346,7 +117415,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117357,7 +117426,31 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -117428,7 +117521,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 passwordConfirm: '',
                 companyName: '',
                 slug: ''
-            }
+            },
+            errors: []
         };
     },
 
@@ -117438,31 +117532,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        onSubmit: function onSubmit() {
-            this.loading = true;
-            var vm = this;
-            axios.post('/register', {
-                firstname: vm.form.firstname,
-                lastname: vm.form.lastname,
-                email: vm.form.email,
-                // publisher: vm.form.publisher,
-                // event_publish: vm.form.event_publish,
-                // venue_publish: vm.form.venue_publish,
-                // company_name: vm.form.companyName,
-                // slug: vm.form.slug,
-                password: vm.form.password,
-                password_confirmation: vm.form.passwordConfirm
-            }).then(function (response) {
-                vm.dialogFormVisible = false;
-                vm.innerVisible = true;
-            }).catch(function (error) {
-                console.log(error);
+        checkCaptcha: function checkCaptcha() {
+            var promise = new Promise(function (resolve, reject) {
+                return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('captcha', resolve, reject);
             });
+            return promise;
         },
+        onSubmit: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var vm;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                this.loading = true;
+                                vm = this;
+                                _context.prev = 2;
+                                _context.next = 5;
+                                return this.checkCaptcha();
+
+                            case 5:
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context['catch'](2);
+                                return _context.abrupt('return');
+
+                            case 10:
+
+                                axios.post('/register', {
+                                    firstname: vm.form.firstname,
+                                    lastname: vm.form.lastname,
+                                    email: vm.form.email,
+                                    password: vm.form.password,
+                                    password_confirmation: vm.form.passwordConfirm
+                                }).then(function (response) {
+                                    vm.dialogFormVisible = false;
+                                    vm.innerVisible = true;
+                                }).catch(function (error) {
+                                    vm.errors = error.response.data.errors;
+                                });
+
+                            case 11:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[2, 7]]);
+            }));
+
+            function onSubmit() {
+                return _ref.apply(this, arguments);
+            }
+
+            return onSubmit;
+        }(),
         callLogin: function callLogin() {
             this.dialogFormVisible = false;
             setTimeout(function () {
-                __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
+                __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('loginClicked');
             }, 300);
         },
         closeConfirm: function closeConfirm() {
@@ -117474,7 +117604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('registerClicked', function () {
+        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('registerClicked', function () {
             _this.dialogFormVisible = true;
         });
     }
@@ -117562,124 +117692,205 @@ var render = function() {
           _c("div", { staticClass: "signup-form mt-20" }, [
             _c("form", { staticClass: "ui form" }, [
               _c("div", { staticClass: "fields" }, [
-                _c("div", { staticClass: "field" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.firstname,
-                        expression: "form.firstname"
-                      }
-                    ],
-                    attrs: { type: "text", placeholder: "Име" },
-                    domProps: { value: _vm.form.firstname },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _vm._l(_vm.errors.firstname, function(error) {
+                      return _vm.errors.firstname
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.firstname,
+                          expression: "form.firstname"
                         }
-                        _vm.$set(_vm.form, "firstname", $event.target.value)
+                      ],
+                      attrs: { type: "text", placeholder: "Име" },
+                      domProps: { value: _vm.form.firstname },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "firstname", $event.target.value)
+                        }
                       }
-                    }
-                  })
-                ]),
+                    })
+                  ],
+                  2
+                ),
                 _vm._v(" "),
-                _c("div", { staticClass: "field" }, [
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _vm._l(_vm.errors.lastname, function(error) {
+                      return _vm.errors.lastname
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.lastname,
+                          expression: "form.lastname"
+                        }
+                      ],
+                      attrs: { type: "text", placeholder: "Фамилия" },
+                      domProps: { value: _vm.form.lastname },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "lastname", $event.target.value)
+                        }
+                      }
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.email, function(error) {
+                    return _vm.errors.email
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.lastname,
-                        expression: "form.lastname"
+                        value: _vm.form.email,
+                        expression: "form.email"
                       }
                     ],
-                    attrs: { type: "text", placeholder: "Фамилия" },
-                    domProps: { value: _vm.form.lastname },
+                    attrs: { type: "email", placeholder: "E-mail" },
+                    domProps: { value: _vm.form.email },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "lastname", $event.target.value)
+                        _vm.$set(_vm.form, "email", $event.target.value)
                       }
                     }
                   })
-                ])
-              ]),
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.email,
-                      expression: "form.email"
-                    }
-                  ],
-                  attrs: { type: "email", placeholder: "E-mail" },
-                  domProps: { value: _vm.form.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.password, function(error) {
+                    return _vm.errors.password
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password"
                       }
-                      _vm.$set(_vm.form, "email", $event.target.value)
+                    ],
+                    attrs: { type: "password", placeholder: "Парола" },
+                    domProps: { value: _vm.form.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "password", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.password,
-                      expression: "form.password"
-                    }
-                  ],
-                  attrs: { type: "password", placeholder: "Парола" },
-                  domProps: { value: _vm.form.password },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.password_confirmation, function(error) {
+                    return _vm.errors.password_confirmation
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.passwordConfirm,
+                        expression: "form.passwordConfirm"
                       }
-                      _vm.$set(_vm.form, "password", $event.target.value)
+                    ],
+                    attrs: {
+                      type: "password",
+                      placeholder: "Повторете паролата"
+                    },
+                    domProps: { value: _vm.form.passwordConfirm },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "passwordConfirm",
+                          $event.target.value
+                        )
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.passwordConfirm,
-                      expression: "form.passwordConfirm"
-                    }
-                  ],
-                  attrs: {
-                    type: "password",
-                    placeholder: "Повторете паролата"
-                  },
-                  domProps: { value: _vm.form.passwordConfirm },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.form, "passwordConfirm", $event.target.value)
-                    }
-                  }
-                })
-              ]),
+              _c("div", { staticClass: "field" }, [_c("captcha")], 1),
               _vm._v(" "),
               _c(
                 "button",

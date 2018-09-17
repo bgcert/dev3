@@ -12,7 +12,7 @@
 				<button class="ui tiny orange icon button" @click.prevent="load"><i class="redo icon"></i></button>
 			</div>
 		</div>
-		<div class="ui action input">
+		<div class="ui input">
 			<input type="text" placeholder="Въведете числото" v-model="input">
 		</div>
 	</div>
@@ -44,24 +44,6 @@
     			return _.random(x);
     		},
 
-    		check() {
-    			return new Promise((resolve, reject) => {
-    				this.error = '';
-	    			if (this.input == '') {
-	    				this.error = 'Моля въведете числото';
-	    				reject();
-	    				return;
-	    			}
-
-	    			if (this.result == this.input) {
-	    				resolve();
-	    			} else {
-	    				this.error = 'Грешка при валидиране на captcha код';
-	    				reject();
-	    			}
-    			});
-    		},
-
     		load() {
     			this.randoms[0] = _.random(1, 9);
     			this.randoms[1] = _.random(2, 9);
@@ -75,13 +57,21 @@
     		this.load();
 
     		EventBus.$on('captcha', (resolve, reject) => {
-    			try {
-					this.check();
-					resolve();
-				} catch(error) {
-					this.load();
-					reject()
-				}
+    			this.error = '';
+    			if (this.input == '') {
+    				this.error = 'Моля въведете числото';
+    				reject();
+    				this.load();
+    				return;
+    			}
+
+    			if (this.result == this.input) {
+    				resolve();
+    			} else {
+    				this.error = 'Грешка при валидиране на captcha код';
+    				this.load();
+    				reject();
+    			}
         	});
 		},
 
@@ -92,7 +82,5 @@
 </script>
 
 <style>
-	.captcha {
-		border: 1px solid green;
-	}
+
 </style>
