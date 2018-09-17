@@ -116027,6 +116027,7 @@ exports.push([module.i, "\n.captcha {\n\tborder: 1px solid green;\n}\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 //
 //
 //
@@ -116037,43 +116038,87 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      input: '',
+      result: -11,
+      dig: ['', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
+      dec: ['', '', 'двадесет', 'тридесет', 'четиредесет', 'петдесет', 'шестдесет', 'седемдесет', 'осемдесет', 'деведесет'],
+      hun: ['', 'сто', 'двеста', 'триста', 'четиристотин', 'петстотин', 'шестстотин', 'седемстотин', 'осемстотин', 'деветстотин'],
+      randoms: [],
+      numberString: '',
+      error: ''
+    };
+  },
 
-   data: function data() {
-      return {
-         input: null,
-         result: null,
-         dig: ['', 'едно', 'две', 'три', 'четири', 'пет', 'шест', 'седем', 'осем', 'девет'],
-         dec: ['', '', 'двадесет', 'тридесет', 'четиредесет', 'петдесет', 'шестдесет', 'седемдесет', 'осемдесет', 'деведесет'],
-         hun: ['', 'сто', 'двеста', 'триста', 'четиристотин', 'петстотин', 'шестстотин', 'седемстотин', 'осемстотин', 'деветстотин'],
-         randoms: []
+  methods: {
+    setNumberString: function setNumberString() {
+      this.numberString = this.hun[this.randoms[0]] + ' ' + this.dec[this.randoms[1]] + ' и ' + this.dig[this.randoms[2]];
+    },
 
-      };
-   },
+    random: function random(x) {
+      return _.random(x);
+    },
+    check: function check() {
+      var _this = this;
 
-   methods: {
-      random: function random(x) {
-         return _.random(x);
-      },
-      check: function check() {
-         if (this.result == this.input) {
-            console.log('cool');
-         } else {
-            console.log('not cool');
-         }
-      },
-      load: function load() {
-         this.randoms[0] = _.random(1, 9);
-         this.randoms[1] = _.random(2, 9);
-         this.randoms[2] = _.random(1, 9);
-         this.result = this.randoms[0] * 100 + this.randoms[1] * 10 + this.randoms[2];
+      return new Promise(function (resolve, reject) {
+        _this.error = '';
+        if (_this.input == '') {
+          _this.error = 'Моля въведете числото';
+          reject();
+          return;
+        }
+
+        if (_this.result == _this.input) {
+          resolve();
+        } else {
+          _this.error = 'Грешка при валидиране на captcha код';
+          reject();
+        }
+      });
+    },
+    load: function load() {
+      this.randoms[0] = _.random(1, 9);
+      this.randoms[1] = _.random(2, 9);
+      this.randoms[2] = _.random(1, 9);
+      this.result = this.randoms[0] * 100 + this.randoms[1] * 10 + this.randoms[2];
+      this.setNumberString();
+    }
+  },
+
+  created: function created() {
+    var _this2 = this;
+
+    this.load();
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('captcha', function (resolve, reject) {
+      try {
+        _this2.check();
+        resolve();
+      } catch (error) {
+        _this2.load();
+        reject();
       }
-   },
-
-   created: function created() {
-      this.load();
-   }
+    });
+  },
+  destroyed: function destroyed() {
+    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$off('captcha');
+  }
 });
 
 /***/ }),
@@ -116084,64 +116129,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "ui segment captcha" }, [
-    _c("p", [
-      _vm._v(
-        _vm._s(_vm.hun[_vm.randoms[0]]) +
-          " " +
-          _vm._s(_vm.dec[_vm.randoms[1]]) +
-          " и " +
-          _vm._s(_vm.dig[_vm.randoms[2]])
-      )
-    ]),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.input,
-          expression: "input"
-        }
-      ],
-      attrs: { type: "text", name: "result" },
-      domProps: { value: _vm.input },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+  return _c(
+    "div",
+    { staticClass: "ui segment captcha" },
+    [
+      _vm.error
+        ? [_c("el-alert", { attrs: { type: "error", title: _vm.error } })]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "fields" }, [
+        _c("div", { staticClass: "twelve wide field" }, [
+          _c("label", [_vm._v(_vm._s(_vm.numberString))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "two wide field" }, [
+          _c(
+            "button",
+            {
+              staticClass: "ui tiny orange icon button",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.load($event)
+                }
+              }
+            },
+            [_c("i", { staticClass: "redo icon" })]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "ui action input" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.input,
+              expression: "input"
+            }
+          ],
+          attrs: { type: "text", placeholder: "Въведете числото" },
+          domProps: { value: _vm.input },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.input = $event.target.value
+            }
           }
-          _vm.input = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            _vm.check()
-          }
-        }
-      },
-      [_vm._v("test")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            $event.preventDefault()
-            _vm.load()
-          }
-        }
-      },
-      [_vm._v("refresh")]
-    )
-  ])
+        })
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -116507,7 +116549,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*\t.el-dialog__header {\r\n\t\tposition: absolute;\r\n\t\ttop: 0;\r\n\t\tright: 0;\r\n\t}\r\n\r\n\t.el-dialog__body {\r\n\t\tdisplay: flex;\r\n\t\tpadding: 0;\r\n\t}\r\n\r\n\t.signup-cover {\r\n\t\tbackground: url(https://picsum.photos/500/500/?image=347);\r\n\t\tbackground-size: cover;\r\n    \tbackground-position: center center;\r\n\t\tpadding: 50px 30px;\r\n\t\tflex: 5;\r\n\t\tdisplay: flex;\r\n\t\talign-items: center;\r\n\t\tjustify-content: center\r\n\t}\r\n\r\n\t.signup-form {\r\n\t\tpadding: 50px 30px;\r\n\t\tbackground-color: white;\r\n\t\tflex: 7;\r\n\t}*/\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116518,7 +116560,16 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
 //
 //
 //
@@ -116597,31 +116648,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        onSubmit: function onSubmit() {
-            this.loading = true;
-            var vm = this;
-            axios.post('/register', {
-                firstname: vm.form.firstname,
-                lastname: vm.form.lastname,
-                email: vm.form.email,
-                // publisher: vm.form.publisher,
-                // event_publish: vm.form.event_publish,
-                // venue_publish: vm.form.venue_publish,
-                // company_name: vm.form.companyName,
-                // slug: vm.form.slug,
-                password: vm.form.password,
-                password_confirmation: vm.form.passwordConfirm
-            }).then(function (response) {
-                vm.dialogFormVisible = false;
-                vm.innerVisible = true;
-            }).catch(function (error) {
-                console.log(error);
+        checkCaptcha: function checkCaptcha() {
+            var promise = new Promise(function (resolve, reject) {
+                return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('captcha', resolve, reject);
             });
+            return promise;
         },
+        onSubmit: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var vm;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                this.loading = true;
+                                vm = this;
+                                _context.prev = 2;
+                                _context.next = 5;
+                                return this.checkCaptcha();
+
+                            case 5:
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context['catch'](2);
+                                return _context.abrupt('return');
+
+                            case 10:
+
+                                axios.post('/register', {
+                                    firstname: vm.form.firstname,
+                                    lastname: vm.form.lastname,
+                                    email: vm.form.email,
+                                    password: vm.form.password,
+                                    password_confirmation: vm.form.passwordConfirm
+                                }).then(function (response) {
+                                    vm.dialogFormVisible = false;
+                                    vm.innerVisible = true;
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+
+                            case 11:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[2, 7]]);
+            }));
+
+            function onSubmit() {
+                return _ref.apply(this, arguments);
+            }
+
+            return onSubmit;
+        }(),
         callLogin: function callLogin() {
             this.dialogFormVisible = false;
             setTimeout(function () {
-                __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
+                __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('loginClicked');
             }, 300);
         },
         closeConfirm: function closeConfirm() {
@@ -116633,7 +116720,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('registerClicked', function () {
+        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('registerClicked', function () {
             _this.dialogFormVisible = true;
         });
     }
@@ -116803,6 +116890,8 @@ var render = function() {
               }
             })
           ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [_c("captcha")], 1),
           _vm._v(" "),
           _c(
             "button",

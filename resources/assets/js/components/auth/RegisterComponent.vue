@@ -38,6 +38,9 @@
 				<div class="field">
 					<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
 				</div>
+				<div class="field">
+					<captcha></captcha>
+				</div>
 				<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
 				<p>С натискане на бутон "Регистрирай се", Вие се съгласявате с <a href="terms" target="_blank">условията за ползване</a>.</p>
 			</form>
@@ -75,18 +78,24 @@
         },
 
         methods: {
-        	onSubmit() {
+        	checkCaptcha() {
+    			let promise = new Promise((resolve, reject) => EventBus.$emit('captcha', resolve, reject));
+    			return promise;
+    		},
+        	async onSubmit() {
         		this.loading = true;
         		let vm = this;
+
+        		try {
+					await this.checkCaptcha();
+				} catch(e) {
+				    return;
+				}
+
         		axios.post('/register', {
         			firstname: vm.form.firstname,
         			lastname: vm.form.lastname,
         			email: vm.form.email,
-        			// publisher: vm.form.publisher,
-        			// event_publish: vm.form.event_publish,
-        			// venue_publish: vm.form.venue_publish,
-        			// company_name: vm.form.companyName,
-        			// slug: vm.form.slug,
         			password: vm.form.password,
         			password_confirmation: vm.form.passwordConfirm
         		})
@@ -121,33 +130,5 @@
 </script>
 
 <style>
-/*	.el-dialog__header {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-
-	.el-dialog__body {
-		display: flex;
-		padding: 0;
-	}
-
-	.signup-cover {
-		background: url(https://picsum.photos/500/500/?image=347);
-		background-size: cover;
-    	background-position: center center;
-		padding: 50px 30px;
-		flex: 5;
-		display: flex;
-		align-items: center;
-		justify-content: center
-	}
-
-	.signup-form {
-		padding: 50px 30px;
-		background-color: white;
-		flex: 7;
-	}*/
-
 
 </style>
