@@ -32,7 +32,7 @@ class EventRequest extends FormRequest
         	'cover' => 'filled|string|max:255',
             'address' => 'required|string|max:255',
             'start_date' => 'required|date_format:"Y-m-d"|after:today',
-            'end_date' => 'required|date_format:"Y-m-d"|after:start_date',
+            'end_date' => 'required|date_format:"Y-m-d"|after_or_equal:start_date',
             'start_at' => 'required|date_format:"H:i"',
             'end_at' => 'required|date_format:"H:i"|after:start_at',
             'price' => 'required|integer'

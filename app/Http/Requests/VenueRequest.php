@@ -34,7 +34,8 @@ class VenueRequest extends FormRequest
             'address' => 'required|string|max:255',
             'cover' => 'filled|string|max:255',
             'capacity' => 'required|integer',
-            'price' => 'nullable|integer'
+            'price' => 'nullable|integer',
+            'images' => 'filled',
         ];
     }
 

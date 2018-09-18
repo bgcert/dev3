@@ -9,12 +9,13 @@
 		</div>
 
 		<div>
-			<div
-				v-for="(image, index) in images"
-				:key="index">
-				<div v-if="imageErrors[index-1]" v-for="error in imageErrors[index-1]" style="margin-top: 10px;">
-					 <el-alert type="error" :title="error"></el-alert>
+			<div v-for="(image, index) in images" :key="index">
+				<div v-if="image.error" style="margin-top: 10px;">
+					<el-alert type="error" :title="image.error"></el-alert>
 				</div>
+				<template v-if="imageErrors != []" v-for="error in imageErrors">
+					<el-alert type="error" :title="error[0]"></el-alert>
+				</template>
 				<div class="multi-image" :style="'background-image: url(' + image.filename + ');'">
 					<div class="progress" v-if="image.progress >= 0">
 						<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
@@ -46,6 +47,10 @@
     	},
 
     	methods: {
+    		setError: function (i, e) {
+    			this.images[i].error = e;
+            },
+
     		add() {
     			this.images.push({ filename: this.imageUrl, progress: -1 });
     		},
@@ -81,10 +86,9 @@
 						let filename = await this.upload(i);
 						filenames.push(filename);
 					} catch(e) {
-					    this.imageErrors.push(e);
+						console.log(e);
+						this.setError(i, e);
 					}
-    				// let filename = await this.upload(i);
-    				// filenames.push(filename);
     			}
     			return filenames;
     		},
@@ -110,8 +114,10 @@
 	    				resolve(responce.data);
 	    			})
 	    			.catch(function (error) {
-	    				reject(error.response.data.errors.file);
-	    				// console.log(error);
+	    				vm.setError(i, error.response.data.errors.file[0]);
+	    				// vm.images[i].error = error.response.data.errors.file[0];
+	    				// vm.imageErrors.push(error.response.data.errors.file);
+	    				reject(error.response.data.errors.file[0]);
 	    			})
     			});
     		},
@@ -123,8 +129,8 @@
 
         created() {
         	EventBus.$on('multi-upload', (resolve, reject) => {
-        		if (this.images.length == 0) {
-        			resolve(null);
+        		if (this.images.length == 0 || this.imageErrors.length > 0) {
+        			reject();
         			return;
         		}
         		let results = this.getFilenames();

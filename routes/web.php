@@ -36,7 +36,7 @@ Route::get('/user/{id}', 'PublicController@user');
 Route::get('/theme/{id}', 'PublicController@showTheme');
 Route::get('/event/{id}', 'PublicController@showEvent');
 Route::get('/venue/{id}', 'PublicController@showVenue');
-Route::get('/video', 'PublicController@video');
+// Route::get('/video', 'PublicController@video');
 
 // Load venue images
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');

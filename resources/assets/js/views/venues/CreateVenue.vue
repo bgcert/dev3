@@ -140,6 +140,12 @@
 				    this.data.cover = null;
 				}
 
+				try {
+					this.data.images = await this.multiUpload();
+				} catch(e) {
+				    this.data.images = null;
+				}
+
     			axios.post('/dashboard/venues', vm.data)
     			.then(function (response) {
     				vm.$message('Залата е добавена успешно.');

@@ -60509,6 +60509,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.data.cover = null;
 
               case 11:
+                _context.prev = 11;
+                _context.next = 14;
+                return this.multiUpload();
+
+              case 14:
+                this.data.images = _context.sent;
+                _context.next = 20;
+                break;
+
+              case 17:
+                _context.prev = 17;
+                _context.t1 = _context['catch'](11);
+
+                this.data.images = null;
+
+              case 20:
 
                 axios.post('/dashboard/venues', vm.data).then(function (response) {
                   vm.$message('Залата е добавена успешно.');
@@ -60517,12 +60533,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   vm.errors = error.response.data;
                 });
 
-              case 12:
+              case 21:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 8]]);
+        }, _callee, this, [[2, 8], [11, 17]]);
       }));
 
       function save() {
@@ -60629,147 +60645,155 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['existingImages'],
+  props: ['existingImages'],
 
-    data: function data() {
-        return {
-            selectedFiles: [],
-            newImages: [],
-            uploadedImages: [],
-            result: [],
-            images: [],
-            existing: this.existingImages,
-            imageErrors: []
+  data: function data() {
+    return {
+      selectedFiles: [],
+      newImages: [],
+      uploadedImages: [],
+      result: [],
+      images: [],
+      existing: this.existingImages,
+      imageErrors: []
+    };
+  },
+
+  methods: {
+    setError: function setError(i, e) {
+      this.images[i].error = e;
+    },
+
+    add: function add() {
+      this.images.push({ filename: this.imageUrl, progress: -1 });
+    },
+    onFileChange: function onFileChange(e) {
+      var vm = this;
+      var index = this.images.length - 1;
+      var files = e.target.files || e.dataTransfer.files;
+      var imageUrl = URL.createObjectURL(files[0]);
+      this.images.push({ filename: imageUrl, progress: 0, file: files[0] });
+    },
+    remove: function remove(index) {
+      this.images.splice(index, 1);;
+    },
+    removeNew: function removeNew(index) {
+      this.newImages.splice(index, 1);
+      this.selectedFiles.splice(index, 1);
+      this.file = null;
+    },
+    detach: function detach(index, id) {
+      this.existing.splice(index, 1);
+      this.$emit('detachClick', id);
+    },
+    getFilenames: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var filenames, i, filename;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                filenames = [];
+                i = 0;
+
+              case 2:
+                if (!(i < this.images.length)) {
+                  _context.next = 17;
+                  break;
+                }
+
+                _context.prev = 3;
+                _context.next = 6;
+                return this.upload(i);
+
+              case 6:
+                filename = _context.sent;
+
+                filenames.push(filename);
+                _context.next = 14;
+                break;
+
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context['catch'](3);
+
+                console.log(_context.t0);
+                this.setError(i, _context.t0);
+
+              case 14:
+                i++;
+                _context.next = 2;
+                break;
+
+              case 17:
+                return _context.abrupt('return', filenames);
+
+              case 18:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[3, 10]]);
+      }));
+
+      function getFilenames() {
+        return _ref.apply(this, arguments);
+      }
+
+      return getFilenames;
+    }(),
+    upload: function upload(i) {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        var vm = _this;
+
+        var result = void 0;
+        var config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         };
-    },
-
-    methods: {
-        add: function add() {
-            this.images.push({ filename: this.imageUrl, progress: -1 });
-        },
-        onFileChange: function onFileChange(e) {
-            var vm = this;
-            var index = this.images.length - 1;
-            var files = e.target.files || e.dataTransfer.files;
-            var imageUrl = URL.createObjectURL(files[0]);
-            this.images.push({ filename: imageUrl, progress: 0, file: files[0] });
-        },
-        remove: function remove(index) {
-            this.images.splice(index, 1);;
-        },
-        removeNew: function removeNew(index) {
-            this.newImages.splice(index, 1);
-            this.selectedFiles.splice(index, 1);
-            this.file = null;
-        },
-        detach: function detach(index, id) {
-            this.existing.splice(index, 1);
-            this.$emit('detachClick', id);
-        },
-        getFilenames: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var filenames, i, filename;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                filenames = [];
-                                i = 0;
-
-                            case 2:
-                                if (!(i < this.images.length)) {
-                                    _context.next = 16;
-                                    break;
-                                }
-
-                                _context.prev = 3;
-                                _context.next = 6;
-                                return this.upload(i);
-
-                            case 6:
-                                filename = _context.sent;
-
-                                filenames.push(filename);
-                                _context.next = 13;
-                                break;
-
-                            case 10:
-                                _context.prev = 10;
-                                _context.t0 = _context['catch'](3);
-
-                                this.imageErrors.push(_context.t0);
-
-                            case 13:
-                                i++;
-                                _context.next = 2;
-                                break;
-
-                            case 16:
-                                return _context.abrupt('return', filenames);
-
-                            case 17:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this, [[3, 10]]);
-            }));
-
-            function getFilenames() {
-                return _ref.apply(this, arguments);
-            }
-
-            return getFilenames;
-        }(),
-        upload: function upload(i) {
-            var _this = this;
-
-            return new Promise(function (resolve, reject) {
-                var vm = _this;
-
-                var result = void 0;
-                var config = {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                };
-                var formData = new FormData();
-                formData.append('file', vm.images[i].file);
-                axios.post('dashboard/image/upload', formData, {
-                    onUploadProgress: function onUploadProgress(progressEvent) {
-                        vm.images[i].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-                    }
-                }).then(function (responce) {
-                    resolve(responce.data);
-                }).catch(function (error) {
-                    reject(error.response.data.errors.file);
-                    // console.log(error);
-                });
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('ImageUpload component mounted.');
-    },
-    created: function created() {
-        var _this2 = this;
-
-        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('multi-upload', function (resolve, reject) {
-            if (_this2.images.length == 0) {
-                resolve(null);
-                return;
-            }
-            var results = _this2.getFilenames();
-            resolve(results);
+        var formData = new FormData();
+        formData.append('file', vm.images[i].file);
+        axios.post('dashboard/image/upload', formData, {
+          onUploadProgress: function onUploadProgress(progressEvent) {
+            vm.images[i].progress = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+          }
+        }).then(function (responce) {
+          resolve(responce.data);
+        }).catch(function (error) {
+          vm.setError(i, error.response.data.errors.file[0]);
+          // vm.images[i].error = error.response.data.errors.file[0];
+          // vm.imageErrors.push(error.response.data.errors.file);
+          reject(error.response.data.errors.file[0]);
         });
-    },
-    destroyed: function destroyed() {
-        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$off('multi-upload');
+      });
     }
+  },
+
+  mounted: function mounted() {
+    console.log('ImageUpload component mounted.');
+  },
+  created: function created() {
+    var _this2 = this;
+
+    __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('multi-upload', function (resolve, reject) {
+      if (_this2.images.length == 0 || _this2.imageErrors.length > 0) {
+        reject();
+        return;
+      }
+      var results = _this2.getFilenames();
+      resolve(results);
+    });
+  },
+  destroyed: function destroyed() {
+    __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$off('multi-upload');
+  }
 });
 
 /***/ }),
@@ -60820,18 +60844,26 @@ var render = function() {
               "div",
               { key: index },
               [
-                _vm._l(_vm.imageErrors[index - 1], function(error) {
-                  return _vm.imageErrors[index - 1]
-                    ? _c(
-                        "div",
-                        { staticStyle: { "margin-top": "10px" } },
-                        [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ],
-                        1
-                      )
+                image.error
+                  ? _c(
+                      "div",
+                      { staticStyle: { "margin-top": "10px" } },
+                      [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: image.error }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.imageErrors, function(error) {
+                  return _vm.imageErrors != []
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error[0] }
+                        })
+                      ]
                     : _vm._e()
                 }),
                 _vm._v(" "),

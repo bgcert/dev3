@@ -65,7 +65,7 @@
 	    				reject(error.response.data.errors.file);
 	    			})
     			});
-    		},
+    		}
     	},
 
         mounted() {
