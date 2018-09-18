@@ -99,8 +99,10 @@ class VenueController extends Controller
     	}
 
     	if ($request->detached) {
+    		// $venue->venue_images()->dissociate($request->detached);
         	foreach ($request->detached as $detached) {
         		$image = $venue->venue_images()->where('id', $detached)->first();
+        		$image->delete();
         	}
         }
 

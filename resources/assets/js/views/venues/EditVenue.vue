@@ -135,6 +135,12 @@
 				    this.data.cover = null;
 				}
 
+				try {
+					this.data.images = await this.multiUpload();
+				} catch(e) {
+				    this.data.images = null;
+				}
+
 				if (this.detached) {
 					this.data.detached = this.detached;
 				}

@@ -13,9 +13,6 @@
 				<div v-if="image.error" style="margin-top: 10px;">
 					<el-alert type="error" :title="image.error"></el-alert>
 				</div>
-				<template v-if="imageErrors != []" v-for="error in imageErrors">
-					<el-alert type="error" :title="error[0]"></el-alert>
-				</template>
 				<div class="multi-image" :style="'background-image: url(' + image.filename + ');'">
 					<div class="progress" v-if="image.progress >= 0">
 						<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
@@ -23,6 +20,11 @@
 					<button class="ui button" @click.prevent="remove(index)"> Премахни</button>
 				</div>
 			</div>
+		</div>
+
+		<div
+			class="multi-image existing"
+			:style="'background-image: url(/img/default_cover.png);'">
 			<label :for="'multi-image'" class="ui small button"> Добави изображение</label>
 			<input type="file" :id="'multi-image'" class="inputfile" @change="onFileChange">
 		</div>
@@ -42,15 +44,12 @@
     			result: [],
     			images: [],
     			existing: this.existingImages,
+    			filenames: [],
     			imageErrors: []
     		}
     	},
 
     	methods: {
-    		setError: function (i, e) {
-    			this.images[i].error = e;
-            },
-
     		add() {
     			this.images.push({ filename: this.imageUrl, progress: -1 });
     		},
@@ -60,11 +59,12 @@
     			let index = this.images.length - 1;
     			var files = e.target.files || e.dataTransfer.files;
     			var imageUrl = URL.createObjectURL(files[0]);
-    			this.images.push({ filename: imageUrl, progress: 0, file: files[0] });
+    			this.images.push({ filename: imageUrl, progress: 0, file: files[0], error: null });
     		},
 
     		remove(index) {
-    			this.images.splice(index, 1);;
+    			this.images.splice(index, 1);
+    			this.filenames.splice(index, 1);
     		},
 
     		removeNew(index) {
@@ -79,18 +79,24 @@
     		},
 
     		async getFilenames() {
-    			let filenames = [];
-
+    			this.imageErrors = [];
     			for (let i = 0; i < this.images.length; i++) {
+    				if (this.filenames[i]) {
+    					continue;
+    				}
+
     				try {
 						let filename = await this.upload(i);
-						filenames.push(filename);
+						this.filenames.push(filename);
 					} catch(e) {
-						console.log(e);
-						this.setError(i, e);
+						this.imageErrors.push(e);
+						this.images[i].error = e;
 					}
     			}
-    			return filenames;
+    			if (this.imageErrors.length) {
+    				return null;
+    			}
+    			return this.filenames;
     		},
 
     		upload(i) {
@@ -114,9 +120,6 @@
 	    				resolve(responce.data);
 	    			})
 	    			.catch(function (error) {
-	    				vm.setError(i, error.response.data.errors.file[0]);
-	    				// vm.images[i].error = error.response.data.errors.file[0];
-	    				// vm.imageErrors.push(error.response.data.errors.file);
 	    				reject(error.response.data.errors.file[0]);
 	    			})
     			});
@@ -129,8 +132,8 @@
 
         created() {
         	EventBus.$on('multi-upload', (resolve, reject) => {
-        		if (this.images.length == 0 || this.imageErrors.length > 0) {
-        			reject();
+        		if (this.images.length == 0) {
+        			resolve();
         			return;
         		}
         		let results = this.getFilenames();
