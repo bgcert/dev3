@@ -108,7 +108,7 @@
 		<div class="two column row">
 			<div class="ten wide column">
 				<p>
-			    	{{ $event->theme->body }}
+			    	{!! nl2br($event->theme->body) !!}
 			    </p>
 
 			    <table class="ui celled padded table">
