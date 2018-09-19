@@ -189,8 +189,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_element_ui_lib_theme_chalk_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_element_ui_lib_theme_chalk_index_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_bg__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_bg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_bg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_sound__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ion_sound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_ion_sound__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_element_ui_lib_locale__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_element_ui_lib_locale___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_element_ui_lib_locale__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_sound__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ion_sound___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_ion_sound__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -223,10 +225,13 @@ window.flash = function (message, type) {
 
 
 
+__WEBPACK_IMPORTED_MODULE_7_element_ui_lib_locale___default.a.use(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_bg___default.a);
+
+
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */]);
-Vue.use(__WEBPACK_IMPORTED_MODULE_7_ion_sound___default.a);
+Vue.use(__WEBPACK_IMPORTED_MODULE_8_ion_sound___default.a);
 var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */]);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_4_element_ui___default.a);
@@ -116609,7 +116614,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116743,15 +116748,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return this.checkCaptcha();
 
                             case 4:
-                                _context.next = 9;
+                                vm.loading = false;
+                                _context.next = 11;
                                 break;
 
-                            case 6:
-                                _context.prev = 6;
+                            case 7:
+                                _context.prev = 7;
                                 _context.t0 = _context['catch'](1);
+
+                                vm.loading = false;
                                 return _context.abrupt('return');
 
-                            case 9:
+                            case 11:
 
                                 vm.loading = true;
 
@@ -116766,16 +116774,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     vm.innerVisible = true;
                                     vm.loading = false;
                                 }).catch(function (error) {
-                                    vm.loading = false;
                                     vm.errors = error.response.data.errors;
+                                    vm.loading = false;
                                 });
 
-                            case 11:
+                            case 13:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[1, 6]]);
+                }, _callee, this, [[1, 7]]);
             }));
 
             function onSubmit() {
@@ -117519,7 +117527,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117656,15 +117664,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return this.checkCaptcha();
 
                             case 5:
-                                _context.next = 10;
+                                vm.loading = false;
+                                _context.next = 12;
                                 break;
 
-                            case 7:
-                                _context.prev = 7;
+                            case 8:
+                                _context.prev = 8;
                                 _context.t0 = _context['catch'](2);
+
+                                vm.loading = false;
                                 return _context.abrupt('return');
 
-                            case 10:
+                            case 12:
 
                                 vm.loading = true;
 
@@ -117683,12 +117694,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     vm.loading = false;
                                 });
 
-                            case 12:
+                            case 14:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[2, 7]]);
+                }, _callee, this, [[2, 8]]);
             }));
 
             function onSubmit() {

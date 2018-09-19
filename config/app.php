@@ -226,6 +226,4 @@ return [
     |
     */
 
-    // 'photo_storage' => env('APP_PHOTO_STORAGE', '/'),
-
 ];

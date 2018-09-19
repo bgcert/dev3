@@ -66,9 +66,16 @@ class Event extends Model
 						});
     }
 
-    public function getCoverAttribute($value)
+    public function getCoverAttribute()
     {
-    	return $this->attributes['cover'] = (!empty($value)) ? $value : $this->theme->cover; // This is cool!
+    	if (!empty($this->cover))
+    	{
+    		return $this->cover;
+    	} else if(!empty($this->theme->cover))
+    	{
+    		return $this->theme->cover;
+    	}
+    	return 'default_cover.png';
     }
 
     public function getStartDateCarbonAttribute()

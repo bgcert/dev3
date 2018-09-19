@@ -107,7 +107,9 @@
 
         		try {
 					await this.checkCaptcha();
+					vm.loading = false;
 				} catch(e) {
+					vm.loading = false;
 				    return;
 				}
 

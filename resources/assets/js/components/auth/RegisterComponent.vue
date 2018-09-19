@@ -103,7 +103,9 @@
 
         		try {
 					await this.checkCaptcha();
+					vm.loading = false;
 				} catch(e) {
+					vm.loading = false;
 				    return;
 				}
 
@@ -122,8 +124,8 @@
         			vm.loading = false;
         		})
         		.catch(function (error) {
-        			vm.loading = false;
         			vm.errors = error.response.data.errors;
+        			vm.loading = false;
         		});
         	},
 
