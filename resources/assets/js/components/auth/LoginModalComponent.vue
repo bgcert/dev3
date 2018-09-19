@@ -4,20 +4,26 @@
 
 		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
 
-			<template v-if="errorMessage">
-				<el-alert
-					:title="errorMessage"
-					type="error"
-					show-icon>
-				</el-alert>
-			</template>
-
 			<el-form ref="form" label-position="left" label-width="140px" action="/">
-					
+				
 				<el-form-item label="E-mail">
+					<template v-if="errorMessage.email" v-for="error in errorMessage.email">
+						<el-alert
+							:title="error"
+							type="error"
+							show-icon>
+						</el-alert>
+					</template>
 					<el-input type="text" v-model="form.email" name="email"></el-input>
 				</el-form-item>
 				<el-form-item label="Парола">
+					<template v-if="errorMessage.password" v-for="error in errorMessage.password">
+						<el-alert
+							:title="error"
+							type="error"
+							show-icon>
+						</el-alert>
+					</template>
 					<el-input type="password" v-model="form.password" name="password"></el-input>
 					<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
 				</el-form-item>
@@ -25,7 +31,7 @@
 				<el-form-item size="large">
 					<el-button @click.prevent="callRegister"> Регистрация</el-button>
 					<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
-					<a href="/password/reset"> Забравена парола</a>
+					<el-button type="text"> Забравена парола.</el-button>
 				</el-form-item>
 			</el-form>
 
@@ -65,9 +71,8 @@
         			window.location.reload();
         		})
         		.catch(function (error) {
-        			console.log(error.response);
         			vm.loading = false;
-        			vm.errorMessage = error.response.data.message;
+        			vm.errorMessage = error.response.data.errors;
         		});
         		console.log('submit!');
         	},

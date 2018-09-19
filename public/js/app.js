@@ -116320,6 +116320,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -116351,9 +116359,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.dialogFormVisible = false;
                 window.location.reload();
             }).catch(function (error) {
-                console.log(error.response);
                 vm.loading = false;
-                vm.errorMessage = error.response.data.message;
+                vm.errorMessage = error.response.data.errors;
             });
             console.log('submit!');
         },
@@ -116385,14 +116392,6 @@ var render = function() {
     "div",
     { staticClass: "item" },
     [
-      _vm.errorMessage
-        ? [
-            _c("el-alert", {
-              attrs: { title: _vm.errorMessage, type: "error", "show-icon": "" }
-            })
-          ]
-        : _vm._e(),
-      _vm._v(" "),
       _c(
         "el-form",
         {
@@ -116408,6 +116407,16 @@ var render = function() {
             "el-form-item",
             { attrs: { label: "E-mail" } },
             [
+              _vm._l(_vm.errorMessage.email, function(error) {
+                return _vm.errorMessage.email
+                  ? [
+                      _c("el-alert", {
+                        attrs: { title: error, type: "error", "show-icon": "" }
+                      })
+                    ]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
               _c("el-input", {
                 attrs: { type: "text", name: "email" },
                 model: {
@@ -116419,13 +116428,23 @@ var render = function() {
                 }
               })
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c(
             "el-form-item",
             { attrs: { label: "Парола" } },
             [
+              _vm._l(_vm.errorMessage.password, function(error) {
+                return _vm.errorMessage.password
+                  ? [
+                      _c("el-alert", {
+                        attrs: { title: error, type: "error", "show-icon": "" }
+                      })
+                    ]
+                  : _vm._e()
+              }),
+              _vm._v(" "),
               _c("el-input", {
                 attrs: { type: "password", name: "password" },
                 model: {
@@ -116452,7 +116471,7 @@ var render = function() {
                 [_vm._v(" Запомни ме")]
               )
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c(
@@ -116491,7 +116510,7 @@ var render = function() {
         1
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -117161,6 +117180,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -117192,9 +117217,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.dialogFormVisible = false;
                 window.location.reload();
             }).catch(function (error) {
-                console.log(error.response);
                 vm.loading = false;
-                vm.errorMessage = error.response.data.message;
+                vm.errorMessage = error.response.data.errors;
             });
             console.log('submit!');
         },
@@ -117255,18 +117279,6 @@ var render = function() {
           }
         },
         [
-          _vm.errorMessage
-            ? [
-                _c("el-alert", {
-                  attrs: {
-                    title: _vm.errorMessage,
-                    type: "error",
-                    "show-icon": ""
-                  }
-                })
-              ]
-            : _vm._e(),
-          _vm._v(" "),
           _c(
             "el-form",
             {
@@ -117282,6 +117294,20 @@ var render = function() {
                 "el-form-item",
                 { attrs: { label: "E-mail" } },
                 [
+                  _vm._l(_vm.errorMessage.email, function(error) {
+                    return _vm.errorMessage.email
+                      ? [
+                          _c("el-alert", {
+                            attrs: {
+                              title: error,
+                              type: "error",
+                              "show-icon": ""
+                            }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-input", {
                     attrs: { type: "text", name: "email" },
                     model: {
@@ -117293,13 +117319,27 @@ var render = function() {
                     }
                   })
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
                 "el-form-item",
                 { attrs: { label: "Парола" } },
                 [
+                  _vm._l(_vm.errorMessage.password, function(error) {
+                    return _vm.errorMessage.password
+                      ? [
+                          _c("el-alert", {
+                            attrs: {
+                              title: error,
+                              type: "error",
+                              "show-icon": ""
+                            }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
                   _c("el-input", {
                     attrs: { type: "password", name: "password" },
                     model: {
@@ -117326,7 +117366,7 @@ var render = function() {
                     [_vm._v(" Запомни ме")]
                   )
                 ],
-                1
+                2
               ),
               _vm._v(" "),
               _c(
@@ -117355,8 +117395,8 @@ var render = function() {
                     [_vm._v(" Вход")]
                   ),
                   _vm._v(" "),
-                  _c("a", { attrs: { href: "/password/reset" } }, [
-                    _vm._v(" Забравена парола")
+                  _c("el-button", { attrs: { type: "text" } }, [
+                    _vm._v(" Забравена парола.")
                   ])
                 ],
                 1
@@ -117365,7 +117405,7 @@ var render = function() {
             1
           )
         ],
-        2
+        1
       )
     ],
     1

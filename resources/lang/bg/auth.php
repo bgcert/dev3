@@ -12,7 +12,6 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
     'failed' => 'Данните не съвпадат.',
     'throttle' => 'Превишили сте опитите за достъп. Моля опитайте след няколко секунди.',
 
