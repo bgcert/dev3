@@ -30,7 +30,7 @@ class CompanyRequest extends FormRequest
     	$id = \Auth::id();
         return [
             'name' => 'required|string|min:3|max:32',
-            'slug' => 'required|unique:companies,slug,'. $id .',user_id|regex:/^[a-z][a-z0-9]*[.]{0,1}[a-z][a-z]*$/|max:32',
+            'slug' => 'required|unique:companies,slug,'. $id .',user_id|regex:/^[a-z][a-z0-9]*[.]{0,1}[a-z][a-z0-9]*$/|max:32',
             'logo' => 'filled|string|max:255',
             'phone' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:32',

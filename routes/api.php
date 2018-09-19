@@ -17,8 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/testimage', 'Publishers\ThemeController@saveImage');
-
 Route::get('/categories', 'PublicController@categories');
 Route::get('/eventlist/{slug?}', 'DataController@eventList');
 Route::get('/cities', 'DataController@cities');
@@ -29,3 +27,5 @@ Route::get('/getcompany/{id}', 'DataController@getCompany');
 Route::get('/company/details/{slug}', 'DataController@getCompanyDetails');
 Route::post('/theme/comments', 'DataController@themeComments');
 Route::post('/venue/comments', 'DataController@venueComments');
+
+Route::post('/contact/form', 'PublicController@saveContactForm');

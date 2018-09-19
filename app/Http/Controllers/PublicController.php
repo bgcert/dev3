@@ -84,5 +84,12 @@ class PublicController extends Controller
     public function notVerified()
     {
     	return view('verify');
-    }   
+    }
+
+	public function saveContactForm()
+    {
+    	$company = \App\Company::find(request()->company_id);
+    	$contactForm = $company->contact_forms()->create(request()->all());
+    	return $contactForm;
+    }
 }

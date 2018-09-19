@@ -43,6 +43,12 @@ class Company extends Model
     	return $this->hasMany('App\Venue');
     }
 
+    public function contact_forms()
+    {
+    	return $this->hasMany('App\ContactForm');
+    }
+
+
     public function followers()
     {
     	return $this->belongsToMany('App\User', 'followers')->withTimestamps();

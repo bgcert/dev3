@@ -87,12 +87,19 @@
 								<div class="value">{{ $event->price }}.00</div>
 								<div class="label">лв. с ДДС</div>
 							</div>
-							<request-modal style="width: 100%;"
-								:id="{{ json_encode($event->id) }}"
-								title="{{ $event->theme->title }}"
-								:auth="{{ json_encode(Auth::check()) }}"
-								classes="ui fluid orange button">
-							</request-modal>
+							<div class="ui relaxed list" style="width: 100%;">
+								<div class="item">
+									<request-modal
+										:id="{{ json_encode($event->id) }}"
+										title="{{ $event->theme->title }}"
+										:auth="{{ json_encode(Auth::check()) }}"
+										classes="ui fluid orange button">
+									</request-modal>
+								</div>
+								<div class="item">
+									<contact-us :company-id="{{ $event->theme->company->id }}" item-title="{{ $event->theme->title }}" :btn-class="'fluid positive'"></contact-us>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
