@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => 'backup_' . config('app.name'),
+        'name' => env('BACKUP_NAME', config('app.name')),
 
         'source' => [
 
