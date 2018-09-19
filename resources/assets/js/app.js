@@ -41,7 +41,6 @@ const store = new Vuex.Store(StoreData);
 
 Vue.use(ElementUI);
 
-Vue.prototype.$storagePath = '/storage/photos/';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
