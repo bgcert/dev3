@@ -1,5 +1,5 @@
 <template>
-	<div class="item">
+	<div class="item" v-loading="loading">
 
 		<el-dialog
 			width="30%"
@@ -99,7 +99,6 @@
     			return promise;
     		},
         	async onSubmit() {
-        		this.loading = true;
         		let vm = this;
 
         		try {
@@ -107,6 +106,8 @@
 				} catch(e) {
 				    return;
 				}
+
+				vm.loading = true;
 
         		axios.post('/register', {
         			firstname: vm.form.firstname,
@@ -118,10 +119,11 @@
         		.then(function (response) {
         			vm.dialogFormVisible = false;
         			vm.innerVisible = true;
+        			vm.loading = false;
         		})
         		.catch(function (error) {
+        			vm.loading = false;
         			vm.errors = error.response.data.errors;
-        			console.log(error);
         		});
         	},
 

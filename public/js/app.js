@@ -116609,7 +116609,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116737,22 +116737,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                this.loading = true;
                                 vm = this;
-                                _context.prev = 2;
-                                _context.next = 5;
+                                _context.prev = 1;
+                                _context.next = 4;
                                 return this.checkCaptcha();
 
-                            case 5:
-                                _context.next = 10;
+                            case 4:
+                                _context.next = 9;
                                 break;
 
-                            case 7:
-                                _context.prev = 7;
-                                _context.t0 = _context['catch'](2);
+                            case 6:
+                                _context.prev = 6;
+                                _context.t0 = _context['catch'](1);
                                 return _context.abrupt('return');
 
-                            case 10:
+                            case 9:
+
+                                vm.loading = true;
 
                                 axios.post('/register', {
                                     firstname: vm.form.firstname,
@@ -116763,9 +116764,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 }).then(function (response) {
                                     vm.dialogFormVisible = false;
                                     vm.innerVisible = true;
+                                    vm.loading = false;
                                 }).catch(function (error) {
+                                    vm.loading = false;
                                     vm.errors = error.response.data.errors;
-                                    console.log(error);
                                 });
 
                             case 11:
@@ -116773,7 +116775,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[2, 7]]);
+                }, _callee, this, [[1, 6]]);
             }));
 
             function onSubmit() {
@@ -116813,7 +116815,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "item" },
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ],
+      staticClass: "item"
+    },
     [
       _c(
         "el-dialog",
@@ -117507,7 +117519,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117654,6 +117666,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 10:
 
+                                vm.loading = true;
+
                                 axios.post('/register', {
                                     firstname: vm.form.firstname,
                                     lastname: vm.form.lastname,
@@ -117663,11 +117677,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 }).then(function (response) {
                                     vm.dialogFormVisible = false;
                                     vm.innerVisible = true;
+                                    vm.loading = false;
                                 }).catch(function (error) {
                                     vm.errors = error.response.data.errors;
+                                    vm.loading = false;
                                 });
 
-                            case 11:
+                            case 12:
                             case 'end':
                                 return _context.stop();
                         }
@@ -117781,15 +117797,105 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "signup-form mt-20" }, [
-            _c("form", { staticClass: "ui form" }, [
-              _c("div", { staticClass: "fields" }, [
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.loading,
+                  expression: "loading"
+                }
+              ],
+              staticClass: "signup-form mt-20"
+            },
+            [
+              _c("form", { staticClass: "ui form" }, [
+                _c("div", { staticClass: "fields" }, [
+                  _c(
+                    "div",
+                    { staticClass: "field" },
+                    [
+                      _vm._l(_vm.errors.firstname, function(error) {
+                        return _vm.errors.firstname
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.firstname,
+                            expression: "form.firstname"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: "Име" },
+                        domProps: { value: _vm.form.firstname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "firstname", $event.target.value)
+                          }
+                        }
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "field" },
+                    [
+                      _vm._l(_vm.errors.lastname, function(error) {
+                        return _vm.errors.lastname
+                          ? [
+                              _c("el-alert", {
+                                attrs: { type: "error", title: error }
+                              })
+                            ]
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.lastname,
+                            expression: "form.lastname"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: "Фамилия" },
+                        domProps: { value: _vm.form.lastname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "lastname", $event.target.value)
+                          }
+                        }
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "field" },
                   [
-                    _vm._l(_vm.errors.firstname, function(error) {
-                      return _vm.errors.firstname
+                    _vm._l(_vm.errors.email, function(error) {
+                      return _vm.errors.email
                         ? [
                             _c("el-alert", {
                               attrs: { type: "error", title: error }
@@ -117803,18 +117909,18 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.firstname,
-                          expression: "form.firstname"
+                          value: _vm.form.email,
+                          expression: "form.email"
                         }
                       ],
-                      attrs: { type: "text", placeholder: "Име" },
-                      domProps: { value: _vm.form.firstname },
+                      attrs: { type: "email", placeholder: "E-mail" },
+                      domProps: { value: _vm.form.email },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "firstname", $event.target.value)
+                          _vm.$set(_vm.form, "email", $event.target.value)
                         }
                       }
                     })
@@ -117826,8 +117932,8 @@ var render = function() {
                   "div",
                   { staticClass: "field" },
                   [
-                    _vm._l(_vm.errors.lastname, function(error) {
-                      return _vm.errors.lastname
+                    _vm._l(_vm.errors.password, function(error) {
+                      return _vm.errors.password
                         ? [
                             _c("el-alert", {
                               attrs: { type: "error", title: error }
@@ -117841,174 +117947,98 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.lastname,
-                          expression: "form.lastname"
+                          value: _vm.form.password,
+                          expression: "form.password"
                         }
                       ],
-                      attrs: { type: "text", placeholder: "Фамилия" },
-                      domProps: { value: _vm.form.lastname },
+                      attrs: { type: "password", placeholder: "Парола" },
+                      domProps: { value: _vm.form.password },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "lastname", $event.target.value)
+                          _vm.$set(_vm.form, "password", $event.target.value)
                         }
                       }
                     })
                   ],
                   2
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.email, function(error) {
-                    return _vm.errors.email
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.email,
-                        expression: "form.email"
-                      }
-                    ],
-                    attrs: { type: "email", placeholder: "E-mail" },
-                    domProps: { value: _vm.form.email },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "email", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.password, function(error) {
-                    return _vm.errors.password
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.password,
-                        expression: "form.password"
-                      }
-                    ],
-                    attrs: { type: "password", placeholder: "Парола" },
-                    domProps: { value: _vm.form.password },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "password", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.password_confirmation, function(error) {
-                    return _vm.errors.password_confirmation
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.passwordConfirm,
-                        expression: "form.passwordConfirm"
-                      }
-                    ],
-                    attrs: {
-                      type: "password",
-                      placeholder: "Повторете паролата"
-                    },
-                    domProps: { value: _vm.form.passwordConfirm },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "passwordConfirm",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [_c("captcha")], 1),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "ui positive fluid button",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.onSubmit($event)
-                    }
-                  }
-                },
-                [_vm._v("Регистрирай се")]
-              ),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  'С натискане на бутон "Регистрирай се", Вие се съгласявате с '
                 ),
-                _c("a", { attrs: { href: "terms", target: "_blank" } }, [
-                  _vm._v("условията за ползване")
-                ]),
-                _vm._v(".")
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _vm._l(_vm.errors.password_confirmation, function(error) {
+                      return _vm.errors.password_confirmation
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.passwordConfirm,
+                          expression: "form.passwordConfirm"
+                        }
+                      ],
+                      attrs: {
+                        type: "password",
+                        placeholder: "Повторете паролата"
+                      },
+                      domProps: { value: _vm.form.passwordConfirm },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form,
+                            "passwordConfirm",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [_c("captcha")], 1),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "ui positive fluid button",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.onSubmit($event)
+                      }
+                    }
+                  },
+                  [_vm._v("Регистрирай се")]
+                ),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    'С натискане на бутон "Регистрирай се", Вие се съгласявате с '
+                  ),
+                  _c("a", { attrs: { href: "terms", target: "_blank" } }, [
+                    _vm._v("условията за ползване")
+                  ]),
+                  _vm._v(".")
+                ])
               ])
-            ])
-          ])
+            ]
+          )
         ]
       )
     ],

@@ -19,7 +19,7 @@
 					<h4>Регистрирайте се, за да продължите напред.</h4>
 				</div>
 			</div>
-			<div class="signup-form mt-20">
+			<div class="signup-form mt-20" v-loading="loading">
 				<form class="ui form">
 					<div class="fields">
 						<div class="field">
@@ -111,6 +111,8 @@
 				    return;
 				}
 
+				vm.loading = true;
+
         		axios.post('/register', {
         			firstname: vm.form.firstname,
         			lastname: vm.form.lastname,
@@ -121,9 +123,11 @@
         		.then(function (response) {
         			vm.dialogFormVisible = false;
         			vm.innerVisible = true;
+        			vm.loading = false;
         		})
         		.catch(function (error) {
         			vm.errors = error.response.data.errors;
+        			vm.loading = false;
         		});
         	},
 
