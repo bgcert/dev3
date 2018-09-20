@@ -35,7 +35,7 @@
 					</div>
 					<div class="menu">
 
-						<a href="/users/settings#/notifications" class="item">Акаунт</a>
+						<a href="/users/settings#/settings" class="item">Акаунт</a>
 
 						<a class="item" href="{{ route('logout') }}"
 	                       onclick="event.preventDefault();
