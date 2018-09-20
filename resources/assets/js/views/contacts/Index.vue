@@ -9,34 +9,26 @@
 				<thead>
 					<tr>
 						<th>Получена на:</th>
-						<th>Дата/Тема</th>
+						<th>Относно</th>
 						<th><i class="user icon"></i></th>
-						<th>Статус</th>
 						<th></th>
 					</tr>
 				</thead>
-				<tbody v-for="(order, index) in orders">
-					<tr>
-						<td>{{ order.created_at }}</td>
+				<tbody v-for="(contact, index) in contacts">
+					<tr :class="{ active: !contact.read }">
+						<td>{{ contact.created_at }}</td>
 						<td>
-							<router-link :to="'/orders/' + order.id">
-								{{ order.event_start_date }} - {{ order.theme_title }}
+							<router-link :to="'/contacts/' + contact.id">
+								{{ contact.about }}
 							</router-link>
 						</td>
-						<td>{{ order.participants_count }}</td>
-						<td>
-							<div
-								class="ui mini horizontal label"
-								:class="{ green: order.status == 1, orange: order.status == 2, red: order.status == 3 }">
-								{{ statusText(order.status) }}
-							</div>
-						</td>
+						<td>{{ contact.from }}</td>
 						<td>
 							<div class="ui mini basic icon buttons">
-								<router-link :to="'/orders/' + order.id" class="ui button">
+								<router-link :to="'/contacts/' + contact.id" class="ui button">
 									<i class="edit icon"></i>
 								</router-link>
-								<button class="ui button" @click.prevent="handleDelete(order.id, index)">
+								<button class="ui button" @click.prevent="handleDelete(contact.id, index)">
 									<i class="trash icon"></i>
 								</button>
 							</div>
@@ -53,7 +45,7 @@
     	data: function () {
     		return {
     			loading: false,
-    			orders: [],
+    			contacts: [],
     		}
     	},
 
@@ -62,25 +54,13 @@
     			let vm = this;
     			var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
 			    if (result) {
-			    	axios.delete('dashboard/orders/' + id).then( function (response) {
+			    	axios.delete('dashboard/contacts/' + id).then( function (response) {
 	    				vm.orders.splice(index, 1);
 	    			});
 			    } else {
 			        console.log('canceled');
 			    }
-    		},
-
-    		statusText: function (status) {
-		    	if(status == 1) {
-		    		return 'Платена'
-		    	} else if(status == 2) {
-		    		return 'Потвърдена'
-		    	} else if(status == 3) {
-		    		return 'Отказана'
-		    	} else {
-		    		return 'Необработена'
-		    	}
-			}
+    		}
     	},
 
         mounted() {
@@ -89,9 +69,9 @@
 
         created() {
         	var vm = this;
-            var route = '/dashboard/orders';
+            var route = '/dashboard/contacts';
         	axios.get(route).then(function (response) {
-        		vm.orders = response.data;
+        		vm.contacts = response.data;
         		// vm.loading = false;
 			})
 			.catch(function (error) {

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContactFormsTable extends Migration
+class CreateContactPublishersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,6 +22,7 @@ class CreateContactFormsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->text('body');
+            $table->boolean('read')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

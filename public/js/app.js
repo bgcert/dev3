@@ -54381,7 +54381,7 @@ var routes = [
 { path: '/orders', component: __webpack_require__(172) }, { path: '/orders/:id', component: __webpack_require__(175) }, { path: '/orders/create', component: __webpack_require__(178) }, { path: '/orders/edit/:id', component: __webpack_require__(181) },
 
 // Contact publisher routes
-{ path: '/inbox', component: __webpack_require__(172) }, { path: '/inbox/:id', component: __webpack_require__(175) },
+{ path: '/contacts', component: __webpack_require__(426) }, { path: '/contacts/:id', component: __webpack_require__(429) },
 
 // Account routes
 { path: '/notifications', component: __webpack_require__(184) }, { path: '/settings/', component: __webpack_require__(187) }, { path: '/change-pass', component: __webpack_require__(190) }, { path: '/change-email', component: __webpack_require__(193) }, { path: '/deactivate', component: __webpack_require__(196) }];
@@ -119050,8 +119050,8 @@ var render = function() {
               "router-link",
               {
                 staticClass: "item",
-                class: { active: _vm.$route.path == "/inbox" },
-                attrs: { to: "/inbox" }
+                class: { active: _vm.$route.path == "/contacts" },
+                attrs: { to: "/contacts" }
               },
               [_vm._v("\n\t\t\t\t\tСъобщения\n\t\t\t\t")]
             ),
@@ -119832,6 +119832,533 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(427)
+/* template */
+var __vue_template__ = __webpack_require__(428)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/contacts/Index.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3008f52e", Component.options)
+  } else {
+    hotAPI.reload("data-v-3008f52e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 427 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            loading: false,
+            contacts: []
+        };
+    },
+
+    methods: {
+        handleDelete: function handleDelete(id, index) {
+            var vm = this;
+            var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
+            if (result) {
+                axios.delete('dashboard/contacts/' + id).then(function (response) {
+                    vm.orders.splice(index, 1);
+                });
+            } else {
+                console.log('canceled');
+            }
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('Orders index mounted.');
+    },
+    created: function created() {
+        var vm = this;
+        var route = '/dashboard/contacts';
+        axios.get(route).then(function (response) {
+            vm.contacts = response.data;
+            // vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 428 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "ui segments" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "loading",
+            rawName: "v-loading",
+            value: _vm.loading,
+            expression: "loading"
+          }
+        ],
+        staticClass: "ui segment",
+        staticStyle: { "min-height": "200px" }
+      },
+      [
+        _c(
+          "table",
+          { staticClass: "ui sortable celled table" },
+          [
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._l(_vm.contacts, function(contact, index) {
+              return _c("tbody", [
+                _c("tr", { class: { active: !contact.read } }, [
+                  _c("td", [_vm._v(_vm._s(contact.created_at))]),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: "/contacts/" + contact.id } },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t" +
+                              _vm._s(contact.about) +
+                              "\n\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(contact.from))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "div",
+                      { staticClass: "ui mini basic icon buttons" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "ui button",
+                            attrs: { to: "/contacts/" + contact.id }
+                          },
+                          [_c("i", { staticClass: "edit icon" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "ui button",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.handleDelete(contact.id, index)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "trash icon" })]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui clearing segment" }, [
+      _c("h3", { staticStyle: { float: "left" } }, [_vm._v("Заявки")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Получена на:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Относно")]),
+        _vm._v(" "),
+        _c("th", [_c("i", { staticClass: "user icon" })]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3008f52e", module.exports)
+  }
+}
+
+/***/ }),
+/* 429 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(430)
+/* template */
+var __vue_template__ = __webpack_require__(431)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/contacts/View.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-503fd3de", Component.options)
+  } else {
+    hotAPI.reload("data-v-503fd3de", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 430 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            options: [{
+                value: 1,
+                label: 'Платена'
+            }, {
+                value: 2,
+                label: 'Потвърдена'
+            }, {
+                value: 3,
+                label: 'Отказана'
+            }],
+            value: null,
+            contact: {}
+        };
+    },
+
+    methods: {
+        setStatus: function setStatus() {
+            var vm = this;
+            axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value }).then(function (response) {
+                vm.$notify({
+                    message: 'Статусът е променен.',
+                    type: 'success'
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        // console.log('Orders create mounted.');
+
+        var vm = this;
+        var route = '/dashboard/contacts/' + this.$route.params.id;
+        axios.get(route).then(function (response) {
+            vm.contact = response.data;
+            // vm.value = response.data.status;
+            // vm.loading = false;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    },
+    created: function created() {}
+});
+
+/***/ }),
+/* 431 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "ui segments" }, [
+    _c("div", { staticClass: "ui clearing segment" }, [
+      _c("h4", { staticStyle: { float: "left" } }, [
+        _vm._v("От: " + _vm._s(_vm.contact.from))
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.contact.id
+      ? _c("div", { staticClass: "ui segment" }, [
+          _c("div", { staticClass: "ten wide column" }, [
+            _c("h4"),
+            _vm._v(" "),
+            _c("table", { staticClass: "ui collapsing table" }, [
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("Изпратено на: ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.created_at))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Относно:")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.about))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Лице за контакти: ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.from))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("E-mail: ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.email))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Телефон: ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.phone))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [_vm._v("Заглавие: ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.contact.subject))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { colspan: "2" } }, [
+                    _c("p", [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t\t" +
+                          _vm._s(_vm.contact.body) +
+                          "\n\t\t\t\t\t\t\t\t"
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-503fd3de", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

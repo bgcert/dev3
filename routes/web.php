@@ -99,16 +99,16 @@ Route::group(['namespace' => 'Users', 'prefix' => 'msgr',  'middleware' => 'auth
 });
 
 // Messanger group
-Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => 'auth'], function () {
-	Route::get('/', 'MessageController@index');
-	Route::get('/threads', 'MessageController@getThreads');
-	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
-	Route::post('/add', 'MessageController@addMessage');
-	Route::post('/new', 'MessageController@newThread');
-	Route::post('/seen', 'MessageController@seen');
-	Route::post('/user/search', 'MessageController@search');
-	Route::get('/contact/{id}', 'MessageController@getUserBy');
-});
+// Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => 'auth'], function () {
+// 	Route::get('/', 'MessageController@index');
+// 	Route::get('/threads', 'MessageController@getThreads');
+// 	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
+// 	Route::post('/add', 'MessageController@addMessage');
+// 	Route::post('/new', 'MessageController@newThread');
+// 	Route::post('/seen', 'MessageController@seen');
+// 	Route::post('/user/search', 'MessageController@search');
+// 	Route::get('/contact/{id}', 'MessageController@getUserBy');
+// });
 
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {
 
@@ -118,6 +118,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('events', 'EventController');
 	Route::resource('venues', 'VenueController');
 	Route::resource('orders', 'OrderController');
+	Route::resource('contacts', 'ContactController');
 	Route::resource('comments', 'CommentController');
 
 	Route::get('/categories', 'ThemeController@categories');

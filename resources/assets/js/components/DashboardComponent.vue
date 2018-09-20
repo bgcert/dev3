@@ -4,9 +4,9 @@
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
 					<router-link
-						to="/inbox"
+						to="/contacts"
 						class="item"
-						:class="{ active: $route.path == '/inbox' }">
+						:class="{ active: $route.path == '/contacts' }">
 						Съобщения
 					</router-link>
 					<router-link

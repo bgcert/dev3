@@ -31,8 +31,8 @@ let routes = [
     { path: '/orders/edit/:id', component: require('./views/orders/Edit.vue') },
 
     // Contact publisher routes
-    { path: '/inbox', component: require('./views/orders/Index.vue') },
-    { path: '/inbox/:id', component: require('./views/orders/View.vue') },
+    { path: '/contacts', component: require('./views/contacts/Index.vue') },
+    { path: '/contacts/:id', component: require('./views/contacts/View.vue') },
 
     // Account routes
     { path: '/notifications', component: require('./views/account/Notifications.vue') },
