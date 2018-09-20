@@ -55,6 +55,6 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return \App\ContactPublisher::destroy($id);
     }
 }

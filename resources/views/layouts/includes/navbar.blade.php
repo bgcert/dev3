@@ -70,7 +70,7 @@
 				@endif
 
 				@if(auth::user()->verified())
-					<a href="/messages#/t" class="item"><i class="paper plane outline icon"></i></a>
+					<!-- <a href="/messages#/t" class="item"><i class="paper plane outline icon"></i></a> -->
 				@endif
 
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>

@@ -58,6 +58,7 @@
 						<div class="block">
 							<el-date-picker
 								v-model="form.start_date"
+								:picker-options="startDatePickerOptions"
 								type="date"
 								placeholder="Начална дата"
 								value-format="yyyy-MM-dd">
@@ -72,6 +73,7 @@
 						<div class="block">
 							<el-date-picker
 								v-model="form.end_date"
+								:picker-options="endDatePickerOptions"
 								type="date"
 								placeholder="Крайна дата"
 								value-format="yyyy-MM-dd">
@@ -85,11 +87,7 @@
 						</template>
 						<el-time-select
 							v-model="form.start_at"
-							:picker-options="{
-									start: '08:30',
-									step: '00:15',
-									end: '18:30'
-								}"
+							:picker-options="{ start: '06:00', end: '23:00', step: '00:15', maxTime: form.end_at }"
 							placeholder="Начален час"
 							value-format="HH:mm">
 						</el-time-select>
@@ -101,11 +99,7 @@
 						</template>
 						<el-time-select
 							v-model="form.end_at"
-							:picker-options="{
-									start: '08:30',
-									step: '00:15',
-									end: '18:30'
-								}"
+							:picker-options="{ start: '06:00', end: '23:00', step: '00:15', minTime: form.start_at }"
 							placeholder="Начален час"
 							value-format="HH:mm">
 						</el-time-select>
@@ -173,10 +167,21 @@
     			},
     			data: {},
     			errors: [],
+    			startDatePickerOptions: {
+    				disabledDate (date) {
+    					return date <= new Date();
+    				}
+    			},
+    			endDatePickerOptions: {
+    				disabledDate (date) {
+    					return date <= new Date();
+    				}
+    			}
     		}
     	},
 
     	methods: {
+
     		upload() {
     			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
     			return promise;

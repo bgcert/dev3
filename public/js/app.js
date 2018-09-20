@@ -58764,12 +58764,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -58794,7 +58788,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         price: null
       },
       data: {},
-      errors: []
+      errors: [],
+      startDatePickerOptions: {
+        disabledDate: function disabledDate(date) {
+          return date <= new Date();
+        }
+      },
+      endDatePickerOptions: {
+        disabledDate: function disabledDate(date) {
+          return date <= new Date();
+        }
+      }
     };
   },
 
@@ -59060,6 +59064,7 @@ var render = function() {
                     [
                       _c("el-date-picker", {
                         attrs: {
+                          "picker-options": _vm.startDatePickerOptions,
                           type: "date",
                           placeholder: "Начална дата",
                           "value-format": "yyyy-MM-dd"
@@ -59099,6 +59104,7 @@ var render = function() {
                     [
                       _c("el-date-picker", {
                         attrs: {
+                          "picker-options": _vm.endDatePickerOptions,
                           type: "date",
                           placeholder: "Крайна дата",
                           "value-format": "yyyy-MM-dd"
@@ -59135,9 +59141,10 @@ var render = function() {
                   _c("el-time-select", {
                     attrs: {
                       "picker-options": {
-                        start: "08:30",
+                        start: "06:00",
+                        end: "23:00",
                         step: "00:15",
-                        end: "18:30"
+                        maxTime: _vm.form.end_at
                       },
                       placeholder: "Начален час",
                       "value-format": "HH:mm"
@@ -59171,9 +59178,10 @@ var render = function() {
                   _c("el-time-select", {
                     attrs: {
                       "picker-options": {
-                        start: "08:30",
+                        start: "06:00",
+                        end: "23:00",
                         step: "00:15",
-                        end: "18:30"
+                        minTime: _vm.form.start_at
                       },
                       placeholder: "Начален час",
                       "value-format": "HH:mm"
@@ -59389,7 +59397,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59549,12 +59557,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -59570,7 +59572,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       teachers: [],
       cities: null,
       selectedTeachers: [],
-      errors: []
+      errors: [],
+      startDatePickerOptions: {
+        disabledDate: function disabledDate(date) {
+          return date <= new Date();
+        }
+      },
+      endDatePickerOptions: {
+        disabledDate: function disabledDate(date) {
+          return date <= new Date();
+        }
+      }
     };
   },
 
@@ -59822,6 +59834,7 @@ var render = function() {
                             [
                               _c("el-date-picker", {
                                 attrs: {
+                                  "picker-options": _vm.startDatePickerOptions,
                                   type: "date",
                                   placeholder: "Начална дата",
                                   "value-format": "yyyy-MM-dd"
@@ -59861,6 +59874,7 @@ var render = function() {
                             [
                               _c("el-date-picker", {
                                 attrs: {
+                                  "picker-options": _vm.endDatePickerOptions,
                                   type: "date",
                                   placeholder: "Крайна дата",
                                   "value-format": "yyyy-MM-dd"
@@ -59897,9 +59911,10 @@ var render = function() {
                           _c("el-time-select", {
                             attrs: {
                               "picker-options": {
-                                start: "08:30",
+                                start: "06:00",
+                                end: "23:00",
                                 step: "00:15",
-                                end: "18:30"
+                                maxTime: _vm.event.end_at
                               },
                               placeholder: "Начален час",
                               "value-format": "HH:mm"
@@ -59933,9 +59948,10 @@ var render = function() {
                           _c("el-time-select", {
                             attrs: {
                               "picker-options": {
-                                start: "08:30",
+                                start: "06:00",
+                                end: "23:00",
                                 step: "00:15",
-                                end: "18:30"
+                                minTime: _vm.event.start_at
                               },
                               placeholder: "Начален час",
                               "value-format": "HH:mm"
@@ -119961,7 +119977,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
             if (result) {
                 axios.delete('dashboard/contacts/' + id).then(function (response) {
-                    vm.orders.splice(index, 1);
+                    vm.contacts.splice(index, 1);
                 });
             } else {
                 console.log('canceled');
@@ -120052,7 +120068,7 @@ var render = function() {
                             staticClass: "ui button",
                             attrs: { to: "/contacts/" + contact.id }
                           },
-                          [_c("i", { staticClass: "edit icon" })]
+                          [_c("i", { staticClass: "eye icon" })]
                         ),
                         _vm._v(" "),
                         _c(
@@ -120097,11 +120113,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Получена на:")]),
+        _c("th", [_vm._v("Изпратена на:")]),
         _vm._v(" "),
         _c("th", [_vm._v("Относно")]),
         _vm._v(" "),
-        _c("th", [_c("i", { staticClass: "user icon" })]),
+        _c("th", [_vm._v("Подател")]),
         _vm._v(" "),
         _c("th")
       ])
@@ -120256,6 +120272,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    handleDelete: function handleDelete(id) {
+      var vm = this;
+      var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
+      if (result) {
+        axios.delete('dashboard/contacts/' + id).then(function (response) {
+          window.location.href = '/dashboard#/contacts';
+        });
+      } else {
+        console.log('canceled');
+      }
     }
   },
 
@@ -120348,14 +120375,29 @@ var render = function() {
                   {
                     staticClass: "ui basic primary button",
                     class: { disabled: !_vm.read },
-                    on: { click: _vm.markAsUnread }
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.markAsUnread($event)
+                      }
+                    }
                   },
                   [_vm._v(" Маркирай като непрочетено")]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "ui negative button" }, [
-                  _vm._v(" Изтрий")
-                ])
+                _c(
+                  "div",
+                  {
+                    staticClass: "ui negative button",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.handleDelete(_vm.contact.id)
+                      }
+                    }
+                  },
+                  [_vm._v(" Изтрий")]
+                )
               ])
             ])
           ])

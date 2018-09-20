@@ -43,8 +43,8 @@
 						<a href="#/contacts" class="item router-link-active">
 							<div class="ui basic button">Назад</div>
 				    	</a>
-						<div class="ui basic primary button" @click="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</div>
-						<div class="ui negative button"> Изтрий</div>
+						<div class="ui basic primary button" @click.prevent="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</div>
+						<div class="ui negative button" @click.prevent="handleDelete(contact.id)"> Изтрий</div>
 					</span>
 			    </div>
 			</div>
@@ -86,6 +86,18 @@
 					.catch(function (error) {
 						console.log(error);
 					});
+    		},
+
+    		handleDelete(id) {
+    			let vm = this;
+    			var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
+			    if (result) {
+			    	axios.delete('dashboard/contacts/' + id).then( function (response) {
+	    				window.location.href = '/dashboard#/contacts';
+	    			});
+			    } else {
+			        console.log('canceled');
+			    }
     		}
     	},
 

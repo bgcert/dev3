@@ -29,7 +29,7 @@ class VenueRequest extends FormRequest
     {
         return [
         	'city_id' => 'required|integer',
-            'name' => 'required|string|min:2|max:32',
+            'name' => 'required|string|min:2|max:64',
             'description' => 'required',
             'address' => 'required|string|max:255',
             'cover' => 'filled|string|max:255',
@@ -50,7 +50,7 @@ class VenueRequest extends FormRequest
 	    	'city_id.required' => 'Не е избран град',
 	    	'name.required' => 'Не е въведено име',
 	    	'name.min' => 'Полето трябва да съдържа поне 2 символа',
-	    	'name.max' => 'Полето не може да съдържа повече от 32 символа',
+	    	'name.max' => 'Полето не може да съдържа повече от 64 символа',
 	        'description.required' => 'Не е въведено съдържание',
 	        'address.required' => 'Не е въведен адрес'
 	    ];

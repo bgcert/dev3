@@ -8,9 +8,9 @@
 			<table class="ui sortable celled table">
 				<thead>
 					<tr>
-						<th>Получена на:</th>
+						<th>Изпратена на:</th>
 						<th>Относно</th>
-						<th><i class="user icon"></i></th>
+						<th>Подател</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -26,7 +26,7 @@
 						<td>
 							<div class="ui mini basic icon buttons">
 								<router-link :to="'/contacts/' + contact.id" class="ui button">
-									<i class="edit icon"></i>
+									<i class="eye icon"></i>
 								</router-link>
 								<button class="ui button" @click.prevent="handleDelete(contact.id, index)">
 									<i class="trash icon"></i>
@@ -55,7 +55,7 @@
     			var result = confirm('Сигурни ли сте, че желаете да изтриете запитването?');
 			    if (result) {
 			    	axios.delete('dashboard/contacts/' + id).then( function (response) {
-	    				vm.orders.splice(index, 1);
+	    				vm.contacts.splice(index, 1);
 	    			});
 			    } else {
 			        console.log('canceled');

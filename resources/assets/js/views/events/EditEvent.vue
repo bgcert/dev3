@@ -56,6 +56,7 @@
 							<div class="block">
 								<el-date-picker
 									v-model="event.start_date"
+									:picker-options="startDatePickerOptions"
 									type="date"
 									placeholder="Начална дата"
 									value-format="yyyy-MM-dd">
@@ -70,6 +71,7 @@
 							<div class="block">
 								<el-date-picker
 									v-model="event.end_date"
+									:picker-options="endDatePickerOptions"
 									type="date"
 									placeholder="Крайна дата"
 									value-format="yyyy-MM-dd">
@@ -83,11 +85,7 @@
 							</template>
 							<el-time-select
 								v-model="event.start_at"
-								:picker-options="{
-										start: '08:30',
-										step: '00:15',
-										end: '18:30'
-									}"
+								:picker-options="{ start: '06:00', end: '23:00', step: '00:15', maxTime: event.end_at }"
 								placeholder="Начален час"
 								value-format="HH:mm">
 							</el-time-select>
@@ -99,11 +97,7 @@
 							</template>
 							<el-time-select
 								v-model="event.end_at"
-								:picker-options="{
-										start: '08:30',
-										step: '00:15',
-										end: '18:30'
-									}"
+								:picker-options="{ start: '06:00', end: '23:00', step: '00:15', minTime: event.start_at }"
 								placeholder="Начален час"
 								value-format="HH:mm">
 							</el-time-select>
@@ -160,6 +154,16 @@
     			cities: null,
     			selectedTeachers: [],
     			errors: [],
+    			startDatePickerOptions: {
+    				disabledDate (date) {
+    					return date <= new Date();
+    				}
+    			},
+    			endDatePickerOptions: {
+    				disabledDate (date) {
+    					return date <= new Date();
+    				}
+    			}
     		}
     	},
 
