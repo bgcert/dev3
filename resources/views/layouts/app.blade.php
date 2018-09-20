@@ -35,6 +35,15 @@
     @stack('header-scripts')
 </head>
 <body>
+	<div class="ui warning new-version message transition" style="border-radius: 0;">
+		<i class="close icon"></i>
+		<div class="ui container">
+			<div class="header">
+				Семинари365 е в процес на обновяване. Възможни са временни ограничения на достъпа.
+			</div>
+			Към предишната версия <a href="http://v2.seminari365.com" target="_blank">http://v2.seminari365.com</a>
+		</div>
+	</div>
 	<script>
 		window.auth = @json(auth()->check());
 	</script>
@@ -66,6 +75,15 @@
 
     <script>
     	$('.ui.dropdown').dropdown();
+
+    	$('.new-version .close')
+	    	.on('click', function() {
+	    		$(this)
+	    		.closest('.message')
+	    		.transition('fade')
+	    		;
+	    	})
+    	;
     </script>
 
     <!-- Push Scripts -->
