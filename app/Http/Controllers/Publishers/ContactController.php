@@ -26,11 +26,22 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        return $contact = \App\ContactPublisher::find($id);
+    	$contact = \App\ContactPublisher::find($id);
+    	$contact->read = 1;
+    	$contact->save();
+        return $contact;
     	// return view('venue', compact('venue', 'images'));
     }
 
     // Mark as undread maybe
+    public function unread()
+    {
+    	$contact = \App\ContactPublisher::find(request()->id);
+    	$contact->read = 0;
+    	$contact->save();
+        return $contact;
+    }
+
     public function update(Request $request, $id)
     {
         //

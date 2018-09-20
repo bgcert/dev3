@@ -120224,54 +120224,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            options: [{
-                value: 1,
-                label: 'Платена'
-            }, {
-                value: 2,
-                label: 'Потвърдена'
-            }, {
-                value: 3,
-                label: 'Отказана'
-            }],
-            value: null,
-            contact: {}
-        };
-    },
+  data: function data() {
+    return {
+      options: [{
+        value: 1,
+        label: 'Платена'
+      }, {
+        value: 2,
+        label: 'Потвърдена'
+      }, {
+        value: 3,
+        label: 'Отказана'
+      }],
+      value: null,
+      contact: {},
+      read: true
+    };
+  },
 
-    methods: {
-        setStatus: function setStatus() {
-            var vm = this;
-            axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value }).then(function (response) {
-                vm.$notify({
-                    message: 'Статусът е променен.',
-                    type: 'success'
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        // console.log('Orders create mounted.');
-
-        var vm = this;
-        var route = '/dashboard/contacts/' + this.$route.params.id;
-        axios.get(route).then(function (response) {
-            vm.contact = response.data;
-            // vm.value = response.data.status;
-            // vm.loading = false;
-        }).catch(function (error) {
-            console.log(error);
+  methods: {
+    markAsUnread: function markAsUnread() {
+      var vm = this;
+      axios.post('/dashboard/contacts/unread', { id: vm.contact.id }).then(function (response) {
+        vm.read = false;
+        vm.$notify({
+          message: 'Статусът е променен.',
+          type: 'success'
         });
-    },
-    created: function created() {}
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('Contacts create mounted.');
+
+    var vm = this;
+    var route = '/dashboard/contacts/' + this.$route.params.id;
+    axios.get(route).then(function (response) {
+      vm.contact = response.data;
+      // vm.value = response.data.status;
+      // vm.loading = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -120290,10 +120291,8 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.contact.id
-      ? _c("div", { staticClass: "ui segment" }, [
+      ? _c("div", { staticClass: "ui clearing segment" }, [
           _c("div", { staticClass: "ten wide column" }, [
-            _c("h4"),
-            _vm._v(" "),
             _c("table", { staticClass: "ui collapsing table" }, [
               _c("tbody", [
                 _c("tr", [
@@ -120334,14 +120333,28 @@ var render = function() {
                 _vm._v(" "),
                 _c("tr", [
                   _c("td", { attrs: { colspan: "2" } }, [
-                    _c("p", [
-                      _vm._v(
-                        "\n\t\t\t\t\t\t\t\t\t" +
-                          _vm._s(_vm.contact.body) +
-                          "\n\t\t\t\t\t\t\t\t"
-                      )
-                    ])
+                    _c("p", [_vm._v(_vm._s(_vm.contact.body))])
                   ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "right floated" }, [
+              _c("span", { staticClass: "ui right floated basic segment" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "ui basic primary button",
+                    class: { disabled: !_vm.read },
+                    on: { click: _vm.markAsUnread }
+                  },
+                  [_vm._v(" Маркирай като непрочетено")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui negative button" }, [
+                  _vm._v(" Изтрий")
                 ])
               ])
             ])
@@ -120350,7 +120363,18 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "item router-link-active", attrs: { href: "#/contacts" } },
+      [_c("div", { staticClass: "ui basic button" }, [_vm._v("Назад")])]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

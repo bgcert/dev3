@@ -3,9 +3,8 @@
 		<div class="ui clearing segment">
 			<h4 style="float: left;">От: {{ contact.from }}</h4>
 		</div>
-		<div class="ui segment" v-if="contact.id">
+		<div class="ui clearing segment" v-if="contact.id">
 			<div class="ten wide column">
-				<h4></h4>
 				<table class="ui collapsing table">
 					<tbody>
 						<tr>
@@ -34,20 +33,20 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<p>
-									{{ contact.body}}
-								</p>
+								<p>{{ contact.body }}</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-
-<!-- 				<div class="ui form">
-					<div class="field">
-						<label>Записки (видими от организатора)</label>
-						<textarea></textarea>
-					</div>
-				</div> -->
+				<div class="right floated">
+					<span class="ui right floated basic segment">
+						<a href="#/contacts" class="item router-link-active">
+							<div class="ui basic button">Назад</div>
+				    	</a>
+						<div class="ui basic primary button" @click="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</div>
+						<div class="ui negative button"> Изтрий</div>
+					</span>
+			    </div>
 			</div>
 		</div>
 	</div>
@@ -68,27 +67,30 @@
     				label: 'Отказана'
     			}],
     			value: null,
-    			contact: {}
+    			contact: {},
+    			read: true
     		}
     	},
 
     	methods: {
-    		setStatus() {
+    		markAsUnread() {
     			let vm = this;
-    			axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value  }).then(function (response) {
-    				vm.$notify({
-			        	message: 'Статусът е променен.',
-			        	type: 'success'
-			        });
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+    			axios.post('/dashboard/contacts/unread', { id: vm.contact.id  })
+	    			.then(function (response) {
+	    				vm.read = false;
+	    				vm.$notify({
+				        	message: 'Статусът е променен.',
+				        	type: 'success'
+				        });
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
     		}
     	},
 
         mounted() {
-            // console.log('Orders create mounted.');
+            console.log('Contacts create mounted.');
 
             var vm = this;
             var route = '/dashboard/contacts/' + this.$route.params.id;
