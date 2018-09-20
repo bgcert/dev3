@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactPublisherRequest;
 
 class PublicController extends Controller
 {
@@ -86,10 +87,10 @@ class PublicController extends Controller
     	return view('verify');
     }
 
-	public function saveContactForm()
+	public function saveContactForm(ContactPublisherRequest $request)
     {
-    	$company = \App\Company::find(request()->company_id);
-    	$contactForm = $company->contact_forms()->create(request()->all());
+    	$company = \App\Company::find($request->company_id);
+    	$contactForm = $company->contact_forms()->create($request->all());
     	return $contactForm;
     }
 }

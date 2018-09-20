@@ -97,7 +97,12 @@
 									</request-modal>
 								</div>
 								<div class="item">
-									<contact-us :company-id="{{ $event->theme->company->id }}" item-title="{{ $event->theme->title }}" :btn-class="'fluid positive'"></contact-us>
+									<contact-publisher
+										button-text="Изпрати запитване"
+										:company-id="{{ $event->theme->company->id }}"
+										about="{{ $event->theme->title }}"
+										:btn-class="'fluid positive'">
+									</contact-publisher>
 								</div>
 							</div>
 						</div>

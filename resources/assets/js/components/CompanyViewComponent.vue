@@ -14,7 +14,13 @@
 									<h2>{{ company.name }}</h2>
 								</div>
 								<div style="position: absolute; right: 40px; bottom: 20px;">
-									<a :href="'/messages#/' + company.user.id" class="ui mini orange button">Изпрати съобщение</a>
+									<contact-publisher
+										button-text="Свържете се с нас"
+										:company-id="company.id"
+										:about="company.name"
+										btn-class="orange small">
+									</contact-publisher>
+									<!-- <a :href="'/messages#/' + company.user.id" class="ui mini orange button">Изпрати съобщение</a> -->
 									<!-- <Follow
 										:followed="company.is_followed.length > 0"
 										:company_id="company.id">
@@ -195,7 +201,6 @@
 </script>
 
 <style>
-
 	.data-container { padding: 30px; height: 260px; }
 
 	.logo-container {

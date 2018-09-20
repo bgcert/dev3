@@ -259,7 +259,7 @@ Vue.component('search', __webpack_require__(363));
 Vue.component('multi-image-upload', __webpack_require__(35));
 Vue.component('image-upload', __webpack_require__(9));
 Vue.component('captcha', __webpack_require__(368));
-Vue.component('contact-us', __webpack_require__(373));
+Vue.component('contact-publisher', __webpack_require__(373));
 
 // Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
@@ -54379,6 +54379,9 @@ var routes = [
 
 // Order routes
 { path: '/orders', component: __webpack_require__(172) }, { path: '/orders/:id', component: __webpack_require__(175) }, { path: '/orders/create', component: __webpack_require__(178) }, { path: '/orders/edit/:id', component: __webpack_require__(181) },
+
+// Contact publisher routes
+{ path: '/inbox', component: __webpack_require__(172) }, { path: '/inbox/:id', component: __webpack_require__(175) },
 
 // Account routes
 { path: '/notifications', component: __webpack_require__(184) }, { path: '/settings/', component: __webpack_require__(187) }, { path: '/change-pass', component: __webpack_require__(190) }, { path: '/change-email', component: __webpack_require__(193) }, { path: '/deactivate', component: __webpack_require__(196) }];
@@ -114225,6 +114228,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -114444,17 +114453,16 @@ var render = function() {
                           }
                         },
                         [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "ui mini orange button",
-                              attrs: {
-                                href: "/messages#/" + _vm.company.user.id
-                              }
-                            },
-                            [_vm._v("Изпрати съобщение")]
-                          )
-                        ]
+                          _c("contact-publisher", {
+                            attrs: {
+                              "button-text": "Свържете се с нас",
+                              "company-id": _vm.company.id,
+                              about: _vm.company.name,
+                              "btn-class": "orange small"
+                            }
+                          })
+                        ],
+                        1
                       )
                     ])
                   ])
@@ -116271,7 +116279,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ContactUsComponent.vue"
+Component.options.__file = "resources/assets/js/components/ContactPublisherComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -116280,9 +116288,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-093976b6", Component.options)
+    hotAPI.createRecord("data-v-1c4913fa", Component.options)
   } else {
-    hotAPI.reload("data-v-093976b6", Component.options)
+    hotAPI.reload("data-v-1c4913fa", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -116303,13 +116311,13 @@ var content = __webpack_require__(375);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("a2a29c66", content, false, {});
+var update = __webpack_require__(3)("7d1e120b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-093976b6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactUsComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-093976b6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactUsComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c4913fa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactPublisherComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c4913fa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContactPublisherComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -116327,7 +116335,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -116378,21 +116386,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['companyId', 'itemTitle', 'btnClass'],
+	props: ['button-text', 'about', 'companyId', 'itemTitle', 'btnClass'],
 	data: function data() {
 		return {
 			dialogVisible: false,
 			form: {
 				company_id: this.companyId,
-				title: this.itemTitle,
+				about: this.about,
 				from: '',
 				email: '',
 				phone: '',
 				subject: '',
 				body: ''
-			}
+			},
+			errors: []
 		};
 	},
 
@@ -116406,13 +116428,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				vm.dialogVisible = false;
 			}).catch(function (error) {
 				console.log(error.response);
-				// vm.errors = error.response.data;
+				vm.errors = error.response.data.errors;
 			});
 		}
 	},
 
 	mounted: function mounted() {
-		console.log('Contact Us Component mounted.');
+		console.log('Contact Publisher Component mounted.');
 	},
 	created: function created() {}
 });
@@ -116439,14 +116461,14 @@ var render = function() {
             }
           }
         },
-        [_vm._v("Пишете ни")]
+        [_vm._v(_vm._s(_vm.buttonText))]
       ),
       _vm._v(" "),
       _c(
         "el-dialog",
         {
           attrs: {
-            title: "Запитване за:" + _vm.itemTitle,
+            title: "Запитване",
             visible: _vm.dialogVisible,
             width: "400px"
           },
@@ -116459,136 +116481,215 @@ var render = function() {
         [
           _c("div", [
             _c("form", { staticClass: "ui form" }, [
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.from,
-                      expression: "form.from"
-                    }
-                  ],
-                  attrs: { type: "text", name: "from", placeholder: "Име" },
-                  domProps: { value: _vm.form.from },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.from, function(error) {
+                    return _vm.errors.from
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.from,
+                        expression: "form.from"
                       }
-                      _vm.$set(_vm.form, "from", $event.target.value)
+                    ],
+                    attrs: {
+                      type: "text",
+                      name: "from",
+                      placeholder: "Лице за контакти"
+                    },
+                    domProps: { value: _vm.form.from },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "from", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.email,
-                      expression: "form.email"
-                    }
-                  ],
-                  attrs: {
-                    type: "email",
-                    name: "email",
-                    placeholder: "E-mail"
-                  },
-                  domProps: { value: _vm.form.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.email, function(error) {
+                    return _vm.errors.email
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.email,
+                        expression: "form.email"
                       }
-                      _vm.$set(_vm.form, "email", $event.target.value)
+                    ],
+                    attrs: {
+                      type: "email",
+                      name: "email",
+                      placeholder: "E-mail"
+                    },
+                    domProps: { value: _vm.form.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "email", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.phone,
-                      expression: "form.phone"
-                    }
-                  ],
-                  attrs: {
-                    type: "text",
-                    name: "phone",
-                    placeholder: "Телефон"
-                  },
-                  domProps: { value: _vm.form.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.phone, function(error) {
+                    return _vm.errors.phone
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.phone,
+                        expression: "form.phone"
                       }
-                      _vm.$set(_vm.form, "phone", $event.target.value)
+                    ],
+                    attrs: {
+                      type: "text",
+                      name: "phone",
+                      placeholder: "Телефон"
+                    },
+                    domProps: { value: _vm.form.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "phone", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.subject,
-                      expression: "form.subject"
-                    }
-                  ],
-                  attrs: {
-                    type: "text",
-                    name: "subject",
-                    placeholder: "Относно"
-                  },
-                  domProps: { value: _vm.form.subject },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.subject, function(error) {
+                    return _vm.errors.subject
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.subject,
+                        expression: "form.subject"
                       }
-                      _vm.$set(_vm.form, "subject", $event.target.value)
+                    ],
+                    attrs: {
+                      type: "text",
+                      name: "subject",
+                      placeholder: "Относно"
+                    },
+                    domProps: { value: _vm.form.subject },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "subject", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ]),
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.body,
-                      expression: "form.body"
-                    }
-                  ],
-                  attrs: {
-                    name: "body",
-                    placeholder: "Запитване...",
-                    rows: "4"
-                  },
-                  domProps: { value: _vm.form.body },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+              _c(
+                "div",
+                { staticClass: "field" },
+                [
+                  _vm._l(_vm.errors.body, function(error) {
+                    return _vm.errors.body
+                      ? [
+                          _c("el-alert", {
+                            attrs: { type: "error", title: error }
+                          })
+                        ]
+                      : _vm._e()
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.body,
+                        expression: "form.body"
                       }
-                      _vm.$set(_vm.form, "body", $event.target.value)
+                    ],
+                    attrs: {
+                      name: "body",
+                      placeholder: "Запитване...",
+                      rows: "4"
+                    },
+                    domProps: { value: _vm.form.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "body", $event.target.value)
+                      }
                     }
-                  }
-                })
-              ])
+                  })
+                ],
+                2
+              )
             ])
           ]),
           _vm._v(" "),
@@ -116632,7 +116733,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-093976b6", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1c4913fa", module.exports)
   }
 }
 
@@ -118905,6 +119006,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -118943,10 +119050,10 @@ var render = function() {
               "router-link",
               {
                 staticClass: "item",
-                class: { active: _vm.$route.path == "/profile" },
-                attrs: { to: "/profile" }
+                class: { active: _vm.$route.path == "/inbox" },
+                attrs: { to: "/inbox" }
               },
-              [_vm._v("\n\t\t\t\t\tФирмени данни\n\t\t\t\t")]
+              [_vm._v("\n\t\t\t\t\tСъобщения\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(
@@ -118999,6 +119106,16 @@ var render = function() {
                 attrs: { to: "/orders" }
               },
               [_vm._v("\n\t\t\t\t\tЗаявки\n\t\t\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "item",
+                class: { active: _vm.$route.path == "/profile" },
+                attrs: { to: "/profile" }
+              },
+              [_vm._v("\n\t\t\t\t\tФирмени данни\n\t\t\t\t")]
             )
           ],
           1

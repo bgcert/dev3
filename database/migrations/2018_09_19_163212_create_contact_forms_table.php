@@ -13,10 +13,10 @@ class CreateContactFormsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_forms', function (Blueprint $table) {
+        Schema::create('contact_publishers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->unsigned();
-            $table->string('title');
+            $table->string('about');
             $table->string('subject');
             $table->string('from');
             $table->string('email');
@@ -36,6 +36,6 @@ class CreateContactFormsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_forms');
+        Schema::dropIfExists('contact_publishers');
     }
 }

@@ -45,7 +45,7 @@ class Company extends Model
 
     public function contact_forms()
     {
-    	return $this->hasMany('App\ContactForm');
+    	return $this->hasMany('App\ContactPublisher');
     }
 
 

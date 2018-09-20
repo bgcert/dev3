@@ -4,10 +4,10 @@
 			<div class="four wide column">
 				<div class="ui fluid vertical pointing menu">
 					<router-link
-						to="/profile"
+						to="/inbox"
 						class="item"
-						:class="{ active: $route.path == '/profile' }">
-						Фирмени данни
+						:class="{ active: $route.path == '/inbox' }">
+						Съобщения
 					</router-link>
 					<router-link
 						to="/themes"
@@ -38,6 +38,12 @@
 						class="item"
 						:class="{ active: $route.path == '/orders' }">
 						Заявки
+					</router-link>
+					<router-link
+						to="/profile"
+						class="item"
+						:class="{ active: $route.path == '/profile' }">
+						Фирмени данни
 					</router-link>
 				</div>
 			</div>

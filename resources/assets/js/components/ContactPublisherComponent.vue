@@ -1,30 +1,43 @@
 <template>
 	<div>
-		<button class="ui button" :class="btnClass" @click="dialogVisible = true">Пишете ни</button>
-
-		<!-- <el-button type="text" @click="dialogVisible = true">click to open the Dialog</el-button> -->
+		<button class="ui button" :class="btnClass" @click="dialogVisible = true">{{ buttonText }}</button>
 
 		<el-dialog
-			:title="'Запитване за:' + itemTitle"
+			:title="'Запитване'"
 			:visible.sync="dialogVisible"
 			width="400px">
 			<div>
 				<form class="ui form">
 					<div class="field">
-						<input type="text" v-model="form.from" name="from" placeholder="Име">
+						<template v-if="errors.from" v-for="error in errors.from">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
+						<input type="text" v-model="form.from" name="from" placeholder="Лице за контакти">
 					</div>
 					<div class="field">
+						<template v-if="errors.email" v-for="error in errors.email">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<input type="email" v-model="form.email" name="email" placeholder="E-mail">
 					</div>
 					<div class="field">
+						<template v-if="errors.phone" v-for="error in errors.phone">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<input type="text" v-model="form.phone" name="phone" placeholder="Телефон">
 					</div>
 
 					<div class="field">
+						<template v-if="errors.subject" v-for="error in errors.subject">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<input type="text" v-model="form.subject" name="subject" placeholder="Относно">
 					</div>
 
 					<div class="field">
+						<template v-if="errors.body" v-for="error in errors.body">
+							 <el-alert type="error" :title="error"></el-alert>
+						</template>
 						<textarea name="body" v-model="form.body" placeholder="Запитване..." rows="4"></textarea>
 					</div>
 				</form>
@@ -40,19 +53,20 @@
 
 <script>
     export default {
-    	props: ['companyId', 'itemTitle', 'btnClass'],
+    	props: ['button-text', 'about', 'companyId', 'itemTitle', 'btnClass'],
     	data: function () {
     		return {
     			dialogVisible: false,
     			form: {
     				company_id: this.companyId,
-    				title: this.itemTitle,
+    				about: this.about,
     				from: '',
     				email: '',
     				phone: '',
     				subject: '',
     				body: ''
-    			}
+    			},
+    			errors: []
     		}
     	},
 
@@ -68,13 +82,13 @@
     			})
     			.catch(function (error) {
     				console.log(error.response);
-    				// vm.errors = error.response.data;
+    				vm.errors = error.response.data.errors;
     			})
         	}
         },
 
         mounted() {
-            console.log('Contact Us Component mounted.')
+            console.log('Contact Publisher Component mounted.')
         },
 
         created() {
