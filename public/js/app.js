@@ -113541,8 +113541,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var vm = this;
         axios.post('/api/relatedeventlist', { company_id: vm.company_id }).then(function (response) {
             vm.events = response.data;
-            console.log('event list');
-            console.log(vm.events);
         }).catch(function (error) {
             console.log(error);
         });
@@ -113591,10 +113589,6 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "meta" }, [
                   _c("span", [_vm._v(_vm._s(event.begin_at))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "extra" }, [
-                  _vm._v("\n\t\t\t\t\t\tПрегледан 123 пъти\n\t\t\t\t\t")
                 ])
               ])
             ])

@@ -12,9 +12,9 @@
 						<div class="meta">
 							<span>{{ event.begin_at }}</span>
 						</div>
-						<div class="extra">
+						<!-- <div class="extra">
 							Прегледан 123 пъти
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</template>
@@ -46,8 +46,6 @@
             var vm = this;
         	axios.post('/api/relatedeventlist', { company_id: vm.company_id}).then(function (response) {
         		vm.events = response.data;
-        		console.log('event list');
-				console.log(vm.events);
 			})
 			.catch(function (error) {
 				console.log(error);
