@@ -1,7 +1,5 @@
 <template>
 	<div class="item">
-		
-
 		<el-form ref="form" label-position="left" label-width="140px" action="/">
 				
 			<el-form-item label="E-mail">

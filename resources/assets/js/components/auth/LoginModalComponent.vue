@@ -2,7 +2,7 @@
 	<div class="item">
 		<button class="ui basic primary button" @click.prevent="dialogFormVisible = true"> Вход</button>
 
-		<el-dialog width="30%" title="Регистрация" :visible.sync="dialogFormVisible">
+		<el-dialog width="30%" title="Вход" :visible.sync="dialogFormVisible">
 
 			<el-form ref="form" label-position="left" label-width="140px" action="/">
 				

@@ -41,7 +41,10 @@
 			<div class="header">
 				Семинари365 е в процес на обновяване. Възможни са временни ограничения на достъпа.
 			</div>
-			Към предишната версия <a href="http://v2.seminari365.com" target="_blank">http://v2.seminari365.com</a>
+			<p>
+				За да използвате новата версия е необходимо да пререгистрирате Вашия акаунт.
+				Към предишната версия <a href="http://v2.seminari365.com" target="_blank">http://v2.seminari365.com</a>.
+			</p>
 		</div>
 	</div>
 	<script>

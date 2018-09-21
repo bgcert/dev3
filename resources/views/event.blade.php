@@ -119,8 +119,8 @@
 
 		<div class="two column row">
 			<div class="ten wide column">
-				<p>
-			    	{!! nl2br($event->theme->body) !!}
+				<p style="white-space: pre-line;">
+			    	{{ $event->theme->body }}
 			    </p>
 
 			    <table class="ui celled padded table">

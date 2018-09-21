@@ -70,9 +70,7 @@
 
 		<div class="two column row">
 			<div class="ten wide column">
-				<p>
-			    	{{ $theme->body }}
-			    </p>
+				<p style="white-space: pre-line;">{{ $theme->body }}</p>
 
 			    <!-- <google-map></google-map> -->
 			    <div id="comments">
