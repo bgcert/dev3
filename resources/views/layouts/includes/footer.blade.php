@@ -16,7 +16,7 @@
 				<div class="ui list">
 					<!-- <a href="#" class="item">За нас</a> -->
 					<a href="/terms" class="item">Условия за ползване</a>
-					<a href="/page/terms" class="item">Докладване за нередност</a>
+					<a href="/page/report" class="item">Докладване за нередност</a>
 					<a href="#" class="item">Контакти</a>
 				</div>
 			</div>
@@ -32,6 +32,7 @@
 					Бизнес център "Андромеда", ет.3<br>
 					София 1618
 				</div>
+				<a href="mailto:support@seminari365.com" class="item">support@seminari365.com</a>
 			</div>
 			<div class="six wide column">
 				<div class="ui list">
