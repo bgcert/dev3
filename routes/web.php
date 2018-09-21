@@ -25,6 +25,11 @@ Route::get('/home', function () {
 
 // PUBLIC ROUTES
 Route::get('/', 'PublicController@home')->name('home');
+
+// Pages
+Route::view('/page/help', 'pages/help');
+Route::view('/page/contacts', 'pages/contacts');
+// Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 
 Route::get('/browse/{slug?}', 'PublicController@events');

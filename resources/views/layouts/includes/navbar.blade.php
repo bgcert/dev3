@@ -76,20 +76,14 @@
 				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
 				@endguest
 
-				<!-- <div class="ui dropdown icon item">
+				<div class="ui dropdown icon item">
 					<i class="question outline circle icon"></i>
 					<div class="menu">
-						<div class="item">
-							Помощ
-						</div>
-						<div class="item">
-							Реклама
-						</div>
-						<div class="item">
-							Контакти
-						</div>
+						<a href="/page/help" class="item">Помощ</a>
+						<a href="/page/report" class="item">Докладване</a>
+						<a href="/page/contacts" class="item">Контакти</a>
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</div>

@@ -54541,6 +54541,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 
@@ -55737,6 +55738,10 @@ var render = function() {
                     }
                   }
                 })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui info message" }, [
+                _vm._v("Пример: abcltd или abc.ltd")
               ])
             ],
             2
@@ -63723,6 +63728,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64025,6 +64031,10 @@ var render = function() {
                         }
                       }
                     })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ui info message" }, [
+                    _vm._v("Пример: abcltd или abc.ltd")
                   ])
                 ],
                 2

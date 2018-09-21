@@ -40,6 +40,7 @@
 						</div>
 						<input type="text" v-model="form.user.company.slug" placeholder="company.ltd">
 					</div>
+					<div class="ui info message">Пример: abcltd или abc.ltd</div>
 				</div>
 				<div class="field">
 					<div class="ui toggle checkbox">

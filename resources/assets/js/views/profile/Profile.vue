@@ -20,6 +20,7 @@
 					</div>
 					<input type="text" v-model="company.slug" placeholder="company.ltd">
 				</div>
+				<div class="ui info message">Пример: abcltd или abc.ltd</div>
 			</div>
 
 			<div class="field">
