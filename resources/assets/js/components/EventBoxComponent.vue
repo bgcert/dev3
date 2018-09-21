@@ -7,7 +7,7 @@
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
 		<div class="content content_box">
-			<a :href="'/event/' + item.id" class="header">{{ item.theme.title }}</a>
+			<a :href="'/event/' + item.id" class="header">{{ shortTitle }}</a>
 			<p style="text-transform: uppercase;"> {{ item.start_date_carbon }}</p>
 		</div>
 		<div class="extra content">
@@ -83,16 +83,21 @@
     		}
     	},
 
-        mounted() {
-            console.log('Box Component mounted.')
-        },
+    	computed: {
+    		shortTitle() {
+    			return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
+    		}
+    	},
 
         methods: {
         	test() {
         		console.log('enter');
         		this.showPopper = true;
         	}
-        	
+        },
+
+        mounted() {
+            console.log('Box Component mounted.')
         },
 
         created() {
