@@ -37,7 +37,7 @@
 				<div class="twelve wide column">
 					<el-tabs type="card" v-model="activeName">
 						<el-tab-pane label="Инфо" name="info">
-							<p v-if="company.description">{{ company.description }}</p>
+							<p v-if="company.description" style="white-space: pre-line;">{{ company.description }}</p>
 							<p>{{ company.name }}</p>
 						</el-tab-pane>
 						<el-tab-pane label="Теми" name="themes" v-if="company.themes.length > 0">
@@ -50,7 +50,7 @@
 										<div class="content">
 											<a :href="'/theme/' + theme.id" class="header">{{ theme.title }}</a>
 											<div class="meta">
-												<span>{{ theme.body }}</span>
+												<span>{{ theme.excerpt }}</span>
 											</div>
 											<div class="description">
 												<p></p>

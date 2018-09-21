@@ -22,4 +22,9 @@ class Teacher extends Model
     {
     	return $this->belongsToMany('App\Event')->withTimestamps();
     }
+
+    public function getImageAttribute($value)
+    {
+    	return $this->attributes['image'] = (!empty($value)) ? $value : 'default_user.png';
+    }
 }

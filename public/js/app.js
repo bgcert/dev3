@@ -115072,7 +115072,11 @@ var render = function() {
                       { attrs: { label: "Инфо", name: "info" } },
                       [
                         _vm.company.description
-                          ? _c("p", [_vm._v(_vm._s(_vm.company.description))])
+                          ? _c(
+                              "p",
+                              { staticStyle: { "white-space": "pre-line" } },
+                              [_vm._v(_vm._s(_vm.company.description))]
+                            )
                           : _vm._e(),
                         _vm._v(" "),
                         _c("p", [_vm._v(_vm._s(_vm.company.name))])
@@ -115119,7 +115123,7 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("div", { staticClass: "meta" }, [
                                           _c("span", [
-                                            _vm._v(_vm._s(theme.body))
+                                            _vm._v(_vm._s(theme.excerpt))
                                           ])
                                         ]),
                                         _vm._v(" "),
