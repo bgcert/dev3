@@ -26,5 +26,15 @@ trait ResizableImage
     	}
 
 		return $image;
-    }   
+    }
+
+    public function moveImage($filename) {
+    	if (!$filename) {
+    		return;
+    	}
+    	$path = 'temp/' . $filename;
+    	if (\Storage::disk('s3')->exists($path)) {
+    		\Storage::disk('s3')->move($path, '/' . $filename);
+    	}
+    }
 }

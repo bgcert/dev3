@@ -41,7 +41,9 @@ class DashboardController extends Controller
         } else
         {
         	$file = request()->file;
-        	return \Storage::disk('s3')->put('/', $file);
+        	$path = \Storage::disk('s3')->put('/temp', $file);
+        	$filename = ltrim($path, 'temp/');
+        	return $filename;
         }
     }
 }

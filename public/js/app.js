@@ -111891,7 +111891,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.content_box {\n\t\tpadding-top: 40px !important;\n}\n.ui .card {\n    \theight: 360px;\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 101px;\n\t\tleft: 20px;\n\t\tpadding: 5px;\n\t\twidth: 62px;\n\t\theight: 62px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.likes { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.comments { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n\n\t/* Popover */\n.p_logo {\n\t\tmax-height: 62px;\n}\n\n", ""]);
+exports.push([module.i, "\n.content-box {\n\t\tpadding-top: 40px !important;\n}\n.content-box a {\n\t\tfont-size: 1.16em !important;\n}\n.ui .card {\n    \theight: 360px;\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 101px;\n\t\tleft: 20px;\n\t\tpadding: 5px;\n\t\twidth: 62px;\n\t\theight: 62px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.likes { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.comments { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n\n\t/* Popover */\n.p_logo {\n\t\tmax-height: 62px;\n}\n\n", ""]);
 
 // exports
 
@@ -111984,7 +111984,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['item'],
     data: function data() {
         return {
-            // visible: false,
             loading: true
         };
     },
@@ -112231,7 +112230,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "content content_box" }, [
+      _c("div", { staticClass: "content content-box" }, [
         _c(
           "a",
           { staticClass: "header", attrs: { href: "/event/" + _vm.item.id } },

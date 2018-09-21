@@ -6,7 +6,7 @@
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
-		<div class="content content_box">
+		<div class="content content-box">
 			<a :href="'/event/' + item.id" class="header">{{ shortTitle }}</a>
 			<p style="text-transform: uppercase;"> {{ item.start_date_carbon }}</p>
 		</div>
@@ -78,7 +78,6 @@
     	props: ['item'],
     	data: function () {
     		return {
-    			// visible: false,
     			loading: true
     		}
     	},
@@ -107,8 +106,12 @@
 </script>
 
 <style>
-	.content_box {
+	.content-box {
 		padding-top: 40px !important;
+	}
+
+	.content-box a {
+		font-size: 1.16em !important;
 	}
 
 	.ui .card {

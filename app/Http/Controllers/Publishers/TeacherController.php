@@ -41,6 +41,9 @@ class TeacherController extends Controller
     {
     	$teacher = \Auth::user()->company->teachers()->create($request->all());
 
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->image);
+
     	return $teacher;
     }
 
@@ -78,6 +81,9 @@ class TeacherController extends Controller
     	$teacher = \App\Teacher::find($id);
 
     	$teacher->update($request->all());
+
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->image);
 
     	return $teacher;
     }

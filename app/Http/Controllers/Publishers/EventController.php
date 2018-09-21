@@ -48,6 +48,9 @@ class EventController extends Controller
     	if ($request->teachers) {
     		$event->teachers()->attach($request->teachers);
     	}
+
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->cover);
     	
     	return $event;
     }
@@ -91,13 +94,12 @@ class EventController extends Controller
     	$event->update($request->all());
 
     	if ($request->teachers) {
-    		// $teachers = explode(',', $request->teachers);
-    		$event->teachers()->sync($request->teachers);
-    	} else
-    	{
     		$event->teachers()->sync($request->teachers);
     	}
     	
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->cover);
+
     	return $event;
     }
 
@@ -110,30 +112,5 @@ class EventController extends Controller
     public function destroy($id)
     {
         return \App\Event::destroy($id);
-    }
-
-    public function saveEventCover()
-    {
-    	$file = request()->file;
-    	$prefix = 'e_c' . \Auth::user()->company->id . '_';
-    	$filename = $prefix . $this->unique_hash() . '.' . $file->getClientOriginalExtension();
-
-    	// Make image from file
-    	$image = Image::make($file);
-
-    	// Save original file
-    	$this->save($image, $filename, '/original/');
-
-    	// Resize to m size
-    	$this->resize($image, 300, 160);
-    	$this->save($image, $filename);
-
-    	// New image instance. Old one is already resized. Wtf?
-    	$image = Image::make($file);
-    	// Resize to l size
-    	$this->resize($image, 1200, 400);
-    	$this->save($image, $filename);
-
-    	return $filename;
     }
 }

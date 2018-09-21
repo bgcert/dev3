@@ -41,9 +41,14 @@ class VenueController extends Controller
     {
     	$venue = \Auth::user()->company->venues()->create($request->except('images'));
 
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->cover);
+
     	if (isset($request->images)) {
 	    	$images = [];
 	    	foreach ($request->images as $filename) {
+	    		// Move image from temp folder. Need improvements!!!
+    			$this->moveImage($filename);
 	    		array_push($images, ['filename' => $filename]);
 	    	}
 	    	$venue->venue_images()->createMany($images);
@@ -90,9 +95,16 @@ class VenueController extends Controller
 
     	$venue->update($request->all());
 
+    	// Move image from temp folder. Need improvements!!!
+    	$this->moveImage($request->cover);
+
     	if (isset($request->images)) {
 	    	$images = [];
 	    	foreach ($request->images as $filename) {
+
+	    		// Move image from temp folder. Need improvements!!!
+    			$this->moveImage($filename);
+    			
 	    		array_push($images, ['filename' => $filename]);
 	    	}
 	    	$venue->venue_images()->createMany($images);
