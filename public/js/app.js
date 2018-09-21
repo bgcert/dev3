@@ -111989,9 +111989,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        shortTitle: function shortTitle() {
-            return this.item.theme.title.length > 40 ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-        }
+        // shortTitle() {
+        // 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
+        // }
     },
 
     methods: {
@@ -112234,7 +112234,7 @@ var render = function() {
         _c(
           "a",
           { staticClass: "header", attrs: { href: "/event/" + _vm.item.id } },
-          [_vm._v(_vm._s(_vm.shortTitle))]
+          [_vm._v(_vm._s(_vm.item.theme.title))]
         ),
         _vm._v(" "),
         _c("p", { staticStyle: { "text-transform": "uppercase" } }, [

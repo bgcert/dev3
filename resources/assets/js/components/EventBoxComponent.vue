@@ -7,7 +7,7 @@
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
 		<div class="content content-box">
-			<a :href="'/event/' + item.id" class="header">{{ shortTitle }}</a>
+			<a :href="'/event/' + item.id" class="header">{{ item.theme.title }}</a>
 			<p style="text-transform: uppercase;"> {{ item.start_date_carbon }}</p>
 		</div>
 		<div class="extra content">
@@ -83,9 +83,9 @@
     	},
 
     	computed: {
-    		shortTitle() {
-    			return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-    		}
+    		// shortTitle() {
+    		// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
+    		// }
     	},
 
         methods: {
