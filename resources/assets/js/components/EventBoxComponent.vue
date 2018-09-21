@@ -35,39 +35,6 @@
 				</a>
 			</div>
 		</div>
-		<el-popover
-			ref="popover"
-			placement="right"
-			width="300"
-			:open-delay="800"
-			trigger="hover">
-				<img  class="p_logo" :src="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/' + item.theme.company.logo">
-				<h3>{{ item.theme.title }}</h3>
-				<a class="ui primary button" :href="'/event/' + item.id">Допълнителна информация</a>
-				<div class="ui divider"></div>
-				<div class="ui list">
-					<!-- <div class="item">
-						<i class="globe icon"></i>
-						<div class="content">
-							Присъствено, online
-						</div>
-					</div> -->
-					<!-- <div class="item">
-						<i class="sliders horizontal icon"></i>
-						<div class="content">
-							За начинаещи
-						</div>
-					</div> -->
-					<div class="item">
-						<i class="clock outline icon"></i>
-						<div class="content">
-							{{ item.theme.duration }} учебни часа
-						</div>
-					</div>
-				</div>
-				<h4>Кратко описание:</h4>
-				<p>{{ item.theme.excerpt }}</p>
-		</el-popover>
 	</div>
 </template>
 
@@ -82,11 +49,11 @@
     		}
     	},
 
-    	computed: {
-    		// shortTitle() {
-    		// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-    		// }
-    	},
+    	// computed: {
+    	// 	// shortTitle() {
+    	// 	// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
+    	// 	// }
+    	// },
 
         methods: {
         	test() {

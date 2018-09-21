@@ -111944,39 +111944,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -111988,11 +111955,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    computed: {
-        // shortTitle() {
-        // 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-        // }
-    },
+    // computed: {
+    // 	// shortTitle() {
+    // 	// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
+    // 	// }
+    // },
 
     methods: {
         test: function test() {
@@ -112313,63 +112280,8 @@ var render = function() {
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "el-popover",
-        {
-          ref: "popover",
-          attrs: {
-            placement: "right",
-            width: "300",
-            "open-delay": 800,
-            trigger: "hover"
-          }
-        },
-        [
-          _c("img", {
-            staticClass: "p_logo",
-            attrs: {
-              src:
-                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/" +
-                _vm.item.theme.company.logo
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v(_vm._s(_vm.item.theme.title))]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "ui primary button",
-              attrs: { href: "/event/" + _vm.item.id }
-            },
-            [_vm._v("Допълнителна информация")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui divider" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui list" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "clock outline icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t" +
-                    _vm._s(_vm.item.theme.duration) +
-                    " учебни часа\n\t\t\t\t\t"
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("h4", [_vm._v("Кратко описание:")]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.item.theme.excerpt))])
-        ]
-      )
-    ],
-    1
+      ])
+    ]
   )
 }
 var staticRenderFns = []
@@ -113012,7 +112924,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -113120,7 +113031,7 @@ var render = function() {
                   },
                   [_c("i", { staticClass: "eye icon" })]
                 ),
-                _vm._v("\n\t\t\t\t\t54\n\t\t\t")
+                _vm._v("\n\t\t\t\t\t\t54\n\t\t\t\t")
               ],
               1
             ),
@@ -113161,9 +113072,9 @@ var render = function() {
                   [_c("i", { staticClass: "comment outline icon" })]
                 ),
                 _vm._v(
-                  "\n\t\t\t\t" +
+                  "\n\t\t\t\t\t" +
                     _vm._s(_vm.item.only_comment_count) +
-                    "\n\t\t\t"
+                    "\n\t\t\t\t"
                 )
               ],
               1
@@ -113171,75 +113082,8 @@ var render = function() {
           ],
           1
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "el-popover",
-        {
-          ref: "popover",
-          attrs: {
-            placement: "right",
-            width: "300",
-            "open-delay": 800,
-            trigger: "hover"
-          }
-        },
-        [
-          _c("img", {
-            staticClass: "p_logo",
-            attrs: {
-              src:
-                "https://d3cwccg7mi8onu.cloudfront.net/fit-in/150x150/" +
-                _vm.item.company.logo
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v(_vm._s(_vm.item.name))]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "ui primary button",
-              attrs: { href: "/venue/" + _vm.item.id }
-            },
-            [_vm._v("Допълнителна информация")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui divider" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "ui list" }, [
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "globe icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t\t" +
-                    _vm._s(_vm.item.capacity) +
-                    " места\n\t\t\t\t\t"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "tv icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v("\n\t\t\t\t\t\tТелевизор\n\t\t\t\t\t")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "item" }, [
-              _c("i", { staticClass: "microphone icon" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
-                _vm._v("\n\t\t\t\t\t\tОзвучение\n\t\t\t\t\t")
-              ])
-            ])
-          ])
-        ]
-      )
-    ],
-    1
+      ])
+    ]
   )
 }
 var staticRenderFns = []

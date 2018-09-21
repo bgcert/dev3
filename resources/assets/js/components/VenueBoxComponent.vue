@@ -3,7 +3,6 @@
 		<a :href="'/venue/' + item.id" class="image image_container" :style="`background: url(${ 'https://d3cwccg7mi8onu.cloudfront.net/266x132/' + item.cover})`">
 			<a class="owner" :href="/c/ + item.company.slug">
 				<img :src="'https://d3cwccg7mi8onu.cloudfront.net/50x50/' + item.company.logo">
-				<!-- <div class="logo" :style="'background-image: url('+ $storagePath + item.company.logo + ')'"></div> -->
 			</a>
 			<span class="price">{{ item.price }} лв.</span>
 		</a>
@@ -35,7 +34,7 @@
 				</a>
 			</div>
 		</div>
-		<el-popover
+<!-- 		<el-popover
 			ref="popover"
 			placement="right"
 			width="300"
@@ -65,7 +64,7 @@
 						</div>
 					</div>
 				</div>
-		</el-popover>
+		</el-popover> -->
 	</div>
 </template>
 
