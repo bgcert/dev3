@@ -17,7 +17,7 @@
 
 <carousel></carousel>
 
-<div class="ui hidden divider"></div>
+<!-- <div class="ui hidden divider"></div>
 
 <div class="ui container mt-20">
 	<div class="ui equal width center aligned divided grid">
@@ -44,14 +44,12 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
-<div class="ui hidden divider"></div>
+<!-- <div class="ui hidden divider"></div> -->
 <event-feed></event-feed>
 
-<div class="ui container mt-20">
-
+<!-- <div class="ui container mt-20">
 	
-	
-</div>
+</div> -->
 @endsection
