@@ -81,7 +81,7 @@
 					<div class="menu">
 						<a href="/page/help" class="item">Помощ</a>
 						<a href="/page/report" class="item">Докладване</a>
-						<a href="/page/contacts" class="item">Контакти</a>
+						<a href="/page/contact" class="item">Контакти</a>
 					</div>
 				</div>
 			</div>
