@@ -26,6 +26,12 @@
 			<div class="item">тел.: 02/ 4032404, 4032405;</div>
 			<div class="item">Електронна поща: <a href="mailto:contact@seminari365.com">contact@seminari365.com</a></div>
 		</div>
+
+		<h4>Техническа поддръжка:</h4>
+		<div class="ui list">
+			<div class="item">тел.: 02/ 4032405;</div>
+			<div class="item">Електронна поща: <a href="mailto:support@seminari365.com">support@seminari365.com</a></div>
+		</div>
 	</div>
 </div>
 @endsection

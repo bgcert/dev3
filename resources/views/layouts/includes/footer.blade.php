@@ -32,7 +32,7 @@
 					Бизнес център "Андромеда", ет.3<br>
 					София 1618
 				</div>
-				<a href="mailto:support@seminari365.com" class="item">support@seminari365.com</a>
+				<a href="mailto:contact@seminari365.com" class="item">contact@seminari365.com</a>
 			</div>
 			<div class="six wide column">
 				<div class="ui list">
