@@ -27,7 +27,62 @@
 
 <div class="ui container">
 	<div class="ui segment mt-20">
-		Помощ
+		<div class="ui styled accordion">
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Активиране на "Бизнес акаунт"
+			</div>
+			<div class="content">
+				<div class="transition hidden">
+					<div class="ui ordered list">
+						<div class="item">Заредете меню настройки (Потребителскко меню -> Акаунт -> Настройки)</div>
+						<div class="item">Кликнете върху отметката "Бизнес акаунт"</div>
+						<a class="item">Въведете името на организацията и адрес на профил</a>
+						<a class="item">Изберете една или две от опциите за публикуване</a>
+						<a class="item">Запишете промените</a>
+					</div>
+				</div>
+			</div>
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Как да публикувам обучение?
+			</div>
+			<div class="content">
+				<div class="transition visible">
+					<div class="ui ordered list">
+						<div class="item">Активирайте опцията "Бизнес акаунт"</div>
+						<div class="item">Отворете бизнес панела</div>
+						<div class="item">Добавете тема (Бизнес панел -> Теми -> Добави тема)</div>
+						<div class="item">Добавете събитие (Бизнес панел -> Календар -> Добави събитие)</div>
+					</div>
+				</div>
+			</div>
+			<div class="title">
+				<i class="dropdown icon"></i>
+				Как да публикувам зала/конферентен център
+			</div>
+			<div class="content">
+				<div class="transition visible">
+					<div class="ui ordered list">
+						<div class="item">Активирайте опцията "Бизнес акаунт"</div>
+						<div class="item">Отворете бизнес панела</div>
+						<div class="item">Добавете зала (Бизнес панел -> Зали -> Добави зала)</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 @endsection
+
+@push('footer-scripts')
+	<script>
+		$('.accordion')
+		  .accordion({
+		    selector: {
+		      trigger: '.title .icon'
+		    }
+		  })
+		;
+	</script>
+@endpush
