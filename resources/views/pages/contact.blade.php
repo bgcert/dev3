@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="ui container">
-	<div class="ui segment mt-20">
+	<div class="ui padded segment mt-20">
 		<h4>Семинари 365 е собственост и се управлява:</h4>
 		<div class="ui list">
 			<div class="item">ЮЛ: КЮ ЕЙ СИ ООД</div>
