@@ -7,7 +7,7 @@ use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
 use Illuminate\Support\Facades\Validator;
-use Image;
+// use Image;
 
 class DashboardController extends Controller
 {
@@ -28,6 +28,7 @@ class DashboardController extends Controller
     {
     	$company = \App\Company::where('user_id', \Auth::id())->first();
     	$company->update($request->all());
+    	$this->moveImage($request->logo);
     	return $company;
     }
 
