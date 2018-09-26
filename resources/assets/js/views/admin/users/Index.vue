@@ -8,7 +8,8 @@
 						<th>Фирма</th>
 						<th>E-mail</th>
 						<th>Status</th>
-						<th>Notes</th>
+						<th>Регистриран на:</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -16,16 +17,16 @@
 						<td>{{ user.id }}</td>
 						<td>{{ user.firstname }} {{ user.lastname }}</td>
 						<template v-if="user.user_id == 2">
-							<a href="#">{{ user.company.name }}</a>
+							<td><a href="#">{{ user.company.name }}</a></td>
 						</template>
 						<template v-else>
 							<td></td>
 						</template>
-						<td>{{ user.firstname }} {{ user.lastname }}</td>
 						<td>{{ user.email }}</td>
 						<td v-if="user.token == null">Активиран</td>
 						<td v-else>Деактивиран</td>
-
+						<td>{{ user.created_at }}</td>
+						<td><a href="#">Преглед</a> / <a href="#">Редактирай</a></td>
 					</tr>
 <!-- 					<tr>
 						<td>Jamie</td>

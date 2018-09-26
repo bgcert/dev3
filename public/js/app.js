@@ -120614,6 +120614,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -120666,21 +120667,23 @@ var render = function() {
                   _vm._v(" "),
                   user.user_id == 2
                     ? [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(_vm._s(user.company.name))
+                        _c("td", [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _vm._v(_vm._s(user.company.name))
+                          ])
                         ])
                       ]
                     : [_c("td")],
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(user.firstname) + " " + _vm._s(user.lastname))
-                  ]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(user.email))]),
                   _vm._v(" "),
                   user.token == null
                     ? _c("td", [_vm._v("Активиран")])
-                    : _c("td", [_vm._v("Деактивиран")])
+                    : _c("td", [_vm._v("Деактивиран")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(user.created_at))]),
+                  _vm._v(" "),
+                  _vm._m(1, true)
                 ],
                 2
               )
@@ -120707,8 +120710,20 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Notes")])
+        _c("th", [_vm._v("Регистриран на:")]),
+        _vm._v(" "),
+        _c("th")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Преглед")]),
+      _vm._v(" / "),
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Редактирай")])
     ])
   }
 ]
