@@ -17,12 +17,6 @@
 						Обучения
 					</router-link>
 					<router-link
-						to="/teachers"
-						class="item"
-						:class="{ active: $route.path == '/teachers' }">
-						Лектори
-					</router-link>
-					<router-link
 						to="/admin-orders"
 						class="item"
 						:class="{ active: $route.path == '/admin-orders' }">

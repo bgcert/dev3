@@ -65251,14 +65251,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -65270,7 +65262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {},
 
     mounted: function mounted() {
-        console.log('Users index Component mounted.');
+        console.log('Admin Order index Component mounted.');
     },
     created: function created() {
         var vm = this;
@@ -65293,44 +65285,32 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.users.length > 0
+    _vm.orders.length > 0
       ? _c("table", { staticClass: "ui selectable celled table" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(_vm.users, function(user) {
-              return _c(
-                "tr",
-                [
-                  _c("td", [_vm._v(_vm._s(user.id))]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(_vm._s(user.firstname) + " " + _vm._s(user.lastname))
-                  ]),
-                  _vm._v(" "),
-                  user.role_id == 2
-                    ? [
-                        _c("td", [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(_vm._s(user.company.name))
-                          ])
-                        ])
-                      ]
-                    : [_c("td")],
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
-                  _vm._v(" "),
-                  user.token == null
-                    ? _c("td", [_vm._v("Активиран")])
-                    : _c("td", [_vm._v("Деактивиран")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.created_at))]),
-                  _vm._v(" "),
-                  _vm._m(1, true)
-                ],
-                2
-              )
+            _vm._l(_vm.orders, function(order) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(order.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(order.user.full_name))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(order.event_start_date) +
+                      " - " +
+                      _vm._s(order.theme_title)
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(order.company.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(order.created_at))]),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ])
             })
           )
         ])
@@ -65346,13 +65326,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("#ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Име")]),
+        _c("th", [_vm._v("Заявител")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Събитие")]),
         _vm._v(" "),
         _c("th", [_vm._v("Фирма")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("E-mail")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", [_vm._v("Регистриран на:")]),
         _vm._v(" "),
@@ -120344,12 +120322,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -120404,16 +120376,6 @@ var render = function() {
                 attrs: { to: "/admin-events" }
               },
               [_vm._v("\n\t\t\t\t\tОбучения\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/teachers" },
-                attrs: { to: "/teachers" }
-              },
-              [_vm._v("\n\t\t\t\t\tЛектори\n\t\t\t\t")]
             ),
             _vm._v(" "),
             _c(

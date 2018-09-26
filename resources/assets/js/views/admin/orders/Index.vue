@@ -1,31 +1,23 @@
 <template>
 	<div>
-			<table class="ui selectable celled table"  v-if="users.length > 0">
+			<table class="ui selectable celled table"  v-if="orders.length > 0">
 				<thead>
 					<tr>
 						<th>#ID</th>
-						<th>Име</th>
+						<th>Заявител</th>
+						<th>Събитие</th>
 						<th>Фирма</th>
-						<th>E-mail</th>
-						<th>Status</th>
 						<th>Регистриран на:</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="user in users">
-						<td>{{ user.id }}</td>
-						<td>{{ user.firstname }} {{ user.lastname }}</td>
-						<template v-if="user.role_id == 2">
-							<td><a href="#">{{ user.company.name }}</a></td>
-						</template>
-						<template v-else>
-							<td></td>
-						</template>
-						<td>{{ user.email }}</td>
-						<td v-if="user.token == null">Активиран</td>
-						<td v-else>Деактивиран</td>
-						<td>{{ user.created_at }}</td>
+					<tr v-for="order in orders">
+						<td>{{ order.id }}</td>
+						<td>{{ order.user.full_name }}</td>
+						<td>{{ order.event_start_date }} - {{ order.theme_title }}</td>
+						<td>{{ order.company.name }}</td>
+						<td>{{ order.created_at }}</td>
 						<td>
 							<div class="ui mini basic icon buttons">
 								<a href="#" class="ui button"><i class="eye icon"></i></a>
@@ -52,7 +44,7 @@
     	},
 
         mounted() {
-            console.log('Users index Component mounted.');
+            console.log('Admin Order index Component mounted.');
         },
 
         created() {
