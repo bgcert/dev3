@@ -80,7 +80,7 @@
 		$('.accordion')
 		  .accordion({
 		    selector: {
-		      trigger: '.title .icon'
+		      trigger: '.title'
 		    }
 		  })
 		;
