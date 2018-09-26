@@ -14,11 +14,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="viewport" content="width=1400">
+    <meta name="description" content="Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.">
+    <meta name="keywords" content="курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове">
+    <meta name="author" content="Seminari365">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} - Постоянно развитие</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
