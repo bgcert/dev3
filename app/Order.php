@@ -25,6 +25,11 @@ class Order extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function company()
+    {
+    	return $this->belongsTo('App\Company');
+    }
+
     public function participants()
     {
     	return $this->hasMany('App\OrderParticipant');

@@ -140,6 +140,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['au
 	Route::get('/', 'AdminController@index');
 
 	Route::resource('users', 'AdminUserController');
+	Route::resource('events', 'AdminEventController');
+	Route::resource('orders', 'AdminOrderController');
 	Route::get('/activity', 'AdminController@activity');
 
 });

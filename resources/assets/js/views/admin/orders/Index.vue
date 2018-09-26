@@ -15,7 +15,7 @@
 				<tbody>
 					<tr v-for="user in users">
 						<td>{{ user.id }}</td>
-						<td>{{ user.full_name }}</td>
+						<td>{{ user.firstname }} {{ user.lastname }}</td>
 						<template v-if="user.role_id == 2">
 							<td><a href="#">{{ user.company.name }}</a></td>
 						</template>
@@ -43,7 +43,7 @@
     export default {
     	data: function () {
     		return {
-    			users: []
+    			orders: []
     		}
     	},
 
@@ -57,9 +57,9 @@
 
         created() {
         	var vm = this;
-            var route = '/admin/users';
+            var route = '/admin/orders';
         	axios.get(route).then(function (response) {
-        		vm.users = response.data;
+        		vm.orders = response.data;
         		// vm.loading = false;
 			})
 			.catch(function (error) {

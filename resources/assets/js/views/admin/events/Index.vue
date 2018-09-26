@@ -1,31 +1,25 @@
 <template>
 	<div>
-			<table class="ui selectable celled table"  v-if="users.length > 0">
+			<table class="ui selectable celled table"  v-if="events.length > 0">
 				<thead>
 					<tr>
 						<th>#ID</th>
-						<th>Име</th>
+						<th>Тема</th>
+						<th>Начална дата</th>
 						<th>Фирма</th>
-						<th>E-mail</th>
-						<th>Status</th>
+						<th>Потребител</th>
 						<th>Регистриран на:</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="user in users">
-						<td>{{ user.id }}</td>
-						<td>{{ user.full_name }}</td>
-						<template v-if="user.role_id == 2">
-							<td><a href="#">{{ user.company.name }}</a></td>
-						</template>
-						<template v-else>
-							<td></td>
-						</template>
-						<td>{{ user.email }}</td>
-						<td v-if="user.token == null">Активиран</td>
-						<td v-else>Деактивиран</td>
-						<td>{{ user.created_at }}</td>
+					<tr v-for="event in events">
+						<td>{{ event.id }}</td>
+						<td>{{ event.theme.title }}</td>
+						<td>{{ event.start_date_carbon }}</td>
+						<td>{{ event.theme.company.name }}</td>
+						<td>{{ event.theme.company.user.full_name }}</td>
+						<td>{{ event.created_at }}</td>
 						<td>
 							<div class="ui mini basic icon buttons">
 								<a href="#" class="ui button"><i class="eye icon"></i></a>
@@ -43,7 +37,7 @@
     export default {
     	data: function () {
     		return {
-    			users: []
+    			events: []
     		}
     	},
 
@@ -57,9 +51,9 @@
 
         created() {
         	var vm = this;
-            var route = '/admin/users';
+            var route = '/admin/events';
         	axios.get(route).then(function (response) {
-        		vm.users = response.data;
+        		vm.events = response.data;
         		// vm.loading = false;
 			})
 			.catch(function (error) {

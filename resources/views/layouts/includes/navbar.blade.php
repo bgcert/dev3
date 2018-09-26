@@ -29,6 +29,9 @@
 				@if(Auth::user()->role_id == 2)
 					<a href="/dashboard#/profile" class="item">Бизнес панел</a>
 				@endif
+				@if(Auth::user()->role_id == 3)
+					<a href="/admin#/admin-users" class="item">Административен панел</a>
+				@endif
 				<div class="ui dropdown item">
 					<div class="text">
 						<img class="ui avatar image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/80x80/{{ Auth::user()->picture }}"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>

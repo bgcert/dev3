@@ -3,11 +3,12 @@
 		<div class="ui grid mt-20">
 			<div class="two wide column">
 				<div class="ui fluid vertical pointing menu">
+					<a href="/" class="item"><i class="home icon"></i> Seminari365.com</a>
 					<router-link
 						to="/admin-users"
 						class="item"
 						:class="{ active: $route.path == '/admin-users' }">
-						Потребители
+						<i class="users icon"></i> Потребители
 					</router-link>
 					<router-link
 						to="/admin-events"
