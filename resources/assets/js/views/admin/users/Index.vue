@@ -16,7 +16,7 @@
 					<tr v-for="user in users">
 						<td>{{ user.id }}</td>
 						<td>{{ user.firstname }} {{ user.lastname }}</td>
-						<template v-if="user.user_id == 2">
+						<template v-if="user.role_id == 2">
 							<td><a href="#">{{ user.company.name }}</a></td>
 						</template>
 						<template v-else>

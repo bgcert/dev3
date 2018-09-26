@@ -120665,7 +120665,7 @@ var render = function() {
                     _vm._v(_vm._s(user.firstname) + " " + _vm._s(user.lastname))
                   ]),
                   _vm._v(" "),
-                  user.user_id == 2
+                  user.role_id == 2
                     ? [
                         _c("td", [
                           _c("a", { attrs: { href: "#" } }, [
