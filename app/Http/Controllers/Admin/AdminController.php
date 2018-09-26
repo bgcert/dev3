@@ -8,6 +8,11 @@ use Spatie\Activitylog\Models\Activity;
 
 class AdminController extends Controller
 {
+	public function index()
+    {
+    	return view('admin.index');
+    }
+
     public function activity()
     {
         $activity = Activity::all();

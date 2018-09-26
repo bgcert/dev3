@@ -43,6 +43,9 @@ let routes = [
 
     // // Messenger
     // { path: '/t/:id?', component: require('./views/messenger/Index.vue') },
+
+    // Admin routes
+    { path: '/admin-users', component: require('./views/admin/users/Index.vue') },
 ];
 
 const router = new VueRouter({
@@ -52,17 +55,3 @@ const router = new VueRouter({
 });
 
 export default router
-
-// Redirecting if email not validated
-router.beforeEach((to, from, next) => {
-	if (window.auth) {
-		if (window.user.token != null) {
-			next(false);
-		} else {
-			next();
-		}
-	} else {
-		next(false);
-	}
-	
-});

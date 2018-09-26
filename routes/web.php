@@ -47,7 +47,6 @@ Route::get('/venue/{id}', 'PublicController@showVenue');
 Route::get('/load/venue/images/{id}', 'DataController@venueImages');
 
 // Verification route
-// Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
 Route::get('/verify/{token}', 'PublicController@verify')->name('verify');
 
 Auth::routes();
@@ -103,18 +102,6 @@ Route::group(['namespace' => 'Users', 'prefix' => 'msgr',  'middleware' => 'auth
 	Route::post('/search', 'MessengerController@search');
 });
 
-// Messanger group
-// Route::group(['namespace' => 'Users', 'prefix' => 'messages',  'middleware' => 'auth'], function () {
-// 	Route::get('/', 'MessageController@index');
-// 	Route::get('/threads', 'MessageController@getThreads');
-// 	Route::get('/thread/{id}', 'MessageController@getThreadByUser');
-// 	Route::post('/add', 'MessageController@addMessage');
-// 	Route::post('/new', 'MessageController@newThread');
-// 	Route::post('/seen', 'MessageController@seen');
-// 	Route::post('/user/search', 'MessageController@search');
-// 	Route::get('/contact/{id}', 'MessageController@getUserBy');
-// });
-
 Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware' => 'auth'], function () {
 
 	Route::get('/', 'DashboardController@index');
@@ -150,6 +137,9 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {
 
+	Route::get('/', 'AdminController@index');
+
+	Route::resource('users', 'AdminUserController');
 	Route::get('/activity', 'AdminController@activity');
 
 });

@@ -15,7 +15,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->id == 4 && auth()->user()->role_id == 3) {
+        if (auth()->user()->role_id == 3) {
             return $next($request);
         }
         //return abort(401, 'Unauthorized action.');

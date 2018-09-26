@@ -2,8 +2,6 @@
 
 namespace App\Traits;
 
-use Image;
-
 trait ResizableImage
 {
 	public function resize($image, $w, $h)

@@ -80,6 +80,9 @@ Vue.component('account', require('./components/AccountComponent.vue'));
 // Dashboard
 Vue.component('dashboard', require('./components/DashboardComponent.vue'));
 
+// Admin
+Vue.component('admin', require('./components/AdminComponent.vue'));
+
 // Messanger
 Vue.component('messanger', require('./components/MessangerComponent.vue'));
 
