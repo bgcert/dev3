@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::login(\App\User::find(1));
+// Auth::login(\App\User::find(11));
 
 // Route::get('/query', function () {
     
@@ -132,6 +132,8 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 
 	// Set order status
 	Route::post('/orders/status', 'OrderController@setStatus');
+
+	// Check 
 
 });
 

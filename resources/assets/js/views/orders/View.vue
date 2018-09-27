@@ -47,7 +47,7 @@
 									<td>{{ order.contact_number }}</td>
 								</tr>
 							</tbody>
-							<template v-if="order.invoice == 1">
+							<template v-if="order.invoice == 1 && order.details != null">
 								<thead>
 									<tr>
 										<th colspan="2">Данни за фактура</th>

@@ -62489,7 +62489,7 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm.order.invoice == 1
+                  _vm.order.invoice == 1 && _vm.order.details != null
                     ? [
                         _vm._m(3),
                         _vm._v(" "),
