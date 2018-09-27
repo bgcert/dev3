@@ -62359,6 +62359,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62477,6 +62485,12 @@ var render = function() {
                   _vm._v(" "),
                   _c("tbody", [
                     _c("tr", [
+                      _c("td", [_vm._v("Заявил")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.order.user.full_name))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
                       _c("td", [_vm._v("Лице за контакти")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.order.contact_person))])
@@ -62486,6 +62500,12 @@ var render = function() {
                       _c("td", [_vm._v("Телефон")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.order.contact_number))])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("td", [_vm._v("E-mail")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.order.user.email))])
                     ])
                   ]),
                   _vm._v(" "),

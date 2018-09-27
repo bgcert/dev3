@@ -39,12 +39,20 @@
 							</thead>
 							<tbody>
 								<tr>
+									<td>Заявил</td>
+									<td>{{ order.user.full_name }}</td>
+								</tr>
+								<tr>
 									<td>Лице за контакти</td>
 									<td>{{ order.contact_person }}</td>
 								</tr>
 								<tr>
 									<td>Телефон</td>
 									<td>{{ order.contact_number }}</td>
+								</tr>
+								<tr>
+									<td>E-mail</td>
+									<td>{{ order.user.email }}</td>
 								</tr>
 							</tbody>
 							<template v-if="order.invoice == 1 && order.details != null">
