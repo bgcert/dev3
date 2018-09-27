@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<el-rate
-			v-model="rateing"
+			v-model="rate"
 			disabled
 			text-color="#ff9900"
 			score-template="{value}">
@@ -14,7 +14,7 @@
     	props: ['rateing'],
     	data: function () {
     		return {
-
+    			rate: this.rateing
     		}
     	},
 

@@ -121199,7 +121199,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['rateing'],
 	data: function data() {
-		return {};
+		return {
+			rate: this.rateing
+		};
 	},
 
 	mounted: function mounted() {
@@ -121225,11 +121227,11 @@ var render = function() {
           "score-template": "{value}"
         },
         model: {
-          value: _vm.rateing,
+          value: _vm.rate,
           callback: function($$v) {
-            _vm.rateing = $$v
+            _vm.rate = $$v
           },
-          expression: "rateing"
+          expression: "rate"
         }
       })
     ],

@@ -37,10 +37,10 @@
 			<div class="six wide column">
 				<div class="ui list">
 					<div class="item">
-						<a href="#" class="ui large fluid basic orange button">Добавете обучение</a>
+						<a href="/page/help" class="ui large fluid basic orange button">Добавете обучение</a>
 					</div>
 					<div class="item">
-						<a href="#" class="ui large fluid basic orange button">Добавете зала</a>
+						<a href="/page/help" class="ui large fluid basic orange button">Добавете зала</a>
 					</div>
 				</div>
 			</div>

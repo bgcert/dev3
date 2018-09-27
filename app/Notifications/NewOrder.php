@@ -12,16 +12,16 @@ class NewOrder extends Notification
 {
     use Queueable;
 
-    protected $order;
+    public $event;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($event)
     {
-        //$this->order = $order;
+        $this->event = $event;
     }
 
     /**
@@ -32,7 +32,8 @@ class NewOrder extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+    	// Send as push and mail notification!
+        return ['mail', 'database'];
     }
 
     /**
@@ -44,9 +45,10 @@ class NewOrder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        			->subject('Нова заявка в Seminari365')
+                    ->line('Имате нова заявка за ' . $this->event->theme->title)
+                    ->action('Отворете заявката', url('/dashboard#/orders/' . $this->event->id))
+                    ->line('Благодарим, че използвате нашата платформа.');
     }
 
     /**
@@ -58,7 +60,7 @@ class NewOrder extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Имате нова заявка.',
+            'message' => 'Нова заявка за ' . $this->event->theme->title,
             'url' => 'users/settings#/notifications'
         ];
     }
