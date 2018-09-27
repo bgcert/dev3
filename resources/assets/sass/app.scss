@@ -138,3 +138,23 @@ body {
 .p_logo {
 	max-height: 62px;
 }
+
+// Categories
+
+.category-header {
+	color: white;
+	/*margin-bottom: 20px;*/
+	background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
+	height: 200px;
+}
+
+.category-segment {
+	background: linear-gradient(135deg, #011D4A 0%, #448ECB 100%);
+	padding: 40px 0;
+}
+
+.filter-segment {
+	background: white;
+	padding: 10px 0;
+	border: 1px solid #e1e1e1;
+}

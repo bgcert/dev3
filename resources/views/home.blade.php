@@ -48,6 +48,17 @@
 
 <!-- <div class="ui hidden divider"></div> -->
 <!-- <event-feed></event-feed> -->
+<section class="category-segment">
+	<div class="ui container">
+		@foreach($categories as $category)
+			<div class="ui relaxed horizontal list">
+				<div class="item">
+					<a class="ui large basic inverted button" href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
+				</div>
+			</div>
+		@endforeach
+	</div>
+</section>
 <div class="ui container mt-20">
 	@include('layouts.includes.event-feed')
 </div>
