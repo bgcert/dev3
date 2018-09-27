@@ -16,11 +16,11 @@ class CreateOrderDetailsTable extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
-            $table->string('organization');
-            $table->integer('cid')->unsigned();
+            $table->string('organization')->nullable();
+            $table->integer('cid')->unsigned()->nullable();
             $table->string('vat')->nullable();
-            $table->string('address');
-            $table->string('owner');
+            $table->string('address')->nullable();
+            $table->string('owner')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
