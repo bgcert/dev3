@@ -13,19 +13,27 @@
 		<div class="extra content">
 			<div class="flex">
 				<div>
+					<el-rate
+						v-model="item.theme.averageRating"
+						disabled
+						text-color="#ff9900"
+						score-template="{value}">
+					</el-rate>
+				</div>
+				<!-- <div>
 					<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
 						<i class="eye icon"></i>
 					</el-tooltip>
 						--
-				</div>
-				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
+				</div> -->
+<!-- 				<el-tooltip class="item" effect="dark" content="Харесай" placement="top">
 					<Like
 						:likes="item.theme.only_like_count"
 						:liked="item.theme.is_liked != null"
 						:item_id="item.theme.id"
 						:route="'/users/like/theme'">
 					</Like>
-				</el-tooltip>
+				</el-tooltip> -->
 				
 				<a :href="'/event/' + item.id + '/#comments'">
 					<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
@@ -48,12 +56,6 @@
     			loading: true
     		}
     	},
-
-    	// computed: {
-    	// 	// shortTitle() {
-    	// 	// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-    	// 	// }
-    	// },
 
         methods: {
         	test() {
@@ -147,7 +149,7 @@
 
 	.box_footer {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 
 	.views { flex: 1; }

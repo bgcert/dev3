@@ -1,33 +1,33 @@
 <template>
 	<div>
-			<table class="ui selectable celled table"  v-if="orders.length > 0">
-				<thead>
-					<tr>
-						<th>#ID</th>
-						<th>Заявител</th>
-						<th>Събитие</th>
-						<th>Фирма</th>
-						<th>Регистриран на:</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="order in orders">
-						<td>{{ order.id }}</td>
-						<td>{{ order.user.full_name }}</td>
-						<td>{{ order.event_start_date }} - {{ order.theme_title }}</td>
-						<td>{{ order.company.name }}</td>
-						<td>{{ order.created_at }}</td>
-						<td>
-							<div class="ui mini basic icon buttons">
-								<a href="#" class="ui button"><i class="eye icon"></i></a>
-								<a href="#" class="ui button"><i class="edit icon"></i></a>
-								<button class="ui button"><i class="trash icon"></i></button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<table class="ui selectable celled table"  v-if="orders.length > 0">
+			<thead>
+				<tr>
+					<th>#ID</th>
+					<th>Заявител</th>
+					<th>Събитие</th>
+					<th>Фирма</th>
+					<th>Регистриран на:</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="order in orders">
+					<td>{{ order.id }}</td>
+					<td>{{ order.user.full_name }}</td>
+					<td>{{ order.event_start_date }} - {{ order.theme_title }}</td>
+					<td>{{ order.company.name }}</td>
+					<td>{{ order.created_at }}</td>
+					<td>
+						<div class="ui mini basic icon buttons">
+							<a href="#" class="ui button"><i class="eye icon"></i></a>
+							<a href="#" class="ui button"><i class="edit icon"></i></a>
+							<button class="ui button"><i class="trash icon"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </template>
 

@@ -47,7 +47,10 @@
 </div> -->
 
 <!-- <div class="ui hidden divider"></div> -->
-<event-feed></event-feed>
+<!-- <event-feed></event-feed> -->
+<div class="ui container mt-20">
+	@include('layouts.includes.event-feed')
+</div>
 
 <!-- <div class="ui container mt-20">
 	

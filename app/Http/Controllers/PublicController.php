@@ -10,9 +10,9 @@ class PublicController extends Controller
 {
 	public function home()
     {
-    	// $events = \App\Event::with('theme.likeCount', 'theme.isLiked', 'theme.company')->get();
+    	$events = \App\Event::whereHas('theme')->with('theme.company')->get();
     	$categories = \App\Category::all();
-    	return view('home', compact('categories'));
+    	return view('home', compact('categories', 'events'));
     }
 
     // Verify account

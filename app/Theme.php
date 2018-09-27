@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Likable;
+use App\Traits\Rateable;
 use App\Traits\Commentable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -14,6 +15,7 @@ class Theme extends Model
 	use Likable;
 	use Commentable;
     use LogsActivity;
+    use Rateable;
 
 	protected $dates = ['deleted_at'];
     
@@ -21,7 +23,9 @@ class Theme extends Model
         'company_id', 'category_id', 'title', 'excerpt', 'body', 'cover', 'duration',
     ];
 
-    protected $appends = ['only_like_count', 'only_comment_count'];
+    protected $appends = ['averageRating', 'only_like_count', 'only_comment_count'];
+
+    // protected $with = ['averageRating'];
 
     public function company()
     {

@@ -260,6 +260,7 @@ Vue.component('multi-image-upload', __webpack_require__(35));
 Vue.component('image-upload', __webpack_require__(9));
 Vue.component('captcha', __webpack_require__(383));
 Vue.component('contact-publisher', __webpack_require__(388));
+Vue.component('rateing', __webpack_require__(446));
 
 // Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
 
@@ -112526,7 +112527,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.content-box {\n\t\tpadding-top: 40px !important;\n}\n.content-box a {\n\t\tfont-size: 1.16em !important;\n}\n.ui .card {\n    \theight: 360px;\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 101px;\n\t\tleft: 20px;\n\t\tpadding: 5px;\n\t\twidth: 62px;\n\t\theight: 62px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-pack: distribute;\n\t\t    justify-content: space-around;\n}\n.views { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.likes { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.comments { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n\n\t/* Popover */\n.p_logo {\n\t\tmax-height: 62px;\n}\n\n", ""]);
+exports.push([module.i, "\n.content-box {\n\t\tpadding-top: 40px !important;\n}\n.content-box a {\n\t\tfont-size: 1.16em !important;\n}\n.ui .card {\n    \theight: 360px;\n\t\tcursor: pointer;\n}\n.image_container {\n\t\theight: 132px;\n\t\tbackground-size: cover !important;\n\t\tbackground-position: center center !important;\n\t\tborder-top-left-radius: 3px;\n\t\tborder-top-right-radius: 3px;\n\t\tposition: relative;\n}\n.owner {\n\t\tposition: absolute;\n\t\ttop: 101px;\n\t\tleft: 20px;\n\t\tpadding: 5px;\n\t\twidth: 62px;\n\t\theight: 62px;\n\t\tbackground: #fff;\n\t\tborder: 1px solid #E1E1E1;\n\t\tborder-radius: 3px;\n}\n.logo_container {\n\t\theight: 80px;\n\t\twidth: 80px;\n}\n.logo {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tbackground-size: cover !important;\n    \tbackground-position: center center !important;\n}\n.price {\n\t\tbackground: #fff;\n\t\tposition: absolute;\n\t\tright: 10px;\n\t\ttop: 10px;\n\t\tpadding: 5px;\n\t\tborder-radius: 2px;\n\t\tborder: 1px solid #E1E1E1;\n}\n.content_container {\n\t\tpadding: 40px 20px 20px 20px;\n}\n.box_title {\n\t\tfont-size: 1.4rem;\n\t\tline-height: 1.6rem;\n\t\tpadding-bottom: 8px;\n}\n.box_date {\n\t\tcolor: rgb(117, 117, 117);\n\t\tfont-size: 1rem;\n}\n.box_footer {\n\t\tdisplay: -webkit-box;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-webkit-box-pack: justify;\n\t\t    -ms-flex-pack: justify;\n\t\t        justify-content: space-between;\n}\n.views { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.likes { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n.comments { -webkit-box-flex: 1; -ms-flex: 1; flex: 1;\n}\n\n\t/* Popover */\n.p_logo {\n\t\tmax-height: 62px;\n}\n\n", ""]);
 
 // exports
 
@@ -112579,6 +112580,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -112589,12 +112598,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: true
         };
     },
-
-    // computed: {
-    // 	// shortTitle() {
-    // 	// 	return ( this.item.theme.title.length > 40 ) ? this.item.theme.title.substring(0, 40) + ' ...' : this.item.theme.title;
-    // 	// }
-    // },
 
     methods: {
         test: function test() {
@@ -112845,76 +112848,53 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "extra content" }, [
-        _c(
-          "div",
-          { staticClass: "flex" },
-          [
-            _c(
-              "div",
-              [
-                _c(
-                  "el-tooltip",
-                  {
-                    staticClass: "item",
-                    attrs: {
-                      effect: "dark",
-                      content: "Прегледан",
-                      placement: "top"
-                    }
+        _c("div", { staticClass: "flex" }, [
+          _c(
+            "div",
+            [
+              _c("el-rate", {
+                attrs: {
+                  disabled: "",
+                  "text-color": "#ff9900",
+                  "score-template": "{value}"
+                },
+                model: {
+                  value: _vm.item.theme.averageRating,
+                  callback: function($$v) {
+                    _vm.$set(_vm.item.theme, "averageRating", $$v)
                   },
-                  [_c("i", { staticClass: "eye icon" })]
-                ),
-                _vm._v("\n\t\t\t\t\t--\n\t\t\t")
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "el-tooltip",
-              {
-                staticClass: "item",
-                attrs: { effect: "dark", content: "Харесай", placement: "top" }
-              },
-              [
-                _c("Like", {
+                  expression: "item.theme.averageRating"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            { attrs: { href: "/event/" + _vm.item.id + "/#comments" } },
+            [
+              _c(
+                "el-tooltip",
+                {
+                  staticClass: "item",
                   attrs: {
-                    likes: _vm.item.theme.only_like_count,
-                    liked: _vm.item.theme.is_liked != null,
-                    item_id: _vm.item.theme.id,
-                    route: "/users/like/theme"
+                    effect: "dark",
+                    content: "Коментари",
+                    placement: "top"
                   }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { attrs: { href: "/event/" + _vm.item.id + "/#comments" } },
-              [
-                _c(
-                  "el-tooltip",
-                  {
-                    staticClass: "item",
-                    attrs: {
-                      effect: "dark",
-                      content: "Коментари",
-                      placement: "top"
-                    }
-                  },
-                  [_c("i", { staticClass: "comment outline icon" })]
-                ),
-                _vm._v(
-                  "\n\t\t\t\t" +
-                    _vm._s(_vm.item.theme.only_comment_count) +
-                    "\n\t\t\t"
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
+                },
+                [_c("i", { staticClass: "comment outline icon" })]
+              ),
+              _vm._v(
+                "\n\t\t\t\t\t" +
+                  _vm._s(_vm.item.theme.only_comment_count) +
+                  "\n\t\t\t\t"
+              )
+            ],
+            1
+          )
+        ])
       ])
     ]
   )
@@ -121112,6 +121092,139 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(447)
+/* template */
+var __vue_template__ = __webpack_require__(448)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/RateingComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-184c44d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-184c44d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 447 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['rateing'],
+	data: function data() {
+		return {};
+	},
+
+	mounted: function mounted() {
+		console.log('Rating Component mounted.');
+	}
+});
+
+/***/ }),
+/* 448 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("el-rate", {
+        attrs: {
+          disabled: "",
+          "text-color": "#ff9900",
+          "score-template": "{value}"
+        },
+        model: {
+          value: _vm.rateing,
+          callback: function($$v) {
+            _vm.rateing = $$v
+          },
+          expression: "rateing"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-184c44d2", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
