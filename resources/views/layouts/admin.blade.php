@@ -13,9 +13,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('semantic-ui/semantic.min.css') }}">
+
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="{{ asset('semantic-ui/semantic.min.js') }}"></script>
 </head>
 <body>
     <div id="app">
