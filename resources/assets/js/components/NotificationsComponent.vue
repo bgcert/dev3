@@ -3,11 +3,10 @@
 		<el-popover
 			placement="bottom-end"
 			trigger="click">
-
 			<div v-loading="loading" >
-				<div class="ui middle aligned divided list" >
+				<div class="ui middle aligned divided list" style="max-width: 300px;">
 					<div class="item" :class="{ unread: notification.read_at == null }" v-for="notification in notifications">
-						<i class="large github middle aligned icon"></i>
+						<i class="info circle middle aligned icon"></i>
 						<div class="content">
 							<a href="/users/settings#/notifications" class="header" @click.prevent="markAsRead(notification.id)">{{ notification.data.message }}</a>
 							<div class="description">{{ notification.created_at }}</div>

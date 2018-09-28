@@ -116460,7 +116460,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -116564,7 +116563,10 @@ var render = function() {
                 [
                   _c(
                     "div",
-                    { staticClass: "ui middle aligned divided list" },
+                    {
+                      staticClass: "ui middle aligned divided list",
+                      staticStyle: { "max-width": "300px" }
+                    },
                     _vm._l(_vm.notifications, function(notification) {
                       return _c(
                         "div",
@@ -116574,7 +116576,7 @@ var render = function() {
                         },
                         [
                           _c("i", {
-                            staticClass: "large github middle aligned icon"
+                            staticClass: "info circle middle aligned icon"
                           }),
                           _vm._v(" "),
                           _c("div", { staticClass: "content" }, [
