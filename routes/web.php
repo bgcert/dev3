@@ -29,6 +29,7 @@ Route::get('/', 'PublicController@home')->name('home');
 // Pages
 Route::view('/page/help', 'pages/help');
 Route::view('/page/contact', 'pages/contact');
+Route::view('/page/publish', 'pages/publish');
 // Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 

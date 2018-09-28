@@ -59,6 +59,17 @@
 		@endforeach
 	</div>
 </section>
+
+<div class="ui container mt-20">
+	<div class="ui placeholder segment">
+		<div class="ui icon header">
+			<i class="question icon"></i>
+			Желаете да публикувате в Семинари365?
+		</div>
+		<a href="/page/publish" class="ui primary button">Вижте как</a>
+	</div>
+</div>
+
 <div class="ui container mt-20">
 	@include('layouts.includes.event-feed')
 </div>

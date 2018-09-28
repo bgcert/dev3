@@ -21,10 +21,15 @@
 				</div>
 			</div>
 			<div class="four wide column">
+				<h4>За контакт:</h4>
+				<div class="ui list">
+					<div href="#" class="item"><a href="mailto:contact@seminari365.com">contact@seminari365.com</a></div>
+					<div href="#" class="item">02/ 4032404, 4032405;</div>
+				</div>
 				<h4>Техническа поддръжка</h4>
 				<div class="ui list">
 					<a href="mailto:support@seminari365.com" class="item">support@seminari365.com</a>
-					<div href="#" class="item"> 02/ 403 2405</div>
+					<div href="#" class="item"> 02/ 403 2404</div>
 				</div>
 				<h4>Адрес за кореспонденция:</h4>
 				<div class="item">
@@ -32,7 +37,6 @@
 					Бизнес център "Андромеда", ет.3<br>
 					София 1618
 				</div>
-				<a href="mailto:contact@seminari365.com" class="item">contact@seminari365.com</a>
 			</div>
 			<div class="six wide column">
 				<div class="ui list">
