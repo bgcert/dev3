@@ -64889,7 +64889,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.users.length > 0
-      ? _c("table", { staticClass: "ui selectable celled table" }, [
+      ? _c("table", { staticClass: "ui selectable celled small table" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
@@ -65106,7 +65106,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.events.length > 0
-      ? _c("table", { staticClass: "ui selectable celled table" }, [
+      ? _c("table", { staticClass: "ui selectable celled small table" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
@@ -65307,7 +65307,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.orders.length > 0
-      ? _c("table", { staticClass: "ui selectable celled table" }, [
+      ? _c("table", { staticClass: "ui selectable celled small table" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
@@ -65347,7 +65347,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("#ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Заявител")]),
+        _c("th", [_vm._v("Заявил")]),
         _vm._v(" "),
         _c("th", [_vm._v("Събитие")]),
         _vm._v(" "),

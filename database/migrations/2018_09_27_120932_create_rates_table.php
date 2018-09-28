@@ -27,6 +27,6 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ratings');
+        Schema::drop('rates');
     }
 }

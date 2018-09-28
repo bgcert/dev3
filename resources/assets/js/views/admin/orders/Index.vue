@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<table class="ui selectable celled table"  v-if="orders.length > 0">
+		<table class="ui selectable celled small table"  v-if="orders.length > 0">
 			<thead>
 				<tr>
 					<th>#ID</th>
-					<th>Заявител</th>
+					<th>Заявил</th>
 					<th>Събитие</th>
 					<th>Фирма</th>
 					<th>Регистриран на:</th>
