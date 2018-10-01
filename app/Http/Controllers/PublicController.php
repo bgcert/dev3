@@ -98,8 +98,7 @@ class PublicController extends Controller
 
     public function order()
     {
-    	$event = \App\Event::find(request()->event_id);
-
+    	$event = \App\Event::find(request()->order['event_id']);
     	$company = \App\Company::find($event->theme->company_id);
 
     	$theme_data = [
@@ -108,21 +107,8 @@ class PublicController extends Controller
     					'event_start_date' => $event->start_date,
     					'event_price' => $event->price
     				];
-    	$request = request()->all() + $theme_data;
-    	// dd($request);
+    	$request = request()->order + $theme_data;
     	$order = $company->orders()->create($request);
-    	// $order = new \App\Order;
-    	// $order->company_id = $event->theme->company_id;
-    	// // $order->user_id = \Auth::id();
-    	// // $order->event_id = request()->event_id;
-    	// $order->theme_title = $event->theme->title;
-    	// $order->event_start_date = $event->start_date;
-    	// $order->event_price = $event->price;
-    	// $order->contact_person = request()->contact_person;
-    	// $order->contact_number = request()->contact_number;
-    	// $order->contact_email = request()->contact_email;
-    	// $order->invoice = request()->invoice;
-    	// $order->save();
 
     	foreach (request()->participants as $item) {
     		$order->participants()->create([

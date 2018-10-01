@@ -65353,7 +65353,7 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(order.id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.user.full_name))]),
+                _c("td", [_vm._v(_vm._s(order.contact_person))]),
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(
@@ -114692,13 +114692,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       sendOrder: function sendOrder() {
          this.dialogVisible = false;
-         axios.post('/order', {
+         var order = {
             event_id: this.id,
             contact_person: this.contactPerson,
             contact_number: this.contactNumber,
             contact_email: this.contactEmail,
+            invoice: this.invoice
+         };
+         axios.post('/order', {
+            order: order,
             participants: this.participants,
-            invoice: this.invoice,
             details: this.companyData
          }).then(function (response) {
             console.log(response.data);

@@ -109,13 +109,16 @@
 
     		sendOrder: function() {
     			this.dialogVisible = false;
+    			let order = {
+    					event_id: this.id,
+    					contact_person: this.contactPerson,
+	    				contact_number: this.contactNumber,
+	    				contact_email: this.contactEmail,
+	    				invoice: this.invoice,
+    				};
     			axios.post('/order', {
-    				event_id: this.id,
-    				contact_person: this.contactPerson,
-    				contact_number: this.contactNumber,
-    				contact_email: this.contactEmail,
+    				order: order,
     				participants: this.participants,
-    				invoice: this.invoice,
     				details: this.companyData
     			})
     			.then(function (response) {
