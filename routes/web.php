@@ -133,11 +133,6 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	// Save theme image route!!!
 	Route::post('/image/upload', 'DashboardController@saveImage');
 
-	// Set order status
-	// Route::post('/orders/status', 'OrderController@setStatus');
-
-	// Check 
-
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['auth', 'admin']], function () {

@@ -114691,6 +114691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
 
       sendOrder: function sendOrder() {
+         var vm = this;
          this.dialogVisible = false;
          var order = {
             event_id: this.id,
@@ -114704,8 +114705,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             participants: this.participants,
             details: this.companyData
          }).then(function (response) {
+            vm.$message({
+               message: 'Заявката е изпратена успешно.',
+               type: 'success'
+            });
             console.log(response.data);
          }).catch(function (error) {
+            vm.$message.error('Възникна грешка при изпращане на заявката.');
             console.log(error);
          });
       },

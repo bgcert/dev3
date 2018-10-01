@@ -108,6 +108,7 @@
     		},
 
     		sendOrder: function() {
+    			let vm = this;
     			this.dialogVisible = false;
     			let order = {
     					event_id: this.id,
@@ -122,9 +123,14 @@
     				details: this.companyData
     			})
     			.then(function (response) {
+    				vm.$message({
+    					message: 'Заявката е изпратена успешно.',
+    					type: 'success'
+    				});
 	        		console.log(response.data);
 				})
 				.catch(function (error) {
+					vm.$message.error('Възникна грешка при изпращане на заявката.');
 					console.log(error);
 				});
     		},

@@ -123,10 +123,8 @@ class PublicController extends Controller
     	// Event owner
     	$event_owner = $event->theme->company->user;
     	$event_owner->notify(new NewOrder($event));
-    	// $event_owner->notify(new New($invoice));
 
     	broadcast(new NewNotification($event_owner->id));
-
     	return $order;
     }
 }
