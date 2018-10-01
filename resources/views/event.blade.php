@@ -164,7 +164,7 @@
 				    <h3 class="ui header">
 				    	{{ $teacher->name }}
 				    </h3>
-				    <p>{{ $teacher->details }}</p>
+				    <p style="white-space: pre-line;">{{ $teacher->details }}</p>
 			    @endforeach
 			    <!-- <google-map></google-map> -->
 			    <div id="comments">
