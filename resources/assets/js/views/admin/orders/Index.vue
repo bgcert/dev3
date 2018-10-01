@@ -14,7 +14,7 @@
 			<tbody>
 				<tr v-for="order in orders">
 					<td>{{ order.id }}</td>
-					<td>{{ order.user.full_name }}</td>
+					<td>{{ order.contact_person }}</td>
 					<td>{{ order.event_start_date }} - {{ order.theme_title }}</td>
 					<td>{{ order.company.name }}</td>
 					<td>{{ order.created_at }}</td>
