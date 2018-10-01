@@ -119,11 +119,7 @@
 
 		<div class="two column row">
 			<div class="ten wide column">
-				<p style="white-space: pre-line;">
-			    	{{ $event->theme->body }}
-			    </p>
-
-			    <table class="ui celled padded table">
+				<table class="ui celled padded table">
 			    	<tbody>
 			    		<tr>
 			    			<td>Дати на провеждане</td>
@@ -155,6 +151,10 @@
 			    		</tr> -->
 			    	</tbody>
 			    </table>
+
+				<p style="white-space: pre-line;">
+			    	{{ $event->theme->body }}
+			    </p>
 
 			    <h3 class="ui dividing header">
 			    	Лектори
