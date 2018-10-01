@@ -49,7 +49,10 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-    	return \App\Order::with('user', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
+    	$order = \App\Order::with('user', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
+    	$order->read = true;
+    	$order->save();
+    	return $order;
     }
 
     /**
@@ -72,7 +75,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    	// dd($request->all());
+        $order = \App\Order::find($id);
+        $order->status = $request->status;
+    	$order->note = $request->note;
+    	$order->save();
+    	return $order;
     }
 
     /**
@@ -86,12 +94,13 @@ class OrderController extends Controller
         return \App\Order::destroy($id);
     }
 
-    public function setStatus()
-    {
-    	$order = \App\Order::find(request()->order);
+    // public function save()
+    // {
+    // 	$order = \App\Order::find(request()->order);
 
-    	$order->status = request()->status;
-    	$order->save();
-    	return $order;
-    }
+    // 	$order->status = request()->status;
+    // 	$order->notes = request()->notes;
+    // 	$order->save();
+    // 	return $order;
+    // }
 }

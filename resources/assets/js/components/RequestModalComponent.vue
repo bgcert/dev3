@@ -1,11 +1,6 @@
 <template>
 	<div>
-		<div v-if="!auth">
-			<a href="#" :class="classes" @click.prevent="login">
-				Заявявам участие
-			</a>
-		</div>
-		<div v-else>
+		<div>
 			<el-dialog
 				title="Заявка"
 				:visible.sync="dialogVisible"
@@ -20,6 +15,9 @@
 								</el-form-item>
 								<el-form-item>
 									<el-input placeholder="Телефон" v-model="contactNumber"></el-input>
+								</el-form-item>
+								<el-form-item>
+									<el-input placeholder="E-mail" v-model="contactEmail"></el-input>
 								</el-form-item>
 							</div>
 							<div class="ui basic segment">
@@ -46,7 +44,11 @@
 										<el-input placeholder="ЕИК" v-model="companyData.cid" size="small"></el-input>
 									</el-form-item>
 									<el-form-item label="ДДС номер">
-										<el-input v-model="companyData.vat" size="small"></el-input>
+										<el-input
+											v-model="companyData.vat"
+											size="small">
+											<template slot="prepend">BG</template>			
+									</el-input>
 									</el-form-item>
 									<el-form-item label="Адрес">
 										<el-input type="textarea" v-model="companyData.address"></el-input>
@@ -79,12 +81,13 @@
     			dialogVisible: false,
     			contactPerson: '',
     			contactNumber: '',
+    			contactEmail: '',
     			participants: [{name: ''}],
     			invoice: false,
     			companyData: {
     				organization: '',
     				cid: null,
-    				vat: 'BG',
+    				vat: null,
     				address: '',
     				owner: ''
     			}
@@ -106,10 +109,11 @@
 
     		sendOrder: function() {
     			this.dialogVisible = false;
-    			axios.post('/users/order', {
+    			axios.post('/order', {
     				event_id: this.id,
     				contact_person: this.contactPerson,
     				contact_number: this.contactNumber,
+    				contact_email: this.contactEmail,
     				participants: this.participants,
     				invoice: this.invoice,
     				details: this.companyData
@@ -132,10 +136,6 @@
 
     		handleChange(value) {
     			console.log(value)
-    		},
-
-    		login() {
-    			EventBus.$emit('loginClicked');
     		}
     	},
 
@@ -145,10 +145,6 @@
 
         created() {
         	var vm = this;
-   //      	EventBus.$on('testlog', function(message) {
-   //      		vm.dialogVisible = true;
-   //      		vm.message = message;
-			// });
         }
     };
 </script>

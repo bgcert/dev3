@@ -43,6 +43,11 @@ class Company extends Model
     	return $this->hasMany('App\Venue');
     }
 
+    public function orders()
+    {
+    	return $this->hasMany('App\Order');
+    }
+
     public function contact_forms()
     {
     	return $this->hasMany('App\ContactPublisher');

@@ -5,7 +5,7 @@
 		</div>
 		<div class="ui segment" v-if="order.id">
 			<div class="ui grid">
-				<div class="ten wide column">
+				<div class="column">
 					<h4>{{ order.theme_title }} - {{ order.event_start_date }}</h4>
 					<table class="ui table">
 						<thead>
@@ -39,10 +39,6 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>Заявил</td>
-									<td>{{ order.user.full_name }}</td>
-								</tr>
-								<tr>
 									<td>Лице за контакти</td>
 									<td>{{ order.contact_person }}</td>
 								</tr>
@@ -52,7 +48,7 @@
 								</tr>
 								<tr>
 									<td>E-mail</td>
-									<td>{{ order.user.email }}</td>
+									<td>{{ order.contact_email }}</td>
 								</tr>
 							</tbody>
 							<template v-if="order.invoice == 1 && order.details != null">
@@ -98,27 +94,27 @@
 							</tr>
 						</tbody>
 					</table>
+					<div class="ui divider"></div>
 
 					<div class="ui form">
 						<div class="field">
+							<label>Статус</label>
+							<el-select v-model="order.status" placeholder="Статус">
+		  						<el-option
+		  							v-for="item in options"
+		  							:key="item.value"
+		  							:label="item.label"
+		  							:value="item.value">
+		  						</el-option>
+		  					</el-select>
+						</div>
+						<div class="field">
 							<label>Записки (видими от организатора)</label>
-							<textarea></textarea>
+							<textarea v-model="order.note"></textarea>
 						</div>
 					</div>
+					<button class="ui small basic button" @click="save">Запиши</button>
 				</div>
-  				<div class="six wide column">
-  					<div class="ui secondary segment">
-  						<el-select v-model="value" placeholder="Статус">
-	  						<el-option
-	  							v-for="item in options"
-	  							:key="item.value"
-	  							:label="item.label"
-	  							:value="item.value">
-	  						</el-option>
-	  					</el-select>
-	  					<button class="ui small basic button" @click="setStatus">Промени</button>
-  					</div>
-  				</div>
 			</div>
 		</div>
 	</div>
@@ -138,23 +134,21 @@
     				value: 3,
     				label: 'Отказана'
     			}],
-    			value: null,
     			order: {}
     		}
     	},
 
     	methods: {
-    		setStatus() {
+    		save() {
     			let vm = this;
-    			axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value  }).then(function (response) {
-    				vm.$notify({
-			        	message: 'Статусът е променен.',
-			        	type: 'success'
-			        });
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+    			let route = '/dashboard/orders/' + this.$route.params.id;
+    			axios.patch(route, { status: vm.order.status, note: vm.order.note  })
+	    			.then(function (response) {
+	    				vm.$router.push('/orders');
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
     		}
     	},
 
@@ -165,7 +159,7 @@
             var route = '/dashboard/orders/' + this.$route.params.id;
         	axios.get(route).then(function (response) {
         		vm.order = response.data;
-        		vm.value = response.data.status;
+        		// vm.status = response.data.status;
         		// vm.loading = false;
 			})
 			.catch(function (error) {

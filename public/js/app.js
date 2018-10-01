@@ -62399,10 +62399,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62417,19 +62413,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 value: 3,
                 label: 'Отказана'
             }],
-            value: null,
             order: {}
         };
     },
 
     methods: {
-        setStatus: function setStatus() {
+        save: function save() {
             var vm = this;
-            axios.post('/dashboard/orders/status', { order: vm.order.id, status: vm.value }).then(function (response) {
-                vm.$notify({
-                    message: 'Статусът е променен.',
-                    type: 'success'
-                });
+            var route = '/dashboard/orders/' + this.$route.params.id;
+            axios.patch(route, { status: vm.order.status, note: vm.order.note }).then(function (response) {
+                vm.$router.push('/orders');
             }).catch(function (error) {
                 console.log(error);
             });
@@ -62443,7 +62436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var route = '/dashboard/orders/' + this.$route.params.id;
         axios.get(route).then(function (response) {
             vm.order = response.data;
-            vm.value = response.data.status;
+            // vm.status = response.data.status;
             // vm.loading = false;
         }).catch(function (error) {
             console.log(error);
@@ -62470,7 +62463,7 @@ var render = function() {
     _vm.order.id
       ? _c("div", { staticClass: "ui segment" }, [
           _c("div", { staticClass: "ui grid" }, [
-            _c("div", { staticClass: "ten wide column" }, [
+            _c("div", { staticClass: "column" }, [
               _c("h4", [
                 _vm._v(
                   _vm._s(_vm.order.theme_title) +
@@ -62521,12 +62514,6 @@ var render = function() {
                   _vm._v(" "),
                   _c("tbody", [
                     _c("tr", [
-                      _c("td", [_vm._v("Заявил")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.order.user.full_name))])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
                       _c("td", [_vm._v("Лице за контакти")]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(_vm.order.contact_person))])
@@ -62541,7 +62528,7 @@ var render = function() {
                     _c("tr", [
                       _c("td", [_vm._v("E-mail")]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.order.user.email))])
+                      _c("td", [_vm._v(_vm._s(_vm.order.contact_email))])
                     ])
                   ]),
                   _vm._v(" "),
@@ -62609,44 +62596,70 @@ var render = function() {
                 2
               ),
               _vm._v(" "),
-              _vm._m(5)
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "six wide column" }, [
-              _c(
-                "div",
-                { staticClass: "ui secondary segment" },
-                [
-                  _c(
-                    "el-select",
-                    {
-                      attrs: { placeholder: "Статус" },
-                      model: {
-                        value: _vm.value,
-                        callback: function($$v) {
-                          _vm.value = $$v
-                        },
-                        expression: "value"
-                      }
-                    },
-                    _vm._l(_vm.options, function(item) {
-                      return _c("el-option", {
-                        key: item.value,
-                        attrs: { label: item.label, value: item.value }
+              _c("div", { staticClass: "ui divider" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui form" }, [
+                _c(
+                  "div",
+                  { staticClass: "field" },
+                  [
+                    _c("label", [_vm._v("Статус")]),
+                    _vm._v(" "),
+                    _c(
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Статус" },
+                        model: {
+                          value: _vm.order.status,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order, "status", $$v)
+                          },
+                          expression: "order.status"
+                        }
+                      },
+                      _vm._l(_vm.options, function(item) {
+                        return _c("el-option", {
+                          key: item.value,
+                          attrs: { label: item.label, value: item.value }
+                        })
                       })
-                    })
-                  ),
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "field" }, [
+                  _c("label", [_vm._v("Записки (видими от организатора)")]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "ui small basic button",
-                      on: { click: _vm.setStatus }
-                    },
-                    [_vm._v("Промени")]
-                  )
-                ],
-                1
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.order.note,
+                        expression: "order.note"
+                      }
+                    ],
+                    domProps: { value: _vm.order.note },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.order, "note", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "ui small basic button",
+                  on: { click: _vm.save }
+                },
+                [_vm._v("Запиши")]
               )
             ])
           ])
@@ -62699,18 +62712,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [_c("th", [_vm._v("Списък на участниците")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui form" }, [
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Записки (видими от организатора)")]),
-        _vm._v(" "),
-        _c("textarea")
-      ])
     ])
   }
 ]
@@ -114650,6 +114651,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -114661,12 +114664,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          dialogVisible: false,
          contactPerson: '',
          contactNumber: '',
+         contactEmail: '',
          participants: [{ name: '' }],
          invoice: false,
          companyData: {
             organization: '',
             cid: null,
-            vat: 'BG',
+            vat: null,
             address: '',
             owner: ''
          }
@@ -114688,10 +114692,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       sendOrder: function sendOrder() {
          this.dialogVisible = false;
-         axios.post('/users/order', {
+         axios.post('/order', {
             event_id: this.id,
             contact_person: this.contactPerson,
             contact_number: this.contactNumber,
+            contact_email: this.contactEmail,
             participants: this.participants,
             invoice: this.invoice,
             details: this.companyData
@@ -114709,9 +114714,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       handleChange: function handleChange(value) {
          console.log(value);
-      },
-      login: function login() {
-         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('loginClicked');
       }
    },
 
@@ -114720,10 +114722,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    },
    created: function created() {
       var vm = this;
-      //      	EventBus.$on('testlog', function(message) {
-      //      		vm.dialogVisible = true;
-      //      		vm.message = message;
-      // });
    }
 });
 
@@ -114736,361 +114734,348 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    !_vm.auth
-      ? _c("div", [
-          _c(
-            "a",
-            {
-              class: _vm.classes,
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.login($event)
-                }
-              }
+    _c(
+      "div",
+      [
+        _c(
+          "el-dialog",
+          {
+            attrs: {
+              title: "Заявка",
+              visible: _vm.dialogVisible,
+              "before-close": _vm.handleClose,
+              width: "25%"
             },
-            [_vm._v("\n\t\t\tЗаявявам участие\n\t\t")]
-          )
-        ])
-      : _c(
-          "div",
+            on: {
+              "update:visible": function($event) {
+                _vm.dialogVisible = $event
+              }
+            }
+          },
           [
             _c(
-              "el-dialog",
-              {
-                attrs: {
-                  title: "Заявка",
-                  visible: _vm.dialogVisible,
-                  "before-close": _vm.handleClose,
-                  width: "25%"
-                },
-                on: {
-                  "update:visible": function($event) {
-                    _vm.dialogVisible = $event
-                  }
-                }
-              },
+              "div",
               [
+                _c("h3", [_vm._v("Тема: " + _vm._s(_vm.title))]),
+                _vm._v(" "),
                 _c(
-                  "div",
+                  "el-form",
+                  { ref: "form", attrs: { "label-width": "30%" } },
                   [
-                    _c("h3", [_vm._v("Тема: " + _vm._s(_vm.title))]),
-                    _vm._v(" "),
                     _c(
-                      "el-form",
-                      { ref: "form", attrs: { "label-width": "30%" } },
+                      "div",
+                      { staticClass: "ui vertical segment" },
                       [
                         _c(
-                          "div",
-                          { staticClass: "ui vertical segment" },
+                          "el-form-item",
                           [
-                            _c(
-                              "el-form-item",
-                              [
-                                _c("el-input", {
-                                  attrs: { placeholder: "Лице за контакт" },
-                                  model: {
-                                    value: _vm.contactPerson,
-                                    callback: function($$v) {
-                                      _vm.contactPerson = $$v
-                                    },
-                                    expression: "contactPerson"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "el-form-item",
-                              [
-                                _c("el-input", {
-                                  attrs: { placeholder: "Телефон" },
-                                  model: {
-                                    value: _vm.contactNumber,
-                                    callback: function($$v) {
-                                      _vm.contactNumber = $$v
-                                    },
-                                    expression: "contactNumber"
-                                  }
-                                })
-                              ],
-                              1
-                            )
+                            _c("el-input", {
+                              attrs: { placeholder: "Лице за контакт" },
+                              model: {
+                                value: _vm.contactPerson,
+                                callback: function($$v) {
+                                  _vm.contactPerson = $$v
+                                },
+                                expression: "contactPerson"
+                              }
+                            })
                           ],
                           1
                         ),
                         _vm._v(" "),
                         _c(
-                          "div",
-                          { staticClass: "ui basic segment" },
+                          "el-form-item",
                           [
-                            _c("h4", [_vm._v("Участници")]),
-                            _vm._v(" "),
-                            _vm._l(_vm.participants, function(
-                              pariticipant,
-                              index
-                            ) {
-                              return [
-                                _c(
-                                  "el-form-item",
-                                  [
-                                    _c(
-                                      "el-input",
-                                      {
-                                        attrs: {
-                                          placeholder:
-                                            "Участник " + (index + 1),
-                                          size: "small"
-                                        },
-                                        model: {
-                                          value: pariticipant.name,
-                                          callback: function($$v) {
-                                            _vm.$set(pariticipant, "name", $$v)
-                                          },
-                                          expression: "pariticipant.name"
-                                        }
-                                      },
-                                      [
-                                        _c("el-button", {
-                                          attrs: {
-                                            slot: "append",
-                                            type: "primary",
-                                            icon: "el-icon-delete"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.deleteField(index)
-                                            }
-                                          },
-                                          slot: "append"
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ]
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "el-form-item",
-                              [
-                                _c("el-button", {
-                                  attrs: {
-                                    type: "primary",
-                                    icon: "el-icon-plus"
-                                  },
-                                  on: { click: _vm.addField }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "el-form-item",
-                              { attrs: { label: "Фактура" } },
-                              [
-                                _c("el-checkbox", {
-                                  attrs: { name: "type" },
-                                  model: {
-                                    value: _vm.invoice,
-                                    callback: function($$v) {
-                                      _vm.invoice = $$v
-                                    },
-                                    expression: "invoice"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _vm.invoice
-                              ? [
-                                  _c("h4", [_vm._v("Данни за фактура")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-form-item",
-                                    { attrs: { label: "Организация" } },
-                                    [
-                                      _c("el-input", {
-                                        attrs: {
-                                          placeholder: "Организация",
-                                          size: "small"
-                                        },
-                                        model: {
-                                          value: _vm.companyData.organization,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.companyData,
-                                              "organization",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "companyData.organization"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-form-item",
-                                    { attrs: { label: "ЕИК" } },
-                                    [
-                                      _c("el-input", {
-                                        attrs: {
-                                          placeholder: "ЕИК",
-                                          size: "small"
-                                        },
-                                        model: {
-                                          value: _vm.companyData.cid,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.companyData,
-                                              "cid",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "companyData.cid"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-form-item",
-                                    { attrs: { label: "ДДС номер" } },
-                                    [
-                                      _c("el-input", {
-                                        attrs: { size: "small" },
-                                        model: {
-                                          value: _vm.companyData.vat,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.companyData,
-                                              "vat",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "companyData.vat"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-form-item",
-                                    { attrs: { label: "Адрес" } },
-                                    [
-                                      _c("el-input", {
-                                        attrs: { type: "textarea" },
-                                        model: {
-                                          value: _vm.companyData.address,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.companyData,
-                                              "address",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "companyData.address"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "el-form-item",
-                                    { attrs: { label: "МОЛ" } },
-                                    [
-                                      _c("el-input", {
-                                        attrs: {
-                                          placeholder: "МОЛ",
-                                          size: "small"
-                                        },
-                                        model: {
-                                          value: _vm.companyData.owner,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.companyData,
-                                              "owner",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "companyData.owner"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ]
-                              : _vm._e()
+                            _c("el-input", {
+                              attrs: { placeholder: "Телефон" },
+                              model: {
+                                value: _vm.contactNumber,
+                                callback: function($$v) {
+                                  _vm.contactNumber = $$v
+                                },
+                                expression: "contactNumber"
+                              }
+                            })
                           ],
-                          2
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          [
+                            _c("el-input", {
+                              attrs: { placeholder: "E-mail" },
+                              model: {
+                                value: _vm.contactEmail,
+                                callback: function($$v) {
+                                  _vm.contactEmail = $$v
+                                },
+                                expression: "contactEmail"
+                              }
+                            })
+                          ],
+                          1
                         )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "dialog-footer",
-                    attrs: { slot: "footer" },
-                    slot: "footer"
-                  },
-                  [
-                    _c(
-                      "el-button",
-                      {
-                        on: {
-                          click: function($event) {
-                            _vm.dialogVisible = false
-                          }
-                        }
-                      },
-                      [_vm._v("Откажи")]
+                      ],
+                      1
                     ),
                     _vm._v(" "),
                     _c(
-                      "el-button",
-                      {
-                        attrs: { type: "primary" },
-                        on: { click: _vm.sendOrder }
-                      },
-                      [_vm._v("Заяви")]
+                      "div",
+                      { staticClass: "ui basic segment" },
+                      [
+                        _c("h4", [_vm._v("Участници")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.participants, function(pariticipant, index) {
+                          return [
+                            _c(
+                              "el-form-item",
+                              [
+                                _c(
+                                  "el-input",
+                                  {
+                                    attrs: {
+                                      placeholder: "Участник " + (index + 1),
+                                      size: "small"
+                                    },
+                                    model: {
+                                      value: pariticipant.name,
+                                      callback: function($$v) {
+                                        _vm.$set(pariticipant, "name", $$v)
+                                      },
+                                      expression: "pariticipant.name"
+                                    }
+                                  },
+                                  [
+                                    _c("el-button", {
+                                      attrs: {
+                                        slot: "append",
+                                        type: "primary",
+                                        icon: "el-icon-delete"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.deleteField(index)
+                                        }
+                                      },
+                                      slot: "append"
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          [
+                            _c("el-button", {
+                              attrs: { type: "primary", icon: "el-icon-plus" },
+                              on: { click: _vm.addField }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-form-item",
+                          { attrs: { label: "Фактура" } },
+                          [
+                            _c("el-checkbox", {
+                              attrs: { name: "type" },
+                              model: {
+                                value: _vm.invoice,
+                                callback: function($$v) {
+                                  _vm.invoice = $$v
+                                },
+                                expression: "invoice"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm.invoice
+                          ? [
+                              _c("h4", [_vm._v("Данни за фактура")]),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                { attrs: { label: "Организация" } },
+                                [
+                                  _c("el-input", {
+                                    attrs: {
+                                      placeholder: "Организация",
+                                      size: "small"
+                                    },
+                                    model: {
+                                      value: _vm.companyData.organization,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.companyData,
+                                          "organization",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "companyData.organization"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                { attrs: { label: "ЕИК" } },
+                                [
+                                  _c("el-input", {
+                                    attrs: {
+                                      placeholder: "ЕИК",
+                                      size: "small"
+                                    },
+                                    model: {
+                                      value: _vm.companyData.cid,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.companyData, "cid", $$v)
+                                      },
+                                      expression: "companyData.cid"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                { attrs: { label: "ДДС номер" } },
+                                [
+                                  _c(
+                                    "el-input",
+                                    {
+                                      attrs: { size: "small" },
+                                      model: {
+                                        value: _vm.companyData.vat,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.companyData, "vat", $$v)
+                                        },
+                                        expression: "companyData.vat"
+                                      }
+                                    },
+                                    [
+                                      _c("template", { slot: "prepend" }, [
+                                        _vm._v("BG")
+                                      ])
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                { attrs: { label: "Адрес" } },
+                                [
+                                  _c("el-input", {
+                                    attrs: { type: "textarea" },
+                                    model: {
+                                      value: _vm.companyData.address,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.companyData,
+                                          "address",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "companyData.address"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                { attrs: { label: "МОЛ" } },
+                                [
+                                  _c("el-input", {
+                                    attrs: {
+                                      placeholder: "МОЛ",
+                                      size: "small"
+                                    },
+                                    model: {
+                                      value: _vm.companyData.owner,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.companyData, "owner", $$v)
+                                      },
+                                      expression: "companyData.owner"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ]
+                          : _vm._e()
+                      ],
+                      2
                     )
-                  ],
-                  1
+                  ]
                 )
-              ]
+              ],
+              1
             ),
             _vm._v(" "),
             _c(
-              "a",
+              "span",
               {
-                class: _vm.classes,
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.dialogVisible = true
-                  }
-                }
+                staticClass: "dialog-footer",
+                attrs: { slot: "footer" },
+                slot: "footer"
               },
-              [_vm._v("Записвам се")]
+              [
+                _c(
+                  "el-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.dialogVisible = false
+                      }
+                    }
+                  },
+                  [_vm._v("Откажи")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  { attrs: { type: "primary" }, on: { click: _vm.sendOrder } },
+                  [_vm._v("Заяви")]
+                )
+              ],
+              1
             )
-          ],
-          1
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            class: _vm.classes,
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.dialogVisible = true
+              }
+            }
+          },
+          [_vm._v("Записвам се")]
         )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

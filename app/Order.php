@@ -13,7 +13,7 @@ class Order extends Model
 	
 	protected $dates = ['deleted_at'];
 
-	protected $fillable = ['contact_person', 'contact_number', 'comment', 'invoice'];
+	protected $guarded = ['company_id'];
 
     public function event()
     {

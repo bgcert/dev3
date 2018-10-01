@@ -56,6 +56,9 @@ Route::get('/not-verified', 'PublicController@notVerified');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
+// Order
+Route::post('/order', 'PublicController@order');
+
 // USER ROUTES
 Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'auth'], function () {
 
@@ -69,7 +72,6 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::post('/change/password', 'SettingsController@changePassword');
 
 	Route::get('/', 'UserController@index');
-	Route::post('/order', 'UserController@order');
 
 	// Follow
 	Route::post('/follow', 'UserController@follow');
@@ -132,7 +134,7 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::post('/image/upload', 'DashboardController@saveImage');
 
 	// Set order status
-	Route::post('/orders/status', 'OrderController@setStatus');
+	// Route::post('/orders/status', 'OrderController@setStatus');
 
 	// Check 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactPublisherRequest;
+use App\Events\NewNotification;
+use App\Notifications\NewOrder;
 
 class PublicController extends Controller
 {
@@ -92,5 +94,53 @@ class PublicController extends Controller
     	$company = \App\Company::find($request->company_id);
     	$contactForm = $company->contact_forms()->create($request->all());
     	return $contactForm;
+    }
+
+    public function order()
+    {
+    	$event = \App\Event::find(request()->event_id);
+
+    	$company = \App\Company::find($event->theme->company_id);
+
+    	$theme_data = [
+    					'event_id' => $event->id,
+    					'theme_title' => $event->theme->title,
+    					'event_start_date' => $event->start_date,
+    					'event_price' => $event->price
+    				];
+    	$request = request()->all() + $theme_data;
+    	// dd($request);
+    	$order = $company->orders()->create($request);
+    	// $order = new \App\Order;
+    	// $order->company_id = $event->theme->company_id;
+    	// // $order->user_id = \Auth::id();
+    	// // $order->event_id = request()->event_id;
+    	// $order->theme_title = $event->theme->title;
+    	// $order->event_start_date = $event->start_date;
+    	// $order->event_price = $event->price;
+    	// $order->contact_person = request()->contact_person;
+    	// $order->contact_number = request()->contact_number;
+    	// $order->contact_email = request()->contact_email;
+    	// $order->invoice = request()->invoice;
+    	// $order->save();
+
+    	foreach (request()->participants as $item) {
+    		$order->participants()->create([
+    			'name' => $item['name']
+    		]);
+    	}
+    	
+    	if (request()->invoice) {
+    		$order->details()->create(request()->details);
+    	}
+
+    	// Event owner
+    	$event_owner = $event->theme->company->user;
+    	$event_owner->notify(new NewOrder($event));
+    	// $event_owner->notify(new New($invoice));
+
+    	broadcast(new NewNotification($event_owner->id));
+
+    	return $order;
     }
 }
