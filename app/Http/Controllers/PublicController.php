@@ -13,7 +13,7 @@ class PublicController extends Controller
 {
 	public function home()
     {
-    	$events = \App\Event::whereHas('theme')->with('theme.company')->get();
+    	$events = \App\Event::upcoming()->orderBy('start_date')->get();
     	$categories = \App\Category::all();
     	return view('home', compact('categories', 'events'));
     }

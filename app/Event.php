@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -38,6 +39,12 @@ class Event extends Model
     public function orders()
     {
     	return $this->hasMany('App\Order');
+    }
+
+    public function scopeUpcoming($query)
+    {
+    	return $query->whereDate('start_date', '>', Carbon::today())->whereHas('theme')->with('theme.company');
+        // return $query->where('city_id', '==', $city_id);
     }
 
     // For related events by company
