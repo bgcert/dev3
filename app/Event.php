@@ -44,7 +44,6 @@ class Event extends Model
     public function scopeUpcoming($query)
     {
     	return $query->whereDate('start_date', '>', Carbon::today())->whereHas('theme')->with('theme.company');
-        // return $query->where('city_id', '==', $city_id);
     }
 
     // For related events by company
