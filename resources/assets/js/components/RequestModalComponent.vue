@@ -109,6 +109,7 @@
 
     		sendOrder: function() {
     			let vm = this;
+    			this.dialogVisible = false;
     			axios.post('/order', {
     				event_id: this.id,
 					contact_person: this.contactPerson,
@@ -119,7 +120,6 @@
     				details: this.companyData
     			})
     			.then(function (response) {
-    				vm.dialogVisible = false;
     				vm.$message({
     					message: 'Заявката е изпратена успешно.',
     					type: 'success'
@@ -127,7 +127,6 @@
 	        		console.log(response.data);
 				})
 				.catch(function (error) {
-					vm.dialogVisible = false;
 					vm.$message.error('Възникна грешка при изпращане на заявката.');
 					console.log(error);
 				});
