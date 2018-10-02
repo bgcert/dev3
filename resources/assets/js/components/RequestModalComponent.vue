@@ -48,7 +48,7 @@
 											v-model="companyData.vat"
 											size="small">
 											<template slot="prepend">BG</template>			
-									</el-input>
+										</el-input>
 									</el-form-item>
 									<el-form-item label="Адрес">
 										<el-input type="textarea" v-model="companyData.address"></el-input>
@@ -109,20 +109,17 @@
 
     		sendOrder: function() {
     			let vm = this;
-    			this.dialogVisible = false;
-    			let order = {
-    					event_id: this.id,
-    					contact_person: this.contactPerson,
-	    				contact_number: this.contactNumber,
-	    				contact_email: this.contactEmail,
-	    				invoice: this.invoice,
-    				};
     			axios.post('/order', {
-    				order: order,
+    				event_id: this.id,
+					contact_person: this.contactPerson,
+    				contact_number: this.contactNumber,
+    				contact_email: this.contactEmail,
+    				invoice: this.invoice,
     				participants: this.participants,
     				details: this.companyData
     			})
     			.then(function (response) {
+    				vm.dialogVisible = false;
     				vm.$message({
     					message: 'Заявката е изпратена успешно.',
     					type: 'success'
@@ -130,6 +127,7 @@
 	        		console.log(response.data);
 				})
 				.catch(function (error) {
+					vm.dialogVisible = false;
 					vm.$message.error('Възникна грешка при изпращане на заявката.');
 					console.log(error);
 				});

@@ -116,8 +116,11 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('contacts', 'ContactController');
 	Route::resource('comments', 'CommentController');
 
-	// Mark as unread
+	// Mark contact as unread
 	Route::post('/contacts/unread', 'ContactController@unread');
+
+	// Mark order as unread
+	Route::post('/orders/unread', 'OrderController@unread');
 
 	Route::get('/categories', 'ThemeController@categories');
 	Route::get('/load/company', 'DashboardController@getCompany');

@@ -113,7 +113,15 @@
 							<textarea v-model="order.note"></textarea>
 						</div>
 					</div>
-					<button class="ui small basic button" @click="save">Запиши</button>
+					<div class="right floated">
+						<span class="ui right floated basic segment">
+							<a href="#/orders" class="item router-link-active">
+								<div class="ui basic button">Назад</div>
+					    	</a>
+							<div class="ui basic primary button" @click.prevent="markAsUnread" :class="{ disabled: !order.read }"> Маркирай като непрочетена</div>
+							<button class="ui small basic button" @click="save">Запиши</button>
+						</span>
+				    </div>
 				</div>
 			</div>
 		</div>
@@ -149,7 +157,22 @@
 					.catch(function (error) {
 						console.log(error);
 					});
-    		}
+    		},
+
+    		markAsUnread() {
+    			let vm = this;
+    			axios.post('/dashboard/orders/unread', { id: vm.order.id  })
+	    			.then(function (response) {
+	    				vm.order.read = false;
+	    				vm.$notify({
+				        	message: 'Статусът е променен.',
+				        	type: 'success'
+				        });
+					})
+					.catch(function (error) {
+						console.log(error);
+					});
+    		},
     	},
 
         mounted() {

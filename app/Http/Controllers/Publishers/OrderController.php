@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Publishers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\OrderRequest;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -75,7 +76,6 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	// dd($request->all());
         $order = \App\Order::find($id);
         $order->status = $request->status;
     	$order->note = $request->note;
@@ -94,13 +94,11 @@ class OrderController extends Controller
         return \App\Order::destroy($id);
     }
 
-    // public function save()
-    // {
-    // 	$order = \App\Order::find(request()->order);
-
-    // 	$order->status = request()->status;
-    // 	$order->notes = request()->notes;
-    // 	$order->save();
-    // 	return $order;
-    // }
+    public function unread()
+    {
+    	$order = \App\Order::find(request()->id);
+    	$order->read = 0;
+    	$order->save();
+    	return $order;
+    }
 }

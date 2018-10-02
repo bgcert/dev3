@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactPublisherRequest;
+use App\Http\Requests\OrderRequest;
 use App\Events\NewNotification;
 use App\Notifications\NewOrder;
 
@@ -96,28 +97,31 @@ class PublicController extends Controller
     	return $contactForm;
     }
 
-    public function order()
+    public function order(OrderRequest $request)
     {
-    	$event = \App\Event::find(request()->order['event_id']);
-    	$company = \App\Company::find($event->theme->company_id);
+    	$event = \App\Event::find($request->event_id);
+    	$company = $event->theme->company;
 
-    	$theme_data = [
+    	$data = [
     					'event_id' => $event->id,
     					'theme_title' => $event->theme->title,
     					'event_start_date' => $event->start_date,
-    					'event_price' => $event->price
+    					'event_price' => $event->price,
+    					'contact_person' => $request->contact_person,
+    					'contact_number' => $request->contact_number,
+    					'contact_email' => $request->contact_email,
+    					'invoice' => $request->invoice,
     				];
-    	$request = request()->order + $theme_data;
-    	$order = $company->orders()->create($request);
+    	$order = $company->orders()->create($data);
 
-    	foreach (request()->participants as $item) {
+    	foreach ($request->participants as $item) {
     		$order->participants()->create([
     			'name' => $item['name']
     		]);
     	}
     	
     	if (request()->invoice) {
-    		$order->details()->create(request()->details);
+    		$order->details()->create($request->details);
     	}
 
     	// Event owner

@@ -62108,7 +62108,7 @@ var render = function() {
             _vm._v(" "),
             _vm._l(_vm.orders, function(order, index) {
               return _c("tbody", [
-                _c("tr", [
+                _c("tr", { class: { active: !order.read } }, [
                   _c("td", [_vm._v(_vm._s(order.created_at))]),
                   _vm._v(" "),
                   _c(
@@ -62399,50 +62399,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            options: [{
-                value: 1,
-                label: 'Платена'
-            }, {
-                value: 2,
-                label: 'Потвърдена'
-            }, {
-                value: 3,
-                label: 'Отказана'
-            }],
-            order: {}
-        };
+  data: function data() {
+    return {
+      options: [{
+        value: 1,
+        label: 'Платена'
+      }, {
+        value: 2,
+        label: 'Потвърдена'
+      }, {
+        value: 3,
+        label: 'Отказана'
+      }],
+      order: {}
+    };
+  },
+
+  methods: {
+    save: function save() {
+      var vm = this;
+      var route = '/dashboard/orders/' + this.$route.params.id;
+      axios.patch(route, { status: vm.order.status, note: vm.order.note }).then(function (response) {
+        vm.$router.push('/orders');
+      }).catch(function (error) {
+        console.log(error);
+      });
     },
-
-    methods: {
-        save: function save() {
-            var vm = this;
-            var route = '/dashboard/orders/' + this.$route.params.id;
-            axios.patch(route, { status: vm.order.status, note: vm.order.note }).then(function (response) {
-                vm.$router.push('/orders');
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        // console.log('Orders create mounted.');
-
-        var vm = this;
-        var route = '/dashboard/orders/' + this.$route.params.id;
-        axios.get(route).then(function (response) {
-            vm.order = response.data;
-            // vm.status = response.data.status;
-            // vm.loading = false;
-        }).catch(function (error) {
-            console.log(error);
+    markAsUnread: function markAsUnread() {
+      var vm = this;
+      axios.post('/dashboard/orders/unread', { id: vm.order.id }).then(function (response) {
+        vm.order.read = false;
+        vm.$notify({
+          message: 'Статусът е променен.',
+          type: 'success'
         });
-    },
-    created: function created() {}
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  },
+
+  mounted: function mounted() {
+    // console.log('Orders create mounted.');
+
+    var vm = this;
+    var route = '/dashboard/orders/' + this.$route.params.id;
+    axios.get(route).then(function (response) {
+      vm.order = response.data;
+      // vm.status = response.data.status;
+      // vm.loading = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -62653,14 +62673,35 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "ui small basic button",
-                  on: { click: _vm.save }
-                },
-                [_vm._v("Запиши")]
-              )
+              _c("div", { staticClass: "right floated" }, [
+                _c("span", { staticClass: "ui right floated basic segment" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "ui basic primary button",
+                      class: { disabled: !_vm.order.read },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.markAsUnread($event)
+                        }
+                      }
+                    },
+                    [_vm._v(" Маркирай като непрочетена")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "ui small basic button",
+                      on: { click: _vm.save }
+                    },
+                    [_vm._v("Запиши")]
+                  )
+                ])
+              ])
             ])
           ])
         ])
@@ -62713,6 +62754,16 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [_c("th", [_vm._v("Списък на участниците")])])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "item router-link-active", attrs: { href: "#/orders" } },
+      [_c("div", { staticClass: "ui basic button" }, [_vm._v("Назад")])]
+    )
   }
 ]
 render._withStripped = true
@@ -114692,25 +114743,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       sendOrder: function sendOrder() {
          var vm = this;
-         this.dialogVisible = false;
-         var order = {
+         axios.post('/order', {
             event_id: this.id,
             contact_person: this.contactPerson,
             contact_number: this.contactNumber,
             contact_email: this.contactEmail,
-            invoice: this.invoice
-         };
-         axios.post('/order', {
-            order: order,
+            invoice: this.invoice,
             participants: this.participants,
             details: this.companyData
          }).then(function (response) {
+            vm.dialogVisible = false;
             vm.$message({
                message: 'Заявката е изпратена успешно.',
                type: 'success'
             });
             console.log(response.data);
          }).catch(function (error) {
+            vm.dialogVisible = false;
             vm.$message.error('Възникна грешка при изпращане на заявката.');
             console.log(error);
          });

@@ -22,7 +22,7 @@
 					</tr>
 				</thead>
 				<tbody v-for="(order, index) in orders">
-					<tr>
+					<tr :class="{ active: !order.read }">
 						<td>{{ order.created_at }}</td>
 						<td>
 							<router-link :to="'/orders/' + order.id">
