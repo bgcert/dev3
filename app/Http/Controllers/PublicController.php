@@ -53,6 +53,7 @@ class PublicController extends Controller
     public function company()
     {
 		$company = \App\Company::with('user')->where('slug', request()->slug)->first();
+		$company->visit();
     	return view('company', compact('company'));
     }
 
@@ -71,12 +72,14 @@ class PublicController extends Controller
     public function showEvent()
     {
     	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.comments.user')->first();
+    	$event->visit();
     	return view('event', compact('event'));
     }
 
     public function showVenue()
     {
     	$venue = \App\Venue::where('id', request()->id)->with('city', 'company', 'comments.user')->first();
+    	$venue->visit();
     	$images = $venue->venue_images;
     	return view('venue', compact('venue', 'images'));
     }

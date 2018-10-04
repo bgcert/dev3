@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\Visitable;
 use Illuminate\Notifications\Notifiable;
 
 class Company extends Model
 {
 	use SoftDeletes;
+	use Visitable;
 	use Notifiable;
 
 	protected $dates = ['deleted_at'];
