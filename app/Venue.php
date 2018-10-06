@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Traits\Likable;
+use App\Traits\Visitable;
 use App\Traits\Commentable;
-use Spatie\Activitylog\Traits\LogsActivity;
+// use Spatie\Activitylog\Traits\LogsActivity;
 
 
 class Venue extends Model
 {
 	use SoftDeletes;
-	use Likable;
+	use Visitable;
 	use Commentable;
-    use LogsActivity;
+    // use LogsActivity;
 
     protected $dates = ['deleted_at'];
 

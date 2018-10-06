@@ -13,7 +13,7 @@
 			</div>
 			<div class="extra content">
 				<div class="box_footer">
-					<rateing :rateing="{{ json_encode($event->theme->averageRating) }}"></rateing>
+					<rateing :rateing="0"></rateing>
 					<!-- <div>
 						<el-tooltip class="item" effect="dark" content="Прегледан" placement="top">
 							<i class="eye icon"></i>
@@ -28,7 +28,10 @@
 							:route="'/users/like/theme'">
 						</Like>
 					</el-tooltip> -->
-					
+					<div>
+						<i class="eye icon"></i> {{ $event->visits }}
+					</div>
+
 					<a href="/event/{{ $event->id }}/#comments">
 						<el-tooltip class="item" effect="dark" content="Коментари" placement="top">
 							<i class="comment outline icon"></i>

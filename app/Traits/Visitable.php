@@ -17,6 +17,21 @@ trait Visitable
 	public function visit()
 	{
 		// Adds unique visit to visits table.
-		$this->visits()->firstOrCreate(['ip_address' => request()->ip()]);
+		try {
+			$visit = $this->visits()->create(['ip_address' => request()->ip()]);
+			$this->increase();
+		} catch (\Illuminate\Database\QueryException $e) {
+			return 'duplicate entry error';
+		}
+	}
+
+	public function increase()
+	{
+		$count = $this->visitCount()->firstOrCreate(['count' => 0])->increment('count');
+	}
+
+	public function getVisitsAttribute()
+	{
+	    return $this->visitCount ? $this->visitCount->count : 0;
 	}
 }

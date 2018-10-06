@@ -20,10 +20,17 @@ class Theme extends Model
 	protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'company_id', 'category_id', 'title', 'excerpt', 'body', 'cover', 'duration',
-    ];
+					        'company_id',
+					        'category_id',
+					        'title',
+					        'excerpt',
+					        'body',
+					        'cover',
+					        'duration',
+					    ];
 
-    protected $appends = ['averageRating', 'only_like_count', 'only_comment_count'];
+    // protected $appends = ['averageRating', 'only_comment_count'];
+    // protected $with = ['averageRating'];
 
     // protected $with = ['averageRating'];
 
