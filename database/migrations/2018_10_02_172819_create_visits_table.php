@@ -25,7 +25,7 @@ class CreateVisitsTable extends Migration
             $table->increments('id');
             $table->integer('visitable_id')->unsigned();
             $table->string('visitable_type');
-            $table->integer('count')->unsigned()->default(0);
+            $table->integer('count')->unsigned()->default(1);
             $table->unique(['visitable_id', 'visitable_type']);
             $table->timestamps();
         });
