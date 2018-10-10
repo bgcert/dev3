@@ -114743,6 +114743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       sendOrder: function sendOrder() {
          var vm = this;
+         this.dialogVisible = false;
          axios.post('/order', {
             event_id: this.id,
             contact_person: this.contactPerson,
@@ -114752,14 +114753,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             participants: this.participants,
             details: this.companyData
          }).then(function (response) {
-            vm.dialogVisible = false;
             vm.$message({
                message: 'Заявката е изпратена успешно.',
                type: 'success'
             });
             console.log(response.data);
          }).catch(function (error) {
-            vm.dialogVisible = false;
             vm.$message.error('Възникна грешка при изпращане на заявката.');
             console.log(error);
          });

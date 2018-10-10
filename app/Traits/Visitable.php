@@ -27,9 +27,7 @@ trait Visitable
 
 	public function increase()
 	{
-		$this->visitCount()->exists() ?
-			$this->visitCount()->increment('count') :
-				$this->visitCount()->create();
+		$this->visitCount()->exists() ? $this->visitCount()->increment('count') : $this->visitCount()->create();
 	}
 
 	public function getVisitsAttribute()
