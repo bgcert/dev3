@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\FeedNotifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Order extends Model
 {
 	use SoftDeletes;
+	use FeedNotifiable;
 	use LogsActivity;
 	
 	protected $dates = ['deleted_at'];

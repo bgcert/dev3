@@ -90,6 +90,7 @@ class PublicController extends Controller
 
     public function notVerified()
     {
+    	// Check if this is relevant
     	return view('verify');
     }
 
@@ -97,6 +98,11 @@ class PublicController extends Controller
     {
     	$company = \App\Company::find($request->company_id);
     	$contactForm = $company->contact_forms()->create($request->all());
+
+    	// Email and push notifications missing!!!
+    	// Add user notification
+    	$contactForm->feedNotifications()->create(['user_id' => $company->user_id, 'data' => $request->about]);
+
     	return $contactForm;
     }
 
@@ -106,15 +112,15 @@ class PublicController extends Controller
     	$company = $event->theme->company;
 
     	$data = [
-    					'event_id' => $event->id,
-    					'theme_title' => $event->theme->title,
-    					'event_start_date' => $event->start_date,
-    					'event_price' => $event->price,
-    					'contact_person' => $request->contact_person,
-    					'contact_number' => $request->contact_number,
-    					'contact_email' => $request->contact_email,
-    					'invoice' => $request->invoice,
-    				];
+					'event_id' => $event->id,
+					'theme_title' => $event->theme->title,
+					'event_start_date' => $event->start_date,
+					'event_price' => $event->price,
+					'contact_person' => $request->contact_person,
+					'contact_number' => $request->contact_number,
+					'contact_email' => $request->contact_email,
+					'invoice' => $request->invoice,
+				];
     	$order = $company->orders()->create($data);
 
     	foreach ($request->participants as $item) {
@@ -129,8 +135,15 @@ class PublicController extends Controller
 
     	// Event owner
     	$event_owner = $event->theme->company->user;
+
+    	// Notifications should be combined eventually!!!
+    	// Add user notification
+    	$order->feedNotifications()->create(['user_id' => $event_owner->id, 'data' => $event->theme->title]);
+
+    	// Send email notification
     	$event_owner->notify(new NewOrder($event));
 
+    	// Add push notification
     	broadcast(new NewNotification($event_owner->id));
     	return $order;
     }

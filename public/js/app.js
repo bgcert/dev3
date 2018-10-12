@@ -116462,7 +116462,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.unread {\n\tbackground-color: #f1f1f1;\n}\n.notification-icon {\n\tcursor: pointer;\n\t/*background-color: #fdd8ab !important;*/\n}\n.notification-label {\n\tposition: absolute;\n\ttop: -8px;\n\tleft: 14px;\n\tfont-size: 8px;\n\tbackground-color: #f2711c;\n\tpadding: 2px;\n\tborder-radius: 2px;\n\tcolor: white;\n\topacity: 0.7;\n\t-webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n\t        box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n}\n", ""]);
+exports.push([module.i, "\n.unread {\n\tbackground-color: #f1f1f1;\n}\n.notification-icon {\n\tcursor: pointer;\n\t/*background-color: #fdd8ab !important;*/\n}\n.notification-label {\n\tposition: absolute;\n\ttop: -8px;\n\tleft: 14px;\n\tfont-size: 8px;\n\tbackground-color: #f2711c;\n\tpadding: 2px;\n\tborder-radius: 2px;\n\tcolor: white;\n\topacity: 0.7;\n\t-webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n\t        box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);\n}\n.el-popover {\n\ttext-align: left;\n}\n", ""]);
 
 // exports
 
@@ -116502,6 +116502,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -116509,7 +116521,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
-      user: window.user,
+      id: this.user_id,
       loading: false,
       notifications: [],
       notificationsCount: 0
@@ -116527,11 +116539,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
-    markAsRead: function markAsRead(id) {
+    markAsRead: function markAsRead(id, link) {
       var vm = this;
       var route = '/users/notifications/' + id;
       axios.get(route).then(function (response) {
-        window.location.href = '/users/settings#/notifications';
+        console.log(response.data);
+        window.location.href = link;
       }).catch(function (error) {
         console.log(error);
       });
@@ -116578,110 +116591,145 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !_vm.user.token
-    ? _c(
-        "span",
-        {
-          staticClass: "item notification-icon",
-          on: { click: _vm.listNotifications }
-        },
+  return _c(
+    "span",
+    {
+      staticClass: "item notification-icon",
+      on: { click: _vm.listNotifications }
+    },
+    [
+      _c(
+        "el-popover",
+        { attrs: { placement: "bottom-end", trigger: "click" } },
         [
           _c(
-            "el-popover",
-            { attrs: { placement: "bottom-end", trigger: "click" } },
+            "div",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.loading,
+                  expression: "loading"
+                }
+              ]
+            },
             [
               _c(
                 "div",
                 {
-                  directives: [
-                    {
-                      name: "loading",
-                      rawName: "v-loading",
-                      value: _vm.loading,
-                      expression: "loading"
-                    }
-                  ]
+                  staticClass:
+                    "ui middle relaxed divided aligned selection list",
+                  staticStyle: { "max-width": "300px" }
                 },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "ui middle aligned divided list",
-                      staticStyle: { "max-width": "300px" }
-                    },
-                    _vm._l(_vm.notifications, function(notification) {
-                      return _c(
-                        "div",
-                        {
-                          staticClass: "item",
-                          class: { unread: notification.read_at == null }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "info circle middle aligned icon"
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "content" }, [
+                _vm._l(_vm.notifications, function(notification) {
+                  return _c("div", { staticClass: "item" }, [
+                    _c("i", { staticClass: "info circle middle aligned icon" }),
+                    _vm._v(" "),
+                    notification.feed_notifiable_type == "App\\Order"
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "content",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.markAsRead(
+                                  notification.id,
+                                  "/dashboard#/orders/"
+                                )
+                              }
+                            }
+                          },
+                          [
                             _c(
-                              "a",
+                              "span",
                               {
-                                staticClass: "header",
-                                attrs: {
-                                  href: "/users/settings#/notifications"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    _vm.markAsRead(notification.id)
-                                  }
-                                }
+                                staticClass: "description",
+                                class: { header: notification.read_at == null }
                               },
-                              [_vm._v(_vm._s(notification.data.message))]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "description" }, [
-                              _vm._v(_vm._s(notification.created_at))
-                            ])
-                          ])
-                        ]
-                      )
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "ui tiny fluid button",
-                      attrs: { href: "/users/settings#/notifications" }
-                    },
-                    [_vm._v("Всички известия")]
-                  )
-                ]
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\tИмате нова заявка - " +
+                                    _vm._s(notification.created_at) +
+                                    "\n\t\t\t\t\t\t"
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    notification.feed_notifiable_type == "App\\ContactPublisher"
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "content",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.markAsRead(
+                                  notification.id,
+                                  "/dashboard#/contacts/"
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "description",
+                                class: { header: notification.read_at == null }
+                              },
+                              [
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\tИмате ново запитване - " +
+                                    _vm._s(notification.created_at) +
+                                    "\n\t\t\t\t\t\t"
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ])
+                })
               ),
               _vm._v(" "),
-              _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
-                _c("div", { staticStyle: { position: "relative" } }, [
-                  _c("i", {
-                    staticClass: "bell icon",
-                    class: {
-                      orange: this.notificationsCount > 0,
-                      outline: this.notificationsCount == 0
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.notificationsCount > 0
-                    ? _c("span", { staticClass: "notification-label" }, [
-                        _vm._v(_vm._s(_vm.notificationsCount))
-                      ])
-                    : _vm._e()
-                ])
-              ])
+              _c(
+                "a",
+                {
+                  staticClass: "ui tiny fluid button",
+                  attrs: { href: "/users/settings#/notifications" }
+                },
+                [_vm._v("Всички известия")]
+              )
             ]
-          )
-        ],
-        1
+          ),
+          _vm._v(" "),
+          _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
+            _c("div", { staticStyle: { position: "relative" } }, [
+              _c("i", {
+                staticClass: "bell icon",
+                class: {
+                  orange: this.notificationsCount > 0,
+                  outline: this.notificationsCount == 0
+                }
+              }),
+              _vm._v(" "),
+              _vm.notificationsCount > 0
+                ? _c("span", { staticClass: "notification-label" }, [
+                    _vm._v(_vm._s(_vm.notificationsCount))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ]
       )
-    : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -118167,6 +118215,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
                 __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('registerClicked');
             }, 300);
+        },
+        callReset: function callReset() {
+            window.location.href = '/password/reset';
         }
     },
     created: function created() {
@@ -118298,9 +118349,11 @@ var render = function() {
                 [_vm._v(" Вход")]
               ),
               _vm._v(" "),
-              _c("el-button", { attrs: { type: "text" } }, [
-                _vm._v(" Забравена парола.")
-              ])
+              _c(
+                "el-button",
+                { attrs: { type: "text" }, on: { click: _vm.callReset } },
+                [_vm._v(" Забравена парола.")]
+              )
             ],
             1
           )
@@ -119040,6 +119093,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
                 __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$emit('registerClicked');
             }, 300);
+        },
+        callReset: function callReset() {
+            window.location.href = '/password/reset';
         }
     },
     created: function created() {
@@ -119208,9 +119264,11 @@ var render = function() {
                     [_vm._v(" Вход")]
                   ),
                   _vm._v(" "),
-                  _c("el-button", { attrs: { type: "text" } }, [
-                    _vm._v(" Забравена парола.")
-                  ])
+                  _c(
+                    "el-button",
+                    { attrs: { type: "text" }, on: { click: _vm.callReset } },
+                    [_vm._v(" Забравена парола.")]
+                  )
                 ],
                 1
               )

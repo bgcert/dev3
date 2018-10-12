@@ -11,7 +11,7 @@
 |
 */
 
-// Auth::login(\App\User::find(11));
+// Auth::login(\App\User::find(9));
 
 // Route::get('/query', function () {
     
@@ -86,9 +86,9 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::post('/comment/remove', 'CommentController@destroy');
 
 	// Notifications
-	Route::get('/notifications', 'UserController@notifications');
-	Route::get('/notifications/check', 'UserController@notification_check');
-	Route::get('/notifications/{id}', 'UserController@notification_read');
+	Route::get('/notifications', 'UserController@getNotifications');
+	Route::get('/notifications/check', 'UserController@checkNotifications');
+	Route::get('/notifications/{id}', 'UserController@readNotification');
 
 });
 

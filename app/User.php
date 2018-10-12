@@ -53,6 +53,11 @@ class User extends Authenticatable
     	return $this->hasOne('App\Company');
     }
 
+    public function feedNotifications()
+    {
+    	return $this->hasMany('App\FeedNotification');
+    }
+
     public function following()
     {
     	return $this->belongsToMany('App\Company', 'followers')->withTimestamps();

@@ -27,7 +27,7 @@
 			<el-form-item size="large">
 				<el-button @click.prevent="callRegister"> Регистрация</el-button>
 				<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
-				<el-button type="text"> Забравена парола.</el-button>
+				<el-button type="text" @click="callReset"> Забравена парола.</el-button>
 			</el-form-item>
 		</el-form>
 		
@@ -71,11 +71,16 @@
         		});
         		console.log('submit!');
         	},
+
         	callRegister() {
         		this.dialogFormVisible = false;
         		setTimeout( function(){
 					EventBus.$emit('registerClicked');
 				}, 300 );
+        	},
+
+        	callReset() {
+        		window.location.href = '/password/reset';
         	}
         },
         created() {

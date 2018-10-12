@@ -1,16 +1,28 @@
 <template>
-	<span class="item notification-icon" @click="listNotifications" v-if="!user.token">
+	<span class="item notification-icon" @click="listNotifications">
 		<el-popover
 			placement="bottom-end"
 			trigger="click">
 			<div v-loading="loading" >
-				<div class="ui middle aligned divided list" style="max-width: 300px;">
-					<div class="item" :class="{ unread: notification.read_at == null }" v-for="notification in notifications">
+				<div class="ui middle relaxed divided aligned selection list" style="max-width: 300px;">
+					<div class="item" v-for="notification in notifications">
 						<i class="info circle middle aligned icon"></i>
-						<div class="content">
-							<a href="/users/settings#/notifications" class="header" @click.prevent="markAsRead(notification.id)">{{ notification.data.message }}</a>
-							<div class="description">{{ notification.created_at }}</div>
-						</div>
+						<a
+							class="content"
+							@click.prevent="markAsRead(notification.id, '/dashboard#/orders/')"
+							v-if="notification.feed_notifiable_type == 'App\\Order'">
+							<span class="description" :class="{ header: notification.read_at == null }">
+								Имате нова заявка - {{ notification.created_at }}
+							</span>
+						</a>
+						<a
+							class="content"
+							@click.prevent="markAsRead(notification.id, '/dashboard#/contacts/')"
+							v-if="notification.feed_notifiable_type == 'App\\ContactPublisher'">
+							<span class="description" :class="{ header: notification.read_at == null }">
+								Имате ново запитване - {{ notification.created_at }}
+							</span>
+						</a>
 					</div>
 				</div>
 				<a href="/users/settings#/notifications" class="ui tiny fluid button">Всички известия</a>
@@ -33,7 +45,7 @@
     	
     	data: function () {
     		return {
-    			user: window.user,
+    			id: this.user_id,
     			loading: false,
     			notifications: [],
     			notificationsCount: 0
@@ -52,11 +64,13 @@
 					console.log(error);
 				});
     		},
-    		markAsRead(id) {
+
+    		markAsRead(id, link) {
     			var vm = this;
     			let route = '/users/notifications/' + id;
 	        	axios.get(route).then(function (response) {
-	        		window.location.href = '/users/settings#/notifications';
+	        		console.log(response.data);
+	        		window.location.href = link;
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -120,5 +134,9 @@
 		color: white;
 		opacity: 0.7;
 		box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.59);
+	}
+
+	.el-popover {
+		text-align: left;
 	}
 </style>

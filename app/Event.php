@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Visitable;
-use App\Traits\Activitiable;
 // use Spatie\Activitylog\Traits\LogsActivity;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
@@ -14,7 +13,6 @@ class Event extends Model
 {
 	use SoftDeletes;
 	use Visitable;
-	use Activitiable;
 	// use LogsActivity;
 
 	protected $dates = ['deleted_at'];

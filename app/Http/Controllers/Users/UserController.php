@@ -19,19 +19,22 @@ class UserController extends Controller
     	return 'follow button click';
     }
 
-    public function notifications() {
-    	return \Auth::user()->notifications()->take(8)->get();
+    public function getNotifications() {
+    	return \Auth::user()->feedNotifications()->take(8)->get();
     }
 
-    public function notification_check() {
-    	return \Auth::user()->unreadNotifications()->count();
+    public function checkNotifications() {
+    	return \Auth::user()->feedNotifications()->whereNull('read_at')->count();
     }
 
-    public function notification_read($id) {
-    	return \Auth::user()
-    				->unreadNotifications()
+    // Need to be improved and more practicle!!!
+    public function readNotification($id) {
+    	$n = \Auth::user()
+    				->feedNotifications()
 	    			->where('id', $id)
-	    			->first()
-	    			->markAsRead();
+	    			->first();
+	    $n->read_at = \Carbon\Carbon::now();
+	    $n->save();
+	    return 'read';
     }
 }
