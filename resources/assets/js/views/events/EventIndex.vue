@@ -17,7 +17,7 @@
 					<template v-for="(event, index) in events">
 						<CardDashboard
 							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"
-							:date="event.begin_at"
+							:date="event.start_date_carbon"
 							:title="event.theme.title"
 							:edit_link="'/events/edit/' + event.id"
 							:confirmMessage="'Сигурни ли сте, че желаете да изтриете това събитие?'"

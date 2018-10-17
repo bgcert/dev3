@@ -125,6 +125,11 @@
 					</el-form-item>
 
 					<el-form-item>
+						<input type="checkbox" id="active" v-model="form.active"/>
+						<label for="active">Активно</label>
+					</el-form-item>
+
+					<el-form-item>
 						<div class="right floated">
 							<div class="ui right floated primary button" @click="save">
 					        	Запиши
@@ -164,6 +169,7 @@
     				start_at: '',
     				end_at: '',
     				price: null,
+    				active: true
     			},
     			data: {},
     			errors: [],
@@ -195,6 +201,7 @@
 					city_id: this.form.cityId,
 					address: this.form.address,
 					price: this.form.price,
+					active: this.form.active,
 					teachers: this.selectedTeachers,
 					start_date: this.form.start_date,
 					end_date: this.form.end_date,

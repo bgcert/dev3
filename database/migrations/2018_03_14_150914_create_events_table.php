@@ -24,6 +24,7 @@ class CreateEventsTable extends Migration
             $table->date('end_date')->nullable();
             $table->time('start_at')->nullable();
             $table->time('end_at')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
 

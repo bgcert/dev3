@@ -58561,7 +58561,7 @@ var render = function() {
                       image:
                         "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
                         event.cover,
-                      date: event.begin_at,
+                      date: event.start_date_carbon,
                       title: event.theme.title,
                       edit_link: "/events/edit/" + event.id,
                       confirmMessage:
@@ -58802,6 +58802,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -58823,7 +58828,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         end_date: '',
         start_at: '',
         end_at: '',
-        price: null
+        price: null,
+        active: true
       },
       data: {},
       errors: [],
@@ -58862,6 +58868,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   city_id: this.form.cityId,
                   address: this.form.address,
                   price: this.form.price,
+                  active: this.form.active,
                   teachers: this.selectedTeachers,
                   start_date: this.form.start_date,
                   end_date: this.form.end_date,
@@ -59289,6 +59296,51 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("el-form-item", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.active,
+                      expression: "form.active"
+                    }
+                  ],
+                  attrs: { type: "checkbox", id: "active" },
+                  domProps: {
+                    checked: Array.isArray(_vm.form.active)
+                      ? _vm._i(_vm.form.active, null) > -1
+                      : _vm.form.active
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.form.active,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.form, "active", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form,
+                              "active",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.form, "active", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [_vm._v("Активно")])
+              ]),
+              _vm._v(" "),
+              _c("el-form-item", [
                 _c(
                   "div",
                   { staticClass: "right floated" },
@@ -59435,7 +59487,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59455,6 +59507,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59643,6 +59700,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                   city_id: this.event.city_id,
                   address: this.event.address,
                   price: this.event.price,
+                  active: this.event.active,
                   teachers: this.selectedTeachers,
                   start_date: this.event.start_date,
                   end_date: this.event.end_date,
@@ -60048,6 +60106,59 @@ var render = function() {
                           _vm._v(
                             "\n\t\t\t\t\t\t\tМоля, посочете крайната цена с начислен ДДС.\n\t\t\t\t\t\t"
                           )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("el-form-item", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.event.active,
+                              expression: "event.active"
+                            }
+                          ],
+                          attrs: { type: "checkbox", id: "active" },
+                          domProps: {
+                            checked: Array.isArray(_vm.event.active)
+                              ? _vm._i(_vm.event.active, null) > -1
+                              : _vm.event.active
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.event.active,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.event,
+                                      "active",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.event,
+                                      "active",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.event, "active", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("label", { attrs: { for: "active" } }, [
+                          _vm._v("Активно")
                         ])
                       ]),
                       _vm._v(" "),

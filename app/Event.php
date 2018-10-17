@@ -18,8 +18,9 @@ class Event extends Model
 	protected $dates = ['deleted_at'];
 
 	protected $fillable = [
-        'theme_id', 'city_id', 'address', 'start_date', 'end_date', 'start_at', 'end_at', 'cover', 'position', 'price'
+        'theme_id', 'city_id', 'address', 'start_date', 'end_date', 'start_at', 'end_at', 'cover', 'price', 'active'
     ];
+    // protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     protected $appends = ['start_date_carbon'];
 
@@ -45,7 +46,7 @@ class Event extends Model
 
     public function scopeUpcoming($query)
     {
-    	return $query->whereDate('start_date', '>', Carbon::today())->whereHas('theme')->with('theme.commentCount', 'theme.company', 'visitCount');
+    	return $query->where('active', 1)->whereDate('start_date', '>', Carbon::today())->whereHas('theme')->with('theme.commentCount', 'theme.company', 'visitCount');
     }
 
     // For related events by company
