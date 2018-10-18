@@ -46,6 +46,15 @@
 					<div class="item">
 						<a href="/page/help" class="ui large fluid basic orange button">Добавете зала</a>
 					</div>
+					<div class="item">
+						<div class="fb-page"
+						  data-href="https://www.facebook.com/seminari365"
+						  data-width="500"
+						  data-height="240"
+						  data-hide-cover="false"
+						  data-show-facepile="true">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
