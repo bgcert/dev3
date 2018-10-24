@@ -2,20 +2,76 @@
 
 @section('content')
 
-@push('header-scripts')
-    <style>
-		.category-box {
-			display: flex;
-			border-radius: 3px;
-			align-items: center;
-			justify-content: center;
-			height: 150px;
-			color: white;
-		}
-	</style>
-@endpush
+<div class="container">
+	<header>
+		<div class="slider">
+			<div class="add-links">
+				<a href="#">+ Добави обучение |</a>
+				<a href="#">+ Добави зала</a>
+			</div>
+			<div class="search-container centered">
+				<div class="h1 inverted shadow-text">
+					Семинари 365
+				</div>
+				<div class="h2 inverted shadow-text">
+					Открий курс днес. Бъди успешен утре.
+				</div>
+				<div>
+					<div class="search-large">
+						<input type="text" name="search">
+					</div>
+				</div>
+			</div>
+		</div>	
+	</header>
 
-<carousel></carousel>
+	<section class="categories">
+		<div class="cat-info inverted">
+			<div class="h3">Богата селекция от курсове и програми на водещи обучаващи организации</div>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco.</p>
+			<a href="/browse" class="inverted btn"> Всички курсове</a>
+		</div>
+
+		<div class="cat-list">
+			<div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+				@foreach($categories as $category)
+				<a href="/browse/{{ $category->slug }}" class="item cat">
+					<div class="aligned">
+						<i class="material-icons">trending_up</i>
+						<div class="h5">{{ $category->name }}</div>
+					</div>
+				</a>
+				@endforeach
+			</div>
+		</div>
+	</section>
+
+	<section class="announce centered">
+			<div class="inverted shadow-text h4">
+				Желаете да публикувате в Семинари 365?
+			</div>
+			<a href="/page/publish" class="btn grey">
+				Вижте как
+			</a>
+	</section>
+
+	<section class="content">
+		<div class="container small">
+			<div class="section-title">
+				Актуални обучения
+			</div>
+			@include('layouts.includes.event-feed')
+		</div>
+	</section>
+
+	
+</div>
+
+
+
+<!-- <carousel></carousel> -->
 
 <!-- <div class="ui hidden divider"></div>
 
@@ -48,19 +104,8 @@
 
 <!-- <div class="ui hidden divider"></div> -->
 <!-- <event-feed></event-feed> -->
-<section class="category-segment">
-	<div class="ui container">
-		@foreach($categories as $category)
-			<div class="ui relaxed horizontal list">
-				<div class="item">
-					<a class="ui large basic inverted button" href="/browse/{{ $category->slug }}">{{ $category->name }}</a>
-				</div>
-			</div>
-		@endforeach
-	</div>
-</section>
 
-<div class="ui container mt-20">
+<!-- <div class="ui container mt-20">
 	<div class="ui placeholder segment">
 		<div class="ui icon header">
 			<i class="question icon"></i>
@@ -68,11 +113,11 @@
 		</div>
 		<a href="/page/publish" class="ui primary button">Вижте как</a>
 	</div>
-</div>
+</div> -->
 
-<div class="ui container mt-20">
+<!-- <div class="ui container mt-20">
 	@include('layouts.includes.event-feed')
-</div>
+</div> -->
 
 <!-- <div class="ui container mt-20">
 	

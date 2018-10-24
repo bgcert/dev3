@@ -1,52 +1,28 @@
-<div class="footer mt-20">
-	<div class="ui container">
-		<div class="ui grid">
-			<div class="two wide column">
-				<h4>Услуги</h4>
-				<div class="ui list">
-					<a href="/browse" class="item">Обучения</a>
-					<a href="/v" class="item">Зали</a>
-					<a href="#" class="item">Бизнес акаунт</a>
-					<a href="/registration" class="item">Регистрация</a>
-					<a href="/login" class="item">Вход</a>
+<div class="container">
+	<footer>
+		<div class="container small grid grid-2">
+			<div>
+				<div class="title">
+					Услуги
 				</div>
+				<ul>
+					<li><a href="/browse">Обучения</a></li>
+					<li><a href="/v">Зали</a></li>
+					<li><a href="/users/settings#/settings">Бизнес акаунт</a></li>
+					<li><a href="/login">Вход</a></li>
+					<li><a href="/registration">Регистрация</a></li>
+				</ul>
 			</div>
-			<div class="four wide column">
-				<h4>Допълнителна информация</h4>
-				<div class="ui list">
-					<!-- <a href="#" class="item">За нас</a> -->
-					<a href="/terms" class="item">Условия за ползване</a>
-					<a href="/page/report" class="item">Докладване за нередност</a>
-					<a href="#" class="item">Контакти</a>
+
+			<div>
+				<div class="title">
+					Допълнителна информация
 				</div>
-			</div>
-			<div class="four wide column">
-				<h4>За контакт:</h4>
-				<div class="ui list">
-					<div href="#" class="item"><a href="mailto:contact@seminari365.com">contact@seminari365.com</a></div>
-					<div href="#" class="item">02/ 4032404, 4032405;</div>
-				</div>
-				<h4>Техническа поддръжка</h4>
-				<div class="ui list">
-					<a href="mailto:support@seminari365.com" class="item">support@seminari365.com</a>
-					<div href="#" class="item"> 02/ 403 2404</div>
-				</div>
-				<h4>Адрес за кореспонденция:</h4>
-				<div class="item">
-					Бул.Цар Борис III 168<br>
-					Бизнес център "Андромеда", ет.3<br>
-					София 1618
-				</div>
-			</div>
-			<div class="six wide column">
-				<div class="ui list">
-					<div class="item">
-						<a href="/page/help" class="ui large fluid basic orange button">Добавете обучение</a>
-					</div>
-					<div class="item">
-						<a href="/page/help" class="ui large fluid basic orange button">Добавете зала</a>
-					</div>
-					<div class="item">
+				<ul>
+					<li><a href="/terms">Условия за ползване</a></li>
+					<li><a href="/page/report">Докладване за нередност</a></li>
+					<li><a href="/contact">Контакти</a></li>
+					<li>
 						<div class="fb-page"
 						  data-href="https://www.facebook.com/seminari365"
 						  data-width="500"
@@ -54,9 +30,32 @@
 						  data-hide-cover="false"
 						  data-show-facepile="true">
 						</div>
-					</div>
-				</div>
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<div class="title"> За контакти</div>
+				<ul>
+					<li><a href="mailto:contact@seminari365.com">contact@seminari365.com</a></li>
+					<li>02/ 4032404, 4032405;</li>
+				</ul>
+
+				<div class="title"> Техническа поддръжка</div>
+				<ul>
+					<li><a href="mailto:contact@seminari365.com">contact@seminari365.com</a></li>
+					<li>02/ 403 2404</li>
+				</ul>
+
+				<div class="title"> Адрес за кореспонденция:</div>
+				<ul>
+					<li>
+						Бул.Цар Борис III 168<br>
+						Бизнес център "Андромеда", ет.3<br>
+						София 1618
+					</li>
+				</ul>
 			</div>
 		</div>
-	</div>
+	</footer>
 </div>

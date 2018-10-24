@@ -119231,12 +119231,12 @@ var render = function() {
     { staticClass: "item" },
     [
       _c(
-        "button",
+        "a",
         {
-          staticClass: "ui basic primary button",
+          staticClass: "btn rounded blue",
+          attrs: { href: "#" },
           on: {
             click: function($event) {
-              $event.preventDefault()
               _vm.dialogFormVisible = true
             }
           }
@@ -119704,12 +119704,11 @@ var render = function() {
     { staticClass: "item" },
     [
       _c(
-        "button",
+        "a",
         {
-          staticClass: "ui basic orange button",
+          attrs: { href: "#" },
           on: {
             click: function($event) {
-              $event.preventDefault()
               _vm.dialogFormVisible = true
             }
           }

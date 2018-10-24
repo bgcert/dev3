@@ -12,8 +12,7 @@
 	</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="viewport" content="width=1400">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.">
     <meta name="keywords" content="курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове">
     <meta name="author" content="Seminari365">
@@ -25,12 +24,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('semantic-ui/semantic.min.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('semantic-ui/semantic.min.css') }}"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="{{ asset('semantic-ui/semantic.min.js') }}"></script>
+    <!-- <script src="{{ asset('semantic-ui/semantic.min.js') }}"></script> -->
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script> -->
 
 	<!-- Google map script -->
@@ -63,17 +63,6 @@
 	</script>
 	<!-- End Facebook page plugin -->
 	
-	<div class="ui warning new-version message transition" style="border-radius: 0;">
-		<i class="close icon"></i>
-		<div class="ui container">
-			<div class="header">
-				Семинари365 е в процес на обновяване. Моля, пререгистрирайте Вашия акаунт.
-			</div>
-			<p>
-				Към предишната версия <a href="http://v2.seminari365.com" target="_blank">http://v2.seminari365.com</a>.
-			</p>
-		</div>
-	</div>
 	<script>
 		window.auth = @json(auth()->check());
 	</script>

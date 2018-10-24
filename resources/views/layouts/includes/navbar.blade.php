@@ -1,94 +1,60 @@
-<div id="nav-header">
-	<div class="ui container" style="padding: 0 20px;">
-		<div class="ui large stackable secondary menu">
-			<a class="item" href="/">
-				<img src="/img/logo-s365.png" style="width: 100%;">
-			</a>
-			<a href="/browse" class="item"> Обучения</a>
-			<a href="/v" class="item"> Зали</a>
-			<div class="item">
-				<search></search>
-			</div>
+<div class="container">
+	<nav>
+		<div class="container aligned">
+			<ul class="aligned upercase">
+				<li>
+					<a href="/" class="logo">
+						<img src="/img/logo-s365.png">
+					</a>	
+				</li>
+				<li><a href=/browse">Обучения</a></li>
+				<li><a href="/v">Зали</a></li>
+				<li><a href="#">Контакти</a></li>
+			</ul>
 
-			<!-- <div class="ui mini form">
-				<div class="ui action left icon input">
-					<i class="search icon"></i>
-					<input type="text" placeholder="Search...">
-					<div class="ui orange button">Search</div>
-				</div>
-			</div> -->
-			<div class="right menu">
+			<ul class="aligned">
+				<li><search></search></li>
+
 				@guest
-				<register-modal></register-modal>
-				<login-modal></login-modal>
-				<!-- <div class="item">
-					<a class="ui basic secondary button" href="{{ route('login') }}">{{ __('Login') }}</a>	
-					<a class="ui basic primary button" href="{{ route('register') }}">{{ __('Register') }}</a>                
-				</div> -->
+				<li><register-modal></register-modal></li>
+				<li><login-modal></login-modal></li>
 				@else
+
 				@if(Auth::user()->role_id == 2)
-					<a href="/dashboard#/profile" class="item">Бизнес панел</a>
+				<li><a href="/dashboard#/profile">Бизнес панел</a></li>
 				@endif
 				@if(Auth::user()->role_id == 3)
-					<a href="/admin#/admin-users" class="item">Административен панел</a>
+				<li><a href="/admin#/admin-users">Административен панел</a></li>
 				@endif
-				<div class="ui dropdown item">
-					<div class="text">
-						<img class="ui avatar image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/80x80/{{ Auth::user()->picture }}"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>
-					</div>
-					<div class="menu">
+				<li>
+					<ul>
+						<li>
+							<img width="32" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/80x80/{{ Auth::user()->picture }}"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>	
+						</li>
+						<li><a href="/users/settings#/settings" class="item">Акаунт</a></li>
+						<li>
+							<a class="item" href="{{ route('logout') }}"
+		                       onclick="event.preventDefault();
+		                                     document.getElementById('logout-form').submit();">
+		                        {{ __('Изход') }}
+		                    </a>
 
-						<a href="/users/settings#/settings" class="item">Акаунт</a>
-
-						<a class="item" href="{{ route('logout') }}"
-	                       onclick="event.preventDefault();
-	                                     document.getElementById('logout-form').submit();">
-	                        {{ __('Изход') }}
-	                    </a>
-
-	                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-	                        @csrf
-	                    </form>
-					</div>
-				</div>
-
-				@if(Auth::user()->role_id == 2)
-					<!-- <div class="ui dropdown icon item">
-						<i class="plus square icon"></i>
-						<div class="menu">
-							<div class="item">
-								Събитие
-							</div>
-							<div class="item">
-								Тема
-							</div>
-							<div class="item">
-								Лектор
-							</div>
-							<div class="item">
-								Зала
-							</div>
-						</div>
-					</div> -->
-				@endif
-
-				@if(auth::user()->verified())
-					<!-- <a href="/messages#/t" class="item"><i class="paper plane outline icon"></i></a> -->
-				@endif
-
-				<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
+		                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+		                        @csrf
+		                    </form>
+						</li>
+					</ul>
+				</li>
+				<li><notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications></li>
+				
 				@endguest
 
-				<div class="ui dropdown icon item">
-					<i class="question outline circle icon"></i>
-					<div class="menu">
-						<a href="/page/help" class="item">Помощ</a>
-						<a href="/page/report" class="item">Докладване</a>
-						<a href="/page/contact" class="item">Контакти</a>
-					</div>
-				</div>
-			</div>
+				<ul>
+					<li><a href="/page/help">Помощ</a></li>
+					<li><a href="/page/report" class="item">Докладване</a></li>
+					<li><a href="/page/contact" class="item">Контакти</a></li>
+				</ul>
+			</ul>
 		</div>
-	</div>
-
+	</nav>
 </div>

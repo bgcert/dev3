@@ -1,6 +1,6 @@
 <template>
 	<div class="item">
-		<button class="ui basic orange button" @click.prevent="dialogFormVisible = true"> Регистрация</button>
+		<a href="#" @click="dialogFormVisible = true"> Регистрация</a>
 
 		<el-dialog
 			width="30%"

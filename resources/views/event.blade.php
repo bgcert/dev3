@@ -1,32 +1,76 @@
 @extends('layouts.app')
 
-@push('header-scripts')
-	<style>
-		.cover {
-			background-color: #505763;
-			background-size: cover;
-    		background-position: 50%;
-		}
-		.overlay {
-			height: 100%;
-			background-color: rgba(0,0,0,0.6);
-		}
-		.flex-center {
-			 display: flex !important;
-			 justify-content:center;
-			 align-items: center;
-		}
-		.info { color: white; }
-		.details { border: 1px solid red; flex: 1; }
-		.flex { display: flex; }
-		.logo { flex: 2; }
-		.company-details { flex: 3; text-align: center; }
-		.event-header { padding: 30px 0 !important; }
-	</style>
-@endpush
-
 @section('content')
-<div class="cover" style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $event->cover }});">
+<div class="container">
+	<header class="event">
+		<div
+			class="cover"
+			style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $event->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.4));">
+			<div class="add-links"><a href="#">+ Добави обучение |</a> <a href="#">+ Добави зала</a></div>
+
+			<div class="container small">
+				<div class="content">
+					<div class="title">
+						{{ $event->theme->title }}
+					</div>
+					<div class="excerpt">
+						<p>{{ $event->theme->excerpt }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sub-header">
+			<div class="container small">
+				<div class="aligned">
+					<div class="links">
+						<a href="#" class="info">Информация</a>
+						<a href="#" class="teachers">Лектори</a>
+					</div>
+
+					<div class="buttons">
+						<a href="#" class="inverted btn">Изпрати запитване</a>
+						<a href="#" class="btn white">Заяви участие</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="content">
+		<div class="container small">
+			<div class="grid" style="grid-template-columns: 2fr 1fr;">
+				<div>
+					<p style="white-space: pre-line;">
+				    	{{ $event->theme->body }}
+				    </p>
+				</div>
+
+				<div class="event-details">
+					<table>
+						<tr>
+							<td>{{ $event->start_date_carbon }}</td>
+						</tr>
+
+						<tr>
+							<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
+						</tr>
+
+						<tr>
+							<td>{{ $event->city->name }}, {{ $event->address }}</td>
+						</tr>
+
+						<tr>
+							<td><div href="#" class="btn blue">{{ $event->price }} лв.</div></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+</div>
+<hr>
+<div class="cover">
 	<div class="overlay">
 		<div class="ui container">
 			<div class="ui basic segment">
