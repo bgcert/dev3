@@ -24,13 +24,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="{{ asset('semantic-ui/semantic.min.css') }}"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <!-- <script src="{{ asset('semantic-ui/semantic.min.js') }}"></script> -->
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script> -->
 
 	<!-- Google map script -->
@@ -45,9 +43,7 @@
 		  }
 		})
 	</script>
-
-    <!-- Push Scripts -->
-    @stack('header-scripts')
+    
 </head>
 <body>
 	<!-- Facebook page plugin -->
@@ -93,19 +89,12 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
-    	$('.ui.dropdown').dropdown();
+    	$(document).ready(function() {
+    		$('.btn').click(function(e) {
+    			$('.menu-list').toggleClass('active');
+    		});
+    	});
 
-    	$('.new-version .close')
-	    	.on('click', function() {
-	    		$(this)
-	    		.closest('.message')
-	    		.transition('fade')
-	    		;
-	    	})
-    	;
     </script>
-
-    <!-- Push Scripts -->
-    @stack('footer-scripts')
 </body>
 </html>

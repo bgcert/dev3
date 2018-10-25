@@ -27,9 +27,19 @@
 						<a href="#" class="teachers">Лектори</a>
 					</div>
 
-					<div class="buttons">
-						<a href="#" class="inverted btn">Изпрати запитване</a>
-						<a href="#" class="btn white">Заяви участие</a>
+					<div class="buttons" style="display: flex;">
+						<contact-publisher
+							button-text="Изпрати запитване"
+							:company-id="{{ $event->theme->company->id }}"
+							about="{{ $event->theme->title }}"
+							btn-class="inverted btn">
+						</contact-publisher>
+						<request-modal
+							:id="{{ json_encode($event->id) }}"
+							title="{{ $event->theme->title }}"
+							:auth="{{ json_encode(Auth::check()) }}"
+							classes="btn white">
+						</request-modal>
 					</div>
 				</div>
 			</div>
@@ -43,6 +53,21 @@
 					<p style="white-space: pre-line;">
 				    	{{ $event->theme->body }}
 				    </p>
+
+				    <h1>Лектори</h1>
+				    <div class="teacher-list">
+				    	@foreach($event->teachers as $teacher)
+				    	<div class="teacher">
+				    		<div class="photo">
+				    			<img src="https://d3cwccg7mi8onu.cloudfront.net/100x100/{{ $teacher->image }}" class="ui circular image">
+				    		</div>
+				    		<div class="info">
+				    			<h4 class="name">{{ $teacher->name}}</h4>
+				    			<p class="details">{{ $teacher->details }}</p>
+				    		</div>
+				    	</div>
+				    	@endforeach
+				    </div>
 				</div>
 
 				<div class="event-details">
@@ -63,12 +88,51 @@
 							<td><div href="#" class="btn blue">{{ $event->price }} лв.</div></td>
 						</tr>
 					</table>
+					<a href="/c/{{ $event->theme->company->slug }}" class="company aligned">
+						<div class="logo">
+							<img src="https://d3cwccg7mi8onu.cloudfront.net/72x72/{{ $event->theme->company->logo }}">
+						</div>
+						<div class="name">
+							{{ $event->theme->company->name }}
+						</div>
+					</a>
+					<div class="popular">
+						@foreach($related as $theme)
+							@include('partials.theme-box', ['theme' => $theme])
+						@endforeach
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<comments
+    		auth="{{ Auth::check() }}"
+    		type="theme"
+	    	id="{{ $event->theme->id }}"
+	    	user_id="{{ auth()->id() }}">
+	    </comments>
+
+		
 	</section>
 	
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <hr>
 <div class="cover">
 	<div class="overlay">
@@ -196,36 +260,10 @@
 			    	</tbody>
 			    </table>
 
-				<p style="white-space: pre-line;">
-			    	{{ $event->theme->body }}
-			    </p>
-
-			    <h3 class="ui dividing header">
-			    	Лектори
-			    </h3>
-			    @foreach($event->teachers as $teacher)
-			    	<img src="https://d3cwccg7mi8onu.cloudfront.net/100x100/{{ $teacher->image }}" class="ui circular image">
-				    <h3 class="ui header">
-				    	{{ $teacher->name }}
-				    </h3>
-				    <p style="white-space: pre-line;">{{ $teacher->details }}</p>
-			    @endforeach
 			    <!-- <google-map></google-map> -->
 			    <div id="comments">
-			    	<comments
-			    		auth="{{ Auth::check() }}"
-			    		type="theme"
-				    	id="{{ $event->theme->id }}"
-				    	user_id="{{ auth()->id() }}">
-				    </comments>	
+			    	
 			    </div>
-			</div>
-			<div class="six wide column">
-				<h3 class="ui dividing header">Популярни обучения</h3>
-				<related-feed
-					auth="{{ auth()->check() }}"
-					company_id="{{ $event->theme->company->id }}">
-				</related-feed>
 			</div>
 		</div>
 

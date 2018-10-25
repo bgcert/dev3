@@ -1,7 +1,28 @@
 <template>
-	<div>
-		<h4>Коментари</h4>
-		<div class="ui reply form">
+
+	<div class="comment-feed">
+		<h1 class="centered">Комантари</h1>
+
+		<template v-for="(comment, index) in comments">
+
+			<div class="comment">
+				<div class="photo">
+					<img src="/img/default_user.png">
+				</div>
+				<div class="comment-body">
+					<div class="name aligned">
+						{{ comment.user.full_name }}
+						<div class="date">{{ comment.updated_at_carbon }}</div>
+					</div>
+					<p>{{ comment.body }}</p>
+					<template v-if="comment.user.id == user_id">
+						<a href="#" @click.prevent="removeComment(comment.id, index)">Изтрий</a>
+					</template>
+				</div>
+			</div>
+		</template>
+
+		<div class="comment">
 			<template v-if="auth">
 				<el-input
 					type="textarea"
@@ -25,30 +46,6 @@
 				</a>
 			</template>
 		</div>
-		<div class="ui comments">
-			<template v-for="(comment, index) in comments">
-				<div class="comment">
-					<a :href="'/user/' + comment.user.id" class="avatar">
-						<img class="rounded" :src="comment.user.picture">
-					</a>
-					<div class="content">
-						<a :href="'/user/' + comment.user.id" class="author">{{ comment.user.firstname }}</a>
-						<div class="metadata">
-							<div class="date">{{ comment.updated_at_carbon }}</div>
-							<template v-if="comment.user.id == user_id">
-								<a href="#" @click.prevent="removeComment(comment.id, index)" class="reply">Изтрий</a>
-							</template>
-						</div>
-						<div class="text">
-							<p>
-								{{ comment.body }}
-							</p>
-						</div>
-					</div>
-				</div>
-			</template>
-		</div>
-
 	</div>
 </template>
 
@@ -132,9 +129,3 @@
         },
     };
 </script>
-
-<style>
-	.rounded {
-		border-radius: 50% !important;
-	}
-</style>

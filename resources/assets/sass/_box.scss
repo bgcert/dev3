@@ -1,0 +1,109 @@
+.event-box {
+	border-radius: 4px;
+	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194));
+	overflow: hidden;
+	color: #fff;
+
+	.cover {
+		height: 132px;
+		background-position: center;
+		position: relative;
+
+		.c-logo {
+			display: inline-block;
+			position: absolute;
+			top: 86px;
+			left: 20px;
+			background-color: #fff;
+			padding: 8px;
+			border-radius: 3px;
+
+			div {
+				background-position: center;
+				background-size: cover;
+				height: 56px;
+				width: 56px;
+			}
+		}
+	}
+
+	.content {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		padding: 20px;
+
+		.title {
+			font-size: 1em;
+			color: #fff;
+		}
+
+		.date {
+			margin: 10px 0;
+			color: rgba(255,255,255, 0.6);
+		}
+	}
+
+	.footer {
+		padding: 20px;
+		position: absolute;
+		bottom: 0;
+		width: 80%;
+
+		a {
+			color: rgba(255,255,255, 0.6);
+		}
+	}
+
+	i {
+		margin-right: 8px;
+	    font-size: 18px;
+	    color: rgba(255,255,255, 0.6);
+	}
+}
+
+.theme-box {
+	border-radius: 4px;
+	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194));
+	overflow: hidden;
+	color: #fff;
+	margin: 20px 0;
+
+	.cover {
+		height: 132px;
+		background-position: center;
+		position: relative;
+
+		.c-logo {
+			display: inline-block;
+			position: absolute;
+			top: 86px;
+			left: 20px;
+			background-color: #fff;
+			padding: 8px;
+			border-radius: 3px;
+
+			div {
+				background-position: center;
+				background-size: cover;
+				height: 56px;
+				width: 56px;
+			}
+		}
+	}
+
+	.content {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		padding: 20px;
+
+		.title {
+			font-size: 1em;
+			color: #fff;
+		}
+
+		.date {
+			margin: 10px 0;
+			color: rgba(255,255,255, 0.6);
+		}
+	}
+}

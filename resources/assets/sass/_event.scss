@@ -1,0 +1,87 @@
+.event {
+	.cover {
+		height: 325px;
+	    background-blend-mode: overlay;
+	    background-position: center;
+	    background-size: cover;
+	    color: #fff;
+	}
+
+	.content {
+		max-width: 60%;
+
+		.title {
+			margin-top: 60px; 
+			font-size: 20pt;
+		}
+
+		.sub-title {
+			font-size: 16pt;	
+		}
+	}
+
+	.sub-header {
+		padding: 10px;
+		background: #4b46c6;
+
+		a {
+			color: #fff;
+		}
+	}
+
+	.links {
+		.info {
+			padding-right: 40px;
+			border-right: 2px solid #fff;
+		}
+
+		.teachers {
+			padding-left: 40px;
+		}
+	}
+}
+
+.event-details {
+	table {
+		border: 1px solid #f2f2f2;
+	    padding: 30px;
+	    width: 100%;
+	}
+
+	table td {
+		padding: 20px 0;
+		border-bottom: 1px solid #f2f2f2;
+	}
+
+	.company {
+		background: #161551;
+		margin: 15px 0;
+		padding: 20px;
+		color: #fff;
+		border-radius: 3px;
+
+		.logo {
+			padding: 5px;
+			background: #fff;
+			border-radius: 3px;
+			margin-right: 20px;
+		}
+	}
+}
+
+.event .buttons .btn {
+	margin-left: 10px;
+}
+
+.teacher-list {
+	.teacher {
+		display: flex;
+		background: #f1f1f1;
+		margin-bottom: 15px;
+		padding: 15px;
+
+		.info {
+			padding: 0 25px;
+		}
+	}
+}

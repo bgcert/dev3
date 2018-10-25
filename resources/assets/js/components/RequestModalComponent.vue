@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<div>
+			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Заяви участие</a>
 			<el-dialog
 				title="Заявка"
 				:visible.sync="dialogVisible"
@@ -65,7 +66,6 @@
 						<el-button type="primary" @click="sendOrder">Заяви</el-button>
 					</span>
 			</el-dialog>
-			<a href="#" :class="classes" @click.prevent="dialogVisible = true">Записвам се</a>
 		</div>
 	</div>
 </template>

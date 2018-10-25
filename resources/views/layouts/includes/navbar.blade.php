@@ -15,6 +15,17 @@
 			<ul class="aligned">
 				<li><search></search></li>
 
+				<li>
+					<div class="dropdown">
+						<a href="#" class="btn">Меню</a>
+						<div class="menu-list">
+							<a href="/page/help">Помощ</a>
+							<a href="/page/report">Докладване</a>
+							<a href="/page/contact">Контакти</a>
+						</div>
+					</div>
+				</li>
+
 				@guest
 				<li><register-modal></register-modal></li>
 				<li><login-modal></login-modal></li>
@@ -23,9 +34,11 @@
 				@if(Auth::user()->role_id == 2)
 				<li><a href="/dashboard#/profile">Бизнес панел</a></li>
 				@endif
+
 				@if(Auth::user()->role_id == 3)
 				<li><a href="/admin#/admin-users">Административен панел</a></li>
 				@endif
+
 				<li>
 					<ul>
 						<li>
@@ -45,15 +58,11 @@
 						</li>
 					</ul>
 				</li>
-				<li><notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications></li>
+				<li>
+					<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
+				</li>
 				
 				@endguest
-
-				<ul>
-					<li><a href="/page/help">Помощ</a></li>
-					<li><a href="/page/report" class="item">Докладване</a></li>
-					<li><a href="/page/contact" class="item">Контакти</a></li>
-				</ul>
 			</ul>
 		</div>
 	</nav>

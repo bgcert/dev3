@@ -1,0 +1,33 @@
+/* Buttons */
+
+.btn {
+	display: inline-block;
+	// background: #ccc;
+	border-radius: 3px;
+	padding: 12px 28px;
+
+	&.inverted {
+		background: transparent;
+		border: 1px solid #fff;
+		padding: 11px 27px;
+	}
+
+	&.rounded {
+		border-radius: 50px;
+	}
+
+	&.blue {
+		color: #fff;
+		background: #4947c6;
+	}
+
+	&.white {
+		color: #4947c6 !important;
+		background: #fff;
+	}
+
+	&.grey {
+		color: #fff;
+		background: #010101;
+	}
+}

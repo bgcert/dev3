@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<button class="ui button" :class="btnClass" @click="dialogVisible = true">{{ buttonText }}</button>
-
+		<a href="#" :class="btnClass" @click="dialogVisible = true">{{ buttonText }}</a>
 		<el-dialog
 			:title="'Запитване'"
 			:visible.sync="dialogVisible"
@@ -47,7 +46,6 @@
 				<el-button type="primary" @click="send">Изпрати</el-button>
 			</span>
 		</el-dialog>
-
 	</div>
 </template>
 

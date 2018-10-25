@@ -114906,6 +114906,21 @@ var render = function() {
       "div",
       [
         _c(
+          "a",
+          {
+            class: _vm.classes,
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.dialogVisible = true
+              }
+            }
+          },
+          [_vm._v("Заяви участие")]
+        ),
+        _vm._v(" "),
+        _c(
           "el-dialog",
           {
             attrs: {
@@ -115225,21 +115240,6 @@ var render = function() {
               1
             )
           ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            class: _vm.classes,
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.dialogVisible = true
-              }
-            }
-          },
-          [_vm._v("Записвам се")]
         )
       ],
       1
@@ -116106,10 +116106,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(364)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(366)
@@ -116118,7 +116114,7 @@ var __vue_template__ = __webpack_require__(367)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -116153,55 +116149,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 364 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(365);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("882e9f0a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-abb4387c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentsComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-abb4387c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CommentsComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 365 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.rounded {\n\tborder-radius: 50% !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 364 */,
+/* 365 */,
 /* 366 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
 //
 //
 //
@@ -116330,154 +116285,136 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h4", [_vm._v("Коментари")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui reply form" },
-      [
-        _vm.auth
-          ? [
-              _c("el-input", {
-                attrs: {
-                  type: "textarea",
-                  autosize: "",
-                  placeholder: "Добавете коментар ..."
-                },
-                model: {
-                  value: _vm.body,
-                  callback: function($$v) {
-                    _vm.body = $$v
+  return _c(
+    "div",
+    { staticClass: "comment-feed" },
+    [
+      _c("h1", { staticClass: "centered" }, [_vm._v("Комантари")]),
+      _vm._v(" "),
+      _vm._l(_vm.comments, function(comment, index) {
+        return [
+          _c("div", { staticClass: "comment" }, [
+            _vm._m(0, true),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "comment-body" },
+              [
+                _c("div", { staticClass: "name aligned" }, [
+                  _vm._v(
+                    "\n\t\t\t\t\t" +
+                      _vm._s(comment.user.full_name) +
+                      "\n\t\t\t\t\t"
+                  ),
+                  _c("div", { staticClass: "date" }, [
+                    _vm._v(_vm._s(comment.updated_at_carbon))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(comment.body))]),
+                _vm._v(" "),
+                comment.user.id == _vm.user_id
+                  ? [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.removeComment(comment.id, index)
+                            }
+                          }
+                        },
+                        [_vm._v("Изтрий")]
+                      )
+                    ]
+                  : _vm._e()
+              ],
+              2
+            )
+          ])
+        ]
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "comment" },
+        [
+          _vm.auth
+            ? [
+                _c("el-input", {
+                  attrs: {
+                    type: "textarea",
+                    autosize: "",
+                    placeholder: "Добавете коментар ..."
                   },
-                  expression: "body"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "ui small right floated basic button",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.addComment($event)
-                    }
+                  model: {
+                    value: _vm.body,
+                    callback: function($$v) {
+                      _vm.body = $$v
+                    },
+                    expression: "body"
                   }
-                },
-                [_vm._v("\n\t\t\t\tДобави коментар\n\t\t\t")]
-              )
-            ]
-          : [
-              _c("el-input", {
-                attrs: {
-                  type: "textarea",
-                  autosize: "",
-                  placeholder: "Добавете коментар ..."
-                },
-                on: { focus: _vm.login }
-              }),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "ui small right floated basic button",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.login($event)
-                    }
-                  }
-                },
-                [_vm._v("\n\t\t\t\tДобави коментар\n\t\t\t")]
-              )
-            ]
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "ui comments" },
-      [
-        _vm._l(_vm.comments, function(comment, index) {
-          return [
-            _c("div", { staticClass: "comment" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "avatar",
-                  attrs: { href: "/user/" + comment.user.id }
-                },
-                [
-                  _c("img", {
-                    staticClass: "rounded",
-                    attrs: { src: comment.user.picture }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "content" }, [
+                }),
+                _vm._v(" "),
                 _c(
                   "a",
                   {
-                    staticClass: "author",
-                    attrs: { href: "/user/" + comment.user.id }
+                    staticClass: "ui small right floated basic button",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.addComment($event)
+                      }
+                    }
                   },
-                  [_vm._v(_vm._s(comment.user.firstname))]
-                ),
+                  [_vm._v("\n\t\t\t\tДобави коментар\n\t\t\t")]
+                )
+              ]
+            : [
+                _c("el-input", {
+                  attrs: {
+                    type: "textarea",
+                    autosize: "",
+                    placeholder: "Добавете коментар ..."
+                  },
+                  on: { focus: _vm.login }
+                }),
                 _vm._v(" "),
                 _c(
-                  "div",
-                  { staticClass: "metadata" },
-                  [
-                    _c("div", { staticClass: "date" }, [
-                      _vm._v(_vm._s(comment.updated_at_carbon))
-                    ]),
-                    _vm._v(" "),
-                    comment.user.id == _vm.user_id
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "reply",
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.removeComment(comment.id, index)
-                                }
-                              }
-                            },
-                            [_vm._v("Изтрий")]
-                          )
-                        ]
-                      : _vm._e()
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "text" }, [
-                  _c("p", [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t" +
-                        _vm._s(comment.body) +
-                        "\n\t\t\t\t\t\t"
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ]
-        })
-      ],
-      2
-    )
-  ])
+                  "a",
+                  {
+                    staticClass: "ui small right floated basic button",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.login($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n\t\t\t\tДобави коментар\n\t\t\t")]
+                )
+              ]
+        ],
+        2
+      )
+    ],
+    2
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "photo" }, [
+      _c("img", { attrs: { src: "/img/default_user.png" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -117676,7 +117613,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117687,8 +117624,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -117792,10 +117727,10 @@ var render = function() {
     "div",
     [
       _c(
-        "button",
+        "a",
         {
-          staticClass: "ui button",
           class: _vm.btnClass,
+          attrs: { href: "#" },
           on: {
             click: function($event) {
               _vm.dialogVisible = true

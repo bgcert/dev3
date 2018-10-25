@@ -73,7 +73,8 @@ class PublicController extends Controller
     {
     	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.comments.user')->first();
     	$event->visit();
-    	return view('event', compact('event'));
+    	$related = \App\Theme::limit(5)->get();
+    	return view('event', compact('event', 'related'));
     }
 
     public function showVenue()
