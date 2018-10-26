@@ -32,26 +32,28 @@
 
 		<div class="events indented">
 			<div class="title">График на предстоящите обучения</div>
-			@foreach($events as $event)
-				<div class="month"></div>
-				<li>{{ $event->theme->title }} - {{ $event->month_carbon }}</li>
+
+			@foreach($events as $month => $items)
+				<div class="month">
+					{{ $month }}
+				</div>
+				@foreach($items as $item)
+				<a href="/event/{{ $item->id }}" class="item">
+					<div class="date">
+						{{ $item->start_day_carbon }}
+					</div>
+					<div class="info">
+						<div class="cover">
+							<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/100x100/{{ $item->cover }}">
+						</div>
+						<div class="title">
+							{{ $item->theme->title }}
+						</div>
+					</div>
+				</a>
+				@endforeach
 			@endforeach
 		</div>
 	</div>
-</div>
-
-<hr>
-<div class="sub-nav" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #DDDDDD;">
-	<div class="ui container">
-		<div class="ui breadcrumb">
-			<a href="/" class="section">Начало</a>
-			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $company->name }}</div>
-		</div>
-	</div>
-</div>
-
-<div class="ui container">
-	<!-- <company-view slug="{{ $company->slug }}"></company-view> -->
 </div>
 @endsection

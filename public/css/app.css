@@ -498,7 +498,7 @@ footer a {
 
 .dropdown .menu-list a {
   display: block;
-  padding: 20px 36px;
+  padding: 15px 36px;
   color: #404040;
 }
 
@@ -946,7 +946,52 @@ footer a {
 }
 
 .company .themes {
+  padding: 36px 140px;
   background: #f5f5f5;
+}
+
+.company .events {
+  padding: 75px 240px;
+}
+
+.company .events .month {
+  background: #ebebeb;
+  padding: 10px;
+}
+
+.company .events .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.company .events .item .date {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.company .events .item .info {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  alighn-items: center;
+}
+
+.company .events .item .info .title {
+  margin: 10px 20px;
+}
+
+.company .events .item:hover {
+  background: #f9f9f9;
 }
 
 /* Icons */

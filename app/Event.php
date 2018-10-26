@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Visitable;
-// use Spatie\Activitylog\Traits\LogsActivity;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
 
@@ -110,6 +109,11 @@ class Event extends Model
     public function getStartAtCarbonAttribute()
     {
     	return Date::parse($this->start_at)->format('H:i');
+    }
+
+    public function getStartDayCarbonAttribute()
+    {
+    	return Date::parse($this->start_date)->format('d l');
     }
 
     public function getEndAtCarbonAttribute()

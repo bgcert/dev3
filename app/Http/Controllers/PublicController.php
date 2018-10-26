@@ -8,6 +8,7 @@ use App\Http\Requests\ContactPublisherRequest;
 use App\Http\Requests\OrderRequest;
 use App\Events\NewNotification;
 use App\Notifications\NewOrder;
+use Jenssegers\Date\Date;
 
 class PublicController extends Controller
 {
@@ -59,7 +60,14 @@ class PublicController extends Controller
 
 		$themes = \App\Theme::with('category')->where('company_id', $company->id)->get();
 		$theme_ids = $themes->pluck('id')->toArray();
-		$events = \App\Event::with('theme')->whereIn('theme_id', $theme_ids)->where('start_date', '>', \Carbon\Carbon::today())->get();
+		$events = \App\Event::upcoming()->whereIn('theme_id', $theme_ids)->get();
+
+		$events = $events->groupBy(function($item) {
+			return Date::parse($item->start_date)->format('F, Y');
+		});
+
+		// dd($events);
+
     	return view('company', compact('company', 'themes', 'events'));
     }
 
