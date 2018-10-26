@@ -107,3 +107,37 @@
 		}
 	}
 }
+
+.theme-box-alt {
+	display: flex;
+	min-height: 200px;
+	background: #4b46c6;
+	border-radius: 4px;
+	overflow: hidden;
+	color: #fff;
+
+	.content {
+		width: 50%;
+		padding: 30px;
+		a {
+			color: #fff;
+		}
+
+		.info {
+			font-size: 12px;
+			margin-top: 40px;
+
+			div {
+				margin-top: 10px;
+			}
+		}
+	}
+
+	.cover {
+		-webkit-clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+		clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+		width: 50%;
+		background-size: cover !important;
+    	background-position: center !important;
+	}
+}

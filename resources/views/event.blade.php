@@ -88,7 +88,7 @@
 							<td><div href="#" class="btn blue">{{ $event->price }} лв.</div></td>
 						</tr>
 					</table>
-					<a href="/c/{{ $event->theme->company->slug }}" class="company aligned">
+					<a href="/c/{{ $event->theme->company->slug }}" class="company">
 						<div class="logo">
 							<img src="https://d3cwccg7mi8onu.cloudfront.net/72x72/{{ $event->theme->company->logo }}">
 						</div>

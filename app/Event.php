@@ -116,4 +116,9 @@ class Event extends Model
     {
     	return Date::parse($this->end_at)->format('H:i');
     }
+
+    public function getMonthCarbonAttribute()
+    {
+    	return Date::parse($this->start_at)->format('F');
+    }
 }

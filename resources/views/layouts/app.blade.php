@@ -95,6 +95,15 @@
     		});
     	});
 
+    	window.onclick = function(e) {
+    		if (!e.target.matches('.btn')) {
+    			// var myDropdown = document.getElementById("myDropdown");
+    			// $('.menu-list').toggleClass('active');
+    			if ($('.menu-list').hasClass('active')) {
+    				$('.menu-list').toggleClass('active');
+    			}
+    		}
+    	}
     </script>
 </body>
 </html>

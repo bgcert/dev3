@@ -53,8 +53,14 @@ class PublicController extends Controller
     public function company()
     {
 		$company = \App\Company::with('user')->where('slug', request()->slug)->first();
+
+		// Generate a unique visit
 		$company->visit();
-    	return view('company', compact('company'));
+
+		$themes = \App\Theme::with('category')->where('company_id', $company->id)->get();
+		$theme_ids = $themes->pluck('id')->toArray();
+		$events = \App\Event::with('theme')->whereIn('theme_id', $theme_ids)->where('start_date', '>', \Carbon\Carbon::today())->get();
+    	return view('company', compact('company', 'themes', 'events'));
     }
 
     public function user()
