@@ -410,6 +410,10 @@ nav ul li {
   grid-template-columns: 1fr 1fr;
 }
 
+.grid-2-1 {
+  grid-template-columns: 2fr 1fr;
+}
+
 .item {
   position: relative;
 }
@@ -700,11 +704,11 @@ footer a {
 }
 
 .event .content {
-  max-width: 60%;
+  max-width: 75%;
 }
 
 .event .content .title {
-  margin-top: 60px;
+  margin-top: 45px;
   font-size: 20pt;
 }
 
@@ -840,6 +844,67 @@ footer a {
   margin-right: 8px;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.event-box-alt {
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
+          box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
+}
+
+.event-box-alt .cover {
+  height: 132px;
+  background-position: center;
+  position: relative;
+}
+
+.event-box-alt .cover .c-logo {
+  display: inline-block;
+  position: absolute;
+  top: 86px;
+  left: 20px;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #E1E1E1;
+}
+
+.event-box-alt .cover .c-logo div {
+  background-position: center;
+  background-size: cover;
+  height: 56px;
+  width: 56px;
+}
+
+.event-box-alt .content {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.event-box-alt .content .title {
+  font-size: 1em;
+}
+
+.event-box-alt .content .date {
+  margin: 10px 0;
+}
+
+.event-box-alt .footer {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+}
+
+.event-box-alt .footer a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.event-box-alt i {
+  margin-right: 8px;
+  font-size: 18px;
 }
 
 .theme-box {

@@ -7,7 +7,7 @@
 						<img src="/img/logo-s365.png">
 					</a>	
 				</li>
-				<li><a href=/browse">Обучения</a></li>
+				<li><a href="/browse">Обучения</a></li>
 				<li><a href="/v">Зали</a></li>
 				<li><a href="#">Контакти</a></li>
 			</ul>

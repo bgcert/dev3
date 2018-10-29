@@ -61,6 +61,67 @@
 	}
 }
 
+.event-box-alt {
+	border-radius: 4px;
+	overflow: hidden;
+	// color: #fff;
+	box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
+
+	.cover {
+		height: 132px;
+		background-position: center;
+		position: relative;
+
+		.c-logo {
+			display: inline-block;
+			position: absolute;
+			top: 86px;
+			left: 20px;
+			background-color: #fff;
+			padding: 8px;
+			border-radius: 3px;
+			border: 1px solid #E1E1E1;
+
+			div {
+				background-position: center;
+				background-size: cover;
+				height: 56px;
+				width: 56px;
+			}
+		}
+	}
+
+	.content {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		padding: 20px;
+
+		.title {
+			font-size: 1em;
+		}
+
+		.date {
+			margin: 10px 0;
+		}
+	}
+
+	.footer {
+		padding: 20px;
+		position: absolute;
+		bottom: 0;
+		width: 80%;
+
+		a {
+			color: rgba(255,255,255, 0.6);
+		}
+	}
+
+	i {
+		margin-right: 8px;
+	    font-size: 18px;
+	}
+}
+
 .theme-box {
 	border-radius: 4px;
 	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194));

@@ -48,7 +48,7 @@
 
 	<section class="content">
 		<div class="container small">
-			<div class="grid" style="grid-template-columns: 2fr 1fr;">
+			<div class="grid grid-2-1">
 				<div>
 					<p style="white-space: pre-line;">
 				    	{{ $event->theme->body }}
@@ -97,7 +97,7 @@
 						</div>
 					</a>
 					<div class="popular">
-						@foreach($related as $theme)
+						@foreach($popularThemes as $theme)
 							@include('partials.theme-box', ['theme' => $theme])
 						@endforeach
 					</div>
@@ -112,161 +112,19 @@
 	    	user_id="{{ auth()->id() }}">
 	    </comments>
 
+	    <div class="indented">
+	    	<h1>Related events</h1>
+
+	    	<div class="grid">
+	    		@foreach($relatedEvents as $event)
+
+	    			@include('partials.event-box-alt', ['event', $event])
+	    		@endforeach
+	    	</div>
+	    </div>
 		
 	</section>
 	
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<hr>
-<div class="cover">
-	<div class="overlay">
-		<div class="ui container">
-			<div class="ui basic segment">
-				<div class="ui breadcrumb inverted-breadcrumb">
-					<a href="/" class="section">Начало</a>
-					<i class="right angle icon divider"></i>
-					<a href="/browse" class="section">Обучения</a>
-					<i class="right angle icon divider"></i>
-					<div class="active section">{{ $event->theme->title }} - {{ $event->start_date_carbon }}</div>
-				</div>
-			</div>
-			<div class="ui grid event-header">
-				<div class="flex-center ten wide column ">
-					<div class="info">
-						<h1 class="title">{{ $event->theme->title }}</h1>
-						<p>{{ $event->theme->excerpt }}</p>
-						<h3>{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</h3>
-					</div>	
-				</div>
-				<div class="six wide column">
-					<div class="ui segment">
-						<div class="flex">
-							<div class="logo">
-								<a href="/c/{{ $event->theme->company->slug }}">
-									<img class="ui image" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $event->theme->company->logo }}">
-								</a>
-							</div>
-							<div class="company-details">
-								<h3>{{ $event->theme->company->name }}</h3>
-								<a href="/c/{{ $event->theme->company->slug }}" class="ui basic button">Фирмен профил</a>
-							</div>
-						</div>
-						<div class="ui divider"></div>
-						<div>
-							<div class="ui list">
-								<div class="item">
-									<i class="map marker alternate icon"></i>
-									<div class="content">
-										{{ $event->city->name }}, {{ $event->address }}
-									</div>
-								</div>
-								<div class="item">
-									<i class="calendar outline icon"></i>
-									<div class="content">
-										{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}
-									</div>
-								</div>
-								<div class="item">
-									<i class="redo alternate icon"></i>
-									<div class="content">
-										{{ $event->theme->duration }} учебни часа
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ui horizontal statistics">
-							<div class="statistic">
-								<div class="value">{{ $event->price }}.00</div>
-								<div class="label">лв. с ДДС</div>
-							</div>
-							<div class="ui relaxed list" style="width: 100%;">
-								<div class="item">
-									<request-modal
-										:id="{{ json_encode($event->id) }}"
-										title="{{ $event->theme->title }}"
-										:auth="{{ json_encode(Auth::check()) }}"
-										classes="ui fluid orange button">
-									</request-modal>
-								</div>
-								<div class="item">
-									<contact-publisher
-										button-text="Изпрати запитване"
-										:company-id="{{ $event->theme->company->id }}"
-										about="{{ $event->theme->title }}"
-										:btn-class="'fluid positive'">
-									</contact-publisher>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="ui container mt-20">
-	
-	<div class="ui segment padded grid">
-
-		<div class="two column row">
-			<div class="ten wide column">
-				<table class="ui celled padded table">
-			    	<tbody>
-			    		<tr>
-			    			<td>Дати на провеждане</td>
-			    			<td>{{ $event->start_date_carbon }} - {{ $event->end_date_carbon }}</td>
-			    		</tr>
-			    		<tr>
-			    			<td>Начален час / Краен час</td>
-			    			<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
-			    		</tr>
-			    		<tr>
-			    			<td>Място</td>
-			    			<td>{{ $event->city->name }}, {{ $event->address }}</td>
-			    		</tr>
-			    		<tr>
-			    			<td>Цена</td>
-			    			<td>{{ $event->price }}.00 лв. с включен ДДС</td>
-			    		</tr>
-			    		<!-- <tr>
-			    			<td>Метод на обучение</td>
-			    			<td>Присъствен, Онлайн</td>
-			    		</tr> -->
-			    		<tr>
-			    			<td>Продължителност</td>
-			    			<td>{{ $event->theme->duration }} учебни часа</td>
-			    		</tr>
-			    		<!-- <tr>
-			    			<td>Сертификат</td>
-			    			<td>Издава се</td>
-			    		</tr> -->
-			    	</tbody>
-			    </table>
-
-			    <!-- <google-map></google-map> -->
-			    <div id="comments">
-			    	
-			    </div>
-			</div>
-		</div>
-
-	</div>
-</div>
 @endsection

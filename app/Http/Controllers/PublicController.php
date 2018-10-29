@@ -36,8 +36,15 @@ class PublicController extends Controller
 
     public function events()
     {
-    	$events = \App\Event::with('theme.likeCount', 'theme.company')->get();
-    	return view('events', compact('events'));
+    	$categories = \App\Category::whereHas('themes')->get();
+    	$cities = \App\City::whereHas('events')->get();
+
+    	if (request()->slug) {
+    		$events = \App\Event::upcoming()->byCategory(request()->slug)->get();
+    	} else {
+    		$events = \App\Event::upcoming()->get();
+    	}
+    	return view('events', compact('categories', 'cities', 'events'));
     }
 
     public function venues()
@@ -87,8 +94,9 @@ class PublicController extends Controller
     {
     	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.comments.user')->first();
     	$event->visit();
-    	$related = \App\Theme::limit(5)->get();
-    	return view('event', compact('event', 'related'));
+    	$popularThemes = \App\Theme::limit(5)->get();
+    	$relatedEvents = \App\Event::byCategory($event->theme->category->slug)->limit(4)->get();
+    	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
     }
 
     public function showVenue()
