@@ -8,7 +8,6 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
-    	// $categories = \App\Category::whereHas('themes')->get();
     	$categories = \App\Category::all();
     	$cities = \App\City::whereHas('events')->get();
 
@@ -17,28 +16,12 @@ class EventController extends Controller
     	if ($request->city) $events->where('city_id', $request->city);
 
     	if ($request->orderby) {
-    		dd($request->orderby);
+    		if ($request->orderby == 1) $order = 'start_date';
+    		if ($request->orderby == 2) $order = 'price';
+    		$events->orderBy($order, 'asc');
     	}
 
-    	// dd($events->get());
-
     	$events = $events->get();
-
-    	// $cities = $events->unique('city_id');
-
-    	// $city_ids = $events->pluck('city_id')->unique();
-
-    	// $cities = \App\City::find($city_ids);
-
-    	// dd($cities);
-
-    	// dd($events->get());
-
-    	// if (request()->slug) {
-    	// 	$events = \App\Event::upcoming()->byCategory(request()->slug)->get();
-    	// } else {
-    	// 	$events = \App\Event::upcoming()->get();
-    	// }
     	return view('events', compact('categories', 'cities', 'events'));
     }
 

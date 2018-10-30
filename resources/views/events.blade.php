@@ -3,39 +3,39 @@
 @section('content')
 
 	<div class="container">
-		browse
-		<div>
-			<select id="city" onchange="setUrlParam('city', this.value)">
-				<option disabled selected value>Всички градове</option>
-				@foreach($cities as $city)
-				<option value="{{ $city->id }}">{{ $city->name }}</option>
+		<div class="indented">
+			<div>
+				<select id="city" onchange="setUrlParam('city', this.value)">
+					<option disabled selected value>Всички градове</option>
+					@foreach($cities as $city)
+					<option value="{{ $city->id }}">{{ $city->name }}</option>
+					@endforeach
+				</select>
+			</div>
+
+			<div>
+				<select id="orderby" onchange="setUrlParam('orderby', this.value)">
+					<option value="1" selected>Дата</option>
+					<option value="2">Цена възх.</option>
+				</select>
+			</div>
+
+			<div class="grid">
+				@foreach($categories as $category)
+					<a 
+						class="cat-box" style="background: url('https://placeimg.com/640/480/any?i={{ $category->id  }}'), rgba(0,0,0,.56);"
+						href="#"
+						onclick="window.location = '{{ $category->slug }}' + window.location.search;">
+						{{ $category->name }}
+					</a>
 				@endforeach
-			</select>
-		</div>
+			</div>
 
-		<div>
-			<select id="orderby" onchange="setUrlParam('orderby', this.value)">
-				<option value="1" selected>Дата</option>
-				<option value="2">Цена възх.</option>
-				<option value="3">Най-популярни</option>
-				<option value="4">Най-популярни.</option>
-			</select>
-		</div>
-
-		<div class="grid indented">
-			@foreach($categories as $category)
-				<a 
-					class="cat-box" style="background: url('https://placeimg.com/640/480/any?i={{ $category->id  }}'), rgba(0,0,0,.56);"
-					href="/browse/{{ $category->slug }}">
-					{{ $category->name }}
-				</a>
-			@endforeach
-		</div>
-
-		<div class="grid indented">
-			@foreach($events as $event)
-				@include('partials.event-box', ['event', $event])
-			@endforeach
+			<div class="grid">
+				@foreach($events as $event)
+					@include('partials.event-box', ['event', $event])
+				@endforeach
+			</div>
 		</div>
 	</div>
     <!-- <event-feed
