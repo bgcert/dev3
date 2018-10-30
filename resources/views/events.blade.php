@@ -5,8 +5,8 @@
 	<div class="container">
 		browse
 		<div>
-			<select id="city-select" onchange="setUrlParam(this, 'city');">
-				<!-- <option value="" selected>Всички градове</option> -->
+			<select id="city" onchange="setUrlParam('city', this.value)">
+				<option disabled selected value>Всички градове</option>
 				@foreach($cities as $city)
 				<option value="{{ $city->id }}">{{ $city->name }}</option>
 				@endforeach
@@ -14,16 +14,21 @@
 		</div>
 
 		<div>
-			<select id="sortby" onchange="setUrlParam(this, 'sortby');">
-				<option value="1">Цена възх.</option>
-				<option value="2">Най-популярни</option>
-				<option value="3">Най-популярни.</option>
+			<select id="orderby" onchange="setUrlParam('orderby', this.value)">
+				<option value="1" selected>Дата</option>
+				<option value="2">Цена възх.</option>
+				<option value="3">Най-популярни</option>
+				<option value="4">Най-популярни.</option>
 			</select>
 		</div>
 
-		<div class="cat">
+		<div class="grid indented">
 			@foreach($categories as $category)
-				<li><a href="/browse/{{ $category->slug }}">{{ $category->name }}</a></li>
+				<a 
+					class="cat-box" style="background: url('https://placeimg.com/640/480/any?i={{ $category->id  }}'), rgba(0,0,0,.56);"
+					href="/browse/{{ $category->slug }}">
+					{{ $category->name }}
+				</a>
 			@endforeach
 		</div>
 
@@ -41,49 +46,26 @@
 @endsection
 
 @push('footer-scripts')
+
 <script>
-	function setUrlParam(item, param) {
-		let params = (new URL(document.location)).searchParams;
-		let currentValue = params.get(param);
-
-		if (currentValue == null) {
-			let urlParam = jQuery.param({ [param]: item.value });
-			window.location.search += urlParam;
-		} else {
-			window.location = location.href.replace(param + "=" + currentValue, param + "=" + item.value);
-		}
+	function getUrlParam(param) {
+		const params = new URLSearchParams(location.search);
+		return params.get(param);
 	}
 
-	function getUrlParamValue(param) {
-		return (new URL(document.location)).searchParams.get(param);
+	function setUrlParam(param, value) {
+		const params = new URLSearchParams(location.search);
+		params.set(param, value);
+		window.location = location.pathname + '?' + params;
+		//window.history.replaceState({}, '', `${location.pathname}?${params}`);
 	}
 
-	$(function(){
-		let city = getUrlParamValue('city');
-		$('#city-select').val(getUrlParamValue('city'));
-		$('#sortby').val(getUrlParamValue('sortby'));
-		// bind change event to select
-		// $('#city-select').on('change', function () {
-		// 	let params = (new URL(document.location)).searchParams;
-		// 	let city = params.get("city");
-
-		// 	if (city == null) {
-		// 		city = jQuery.param({ city:$(this).val() });
-		// 		window.location.search += city;
-		// 	} else {
-		// 		window.location = location.href.replace("city=" + city, "city=" + $(this).val());
-		// 	}
-		// });
-
-		// $('#order-select').on('change', function () {
-		// 	let params = (new URL(document.location)).searchParams;
-		// 	let order = params.get("order");
-
-		// 	if (order) {
-		// 		var newUrl = location.href.replace("order=" + order, "order=" + $(this).val());
-		// 		window.location = newUrl; // redirect
-		// 	}
-		// });
+	$(document).ready(function () {
+		let city = getUrlParam('city');
+		let order = getUrlParam('orderby');
+		$("#city").val(city);
+		$("#orderby").val(order);
 	});
 </script>
+
 @endpush

@@ -43,6 +43,7 @@
 		  }
 		})
 	</script>
+	@stack('header-scripts')
     
 </head>
 <body>

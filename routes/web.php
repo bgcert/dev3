@@ -33,7 +33,7 @@ Route::view('/page/publish', 'pages/publish');
 // Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 
-Route::get('/browse/{slug?}', 'PublicController@events');
+Route::get('/browse/{slug?}', 'EventController@index');
 Route::get('/t', 'PublicController@themes');
 Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');

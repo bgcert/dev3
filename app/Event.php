@@ -45,7 +45,11 @@ class Event extends Model
 
     public function scopeUpcoming($query)
     {
-    	return $query->where('active', 1)->whereDate('start_date', '>', Carbon::today())->whereHas('theme')->with('theme.commentCount', 'theme.company', 'visitCount');
+    	return $query
+    				->where('active', 1)
+    				->whereDate('start_date', '>', Carbon::today())
+    				->whereHas('theme')
+    				->with('theme.category', 'theme.commentCount', 'theme.company', 'visitCount');
     }
 
     // For related events by company
