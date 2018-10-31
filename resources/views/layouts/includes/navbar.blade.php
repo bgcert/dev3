@@ -13,7 +13,9 @@
 			</ul>
 
 			<ul class="aligned">
-				<li><search></search></li>
+				<li>
+					<search></search>
+				</li>
 
 				<li>
 					<div class="dropdown">

@@ -6,12 +6,36 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    public function index(Request $request)
-    {
-    	$categories = \App\Category::all();
-    	$cities = \App\City::whereHas('events')->get();
+	protected $categories;
+	protected $cities;
+	protected $events;
 
-    	$events = \App\Event::upcoming();
+	public function __construct()
+	{
+		$this->categories = \App\Category::all();
+		$this->cities = $cities = \App\City::whereHas('events')->get();
+		$this->events = \App\Event::upcoming();
+	}
+
+    public function index(Request $request)
+    {   	
+    	$events = $this->filtered($request);
+    	$categories = $this->categories;
+    	$cities = $this->cities;
+    	return view('home', compact('categories', 'cities', 'events'));
+    }
+
+    public function browse(Request $request)
+    {
+    	$events = $this->filtered($request);
+    	$categories = $this->categories;
+    	$cities = $this->cities;
+    	return view('events', compact('categories', 'cities', 'events'));
+    }
+
+    public function filtered($request)
+    {
+    	$events = $this->events;
     	if ($request->slug) $events->byCategory($request->slug);
     	if ($request->city) $events->where('city_id', $request->city);
 
@@ -20,9 +44,7 @@ class EventController extends Controller
     		if ($request->orderby == 2) $order = 'price';
     		$events->orderBy($order, 'asc');
     	}
-
-    	$events = $events->get();
-    	return view('events', compact('categories', 'cities', 'events'));
+    	return $events->get();
     }
 
     

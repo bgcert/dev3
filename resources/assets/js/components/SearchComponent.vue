@@ -1,23 +1,20 @@
 <template>
-		<div class="search-container">
-			<div class="ui icon input" :class="{ huge: big, fluid: big, loading: loading }">
-			  <input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
-			  <i class="search icon"></i>
-			</div>
-			<div class="ui segments search-results" v-if="events.length > 0 || noResults" :class="{ top: big }">
-				<div class="ui segment" v-for="event in events" @click="openEvent(event.id)">
-					<p>{{ event.theme.title }} - {{ event.start_date_carbon }}</p>
-				</div>
-				<div class="ui segment" v-if="noResults">
-					<p>Няма намерени резултати</p>
-				</div>
+		<div class="search" :class="{ large: large }">
+			<input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
+			<div class="search-results" v-if="events.length > 0 || noResults">
+				<ul v-for="event in events" @click="openEvent(event.id)">
+					<li><a href="#">{{ event.theme.title }} - {{ event.start_date_carbon }}</a></li>
+				</ul>
+				<ul v-if="noResults">
+					<li>Няма намерени резултати</li>
+				</ul>
 			</div>
 		</div>
 </template>
 
 <script>
     export default {
-    	props: ['big'],
+    	props: ['large'],
 
     	data: function () {
     		return {
@@ -85,29 +82,3 @@
         }
     };
 </script>
-
-<style>
-	.search-container {
-		/*width: 30% !important;*/
-		position: relative;
-	}
-
-	.search-results {
-		position: absolute !important;
-		color: rgba(0,0,0,.87) !important;
-		top: 24px;
-		left: 0;
-		z-index: 12200;
-		width: 200%;
-		cursor: pointer;
-	}
-
-	.top {
-		top: 38px;
-		width: 100%;
-	}
-
-	.search-container .ui .segment:hover {
-		background: #F8F8FA;
-	}
-</style>

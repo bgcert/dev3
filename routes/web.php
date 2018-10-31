@@ -24,7 +24,7 @@ Route::get('/home', function () {
 });
 
 // PUBLIC ROUTES
-Route::get('/', 'PublicController@home')->name('home');
+Route::get('/', 'EventController@index')->name('home');
 
 // Pages
 Route::view('/page/help', 'pages/help');
@@ -33,7 +33,7 @@ Route::view('/page/publish', 'pages/publish');
 // Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 
-Route::get('/browse/{slug?}', 'EventController@index');
+Route::get('/browse/{slug?}', 'EventController@browse');
 Route::get('/t', 'PublicController@themes');
 Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');

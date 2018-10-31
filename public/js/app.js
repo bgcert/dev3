@@ -117004,10 +117004,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(377)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(379)
@@ -117016,7 +117012,7 @@ var __vue_template__ = __webpack_require__(380)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -117051,46 +117047,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 377 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(378);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3e3bea4c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6406c664\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6406c664\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SearchComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 378 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.search-container {\n\t/*width: 30% !important;*/\n\tposition: relative;\n}\n.search-results {\n\tposition: absolute !important;\n\tcolor: rgba(0,0,0,.87) !important;\n\ttop: 24px;\n\tleft: 0;\n\tz-index: 12200;\n\twidth: 200%;\n\tcursor: pointer;\n}\n.top {\n\ttop: 38px;\n\twidth: 100%;\n}\n.search-container .ui .segment:hover {\n\tbackground: #F8F8FA;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 377 */,
+/* 378 */,
 /* 379 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -117110,12 +117068,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['big'],
+  props: ['large'],
 
   data: function data() {
     return {
@@ -117185,53 +117140,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "search-container" }, [
-    _c(
-      "div",
-      {
-        staticClass: "ui icon input",
-        class: { huge: _vm.big, fluid: _vm.big, loading: _vm.loading }
-      },
-      [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.input,
-              expression: "input"
-            }
-          ],
-          attrs: { type: "text", placeholder: "Търсене..." },
-          domProps: { value: _vm.input },
-          on: {
-            blur: _vm.clearSearch,
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.input = $event.target.value
-            }
+  return _c("div", { staticClass: "search", class: { large: _vm.large } }, [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.input,
+          expression: "input"
+        }
+      ],
+      attrs: { type: "text", placeholder: "Търсене..." },
+      domProps: { value: _vm.input },
+      on: {
+        blur: _vm.clearSearch,
+        input: function($event) {
+          if ($event.target.composing) {
+            return
           }
-        }),
-        _vm._v(" "),
-        _c("i", { staticClass: "search icon" })
-      ]
-    ),
+          _vm.input = $event.target.value
+        }
+      }
+    }),
     _vm._v(" "),
     _vm.events.length > 0 || _vm.noResults
       ? _c(
           "div",
-          {
-            staticClass: "ui segments search-results",
-            class: { top: _vm.big }
-          },
+          { staticClass: "search-results" },
           [
             _vm._l(_vm.events, function(event) {
               return _c(
-                "div",
+                "ul",
                 {
-                  staticClass: "ui segment",
                   on: {
                     click: function($event) {
                       _vm.openEvent(event.id)
@@ -117239,21 +117179,21 @@ var render = function() {
                   }
                 },
                 [
-                  _c("p", [
-                    _vm._v(
-                      _vm._s(event.theme.title) +
-                        " - " +
-                        _vm._s(event.start_date_carbon)
-                    )
+                  _c("li", [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v(
+                        _vm._s(event.theme.title) +
+                          " - " +
+                          _vm._s(event.start_date_carbon)
+                      )
+                    ])
                   ])
                 ]
               )
             }),
             _vm._v(" "),
             _vm.noResults
-              ? _c("div", { staticClass: "ui segment" }, [
-                  _c("p", [_vm._v("Няма намерени резултати")])
-                ])
+              ? _c("ul", [_c("li", [_vm._v("Няма намерени резултати")])])
               : _vm._e()
           ],
           2

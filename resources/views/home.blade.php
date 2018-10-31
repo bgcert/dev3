@@ -9,18 +9,14 @@
 				<a href="#">+ Добави обучение |</a>
 				<a href="#">+ Добави зала</a>
 			</div>
-			<div class="search-container centered">
+			<div class="vcentered" style="margin: 0 auto; max-width: 66%;">
 				<div class="h1 inverted shadow-text">
 					Семинари 365
 				</div>
 				<div class="h2 inverted shadow-text">
 					Открий курс днес. Бъди успешен утре.
 				</div>
-				<div>
-					<div class="search-large">
-						<input type="text" name="search">
-					</div>
-				</div>
+				<search :large="true"></search>
 			</div>
 		</div>	
 	</header>
@@ -58,15 +54,12 @@
 	</section>
 
 	<section class="content">
-		<div class="container small">
+		<div class="container indented">
 			<div class="section-title">
 				Актуални обучения
 			</div>
-			<div class="grid">
-				@foreach($events as $event)
-					@include('partials.event-box', ['event' => $event])
-				@endforeach
-			</div>
+			@include('partials.events-filtered', ['cities' => $cities, 'events' => $events])
+			
 		</div>
 	</section>
 	
