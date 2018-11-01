@@ -48,7 +48,7 @@
 
 	<section class="content">
 		<div class="container small">
-			<div class="grid grid-2-1">
+			<div class="grid grid-5-2">
 				<div>
 					<p style="white-space: pre-line;">
 				    	{{ $event->theme->body }}

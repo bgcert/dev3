@@ -1,4 +1,4 @@
-<div class="item event-box">
+<div class="item box">
 	<div class="cover" style="background: url(https://d3cwccg7mi8onu.cloudfront.net/266x132/{{ $event->cover }})">
 		<a href="/c/{{ $event->theme->company->slug }}" class="c-logo">
 			<div style="background: url(https://d3cwccg7mi8onu.cloudfront.net/56x56/{{ $event->theme->company->logo }})"></div>

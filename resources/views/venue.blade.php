@@ -1,22 +1,53 @@
 @extends('layouts.app')
 
-@push('header-scripts')
-	<style>
-		.flex { display: flex; }
-		.logo { flex: 2; }
-		.company-details { flex: 3; text-align: center; }
-	</style>
+@push('footer-scripts')
+	<script>
+		let images = {!! json_encode($images) !!};
+		let count = images.length;
+		let current = 1;
+		if (count > 0) {
+			showSlide(current);
+		}
+
+		function nextSlide() {
+			if (count > 0 && current < count) {
+				current++;
+				showSlide();
+			}
+		}
+
+		function prevSlide() {
+			if (count > 1 && current > 1) {
+				current--;
+				showSlide();
+			}
+		}
+
+		function showSlide() {
+			if (current == count) {
+				$('.slide-container .next').hide();
+			} else if(current == 1) {
+				$('.slide-container .prev').hide();
+			} else {
+				$('.slide-container .next').show();
+				$('.slide-container .prev').show();
+			}
+			$('.slide-container .item').css('background-image', 'url("https://d3cwccg7mi8onu.cloudfront.net/1000x400/' + images[current-1] + '")');
+		}
+	</script>
 @endpush
 
 @section('content')
-<div class="sub-nav" style="background-color: #fff; padding: 10px; border-bottom: 1px solid #DDDDDD;">
-	<div class="ui container">
-		<div class="ui breadcrumb">
-			<a href="/" class="section">Начало</a>
-			<i class="right angle icon divider"></i>
-			<a href="/v" class="section">Зали</a>
-			<i class="right angle icon divider"></i>
-			<div class="active section">{{ $venue->name }}</div>
+
+<div class="container">
+	<div class="grid grid-5-2">
+		<div class="slide-container">
+			<div class="item"></div>
+			<a class="prev" onclick="prevSlide()">&#10094;</a>
+	  		<a class="next" onclick="nextSlide()">&#10095;</a>
+		</div>
+		<div>
+			test
 		</div>
 	</div>
 </div>
@@ -24,10 +55,10 @@
 <div class="ui container">
 	<div class="ui grid">
 		<div class="column">
-			<venue-slider
+			<!-- <venue-slider
 				id="{{ $venue->id }}"
 				cover="{{ $venue->cover }}">
-			</venue-slider>
+			</venue-slider> -->
 		</div>
 	</div>
 	<div class="ui segment padded grid">
@@ -118,11 +149,3 @@
     
 </div>
 @endsection
-
-@push('footer-scripts')
-	<script>
-		$('#number').click(function() {
-		    $(this).find('span').text( $(this).data('number') );
-		});
-	</script>
-@endpush

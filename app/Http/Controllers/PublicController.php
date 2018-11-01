@@ -34,22 +34,22 @@ class PublicController extends Controller
     	return view('themes', compact('themes'));
     }
 
-    public function events()
-    {
-    	$categories = \App\Category::whereHas('themes')->get();
-    	$cities = \App\City::whereHas('events')->get();
+    // public function events()
+    // {
+    // 	$categories = \App\Category::whereHas('themes')->get();
+    // 	$cities = \App\City::whereHas('events')->get();
 
-    	if (request()->slug) {
-    		$events = \App\Event::upcoming()->byCategory(request()->slug)->get();
-    	} else {
-    		$events = \App\Event::upcoming()->get();
-    	}
-    	return view('events', compact('categories', 'cities', 'events'));
-    }
+    // 	if (request()->slug) {
+    // 		$events = \App\Event::upcoming()->byCategory(request()->slug)->get();
+    // 	} else {
+    // 		$events = \App\Event::upcoming()->get();
+    // 	}
+    // 	return view('events', compact('categories', 'cities', 'events'));
+    // }
 
     public function venues()
     {
-    	$venues = \App\Venue::with('company', 'isLiked')->get();
+    	$venues = \App\Venue::with('company')->get();
     	return view('venues', compact('venues'));
     }
 
@@ -105,7 +105,8 @@ class PublicController extends Controller
     {
     	$venue = \App\Venue::where('id', request()->id)->with('city', 'company', 'comments.user')->first();
     	$venue->visit();
-    	$images = $venue->venue_images;
+    	$images = $venue->venue_images->pluck('filename')->toArray();
+    	array_unshift($images, $venue->cover);
     	return view('venue', compact('venue', 'images'));
     }
 

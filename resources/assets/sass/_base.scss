@@ -1,6 +1,7 @@
 body {
 	// font-family: 'Montserrat', sans-serif;
 	font-family: Roboto,Helvetica,Arial,sans-serif;
+	margin: 0;
 }
 
 a {
@@ -58,6 +59,10 @@ nav ul li {
 
 .grid-2-1 {
 	grid-template-columns: 2fr 1fr;
+}
+
+.grid-5-2 {
+	grid-template-columns: 5fr 2fr;
 }
 
 .item {
@@ -182,6 +187,8 @@ footer a {
 .upercase { text-transform: uppercase; }
 .shadow-text { text-shadow: 2px 2px black; }
 .inverted { color: #fff; }
+
+.mtop { margin-top: 20px; }
 
 .section-title {
 	font-size: 1.2em;

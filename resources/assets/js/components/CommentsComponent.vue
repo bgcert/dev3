@@ -1,6 +1,6 @@
 <template>
 
-	<div class="comment-feed">
+	<div class="comment-feed mtop">
 		<h1 class="centered">Комантари</h1>
 
 		<template v-for="(comment, index) in comments">
