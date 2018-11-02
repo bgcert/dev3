@@ -35,7 +35,7 @@
 				@foreach($categories as $category)
 				<a href="/browse/{{ $category->slug }}" class="item cat">
 					<div class="aligned">
-						<i class="material-icons">trending_up</i>
+						<i class="fas fa-user-tie"></i>
 						<div class="h5">{{ $category->name }}</div>
 					</div>
 				</a>
@@ -59,7 +59,6 @@
 				Актуални обучения
 			</div>
 			@include('partials.events-filtered', ['cities' => $cities, 'events' => $events])
-			
 		</div>
 	</section>
 	

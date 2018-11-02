@@ -3,6 +3,7 @@
 	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194)), $primary-color;
 	overflow: hidden;
 	color: #fff;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
 
 	.cover {
 		height: 132px;
