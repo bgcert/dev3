@@ -19,7 +19,7 @@
 
 				<li>
 					<div class="dropdown">
-						<a href="#" class="btn">Меню</a>
+						<a href="#" id="main-nav" class="btn">Меню</a>
 						<div class="menu-list">
 							<a href="/page/help">Помощ</a>
 							<a href="/page/report">Докладване</a>

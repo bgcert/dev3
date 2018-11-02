@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800);body {
-  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
 }
 
@@ -247,8 +247,8 @@ footer a {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   border: 1px solid #ccc;
-  padding: 5px 10px;
-  font-size: 12px;
+  padding: 8px 12px;
+  font-size: 0.9em;
   line-height: 1.5;
   border-radius: 3px;
   position: relative;
@@ -305,11 +305,24 @@ footer a {
 }
 
 .search-results ul li {
-  padding: 10px 20px;
+  padding: 10px;
+}
+
+.search-results ul li img {
+  border-radius: 2px;
+  margin-right: 12px;
 }
 
 .search-results ul li:hover {
   background: #f1f1ef;
+}
+
+.label {
+  background: #4947c6;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 /* Buttons */
@@ -318,6 +331,12 @@ footer a {
   display: inline-block;
   border-radius: 3px;
   padding: 12px 28px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.btn.fluid {
+  width: 100%;
 }
 
 .btn.inverted {
@@ -570,14 +589,24 @@ footer a {
 }
 
 .event-details table {
-  border: 1px solid #f2f2f2;
-  padding: 30px;
+  border: 1px solid #e6e6e6;
+  padding: 15px;
   width: 100%;
+  background: #f1f1ef;
 }
 
-.event-details table td {
-  padding: 20px 0;
-  border-bottom: 1px solid #f2f2f2;
+.event-details table i {
+  color: #4947c6;
+  font-size: 1.6em;
+  margin: 10px;
+}
+
+.event-details table .underlined {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.event-details table .price {
+  margin-top: 20px;
 }
 
 .event-details .company {
@@ -618,16 +647,21 @@ footer a {
   padding: 0 25px;
 }
 
+.teacher-list .teacher .details {
+  white-space: pre-line;
+}
+
 .box {
   border-radius: 4px;
-  background: linear-gradient(135deg, #2965ca, #563bc2);
+  background: linear-gradient(135deg, #2965ca, #563bc2), #4947c6;
   overflow: hidden;
   color: #fff;
 }
 
 .box .cover {
   height: 132px;
-  background-position: center;
+  background-position: center !important;
+  background-size: cover !important;
   position: relative;
 }
 
@@ -677,7 +711,7 @@ footer a {
 
 .box i {
   margin-right: 8px;
-  font-size: 18px;
+  font-size: 15px;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -739,7 +773,7 @@ footer a {
 
 .box-alt i {
   margin-right: 8px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .cat-box {
@@ -822,6 +856,17 @@ footer a {
   background: #f9f9f9;
 }
 
+.venue .sub-header {
+  background: #4947c6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+}
+
+.venue .description {
+  white-space: pre-line;
+}
+
 .slide-container {
   position: relative;
   /* Next & previous buttons */
@@ -832,10 +877,6 @@ footer a {
   height: 400px;
   background-position: center !important;
   background-size: cover !important;
-}
-
-.slide-container img {
-  display: none;
 }
 
 .slide-container .prev,

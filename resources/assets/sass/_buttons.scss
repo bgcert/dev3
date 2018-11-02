@@ -2,9 +2,13 @@
 
 .btn {
 	display: inline-block;
-	// background: #ccc;
 	border-radius: 3px;
 	padding: 12px 28px;
+	box-sizing: border-box;
+
+	&.fluid {
+		width: 100%;
+	}
 
 	&.inverted {
 		background: transparent;

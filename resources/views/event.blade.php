@@ -46,13 +46,13 @@
 		</div>
 	</header>
 
-	<section class="content">
+	<section class="content mtop">
 		<div class="container small">
 			<div class="grid grid-5-2">
 				<div>
-					<p style="white-space: pre-line;">
+					<div style="white-space: pre-line;">
 				    	{{ $event->theme->body }}
-				    </p>
+				    </div>
 
 				    <h1>Лектори</h1>
 				    <div class="teacher-list">
@@ -71,21 +71,30 @@
 				</div>
 
 				<div class="event-details">
-					<table>
+					<table class="info">
 						<tr>
-							<td>{{ $event->start_date_carbon }}</td>
+							<td class="underlined">
+								<i class="far fa-calendar"></i>
+								{{ $event->start_date_carbon }}
+							</td>
 						</tr>
 
 						<tr>
-							<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
+							<td class="underlined">
+								<i class="far fa-clock"></i>
+								{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.
+							</td>
 						</tr>
 
 						<tr>
-							<td>{{ $event->city->name }}, {{ $event->address }}</td>
+							<td>
+								<i class="fas fa-map-marked-alt"></i>
+								{{ $event->city->name }}, {{ $event->address }}
+							</td>
 						</tr>
 
 						<tr>
-							<td><div href="#" class="btn blue">{{ $event->price }} лв.</div></td>
+							<td><div href="#" class="label price">{{ $event->price }}.00 лв.</div></td>
 						</tr>
 					</table>
 					<a href="/c/{{ $event->theme->company->slug }}" class="company">

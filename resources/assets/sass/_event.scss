@@ -43,14 +43,23 @@
 
 .event-details {
 	table {
-		border: 1px solid #f2f2f2;
-	    padding: 30px;
+		border: 1px solid #e6e6e6;
+	    padding: 15px;
 	    width: 100%;
-	}
+	    background: $secondary-color;
 
-	table td {
-		padding: 20px 0;
-		border-bottom: 1px solid #f2f2f2;
+	    i {
+	    	color: $primary-color;
+	    	font-size: 1.6em;
+	    	margin: 10px;
+	    }
+	    .underlined {
+			border-bottom: 1px solid #e6e6e6;
+		}
+
+		.price {
+			margin-top: 20px;
+		}
 	}
 
 	.company {
@@ -84,6 +93,10 @@
 
 		.info {
 			padding: 0 25px;
+		}
+
+		.details {
+			white-space: pre-line;
 		}
 	}
 }

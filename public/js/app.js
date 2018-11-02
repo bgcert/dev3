@@ -117066,6 +117066,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['large'],
@@ -117162,14 +117167,14 @@ var render = function() {
     }),
     _vm._v(" "),
     _vm.events.length > 0 || _vm.noResults
-      ? _c(
-          "div",
-          { staticClass: "search-results" },
-          [
+      ? _c("div", { staticClass: "search-results" }, [
+          _c(
+            "ul",
             _vm._l(_vm.events, function(event) {
               return _c(
-                "ul",
+                "li",
                 {
+                  staticClass: "aligned",
                   on: {
                     click: function($event) {
                       _vm.openEvent(event.id)
@@ -117177,25 +117182,32 @@ var render = function() {
                   }
                 },
                 [
-                  _c("li", [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v(
-                        _vm._s(event.theme.title) +
-                          " - " +
-                          _vm._s(event.start_date_carbon)
-                      )
-                    ])
+                  _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src:
+                          "https://d3cwccg7mi8onu.cloudfront.net/60x60/" +
+                          event.cover
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(
+                      _vm._s(event.theme.title) +
+                        " - " +
+                        _vm._s(event.start_date_carbon)
+                    )
                   ])
                 ]
               )
-            }),
-            _vm._v(" "),
-            _vm.noResults
-              ? _c("ul", [_c("li", [_vm._v("Няма намерени резултати")])])
-              : _vm._e()
-          ],
-          2
-        )
+            })
+          ),
+          _vm._v(" "),
+          _vm.noResults
+            ? _c("ul", [_c("li", [_vm._v("Няма намерени резултати")])])
+            : _vm._e()
+        ])
       : _vm._e()
   ])
 }

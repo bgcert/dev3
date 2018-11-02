@@ -5,7 +5,6 @@
 		</a>
 	</div>
 	<div class="content">
-		<rateing :rateing="0"></rateing>
 		<a href="/event/{{ $event->id }}" class="title">
 			{{ $event->theme->title }}
 		</a>
@@ -19,7 +18,8 @@
 				{{ $event->price }} лв.
 			</div>
 			<div class="aligned comments">
-				<i class="material-icons">visibility</i>{{ $event->visits }}
+				<i class="fas fa-eye"></i>
+				{{ $event->visits }}
 			</div>
 		</div>
 	</div>

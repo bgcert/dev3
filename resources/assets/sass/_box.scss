@@ -1,13 +1,15 @@
 .box {
 	border-radius: 4px;
-	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194));
+	background: linear-gradient(135deg, rgb(41, 101, 202), rgb(86, 59, 194)), $primary-color;
 	overflow: hidden;
 	color: #fff;
 
 	.cover {
 		height: 132px;
-		background-position: center;
+		background-position: center !important;
+    	background-size: cover !important;
 		position: relative;
+		// clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
 
 		.c-logo {
 			display: inline-block;
@@ -56,7 +58,7 @@
 
 	i {
 		margin-right: 8px;
-	    font-size: 18px;
+	    font-size: 15px;
 	    color: rgba(255,255,255, 0.6);
 	}
 }
@@ -118,7 +120,7 @@
 
 	i {
 		margin-right: 8px;
-	    font-size: 18px;
+	    font-size: 15px;
 	}
 }
 
@@ -131,4 +133,8 @@
     background-size: cover !important;
     background-blend-mode: overlay;
     color: #fff;
+}
+
+.company-box {
+
 }

@@ -2,8 +2,13 @@
 		<div class="search" :class="{ large: large }">
 			<input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
 			<div class="search-results" v-if="events.length > 0 || noResults">
-				<ul v-for="event in events" @click="openEvent(event.id)">
-					<li><a href="#">{{ event.theme.title }} - {{ event.start_date_carbon }}</a></li>
+				<ul>
+					<li class="aligned" v-for="event in events" @click="openEvent(event.id)">
+						<div>
+							<img :src="'https://d3cwccg7mi8onu.cloudfront.net/60x60/' + event.cover">
+						</div>
+						<a href="#">{{ event.theme.title }} - {{ event.start_date_carbon }}</a>
+					</li>
 				</ul>
 				<ul v-if="noResults">
 					<li>Няма намерени резултати</li>
