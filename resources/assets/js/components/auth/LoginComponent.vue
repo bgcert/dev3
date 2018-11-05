@@ -1,36 +1,36 @@
 <template>
-	<div class="item">
-		<el-form ref="form" label-position="left" label-width="140px" action="/">
-				
-			<el-form-item label="E-mail">
-				<template v-if="errorMessage.email" v-for="error in errorMessage.email">
-					<el-alert
-						:title="error"
-						type="error"
-						show-icon>
-					</el-alert>
-				</template>
-				<el-input type="text" v-model="form.email" name="email"></el-input>
-			</el-form-item>
-			<el-form-item label="Парола">
-				<template v-if="errorMessage.password" v-for="error in errorMessage.password">
-					<el-alert
-						:title="error"
-						type="error"
-						show-icon>
-					</el-alert>
-				</template>
-				<el-input type="password" v-model="form.password" name="password"></el-input>
-				<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
-			</el-form-item>
+	<div class="form">
+		<template v-if="errorMessage.email" v-for="error in errorMessage.email">
+			<el-alert
+				:title="error"
+				type="error"
+				show-icon>
+			</el-alert>
+		</template>
+		<div>
+			<input type="text" v-model="form.email" name="email" placeholder="E-mail">
+		</div>
 
-			<el-form-item size="large">
-				<el-button @click.prevent="callRegister"> Регистрация</el-button>
-				<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
-				<el-button type="text" @click="callReset"> Забравена парола.</el-button>
-			</el-form-item>
-		</el-form>
+		<template v-if="errorMessage.password" v-for="error in errorMessage.password">
+			<el-alert
+				:title="error"
+				type="error"
+				show-icon>
+			</el-alert>
+		</template>
+		<div class="field">
+			<input type="password" v-model="form.password" name="password" placeholder="Парола">	
+		</div>
 		
+		<div class="field">
+			<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
+		</div>
+		<!-- <el-form-item label="Парола">
+			
+		</el-form-item> -->
+		<a href="/register" class="btn basic"> Регистрация</a>
+		<a href="#" class="btn blue" @click="onSubmit" :loading="loading"> Вход</a>
+		<a href="#" @click="callReset"> Забравена парола.</a>		
 	</div>
 </template>
 

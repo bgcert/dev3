@@ -1,18 +1,15 @@
 <template>
-	<div class="ui segment captcha">
+	<div class="form captcha">
 		<template v-if="error">
 			 <el-alert type="error" :title="error"></el-alert>
 		</template>
-		<div class="fields">
-			<div class="twelve wide field">
-				<label>{{ numberString }}</label>
-				<!-- <input type="text" placeholder="First Name"> -->
-			</div>
-			<div class="two wide field">
-				<button class="ui tiny orange icon button" @click.prevent="load"><i class="redo icon"></i></button>
-			</div>
+		<div class="field">
+			<mark>{{ numberString }}</mark>
 		</div>
-		<div class="ui input">
+		<div class="field">
+			<a href="#" class="btn small blue" @click.prevent="load"><i class="fas fa-sync-alt"></i></a>
+		</div>
+		<div class="field">
 			<input type="text" placeholder="Въведете числото" v-model="input">
 		</div>
 	</div>

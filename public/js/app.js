@@ -117307,7 +117307,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117319,9 +117319,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
 //
 //
 //
@@ -117411,35 +117408,34 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ui segment captcha" },
+    { staticClass: "form captcha" },
     [
       _vm.error
         ? [_c("el-alert", { attrs: { type: "error", title: _vm.error } })]
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "fields" }, [
-        _c("div", { staticClass: "twelve wide field" }, [
-          _c("label", [_vm._v(_vm._s(_vm.numberString))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "two wide field" }, [
-          _c(
-            "button",
-            {
-              staticClass: "ui tiny orange icon button",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.load($event)
-                }
-              }
-            },
-            [_c("i", { staticClass: "redo icon" })]
-          )
-        ])
+      _c("div", { staticClass: "field" }, [
+        _c("mark", [_vm._v(_vm._s(_vm.numberString))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "ui input" }, [
+      _c("div", { staticClass: "field" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn small blue",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.load($event)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-sync-alt" })]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
         _c("input", {
           directives: [
             {
@@ -118233,129 +118229,115 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "item" },
+    { staticClass: "form" },
     [
-      _c(
-        "el-form",
-        {
-          ref: "form",
-          attrs: {
-            "label-position": "left",
-            "label-width": "140px",
-            action: "/"
+      _vm._l(_vm.errorMessage.email, function(error) {
+        return _vm.errorMessage.email
+          ? [
+              _c("el-alert", {
+                attrs: { title: error, type: "error", "show-icon": "" }
+              })
+            ]
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _c("div", [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.email,
+              expression: "form.email"
+            }
+          ],
+          attrs: { type: "text", name: "email", placeholder: "E-mail" },
+          domProps: { value: _vm.form.email },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "email", $event.target.value)
+            }
           }
-        },
+        })
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.errorMessage.password, function(error) {
+        return _vm.errorMessage.password
+          ? [
+              _c("el-alert", {
+                attrs: { title: error, type: "error", "show-icon": "" }
+              })
+            ]
+          : _vm._e()
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.password,
+              expression: "form.password"
+            }
+          ],
+          attrs: { type: "password", name: "password", placeholder: "Парола" },
+          domProps: { value: _vm.form.password },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "password", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "field" },
         [
           _c(
-            "el-form-item",
-            { attrs: { label: "E-mail" } },
-            [
-              _vm._l(_vm.errorMessage.email, function(error) {
-                return _vm.errorMessage.email
-                  ? [
-                      _c("el-alert", {
-                        attrs: { title: error, type: "error", "show-icon": "" }
-                      })
-                    ]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("el-input", {
-                attrs: { type: "text", name: "email" },
-                model: {
-                  value: _vm.form.email,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "email", $$v)
-                  },
-                  expression: "form.email"
-                }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Парола" } },
-            [
-              _vm._l(_vm.errorMessage.password, function(error) {
-                return _vm.errorMessage.password
-                  ? [
-                      _c("el-alert", {
-                        attrs: { title: error, type: "error", "show-icon": "" }
-                      })
-                    ]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("el-input", {
-                attrs: { type: "password", name: "password" },
-                model: {
-                  value: _vm.form.password,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "password", $$v)
-                  },
-                  expression: "form.password"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "el-checkbox",
-                {
-                  attrs: { name: "remember" },
-                  model: {
-                    value: _vm.form.checked,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "checked", $$v)
-                    },
-                    expression: "form.checked"
-                  }
+            "el-checkbox",
+            {
+              attrs: { name: "remember" },
+              model: {
+                value: _vm.form.checked,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "checked", $$v)
                 },
-                [_vm._v(" Запомни ме")]
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { size: "large" } },
-            [
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.callRegister($event)
-                    }
-                  }
-                },
-                [_vm._v(" Регистрация")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                {
-                  attrs: { type: "primary", loading: _vm.loading },
-                  on: { click: _vm.onSubmit }
-                },
-                [_vm._v(" Вход")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                { attrs: { type: "text" }, on: { click: _vm.callReset } },
-                [_vm._v(" Забравена парола.")]
-              )
-            ],
-            1
+                expression: "form.checked"
+              }
+            },
+            [_vm._v(" Запомни ме")]
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn basic", attrs: { href: "/register" } }, [
+        _vm._v(" Регистрация")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn blue",
+          attrs: { href: "#", loading: _vm.loading },
+          on: { click: _vm.onSubmit }
+        },
+        [_vm._v(" Вход")]
+      ),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "#" }, on: { click: _vm.callReset } }, [
+        _vm._v(" Забравена парола.")
+      ])
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -118894,9 +118876,10 @@ var render = function() {
           _c("div", { staticClass: "field" }, [_c("captcha")], 1),
           _vm._v(" "),
           _c(
-            "button",
+            "a",
             {
-              staticClass: "ui positive fluid button",
+              staticClass: "btn fluid blue",
+              attrs: { href: "#" },
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -119111,7 +119094,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "item" },
     [
       _c(
         "a",
@@ -119141,135 +119123,7 @@ var render = function() {
             }
           }
         },
-        [
-          _c(
-            "el-form",
-            {
-              ref: "form",
-              attrs: {
-                "label-position": "left",
-                "label-width": "140px",
-                action: "/"
-              }
-            },
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "E-mail" } },
-                [
-                  _vm._l(_vm.errorMessage.email, function(error) {
-                    return _vm.errorMessage.email
-                      ? [
-                          _c("el-alert", {
-                            attrs: {
-                              title: error,
-                              type: "error",
-                              "show-icon": ""
-                            }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("el-input", {
-                    attrs: { type: "text", name: "email" },
-                    model: {
-                      value: _vm.form.email,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "email", $$v)
-                      },
-                      expression: "form.email"
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "Парола" } },
-                [
-                  _vm._l(_vm.errorMessage.password, function(error) {
-                    return _vm.errorMessage.password
-                      ? [
-                          _c("el-alert", {
-                            attrs: {
-                              title: error,
-                              type: "error",
-                              "show-icon": ""
-                            }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("el-input", {
-                    attrs: { type: "password", name: "password" },
-                    model: {
-                      value: _vm.form.password,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "password", $$v)
-                      },
-                      expression: "form.password"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "el-checkbox",
-                    {
-                      attrs: { name: "remember" },
-                      model: {
-                        value: _vm.form.checked,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "checked", $$v)
-                        },
-                        expression: "form.checked"
-                      }
-                    },
-                    [_vm._v(" Запомни ме")]
-                  )
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { size: "large" } },
-                [
-                  _c(
-                    "el-button",
-                    {
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.callRegister($event)
-                        }
-                      }
-                    },
-                    [_vm._v(" Регистрация")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      attrs: { type: "primary", loading: _vm.loading },
-                      on: { click: _vm.onSubmit }
-                    },
-                    [_vm._v(" Вход")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    { attrs: { type: "text" }, on: { click: _vm.callReset } },
-                    [_vm._v(" Забравена парола.")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
+        [_c("login")],
         1
       )
     ],
@@ -119372,7 +119226,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -119383,71 +119237,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 //
 //
 //
@@ -119466,111 +119256,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             innerVisible: false,
             dialogFormVisible: false,
-            loading: false,
-            form: {
-                firstname: '',
-                lastname: '',
-                email: '',
-                publisher: false,
-                event_publish: true,
-                venue_publish: false,
-                password: '',
-                passwordConfirm: '',
-                companyName: '',
-                slug: ''
-            },
-            errors: []
+            loading: false
         };
     },
 
     mounted: function mounted() {
         console.log('Register Component mounted.');
-    },
-
-
-    methods: {
-        checkCaptcha: function checkCaptcha() {
-            var promise = new Promise(function (resolve, reject) {
-                return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('captcha', resolve, reject);
-            });
-            return promise;
-        },
-        onSubmit: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var vm;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                this.loading = true;
-                                vm = this;
-                                _context.prev = 2;
-                                _context.next = 5;
-                                return this.checkCaptcha();
-
-                            case 5:
-                                vm.loading = false;
-                                _context.next = 12;
-                                break;
-
-                            case 8:
-                                _context.prev = 8;
-                                _context.t0 = _context['catch'](2);
-
-                                vm.loading = false;
-                                return _context.abrupt('return');
-
-                            case 12:
-
-                                vm.loading = true;
-
-                                axios.post('/register', {
-                                    firstname: vm.form.firstname,
-                                    lastname: vm.form.lastname,
-                                    email: vm.form.email,
-                                    password: vm.form.password,
-                                    password_confirmation: vm.form.passwordConfirm
-                                }).then(function (response) {
-                                    vm.dialogFormVisible = false;
-                                    vm.innerVisible = true;
-                                    vm.loading = false;
-                                }).catch(function (error) {
-                                    vm.errors = error.response.data.errors;
-                                    vm.loading = false;
-                                });
-
-                            case 14:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this, [[2, 8]]);
-            }));
-
-            function onSubmit() {
-                return _ref.apply(this, arguments);
-            }
-
-            return onSubmit;
-        }(),
-        callLogin: function callLogin() {
-            this.dialogFormVisible = false;
-            setTimeout(function () {
-                __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('loginClicked');
-            }, 300);
-        },
-        closeConfirm: function closeConfirm() {
-            this.innerVisible = false;
-            location.reload();
-        }
-    },
-
-    created: function created() {
-        var _this = this;
-
-        __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$on('registerClicked', function () {
-            _this.dialogFormVisible = true;
-        });
     }
 });
 
@@ -119602,38 +119293,6 @@ var render = function() {
       _c(
         "el-dialog",
         {
-          attrs: {
-            width: "30%",
-            visible: _vm.innerVisible,
-            "append-to-body": ""
-          },
-          on: {
-            close: _vm.closeConfirm,
-            "update:visible": function($event) {
-              _vm.innerVisible = $event
-            }
-          }
-        },
-        [
-          _c("p", [
-            _vm._v("Изпратен е линк за потвърждение на "),
-            _c("b", [_vm._v(_vm._s(_vm.form.email))]),
-            _vm._v(
-              ". За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията."
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "button",
-            { staticClass: "ui basic button", on: { click: _vm.closeConfirm } },
-            [_vm._v("OK")]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
           attrs: { width: "400px", visible: _vm.dialogFormVisible },
           on: {
             "update:visible": function($event) {
@@ -119641,260 +119300,8 @@ var render = function() {
             }
           }
         },
-        [
-          _c("div", { staticClass: "signup-cover" }, [
-            _c("div", [
-              _c("h2", [_vm._v("Добре дошли в Seminari365")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "ui divider" }),
-              _vm._v(" "),
-              _c("h4", [_vm._v("Регистрирайте се, за да продължите напред.")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "loading",
-                  rawName: "v-loading",
-                  value: _vm.loading,
-                  expression: "loading"
-                }
-              ],
-              staticClass: "signup-form mt-20"
-            },
-            [
-              _c("form", { staticClass: "ui form" }, [
-                _c("div", { staticClass: "fields" }, [
-                  _c(
-                    "div",
-                    { staticClass: "field" },
-                    [
-                      _vm._l(_vm.errors.firstname, function(error) {
-                        return _vm.errors.firstname
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.firstname,
-                            expression: "form.firstname"
-                          }
-                        ],
-                        attrs: { type: "text", placeholder: "Име" },
-                        domProps: { value: _vm.form.firstname },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "firstname", $event.target.value)
-                          }
-                        }
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "field" },
-                    [
-                      _vm._l(_vm.errors.lastname, function(error) {
-                        return _vm.errors.lastname
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.lastname,
-                            expression: "form.lastname"
-                          }
-                        ],
-                        attrs: { type: "text", placeholder: "Фамилия" },
-                        domProps: { value: _vm.form.lastname },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "lastname", $event.target.value)
-                          }
-                        }
-                      })
-                    ],
-                    2
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field" },
-                  [
-                    _vm._l(_vm.errors.email, function(error) {
-                      return _vm.errors.email
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
-                        }
-                      ],
-                      attrs: { type: "email", placeholder: "E-mail" },
-                      domProps: { value: _vm.form.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "email", $event.target.value)
-                        }
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field" },
-                  [
-                    _vm._l(_vm.errors.password, function(error) {
-                      return _vm.errors.password
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password,
-                          expression: "form.password"
-                        }
-                      ],
-                      attrs: { type: "password", placeholder: "Парола" },
-                      domProps: { value: _vm.form.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "password", $event.target.value)
-                        }
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field" },
-                  [
-                    _vm._l(_vm.errors.password_confirmation, function(error) {
-                      return _vm.errors.password_confirmation
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.passwordConfirm,
-                          expression: "form.passwordConfirm"
-                        }
-                      ],
-                      attrs: {
-                        type: "password",
-                        placeholder: "Повторете паролата"
-                      },
-                      domProps: { value: _vm.form.passwordConfirm },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form,
-                            "passwordConfirm",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "field" }, [_c("captcha")], 1),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "ui positive fluid button",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.onSubmit($event)
-                      }
-                    }
-                  },
-                  [_vm._v("Регистрирай се")]
-                ),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    'С натискане на бутон "Регистрирай се", Вие се съгласявате с '
-                  ),
-                  _c("a", { attrs: { href: "terms", target: "_blank" } }, [
-                    _vm._v("условията за ползване")
-                  ]),
-                  _vm._v(".")
-                ])
-              ])
-            ]
-          )
-        ]
+        [_c("register")],
+        1
       )
     ],
     1

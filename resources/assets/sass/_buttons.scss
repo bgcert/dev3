@@ -8,6 +8,12 @@
 
 	&.fluid {
 		width: 100%;
+		text-align: center;
+	}
+
+	&.basic {
+		border: 1px solid $primary-color;
+		color: $primary-color;
 	}
 
 	&.inverted {
@@ -33,5 +39,12 @@
 	&.grey {
 		color: #fff;
 		background: #010101;
+	}
+
+	&.small {
+		padding: 6px 14px;
+		i {
+			font-size: 0.8em;
+		}
 	}
 }

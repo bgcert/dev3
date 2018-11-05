@@ -56,7 +56,7 @@
 				<div class="field">
 					<captcha></captcha>
 				</div>
-				<button class="ui positive fluid button" @click.prevent="onSubmit">Регистрирай се</button>
+				<a href="#" class="btn fluid blue" @click.prevent="onSubmit">Регистрирай се</a>
 				<p>С натискане на бутон "Регистрирай се", Вие се съгласявате с <a href="terms" target="_blank">условията за ползване</a>.</p>
 			</form>
 		</div>

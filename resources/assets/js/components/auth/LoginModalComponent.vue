@@ -1,10 +1,10 @@
 <template>
-	<div class="item">
+	<div>
 		<a href="#" class="btn rounded blue" @click="dialogFormVisible = true"> Вход</a>
 
 		<el-dialog width="30%" title="Вход" :visible.sync="dialogFormVisible">
-
-			<el-form ref="form" label-position="left" label-width="140px" action="/">
+			<login></login>
+			<!-- <el-form ref="form" label-position="left" label-width="140px" action="/">
 				
 				<el-form-item label="E-mail">
 					<template v-if="errorMessage.email" v-for="error in errorMessage.email">
@@ -33,7 +33,7 @@
 					<el-button type="primary" @click="onSubmit" :loading="loading"> Вход</el-button>
 					<el-button type="text" @click="callReset"> Забравена парола.</el-button>
 				</el-form-item>
-			</el-form>
+			</el-form> -->
 
 		</el-dialog>
 	</div>

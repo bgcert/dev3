@@ -9,7 +9,6 @@
 				</li>
 				<li><a href="/browse">Обучения</a></li>
 				<li><a href="/v">Зали</a></li>
-				<li><a href="#">Контакти</a></li>
 			</ul>
 
 			<ul class="aligned">
