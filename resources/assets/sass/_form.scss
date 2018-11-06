@@ -23,6 +23,12 @@ input, select {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
+input {
+	&.labeled {
+		border-radius: 0 3px 3px 0;
+	}
+}
+
 button {
 	cursor: pointer;
 	outline: none;

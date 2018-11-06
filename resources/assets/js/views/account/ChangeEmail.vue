@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<form class="ui form">
+		<form class="form">
 			<div class="field">
 				<label>Нов email</label>
 				<input type="text" v-model="form.email" value="" autocomplete="new-password">
@@ -10,7 +10,7 @@
 				<input type="password" v-model="form.password" value="" autocomplete="new-password">
 			</div>
 			<div class="field">
-				<button class="ui basic button" @click.prevent="changeEmail"> Промени</button>
+				<button class="btn blue" @click.prevent="changeEmail"> Промени</button>
 			</div>
 			
 		</form>

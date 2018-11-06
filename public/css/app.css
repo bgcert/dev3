@@ -317,14 +317,6 @@ footer a {
   background-color: #f8f7fa;
 }
 
-.label {
-  background: #4947c6;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  font-size: 1.2em;
-}
-
 /* Buttons */
 
 .btn {
@@ -938,6 +930,27 @@ footer a {
   color: #4947c6;
 }
 
+.label {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.label.price {
+  background: #4947c6;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.label.input {
+  padding: 9px 15px;
+  background: #4947c6;
+  border-radius: 3px 0 0 3px;
+  font-size: 0.8em;
+  color: #fff;
+}
+
 form .fluid input,
 form .fluid select,
 .form .fluid input,
@@ -971,9 +984,39 @@ select {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
+input.labeled {
+  border-radius: 0 3px 3px 0;
+}
+
 button {
   cursor: pointer;
   outline: none;
   border: none;
+}
+
+.tabs {
+  font-size: 0.9em;
+  border-bottom: 1px solid #d4d4d5;
+}
+
+.tabs .tab {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 3px 3px 0 0;
+  padding: 12px 20px;
+  margin-bottom: -1px;
+}
+
+.tabs .tab.active {
+  border: 1px solid #d4d4d5;
+  border-bottom: 1px solid #fff;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 20px;
+  border: 1px solid #d4d4d5;
+  border-top: none;
 }
 

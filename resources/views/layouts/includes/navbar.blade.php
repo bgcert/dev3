@@ -18,7 +18,7 @@
 
 				<li>
 					<div class="dropdown">
-						<a href="#" id="main-nav" class="btn">Меню</a>
+						<a href="#" id="main-nav" class="dropdown-btn btn" onclick="dropdown(this)">Меню</a>
 						<div class="menu-list">
 							<a href="/page/help">Помощ</a>
 							<a href="/page/report">Докладване</a>
@@ -39,6 +39,23 @@
 				@if(Auth::user()->role_id == 3)
 				<li><a href="/admin#/admin-users">Административен панел</a></li>
 				@endif
+				<li>
+					<div class="dropdown">
+						<a href="#" id="user-dropdown" class="dropdown-btn btn" onclick="dropdown(this)">{{ Auth::user()->firstname }}</a>
+						<div class="menu-list">
+							<a href="/users/settings#/settings" class="item">Акаунт</a>
+							<a class="item" href="{{ route('logout') }}"
+		                       onclick="event.preventDefault();
+		                                     document.getElementById('logout-form').submit();">
+		                        {{ __('Изход') }}
+		                    </a>
+
+		                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+		                        @csrf
+		                    </form>
+						</div>
+					</div>
+				</li>
 
 				<li>
 					<ul>

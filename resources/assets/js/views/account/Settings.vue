@@ -1,64 +1,60 @@
 <template>
 	<div>
-		<form class="ui form">
-			<div class="fields">
-				<div class="field">
-					<label>Име</label>
-					<input type="text" v-model="form.user.firstname">
-				</div>
-				<div class="field">
-					<label>Фамилия</label>
-					<input type="text" v-model="form.user.lastname">
-				</div>
+		<form class="form">
+			<div class="field">
+				<label>Име</label>
+				<input type="text" v-model="form.user.firstname">
 			</div>
 			<div class="field">
-				<button class="ui basic button" @click.prevent="setName"> Запиши промените</button>
+				<label>Фамилия</label>
+				<input type="text" v-model="form.user.lastname">
 			</div>
-			<div class="ui section divider"></div>
 			<div class="field">
-				<div class="ui toggle checkbox">
-					<input type="checkbox" v-model="form.publisher">
-					<label> Бизнес акаунт</label>
-				</div>
+				<button class="btn blue" @click.prevent="setName"> Запиши промените</button>
+			</div>
+			<hr>
+			<div class="field">
+				<input type="checkbox" v-model="form.publisher">
+				<label> Бизнес акаунт</label>
 			</div>
 			<template v-if="form.publisher">
 				<template v-if="errors.name" v-for="error in errors.name">
 					 <el-alert type="error" :title="error"></el-alert>
 				</template>
-				<div class="field" style="width: 200px;">
+				<div class="field">
 					<label>Име на организацията</label>
 					<input type="text" v-model="form.user.company.name">
 				</div>
-				<div class="field" style="width: 300px;">
+
+				<div class="field">
 					<label>Адрес на профила</label>
 					<template v-if="errors.slug" v-for="error in errors.slug">
 						 <el-alert type="error" :title="error"></el-alert>
 					</template>
-					<div class="ui labeled right input">
-						<div class="ui label">
-							http://seminari365.com/c/
-						</div>
-						<input type="text" v-model="form.user.company.slug" placeholder="company.ltd">
-					</div>
-					<div class="ui info message">Пример: abcltd или abc.ltd</div>
+					<span class="label input">
+						http://seminari365.com/c/
+					</span>
+					<input  class="labeled" type="text" v-model="form.user.company.slug" placeholder="company.ltd">
+					<span>Пример: abcltd или abc.ltd</span>
 				</div>
-				<div class="field">
-					<div class="ui toggle checkbox">
-						<input type="checkbox" v-model="form.user.company.event_publish">
-						<label> Публикуване на събития</label>
-					</div>
+
+				<div>
+					<a href="#">http://seminari365.com/c/{{ form.user.company.slug }}</a>
 				</div>
+
 				<div class="field">
-					<div class="ui toggle checkbox">
-						<input type="checkbox" v-model="form.user.company.venue_publish">
-						<label> Публикуване на зали</label>
-					</div>
+					<input type="checkbox" v-model="form.user.company.event_publish">
+					<label> Публикуване на събития</label>
+				</div>
+
+				<div class="field">
+					<input type="checkbox" v-model="form.user.company.venue_publish">
+					<label> Публикуване на зали</label>
 				</div>
 			</template>
 			
 			<div class="field">
-				<button class="ui basic button" @click.prevent="setPublisher"> Запиши промените</button>
-				<!-- <a v-if="showDashboard" class="ui orange button" href="/dashboard#/profile"> Бизнес панел</a> -->
+				<button class="btn blue" @click.prevent="setPublisher"> Запиши промените</button>
 			</div>
 			
 		</form>

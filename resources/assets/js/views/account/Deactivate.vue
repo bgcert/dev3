@@ -1,13 +1,10 @@
 <template>
 	<div>
-		<form class="ui form">
-
+		<form class="form">
 			<div class="field">
-				<button class="ui basic big negative button" @click.prevent=""> Деактивирай</button>
+				<button class="btn blue" @click.prevent=""> Деактивирай</button>
 			</div>
-			
 		</form>
-
 	</div>
 </template>
 
@@ -31,5 +28,5 @@
         created() {
 
         }
-    }
+    };
 </script>

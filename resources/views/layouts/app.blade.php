@@ -91,19 +91,19 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
-    	$(document).ready(function() {
-    		$('#main-nav').click(function(e) {
-    			$('.menu-list').toggleClass('active');
-    		});
-    	});
+    	function dropdown(e) {
+    		let current = e.nextElementSibling;
+    		// $('.menu-list').removeClass('active');
+    		current.classList.toggle("active");
+		}
 
     	window.onclick = function(e) {
-    		if (!e.target.matches('.btn')) {
-    			// var myDropdown = document.getElementById("myDropdown");
-    			// $('.menu-list').toggleClass('active');
-    			if ($('.menu-list').hasClass('active')) {
-    				$('.menu-list').toggleClass('active');
-    			}
+
+    		if (!e.target.matches('.dropdown-btn')) {
+    			$('.menu-list').removeClass('active');
+    			// if ($('.menu-list').hasClass('active')) {
+    			// 	$('.menu-list').toggleClass('active');
+    			// }
     		}
     	}
     </script>

@@ -805,13 +805,6 @@ function deepMerge(target, source) {
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(116);
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -836,6 +829,13 @@ module.exports = __webpack_require__(116);
   'enum': __WEBPACK_IMPORTED_MODULE_4__enum__["a" /* default */],
   pattern: __WEBPACK_IMPORTED_MODULE_5__pattern__["a" /* default */]
 });
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(116);
+
 
 /***/ }),
 /* 7 */
@@ -54493,7 +54493,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -56487,7 +56487,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -57013,7 +57013,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -57724,7 +57724,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -58064,7 +58064,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -58649,7 +58649,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -59498,7 +59498,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -60509,7 +60509,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -60781,7 +60781,7 @@ exports.push([module.i, "\n.multi-image {\n\tposition: relative;\n\tbackground-s
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 
@@ -61464,7 +61464,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ImageUploadComponent_vue__ = __webpack_require__(9);
@@ -63941,10 +63941,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64040,65 +64036,63 @@ var render = function() {
   return _c("div", [
     _c(
       "form",
-      { staticClass: "ui form" },
+      { staticClass: "form" },
       [
-        _c("div", { staticClass: "fields" }, [
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("Име")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.user.firstname,
-                  expression: "form.user.firstname"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.form.user.firstname },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form.user, "firstname", $event.target.value)
-                }
-              }
-            })
-          ]),
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Име")]),
           _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("label", [_vm._v("Фамилия")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.user.lastname,
-                  expression: "form.user.lastname"
-                }
-              ],
-              attrs: { type: "text" },
-              domProps: { value: _vm.form.user.lastname },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form.user, "lastname", $event.target.value)
-                }
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.user.firstname,
+                expression: "form.user.firstname"
               }
-            })
-          ])
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.user.firstname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form.user, "firstname", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Фамилия")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.user.lastname,
+                expression: "form.user.lastname"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.user.lastname },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form.user, "lastname", $event.target.value)
+              }
+            }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
           _c(
             "button",
             {
-              staticClass: "ui basic button",
+              staticClass: "btn blue",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -64110,53 +64104,51 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ui section divider" }),
+        _c("hr"),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
-          _c("div", { staticClass: "ui toggle checkbox" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.publisher,
-                  expression: "form.publisher"
-                }
-              ],
-              attrs: { type: "checkbox" },
-              domProps: {
-                checked: Array.isArray(_vm.form.publisher)
-                  ? _vm._i(_vm.form.publisher, null) > -1
-                  : _vm.form.publisher
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.form.publisher,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 &&
-                        _vm.$set(_vm.form, "publisher", $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        _vm.$set(
-                          _vm.form,
-                          "publisher",
-                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                        )
-                    }
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.publisher,
+                expression: "form.publisher"
+              }
+            ],
+            attrs: { type: "checkbox" },
+            domProps: {
+              checked: Array.isArray(_vm.form.publisher)
+                ? _vm._i(_vm.form.publisher, null) > -1
+                : _vm.form.publisher
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.form.publisher,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.form, "publisher", $$a.concat([$$v]))
                   } else {
-                    _vm.$set(_vm.form, "publisher", $$c)
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.form,
+                        "publisher",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
                   }
+                } else {
+                  _vm.$set(_vm.form, "publisher", $$c)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("label", [_vm._v(" Бизнес акаунт")])
-          ])
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v(" Бизнес акаунт")])
         ]),
         _vm._v(" "),
         _vm.form.publisher
@@ -64167,42 +64159,38 @@ var render = function() {
                   : _vm._e()
               }),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field", staticStyle: { width: "200px" } },
-                [
-                  _c("label", [_vm._v("Име на организацията")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.user.company.name,
-                        expression: "form.user.company.name"
-                      }
-                    ],
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.form.user.company.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form.user.company,
-                          "name",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "field" }, [
+                _c("label", [_vm._v("Име на организацията")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.user.company.name,
+                      expression: "form.user.company.name"
                     }
-                  })
-                ]
-              ),
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.form.user.company.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.form.user.company,
+                        "name",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "field", staticStyle: { width: "300px" } },
+                { staticClass: "field" },
                 [
                   _c("label", [_vm._v("Адрес на профила")]),
                   _vm._v(" "),
@@ -64216,150 +64204,146 @@ var render = function() {
                       : _vm._e()
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "ui labeled right input" }, [
-                    _c("div", { staticClass: "ui label" }, [
-                      _vm._v(
-                        "\n\t\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t\t"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.user.company.slug,
-                          expression: "form.user.company.slug"
-                        }
-                      ],
-                      attrs: { type: "text", placeholder: "company.ltd" },
-                      domProps: { value: _vm.form.user.company.slug },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form.user.company,
-                            "slug",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
+                  _c("span", { staticClass: "label input" }, [
+                    _vm._v("\n\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t")
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "ui info message" }, [
-                    _vm._v("Пример: abcltd или abc.ltd")
-                  ])
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.user.company.slug,
+                        expression: "form.user.company.slug"
+                      }
+                    ],
+                    staticClass: "labeled",
+                    attrs: { type: "text", placeholder: "company.ltd" },
+                    domProps: { value: _vm.form.user.company.slug },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form.user.company,
+                          "slug",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Пример: abcltd или abc.ltd")])
                 ],
                 2
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("div", { staticClass: "ui toggle checkbox" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.user.company.event_publish,
-                        expression: "form.user.company.event_publish"
-                      }
-                    ],
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.form.user.company.event_publish
-                      )
-                        ? _vm._i(_vm.form.user.company.event_publish, null) > -1
-                        : _vm.form.user.company.event_publish
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.form.user.company.event_publish,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.form.user.company,
-                                "event_publish",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form.user.company,
-                                "event_publish",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form.user.company, "event_publish", $$c)
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [_vm._v(" Публикуване на събития")])
+              _c("div", [
+                _c("a", { attrs: { href: "#" } }, [
+                  _vm._v(
+                    "http://seminari365.com/c/" +
+                      _vm._s(_vm.form.user.company.slug)
+                  )
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
-                _c("div", { staticClass: "ui toggle checkbox" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.user.company.venue_publish,
-                        expression: "form.user.company.venue_publish"
-                      }
-                    ],
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.form.user.company.venue_publish
-                      )
-                        ? _vm._i(_vm.form.user.company.venue_publish, null) > -1
-                        : _vm.form.user.company.venue_publish
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.form.user.company.venue_publish,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.form.user.company,
-                                "venue_publish",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form.user.company,
-                                "venue_publish",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.user.company.event_publish,
+                      expression: "form.user.company.event_publish"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.form.user.company.event_publish)
+                      ? _vm._i(_vm.form.user.company.event_publish, null) > -1
+                      : _vm.form.user.company.event_publish
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.form.user.company.event_publish,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.form.user.company,
+                              "event_publish",
+                              $$a.concat([$$v])
+                            )
                         } else {
-                          _vm.$set(_vm.form.user.company, "venue_publish", $$c)
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form.user.company,
+                              "event_publish",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
                         }
+                      } else {
+                        _vm.$set(_vm.form.user.company, "event_publish", $$c)
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("label", [_vm._v(" Публикуване на зали")])
-                ])
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v(" Публикуване на събития")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "field" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.user.company.venue_publish,
+                      expression: "form.user.company.venue_publish"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.form.user.company.venue_publish)
+                      ? _vm._i(_vm.form.user.company.venue_publish, null) > -1
+                      : _vm.form.user.company.venue_publish
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.form.user.company.venue_publish,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.form.user.company,
+                              "venue_publish",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.form.user.company,
+                              "venue_publish",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.form.user.company, "venue_publish", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", [_vm._v(" Публикуване на зали")])
               ])
             ]
           : _vm._e(),
@@ -64368,7 +64352,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "ui basic button",
+              staticClass: "btn blue",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -64539,7 +64523,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("form", { staticClass: "ui form" }, [
+    _c("form", { staticClass: "form" }, [
       _c("div", { staticClass: "field" }, [
         _c("label", [_vm._v("Стара парола")]),
         _vm._v(" "),
@@ -64619,7 +64603,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "ui basic button",
+            staticClass: "btn blue",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -64761,7 +64745,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("form", { staticClass: "ui form" }, [
+    _c("form", { staticClass: "form" }, [
       _c("div", { staticClass: "field" }, [
         _c("label", [_vm._v("Нов email")]),
         _vm._v(" "),
@@ -64816,7 +64800,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "ui basic button",
+            staticClass: "btn blue",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -64904,9 +64888,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64931,12 +64912,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("form", { staticClass: "ui form" }, [
+    _c("form", { staticClass: "form" }, [
       _c("div", { staticClass: "field" }, [
         _c(
           "button",
           {
-            staticClass: "ui basic big negative button",
+            staticClass: "btn blue",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -65593,7 +65574,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
 
@@ -108775,7 +108756,7 @@ __webpack_require__(55)('observable');
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109076,7 +109057,7 @@ function pattern(rule, value, source, errors, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109113,7 +109094,7 @@ function method(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109152,7 +109133,7 @@ function number(rule, value, callback, source, options) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(5);
 
 
 
@@ -109188,7 +109169,7 @@ function boolean(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109225,7 +109206,7 @@ function regexp(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109263,7 +109244,7 @@ function integer(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109301,7 +109282,7 @@ function floatFn(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109338,7 +109319,7 @@ function array(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109375,7 +109356,7 @@ function object(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109413,7 +109394,7 @@ function enumerable(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109453,7 +109434,7 @@ function pattern(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -109495,7 +109476,7 @@ function date(rule, value, callback, source, options) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(5);
 
 
 
@@ -109513,7 +109494,7 @@ function required(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(4);
 
 
@@ -118447,7 +118428,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(1);
 
@@ -119426,7 +119407,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
-      user: window.user,
       activeTab: this.$route.path,
       form: {
         publisher: false,
@@ -119533,73 +119513,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !_vm.user.token
-    ? _c("div", { staticClass: "mt-20" }, [
+  return _c("div", { staticClass: "mtop" }, [
+    _c(
+      "div",
+      { staticClass: "tabs" },
+      [
         _c(
-          "div",
-          { staticClass: "ui top attached tabular menu" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/notifications" },
-                attrs: { to: "/notifications" }
-              },
-              [_vm._v("\n\t\t\tИзвестия\n\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/settings" },
-                attrs: { to: "/settings" }
-              },
-              [_vm._v("\n\t\t\tНастройки\n\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/change-pass" },
-                attrs: { to: "/change-pass" }
-              },
-              [_vm._v("\n\t\t\tПромяна на парола\n\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/change-email" },
-                attrs: { to: "/change-email" }
-              },
-              [_vm._v("\n\t\t\tПромяна на email\n\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/deactivate" },
-                attrs: { to: "/deactivate" }
-              },
-              [_vm._v("\n\t\t\tДеактивиране\n\t\t")]
-            )
-          ],
-          1
+          "router-link",
+          {
+            staticClass: "tab",
+            class: { active: _vm.$route.path == "/notifications" },
+            attrs: { to: "/notifications" }
+          },
+          [_vm._v("\n\t\t\tИзвестия\n\t\t")]
         ),
         _vm._v(" "),
         _c(
-          "div",
-          { staticClass: "ui bottom attached active tab segment" },
-          [_c("keep-alive", [_c("router-view")], 1)],
-          1
+          "router-link",
+          {
+            staticClass: "tab",
+            class: { active: _vm.$route.path == "/settings" },
+            attrs: { to: "/settings" }
+          },
+          [_vm._v("\n\t\t\tНастройки\n\t\t")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "tab",
+            class: { active: _vm.$route.path == "/change-pass" },
+            attrs: { to: "/change-pass" }
+          },
+          [_vm._v("\n\t\t\tПромяна на парола\n\t\t")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "tab",
+            class: { active: _vm.$route.path == "/change-email" },
+            attrs: { to: "/change-email" }
+          },
+          [_vm._v("\n\t\t\tПромяна на email\n\t\t")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "tab",
+            class: { active: _vm.$route.path == "/deactivate" },
+            attrs: { to: "/deactivate" }
+          },
+          [_vm._v("\n\t\t\tДеактивиране\n\t\t")]
         )
-      ])
-    : _vm._e()
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "tab-content" },
+      [_c("keep-alive", [_c("router-view")], 1)],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -120215,7 +120193,7 @@ exports.push([module.i, "\n.reverse {\n  -webkit-box-orient: horizontal !importa
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
 

@@ -1,43 +1,43 @@
 <template>
-	<div class="mt-20" v-if="!user.token">
-		<div class="ui top attached tabular menu">
+	<div class="mtop">
+		<div class="tabs">
 			<router-link
 				to="/notifications"
-				class="item"
+				class="tab"
 				:class="{ active: $route.path == '/notifications' }">
 				Известия
 			</router-link>
 
 			<router-link
 				to="/settings"
-				class="item"
+				class="tab"
 				:class="{ active: $route.path == '/settings' }">
 				Настройки
 			</router-link>
 
 			<router-link
 				to="/change-pass"
-				class="item"
+				class="tab"
 				:class="{ active: $route.path == '/change-pass' }">
 				Промяна на парола
 			</router-link>
 
 			<router-link
 				to="/change-email"
-				class="item"
+				class="tab"
 				:class="{ active: $route.path == '/change-email' }">
 				Промяна на email
 			</router-link>
 
 			<router-link
 				to="/deactivate"
-				class="item"
+				class="tab"
 				:class="{ active: $route.path == '/deactivate' }">
 				Деактивиране
 			</router-link>
 		</div>
 
-		<div class="ui bottom attached active tab segment">
+		<div class="tab-content">
 			<keep-alive>
 				<router-view></router-view>
 			</keep-alive>
@@ -53,7 +53,6 @@
 
     	data: function () {
     		return {
-    			user: window.user,
     			activeTab: this.$route.path,
     			form: {
     				publisher: false,

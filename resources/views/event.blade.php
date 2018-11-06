@@ -8,7 +8,7 @@
 			style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $event->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.4));">
 			<div class="add-links"><a href="#">+ Добави обучение |</a> <a href="#">+ Добави зала</a></div>
 
-			<div class="container small">
+			<div class="container indented">
 				<div class="content">
 					<div class="title">
 						{{ $event->theme->title }}
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="sub-header">
-			<div class="container small">
+			<div class="container indented">
 				<div class="aligned">
 					<div class="links">
 						<a href="#" class="info">Информация</a>
@@ -47,7 +47,7 @@
 	</header>
 
 	<section class="content mtop">
-		<div class="container small">
+		<div class="container indented">
 			<div class="grid grid-5-2">
 				<div>
 					<div style="white-space: pre-line;">

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<form class="ui form">
+		<form class="form">
 			<div class="field">
 				<label>Стара парола</label>
 				<input type="password" v-model="form.oldPassword">
@@ -14,7 +14,7 @@
 				<input type="password" v-model="form.confirmNewPassword">
 			</div>
 			<div class="field">
-				<button class="ui basic button" @click.prevent="changePassword"> Промени</button>
+				<button class="btn blue" @click.prevent="changePassword"> Промени</button>
 			</div>
 			
 		</form>
