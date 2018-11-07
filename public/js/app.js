@@ -55636,17 +55636,10 @@ var render = function() {
           style: "background-image: url(" + _vm.image.filename + ");"
         },
         [
-          _c(
-            "label",
-            {
-              staticClass: "ui small purple icon button",
-              attrs: { for: "image" }
-            },
-            [
-              _c("i", { staticClass: "camera icon" }),
-              _vm._v(" Качи изображение")
-            ]
-          ),
+          _c("button", { staticClass: "btn blue", attrs: { for: "image" } }, [
+            _c("i", { staticClass: "fas fa-camera" }),
+            _vm._v(" Качи изображение")
+          ]),
           _vm._v(" "),
           _c("input", {
             staticClass: "inputfile",
@@ -56066,9 +56059,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56226,7 +56216,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "item box-alt" }, [
     _c("div", {
       staticClass: "image",
       style: "background: url(" + _vm.image + ")"
@@ -56238,7 +56228,7 @@ var render = function() {
       [
         _c(
           "router-link",
-          { staticClass: "header", attrs: { to: _vm.edit_link } },
+          { staticClass: "title", attrs: { to: _vm.edit_link } },
           [_vm._v("\n\t\t\t" + _vm._s(_vm.title) + "\n\t\t")]
         ),
         _vm._v(" "),
@@ -56266,7 +56256,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "ui button",
+                    staticClass: "btn blue small",
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -56274,7 +56264,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_c("i", { staticClass: "eye icon" })]
+                  [_c("i", { staticClass: "far fa-eye" })]
                 )
               ]
             ),
@@ -56291,8 +56281,11 @@ var render = function() {
               [
                 _c(
                   "router-link",
-                  { staticClass: "ui button", attrs: { to: _vm.edit_link } },
-                  [_c("i", { staticClass: "edit icon" })]
+                  {
+                    staticClass: "btn blue small",
+                    attrs: { to: _vm.edit_link }
+                  },
+                  [_c("i", { staticClass: "fas fa-pencil-alt" })]
                 )
               ],
               1
@@ -56311,7 +56304,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "ui button",
+                    staticClass: "btn blue small",
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -56319,7 +56312,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_c("i", { staticClass: "trash icon" })]
+                  [_c("i", { staticClass: "far fa-trash-alt" })]
                 )
               ]
             )
@@ -56348,28 +56341,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ui segments" }, [
+  return _c("div", { staticClass: "segment" }, [
+    _c("div", [
       _c(
         "div",
-        { staticClass: "ui clearing segment" },
+        { staticClass: "aligned" },
         [
-          _c("h3", { staticStyle: { float: "left" } }, [_vm._v("Теми")]),
+          _c("h3", [_vm._v("Теми")]),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "item",
-              staticStyle: { float: "right" },
-              attrs: { to: "/themes/create" }
-            },
-            [
-              _c("button", { staticClass: "ui tiny basic button" }, [
-                _c("i", { staticClass: "plus icon" }),
-                _vm._v("\n\t\t\t\t\tДобави тема\n\t\t\t\t")
-              ])
-            ]
-          )
+          _c("router-link", { attrs: { to: "/themes/create" } }, [
+            _c("button", { staticClass: "btn blue" }, [
+              _vm._v("\n\t\t\t\t\tДобави тема\n\t\t\t\t")
+            ])
+          ])
         ],
         1
       ),
@@ -56385,13 +56369,12 @@ var render = function() {
               expression: "loading"
             }
           ],
-          staticClass: "ui segment",
           staticStyle: { "min-height": "200px" }
         },
         [
           _c(
             "div",
-            { staticClass: "ui three stackable cards" },
+            { staticClass: "grid" },
             [
               _vm._l(_vm.themes, function(theme, index) {
                 return [
@@ -57002,7 +56985,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57022,14 +57005,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -57201,246 +57176,215 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ui segments" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      !_vm.loading
-        ? _c(
-            "div",
-            { staticClass: "ui segment" },
-            [
-              _c(
-                "el-form",
-                { ref: "form", attrs: { "label-width": "120px" } },
-                [
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Заглавие" } },
-                    [
-                      _vm._l(_vm.errors.title, function(error) {
-                        return _vm.errors.title
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("el-input", {
-                        model: {
-                          value: _vm.theme.title,
-                          callback: function($$v) {
-                            _vm.$set(_vm.theme, "title", $$v)
-                          },
-                          expression: "theme.title"
-                        }
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Категория" } },
-                    [
-                      _vm._l(_vm.errors.category_id, function(error) {
-                        return _vm.errors.category_id
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "el-select",
-                        {
-                          attrs: { placeholder: "Изберете категория" },
-                          model: {
-                            value: _vm.theme.category_id,
-                            callback: function($$v) {
-                              _vm.$set(_vm.theme, "category_id", $$v)
-                            },
-                            expression: "theme.category_id"
-                          }
+  return _c("div", { staticClass: "segment" }, [
+    _c("h4", [_vm._v("Редактиране на тема")]),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c(
+          "div",
+          [
+            _c(
+              "el-form",
+              { ref: "form", attrs: { "label-width": "120px" } },
+              [
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Заглавие" } },
+                  [
+                    _vm._l(_vm.errors.title, function(error) {
+                      return _vm.errors.title
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      model: {
+                        value: _vm.theme.title,
+                        callback: function($$v) {
+                          _vm.$set(_vm.theme, "title", $$v)
                         },
-                        [
-                          _vm._l(_vm.categories, function(category) {
-                            return [
-                              _c("el-option", {
-                                attrs: {
-                                  label: category.name,
-                                  value: category.id
-                                }
-                              })
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Корица" } },
-                    [
-                      _c("imageUpload", {
-                        attrs: {
-                          imageUrl:
-                            "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
-                            _vm.theme.cover
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Кратко описание" } },
-                    [
-                      _vm._l(_vm.errors.excerpt, function(error) {
-                        return _vm.errors.excerpt
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("el-input", {
-                        attrs: { type: "textarea", rows: 3 },
-                        model: {
-                          value: _vm.theme.excerpt,
-                          callback: function($$v) {
-                            _vm.$set(_vm.theme, "excerpt", $$v)
-                          },
-                          expression: "theme.excerpt"
-                        }
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Съдържание" } },
-                    [
-                      _vm._l(_vm.errors.body, function(error) {
-                        return _vm.errors.body
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("el-input", {
-                        attrs: { type: "textarea", rows: 6 },
-                        model: {
-                          value: _vm.theme.body,
-                          callback: function($$v) {
-                            _vm.$set(_vm.theme, "body", $$v)
-                          },
-                          expression: "theme.body"
-                        }
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form-item",
-                    { attrs: { label: "Продължителност" } },
-                    [
-                      _vm._l(_vm.errors.duration, function(error) {
-                        return _vm.errors.duration
-                          ? [
-                              _c("el-alert", {
-                                attrs: { type: "error", title: error }
-                              })
-                            ]
-                          : _vm._e()
-                      }),
-                      _vm._v(" "),
-                      _c("el-input", {
-                        staticStyle: { width: "100px" },
-                        model: {
-                          value: _vm.theme.duration,
-                          callback: function($$v) {
-                            _vm.$set(_vm.theme, "duration", $$v)
-                          },
-                          expression: "theme.duration"
-                        }
-                      })
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("el-form-item", [
+                        expression: "theme.title"
+                      }
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Категория" } },
+                  [
+                    _vm._l(_vm.errors.category_id, function(error) {
+                      return _vm.errors.category_id
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
                     _c(
-                      "div",
-                      { staticClass: "right floated" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "ui right floated primary button",
-                            on: { click: _vm.save }
+                      "el-select",
+                      {
+                        attrs: { placeholder: "Изберете категория" },
+                        model: {
+                          value: _vm.theme.category_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.theme, "category_id", $$v)
                           },
-                          [
-                            _vm._v(
-                              "\n\t\t\t\t        \tЗапиши\n\t\t\t\t        "
-                            )
+                          expression: "theme.category_id"
+                        }
+                      },
+                      [
+                        _vm._l(_vm.categories, function(category) {
+                          return [
+                            _c("el-option", {
+                              attrs: {
+                                label: category.name,
+                                value: category.id
+                              }
+                            })
                           ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          { staticClass: "item", attrs: { to: "/themes" } },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "ui right floated basic button" },
-                              [
-                                _vm._v(
-                                  "\n\t\t\t\t\t        \tОткажи\n\t\t\t\t\t        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
+                        })
                       ],
-                      1
+                      2
                     )
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        : _vm._e()
-    ])
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Корица" } },
+                  [
+                    _c("imageUpload", {
+                      attrs: {
+                        imageUrl:
+                          "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
+                          _vm.theme.cover
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Кратко описание" } },
+                  [
+                    _vm._l(_vm.errors.excerpt, function(error) {
+                      return _vm.errors.excerpt
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { type: "textarea", rows: 3 },
+                      model: {
+                        value: _vm.theme.excerpt,
+                        callback: function($$v) {
+                          _vm.$set(_vm.theme, "excerpt", $$v)
+                        },
+                        expression: "theme.excerpt"
+                      }
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Съдържание" } },
+                  [
+                    _vm._l(_vm.errors.body, function(error) {
+                      return _vm.errors.body
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { type: "textarea", rows: 6 },
+                      model: {
+                        value: _vm.theme.body,
+                        callback: function($$v) {
+                          _vm.$set(_vm.theme, "body", $$v)
+                        },
+                        expression: "theme.body"
+                      }
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  { attrs: { label: "Продължителност" } },
+                  [
+                    _vm._l(_vm.errors.duration, function(error) {
+                      return _vm.errors.duration
+                        ? [
+                            _c("el-alert", {
+                              attrs: { type: "error", title: error }
+                            })
+                          ]
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      staticStyle: { width: "100px" },
+                      model: {
+                        value: _vm.theme.duration,
+                        callback: function($$v) {
+                          _vm.$set(_vm.theme, "duration", $$v)
+                        },
+                        expression: "theme.duration"
+                      }
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "field right" },
+                  [
+                    _c(
+                      "button",
+                      { staticClass: "btn blue", on: { click: _vm.save } },
+                      [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
+                    ),
+                    _vm._v(" "),
+                    _c("router-link", { attrs: { to: "/themes" } }, [
+                      _c("div", { staticClass: "btn basic" }, [
+                        _vm._v("\n\t\t\t        \tОткажи\n\t\t\t        ")
+                      ])
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui segment" }, [
-      _c("h4", [_vm._v("Редактиране на тема")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -119743,15 +119687,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
+    props: ['event_publish', 'venue_publish'],
     data: function data() {
         return {
-            venuePublish: window.company.venue_publish,
+            eventPublish: this.event_publish,
+            venuePublish: this.venue_publish,
             isCollapse: false
         };
     },
@@ -119772,91 +119715,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ui grid mt-20" }, [
-      _c("div", { staticClass: "four wide column" }, [
-        _c(
-          "div",
-          { staticClass: "ui fluid vertical pointing menu" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/contacts" },
-                attrs: { to: "/contacts" }
-              },
-              [_vm._v("\n\t\t\t\t\tСъобщения\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/themes" },
-                attrs: { to: "/themes" }
-              },
-              [_vm._v("\n\t\t\t\t\tТеми\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/teachers" },
-                attrs: { to: "/teachers" }
-              },
-              [_vm._v("\n\t\t\t\t\tЛектори\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/events" },
-                attrs: { to: "/events" }
-              },
-              [_vm._v("\n\t\t\t\t\tКалендар\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _vm.venuePublish
-              ? _c(
-                  "router-link",
-                  {
-                    staticClass: "item",
-                    class: { active: _vm.$route.path == "/venues" },
-                    attrs: { to: "/venues" }
-                  },
-                  [_vm._v("\n\t\t\t\t\tЗали\n\t\t\t\t")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/orders" },
-                attrs: { to: "/orders" }
-              },
-              [_vm._v("\n\t\t\t\t\tЗаявки\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/profile" },
-                attrs: { to: "/profile" }
-              },
-              [_vm._v("\n\t\t\t\t\tФирмени данни\n\t\t\t\t")]
-            )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "twelve wide column" }, [_c("router-view")], 1)
-    ])
+  return _c("div", { staticClass: "grid grid-1-4 mtop" }, [
+    _c("div", [
+      _c(
+        "div",
+        { staticClass: "vertical-menu" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/contacts" },
+              attrs: { to: "/contacts" }
+            },
+            [_vm._v("\n\t\t\t\tСъобщения\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/themes" },
+              attrs: { to: "/themes" }
+            },
+            [_vm._v("\n\t\t\t\tТеми\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/teachers" },
+              attrs: { to: "/teachers" }
+            },
+            [_vm._v("\n\t\t\t\tЛектори\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/events" },
+              attrs: { to: "/events" }
+            },
+            [_vm._v("\n\t\t\t\tКалендар\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _vm.venuePublish
+            ? _c(
+                "router-link",
+                {
+                  staticClass: "item",
+                  class: { active: _vm.$route.path == "/venues" },
+                  attrs: { to: "/venues" }
+                },
+                [_vm._v("\n\t\t\t\tЗали\n\t\t\t")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/orders" },
+              attrs: { to: "/orders" }
+            },
+            [_vm._v("\n\t\t\t\tЗаявки\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "item",
+              class: { active: _vm.$route.path == "/profile" },
+              attrs: { to: "/profile" }
+            },
+            [_vm._v("\n\t\t\t\tФирмени данни\n\t\t\t")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [_c("router-view")], 1)
   ])
 }
 var staticRenderFns = []

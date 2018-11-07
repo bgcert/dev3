@@ -1,8 +1,8 @@
 <template>
-	<div class="card">
+	<div class="item box-alt">
 		<div class="image" :style="`background: url(${image})`"></div>
 		<div class="content">
-			<router-link :to="edit_link" class="header">
+			<router-link :to="edit_link" class="title">
 				{{ title }}
 			</router-link>
 			<div class="meta" v-if="date">
@@ -13,18 +13,18 @@
 			<div class="right floated">
 				<div class="ui basic mini icon buttons">
 					<el-tooltip effect="dark" content="Преглед" placement="top">
-						<button class="ui button" @click.prevent="$emit('show')">
-							<i class="eye icon"></i>
+						<button class="btn blue small" @click.prevent="$emit('show')">
+							<i class="far fa-eye"></i>
 						</button>
 					</el-tooltip>
 					<el-tooltip effect="dark" content="Редактиране" placement="top">
-						<router-link :to="edit_link" class="ui button">
-							<i class="edit icon"></i>
+						<router-link :to="edit_link" class="btn blue small">
+							<i class="fas fa-pencil-alt"></i>
 						</router-link>
 					</el-tooltip>
 					<el-tooltip effect="dark" content="Изтриване" placement="top">
-						<button class="ui button" @click.prevent="emitDelete">
-							<i class="trash icon"></i>
+						<button class="btn blue small" @click.prevent="emitDelete">
+							<i class="far fa-trash-alt"></i>
 						</button>
 					</el-tooltip>
 				</div>

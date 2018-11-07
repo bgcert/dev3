@@ -1,57 +1,55 @@
 <template>
-	<div>
-		<div class="ui grid mt-20">
-			<div class="four wide column">
-				<div class="ui fluid vertical pointing menu">
-					<router-link
-						to="/contacts"
-						class="item"
-						:class="{ active: $route.path == '/contacts' }">
-						Съобщения
-					</router-link>
-					<router-link
-						to="/themes"
-						class="item"
-						:class="{ active: $route.path == '/themes' }">
-						Теми
-					</router-link>
-					<router-link
-						to="/teachers"
-						class="item"
-						:class="{ active: $route.path == '/teachers' }">
-						Лектори
-					</router-link>
-					<router-link
-						to="/events"
-						class="item"
-						:class="{ active: $route.path == '/events' }">
-						Календар
-					</router-link>
-					<router-link v-if="venuePublish"
-						to="/venues"
-						class="item"
-						:class="{ active: $route.path == '/venues' }">
-						Зали
-					</router-link>
-					<router-link
-						to="/orders"
-						class="item"
-						:class="{ active: $route.path == '/orders' }">
-						Заявки
-					</router-link>
-					<router-link
-						to="/profile"
-						class="item"
-						:class="{ active: $route.path == '/profile' }">
-						Фирмени данни
-					</router-link>
-				</div>
+	<div class="grid grid-1-4 mtop">
+		<div>
+			<div class="vertical-menu">
+				<router-link
+					to="/contacts"
+					class="item"
+					:class="{ active: $route.path == '/contacts' }">
+					Съобщения
+				</router-link>
+				<router-link
+					to="/themes"
+					class="item"
+					:class="{ active: $route.path == '/themes' }">
+					Теми
+				</router-link>
+				<router-link
+					to="/teachers"
+					class="item"
+					:class="{ active: $route.path == '/teachers' }">
+					Лектори
+				</router-link>
+				<router-link
+					to="/events"
+					class="item"
+					:class="{ active: $route.path == '/events' }">
+					Календар
+				</router-link>
+				<router-link v-if="venuePublish"
+					to="/venues"
+					class="item"
+					:class="{ active: $route.path == '/venues' }">
+					Зали
+				</router-link>
+				<router-link
+					to="/orders"
+					class="item"
+					:class="{ active: $route.path == '/orders' }">
+					Заявки
+				</router-link>
+				<router-link
+					to="/profile"
+					class="item"
+					:class="{ active: $route.path == '/profile' }">
+					Фирмени данни
+				</router-link>
 			</div>
-			<div class="twelve wide column">
-				<!-- <keep-alive> -->
-					<router-view></router-view>
-				<!-- </keep-alive> -->
-			</div>
+		</div>
+		<div>
+			<!-- <keep-alive> -->
+				<router-view></router-view>
+			<!-- </keep-alive> -->
 		</div>
 	</div>
 </template>
@@ -59,10 +57,11 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-
+    	props: ['event_publish', 'venue_publish'],
     	data: function () {
     		return {
-    			venuePublish: window.company.venue_publish,
+    			eventPublish: this.event_publish,
+    			venuePublish: this.venue_publish,
     			isCollapse: false
     		}
     	},

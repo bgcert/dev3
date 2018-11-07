@@ -7,7 +7,7 @@
 						'background-position': 'center center'
 					}">
 			<input type="file" name="file" id="file" class="inputfile" @change="onFileChange">
-			<label for="file" class="ui small purple icon button cover" ><i class="camera icon"></i> Качи</label>
+			<label for="file" class="btn blue small" ><i class="camera icon"></i> Качи</label>
 		</div>
 		<el-progress :percentage="progress"></el-progress>
 	</div>

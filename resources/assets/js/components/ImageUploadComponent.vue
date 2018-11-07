@@ -4,7 +4,7 @@
 			 <el-alert type="error" :title="error"></el-alert>
 		</template>
 		<div class="single-image" :style="'background-image: url(' + image.filename + ');'">
-			<label :for="'image'" class="ui small purple icon button" ><i class="camera icon"></i> Качи изображение</label>
+			<button :for="'image'" class="btn blue" ><i class="fas fa-camera"></i> Качи изображение</button>
 			<input type="file" :id="'image'" class="inputfile" @change="onFileChange">
 			<div class="progress" v-if="image.progress >= 0">
 				<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>

@@ -1,19 +1,17 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui clearing segment">
-				<h3 style="float: left;">Теми</h3>
-				<router-link to="/themes/create" class="item" style="float: right;">
-					<button class="ui tiny basic button">
-						<i class="plus icon"></i>
+	<div class="segment">
+		<div>
+			<div class="aligned">
+				<h3>Теми</h3>
+				<router-link to="/themes/create">
+					<button class="btn blue">
 						Добави тема
 					</button>
 				</router-link>
 			</div>
 
-			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-
-				<div class="ui three stackable cards">
+			<div v-loading="loading" style="min-height: 200px;">
+				<div class="grid">
 					<template v-for="(theme, index) in themes">
 						<CardDashboard
 							:image="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover"
@@ -25,7 +23,6 @@
 						</CardDashboard>
 					</template>
 				</div>
-
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,15 @@
+.message {
+	padding: 20px;
+    background-color: #616161;
+    color: white;
+    opacity: 0.83;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+
+    &.red { background-color: $red; }
+    &.green { background-color: $green; }
+    &.blue { background-color: $blue; }
+    &.orange { background-color: $orange; }
+
+    a { color: #fff; }
+}

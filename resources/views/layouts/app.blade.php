@@ -61,13 +61,21 @@
 	</script>
 	<!-- End Facebook page plugin -->
 	
-	<script>
+	<!-- <script>
 		window.auth = @json(auth()->check());
-	</script>
+	</script> -->
 	@auth
 	<script>
 	    window.user = @json(auth()->user());
 	</script>
+
+		@if(Auth::user()->role_id == 3)
+		<div class="admin-nav">
+			<div class="container">
+				<a href="/admin#/admin-users">Административен панел</a>
+			</div>
+		</div>
+		@endif
 	@endauth
     <div id="app">
     	<!-- <flash message="{{ session('flash') }}"></flash> -->

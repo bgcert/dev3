@@ -18,7 +18,10 @@
 
 				<li>
 					<div class="dropdown">
-						<a href="#" id="main-nav" class="dropdown-btn btn" onclick="dropdown(this)">Меню</a>
+						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
+							Меню
+							<i class="fas fa-caret-down"></i>
+						</a>
 						<div class="menu-list">
 							<a href="/page/help">Помощ</a>
 							<a href="/page/report">Докладване</a>
@@ -35,13 +38,17 @@
 				@if(Auth::user()->role_id == 2)
 				<li><a href="/dashboard#/profile">Бизнес панел</a></li>
 				@endif
-
-				@if(Auth::user()->role_id == 3)
-				<li><a href="/admin#/admin-users">Административен панел</a></li>
-				@endif
 				<li>
 					<div class="dropdown">
-						<a href="#" id="user-dropdown" class="dropdown-btn btn" onclick="dropdown(this)">{{ Auth::user()->firstname }}</a>
+						<a href="#" id="user-dropdown" class="dropdown-btn" onclick="dropdown(this)">
+							<div class="aligned">
+								<div class="avatar">CA</div>
+								<div>
+									{{ Auth::user()->firstname }}
+									<i class="fas fa-caret-down"></i>
+								</div>
+							</div>
+						</a>
 						<div class="menu-list">
 							<a href="/users/settings#/settings" class="item">Акаунт</a>
 							<a class="item" href="{{ route('logout') }}"
@@ -57,28 +64,9 @@
 					</div>
 				</li>
 
-				<li>
-					<ul>
-						<li>
-							<img width="32" src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/80x80/{{ Auth::user()->picture }}"> {{ Auth::user()->firstname }} <i class="dropdown icon"></i>	
-						</li>
-						<li><a href="/users/settings#/settings" class="item">Акаунт</a></li>
-						<li>
-							<a class="item" href="{{ route('logout') }}"
-		                       onclick="event.preventDefault();
-		                                     document.getElementById('logout-form').submit();">
-		                        {{ __('Изход') }}
-		                    </a>
-
-		                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-		                        @csrf
-		                    </form>
-						</li>
-					</ul>
-				</li>
-				<li>
+				<!-- <li>
 					<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
-				</li>
+				</li> -->
 				
 				@endguest
 			</ul>
