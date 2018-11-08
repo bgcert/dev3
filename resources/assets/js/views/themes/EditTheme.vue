@@ -50,10 +50,8 @@
 					<button class="btn blue" @click="save">
 			        	Запиши
 			        </button>
-					<router-link to="/themes">
-						<div class="btn basic">
-				        	Откажи
-				        </div>
+					<router-link to="/themes" class="btn basic">
+						Откажи
 					</router-link>	
 				</div>
 			</el-form>

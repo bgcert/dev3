@@ -4,7 +4,7 @@
 			 <el-alert type="error" :title="error"></el-alert>
 		</template>
 		<div class="single-image" :style="'background-image: url(' + image.filename + ');'">
-			<button :for="'image'" class="btn blue" ><i class="fas fa-camera"></i> Качи изображение</button>
+			<label :for="'image'" class="btn blue small" ><i class="fas fa-camera"></i> Качи изображение</label>
 			<input type="file" :id="'image'" class="inputfile" @change="onFileChange">
 			<div class="progress" v-if="image.progress >= 0">
 				<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
@@ -89,60 +89,3 @@
 		}
     };
 </script>
-
-<style>
-	.single-image {
-		position: relative;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
-		width: 250px;
-		height: 150px;
-	}
-
-	.multi-image .delete-button {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-	}
-
-	.add-image { margin-top: 20px !important; }
-
-	.images {
-		padding: 7px;
-		background-size: cover;
-		position: relative;
-		width: 357px;
-		height: 178px;
-	}
-
-	.progress {
-		position: absolute !important;
-		height: 40px;
-		padding: 10px;
-		width: 100%;
-		bottom: 0;
-	}
-
-	.inputfile {
-		width: 0.1px;
-		height: 0.1px;
-		opacity: 0;
-		overflow: hidden;
-		position: absolute;
-		z-index: -1;
-	}
-
-	.inputfile + label {
-		font-size: 1.25em;
-		font-weight: 700;
-		color: white;
-		background-color: black;
-		display: inline-block;
-	}
-
-	.inputfile:focus + label,
-	.inputfile + label:hover {
-		background-color: red;
-	}
-</style>

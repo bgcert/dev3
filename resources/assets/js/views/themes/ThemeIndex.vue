@@ -11,7 +11,7 @@
 			</div>
 
 			<div v-loading="loading" style="min-height: 200px;">
-				<div class="grid">
+				<div class="grid grid-1-1-1">
 					<template v-for="(theme, index) in themes">
 						<CardDashboard
 							:image="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + theme.cover"

@@ -1,71 +1,62 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui segment">
-				<h4>Нова тема</h4>
-			</div>
+	<div class="segment">
+		<h4>Нова тема</h4>
+		<el-form ref="form" :model="form" label-width="160px">
+
+			<el-form-item label="Заглавие">
+				<template v-if="errors.title" v-for="error in errors.title">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
+				<el-input v-model="form.title"></el-input>
+			</el-form-item>
+
+			<el-form-item label="Категория">
+				<template v-if="errors.category_id" v-for="error in errors.category_id">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
+				<el-select v-model="form.category" placeholder="Изберете категория">
+					<template v-for="category in categories">
+						<el-option :label="category.name" :value="category.id"></el-option>	
+					</template>
+				</el-select>
+			</el-form-item>
+
+			<el-form-item label="Корица">
+				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
+			</el-form-item>
+
+			<el-form-item label="Кратко описание">
+				<template v-if="errors.excerpt" v-for="error in errors.excerpt">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
+				<el-input type="textarea" :rows="3" v-model="form.excerpt"></el-input>
+			</el-form-item>
 			
-			<div class="ui segment">
-				<el-form ref="form" :model="form" label-width="160px">
+			<el-form-item label="Съдържание">
+				<template v-if="errors.body" v-for="error in errors.body">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
+				<el-input type="textarea" :rows="6" v-model="form.body"></el-input>
+			</el-form-item>
 
-					<el-form-item label="Заглавие">
-						<template v-if="errors.title" v-for="error in errors.title">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="form.title"></el-input>
-					</el-form-item>
+			<el-form-item label="Учебни часове">
+				<template v-if="errors.duration" v-for="error in errors.duration">
+					 <el-alert type="error" :title="error"></el-alert>
+				</template>
+				<el-input v-model="form.duration" style="width: 100px;"></el-input>
+			</el-form-item>
 
-					<el-form-item label="Категория">
-						<template v-if="errors.category_id" v-for="error in errors.category_id">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-select v-model="form.category" placeholder="Изберете категория">
-							<template v-for="category in categories">
-								<el-option :label="category.name" :value="category.id"></el-option>	
-							</template>
-						</el-select>
-					</el-form-item>
-
-					<el-form-item label="Корица">
-						<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
-					</el-form-item>
-
-					<el-form-item label="Кратко описание">
-						<template v-if="errors.excerpt" v-for="error in errors.excerpt">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input type="textarea" :rows="3" v-model="form.excerpt"></el-input>
-					</el-form-item>
-					
-					<el-form-item label="Съдържание">
-						<template v-if="errors.body" v-for="error in errors.body">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input type="textarea" :rows="6" v-model="form.body"></el-input>
-					</el-form-item>
-
-					<el-form-item label="Учебни часове">
-						<template v-if="errors.duration" v-for="error in errors.duration">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="form.duration" style="width: 100px;"></el-input>
-					</el-form-item>
-
-					<el-form-item>
-						<div class="right floated">
-							<div class="ui right floated primary button" @click="save">
-					        	Запиши
-					        </div>
-							<router-link to="/themes" class="item">
-								<div class="ui right floated basic button">
-						        	Откажи
-						        </div>
-							</router-link>	
-						</div>
-					</el-form-item>
-				</el-form>
+			<div class="field right">
+				<div class="btn blue" @click="save">
+		        	Запиши
+		        </div>
+				<router-link to="/themes" class="item">
+					<div class="btn basic">
+			        	Откажи
+			        </div>
+				</router-link>	
 			</div>
-		</div>
+		</el-form>
 	</div>
 </template>
 

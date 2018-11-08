@@ -1,86 +1,77 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui segment">
-				<h4>Редактиране на зала</h4>
-			</div>
-			
-			<div class="ui segment" v-if="!loading">
-				<el-form label-width="160px">
-					<el-form-item label="Наименование">
-						<template v-if="errors.name" v-for="error in errors.name">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="venue.name"></el-input>
-					</el-form-item>
-					<el-form-item label="Основна снимка">
-						<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + venue.cover"></imageUpload>
-					</el-form-item>
+	<div class="segment">
+		<h4>Редактиране на зала</h4>
+		<div v-if="!loading">
+			<el-form label-width="160px">
+				<el-form-item label="Наименование">
+					<template v-if="errors.name" v-for="error in errors.name">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input v-model="venue.name"></el-input>
+				</el-form-item>
+				<el-form-item label="Основна снимка">
+					<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + venue.cover"></imageUpload>
+				</el-form-item>
 
-					<el-form-item label="Допълнителни снимки">
-						<multi-image-upload :existingImages="venue.venue_images" @detachClick="handleDetach"></multi-image-upload>
-					</el-form-item>
+				<el-form-item label="Допълнителни снимки">
+					<multi-image-upload :existingImages="venue.venue_images" @detachClick="handleDetach"></multi-image-upload>
+				</el-form-item>
 
-					<el-form-item label="Капацитет">
-						<template v-if="errors.capacity" v-for="error in errors.capacity">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="venue.capacity" style="width: 160px;">
-							<template slot="append">места</template>
-						</el-input>
-					</el-form-item>
+				<el-form-item label="Капацитет">
+					<template v-if="errors.capacity" v-for="error in errors.capacity">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input v-model="venue.capacity" style="width: 160px;">
+						<template slot="append">места</template>
+					</el-input>
+				</el-form-item>
 
-					<el-form-item label="Град">
-						<template v-if="errors.city_id" v-for="error in errors.city_id">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-select v-model="cityId" placeholder="Изберете град">
-							<el-option
-								v-for="city in cities"
-								:key="city.id"
-								:label="city.name"
-								:value="city.id">
-							</el-option>
-						</el-select>
-					</el-form-item>
+				<el-form-item label="Град">
+					<template v-if="errors.city_id" v-for="error in errors.city_id">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-select v-model="cityId" placeholder="Изберете град">
+						<el-option
+							v-for="city in cities"
+							:key="city.id"
+							:label="city.name"
+							:value="city.id">
+						</el-option>
+					</el-select>
+				</el-form-item>
 
-					<el-form-item label="Адрес">
-						<template v-if="errors.address" v-for="error in errors.address">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="venue.address"></el-input>
-					</el-form-item>
-					
-					<el-form-item label="Описание">
-						<template v-if="errors.description" v-for="error in errors.description">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input type="textarea" :rows="12" v-model="venue.description"></el-input>
-					</el-form-item>
+				<el-form-item label="Адрес">
+					<template v-if="errors.address" v-for="error in errors.address">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input v-model="venue.address"></el-input>
+				</el-form-item>
+				
+				<el-form-item label="Описание">
+					<template v-if="errors.description" v-for="error in errors.description">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input type="textarea" :rows="12" v-model="venue.description"></el-input>
+				</el-form-item>
 
-					<el-form-item label="Цена">
-						<template v-if="errors.price" v-for="error in errors.price">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="venue.price" style="width: 200px;">
-							<template slot="append">.00 лв. с ДДС</template>
-						</el-input>
-					</el-form-item>
+				<el-form-item label="Цена">
+					<template v-if="errors.price" v-for="error in errors.price">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input v-model="venue.price" style="width: 200px;">
+						<template slot="append">.00 лв. с ДДС</template>
+					</el-input>
+				</el-form-item>
 
-					<el-form-item>
-						<div class="right floated">
-							<div class="ui right floated primary button" @click="save">
-					        	Запиши
-					        </div>
-							<router-link to="/venues" class="item">
-								<div class="ui right floated basic button">
-						        	Откажи
-						        </div>
-							</router-link>	
-						</div>
-					</el-form-item>
-				</el-form>
-			</div>
+				<div class="field right">
+					<button class="btn blue" @click="save">
+			        	Запиши
+			        </button>
+					<router-link to="/venues" class="btn basic">
+						Откажи
+					</router-link>	
+				</div>
+			</el-form>
 		</div>
 	</div>
 </template>

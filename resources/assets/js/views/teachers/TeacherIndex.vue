@@ -1,31 +1,26 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui clearing segment">
-				<h3 style="float: left;">Лектори</h3>
-				<router-link to="/teachers/create" class="item" style="float: right;">
-					<button class="ui tiny basic button">
-						<i class="plus icon"></i>
-						Добави лектор
-					</button>
-				</router-link>
-			</div>
+	<div class="segment">
+		<div class="aligned">
+			<h3>Лектори</h3>
+			<router-link to="/teachers/create">
+				<button class="btn blue">
+					Добави лектор
+				</button>
+			</router-link>
+		</div>
+		<div v-loading="loading">
 
-			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-
-				<div class="ui three stackable cards">
-					<template v-for="(teacher, index) in teachers">
-						<CardDashboard
-							:image="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"
-							:title="teacher.name"
-							:edit_link="'/teachers/edit/' + teacher.id"
-							:confirmMessage="'Сигурни ли сте, че желаете да изтриете този лектор?'"
-							@show="handleShow(theme.id)"
-							@deleteClick="handleDelete(teacher.id, index)">
-						</CardDashboard>
-					</template>
-				</div>
-
+			<div class="grid grid-1-1-1">
+				<template v-for="(teacher, index) in teachers">
+					<CardDashboard
+						:image="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"
+						:title="teacher.name"
+						:edit_link="'/teachers/edit/' + teacher.id"
+						:confirmMessage="'Сигурни ли сте, че желаете да изтриете този лектор?'"
+						@show="handleShow(theme.id)"
+						@deleteClick="handleDelete(teacher.id, index)">
+					</CardDashboard>
+				</template>
 			</div>
 
 		</div>

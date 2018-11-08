@@ -1,43 +1,34 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui secondary segment">
-				<h4>Редактиране на лектор</h4>
-			</div>
-			
-			<div class="ui segment" v-if="!loading">
-				<el-form ref="form" label-width="120px">
-					<el-form-item label="Име">
-						<template v-if="errors.name" v-for="error in errors.name">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input v-model="teacher.name"></el-input>
-					</el-form-item>
+	<div class="segment">
+		<h4>Редактиране на лектор</h4>
+		<div v-if="!loading">
+			<el-form ref="form" label-width="120px">
+				<el-form-item label="Име">
+					<template v-if="errors.name" v-for="error in errors.name">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input v-model="teacher.name"></el-input>
+				</el-form-item>
 
-					<el-form-item label="Снимка">
-						<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"></imageUpload>
-					</el-form-item>
+				<el-form-item label="Снимка">
+					<imageUpload :imageUrl="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"></imageUpload>
+				</el-form-item>
 
-					<el-form-item label="Съдържание">
-						<template v-if="errors.details" v-for="error in errors.details">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<el-input type="textarea" :rows="6" v-model="teacher.details"></el-input>
-					</el-form-item>
-					<el-form-item>
-						<div class="right floated">
-							<div class="ui right floated primary button" @click="save">
-					        	Запиши
-					        </div>
-							<router-link to="/teachers" class="item">
-								<div class="ui right floated basic button">
-						        	Откажи
-						        </div>
-							</router-link>	
-						</div>
-					</el-form-item>
-				</el-form>
-			</div>
+				<el-form-item label="Съдържание">
+					<template v-if="errors.details" v-for="error in errors.details">
+						 <el-alert type="error" :title="error"></el-alert>
+					</template>
+					<el-input type="textarea" :rows="6" v-model="teacher.details"></el-input>
+				</el-form-item>
+				<div class="field right">
+					<div class="btn blue" @click="save">
+			        	Запиши
+			        </div>
+					<router-link to="/teachers" class="btn basic">
+						Откажи
+					</router-link>	
+				</div>
+			</el-form>
 		</div>
 	</div>
 </template>

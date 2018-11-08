@@ -1,42 +1,38 @@
 <template>
-	<div class="ui segments">
-		<div class="ui clearing segment">
-			<h3 style="float: left;">Заявки</h3>
-		</div>
-		<div class="ui segment" v-loading="loading" style="min-height: 200px;">
+	<div class="segment">
+		<h3>Заявки</h3>
 
-			<table class="ui sortable celled table">
-				<thead>
-					<tr>
-						<th>Изпратена на:</th>
-						<th>Относно</th>
-						<th>Подател</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody v-for="(contact, index) in contacts">
-					<tr :class="{ active: !contact.read }">
-						<td>{{ contact.created_at }}</td>
-						<td>
-							<router-link :to="'/contacts/' + contact.id">
-								{{ contact.about }}
+		<table class="dashboard">
+			<thead>
+				<tr>
+					<th>Изпратена на:</th>
+					<th>Относно</th>
+					<th>Подател</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody v-for="(contact, index) in contacts">
+				<tr :class="{ active: !contact.read }">
+					<td>{{ contact.created_at }}</td>
+					<td>
+						<router-link :to="'/contacts/' + contact.id">
+							{{ contact.about }}
+						</router-link>
+					</td>
+					<td>{{ contact.from }}</td>
+					<td>
+						<div class="ui mini basic icon buttons">
+							<router-link :to="'/contacts/' + contact.id" class="ui button">
+								<i class="eye icon"></i>
 							</router-link>
-						</td>
-						<td>{{ contact.from }}</td>
-						<td>
-							<div class="ui mini basic icon buttons">
-								<router-link :to="'/contacts/' + contact.id" class="ui button">
-									<i class="eye icon"></i>
-								</router-link>
-								<button class="ui button" @click.prevent="handleDelete(contact.id, index)">
-									<i class="trash icon"></i>
-								</button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+							<button class="btn small" @click.prevent="handleDelete(contact.id, index)">
+								Изтриване
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </template>
 

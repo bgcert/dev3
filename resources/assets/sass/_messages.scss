@@ -9,7 +9,10 @@
     &.red { background-color: $red; }
     &.green { background-color: $green; }
     &.blue { background-color: $blue; }
-    &.orange { background-color: $orange; }
+    &.orange {
+    	color: #000;
+    	background-color: $orange;
+    }
 
     a { color: #fff; }
 }

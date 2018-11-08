@@ -1,17 +1,13 @@
 <template>
-	<div class="ui segments">
-		<div class="ui clearing segment">
-			<h3 style="float: left;">Заявки</h3>
-			<router-link to="/orders/create" class="item" style="float: right;">
-				<button class="ui tiny basic button">
-					<i class="plus icon"></i>
-					Въведи заявка
-				</button>
+	<div class="segment">
+		<div class="aligned">
+			<h3>Заявки</h3>	
+			<router-link to="/orders/create" class="btn blue">
+				Въведи заявка
 			</router-link>
 		</div>
-		<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-
-			<table class="ui sortable celled table">
+		<div v-loading="loading">
+			<table class="dashboard">
 				<thead>
 					<tr>
 						<th>Получена на:</th>
@@ -42,8 +38,8 @@
 								<router-link :to="'/orders/' + order.id" class="ui button">
 									<i class="edit icon"></i>
 								</router-link>
-								<button class="ui button" @click.prevent="handleDelete(order.id, index)">
-									<i class="trash icon"></i>
+								<button class="btn small" @click.prevent="handleDelete(order.id, index)">
+									<i class="far fa-trash-alt"></i>
 								</button>
 							</div>
 						</td>

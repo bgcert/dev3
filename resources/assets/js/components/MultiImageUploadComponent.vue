@@ -5,7 +5,7 @@
 			:style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'"
 			v-for="(item, index) in existing"
 			:key="index">
-			<button class="ui button" @click.prevent="detach(index, item.id)"> Премахни</button>
+			<button class="btn blue small" @click.prevent="detach(index, item.id)"> Премахни</button>
 		</div>
 
 		<div>
@@ -17,7 +17,7 @@
 					<div class="progress" v-if="image.progress >= 0">
 						<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
 					</div>
-					<button class="ui button" @click.prevent="remove(index)"> Премахни</button>
+					<button class="btn blue small" @click.prevent="remove(index)"> Премахни</button>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 		<div
 			class="multi-image existing"
 			:style="'background-image: url(/img/default_cover.png);'">
-			<label :for="'multi-image'" class="ui small button"> Добави изображение</label>
+			<label :for="'multi-image'" class="btn blue"> Добави изображение</label>
 			<input type="file" :id="'multi-image'" class="inputfile" @change="onFileChange">
 		</div>
 	</div>

@@ -1,53 +1,47 @@
 <template>
-	<div class="ui segments">
-		<div class="ui clearing segment">
-			<h4 style="float: left;">От: {{ contact.from }}</h4>
-		</div>
-		<div class="ui clearing segment" v-if="contact.id">
-			<div class="ten wide column">
-				<table class="ui collapsing table">
-					<tbody>
-						<tr>
-							<td>Изпратено на: </td>
-							<td>{{ contact.created_at }}</td>
-						</tr>
-						<tr>
-							<td>Относно:</td>
-							<td>{{ contact.about }}</td>
-						</tr>
-						<tr>
-							<td>Лице за контакти: </td>
-							<td>{{ contact.from }}</td>
-						</tr>
-						<tr>
-							<td>E-mail: </td>
-							<td>{{ contact.email }}</td>
-						</tr>
-						<tr>
-							<td>Телефон: </td>
-							<td>{{ contact.phone }}</td>
-						</tr>
-						<tr>
-							<td>Заглавие: </td>
-							<td>{{ contact.subject }}</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<p>{{ contact.body }}</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="right floated">
-					<span class="ui right floated basic segment">
-						<a href="#/contacts" class="item router-link-active">
-							<div class="ui basic button">Назад</div>
-				    	</a>
-						<div class="ui basic primary button" @click.prevent="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</div>
-						<div class="ui negative button" @click.prevent="handleDelete(contact.id)"> Изтрий</div>
-					</span>
-			    </div>
-			</div>
+	<div class="segment">
+		<h4>От: {{ contact.from }}</h4>
+		<div v-if="contact.id">
+			<table class="dashboard">
+				<tbody>
+					<tr>
+						<td>Изпратено на: </td>
+						<td>{{ contact.created_at }}</td>
+					</tr>
+					<tr>
+						<td>Относно:</td>
+						<td>{{ contact.about }}</td>
+					</tr>
+					<tr>
+						<td>Лице за контакти: </td>
+						<td>{{ contact.from }}</td>
+					</tr>
+					<tr>
+						<td>E-mail: </td>
+						<td>{{ contact.email }}</td>
+					</tr>
+					<tr>
+						<td>Телефон: </td>
+						<td>{{ contact.phone }}</td>
+					</tr>
+					<tr>
+						<td>Заглавие: </td>
+						<td>{{ contact.subject }}</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<p>{{ contact.body }}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="field right">
+		    	<router-link to="/contacts" class="btn basic">
+					Назад
+				</router-link>
+				<button class="btn basic" @click.prevent="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</button>
+				<button class="btn blue" @click.prevent="handleDelete(contact.id)"> Изтрий</button>
+		    </div>
 		</div>
 	</div>
 </template>

@@ -20,7 +20,7 @@ class Venue extends Model
 
     protected $fillable = ['company_id', 'name', 'description', 'city_id', 'address', 'capacity', 'price', 'cover'];
 
-    protected $appends = ['only_like_count', 'only_comment_count'];
+    // protected $appends = ['only_like_count', 'only_comment_count'];
 
     public function company()
     {

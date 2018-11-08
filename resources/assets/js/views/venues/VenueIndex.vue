@@ -1,32 +1,22 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui clearing segment">
-				<h3 style="float: left;">Зали</h3>
-				<router-link to="/venues/create" class="item" style="float: right;">
-					<button class="ui tiny basic button">
-						<i class="plus icon"></i>
-						Добави зала
-					</button>
-				</router-link>
-			</div>
-
-			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-
-				<div class="ui three stackable cards">
-					<template v-for="(venue, index) in venues">
-						<CardDashboard
-							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + venue.cover"
-							:title="venue.name"
-							:edit_link="'/venues/edit/' + venue.id"
-							:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
-							@show="handleShow(venue.id)"
-							@deleteClick="handleDelete(venue.id, index)">
-						</CardDashboard>
-					</template>
-				</div>
-
-			</div>
+	<div class="segment">
+		<div class="aligned">
+			<h3 style="float: left;">Зали</h3>
+			<router-link to="/venues/create" class="btn blue">
+				Добави зала
+			</router-link>
+		</div>
+		<div class="grid grid-1-1-1">
+			<template v-for="(venue, index) in venues">
+				<CardDashboard
+					:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + venue.cover"
+					:title="venue.name"
+					:edit_link="'/venues/edit/' + venue.id"
+					:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
+					@show="handleShow(venue.id)"
+					@deleteClick="handleDelete(venue.id, index)">
+				</CardDashboard>
+			</template>
 		</div>
 	</div>
 </template>

@@ -1,33 +1,26 @@
 <template>
-	<div>
-		<div class="ui segments">
-			<div class="ui clearing segment">
-				<h3 style="float: left;">Календар</h3>
-				<router-link to="/events/create" class="item" style="float: right;">
-					<button class="ui tiny basic button">
-						<i class="plus icon"></i>
-						Добави събитие
-					</button>
-				</router-link>
-			</div>
-
-			<div class="ui segment" v-loading="loading" style="min-height: 200px;">
-
-				<div class="ui three stackable cards">
-					<template v-for="(event, index) in events">
-						<CardDashboard
-							:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"
-							:date="event.start_date_carbon"
-							:title="event.theme.title"
-							:edit_link="'/events/edit/' + event.id"
-							:confirmMessage="'Сигурни ли сте, че желаете да изтриете това събитие?'"
-							@show="handleShow(event.id)"
-							@deleteClick="handleDelete(event.id, index)"
-							>
-						</CardDashboard>
-					</template>
-				</div>
-
+	<div class="segment">
+		<div class="aligned">
+			<h3>Календар</h3>	
+			<router-link to="/events/create" class="btn blue">
+				Добави събитие
+			</router-link>
+		</div>
+		
+		<div v-loading="loading" style="min-height: 200px;">
+			<div class="grid grid-1-1-1">
+				<template v-for="(event, index) in events">
+					<CardDashboard
+						:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"
+						:date="event.start_date_carbon"
+						:title="event.theme.title"
+						:edit_link="'/events/edit/' + event.id"
+						:confirmMessage="'Сигурни ли сте, че желаете да изтриете това събитие?'"
+						@show="handleShow(event.id)"
+						@deleteClick="handleDelete(event.id, index)"
+						>
+					</CardDashboard>
+				</template>
 			</div>
 		</div>
 	</div>
