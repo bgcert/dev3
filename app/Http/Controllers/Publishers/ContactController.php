@@ -27,7 +27,8 @@ class ContactController extends Controller
     public function show($id)
     {
     	$contact = \App\ContactPublisher::find($id);
-    	$contact->read = 1;
+    	// Mark as read
+    	$contact->read_at = \Carbon\Carbon::now();;
     	$contact->save();
         return $contact;
     	// return view('venue', compact('venue', 'images'));

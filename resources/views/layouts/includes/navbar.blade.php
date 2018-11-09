@@ -42,7 +42,7 @@
 					<div class="dropdown">
 						<a href="#" id="user-dropdown" class="dropdown-btn" onclick="dropdown(this)">
 							<div class="aligned">
-								<div class="avatar">CA</div>
+								<div class="avatar">{{ Auth::user()->abbr }}</div>
 								<div>
 									{{ Auth::user()->firstname }}
 									<i class="fas fa-caret-down"></i>

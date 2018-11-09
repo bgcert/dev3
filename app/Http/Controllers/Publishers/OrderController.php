@@ -17,7 +17,6 @@ class OrderController extends Controller
     {
     	$id = \Auth::user()->company->id;
     	$orders = \App\Order::withCount('participants')->where('company_id', $id)->orderByDesc('created_at')->get();
-
         return $orders;
     }
 
@@ -51,7 +50,8 @@ class OrderController extends Controller
     public function show($id)
     {
     	$order = \App\Order::with('user', 'participants', 'details')->withCount('participants')->where('id', $id)->first();
-    	$order->read = true;
+    	// Mark as read
+    	$order->read_at = \Carbon\Carbon::now();
     	$order->save();
     	return $order;
     }

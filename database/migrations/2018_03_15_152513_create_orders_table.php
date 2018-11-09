@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('contact_email');
             $table->text('comment')->nullable();
             $table->text('note')->nullable();
-            $table->boolean('read')->default(0);
+            $table->timestamp('read_at')->nullable();
             $table->integer('status')->unsigned()->nullable();
             $table->boolean('paid')->default(0);
             $table->boolean('invoice')->default(0);

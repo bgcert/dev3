@@ -1,0 +1,29 @@
+// Footer
+footer {
+	border-top: 20px solid #212681;
+	margin-top: 20px;
+	background-color: #2931a0;
+	padding: 68px 40px;
+	color: #fff;
+	font-size: 11pt;
+	color: rgba(255,255,255, 0.6);
+}
+
+footer .grid-2 {
+	grid-template-columns: 1fr 2fr 1fr;
+}
+
+footer ul { padding: 0; margin-bottom: 20px; }
+footer ul li {
+	display: block;
+	margin: 8px 0;
+}
+
+footer .title {
+	text-transform: uppercase;
+	color: #fff;
+}
+
+footer a {
+	color: rgba(255,255,255, 0.6);
+}

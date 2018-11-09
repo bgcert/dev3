@@ -1,7 +1,7 @@
 <template>
-	<div class="ui clearing segment" v-if="company.id">
-		<form class="ui form">
-			<div class="field" style="width: 300px;">
+	<div class="segment" v-if="company.id">
+		<form>
+			<div class="field">
 				<label>Име на организацията</label>
 				<template v-if="errors.name" v-for="error in errors.name">
 					 <el-alert type="error" :title="error"></el-alert>
@@ -9,18 +9,18 @@
 				<input type="text" v-model="company.name">
 			</div>
 
-			<div class="field" style="width: 400px;">
-				<label>Адрес (URL) на профила в Seminari365</label>
+			<div class="field">
 				<template v-if="errors.slug" v-for="error in errors.slug">
 					 <el-alert type="error" :title="error"></el-alert>
 				</template>
-				<div class="ui labeled right input">
-					<div class="ui label">
-						http://seminari365.com/c/
-					</div>
-					<input type="text" v-model="company.slug" placeholder="company.ltd">
-				</div>
-				<div class="ui info message">Пример: abcltd или abc.ltd</div>
+				<label>Адрес (URL) на профила в Seminari365</label>
+				<span class="label input">
+					http://seminari365.com/c/
+				</span>
+				<input type="text" v-model="company.slug" placeholder="company.ltd" class="labeled">
+			</div>
+			<div class="field">
+				<div class="message orange">Пример: abcltd или abc.ltd</div>	
 			</div>
 
 			<div class="field">
@@ -62,8 +62,8 @@
 				<textarea rows="2" v-model="company.address"></textarea>
 			</div>
 
-			<div class="field">
-				<button class="ui labeled icon button" @click.prevent="save" style="float: right;"><i class="icon save"></i> Запиши</button>
+			<div class="field right">
+				<button class="btn blue" @click.prevent="save"><i class="icon save"></i> Запиши</button>
 			</div>
 			
 		</form>

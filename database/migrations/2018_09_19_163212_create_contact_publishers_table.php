@@ -22,7 +22,7 @@ class CreateContactPublishersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->text('body');
-            $table->boolean('read')->default(0);
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

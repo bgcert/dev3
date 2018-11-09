@@ -23,11 +23,9 @@
 				<div class="btn blue" @click="save">
 		        	Запиши
 		        </div>
-				<router-link to="/teachers">
-					<div class="btn basic">
-			        	Откажи
-			        </div>
-				</router-link>	
+				<router-link to="/teachers" class="btn basic">
+					Откажи
+				</router-link>
 			</div>
 		</el-form>
 	</div>

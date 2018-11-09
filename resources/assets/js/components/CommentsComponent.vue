@@ -24,26 +24,30 @@
 
 		<div class="comment">
 			<template v-if="auth">
-				<el-input
+				<textarea
 					type="textarea"
 					autosize
 					placeholder="Добавете коментар ..."
 					v-model="body">
-				</el-input>
-				<a href="#" class="ui small right floated basic button" @click.prevent="addComment">
-					Добави коментар
-				</a>
+				</textarea>
+				<div class="right">
+					<button class="btn blue" @click.prevent="addComment">
+						Добави коментар
+					</button>	
+				</div>
 			</template>
 			<template v-else>
-				<el-input
+				<textarea
 					@focus="login"
 					type="textarea"
 					autosize
 					placeholder="Добавете коментар ...">
-				</el-input>
-				<a href="#" class="ui small right floated basic button" @click.prevent="login">
-					Добави коментар
-				</a>
+				</textarea>
+				<div class="right">
+					<button class="btn blue" @click.prevent="login">
+						Добави коментар
+					</button>	
+				</div>
 			</template>
 		</div>
 	</div>
@@ -52,11 +56,11 @@
 <script>
 	import { EventBus } from '../app';
     export default {
-    	props: ['type', 'id', 'user_id'],
+    	props: ['auth', 'type', 'id', 'user_id'],
 
     	data: function () {
     		return {
-    			auth: window.auth,
+    			// auth: window.auth,
     			comments: [],
     			body: '',
     		}

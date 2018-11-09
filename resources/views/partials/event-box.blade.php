@@ -9,7 +9,7 @@
 			{{ $event->theme->title }}
 		</a>
 		<div class="date">
-			{{ $event->start_date_carbon }}
+			{{ $event->city->name }}, {{ $event->start_date_carbon }}
 		</div>
 	</div>
 	<div class="footer">

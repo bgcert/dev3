@@ -83,4 +83,12 @@ class User extends Authenticatable
 	    return "{$this->firstname} {$this->lastname}";
 	}
 
+	public function getAbbrAttribute()
+	{
+		$first = $this->firstname;
+		$last = $this->lastname;
+
+	    return mb_substr($this->firstname, 0, 1) . mb_substr($this->lastname, 0, 1);
+	}
+
 }

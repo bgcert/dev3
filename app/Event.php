@@ -12,7 +12,6 @@ class Event extends Model
 {
 	use SoftDeletes;
 	use Visitable;
-	// use LogsActivity;
 
 	protected $dates = ['deleted_at'];
 
@@ -49,7 +48,7 @@ class Event extends Model
     				->where('active', 1)
     				->whereDate('start_date', '>', Carbon::today())
     				->whereHas('theme')
-    				->with('theme.category', 'theme.commentCount', 'theme.company', 'visitCount');
+    				->with('city', 'theme.category', 'theme.company', 'visitCount');
     }
 
     // For related events by company
