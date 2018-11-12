@@ -14,8 +14,7 @@
 			</div>
 			<hr>
 			<div class="field">
-				<input type="checkbox" v-model="form.publisher">
-				<label> Бизнес акаунт</label>
+				<input type="checkbox" v-model="form.publisher"> Бизнес акаунт
 			</div>
 			<template v-if="form.publisher">
 				<template v-if="errors.name" v-for="error in errors.name">
@@ -43,13 +42,11 @@
 				</div>
 
 				<div class="field">
-					<input type="checkbox" v-model="form.user.company.event_publish">
-					<label> Публикуване на събития</label>
+					<input type="checkbox" v-model="form.user.company.event_publish"> Публикуване на събития
 				</div>
 
 				<div class="field">
-					<input type="checkbox" v-model="form.user.company.venue_publish">
-					<label> Публикуване на зали</label>
+					<input type="checkbox" v-model="form.user.company.venue_publish"> Публикуване на зали
 				</div>
 			</template>
 			

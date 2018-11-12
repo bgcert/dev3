@@ -16,20 +16,6 @@
 					<search></search>
 				</li>
 
-				<li>
-					<div class="dropdown">
-						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
-							Меню
-							<i class="fas fa-caret-down"></i>
-						</a>
-						<div class="menu-list">
-							<a href="/page/help">Помощ</a>
-							<a href="/page/report">Докладване</a>
-							<a href="/page/contact">Контакти</a>
-						</div>
-					</div>
-				</li>
-
 				@guest
 				<li><register-modal></register-modal></li>
 				<li><login-modal></login-modal></li>
@@ -44,7 +30,6 @@
 							<div class="aligned">
 								<div class="avatar">{{ Auth::user()->abbr }}</div>
 								<div>
-									{{ Auth::user()->firstname }}
 									<i class="fas fa-caret-down"></i>
 								</div>
 							</div>
@@ -60,6 +45,23 @@
 		                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 		                        @csrf
 		                    </form>
+						</div>
+					</div>
+				</li>
+
+				<li>
+					<a href="/users/settings#/notifications"><i class="far fa-bell"></i></a>
+				</li>
+
+				<li>
+					<div class="dropdown">
+						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
+							<i class="fas fa-info-circle"></i>
+						</a>
+						<div class="menu-list">
+							<a href="/page/help">Помощ</a>
+							<a href="/page/report">Докладване</a>
+							<a href="/page/contact">Контакти</a>
 						</div>
 					</div>
 				</li>

@@ -41,8 +41,8 @@
 	$(document).ready(function () {
 		let city = getUrlParam('city');
 		let order = getUrlParam('orderby');
-		$("#city").val(city);
-		$("#orderby").val(order);
+		if (city) $("#city").val(city);
+		if (order) $("#orderby").val(order);
 	});
 </script>
 

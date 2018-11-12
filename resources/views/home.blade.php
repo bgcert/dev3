@@ -31,13 +31,11 @@
 		</div>
 
 		<div class="cat-list">
-			<div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+			<div class="grid grid-1-1-1">
 				@foreach($categories as $category)
 				<a href="/browse/{{ $category->slug }}" class="item cat">
-					<div class="aligned">
-						<i class="fas fa-user-tie"></i>
-						<div class="h5">{{ $category->name }}</div>
-					</div>
+					<i class="{{ $category->icon }}"></i>
+					<div>{{ $category->name }}</div>
 				</a>
 				@endforeach
 			</div>

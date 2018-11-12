@@ -8,7 +8,7 @@
 			</el-alert>
 		</template>
 		<div>
-			<input type="text" v-model="form.email" name="email" placeholder="E-mail">
+			<input type="text" v-model="form.email" name="email" placeholder="E-mail" autofocus @keyup.enter="onSubmit">
 		</div>
 
 		<template v-if="errorMessage.password" v-for="error in errorMessage.password">
@@ -19,15 +19,13 @@
 			</el-alert>
 		</template>
 		<div class="field">
-			<input type="password" v-model="form.password" name="password" placeholder="Парола">	
+			<input type="password" v-model="form.password" name="password" placeholder="Парола" @keyup.enter="onSubmit">	
 		</div>
 		
 		<div class="field">
-			<el-checkbox v-model="form.checked" name="remember"> Запомни ме</el-checkbox>
+			<input type="checkbox" name="remember" v-model="form.checked"> Запомни ме
 		</div>
-		<!-- <el-form-item label="Парола">
-			
-		</el-form-item> -->
+		
 		<a href="/register" class="btn basic"> Регистрация</a>
 		<a href="#" class="btn blue" @click="onSubmit" :loading="loading"> Вход</a>
 		<a href="#" @click="callReset"> Забравена парола.</a>		

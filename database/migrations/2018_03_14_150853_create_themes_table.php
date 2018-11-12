@@ -18,6 +18,7 @@ class CreateThemesTable extends Migration
 			$table->string('name', 36);
 			$table->string('slug', 36);
 			$table->string('cover')->nullable();
+			$table->string('icon')->nullable();
 			$table->timestamps();
 		});
 
@@ -32,6 +33,7 @@ class CreateThemesTable extends Migration
             ['name' => 'Креативни изкуства и дизайн', 'slug' => 'art-design'],
             ['name' => 'Личностно развитие', 'slug' => 'personal-development'],
             ['name' => 'Езиково обучение', 'slug' => 'language'],
+            ['name' => 'Човешки ресурси', 'slug' => 'hr'],
         ]);
 
         Schema::create('themes', function (Blueprint $table) {

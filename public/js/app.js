@@ -63425,9 +63425,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63634,8 +63631,7 @@ var render = function() {
               }
             }
           }),
-          _vm._v(" "),
-          _c("label", [_vm._v(" Бизнес акаунт")])
+          _vm._v(" Бизнес акаунт\n\t\t")
         ]),
         _vm._v(" "),
         _vm.form.publisher
@@ -63780,8 +63776,7 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" "),
-                _c("label", [_vm._v(" Публикуване на събития")])
+                _vm._v(" Публикуване на събития\n\t\t\t")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
@@ -63829,8 +63824,7 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" "),
-                _c("label", [_vm._v(" Публикуване на зали")])
+                _vm._v(" Публикуване на зали\n\t\t\t")
               ])
             ]
           : _vm._e(),
@@ -117646,8 +117640,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -117735,9 +117727,23 @@ var render = function() {
               expression: "form.email"
             }
           ],
-          attrs: { type: "text", name: "email", placeholder: "E-mail" },
+          attrs: {
+            type: "text",
+            name: "email",
+            placeholder: "E-mail",
+            autofocus: ""
+          },
           domProps: { value: _vm.form.email },
           on: {
+            keyup: function($event) {
+              if (
+                !("button" in $event) &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.onSubmit($event)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -117771,6 +117777,15 @@ var render = function() {
           attrs: { type: "password", name: "password", placeholder: "Парола" },
           domProps: { value: _vm.form.password },
           on: {
+            keyup: function($event) {
+              if (
+                !("button" in $event) &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.onSubmit($event)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -117781,27 +117796,48 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "field" },
-        [
-          _c(
-            "el-checkbox",
+      _c("div", { staticClass: "field" }, [
+        _c("input", {
+          directives: [
             {
-              attrs: { name: "remember" },
-              model: {
-                value: _vm.form.checked,
-                callback: function($$v) {
-                  _vm.$set(_vm.form, "checked", $$v)
-                },
-                expression: "form.checked"
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.checked,
+              expression: "form.checked"
+            }
+          ],
+          attrs: { type: "checkbox", name: "remember" },
+          domProps: {
+            checked: Array.isArray(_vm.form.checked)
+              ? _vm._i(_vm.form.checked, null) > -1
+              : _vm.form.checked
+          },
+          on: {
+            change: function($event) {
+              var $$a = _vm.form.checked,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && _vm.$set(_vm.form, "checked", $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    _vm.$set(
+                      _vm.form,
+                      "checked",
+                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                    )
+                }
+              } else {
+                _vm.$set(_vm.form, "checked", $$c)
               }
-            },
-            [_vm._v(" Запомни ме")]
-          )
-        ],
-        1
-      ),
+            }
+          }
+        }),
+        _vm._v(" Запомни ме\n\t")
+      ]),
       _vm._v(" "),
       _c("a", { staticClass: "btn basic", attrs: { href: "/register" } }, [
         _vm._v(" Регистрация")
