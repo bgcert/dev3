@@ -6,8 +6,8 @@
 	<header>
 		<div class="slider">
 			<div class="add-links">
-				<a href="#">+ Добави обучение |</a>
-				<a href="#">+ Добави зала</a>
+				<a href="users/settings#/settings">+ Добави обучение |</a>
+				<a href="users/settings#/settings">+ Добави зала</a>
 			</div>
 			<div class="vcentered" style="margin: 0 auto; max-width: 66%;">
 				<div class="h1 inverted shadow-text">
@@ -24,7 +24,7 @@
 	<section class="categories">
 		<div class="cat-info inverted">
 			<div class="h3">Богата селекция от курсове и програми на водещи обучаващи организации</div>
-			<p>Seminari365.com е виртуална зона за модерните и динамичните хора, търсещи постоянно развитие. Seminari365.com e oнлайн платформа за курсове и семинари. Тук можете да откриете или да регистрирате Вашето обучение.
+			<p>Seminari365.com е виртуална зона за модерните и динамичните хора, търсещи постоянно развитие. Seminari365.com e oнлайн платформа за курсове и семинари. Тук можете да откриете или да регистрирате Вашето успешно обучение.
 			</p>
 			<a href="/browse" class="inverted btn"> Всички курсове</a>
 		</div>

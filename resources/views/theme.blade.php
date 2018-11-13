@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $theme->title)
+
 @section('content')
 <div class="container">
 	<header class="theme">
