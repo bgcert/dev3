@@ -7,22 +7,47 @@
 	<div class="company">
 		<header>
 			<div class="add-links">
-				<a href="#">+ Добави обучение |</a>
-				<a href="#">+ Добави зала</a>
+				<a href="/users/settings#/settings">+ Добави обучение |</a>
+				<a href="/users/settings#/settings">+ Добави зала</a>
 			</div>
 
-			<div class="info">
-				<div>
-					<div class="logo">
-						<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/100x100/{{ $company->logo }}">
+			<div class="details">
+				<div class="aligned">
+					<div class="logo" style="background: url('https://d3cwccg7mi8onu.cloudfront.net/fit-in/160x160/{{ $company->logo }}'), #fff;">
 					</div>
-					{{ $company->name }}
+					<div class="title">
+						{{ $company->name }}
+					</div>
 				</div>
-				<div>
-					{{ $company->description }}
+
+				<div class="reg-box">
+					<h3>
+						Допълнителна информация за <strong>{{ $company->name }}</strong> можете да получите, като отправите запитване
+					</h3>
+					<contact-publisher
+						button-text="Изпрати запитване"
+						:company-id="{{ $company->id }}"
+						about="{{ $company->name }}"
+						btn-class="btn blue fluid">
+					</contact-publisher>
 				</div>
 			</div>
+
+			<div class="description">
+				{{ $company->description }}
+			</div>
+
+			<section>
+				<div class="indented">
+					
+				</div>
+			</section>
+
+			<!-- <div class="logo">
+				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/100x100/{{ $company->logo }}">
+			</div> -->
 		</header>
+		
 
 		<section class="themes">
 			<div class="title">Теми</div>
@@ -47,7 +72,7 @@
 					</div>
 					<div class="info">
 						<div class="cover">
-							<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/100x100/{{ $item->cover }}">
+							<img src="https://d3cwccg7mi8onu.cloudfront.net/100x56/{{ $item->cover }}">
 						</div>
 						<div class="title">
 							{{ $item->theme->title }}

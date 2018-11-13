@@ -162,7 +162,7 @@ nav ul li {
 }
 
 .shadow-text {
-  text-shadow: 2px 2px black;
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .inverted {
@@ -508,6 +508,7 @@ label.btn {
   background-blend-mode: overlay;
   background-position: center;
   background-size: cover;
+  font-family: "Montserrat", sans-serif;
 }
 
 .add-links {
@@ -972,22 +973,47 @@ label.btn {
 }
 
 .company header {
-  height: 325px;
   color: #fff;
-  background: #41295a;
+  background: #7474BF;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, right top, from(#2F0743), to(#41295a));
-  background: linear-gradient(to right, #2F0743, #41295a);
+  background: -webkit-gradient(linear, left top, right top, from(#348AC7), to(#7474BF));
+  background: linear-gradient(to right, #348AC7, #7474BF);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.company header .info {
-  max-width: 80%;
-  margin: 0 auto;
+.company header .details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 140px;
+}
+
+.company header .details .title {
+  margin-left: 20px;
+}
+
+.company header .logo {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  background-position: center !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  border-radius: 2px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.company header .description {
+  border-top: 1px dotted #fff;
+  margin-top: 40px;
+  padding: 40px 140px;
+  white-space: pre-line;
 }
 
 .company .themes {
@@ -1037,6 +1063,20 @@ label.btn {
 
 .company .events .item:hover {
   background: #f9f9f9;
+}
+
+.reg-box {
+  right: 100px;
+  width: 240px;
+  padding: 12px 15px 15px;
+  color: #fff;
+  border-radius: 4px;
+  background-color: rgba(10, 30, 44, 0.25);
+}
+
+.reg-box h3 {
+  font-size: 0.8em;
+  font-weight: normal;
 }
 
 .venue .sub-header {

@@ -13,6 +13,6 @@
 	<a
 		href="/theme/{{ $theme->id }}"
 		class="cover"
-		style="background: url(https://d3cwccg7mi8onu.cloudfront.net/266x132/{{ $theme->cover }})">
+		style="background: url(https://d3cwccg7mi8onu.cloudfront.net/270x215/{{ $theme->cover }})">
 	</a>
 </div>

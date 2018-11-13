@@ -1,15 +1,38 @@
 .company {
 	header {
-		height: 325px;
+		// height: 325px;
 		color: #fff;
-		background: #41295a;  /* fallback for old browsers */
-		background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
-		background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		background: #7474BF;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #348AC7, #7474BF);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #348AC7, #7474BF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-		.info {
-			max-width: 80%;
-			margin: 0 auto;
+		.details {
 			display: flex;
+			justify-content: space-between;
+			padding: 0 140px;
+
+			.title {
+				margin-left: 20px;
+			}
+		}
+
+		.logo {
+			width: 120px;
+			height: 120px;
+			background: #fff;
+			background-position: center !important;
+    		background-size: contain !important;
+    		background-repeat: no-repeat !important;
+			border-radius: 2px;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+
+		.description {
+			border-top: 1px dotted #fff;
+			margin-top: 40px;
+			padding: 40px 140px;
+			white-space: pre-line;
 		}
 	}
 
@@ -51,4 +74,18 @@
 			background: #f9f9f9;
 		}
 	}
+}
+
+.reg-box {
+	right: 100px;
+    width: 240px;
+    padding: 12px 15px 15px;
+    color: #fff;
+    border-radius: 4px;
+    background-color: rgba(10,30,44, .25);
+
+    h3 {
+    	font-size: 0.8em;
+    	font-weight: normal; 
+    }
 }
