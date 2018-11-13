@@ -87,3 +87,44 @@
 		}
 	}
 }
+
+.theme-box-alt {
+	background-color: $primary-color;
+	color: #fff;
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+	height: 215px;
+
+	.info {
+		flex: 1;
+		padding: 20px;
+		position: relative;
+
+		.title {
+			font-size: 1.1em;
+		}
+
+		.details {
+			position: absolute;
+			bottom: 15px;
+
+			.category {
+				margin-top: 5px;
+				font-size: 0.9em;
+				font-style: italic;
+			}
+		}
+	}
+
+	.cover {
+		flex: 1;
+		background-position: center !important;
+	    background-size: cover !important;
+	    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+	}
+
+	a {
+		color: #fff;
+	}
+}

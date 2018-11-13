@@ -179,6 +179,11 @@ nav ul li {
   color: #6d6d6d;
 }
 
+section .title {
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -368,6 +373,41 @@ nav ul li {
 .cat-box .cat-name {
   text-align: center;
   font-size: 1.1em;
+}
+
+.category-cover {
+  height: 300px;
+  background-position: center !important;
+  background-size: cover !important;
+  background-blend-mode: overlay;
+  color: #fff;
+  padding: 15px 26px;
+}
+
+.category-cover .title {
+  margin-top: 60px;
+  font-size: 2em;
+}
+
+.bcrumbs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+
+.bcrumbs a {
+  color: #fff;
+  font-size: 1.05em;
+  margin-right: 10px;
+}
+
+.bcrumbs i {
+  font-size: 0.58em;
+  margin-right: 10px;
 }
 
 /* Grid */
@@ -592,6 +632,54 @@ label.btn {
   padding: 0 25px;
 }
 
+.theme-box-alt {
+  background-color: #4947c6;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 3px;
+  overflow: hidden;
+  height: 215px;
+}
+
+.theme-box-alt .info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 20px;
+  position: relative;
+}
+
+.theme-box-alt .info .title {
+  font-size: 1.1em;
+}
+
+.theme-box-alt .info .details {
+  position: absolute;
+  bottom: 15px;
+}
+
+.theme-box-alt .info .details .category {
+  margin-top: 5px;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.theme-box-alt .cover {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-position: center !important;
+  background-size: cover !important;
+  -webkit-clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+          clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.theme-box-alt a {
+  color: #fff;
+}
+
 .event .cover {
   height: 325px;
   background-blend-mode: overlay;
@@ -692,6 +780,68 @@ label.btn {
 
 .teacher-list .teacher .details {
   white-space: pre-line;
+}
+
+.event-box-alt {
+  border-radius: 4px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
+          box-shadow: 0 1px 6px rgba(31, 31, 31, 0.12), 0 1px 4px rgba(31, 31, 31, 0.12);
+  position: relative;
+}
+
+.event-box-alt .cover {
+  height: 132px;
+  background-position: center;
+  position: relative;
+}
+
+.event-box-alt .cover .c-logo {
+  display: inline-block;
+  position: absolute;
+  top: 86px;
+  left: 20px;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #E1E1E1;
+}
+
+.event-box-alt .cover .c-logo div {
+  background-position: center;
+  background-size: cover;
+  height: 56px;
+  width: 56px;
+}
+
+.event-box-alt .content {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.event-box-alt .content .title {
+  font-size: 1em;
+}
+
+.event-box-alt .content .date {
+  margin: 10px 0;
+}
+
+.event-box-alt .footer {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 80%;
+}
+
+.event-box-alt .footer a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.event-box-alt i {
+  margin-right: 8px;
+  font-size: 15px;
 }
 
 .box {

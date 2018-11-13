@@ -28,9 +28,15 @@ class EventController extends Controller
     public function browse(Request $request)
     {
     	$events = $this->filtered($request);
-    	$categories = $this->categories;
     	$cities = $this->cities;
-    	return view('events', compact('categories', 'cities', 'events'));
+
+    	if ($request->slug) {
+    		$category = \App\Category::where('slug', $request->slug)->first();
+    		return view('browse', compact('events', 'cities', 'category'));
+    	}
+
+    	$categories = $this->categories;
+    	return view('browse', compact('categories', 'cities', 'events'));
     }
 
     public function filtered($request)

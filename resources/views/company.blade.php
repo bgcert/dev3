@@ -21,16 +21,17 @@
 				</div>
 			</div>
 		</header>
-		<div class="themes indented">
+
+		<section class="themes">
 			<div class="title">Теми</div>
 			<div class="grid grid-1-1">
 				@foreach($themes as $theme)
 					@include('partials.theme-box-alt', ['theme' => $theme])
 				@endforeach
 			</div>
-		</div>
+		</section>
 
-		<div class="events indented">
+		<section class="events indented">
 			<div class="title">График на предстоящите обучения</div>
 
 			@foreach($events as $month => $items)
@@ -53,7 +54,7 @@
 				</a>
 				@endforeach
 			@endforeach
-		</div>
+		</section>
 	</div>
 </div>
 @endsection

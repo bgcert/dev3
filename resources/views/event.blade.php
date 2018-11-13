@@ -121,16 +121,15 @@
 	    	user_id="{{ auth()->id() }}">
 	    </comments>
 
-	    <div class="indented">
-	    	<h1>Related events</h1>
+	    <section class="indented">
+	    	<div class="title">Подобни обучения</div>
 
 	    	<div class="grid">
 	    		@foreach($relatedEvents as $event)
-
 	    			@include('partials.event-box-alt', ['event', $event])
 	    		@endforeach
 	    	</div>
-	    </div>
+	    </section>
 		
 	</section>
 	
