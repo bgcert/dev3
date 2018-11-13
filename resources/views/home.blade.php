@@ -24,9 +24,9 @@
 	<section class="categories">
 		<div class="cat-info inverted">
 			<div class="h3">Богата селекция от курсове и програми на водещи обучаващи организации</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco.</p>
+			<p>Seminari365.com e oнлайн платформа за курсове и семинари в България. Тук ще откриете и можете да се регистрирате за най-интересните обучения в България.
+				Seminari365.com е виртуална зона за модерните и динамичните хора, търсещи постоянно развитие.
+			</p>
 			<a href="/browse" class="inverted btn"> Всички курсове</a>
 		</div>
 
