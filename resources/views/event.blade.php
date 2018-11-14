@@ -126,7 +126,7 @@
 	    <section class="indented">
 	    	<div class="title">Подобни обучения</div>
 
-	    	<div class="grid">
+	    	<div class="grid grid-1-1-1-1">
 	    		@foreach($relatedEvents as $event)
 	    			@include('partials.event-box-alt', ['event', $event])
 	    		@endforeach

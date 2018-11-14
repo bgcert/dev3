@@ -49,6 +49,8 @@ class EventController extends Controller
     		if ($request->orderby == 1) $order = 'start_date';
     		if ($request->orderby == 2) $order = 'price';
     		$events->orderBy($order, 'asc');
+    	} else {
+    		$events->orderBy('start_date', 'asc');
     	}
     	return $events->get();
     }
