@@ -421,6 +421,20 @@ section .title {
     padding: 0;
   }
 
+  .aligned {
+    display: block;
+    text-align: center;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 15px auto;
+  }
+
+  .search-results {
+    max-width: 100%;
+  }
+
   .categories {
     display: block;
   }
@@ -428,6 +442,15 @@ section .title {
   .categories .cat-info {
     -webkit-clip-path: none;
             clip-path: none;
+    text-align: center;
+  }
+
+  .categories .cat-info p {
+    margin-bottom: 48px;
+  }
+
+  footer {
+    text-align: center;
   }
 }
 
@@ -458,6 +481,10 @@ section .title {
   grid-template-columns: 2fr 1fr;
 }
 
+.grid-1-2-1 {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
 .grid-5-2 {
   grid-template-columns: 5fr 2fr;
 }
@@ -470,6 +497,10 @@ section .title {
   .grid-1-1-1-1,
   .grid-1-1-1 {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-1-2-1 {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1470,10 +1501,6 @@ footer {
   color: #fff;
   font-size: 11pt;
   color: rgba(255, 255, 255, 0.6);
-}
-
-footer .grid-2 {
-  grid-template-columns: 1fr 2fr 1fr;
 }
 
 footer ul {

@@ -1,6 +1,6 @@
 <div class="container">
 	<footer>
-		<div class="container small grid grid-2">
+		<div class="container small grid grid-1-2-1">
 			<div>
 				<div class="title">
 					Услуги

@@ -25,6 +25,10 @@
 	grid-template-columns: 2fr 1fr;
 }
 
+.grid-1-2-1 {
+	grid-template-columns: 1fr 2fr 1fr;
+}
+
 .grid-5-2 {
 	grid-template-columns: 5fr 2fr;
 }
@@ -36,5 +40,9 @@
 @media screen and (max-width: 768px) {
 	.grid-1-1-1-1, .grid-1-1-1 {
 		grid-template-columns: 1fr 1fr;
+	}
+
+	.grid-1-2-1 {
+		grid-template-columns: 1fr;
 	}
 }

@@ -197,7 +197,6 @@ section .title {
 	}
 
 	ul {
-		// padding: 10px 0;
 		li {
 			padding: 20px 15px;
 			img {
@@ -337,11 +336,34 @@ section .title {
 		padding: 0;
 	}
 
+	.aligned {
+		display: block;
+    	text-align: center;
+	}
+
+	nav ul li {
+		display: block;
+		margin: 15px auto;
+	}
+
+	.search-results {
+		max-width: 100%;
+	}
+
 	.categories {
 		display: block;
 
 		.cat-info {
 			clip-path: none;
+			text-align: center;
+
+			p {
+				margin-bottom: 48px;
+			}
 		}
+	}
+
+	footer {
+		text-align: center;
 	}
 }
