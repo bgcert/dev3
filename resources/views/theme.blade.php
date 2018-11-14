@@ -79,7 +79,7 @@
 	    <div class="indented">
 	    	<h3>Предстоящи събития на {{ $theme->company->name }}</h3>
 
-	    	<div class="grid">
+	    	<div class="grid grid-1-1-1-1">
 	    		@foreach($relatedEvents as $event)
 	    			@include('partials.event-box-alt', ['event', $event])
 	    		@endforeach
