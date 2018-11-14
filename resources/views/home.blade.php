@@ -2,10 +2,6 @@
 
 @section('content')
 
-<div class="test">
-	test 1
-</div>
-
 <div class="container">
 	<header>
 		<div class="slider">
