@@ -367,3 +367,21 @@ section .title {
 		text-align: center;
 	}
 }
+
+@media only screen and (max-width: 600px) {
+	.slider {
+	    height: 300px !important;
+	}
+
+	.h1 {
+		font-size: 26pt;
+	}
+
+	.h2 {
+	    font-size: 15pt;
+	}
+
+	.search.large input {
+		height: 48px;
+	}
+} 

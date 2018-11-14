@@ -9,7 +9,7 @@
 				<a href="users/settings#/settings">+ Добави обучение |</a>
 				<a href="users/settings#/settings">+ Добави зала</a>
 			</div>
-			<div class="vcentered" style="margin: 0 auto; max-width: 66%;">
+			<div class="vcentered centered" style="margin: 0 auto; max-width: 66%;">
 				<div class="h1 inverted shadow-text">
 					Семинари 365
 				</div>
