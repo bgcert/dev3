@@ -327,7 +327,7 @@ section .title {
     }
 }
 
-/* On screens that are 992px or less, set the background color to blue */
+/* On screens that are 768px or less, set the background color to blue */
 @media screen and (max-width: 768px) {
 	.container {
 		max-width: 100%;

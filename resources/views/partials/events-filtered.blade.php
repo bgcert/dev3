@@ -17,7 +17,7 @@
 </div>
 
 
-<div class="grid">
+<div class="grid grid-1-1-1-1">
 	@foreach($events as $event)
 		@include('partials.event-box', ['event', $event])
 	@endforeach

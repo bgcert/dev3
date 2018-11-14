@@ -410,7 +410,7 @@ section .title {
   margin-right: 10px;
 }
 
-/* On screens that are 992px or less, set the background color to blue */
+/* On screens that are 768px or less, set the background color to blue */
 
 @media screen and (max-width: 768px) {
   .container {
@@ -446,6 +446,10 @@ section .title {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.grid-1-1-1-1 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .grid-1-4 {
   grid-template-columns: 1fr 4fr;
 }
@@ -460,6 +464,13 @@ section .title {
 
 .item {
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .grid-1-1-1-1,
+  .grid-1-1-1 {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Buttons */

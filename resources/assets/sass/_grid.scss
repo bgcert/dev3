@@ -13,6 +13,10 @@
 	grid-template-columns: 1fr 1fr 1fr;
 }
 
+.grid-1-1-1-1 {
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .grid-1-4 {
 	grid-template-columns: 1fr 4fr;
 }
@@ -27,4 +31,10 @@
 
 .item {
 	position: relative;
+}
+
+@media screen and (max-width: 768px) {
+	.grid-1-1-1-1, .grid-1-1-1 {
+		grid-template-columns: 1fr 1fr;
+	}
 }
