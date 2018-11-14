@@ -13,14 +13,15 @@
 		</div>
 	</div>
 	<div class="footer">
-		<div class="aligned">
-			<div class="price">
-				{{ $event->price }} лв.
-			</div>
-			<div class="aligned comments">
-				<i class="fas fa-eye"></i>
-				{{ $event->visits }}
-			</div>
+		<!-- <div class="aligned">
+			
+		</div> -->
+		<div class="price">
+			{{ $event->price }} лв.
+		</div>
+		<div class="aligned comments">
+			<i class="fas fa-eye"></i>
+			{{ $event->visits }}
 		</div>
 	</div>
 </div>

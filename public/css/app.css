@@ -456,7 +456,7 @@ section .title {
 
 @media only screen and (max-width: 600px) {
   .slider {
-    height: 300px !important;
+    height: 340px !important;
   }
 
   .h1 {
@@ -518,6 +518,10 @@ section .title {
   }
 
   .grid-1-2-1 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-5-2 {
     grid-template-columns: 1fr;
   }
 }
@@ -633,7 +637,7 @@ label.btn {
 }
 
 @media screen and (max-width: 768px) {
-  .content {
+  section.content {
     text-align: center;
   }
 }
@@ -796,7 +800,7 @@ label.btn {
 }
 
 .event .sub-header {
-  padding: 10px;
+  padding: 10px 140px;
   background: #4b46c6;
 }
 
@@ -992,6 +996,12 @@ label.btn {
   position: absolute;
   bottom: 0;
   width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .box .footer a {
@@ -1063,6 +1073,12 @@ label.btn {
 .box-alt i {
   margin-right: 8px;
   font-size: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .box {
+    border-radius: 0;
+  }
 }
 
 .company header {

@@ -21,29 +21,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="sub-header">
-			<div class="container indented">
-				<div class="aligned">
-					<div class="links">
-						<a href="#" class="info">Информация</a>
-						<a href="#" class="teachers">Лектори</a>
-					</div>
+		<div class="sub-header aligned">
+			<div class="links">
+				<a href="#" class="info">Информация</a>
+				<a href="#" class="teachers">Лектори</a>
+			</div>
 
-					<div class="buttons" style="display: flex;">
-						<contact-publisher
-							button-text="Изпрати запитване"
-							:company-id="{{ $event->theme->company->id }}"
-							about="{{ $event->theme->title }}"
-							btn-class="inverted btn">
-						</contact-publisher>
-						<request-modal
-							:id="{{ json_encode($event->id) }}"
-							title="{{ $event->theme->title }}"
-							:auth="{{ json_encode(Auth::check()) }}"
-							classes="btn white">
-						</request-modal>
-					</div>
-				</div>
+			<div class="buttons aligned" style="display: flex;">
+				<contact-publisher
+					button-text="Изпрати запитване"
+					:company-id="{{ $event->theme->company->id }}"
+					about="{{ $event->theme->title }}"
+					btn-class="inverted btn">
+				</contact-publisher>
+				<request-modal
+					:id="{{ json_encode($event->id) }}"
+					title="{{ $event->theme->title }}"
+					:auth="{{ json_encode(Auth::check()) }}"
+					classes="btn white">
+				</request-modal>
 			</div>
 		</div>
 	</header>
