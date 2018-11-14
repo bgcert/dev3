@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126236024-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-126236024-1');
-	</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
     <meta name="description" content="Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.">
     <meta name="keywords" content="курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове">
     <meta name="author" content="Seminari365">
@@ -31,6 +24,16 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126236024-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-126236024-1');
+	</script>
 
 	<!-- Google map script -->
 	<script>

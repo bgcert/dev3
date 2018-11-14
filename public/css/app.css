@@ -410,11 +410,31 @@ section .title {
   margin-right: 10px;
 }
 
+/* On screens that are 992px or less, set the background color to blue */
+
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+
+  .indented {
+    padding: 0;
+  }
+
+  .categories {
+    display: block;
+  }
+
+  .categories .cat-info {
+    -webkit-clip-path: none;
+            clip-path: none;
+  }
+}
+
 /* Grid */
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 30px;
 }
 
