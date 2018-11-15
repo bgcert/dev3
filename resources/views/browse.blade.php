@@ -17,7 +17,7 @@
 
 		@else
 			<div class="indented mtop">
-				<div class="grid">
+				<div class="grid grid-1-1-1-1">
 					@foreach($categories as $category)
 						<a 
 							class="cat-box" style="background: url('https://d3cwccg7mi8onu.cloudfront.net/270x172/{{ $category->cover }}'), rgba(0,0,0,.4);"
