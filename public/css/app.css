@@ -19,6 +19,12 @@ a {
   margin: 30px 0;
 }
 
+@media screen and (max-width: 600px) {
+  .el-dialog {
+    width: 100% !important;
+  }
+}
+
 .h1 {
   font-size: 40pt;
   font-weight: 800;
