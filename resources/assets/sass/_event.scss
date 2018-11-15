@@ -1,3 +1,128 @@
+.event-page {
+	header {
+		font-family: $font-primary;
+		height: 300px;
+		background-blend-mode: overlay;
+		background-position: center;
+		background-size: cover;
+		color: #fff;
+		padding-top: 36px;
+
+		.header-content {
+			padding-top: 20px;
+		}
+
+		h1 {
+			font-size: 1.8em;
+			font-weight: normal;
+			line-height: 30px;
+		}
+	}
+
+	.sub-header {
+		color: #fff;
+		background: $primary-color;
+		padding: 10px 0;
+
+		.links {
+			display: flex;
+			align-items: center;
+
+			.separator {
+				font-weight: bold;
+				margin: 0 30px;
+			}
+		}
+
+		.buttons {
+			display: flex;
+			justify-content: flex-end;
+
+			& > * {
+				margin-left: 10px;
+			}
+		}
+
+		a {
+			color: #fff;
+		}
+	}
+
+	.content {
+		color: #373a3c;
+		padding-top: 26px;
+
+		h2 {
+			font-weight: normal;
+		}
+
+		.event-body {
+			font-size: 0.9em;
+			white-space: pre-line;
+		}
+
+		.sidebar {
+			font-family: $font-primary;
+		}
+
+		.details {
+			margin-bottom: 20px;
+			background: #FAFAFA;
+			padding: 24px;
+
+			td {
+				padding: 5px;
+			}
+
+			i {
+				font-size: 2em;
+				color: $primary-color;
+			}
+
+			.price {
+				margin-top: 20px;
+			}
+		}
+
+		.host {
+			display: flex;
+			// background: #FAFAFA;
+			background: #2b5876;  /* fallback for old browsers */
+			background: -webkit-linear-gradient(to left, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+			background: linear-gradient(to left, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+			color: #fff;
+			text-align: center;
+			padding: 24px;
+
+			.logo {
+				box-sizing: border-box;
+				width: 80px;
+				height: 80px;
+				border: 4px solid #fff;
+				border-radius: 3px;
+				background-position: center !important;
+				background-repeat: no-repeat !important;
+    			background-size: contain !important;
+			}
+
+			.name {
+				flex: 1;
+				padding: 20px;
+			}
+		}
+	}
+}
+
+
+
+
+
+// Old styles
+
+
+
+
 .event {
 	.cover {
 		height: 325px;

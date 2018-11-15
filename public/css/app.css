@@ -1,11 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800);body {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800);@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800&subset=cyrillic);body {
+  font-family: "Open Sans", sans-serif;
   margin: 0;
 }
 
 a {
   text-decoration: none;
   color: #212121;
+}
+
+.content-container {
+  width: 1170px;
+  margin: 0 auto;
 }
 
 .h1 {
@@ -590,6 +595,21 @@ label.btn {
   cursor: pointer;
 }
 
+.breadcrumbs {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.breadcrumbs a {
+  color: #fff;
+}
+
+.breadcrumbs i {
+  font-size: 0.6em;
+  margin: 0 6px;
+}
+
 /* Slider */
 
 .slider {
@@ -776,6 +796,134 @@ label.btn {
 
 .theme-box-alt a {
   color: #fff;
+}
+
+.event-page header {
+  font-family: "Montserrat", sans-serif;
+  height: 300px;
+  background-blend-mode: overlay;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  padding-top: 36px;
+}
+
+.event-page header .header-content {
+  padding-top: 20px;
+}
+
+.event-page header h1 {
+  font-size: 1.8em;
+  font-weight: normal;
+  line-height: 30px;
+}
+
+.event-page .sub-header {
+  color: #fff;
+  background: #4947c6;
+  padding: 10px 0;
+}
+
+.event-page .sub-header .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.event-page .sub-header .links .separator {
+  font-weight: bold;
+  margin: 0 30px;
+}
+
+.event-page .sub-header .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.event-page .sub-header .buttons > * {
+  margin-left: 10px;
+}
+
+.event-page .sub-header a {
+  color: #fff;
+}
+
+.event-page .content {
+  color: #373a3c;
+  padding-top: 26px;
+}
+
+.event-page .content h2 {
+  font-weight: normal;
+}
+
+.event-page .content .event-body {
+  font-size: 0.9em;
+  white-space: pre-line;
+}
+
+.event-page .content .sidebar {
+  font-family: "Montserrat", sans-serif;
+}
+
+.event-page .content .details {
+  margin-bottom: 20px;
+  background: #FAFAFA;
+  padding: 24px;
+}
+
+.event-page .content .details td {
+  padding: 5px;
+}
+
+.event-page .content .details i {
+  font-size: 2em;
+  color: #4947c6;
+}
+
+.event-page .content .details .price {
+  margin-top: 20px;
+}
+
+.event-page .content .host {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #2b5876;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, right top, left top, from(#4e4376), to(#2b5876));
+  background: linear-gradient(to left, #4e4376, #2b5876);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff;
+  text-align: center;
+  padding: 24px;
+}
+
+.event-page .content .host .logo {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #fff;
+  border-radius: 3px;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.event-page .content .host .name {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 20px;
 }
 
 .event .cover {
@@ -1245,14 +1393,12 @@ label.btn {
 .label {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-}
-
-.label.price {
-  background: #4947c6;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+  border: 2px solid #4947c6;
+  padding: 15px;
+  border-radius: 2px;
+  color: #4947c6;
   font-size: 1.2em;
+  text-align: center;
 }
 
 .label.input {

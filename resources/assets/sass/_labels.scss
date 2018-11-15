@@ -1,13 +1,13 @@
 .label {
 	box-sizing: border-box;
-	&.price {
-		background: $primary-color;
-		color: #fff;
-		padding: 20px;
-		text-align: center;
-		font-size: 1.2em;
-	}
+	border: 2px solid $primary-color;
+	padding: 15px;
+	border-radius: 2px;
+	color: $primary-color;
+	font-size: 1.2em;
+	text-align: center;
 
+	// Need to be checked
 	&.input {
 		padding: 9px 15px;
 		background: $primary-color;
@@ -16,3 +16,22 @@
 		color: #fff;
 	}
 }
+
+// .label {
+// 	box-sizing: border-box;
+// 	&.price {
+// 		background: $primary-color;
+// 		color: #fff;
+// 		padding: 20px;
+// 		text-align: center;
+// 		font-size: 1.2em;
+// 	}
+
+// 	&.input {
+// 		padding: 9px 15px;
+// 		background: $primary-color;
+// 		border-radius: 3px 0 0 3px;
+// 		font-size: 0.8em;
+// 		color: #fff;
+// 	}
+// }
