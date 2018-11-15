@@ -86,7 +86,6 @@
 
 		.host {
 			display: flex;
-			// background: #FAFAFA;
 			background: #2b5876;  /* fallback for old browsers */
 			background: -webkit-linear-gradient(to left, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
 			background: linear-gradient(to left, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -114,7 +113,33 @@
 	}
 }
 
+@media screen and (max-width: 900px) {
+	.grid-1-1 {
+		grid-template-columns: none;
+	}
 
+	.grid-1-1-1-1 {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.event-page {
+		.links {
+			display: none !important;
+		}
+
+		.buttons {
+			justify-content: space-between !important;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.event-page {
+		.popular {
+			display: none !important;
+		}
+	}
+}
 
 
 
@@ -123,108 +148,108 @@
 
 
 
-.event {
-	.cover {
-		height: 325px;
-	    background-blend-mode: overlay;
-	    background-position: center;
-	    background-size: cover;
-	    color: #fff;
-	}
+// .event {
+// 	.cover {
+// 		height: 325px;
+// 	    background-blend-mode: overlay;
+// 	    background-position: center;
+// 	    background-size: cover;
+// 	    color: #fff;
+// 	}
 
-	.content {
-		max-width: 75%;
+// 	.content {
+// 		max-width: 75%;
 
-		.title {
-			margin-top: 45px;
-			font-size: 20pt;
-		}
+// 		.title {
+// 			margin-top: 45px;
+// 			font-size: 20pt;
+// 		}
 
-		.sub-title {
-			font-size: 16pt;	
-		}
-	}
+// 		.sub-title {
+// 			font-size: 16pt;	
+// 		}
+// 	}
 
-	.sub-header {
-		padding: 10px 140px;
-		background: #4b46c6;
+// 	.sub-header {
+// 		padding: 10px 140px;
+// 		background: #4b46c6;
 
-		a {
-			color: #fff;
-		}
-	}
+// 		a {
+// 			color: #fff;
+// 		}
+// 	}
 
-	.links {
-		.info {
-			padding-right: 40px;
-			border-right: 2px solid #fff;
-		}
+// 	.links {
+// 		.info {
+// 			padding-right: 40px;
+// 			border-right: 2px solid #fff;
+// 		}
 
-		.teachers {
-			padding-left: 40px;
-		}
-	}
-}
+// 		.teachers {
+// 			padding-left: 40px;
+// 		}
+// 	}
+// }
 
-.event-details {
-	table {
-		border: 1px solid #e6e6e6;
-	    padding: 15px;
-	    width: 100%;
-	    background: $secondary-color;
+// .event-details {
+// 	table {
+// 		border: 1px solid #e6e6e6;
+// 	    padding: 15px;
+// 	    width: 100%;
+// 	    background: $secondary-color;
 
-	    i {
-	    	color: $primary-color;
-	    	font-size: 1.6em;
-	    	margin: 10px;
-	    }
-	    .underlined {
-			border-bottom: 1px solid #e6e6e6;
-		}
+// 	    i {
+// 	    	color: $primary-color;
+// 	    	font-size: 1.6em;
+// 	    	margin: 10px;
+// 	    }
+// 	    .underlined {
+// 			border-bottom: 1px solid #e6e6e6;
+// 		}
 
-		.price {
-			margin-top: 20px;
-		}
-	}
+// 		.price {
+// 			margin-top: 20px;
+// 		}
+// 	}
 
-	.company {
-		background: #161551;
-		margin: 15px 0;
-		padding: 20px;
-		color: #fff;
-		border-radius: 3px;
-		display:flex;
-		align-items: center;
+// 	.company {
+// 		background: #161551;
+// 		margin: 15px 0;
+// 		padding: 20px;
+// 		color: #fff;
+// 		border-radius: 3px;
+// 		display:flex;
+// 		align-items: center;
 
-		.logo {
-			padding: 5px;
-			background: #fff;
-			border-radius: 3px;
-			margin-right: 20px;
-		}
-	}
-}
+// 		.logo {
+// 			padding: 5px;
+// 			background: #fff;
+// 			border-radius: 3px;
+// 			margin-right: 20px;
+// 		}
+// 	}
+// }
 
-.event .buttons .btn {
-	margin-left: 10px;
-}
+// .event .buttons .btn {
+// 	margin-left: 10px;
+// }
 
-.teacher-list {
-	.teacher {
-		display: flex;
-		background: #f1f1f1;
-		margin-bottom: 15px;
-		padding: 15px;
+// .teacher-list {
+// 	.teacher {
+// 		display: flex;
+// 		background: #f1f1f1;
+// 		margin-bottom: 15px;
+// 		padding: 15px;
 
-		.info {
-			padding: 0 25px;
-		}
+// 		.info {
+// 			padding: 0 25px;
+// 		}
 
-		.details {
-			white-space: pre-line;
-		}
-	}
-}
+// 		.details {
+// 			white-space: pre-line;
+// 		}
+// 	}
+// }
 
 .event-box-alt {
 	border-radius: 4px;
@@ -287,6 +312,3 @@
 	}
 }
 
-@media screen and (max-width: 768px) {
-
-}

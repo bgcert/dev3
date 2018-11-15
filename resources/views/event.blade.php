@@ -34,9 +34,9 @@
 		<div class="content-container">
 			<div class="grid grid-1-1">
 				<div class="links">
-					<a href="#">Информация</a>
+					<a href="#" class="btn link">Информация</a>
 					<span class="separator">|</span>
-					<a href="#">Лектори</a>
+					<a href="#" class="btn link">Лектори</a>
 				</div>
 
 				<div class="buttons">
@@ -64,6 +64,24 @@
 					<p class="event-body">
 						{{ $event->theme->body }}
 					</p>
+
+					@if($event->teachers == null)
+					<div class="divider"></div>
+					<h2 class="title"> Лектори</h2>
+				    <div class="teacher-list">
+				    	@foreach($event->teachers as $teacher)
+				    	<div class="teacher">
+				    		<div class="photo">
+				    			<img src="https://d3cwccg7mi8onu.cloudfront.net/100x100/{{ $teacher->image }}" class="ui circular image">
+				    		</div>
+				    		<div class="info">
+				    			<h4 class="name">{{ $teacher->name}}</h4>
+				    			<p class="details">{{ $teacher->details }}</p>
+				    		</div>
+				    	</div>
+				    	@endforeach
+				    </div>
+				    @endif
 				</div>
 				<div class="sidebar">
 					<div class="details">
@@ -127,7 +145,9 @@
 			    	user_id="{{ auth()->id() }}">
 			    </comments>
 			</div>
-			<div class="popular mtop">
+
+			<div class="related mtop">
+				<div class="title">Популярни обучения</div>
 				<div class="grid grid-1-1-1-1">
 		    		@foreach($relatedEvents as $event)
 		    			@include('partials.event-box-alt', ['event', $event])

@@ -9,8 +9,14 @@ a {
 }
 
 .content-container {
-  width: 1170px;
+  max-width: 1170px;
   margin: 0 auto;
+  padding: 0 15px;
+}
+
+.divider {
+  border-bottom: 1px dotted grey;
+  margin: 30px 0;
 }
 
 .h1 {
@@ -926,106 +932,30 @@ label.btn {
   padding: 20px;
 }
 
-.event .cover {
-  height: 325px;
-  background-blend-mode: overlay;
-  background-position: center;
-  background-size: cover;
-  color: #fff;
+@media screen and (max-width: 900px) {
+  .grid-1-1 {
+    grid-template-columns: none;
+  }
+
+  .grid-1-1-1-1 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-page .links {
+    display: none !important;
+  }
+
+  .event-page .buttons {
+    -webkit-box-pack: justify !important;
+        -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+  }
 }
 
-.event .content {
-  max-width: 75%;
-}
-
-.event .content .title {
-  margin-top: 45px;
-  font-size: 20pt;
-}
-
-.event .content .sub-title {
-  font-size: 16pt;
-}
-
-.event .sub-header {
-  padding: 10px 140px;
-  background: #4b46c6;
-}
-
-.event .sub-header a {
-  color: #fff;
-}
-
-.event .links .info {
-  padding-right: 40px;
-  border-right: 2px solid #fff;
-}
-
-.event .links .teachers {
-  padding-left: 40px;
-}
-
-.event-details table {
-  border: 1px solid #e6e6e6;
-  padding: 15px;
-  width: 100%;
-  background: #f1f1ef;
-}
-
-.event-details table i {
-  color: #4947c6;
-  font-size: 1.6em;
-  margin: 10px;
-}
-
-.event-details table .underlined {
-  border-bottom: 1px solid #e6e6e6;
-}
-
-.event-details table .price {
-  margin-top: 20px;
-}
-
-.event-details .company {
-  background: #161551;
-  margin: 15px 0;
-  padding: 20px;
-  color: #fff;
-  border-radius: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.event-details .company .logo {
-  padding: 5px;
-  background: #fff;
-  border-radius: 3px;
-  margin-right: 20px;
-}
-
-.event .buttons .btn {
-  margin-left: 10px;
-}
-
-.teacher-list .teacher {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background: #f1f1f1;
-  margin-bottom: 15px;
-  padding: 15px;
-}
-
-.teacher-list .teacher .info {
-  padding: 0 25px;
-}
-
-.teacher-list .teacher .details {
-  white-space: pre-line;
+@media screen and (max-width: 768px) {
+  .event-page .popular {
+    display: none !important;
+  }
 }
 
 .event-box-alt {

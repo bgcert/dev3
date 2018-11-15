@@ -16,6 +16,18 @@
 					<search></search>
 				</li>
 
+				<li>
+					<div class="dropdown">
+						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
+							<i class="far fa-question-circle"></i>
+						</a>
+						<div class="menu-list">
+							<a href="/page/help">Помощ</a>
+							<a href="/page/report">Докладване</a>
+							<a href="/page/contact">Контакти</a>
+						</div>
+					</div>
+				</li>
 				@guest
 				<li><register-modal></register-modal></li>
 				<li><login-modal></login-modal></li>
@@ -51,19 +63,6 @@
 
 				<li>
 					<a href="/users/settings#/notifications"><i class="far fa-bell"></i></a>
-				</li>
-
-				<li>
-					<div class="dropdown">
-						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
-							<i class="fas fa-info-circle"></i>
-						</a>
-						<div class="menu-list">
-							<a href="/page/help">Помощ</a>
-							<a href="/page/report">Докладване</a>
-							<a href="/page/contact">Контакти</a>
-						</div>
-					</div>
 				</li>
 
 				<!-- <li>

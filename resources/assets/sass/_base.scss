@@ -9,8 +9,14 @@ a {
 }
 
 .content-container {
-	width: 1170px;
+	max-width: 1170px;
 	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.divider {
+	border-bottom: 1px dotted grey;
+	margin: 30px 0;
 }
 
 // Old styles
