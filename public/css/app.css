@@ -529,7 +529,8 @@ section .title {
 }
 
 @media screen and (max-width: 900px) {
-  .grid-1-1 {
+  .grid-1-1,
+  .grid-2-1 {
     grid-template-columns: none;
   }
 
@@ -955,6 +956,10 @@ label.btn {
 }
 
 @media screen and (max-width: 768px) {
+  .event-page header h1 {
+    font-size: 1.4em;
+  }
+
   .event-page .popular {
     display: none !important;
   }

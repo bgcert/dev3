@@ -127,6 +127,9 @@
 
 @media screen and (max-width: 768px) {
 	.event-page {
+		header h1 {
+			font-size: 1.4em;
+		}
 		.popular {
 			display: none !important;
 		}
