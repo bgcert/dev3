@@ -65,7 +65,7 @@
 						{{ $event->theme->body }}
 					</p>
 
-					@if($event->teachers == null)
+					@if(!$event->teachers == null)
 					<div class="divider"></div>
 					<h2 class="title"> Лектори</h2>
 				    <div class="teacher-list">
