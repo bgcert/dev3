@@ -522,7 +522,11 @@ section .title {
   position: relative;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
+  .grid-1-1 {
+    grid-template-columns: none;
+  }
+
   .grid-1-1-1-1,
   .grid-1-1-1 {
     grid-template-columns: 1fr 1fr;
@@ -540,7 +544,7 @@ section .title {
 @media screen and (max-width: 600px) {
   .grid-1-1-1-1,
   .grid-1-1-1 {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
   }
 }
 
@@ -933,14 +937,6 @@ label.btn {
 }
 
 @media screen and (max-width: 900px) {
-  .grid-1-1 {
-    grid-template-columns: none;
-  }
-
-  .grid-1-1-1-1 {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .event-page .links {
     display: none !important;
   }
@@ -955,6 +951,10 @@ label.btn {
 @media screen and (max-width: 768px) {
   .event-page .popular {
     display: none !important;
+  }
+
+  .grid-1-1-1-1 {
+    grid-template-columns: 1fr;
   }
 }
 
