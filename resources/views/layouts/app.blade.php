@@ -22,7 +22,7 @@
 
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3C0jyEy5ayJpGT2xBOXp5_iN_cvi-5VU&callback=initMap"></script> -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,7 +36,7 @@
 	</script>
 
 	<!-- Google map script -->
-	<script>
+<!-- 	<script>
 		function initMap() {} // now it IS a function and it is in global
 
 		$(() => {
@@ -46,7 +46,7 @@
 		    // and other stuff...
 		  }
 		})
-	</script>
+	</script> -->
 	@stack('header-scripts')
     
 </head>

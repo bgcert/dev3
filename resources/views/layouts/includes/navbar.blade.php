@@ -1,3 +1,55 @@
+<nav class="navbar navbar-light bg-light navbar-expand-lg">
+	<a class="navbar-brand" href="/">
+		<img src="/img/logo-s365.png" alt="{{ config('app.name', 'Laravel') }}">
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="/browse">Обучения <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/v">Зали</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</li>
+
+			@guest
+			<li>
+				<register-modal></register-modal>
+			</li>
+			<li>
+				<login-modal></login-modal>
+			</li>
+			@endguest
+
+			<li class="nav-item dropdown">
+				<button class="btn btn-icon" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="oi oi-question-mark"></span>
+				</button>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+
+<!-- END BOOTSTRAP -->
 <div class="container">
 	<nav>
 		<div class="container aligned">
@@ -49,21 +101,21 @@
 						<div class="menu-list">
 							<a href="/users/settings#/settings" class="item">Акаунт</a>
 							<a class="item" href="{{ route('logout') }}"
-		                       onclick="event.preventDefault();
-		                                     document.getElementById('logout-form').submit();">
-		                        {{ __('Изход') }}
-		                    </a>
+							onclick="event.preventDefault();
+							document.getElementById('logout-form').submit();">
+							{{ __('Изход') }}
+						</a>
 
-		                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-		                        @csrf
-		                    </form>
-						</div>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
 					</div>
-				</li>
+				</div>
+			</li>
 
-				<li>
-					<a href="/users/settings#/notifications"><i class="far fa-bell"></i></a>
-				</li>
+			<li>
+				<a href="/users/settings#/notifications"><i class="far fa-bell"></i></a>
+			</li>
 
 				<!-- <li>
 					<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>

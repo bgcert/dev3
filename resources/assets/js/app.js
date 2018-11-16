@@ -25,6 +25,9 @@ import StoreData from './store';
 import VueRouter from 'vue-router'
 import Vuex from 'vuex';
 
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
+
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import lang from 'element-ui/lib/locale/lang/bg'

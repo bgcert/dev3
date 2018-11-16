@@ -1,6 +1,6 @@
 <template>
-	<div class="item">
-		<a href="#" @click="dialogFormVisible = true"> Регистрация</a>
+	<div class="nav-item">
+		<button class="btn btn-link" @click.prevent="dialogFormVisible = true">Регистрация</button>
 
 		<el-dialog width="400px" :visible.sync="dialogFormVisible">
 			<register></register>

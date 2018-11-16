@@ -2,6 +2,13 @@
 
 @section('content')
 
+<div class="jumbotron text-center">
+	<h1 class="display-4">Семинари 365</h1>
+	<h2>Открий курс днес. Бъди успешен утре.</h2>
+	<hr>
+	<search :large="true"></search>
+</div>
+
 <div class="container">
 	<header>
 		<div class="slider">

@@ -1,39 +1,41 @@
 <template>
-	<mu-container>
-		<mu-dialog :title="title" width="600" max-width="80%" :esc-press-close="false" :overlay-close="false" :open.sync="openAlert">
-			{{ content }}
-			<mu-button slot="actions" flat color="primary" @click="confirm">{{ submitText }}</mu-button>
-			<mu-button slot="actions" flat color="primary" @click="cancel">{{ cancelText }}</mu-button>
-		</mu-dialog>
-	</mu-container>
+	<transition name="modal">
+		<div class="modal modal-mask show" :class="{ hide: hide }">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							<slot name="header"></slot>
+						</h5>
+						<button type="button" class="close" @click.prevent="closeModal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<slot name="body"></slot>
+					</div>
+
+					<div class="modal-footer">
+						<slot name="footer"></slot>
+					</div>
+				</div>
+			</div>
+		</div>
+	</transition>
 </template>
 
 <script>
 	export default {
-		props: ['title', 'content', 'submitText', 'cancelText'],
     	data: function () {
     		return {
-    			openAlert: false,
-    			resolve: null
+    			hide: false
     		}
     	},
 
     	methods: {
-    		pop() {
-		        // this.active = true;
-		        return new Promise(function(resolve, reject){
-		            resolve = this.resolve;
-		        });
-		    },
-    		confirm () {
-    			this.openAlert = false;
-    			this.resolve(true);
-    			//this.$emit('confirm');
-    		},
-    		cancel () {
-    			this.openAlert = false;
-    			this.resolve(false);
-    			//this.$emit('cancel');
+    		closeModal() {
+    			this.hide = true;
     		}
     	},
 
@@ -42,12 +44,25 @@
         },
 
         created() {
-        	this.pop().then( function() {
-        		console.log('resolved');
-        	});
+        	
 		}
     };
 </script>
 
 <style>
+	.modal-mask {
+		position: fixed;
+		z-index: 9998;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, .5);
+		display: table;
+		transition: opacity .3s ease;
+	}
+
+	.hide {
+		display: none;
+	}
 </style>

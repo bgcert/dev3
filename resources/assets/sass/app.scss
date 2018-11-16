@@ -1,23 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800');
-@import '_variables';
-@import '_base';
-@import '_grid';
-@import '_buttons';
-@import '_breadcrumbs';
-@import '_homepage';
-@import '_theme';
-@import '_event';
-@import '_box';
-@import '_company';
-@import '_venue';
-@import '_icons';
-@import '_labels';
-@import '_form';
-@import '_tabs';
-@import '_menus';
-@import '_messages';
-@import '_segments';
-@import '_tables';
-@import '_upload';
-@import '_footer';
-@import '_notifications';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css');
+
+$purple: #4947c6;
+$primary: $purple;
+
+// $btn-border-radius: 50px;
+
+$btn-padding-x: 40px;
+$btn-padding-y: 10px;
+
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+// @import '_variables';
+// @import '_base';
+// @import '_grid';
+// @import '_buttons';
+// @import '_breadcrumbs';
+// @import '_homepage';
+// @import '_theme';
+// @import '_event';
+// @import '_box';
+// @import '_company';
+// @import '_venue';
+// @import '_icons';
+// @import '_labels';
+// @import '_form';
+// @import '_tabs';
+// @import '_menus';
+// @import '_messages';
+// @import '_segments';
+// @import '_tables';
+// @import '_upload';
+// @import '_footer';
+// @import '_notifications';
