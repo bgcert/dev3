@@ -6,11 +6,30 @@ $primary: $purple;
 
 // $btn-border-radius: 50px;
 
-$btn-padding-x: 40px;
-$btn-padding-y: 10px;
-
+$btn-padding-x-lg: 40px;
+$btn-padding-y-lg: 10px;
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+.btn-round {
+	border-radius: 50px;
+}
+
+.btn-circle {
+  border-radius: 50px;
+}
+
+.input-icon {
+	position: absolute;
+	padding: 10px;
+	right: 0;
+}
+
+.search-results {
+	position: absolute;
+	margin-top: 5px;
+	z-index: 20;
+}
 
 // @import '_variables';
 // @import '_base';

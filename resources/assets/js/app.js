@@ -93,5 +93,18 @@ Vue.component('messanger', require('./components/MessangerComponent.vue'));
 const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
+    data: {
+    	
+    },
+
+    methods: {
+    	callLogin: function () {
+    		EventBus.$emit('loginClicked');
+    	},
+
+    	callRegister: function () {
+    		EventBus.$emit('registerClicked');
+    	}
+    }
 });

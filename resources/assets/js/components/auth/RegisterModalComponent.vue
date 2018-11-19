@@ -1,10 +1,10 @@
 <template>
 	<div class="nav-item">
-		<button class="btn btn-link" @click.prevent="dialogFormVisible = true">Регистрация</button>
-
-		<el-dialog width="400px" :visible.sync="dialogFormVisible">
-			<register></register>
-		</el-dialog>
+		<modal v-if="showModal">
+			<div slot="body">
+				<register></register>
+			</div>
+		</modal>
 	</div>
 </template>
 
@@ -14,14 +14,22 @@
 
     	data: function () {
     		return {
-    			innerVisible: false,
-    			dialogFormVisible: false,
-    			loading: false,
+    			showModal: false
     		}
     	},
 
         mounted() {
-            console.log('Register Component mounted.')
+            console.log('Register Component mounted.');
+        },
+
+        created() {
+        	EventBus.$on('registerClicked', () => {
+				this.showModal = true;
+			});
+
+			EventBus.$on('closeModal', () => {
+				this.showModal = false;
+			});
         }
     };
 </script>

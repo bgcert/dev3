@@ -1,20 +1,18 @@
 <template>
-		<div class="search" :class="{ large: large }">
-			<input type="text" v-model="input" placeholder="Търсене..." @blur="clearSearch">
-			<div class="search-results" v-if="events.length > 0 || noResults">
-				<ul>
-					<li class="aligned" v-for="event in events" @click="openEvent(event.id)">
-						<div>
-							<img :src="'https://d3cwccg7mi8onu.cloudfront.net/60x60/' + event.cover">
-						</div>
+		<li class="nav-item">
+			<div class="position-relative">
+				<i class="fas fa-search input-icon"></i>
+				<input class="form-control mr-sm-2" type="search" placeholder="Търсене..." v-model="input" @blur="clearSearch" aria-label="Search">
+			</div>
+			<div class="search-results" v-if="events.length > 0">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action" v-for="event in events" @click="openEvent(event.id)">
+						<img :src="'https://d3cwccg7mi8onu.cloudfront.net/60x60/' + event.cover">
 						<a href="#">{{ event.theme.title }} - {{ event.start_date_carbon }}</a>
 					</li>
 				</ul>
-				<ul v-if="noResults">
-					<li>Няма намерени резултати</li>
-				</ul>
 			</div>
-		</div>
+		</li>
 </template>
 
 <script>

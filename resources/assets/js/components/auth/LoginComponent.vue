@@ -2,7 +2,7 @@
 	<div class="form">
 		<form>
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email адрес</label>
+				<label>Email адрес</label>
 				<input
 					type="email"
 					class="form-control"
@@ -43,40 +43,9 @@
 			</div>
 
 			<a href="/register" class="btn btn-outline-primary">Регистрация</a>
-			<button type="submit" class="btn btn-primary" @click="onSubmit" :loading="loading">Вход</button>
+			<button type="submit" class="btn btn-primary" @click.prevent="onSubmit" :loading="loading">Вход</button>
 			<button class="btn btn-link" @click.prevent="callReset"> Забравена парола.</button>
 		</form>
-
-
-		<!-- <template v-if="errorMessage.email" v-for="error in errorMessage.email">
-			<el-alert
-				:title="error"
-				type="error"
-				show-icon>
-			</el-alert>
-		</template> -->
-		<!-- <div>
-			<input type="text" v-model="form.email" name="email" placeholder="E-mail" autofocus @keyup.enter="onSubmit">
-		</div> -->
-
-		<!-- <template v-if="errorMessage.password" v-for="error in errorMessage.password">
-			<el-alert
-				:title="error"
-				type="error"
-				show-icon>
-			</el-alert>
-		</template> -->
-		<!-- <div class="field">
-			<input type="password" v-model="form.password" name="password" placeholder="Парола" @keyup.enter="onSubmit">	
-		</div> -->
-		
-		<!-- <div class="field">
-			<input type="checkbox" name="remember" v-model="form.checked"> Запомни ме
-		</div> -->
-		
-		<!-- <a href="/register" class="btn basic"> Регистрация</a>
-		<a href="#" class="btn blue" @click="onSubmit" :loading="loading"> Вход</a>
-		<a href="#" @click="callReset"> Забравена парола.</a>		 -->
 	</div>
 </template>
 
@@ -110,14 +79,12 @@
         			remember: vm.checked
         		})
         		.then(function (response) {
-        			vm.dialogFormVisible = false;
         			window.location.reload();
         		})
         		.catch(function (error) {
         			vm.loading = false;
         			vm.errorMessage = error.response.data.errors;
         		});
-        		console.log('submit!');
         	},
 
         	callRegister() {

@@ -1,13 +1,13 @@
 <template>
 	<transition name="modal">
-		<div class="modal modal-mask show" :class="{ hide: hide }">
+		<div class="modal modal-mask show">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">
 							<slot name="header"></slot>
 						</h5>
-						<button type="button" class="close" @click.prevent="closeModal">
+						<button type="button" class="close" @click="closeModal">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -26,26 +26,23 @@
 </template>
 
 <script>
+	import { EventBus } from '../app';
 	export default {
     	data: function () {
     		return {
-    			hide: false
+    			
     		}
     	},
 
     	methods: {
     		closeModal() {
-    			this.hide = true;
+    			EventBus.$emit('closeModal');
     		}
     	},
 
     	mounted() {
             console.log('Modal Component mounted.')
-        },
-
-        created() {
-        	
-		}
+        }
     };
 </script>
 
@@ -60,9 +57,5 @@
 		background-color: rgba(0, 0, 0, .5);
 		display: table;
 		transition: opacity .3s ease;
-	}
-
-	.hide {
-		display: none;
 	}
 </style>

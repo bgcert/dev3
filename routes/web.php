@@ -30,6 +30,7 @@ Route::get('/', 'EventController@index')->name('home');
 Route::view('/page/help', 'pages/help');
 Route::view('/page/contact', 'pages/contact');
 Route::view('/page/publish', 'pages/publish');
+Route::view('/page/confirm', 'pages/confirm');
 // Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 

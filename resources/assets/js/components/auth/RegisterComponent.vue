@@ -1,65 +1,102 @@
 <template>
-	<div class="item" v-loading="loading">
+	<div class="form" v-loading="loading">
+		<div class="text-center">
+			<h2>Добре дошли в Seminari365</h2>
+			<h5>Регистрирайте се, за да продължите.</h5>
+		</div>
+		<form>
+			<div class="form-group">
+				<label>Име</label>
+				<input
+					type="text"
+					name="firstname"
+					class="form-control"
+					:class="{ 'is-invalid': errors.firstname }"
+					v-model="form.firstname"
+					placeholder="Въведете име"
+					autofocus
+					required>
 
-		<el-dialog
-			width="30%"
-			@close="closeConfirm"
-			:visible.sync="innerVisible"
-			append-to-body>
-			<p>Изпратен е линк за потвърждение на <b>{{ form.email }}</b>. За да завършите регистрацията, моля кликнете върху линка. Ако не сте получили писмото за потвърждение в Inbox, моля проверете в Spam директорията.</p>
-			<button class="ui basic button" @click="closeConfirm">OK</button>
-		</el-dialog>
-
-		<div class="signup-cover">
-			<div>
-				<h2>Добре дошли в Seminari365</h2>
-				<div class="ui divider"></div>
-				<h4>Регистрирайте се, за да продължите напред.</h4>
+				<div class="invalid-feedback" v-if="errors.firstname">
+					{{ errors.firstname[0] }}
+				</div>
 			</div>
-		</div>
 
-		<div class="signup-form mt-20">
-			<form class="ui form">
-				<div class="fields">
-					<div class="field">
-						<template v-if="errors.firstname" v-for="error in errors.firstname">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<input type="text" v-model="form.firstname" placeholder="Име">
-					</div>
-					<div class="field">
-						<template v-if="errors.lastname" v-for="error in errors.lastname">
-							 <el-alert type="error" :title="error"></el-alert>
-						</template>
-						<input type="text" v-model="form.lastname" placeholder="Фамилия">
-					</div>
+			<div class="form-group">
+				<label>Фамилия</label>
+				<input
+					type="text"
+					name="lastname"
+					class="form-control"
+					:class="{ 'is-invalid': errors.lastname }"
+					v-model="form.lastname"
+					placeholder="Въведете фамилия"
+					required>
+
+				<div class="invalid-feedback" v-if="errors.lastname">
+					{{ errors.lastname[0] }}
 				</div>
-				
-				<div class="field">
-					<template v-if="errors.email" v-for="error in errors.email">
-						 <el-alert type="error" :title="error"></el-alert>
-					</template>
-					<input type="email" v-model="form.email" placeholder="E-mail">
+			</div>
+
+			<div class="form-group">
+				<label>E-mail</label>
+				<input
+					type="email"
+					name="email"
+					class="form-control"
+					:class="{ 'is-invalid': errors.email }"
+					v-model="form.email"
+					placeholder="Въведете E-mail"
+					required>
+
+				<div class="invalid-feedback" v-if="errors.email">
+					{{ errors.email[0] }}
 				</div>
-				<div class="field">
-					<template v-if="errors.password" v-for="error in errors.password">
-						 <el-alert type="error" :title="error"></el-alert>
-					</template>
-					<input type="password" v-model="form.password" placeholder="Парола">
+			</div>
+
+			<div class="form-group">
+				<label>Парола</label>
+				<input
+					type="password"
+					name="password"
+					class="form-control"
+					:class="{ 'is-invalid': errors.password }"
+					v-model="form.password"
+					placeholder="Въведете парола"
+					required>
+
+				<div class="invalid-feedback" v-if="errors.password">
+					{{ errors.password[0] }}
 				</div>
-				<div class="field">
-					<template v-if="errors.password_confirmation" v-for="error in errors.password_confirmation">
-						 <el-alert type="error" :title="error"></el-alert>
-					</template>
-					<input type="password" v-model="form.passwordConfirm" placeholder="Повторете паролата">
+			</div>
+
+			<div class="form-group">
+				<label>Повторете парола</label>
+				<input
+					type="password"
+					name="password_confirmation"
+					class="form-control"
+					:class="{ 'is-invalid': errors.password_confirmation }"
+					v-model="form.passwordConfirm"
+					placeholder="Повторете парола"
+					required>
+
+				<div class="invalid-feedback" v-if="errors.password_confirmation">
+					{{ errors.password_confirmation[0] }}
 				</div>
-				<div class="field">
-					<captcha></captcha>
-				</div>
-				<a href="#" class="btn fluid blue" @click.prevent="onSubmit">Регистрирай се</a>
-				<p>С натискане на бутон "Регистрирай се", Вие се съгласявате с <a href="terms" target="_blank">условията за ползване</a>.</p>
-			</form>
-		</div>
+			</div>
+
+			<div class="form-group">
+				<captcha></captcha>
+			</div>
+
+			<div class="form-group">
+				<button class="btn btn-primary btn-block" @click.prevent="onSubmit">Регистрирай се</button>
+				<small class="form-text text-muted">
+					С натискане на бутон "Регистрирай се", Вие се съгласявате с <a href="terms" target="_blank">условията за ползване</a>.
+				</small>
+			</div>
+		</form>
 	</div>
 </template>
 
@@ -69,21 +106,14 @@
 
     	data: function () {
     		return {
-    			innerVisible: false,
-    			dialogFormVisible: false,
     			loading: false,
     			terms: false,
     			form: {
     				firstname: '',
     				lastname: '',
     				email: '',
-    				publisher: false,
-    				event_publish: true,
-    				venue_publish: false,
     				password: '',
     				passwordConfirm: '',
-    				companyName: '',
-    				slug: ''
     			},
     			errors: []
     		}
@@ -119,33 +149,17 @@
         			password_confirmation: vm.form.passwordConfirm
         		})
         		.then(function (response) {
-        			vm.dialogFormVisible = false;
-        			vm.innerVisible = true;
-        			vm.loading = false;
+        			window.location.href = '/page/confirm';
         		})
         		.catch(function (error) {
         			vm.errors = error.response.data.errors;
         			vm.loading = false;
         		});
-        	},
-
-        	callLogin() {
-        		this.dialogFormVisible = false;
-        		setTimeout( function(){
-					EventBus.$emit('loginClicked');
-				}, 300 );
-        	},
-
-        	closeConfirm() {
-        		this.innerVisible = false;
-        		location.reload();
         	}
         },
 
-        created() {
-        	EventBus.$on('registerClicked', () => {
-				this.dialogFormVisible = true;
-			});
+        mounted() {
+        	console.log('Register component mounted');
         }
     };
 </script>

@@ -1,16 +1,31 @@
 <template>
-	<div class="form captcha">
-		<template v-if="error">
+	<div>
+		<!-- <template v-if="error">
 			 <el-alert type="error" :title="error"></el-alert>
-		</template>
-		<div class="field">
-			<mark>{{ numberString }}</mark>
-		</div>
-		<div class="field">
-			<a href="#" class="btn small blue" @click.prevent="load"><i class="fas fa-sync-alt"></i></a>
-		</div>
-		<div class="field">
-			<input type="text" placeholder="Въведете числото" v-model="input">
+		</template> -->
+
+		<div class="form-group">
+			<label>Въведете числото</label>
+
+			<div>
+				<mark>{{ numberString }}</mark>
+			</div>
+
+			<div class="input-group">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" v-model="input" placeholder="Въведете числото">
+					<div class="input-group-append">
+						<button class="btn btn-primary btn-sm" @click.prevent="load"><i class="fas fa-sync-alt"></i></button>
+					</div>
+				</div>
+			</div>
+
+			<div class="alert alert-danger" v-if="error">
+				{{ error }}
+				<button type="button" class="close" @click.prevent="error = ''">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
 		</div>
 	</div>
 	

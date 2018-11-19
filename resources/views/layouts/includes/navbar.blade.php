@@ -2,7 +2,16 @@
 	<a class="navbar-brand" href="/">
 		<img src="/img/logo-s365.png" alt="{{ config('app.name', 'Laravel') }}">
 	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+	<button
+		class="navbar-toggler"
+		type="button"
+		data-toggle="collapse"
+		data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent"
+		aria-expanded="false"
+		aria-label="Toggle navigation">
+
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
@@ -16,33 +25,63 @@
 			</li>
 		</ul>
 
-		<ul class="navbar-nav ml-auto">
+		<ul class="navbar-nav ml-auto d-flex align-items-center">
+			<search></search>
+			@guest
 			<li class="nav-item">
-				<form class="form-inline">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+				<button class="btn btn-link" @click="callRegister">Регистрация</button>
+			</li>
+			<li>
+				<button class="btn btn-primary btn-lg btn-round mx-2" @click="callLogin">Вход</button>
+			</li>
+
+			@else
+
+			@if(Auth::user()->role_id == 2)
+			<li>
+				<a class="btn btn-warning mx-3" href="/dashboard#/profile">Бизнес панел</a>
+			</li>
+			@endif
+
+			<li class="nav-item dropdown mx-3">
+				<button class="btn btn-outline-secondary btn-round" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{ Auth::user()->abbr }}
+				</button>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="/users/settings#/settings"> Акаунт</a>
+					<div class="dropdown-divider"></div>
+					<a
+						class="dropdown-item"
+						href="{{ route('logout') }}"
+						onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">
+						Изход
+					</a>
+				</div>
+
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					@csrf
 				</form>
 			</li>
 
-			@guest
-			<li>
-				<register-modal></register-modal>
-			</li>
-			<li>
-				<login-modal></login-modal>
-			</li>
 			@endguest
 
-			<li class="nav-item dropdown">
-				<button class="btn btn-icon" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="oi oi-question-mark"></span>
+			<li class="nav-item dropdown mx-3">
+				<button class="btn btn-outline-primary btn-icon btn-sm btn-circle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-question"></i>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="/page/help">Помощ</a>
+					<a class="dropdown-item" href="/page/report">Докладване</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item" href="/page/contact">Контакти</a>
 				</div>
+			</li>
+
+			<li class="nav-item mx-3">
+				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+					<i class="far fa-bell"></i>
+				</a>
 			</li>
 		</ul>
 	</div>
@@ -53,33 +92,7 @@
 <div class="container">
 	<nav>
 		<div class="container aligned">
-			<ul class="aligned upercase">
-				<li>
-					<a href="/" class="logo">
-						<img src="/img/logo-s365.png">
-					</a>	
-				</li>
-				<li><a href="/browse">Обучения</a></li>
-				<li><a href="/v">Зали</a></li>
-			</ul>
-
 			<ul class="aligned">
-				<li>
-					<search></search>
-				</li>
-
-				<li>
-					<div class="dropdown">
-						<a href="#" id="main-nav" class="dropdown-btn" onclick="dropdown(this)">
-							<i class="far fa-question-circle"></i>
-						</a>
-						<div class="menu-list">
-							<a href="/page/help">Помощ</a>
-							<a href="/page/report">Докладване</a>
-							<a href="/page/contact">Контакти</a>
-						</div>
-					</div>
-				</li>
 				@guest
 				<li><register-modal></register-modal></li>
 				<li><login-modal></login-modal></li>
