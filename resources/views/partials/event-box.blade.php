@@ -1,4 +1,4 @@
-<div class="col-3 py-2">
+<div class="col-lg-3 col-md-6 col-sm-12 py-2">
 	<div class="card h-100">
 		<div class="cover" style="background: url(https://d3cwccg7mi8onu.cloudfront.net/360x132/{{ $event->cover }})">
 			

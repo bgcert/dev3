@@ -13,6 +13,10 @@ $btn-padding-x-lg: 40px;
 
 @import "~bootstrap/scss/bootstrap.scss";
 
+body {
+	background-color: #f5f5f5;
+}
+
 .btn-round {
 	border-radius: 50px;
 }
@@ -60,7 +64,6 @@ $btn-padding-x-lg: 40px;
 	z-index: 20;
 }
 
-
 .jumbotron {
 	min-height: 500px;
 	background-color: initial !important;
@@ -71,7 +74,6 @@ $btn-padding-x-lg: 40px;
     font-family: $primary-font;
     border-radius: 0 !important; // need to be changed
 
-
     h1, h2 {
     	color: #fff;
     	text-shadow: -1px -1px 1px hsla(0,0%,100%,.1), 1px 1px 1px rgba(0,0,0,.5);
@@ -81,6 +83,8 @@ $btn-padding-x-lg: 40px;
     	font-weight: 600;
     }
 }
+
+// Categories
 
 .categories {
 	.info {
@@ -107,6 +111,51 @@ $btn-padding-x-lg: 40px;
 	}
 }
 
+@media (max-width: map-get($grid-breakpoints, lg)) {
+	.categories {
+		.info {
+			clip-path: none;
+		}
+	}
+}
+
+@media (max-width: map-get($grid-breakpoints, lg)) {
+	.categories {
+		.info {
+			
+		}
+	}	
+}
+
+.cat-header {
+	height: 300px;
+	background-position: 50%!important;
+    background-size: cover!important;
+    background-blend-mode: overlay;
+	color: #fff;
+	font-family: $primary-font;
+}
+
+.cat-box {
+	height: 150px;
+	border-radius: 4px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-position: 50%!important;
+    background-size: cover!important;
+    background-blend-mode: overlay;
+    cursor: pointer;
+    color: #fff;
+
+    i {
+    	font-size: 2em;
+    	margin-bottom: 0.3em;
+    }
+}
+
+// Segments
 .segment {
 	&.announce {
 		background: linear-gradient(90deg, #6197f9, #2bc2af);
@@ -159,6 +208,46 @@ $btn-padding-x-lg: 40px;
 		color: #fff;
 		background-color: transparent !important;
 		border: none;
+	}
+}
+
+.breadcrumb {
+	background-color: initial;
+	font-weight: 500;
+	font-family: Open Sans,sans-serif;
+	font-size: .9em;
+    font-weight: 700;
+    padding-top: 2em;
+
+	.breadcrumb-item a {
+		color: #fff;
+	}
+	.breadcrumb-item + .breadcrumb-item::before {
+		color: #fff;
+	}
+
+	.active {
+		color: #fff;
+		font-weight: normal;
+	}
+}
+
+// Event
+.event-header {
+	height: 300px;
+	font-family: $primary-font;
+	background-position: 50%!important;
+    background-size: cover!important;
+    background-blend-mode: overlay;
+	color: #fff;
+}
+
+.event-sub-header {
+	background-color: #4947c6;
+	color: #fff;
+
+	.btn-link {
+		color: #fff;
 	}
 }
 

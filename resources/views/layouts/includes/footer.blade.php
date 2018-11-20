@@ -1,7 +1,7 @@
-<footer>
-	<div class="container py-5">
+<footer class="mt-4 py-5">
+	<div class="container">
 		<div class="row text-light">
-			<div class="col-md-3">
+			<div class="col-lg-3 col-md-6 col-sm-12">
 				<h6 class="text-uppercase">Услуги</h6>
 
 				<ul class="list-unstyled">
@@ -12,7 +12,7 @@
 					<li><a href="/registration" class="text-white">Регистрация</a></li>
 				</ul>
 			</div>
-			<div class="col-md-6">
+			<div class="col-lg-6 col-md-6">
 				<h6 class="text-uppercase">Допълнителна информация</h6>
 
 				<ul class="list-unstyled">
@@ -29,7 +29,7 @@
 				  data-show-facepile="true">
 				</div>
 			</div>
-			<div class="col-md-3">
+			<div class="col-lg-3 col-md-4 col-sm-12">
 				<h6 class="text-uppercase"> За контакти</h6>
 
 				<ul class="list-unstyled">

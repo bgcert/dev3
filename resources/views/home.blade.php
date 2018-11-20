@@ -24,9 +24,9 @@
 <section class="categories">
 	<div class="container-fluid">
 		<div class="row align-items-center">
-			<div class="col-sm m-0 p-0">
+			<div class="col-lg-6 col-md-12 m-0 p-0">
 				<div class="info">
-					<div>
+					<div class="p-4">
 						<h2 class="mb-4">
 							Богата селекция от курсове и програми на водещи обучаващи организации
 						</h2>
@@ -40,11 +40,11 @@
 				</div>
 			</div>
 
-			<div class="col-sm m-0 p-0">
+			<div class="col-lg-6 col-md-12 m-0 p-0">
 				<div class="cat-list">
 					<div class="row">
 						@foreach($categories as $category)
-						<div class="col-sm-4">
+						<div class="col-lg-4 col-md-6 col-sm-12">
 							<a href="/browse/{{ $category->slug }}" class="cat d-flex align-items-center m-3">
 								<i class="{{ $category->icon }}"></i>
 								<div>{{ $category->name }}</div>

@@ -2,35 +2,40 @@
 
 @section('content')
 
-	<div class="container">
-		@if(isset($category))
-		<div class="category-cover" style="background: url(https://d3cwccg7mi8onu.cloudfront.net/1400x300/{{ $category->cover }}), rgba(0, 0, 0, 0.3);">
-			<div class="bcrumbs">
-				<a href="/">Начало</a>
-				<i class="fas fa-chevron-right"></i>
-				<a href="/browse">Обучения</a>
-			</div>
-			<div class="title">
-				{{ $category->name }}
+	@if(isset($category))
+		<div class="cat-header" style="background: url(https://d3cwccg7mi8onu.cloudfront.net/1400x300/{{ $category->cover }}), rgba(0, 0, 0, 0.5);">
+			<div class="container">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb pl-0">
+						<li class="breadcrumb-item"><a href="/"> Начало</a></li>
+						<li class="breadcrumb-item"><a href="/browse"> Обучения</a></li>
+						<li class="breadcrumb-item active"> {{ $category->name }}</li>
+					</ol>
+				</nav>
+				<h1>{{ $category->name }}</h1>
 			</div>
 		</div>
+	@else
 
-		@else
-			<div class="indented mtop">
-				<div class="grid grid-1-1-1-1">
-					@foreach($categories as $category)
-						<a 
-							class="cat-box" style="background: url('https://d3cwccg7mi8onu.cloudfront.net/270x172/{{ $category->cover }}'), rgba(0,0,0,.4);"
-							href="#"
-							onclick="window.location = '/browse/{{ $category->slug }}' + window.location.search;">
-							<i class="{{ $category->icon }}"></i>
-							<div class="cat-name"> {{ $category->name }}</div>
-						</a>
-					@endforeach
+	<div class="container">
+		<div class="row">
+			@foreach($categories as $category)
+			<div class="col-sm-3 my-2">
+				<div
+					class="cat-box"
+					style="background: url('https://d3cwccg7mi8onu.cloudfront.net/270x172/{{ $category->cover }}'), rgba(0,0,0,.5);"
+					onclick="window.location = '/browse/{{ $category->slug }}' + window.location.search;">
+					<i class="{{ $category->icon }}"></i>
+					<h5 class="text-center">{{ $category->name }}</h5>
 				</div>
 			</div>
-		@endif
-		<div class="indented mtop">
+			@endforeach
+		</div>
+	</div>
+	
+	@endif
+	<div class="container">
+		<div class="mt-5">
 			@include('partials.events-filtered', ['cities' => $cities, 'events' => $events])
 		</div>
 	</div>

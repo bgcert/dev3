@@ -4,32 +4,39 @@
 
 @section('content')
 
+<div
+	class="event-header"
+	style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $event->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.8));">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb pl-0">
+				<li class="breadcrumb-item"><a href="/"> Начало</a></li>
+				<li class="breadcrumb-item"><a href="/browse"> Обучения</a></li>
+				<li class="breadcrumb-item"><a href="/browse/{{ $event->theme->category->slug }}"> {{ $event->theme->category->name }}</a></li>
+				<li class="breadcrumb-item active"> {{ $event->theme->title }}</li>
+			</ol>
+		</nav>
+		<h1>{{ $event->theme->title }}</h1>
+	</div>
+</div>
+<div class="event-sub-header py-2">
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-6 d-flex justify-content-start">
+				<button type="button" class="btn btn-link btn-lg px-1">Информация</button>
+				<span class="btn btn-link btn-lg disabled">|</span>
+				<button type="button" class="btn btn-link btn-lg px-1">Лектори</button>
+			</div>
+
+			<div class="col-4 d-flex justify-content-end">
+				<button type="button" class="btn btn-outline-light btn-lg">Primary</button>
+				<button type="button" class="btn btn-light btn-lg">Primary</button>
+			</div>
+		</div>		
+	</div>
+</div>
+
 <div class="event-page">
-	<header style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $event->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.8));">
-		<div class="content-container">
-			<div class="breadcrumbs">
-				<a href="/">Начало</a>
-				<i class="fas fa-chevron-right"></i>
-				<a href="/">Обучения</a>
-				<i class="fas fa-chevron-right"></i>
-				<a href="/">{{ $event->theme->category->name }}</a>
-				<i class="fas fa-chevron-right"></i>
-				<span class="current">{{ $event->theme->title }}</span>
-			</div>
-			<div class="header-content">
-				<div class="grid grid-2-1">
-					<div>
-						<h1>{{ $event->theme->title }}</h1>	
-					</div>
-					<div>
-						<div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
 	<div class="sub-header">
 		<div class="content-container">
 			<div class="grid grid-1-1">
