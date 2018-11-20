@@ -26,13 +26,17 @@
 		</ul>
 
 		<ul class="navbar-nav ml-auto d-flex align-items-center">
-			<search></search>
+			<li class="nav-item">
+				<search></search>
+			</li>
 			@guest
 			<li class="nav-item">
 				<button class="btn btn-link" @click="callRegister">Регистрация</button>
+				<register-modal></register-modal>
 			</li>
 			<li>
 				<button class="btn btn-primary btn-lg btn-round mx-2" @click="callLogin">Вход</button>
+				<login-modal></login-modal>
 			</li>
 
 			@else
@@ -86,56 +90,3 @@
 		</ul>
 	</div>
 </nav>
-
-
-<!-- END BOOTSTRAP -->
-<div class="container">
-	<nav>
-		<div class="container aligned">
-			<ul class="aligned">
-				@guest
-				<li><register-modal></register-modal></li>
-				<li><login-modal></login-modal></li>
-				@else
-
-				@if(Auth::user()->role_id == 2)
-				<li><a href="/dashboard#/profile">Бизнес панел</a></li>
-				@endif
-				<li>
-					<div class="dropdown">
-						<a href="#" id="user-dropdown" class="dropdown-btn" onclick="dropdown(this)">
-							<div class="aligned">
-								<div class="avatar">{{ Auth::user()->abbr }}</div>
-								<div>
-									<i class="fas fa-caret-down"></i>
-								</div>
-							</div>
-						</a>
-						<div class="menu-list">
-							<a href="/users/settings#/settings" class="item">Акаунт</a>
-							<a class="item" href="{{ route('logout') }}"
-							onclick="event.preventDefault();
-							document.getElementById('logout-form').submit();">
-							{{ __('Изход') }}
-						</a>
-
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-							@csrf
-						</form>
-					</div>
-				</div>
-			</li>
-
-			<li>
-				<a href="/users/settings#/notifications"><i class="far fa-bell"></i></a>
-			</li>
-
-				<!-- <li>
-					<notifications :user_id="{{ json_encode(auth()->id()) }}"></notifications>
-				</li> -->
-				
-				@endguest
-			</ul>
-		</div>
-	</nav>
-</div>

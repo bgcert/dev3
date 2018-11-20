@@ -1,6 +1,6 @@
-<div class="filter">
-	<div>
-		<select id="city" onchange="setUrlParam('city', this.value)">
+<div class="form-inline d-flex justify-content-center my-4">
+	<div class="form-group mr-3">
+		<select class="form-control custom-select custom-select-lg" id="city" onchange="setUrlParam('city', this.value)">
 			<option disabled selected value>Всички градове</option>
 			@foreach($cities as $city)
 			<option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -8,8 +8,8 @@
 		</select>
 	</div>
 
-	<div>
-		<select id="orderby" onchange="setUrlParam('orderby', this.value)">
+	<div class="form-group">
+		<select class="form-control custom-select custom-select-lg" id="orderby" onchange="setUrlParam('orderby', this.value)">
 			<option value="1" selected>Дата</option>
 			<option value="2">Цена възх.</option>
 		</select>
@@ -17,10 +17,11 @@
 </div>
 
 
-<div class="grid grid-1-1-1-1">
+
+<div class="row">
 	@foreach($events as $event)
 		@include('partials.event-box', ['event', $event])
-	@endforeach
+	@endforeach	
 </div>
 
 @push('footer-scripts')

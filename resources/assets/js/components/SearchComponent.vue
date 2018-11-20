@@ -1,6 +1,6 @@
 <template>
-		<li class="nav-item">
-			<div class="position-relative">
+		<span>
+			<div class="position-relative" :class="cls">
 				<i class="fas fa-search input-icon"></i>
 				<input class="form-control mr-sm-2" type="search" placeholder="Търсене..." v-model="input" @blur="clearSearch" aria-label="Search">
 			</div>
@@ -12,12 +12,12 @@
 					</li>
 				</ul>
 			</div>
-		</li>
+		</span>
 </template>
 
 <script>
     export default {
-    	props: ['large'],
+    	props: ['cls'],
 
     	data: function () {
     		return {

@@ -1,5 +1,5 @@
 	<template>
-		<div class="nav-item">
+		<div>
 			<modal v-if="showModal">
 				<h3 slot="header">
 					Вход
