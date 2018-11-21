@@ -10756,6 +10756,18 @@ body {
   white-space: pre-line;
 }
 
+.company-header {
+  background: -webkit-gradient(linear, left top, right top, from(#348ac7), to(#7474bf));
+  background: linear-gradient(90deg, #348ac7, #7474bf);
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+}
+
+.company-header .info {
+  border-top: 1px dotted #fff;
+  white-space: pre-line;
+}
+
 .comments .comment .avatar {
   border-radius: 50%;
 }

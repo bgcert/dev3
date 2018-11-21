@@ -297,6 +297,18 @@ body {
 	white-space: pre-line;
 }
 
+// Company
+.company-header {
+	background: linear-gradient(90deg,#348ac7,#7474bf);
+	font-family: $primary-font;
+	color: #fff;
+
+	.info {
+		border-top: 1px dotted #fff;
+		white-space: pre-line;
+	}
+}
+
 // Comments
 .comments {
 	.comment {

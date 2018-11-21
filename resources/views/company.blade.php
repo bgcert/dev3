@@ -3,6 +3,20 @@
 @section('title', $company->name)
 
 @section('content')
+<div class="company-header py-5">
+	<div class="container">
+		<div class="d-flex align-items-center">
+			<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/160x160/{{ $company->logo }}" alt="{{ $company->name }}" class="img-thumbnail">
+
+			<h5 class="ml-3">{{ $company->name }}</h5>
+		</div>
+
+		<div class="info pt-5 mt-5">
+			{{ $company->description }}
+		</div>
+	</div>
+</div>
+
 <div class="container">
 	<div class="company">
 		<header>
