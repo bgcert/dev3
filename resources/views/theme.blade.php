@@ -3,91 +3,85 @@
 @section('title', $theme->title)
 
 @section('content')
-<div class="container">
-	<header class="theme">
-		<div
-			class="cover"
-			style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $theme->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.4));">
-			<div class="add-links"><a href="#">+ Добави обучение |</a> <a href="#">+ Добави зала</a></div>
 
-			<div class="container indented">
-				<div class="content">
-					<div class="title">
-						{{ $theme->title }}
+<div
+	class="theme-header"
+	style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x400/' . $theme->cover }}), linear-gradient(rgba(4, 9, 30, 0.6), rgba(4, 9, 30, 0.8));">
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb pl-0">
+				<li class="breadcrumb-item"><a href="/"> Начало</a></li>
+				<li class="breadcrumb-item"><a href="/browse"> Обучения</a></li>
+				<li class="breadcrumb-item"><a href="/browse/{{ $theme->category->slug }}"> {{ $theme->category->name }}</a></li>
+				<li class="breadcrumb-item active"> {{ $theme->title }}</li>
+			</ol>
+		</nav>
+		<h1>{{ $theme->title }}</h1>
+	</div>
+</div>
+
+<div class="event-sub-header py-2">
+	<div class="container">
+		<div class="text-right">
+			<contact-publisher
+				button-text="Изпрати запитване"
+				:company-id="{{ $theme->company->id }}"
+				about="{{ $theme->title }}"
+				btn-class="btn btn-outline-light btn-lg">
+			</contact-publisher>
+		</div>		
+	</div>
+</div>
+
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-lg-8 col-md-12">
+			<h3>{{ $theme->excerpt }}</h3>
+			<p class="event-body">
+				{{ $theme->body }}
+			</p>
+			<h4>Коментари</h4>
+			<div id="comments">
+				<comments
+		    		auth="{{ Auth::check() }}"
+		    		type="theme"
+			    	id="{{ $theme->id }}"
+			    	user_id="{{ auth()->id() }}">
+			    </comments>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-12">
+			
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex align-items-center">
+						<a href="/c/{{ $theme->company->slug }}">
+							<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/72x72/{{ $theme->company->logo }}" class="rounded float-left" alt="...">
+						</a>
+						<h5 class="card-title">{{ $theme->company->name }}</h5>
 					</div>
-					<div class="excerpt">
-						<p>{{ $theme->excerpt }}</p>
+					<!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+					<div class="text-center mt-4">
+						<a href="#" class="btn btn-primary">Фирмен профил</a>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="sub-header">
-			<div class="container indented">
-				<div class="aligned">
-					<div class="links">
-						<a href="#" class="info">Информация</a>
-						<a href="#" class="teachers">Лектори</a>
-					</div>
 
-					<div class="buttons" style="display: flex;">
-						<contact-publisher
-							button-text="Изпрати запитване"
-							:company-id="{{ $theme->company->id }}"
-							about="{{ $theme->title }}"
-							btn-class="inverted btn">
-						</contact-publisher>
-					</div>
-				</div>
+			<h5 class="mt-5">Популярни теми</h5>
+			<div class="row">
+				@foreach($popularThemes as $theme)
+					@include('partials.theme-box', ['theme' => $theme])
+				@endforeach
 			</div>
 		</div>
-	</header>
+	</div>
 
-	<section class="content">
-		<div class="container indented">
-			<div class="grid grid-2-1">
-				<div>
-					<p style="white-space: pre-line;">
-				    	{{ $theme->body }}
-				    </p>
-				</div>
-
-				<div class="theme-details">
-					<a href="/c/{{ $theme->company->slug }}" class="company">
-						<div class="logo">
-							<img src="https://d3cwccg7mi8onu.cloudfront.net/72x72/{{ $theme->company->logo }}">
-						</div>
-						<div class="name">
-							{{ $theme->company->name }}
-						</div>
-					</a>
-					<div class="popular">
-						@foreach($popularThemes as $theme)
-							@include('partials.theme-box', ['theme' => $theme])
-						@endforeach
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<comments
-    		auth="{{ Auth::check() }}"
-    		type="theme"
-	    	id="{{ $theme->id }}"
-	    	user_id="{{ auth()->id() }}">
-	    </comments>
-
-	    <div class="indented">
-	    	<h3>Предстоящи събития на {{ $theme->company->name }}</h3>
-
-	    	<div class="grid grid-1-1-1-1">
-	    		@foreach($relatedEvents as $event)
-	    			@include('partials.event-box-alt', ['event', $event])
-	    		@endforeach
-	    	</div>
-	    </div>
-		
-	</section>
-	
+	<h4>Популярни обучения</h4>
+	<div class="row">
+		@foreach($relatedEvents as $event)
+			@include('partials.event-box', ['event', $event])
+		@endforeach
+	</div>
 </div>
 
 @endsection

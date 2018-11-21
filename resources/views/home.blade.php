@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="jumbotron m-0 text-center">
+<div class="jumbotron homepage m-0 text-center">
 	<div class="d-lg-flex justify-content-end mb-5">
 		<a href="users/settings#/settings" class="text-white mx-2">+ Добави обучение |</a>
 		<a href="users/settings#/settings" class="text-white mx-2">+ Добави зала</a>

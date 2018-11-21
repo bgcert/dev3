@@ -1,37 +1,40 @@
 <template>
 
-	<div class="comment-feed mtop">
-		<h1 class="centered">Комантари</h1>
+	<div class="comments">
 
 		<template v-for="(comment, index) in comments">
 
-			<div class="comment">
-				<div class="photo">
-					<img src="/img/default_user.png">
-				</div>
-				<div class="comment-body">
-					<div class="name aligned">
-						{{ comment.user.full_name }}
-						<div class="date">{{ comment.updated_at_carbon }}</div>
+			<div class="comment card p-3 my-4">
+				<div class="d-flex">
+					<div class="avatar mr-3">
+						<img src="/img/default_user.png">
 					</div>
-					<p>{{ comment.body }}</p>
+					<div>
+						<div class="username font-weight-bold">{{ comment.user.full_name }}</div>
+						<div class="small text-muted">{{ comment.updated_at_carbon }}</div>
+					</div>
+				</div>
+				<p class="comment-body mt-4">{{ comment.body }}</p>
+				<div class="text-right">
 					<template v-if="comment.user.id == user_id">
-						<a href="#" @click.prevent="removeComment(comment.id, index)">Изтрий</a>
+						<button class="btn btn-primary btn-sm" @click.prevent="removeComment(comment.id, index)"> Изтрий</button>
 					</template>
 				</div>
 			</div>
+
 		</template>
 
-		<div class="comment">
+		<div class="jumbotron p-3">
 			<template v-if="auth">
 				<textarea
+					class="form-control w-100"
 					type="textarea"
 					autosize
 					placeholder="Добавете коментар ..."
 					v-model="body">
 				</textarea>
-				<div class="right">
-					<button class="btn blue" @click.prevent="addComment">
+				<div class="text-right mt-2">
+					<button class="btn btn-primary" @click.prevent="addComment">
 						Добави коментар
 					</button>	
 				</div>
@@ -39,12 +42,13 @@
 			<template v-else>
 				<textarea
 					@focus="login"
+					class="form-control w-100"
 					type="textarea"
 					autosize
 					placeholder="Добавете коментар ...">
 				</textarea>
-				<div class="right">
-					<button class="btn blue" @click.prevent="login">
+				<div class="text-right mt-2">
+					<button class="btn btn-primary" @click.prevent="login">
 						Добави коментар
 					</button>	
 				</div>
@@ -60,7 +64,6 @@
 
     	data: function () {
     		return {
-    			// auth: window.auth,
     			comments: [],
     			body: '',
     		}

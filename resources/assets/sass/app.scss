@@ -1,10 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+@import url('https://fonts.googleapis.com/css?family=Oswald:200');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+
+
+
+
 @import url('https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css');
 
 $primary-font: 'Montserrat', sans-serif;
 
 $purple: #4947c6;
 $primary: $purple;
+
+$font-family-sans-serif: Open Sans, sans-serif;//'Source Sans Pro', sans-serif;//'Lato', sans-serif;;//'Noto Sans SC', sans-serif;//'Oswald', sans-serif;///'Fira Sans', sans-serif;//-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
 
 // $btn-border-radius: 50px;
 
@@ -15,6 +31,7 @@ $btn-padding-x-lg: 40px;
 
 body {
 	background-color: #f5f5f5;
+	color: #373a3c;
 }
 
 .btn-round {
@@ -64,7 +81,7 @@ body {
 	z-index: 20;
 }
 
-.jumbotron {
+.jumbotron.homepage {
 	min-height: 500px;
 	background-color: initial !important;
 	background-image: url(/img/slider/1.jpeg), linear-gradient(rgba(4,9,30,.8),rgba(4,9,30,.2));
@@ -165,7 +182,7 @@ body {
 }
 
 // Card
-.card {
+.card.event-card {
 	font-family: $primary-font;
 	position: relative;
 	background: linear-gradient(135deg,#2965ca,#563bc2),#4947c6;
@@ -251,30 +268,67 @@ body {
 	}
 }
 
+.event-body {
+	font-size: 0.9em;
+	white-space: pre-line;
+}
+
+// Theme
+.theme-header {
+	height: 300px;
+	font-family: $primary-font;
+	background-position: 50%!important;
+    background-size: cover!important;
+    background-blend-mode: overlay;
+	color: #fff;
+}
+
+.theme-sub-header {
+	background-color: #4947c6;
+	color: #fff;
+
+	.btn-link {
+		color: #fff;
+	}
+}
+
+.theme-body {
+	font-size: 0.9em;
+	white-space: pre-line;
+}
+
+// Comments
+.comments {
+	.comment {
+		.avatar {
+			border-radius: 50%;
+			img {
+				width: 60px;
+				height: 60px;
+			}
+		}
+
+		.username {
+			font-size: 0.9em;
+		}
+
+		.comment-body {
+			font-size: 0.9em;	
+		}
+	}
+}
+
+// Flex
+.flex-1 {
+	flex: 1;
+}
+
+.flex-auto {
+	flex: auto;
+}
+
+// Footer
 footer {
 	border-top: 20px solid #212681;
 	background: #2931a0;
 }
-
-// @import '_variables';
-// @import '_base';
-// @import '_grid';
-// @import '_buttons';
-// @import '_breadcrumbs';
-// @import '_homepage';
-// @import '_theme';
-// @import '_event';
-// @import '_box';
-// @import '_company';
-// @import '_venue';
-// @import '_icons';
-// @import '_labels';
-// @import '_form';
-// @import '_tabs';
-// @import '_menus';
-// @import '_messages';
-// @import '_segments';
-// @import '_tables';
-// @import '_upload';
-// @import '_footer';
-// @import '_notifications';
