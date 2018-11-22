@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light navbar-expand-lg">
+<nav class="navbar sticky-top navbar-light bg-light navbar-expand-lg">
 	<a class="navbar-brand" href="/">
 		<img src="/img/logo-s365.png" alt="{{ config('app.name', 'Laravel') }}">
 	</a>

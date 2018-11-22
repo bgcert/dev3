@@ -20,7 +20,52 @@
 	</div>
 </div>
 
-<div class="event-sub-header py-2">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+	<div class="container">
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-toggle="collapse"
+			data-target="#navbarColor02"
+			aria-controls="navbarColor02"
+			aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor02">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#"> Информация <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#"> Лектори</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<contact-publisher
+						button-text="Изпрати запитване"
+						:company-id="{{ $event->theme->company->id }}"
+						about="{{ $event->theme->title }}"
+						btn-class="btn btn-outline-light btn-lg mr-2 my-2 my-2-sm">
+					</contact-publisher>
+				</li>
+				<li class="nav-item">
+					<request-modal
+						:id="{{ json_encode($event->id) }}"
+						title="{{ $event->theme->title }}"
+						:auth="{{ json_encode(Auth::check()) }}"
+						classes="btn btn-light btn-lg my-2 my-2-sm">
+					</request-modal>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- <div class="event-sub-header py-2">
 	<div class="container">
 		<div class="row justify-content-between">
 			<div class="col-6 d-flex justify-content-start">
@@ -30,8 +75,8 @@
 			</div>
 
 			<div class="col-4 d-flex justify-content-end">
-				<!-- <button type="button" class="btn btn-outline-light btn-lg">Primary</button>
-				<button type="button" class="btn btn-light btn-lg">Primary</button> -->
+				<button type="button" class="btn btn-outline-light btn-lg">Primary</button>
+				<button type="button" class="btn btn-light btn-lg">Primary</button>
 				<contact-publisher
 					button-text="Изпрати запитване"
 					:company-id="{{ $event->theme->company->id }}"
@@ -47,7 +92,7 @@
 			</div>
 		</div>		
 	</div>
-</div>
+</div> -->
 
 <div class="container mt-5">
 	<div class="row">

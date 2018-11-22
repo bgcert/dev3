@@ -73,11 +73,22 @@
 	</script>
 
 		@if(Auth::user()->role_id == 3)
-		<div class="admin-nav">
-			<div class="container">
-				<a href="/admin#/admin-users">Административен панел</a>
-			</div>
-		</div>
+		<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/admin#/admin-users">Админ панел <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Features</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Pricing</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">About</a>
+				</li>
+			</ul>
+		</nav>
 		@endif
 	@endauth
     <div id="app">
