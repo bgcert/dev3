@@ -46,26 +46,13 @@
 						button-text="Изпрати запитване"
 						:company-id="{{ $theme->company->id }}"
 						about="{{ $theme->title }}"
-						btn-class="btn btn-outline-light btn-lg mr-2 my-2 my-2-sm">
+						btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
 					</contact-publisher>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
-<!-- <div class="event-sub-header py-2">
-	<div class="container">
-		<div class="text-right">
-			<contact-publisher
-				button-text="Изпрати запитване"
-				:company-id="{{ $theme->company->id }}"
-				about="{{ $theme->title }}"
-				btn-class="btn btn-outline-light btn-lg">
-			</contact-publisher>
-		</div>		
-	</div>
-</div> -->
 
 <div class="container mt-5">
 	<div class="row">

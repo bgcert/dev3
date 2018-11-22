@@ -10688,6 +10688,20 @@ body {
   border: none;
 }
 
+.card.card-theme-alt {
+  overflow: hidden;
+  background-color: #4947c6;
+}
+
+.card.card-theme-alt .cover {
+  display: block;
+  min-height: 200px;
+  background-position: 50% !important;
+  background-size: cover !important;
+  -webkit-clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+          clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+}
+
 .breadcrumb {
   background-color: initial;
   font-weight: 500;
@@ -10765,7 +10779,16 @@ body {
 
 .company-header .info {
   border-top: 1px dotted #fff;
+  font-size: 0.9rem;
   white-space: pre-line;
+}
+
+.company-header .trs {
+  background-color: rgba(10, 30, 44, 0.25) !important;
+}
+
+.event-list-table .tr-link {
+  cursor: pointer;
 }
 
 .comments .comment .avatar {

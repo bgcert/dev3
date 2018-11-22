@@ -49,7 +49,7 @@
 						button-text="Изпрати запитване"
 						:company-id="{{ $event->theme->company->id }}"
 						about="{{ $event->theme->title }}"
-						btn-class="btn btn-outline-light btn-lg mr-2 my-2 my-2-sm">
+						btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
 					</contact-publisher>
 				</li>
 				<li class="nav-item">
@@ -57,42 +57,13 @@
 						:id="{{ json_encode($event->id) }}"
 						title="{{ $event->theme->title }}"
 						:auth="{{ json_encode(Auth::check()) }}"
-						classes="btn btn-light btn-lg my-2 my-2-sm">
+						classes="btn btn-light btn-lg my-1 my-1-sm">
 					</request-modal>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
-
-<!-- <div class="event-sub-header py-2">
-	<div class="container">
-		<div class="row justify-content-between">
-			<div class="col-6 d-flex justify-content-start">
-				<button type="button" class="btn btn-link btn-lg px-1">Информация</button>
-				<span class="btn btn-link btn-lg disabled">|</span>
-				<button type="button" class="btn btn-link btn-lg px-1">Лектори</button>
-			</div>
-
-			<div class="col-4 d-flex justify-content-end">
-				<button type="button" class="btn btn-outline-light btn-lg">Primary</button>
-				<button type="button" class="btn btn-light btn-lg">Primary</button>
-				<contact-publisher
-					button-text="Изпрати запитване"
-					:company-id="{{ $event->theme->company->id }}"
-					about="{{ $event->theme->title }}"
-					btn-class="btn btn-outline-light btn-lg">
-				</contact-publisher>
-				<request-modal
-					:id="{{ json_encode($event->id) }}"
-					title="{{ $event->theme->title }}"
-					:auth="{{ json_encode(Auth::check()) }}"
-					classes="btn btn-light btn-lg ml-3">
-				</request-modal>
-			</div>
-		</div>		
-	</div>
-</div> -->
 
 <div class="container mt-5">
 	<div class="row">
