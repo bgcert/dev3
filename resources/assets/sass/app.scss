@@ -240,6 +240,24 @@ body {
 	}
 }
 
+// Combine card class!!!
+.card.card-venue {
+	overflow: hidden;
+	background-color: #4947c6;
+	.cover {
+		display: block;
+		height: 132px;
+		background-position: 50% !important;
+    	background-size: cover !important;
+	}
+
+	.card-body {
+		.card-title {
+			color: #fff;
+		}
+	}
+}
+
 .breadcrumb {
 	background-color: initial;
 	font-weight: 500;

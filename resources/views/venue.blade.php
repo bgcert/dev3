@@ -1,69 +1,106 @@
 @extends('layouts.app')
 
-@push('footer-scripts')
-	<script>
-		let images = {!! json_encode($images) !!};
-		let count = images.length;
-		let current = 1;
-		if (count > 0) {
-			showSlide(current);
-		}
-
-		function nextSlide() {
-			if (count > 0 && current < count) {
-				current++;
-				showSlide();
-			}
-		}
-
-		function prevSlide() {
-			if (count > 1 && current > 1) {
-				current--;
-				showSlide();
-			}
-		}
-
-		function showSlide() {
-			$('.slide-container .item').css('background-image', 'url("https://d3cwccg7mi8onu.cloudfront.net/1000x400/' + images[current-1] + '")');
-		}
-
-		$('#number').click(function() {
-		    $(this).find('span').text( $(this).data('number') );
-		});
-	</script>
-@endpush
-
 @section('content')
 
 <div class="container">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+		<ol class="carousel-indicators">
+			@foreach($images as $image)
+				@if($loop->index == 0)
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				@else
+					<li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}"></li>
+				@endif
+			@endforeach
+		</ol>
+
+		<div class="carousel-inner">
+			@foreach($images as $image)
+				@if($loop->index == 0)
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/1000x300/{{ $image }}">
+				</div>
+				@else
+				<div class="carousel-item">
+					<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/1000x300/{{ $image }}">
+				</div>
+				@endif
+			@endforeach
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarColor02"
+				aria-controls="navbarColor02"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item text-white">
+						<i class="fas fa-map-marker-alt"></i>
+						{{ $venue->city->name }}, {{ $venue->address }}
+					</li>
+				</ul>
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<contact-publisher
+							button-text="Изпрати запитване"
+							:company-id="{{ $venue->company->id }}"
+							about="{{ $venue->name }}"
+							btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
+						</contact-publisher>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row mt-4">
+		<div class="col-8">
+			<h2>{{ $venue->name }}</h2>
+
+			<p>{{ $venue->description }}</p>
+
+			<comments
+	    		auth="{{ Auth::check() }}"
+	    		type="venue"
+		    	id="{{ $venue->id }}"
+		    	user_id="{{ auth()->id() }}">
+		    </comments>
+		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-body text-center">
+					<h3>{{ $venue->company->name }}</h3>	
+					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $venue->company->logo }}">
+					<a href="/c/{{ $venue->company->slug }}" class="btn btn-primary btn-lg btn-block mt-3">Фирмен профил</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="venue">
-		<div class="slide-container">
-			<div class="item"></div>
-			<a class="prev" onclick="prevSlide()">&#10094;</a>
-	  		<a class="next" onclick="nextSlide()">&#10095;</a>
-		</div>
-		<div class="aligned sub-header indented">
-			<div class="aligned">
-				<i class="fas fa-map-marker-alt"></i>
-				{{ $venue->city->name }}, {{ $venue->address }}
-			</div>
-			<div>
-				<contact-publisher
-					button-text="Изпрати запитване"
-					:company-id="{{ $venue->company->id }}"
-					about="{{ $venue->name }}"
-					btn-class="inverted btn">
-				</contact-publisher>
-			</div>
-		</div>
+		
 		<div class="grid grid-5-2 mtop indented">
 			<div>
-				<h2>{{ $venue->name }}</h2>
-				<div>
-					<div class="description">
-				    	{{ $venue->description }}
-				    </div>	
-				</div>
 				<div>
 					<table>
 				    	<tbody>
@@ -80,13 +117,6 @@
 				</div>
 			</div>
 			<div>
-				<div>
-					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $venue->company->logo }}">
-				</div>
-				<div>
-					<h3>{{ $venue->company->name }}</h3>
-					<a href="/c/{{ $venue->company->slug }}" class="btn blue fluid">Фирмен профил</a>
-				</div>
 				<div>
 					@if($venue->company->phone != '')
 					<p>
@@ -106,19 +136,11 @@
 		</div>
 	</div>
 	<div>
-		<h3 class="ui dividing header">Популярни обучения</h3>
+		<h4>Популярни обучения</h4>
 		<related-feed
 			auth="{{ auth()->check() }}"
 			company_id="{{ $venue->company->id }}">
 		</related-feed>
-	</div>
-	<div>
-		<comments
-    		auth="{{ Auth::check() }}"
-    		type="venue"
-	    	id="{{ $venue->id }}"
-	    	user_id="{{ auth()->id() }}">
-	    </comments>
 	</div>
 </div>
 @endsection

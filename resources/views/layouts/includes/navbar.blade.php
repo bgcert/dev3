@@ -26,15 +26,15 @@
 		</ul>
 
 		<ul class="navbar-nav ml-auto d-flex align-items-center">
-			<li class="nav-item">
+			<li class="nav-item my-sm-2">
 				<search></search>
 			</li>
 			@guest
-			<li class="nav-item">
+			<li class="nav-item my-sm-2">
 				<button class="btn btn-link" @click="callRegister">Регистрация</button>
 				<register-modal></register-modal>
 			</li>
-			<li>
+			<li class="nav-item my-sm-2">
 				<button class="btn btn-primary btn-lg btn-round mx-2" @click="callLogin">Вход</button>
 				<login-modal></login-modal>
 			</li>

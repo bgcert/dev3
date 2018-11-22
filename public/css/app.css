@@ -10702,6 +10702,22 @@ body {
           clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
 }
 
+.card.card-venue {
+  overflow: hidden;
+  background-color: #4947c6;
+}
+
+.card.card-venue .cover {
+  display: block;
+  height: 132px;
+  background-position: 50% !important;
+  background-size: cover !important;
+}
+
+.card.card-venue .card-body .card-title {
+  color: #fff;
+}
+
 .breadcrumb {
   background-color: initial;
   font-weight: 500;
