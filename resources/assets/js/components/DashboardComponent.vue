@@ -1,7 +1,6 @@
 <template>
 	<div class="row mt-4">
-
-		<div class="col-lg-3 col-sm-12">
+		<div class="col-lg-3 col-sm-12 mb-sm-4">
 			<div class="list-group">
 				<!-- <div class="list-group-item d-flex justify-content-between align-items-center">
 					
@@ -66,7 +65,6 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </template>
 
