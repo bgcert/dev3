@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,700,800,900');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
 @import url('https://fonts.googleapis.com/css?family=Oswald:200');
@@ -325,6 +326,35 @@ body {
 .theme-body {
 	font-size: 0.9em;
 	white-space: pre-line;
+}
+
+// Venue
+.venue-header {
+	height: 600px;
+	font-family: $primary-font;
+	background-position: 50%!important;
+    background-size: cover!important;
+    background-blend-mode: overlay;
+
+	.details {
+		color: #fff;
+		font-weight: 400;
+		text-shadow: rgba(0,0,0,.8) 0 1px 0;
+		.venue-name {
+			font-size: 2.4em;
+		}
+
+		.location {
+
+		}
+	}
+}
+
+.venue {
+	.card-body p {
+		white-space: pre-line;
+		font-size: 0.9rem;
+	}
 }
 
 // Company

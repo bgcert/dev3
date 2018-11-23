@@ -2,82 +2,96 @@
 
 @section('content')
 
-<div class="container">
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
-		<ol class="carousel-indicators">
-			@foreach($images as $image)
-				@if($loop->index == 0)
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				@else
-					<li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}"></li>
-				@endif
-			@endforeach
-		</ol>
-
-		<div class="carousel-inner">
-			@foreach($images as $image)
-				@if($loop->index == 0)
-				<div class="carousel-item active">
-					<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/1000x300/{{ $image }}">
+<div
+	class="venue-header d-flex align-items-center"
+	style="background-image: url({{ 'https://d3cwccg7mi8onu.cloudfront.net/2000x700/' . $venue->cover }}), linear-gradient(rgba(4, 9, 30, 0.4), rgba(4, 9, 30, 0.6));">
+	<div class="container">
+		<dir class="row">
+			<div class="col-8 details">
+				<div class="d-flex align-items-center">
+					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/60x60/{{ $venue->company->logo }}" alt="{{ $venue->company->name }}" class="img-thumbnail">
+					<h5 class="ml-3">{{ $venue->company->name }}</h5>
 				</div>
-				@else
-				<div class="carousel-item">
-					<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/1000x300/{{ $image }}">
+				<div class="venue-name">{{ $venue->name }}</div>
+				<div class="location mt-2">
+					{{ $venue->city->name }}, {{ $venue->address }}
 				</div>
-				@endif
-			@endforeach
-		</div>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb px-0 py-3">
+						<li class="breadcrumb-item"><a href="/"> Начало</a></li>
+						<li class="breadcrumb-item"><a href="/v"> Зали</a></li>
+						<li class="breadcrumb-item active"> {{ $venue->name }}</li>
+					</ol>
+				</nav>
+			</div>
 
-	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
-		<div class="container">
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarColor02"
-				aria-controls="navbarColor02"
-				aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarColor02">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item text-white">
-						<i class="fas fa-map-marker-alt"></i>
-						{{ $venue->city->name }}, {{ $venue->address }}
-					</li>
-				</ul>
-
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
+			<div class="col-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">Интересувате се от тази зала?</h5>
+						<p class="card-text">Изпратете запитване към {{ $venue->company->name }}</p>
 						<contact-publisher
 							button-text="Изпрати запитване"
 							:company-id="{{ $venue->company->id }}"
 							about="{{ $venue->name }}"
-							btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
+							btn-class="btn btn-warning">
 						</contact-publisher>
-					</li>
-				</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-	</nav>
+		</dir>
+	</div>
+</div>
 
-	<div class="row mt-4">
+<div class="venue container mt-4">
+	<div class="row">
 		<div class="col-8">
-			<h2>{{ $venue->name }}</h2>
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Галерия</h4>
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
-			<p>{{ $venue->description }}</p>
+						<ol class="carousel-indicators">
+							@foreach($images as $image)
+								@if($loop->index == 0)
+									<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+								@else
+									<li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}"></li>
+								@endif
+							@endforeach
+						</ol>
+
+						<div class="carousel-inner">
+							@foreach($images as $image)
+								@if($loop->index == 0)
+								<div class="carousel-item active">
+									<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/700x400/{{ $image }}">
+								</div>
+								@else
+								<div class="carousel-item">
+									<img class="d-block w-100" src="https://d3cwccg7mi8onu.cloudfront.net/700x400/{{ $image }}">
+								</div>
+								@endif
+							@endforeach
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="card my-3">
+				<div class="card-body">
+					<h4 class="card-title">{{ $venue->name }}</h4>
+					<p>{{ $venue->description }}</p>
+				</div>
+			</div>
 
 			<comments
 	    		auth="{{ Auth::check() }}"
@@ -86,55 +100,37 @@
 		    	user_id="{{ auth()->id() }}">
 		    </comments>
 		</div>
+
 		<div class="col-4">
 			<div class="card">
 				<div class="card-body text-center">
-					<h3>{{ $venue->company->name }}</h3>	
-					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x250/{{ $venue->company->logo }}">
-					<a href="/c/{{ $venue->company->slug }}" class="btn btn-primary btn-lg btn-block mt-3">Фирмен профил</a>
+					<h4>{{ $venue->company->name }}</h4>	
+					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/160x160/{{ $venue->company->logo }}">
+					<a href="/c/{{ $venue->company->slug }}" class="btn btn-warning mt-3">Фирмен профил</a>
 				</div>
 			</div>
-		</div>
-	</div>
 
-	<div class="venue">
-		
-		<div class="grid grid-5-2 mtop indented">
-			<div>
-				<div>
-					<table>
-				    	<tbody>
-				    		<tr>
-				    			<td>Капацитет</td>
-				    			<td>{{ $venue->capacity }} места</td>
-				    		</tr>
-				    		<tr>
-				    			<td>Адрес</td>
-				    			<td>{{ $venue->city->name }}, {{ $venue->address }}</td>
-				    		</tr>
-				    	</tbody>
-				    </table>
-				</div>
-			</div>
-			<div>
-				<div>
-					@if($venue->company->phone != '')
-					<p>
-						<a
-							id="number"
-							class="btn blue fluid"
-							data-number="{{$venue->company->phone}}">
-							<i class="mobile alternate icon"></i>
-							<span>
-								{{ str_limit($venue->company->phone, 2, str_repeat("X", strlen($venue->company->phone) - 2)) }}
-							</span>
-						</a>
-					</p>
-					@endif
+			<div class="card bg-light my-3">
+				<div class="card-body">
+					<h5 class="card-title">Детайли</h5>
+					<!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+					<table class="table">
+						<tbody>
+							<tr>
+								<th scope="row">Капацитет</th>
+								<td>{{ $venue->capacity }}</td>
+							</tr>
+							<tr>
+								<th scope="row">Адрес</th>
+								<td>{{ $venue->city->name }}, {{ $venue->address }} места</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div>
 		<h4>Популярни обучения</h4>
 		<related-feed
