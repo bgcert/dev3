@@ -1,20 +1,18 @@
 <template>
-	<div>
-		<form class="form">
-			<div class="field">
-				<label>Нов email</label>
-				<input type="text" v-model="form.email" value="" autocomplete="new-password">
-			</div>
-			<div class="field">
-				<label>Парола</label>
-				<input type="password" v-model="form.password" value="" autocomplete="new-password">
-			</div>
-			<div class="field">
-				<button class="btn blue" @click.prevent="changeEmail"> Промени</button>
-			</div>
-			
-		</form>
+	<div class="form col-lg-4 col-sm-12">
+		<div class="form-group">
+			<label>Нов email</label>
+			<input type="text" class="form-control" v-model="form.email" value="" autocomplete="new-password">
+		</div>
 
+		<div class="form-group">
+			<label>Парола</label>
+			<input type="password" class="form-control" v-model="form.password" value="" autocomplete="new-password">
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-primary"  @click.prevent="changeEmail"> Промени</button>
+		</div>
 	</div>
 </template>
 

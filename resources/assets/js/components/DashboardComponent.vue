@@ -1,56 +1,72 @@
 <template>
-	<div class="grid grid-1-4 mtop">
-		<div>
-			<div class="vertical-menu">
+	<div class="row mt-4">
+
+		<div class="col-lg-3 col-sm-12">
+			<div class="list-group">
+				<!-- <div class="list-group-item d-flex justify-content-between align-items-center">
+					
+				</div> -->
 				<router-link
 					to="/contacts"
-					class="item"
+					class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 					:class="{ active: $route.path == '/contacts' }">
 					Съобщения
+					<span class="badge badge-primary badge-pill" :class="{ 'badge-light': $route.path == '/contacts' }">14</span>
 				</router-link>
+
 				<router-link
 					to="/themes"
-					class="item"
+					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/themes' }">
 					Теми
 				</router-link>
+
 				<router-link
 					to="/teachers"
-					class="item"
+					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/teachers' }">
 					Лектори
 				</router-link>
+
 				<router-link
 					to="/events"
-					class="item"
+					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/events' }">
 					Календар
 				</router-link>
+
 				<router-link v-if="venuePublish"
 					to="/venues"
-					class="item"
+					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/venues' }">
 					Зали
 				</router-link>
+
 				<router-link
 					to="/orders"
-					class="item"
+					class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 					:class="{ active: $route.path == '/orders' }">
 					Заявки
+					<span class="badge badge-primary badge-pill" :class="{ active: $route.path == '/orders' }">14</span>
 				</router-link>
+
 				<router-link
 					to="/profile"
-					class="item"
+					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/profile' }">
 					Фирмени данни
 				</router-link>
 			</div>
 		</div>
-		<div>
-			<!-- <keep-alive> -->
-				<router-view></router-view>
-			<!-- </keep-alive> -->
+
+		<div class="col-lg-9 col-sm-12">
+			<div class="card">
+				<div class="card-body">
+					<router-view></router-view>
+				</div>
+			</div>
 		</div>
+		
 	</div>
 </template>
 

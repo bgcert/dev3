@@ -1,10 +1,8 @@
 <template>
-	<div>
-		<form class="form">
-			<div class="field">
-				<button class="btn blue" @click.prevent=""> Деактивирай</button>
-			</div>
-		</form>
+	<div class="form col-lg-4 col-sm-12">
+		<div class="field">
+			<button class="btn btn-danger btn-lg" @click.prevent=""> Деактивирай</button>
+		</div>
 	</div>
 </template>
 

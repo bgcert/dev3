@@ -8,13 +8,13 @@
 	<div class="container">
 		<dir class="row">
 			<div class="col-8 details">
+				<div class="venue-name">{{ $venue->name }}</div>
+				<div class="location my-1">
+					{{ $venue->city->name }}, {{ $venue->address }}
+				</div>
 				<div class="d-flex align-items-center">
 					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/60x60/{{ $venue->company->logo }}" alt="{{ $venue->company->name }}" class="img-thumbnail">
 					<h5 class="ml-3">{{ $venue->company->name }}</h5>
-				</div>
-				<div class="venue-name">{{ $venue->name }}</div>
-				<div class="location mt-2">
-					{{ $venue->city->name }}, {{ $venue->address }}
 				</div>
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb px-0 py-3">

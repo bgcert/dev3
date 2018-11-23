@@ -73070,7 +73070,7 @@ var render = function() {
               })
             )
           ]
-        : [_c("h4", [_vm._v("Няма налични известия")])]
+        : [_c("h5", [_vm._v("Няма налични известия")])]
     ],
     2
   )
@@ -73156,6 +73156,24 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -73309,179 +73327,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "form",
-      { staticClass: "form" },
-      [
-        _c("div", { staticClass: "field" }, [
-          _c("label", [_vm._v("Име")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.user.firstname,
-                expression: "form.user.firstname"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.user.firstname },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form.user, "firstname", $event.target.value)
-              }
-            }
-          })
-        ]),
+  return _c(
+    "div",
+    { staticClass: "form col-lg-4 col-sm-12" },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Име")]),
         _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c("label", [_vm._v("Фамилия")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.user.lastname,
-                expression: "form.user.lastname"
-              }
-            ],
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.user.lastname },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form.user, "lastname", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c(
-            "button",
+        _c("input", {
+          directives: [
             {
-              staticClass: "btn blue",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.setName($event)
-                }
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.user.firstname,
+              expression: "form.user.firstname"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.form.user.firstname },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
-            },
-            [_vm._v(" Запиши промените")]
-          )
-        ]),
+              _vm.$set(_vm.form.user, "firstname", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Фамилия")]),
         _vm._v(" "),
-        _c("hr"),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.user.lastname,
+              expression: "form.user.lastname"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.form.user.lastname },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form.user, "lastname", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.setName($event)
+              }
+            }
+          },
+          [_vm._v(" Запиши промените")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-check" }, [
           _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", id: "business-account" }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            {
+              staticClass: "form-check-label",
+              attrs: { for: "business-account" },
+              model: {
                 value: _vm.form.publisher,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "publisher", $$v)
+                },
                 expression: "form.publisher"
               }
-            ],
-            attrs: { type: "checkbox" },
-            domProps: {
-              checked: Array.isArray(_vm.form.publisher)
-                ? _vm._i(_vm.form.publisher, null) > -1
-                : _vm.form.publisher
             },
-            on: {
-              change: function($event) {
-                var $$a = _vm.form.publisher,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 &&
-                      _vm.$set(_vm.form, "publisher", $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      _vm.$set(
-                        _vm.form,
-                        "publisher",
-                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                      )
+            [_vm._v("Бизнес акаунт")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.form.publisher
+        ? [
+            _vm._l(_vm.errors.name, function(error) {
+              return _vm.errors.name
+                ? [_c("el-alert", { attrs: { type: "error", title: error } })]
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Име на организацията")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.user.company.name,
+                    expression: "form.user.company.name"
                   }
-                } else {
-                  _vm.$set(_vm.form, "publisher", $$c)
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.form.user.company.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form.user.company, "name", $event.target.value)
+                  }
                 }
-              }
-            }
-          }),
-          _vm._v(" Бизнес акаунт\n\t\t")
-        ]),
-        _vm._v(" "),
-        _vm.form.publisher
-          ? [
-              _vm._l(_vm.errors.name, function(error) {
-                return _vm.errors.name
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("label", [_vm._v("Име на организацията")]),
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c("label", [_vm._v("Адрес на профила")]),
                 _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.user.company.name,
-                      expression: "form.user.company.name"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.form.user.company.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.form.user.company,
-                        "name",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _c("label", [_vm._v("Адрес на профила")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.errors.slug, function(error) {
-                    return _vm.errors.slug
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "label input" }, [
-                    _vm._v("\n\t\t\t\t\thttp://seminari365.com/c/\n\t\t\t\t")
-                  ]),
+                _vm._l(_vm.errors.slug, function(error) {
+                  return _vm.errors.slug
+                    ? [
+                        _c("el-alert", {
+                          attrs: { type: "error", title: error }
+                        })
+                      ]
+                    : _vm._e()
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -73492,7 +73488,7 @@ var render = function() {
                         expression: "form.user.company.slug"
                       }
                     ],
-                    staticClass: "labeled",
+                    staticClass: "form-control",
                     attrs: { type: "text", placeholder: "company.ltd" },
                     domProps: { value: _vm.form.user.company.slug },
                     on: {
@@ -73507,23 +73503,27 @@ var render = function() {
                         )
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Пример: abcltd или abc.ltd")])
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v(
-                    "http://seminari365.com/c/" +
-                      _vm._s(_vm.form.user.company.slug)
-                  )
+                  })
+                ]),
+                _vm._v(" "),
+                _c("small", { staticClass: "form-text text-muted" }, [
+                  _vm._v("Пример: abcltd или abc.ltd")
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("a", { attrs: { href: "#" } }, [
+                _vm._v(
+                  "http://seminari365.com/c/" +
+                    _vm._s(_vm.form.user.company.slug)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "form-check" }, [
                 _c("input", {
                   directives: [
                     {
@@ -73533,7 +73533,8 @@ var render = function() {
                       expression: "form.user.company.event_publish"
                     }
                   ],
-                  attrs: { type: "checkbox" },
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", id: "event-publish" },
                   domProps: {
                     checked: Array.isArray(_vm.form.user.company.event_publish)
                       ? _vm._i(_vm.form.user.company.event_publish, null) > -1
@@ -73568,10 +73569,18 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" Публикуване на събития\n\t\t\t")
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "event-publish" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tПубликуване на събития\n\t\t\t\t")]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
+              _c("div", { staticClass: "form-check" }, [
                 _c("input", {
                   directives: [
                     {
@@ -73581,7 +73590,8 @@ var render = function() {
                       expression: "form.user.company.venue_publish"
                     }
                   ],
-                  attrs: { type: "checkbox" },
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox", id: "venue-publish" },
                   domProps: {
                     checked: Array.isArray(_vm.form.user.company.venue_publish)
                       ? _vm._i(_vm.form.user.company.venue_publish, null) > -1
@@ -73616,32 +73626,51 @@ var render = function() {
                     }
                   }
                 }),
-                _vm._v(" Публикуване на зали\n\t\t\t")
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-check-label",
+                    attrs: { for: "venue-publish" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tПубликуване на зали\n\t\t\t\t")]
+                )
               ])
-            ]
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn blue",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.setPublisher($event)
-                }
-              }
-            },
-            [_vm._v(" Запиши промените")]
-          )
-        ])
-      ],
-      2
-    )
-  ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.setPublisher($event)
+                    }
+                  }
+                },
+                [_vm._v(" Запиши промените")]
+              )
+            ])
+          ]
+        : _vm._e()
+    ],
+    2
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("seminari365.com/c/")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -73705,7 +73734,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
 //
 //
 //
@@ -73795,98 +73823,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { staticClass: "form" }, [
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Стара парола")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.oldPassword,
-              expression: "form.oldPassword"
-            }
-          ],
-          attrs: { type: "password" },
-          domProps: { value: _vm.form.oldPassword },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "oldPassword", $event.target.value)
-            }
-          }
-        })
-      ]),
+  return _c("div", { staticClass: "form col-lg-4 col-sm-12" }, [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Стара парола")]),
       _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Нова парола")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.newPassword,
-              expression: "form.newPassword"
-            }
-          ],
-          attrs: { type: "password" },
-          domProps: { value: _vm.form.newPassword },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "newPassword", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Нова парола (отново)")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.confirmNewPassword,
-              expression: "form.confirmNewPassword"
-            }
-          ],
-          attrs: { type: "password" },
-          domProps: { value: _vm.form.confirmNewPassword },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "confirmNewPassword", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c(
-          "button",
+      _c("input", {
+        directives: [
           {
-            staticClass: "btn blue",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.changePassword($event)
-              }
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.oldPassword,
+            expression: "form.oldPassword"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "password" },
+        domProps: { value: _vm.form.oldPassword },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          },
-          [_vm._v(" Промени")]
-        )
-      ])
+            _vm.$set(_vm.form, "oldPassword", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Нова парола")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.newPassword,
+            expression: "form.newPassword"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "password" },
+        domProps: { value: _vm.form.newPassword },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "newPassword", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Нова парола (отново)")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.confirmNewPassword,
+            expression: "form.confirmNewPassword"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "password" },
+        domProps: { value: _vm.form.confirmNewPassword },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "confirmNewPassword", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.changePassword($event)
+            }
+          }
+        },
+        [_vm._v(" Промени")]
+      )
     ])
   ])
 }
@@ -73972,8 +74001,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74017,73 +74044,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { staticClass: "form" }, [
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Нов email")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.email,
-              expression: "form.email"
-            }
-          ],
-          attrs: { type: "text", value: "", autocomplete: "new-password" },
-          domProps: { value: _vm.form.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "email", $event.target.value)
-            }
-          }
-        })
-      ]),
+  return _c("div", { staticClass: "form col-lg-4 col-sm-12" }, [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Нов email")]),
       _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("label", [_vm._v("Парола")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.password,
-              expression: "form.password"
-            }
-          ],
-          attrs: { type: "password", value: "", autocomplete: "new-password" },
-          domProps: { value: _vm.form.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "password", $event.target.value)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c(
-          "button",
+      _c("input", {
+        directives: [
           {
-            staticClass: "btn blue",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.changeEmail($event)
-              }
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.email,
+            expression: "form.email"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", value: "", autocomplete: "new-password" },
+        domProps: { value: _vm.form.email },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          },
-          [_vm._v(" Промени")]
-        )
-      ])
+            _vm.$set(_vm.form, "email", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Парола")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.password,
+            expression: "form.password"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "password", value: "", autocomplete: "new-password" },
+        domProps: { value: _vm.form.password },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "password", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.changeEmail($event)
+            }
+          }
+        },
+        [_vm._v(" Промени")]
+      )
     ])
   ])
 }
@@ -74159,8 +74186,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74184,22 +74209,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { staticClass: "form" }, [
-      _c("div", { staticClass: "field" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn blue",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-              }
+  return _c("div", { staticClass: "form col-lg-4 col-sm-12" }, [
+    _c("div", { staticClass: "field" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-lg",
+          on: {
+            click: function($event) {
+              $event.preventDefault()
             }
-          },
-          [_vm._v(" Деактивирай")]
-        )
-      ])
+          }
+        },
+        [_vm._v(" Деактивирай")]
+      )
     ])
   ])
 }
@@ -128688,6 +128711,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -128801,70 +128838,104 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mtop" }, [
-    _c(
-      "div",
-      { staticClass: "tabs" },
-      [
-        _c(
-          "router-link",
-          {
-            staticClass: "tab",
-            class: { active: _vm.$route.path == "/notifications" },
-            attrs: { to: "/notifications" }
-          },
-          [_vm._v("\n\t\t\tИзвестия\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "tab",
-            class: { active: _vm.$route.path == "/settings" },
-            attrs: { to: "/settings" }
-          },
-          [_vm._v("\n\t\t\tНастройки\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "tab",
-            class: { active: _vm.$route.path == "/change-pass" },
-            attrs: { to: "/change-pass" }
-          },
-          [_vm._v("\n\t\t\tПромяна на парола\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "tab",
-            class: { active: _vm.$route.path == "/change-email" },
-            attrs: { to: "/change-email" }
-          },
-          [_vm._v("\n\t\t\tПромяна на email\n\t\t")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "tab",
-            class: { active: _vm.$route.path == "/deactivate" },
-            attrs: { to: "/deactivate" }
-          },
-          [_vm._v("\n\t\t\tДеактивиране\n\t\t")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "tab-content" },
-      [_c("keep-alive", [_c("router-view")], 1)],
-      1
-    )
+  return _c("div", { staticClass: "my-4" }, [
+    _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("ul", { staticClass: "nav nav-tabs card-header-tabs" }, [
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  class: { active: _vm.$route.path == "/notifications" },
+                  attrs: { to: "/notifications" }
+                },
+                [_vm._v("\n\t\t\t\t\t\tИзвестия\n\t\t\t\t\t")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  class: { active: _vm.$route.path == "/settings" },
+                  attrs: { to: "/settings" }
+                },
+                [_vm._v("\n\t\t\t\t\t\tНастройки\n\t\t\t\t\t")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  class: { active: _vm.$route.path == "/change-pass" },
+                  attrs: { to: "/change-pass" }
+                },
+                [_vm._v("\n\t\t\t\t\t\tПромяна на парола\n\t\t\t\t\t")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  class: { active: _vm.$route.path == "/change-email" },
+                  attrs: { to: "/change-email" }
+                },
+                [_vm._v("\n\t\t\t\t\t\tПромяна на email\n\t\t\t\t\t")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "nav-item" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "nav-link",
+                  class: { active: _vm.$route.path == "/deactivate" },
+                  attrs: { to: "/deactivate" }
+                },
+                [_vm._v("\n\t\t\t\t\t\tДеактивиране\n\t\t\t\t\t")]
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [_c("keep-alive", [_c("router-view")], 1)],
+        1
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -129031,6 +129102,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -129059,26 +129146,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "grid grid-1-4 mtop" }, [
-    _c("div", [
+  return _c("div", { staticClass: "row mt-4" }, [
+    _c("div", { staticClass: "col-lg-3 col-sm-12" }, [
       _c(
         "div",
-        { staticClass: "vertical-menu" },
+        { staticClass: "list-group" },
         [
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass:
+                "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
               class: { active: _vm.$route.path == "/contacts" },
               attrs: { to: "/contacts" }
             },
-            [_vm._v("\n\t\t\t\tСъобщения\n\t\t\t")]
+            [
+              _vm._v("\n\t\t\t\tСъобщения\n\t\t\t\t"),
+              _c(
+                "span",
+                {
+                  staticClass: "badge badge-primary badge-pill",
+                  class: { "badge-light": _vm.$route.path == "/contacts" }
+                },
+                [_vm._v("14")]
+              )
+            ]
           ),
           _vm._v(" "),
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass: "list-group-item list-group-item-action",
               class: { active: _vm.$route.path == "/themes" },
               attrs: { to: "/themes" }
             },
@@ -129088,7 +129186,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass: "list-group-item list-group-item-action",
               class: { active: _vm.$route.path == "/teachers" },
               attrs: { to: "/teachers" }
             },
@@ -129098,7 +129196,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass: "list-group-item list-group-item-action",
               class: { active: _vm.$route.path == "/events" },
               attrs: { to: "/events" }
             },
@@ -129109,7 +129207,7 @@ var render = function() {
             ? _c(
                 "router-link",
                 {
-                  staticClass: "item",
+                  staticClass: "list-group-item list-group-item-action",
                   class: { active: _vm.$route.path == "/venues" },
                   attrs: { to: "/venues" }
                 },
@@ -129120,17 +129218,28 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass:
+                "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
               class: { active: _vm.$route.path == "/orders" },
               attrs: { to: "/orders" }
             },
-            [_vm._v("\n\t\t\t\tЗаявки\n\t\t\t")]
+            [
+              _vm._v("\n\t\t\t\tЗаявки\n\t\t\t\t"),
+              _c(
+                "span",
+                {
+                  staticClass: "badge badge-primary badge-pill",
+                  class: { active: _vm.$route.path == "/orders" }
+                },
+                [_vm._v("14")]
+              )
+            ]
           ),
           _vm._v(" "),
           _c(
             "router-link",
             {
-              staticClass: "item",
+              staticClass: "list-group-item list-group-item-action",
               class: { active: _vm.$route.path == "/profile" },
               attrs: { to: "/profile" }
             },
@@ -129141,7 +129250,11 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", [_c("router-view")], 1)
+    _c("div", { staticClass: "col-lg-9 col-sm-12" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [_c("router-view")], 1)
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

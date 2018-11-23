@@ -1,46 +1,60 @@
 <template>
-	<div class="mtop">
-		<div class="tabs">
-			<router-link
-				to="/notifications"
-				class="tab"
-				:class="{ active: $route.path == '/notifications' }">
-				Известия
-			</router-link>
+	<div class="my-4">
 
-			<router-link
-				to="/settings"
-				class="tab"
-				:class="{ active: $route.path == '/settings' }">
-				Настройки
-			</router-link>
+		<div class="card">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs">
+					<li class="nav-item">
+						<router-link
+							to="/notifications"
+							class="nav-link"
+							:class="{ active: $route.path == '/notifications' }">
+							Известия
+						</router-link>
+					</li>
 
-			<router-link
-				to="/change-pass"
-				class="tab"
-				:class="{ active: $route.path == '/change-pass' }">
-				Промяна на парола
-			</router-link>
+					<li class="nav-item">
+						<router-link
+							to="/settings"
+							class="nav-link"
+							:class="{ active: $route.path == '/settings' }">
+							Настройки
+						</router-link>
+					</li>
 
-			<router-link
-				to="/change-email"
-				class="tab"
-				:class="{ active: $route.path == '/change-email' }">
-				Промяна на email
-			</router-link>
+					<li class="nav-item">
+						<router-link
+							to="/change-pass"
+							class="nav-link"
+							:class="{ active: $route.path == '/change-pass' }">
+							Промяна на парола
+						</router-link>
+					</li>
 
-			<router-link
-				to="/deactivate"
-				class="tab"
-				:class="{ active: $route.path == '/deactivate' }">
-				Деактивиране
-			</router-link>
-		</div>
+					<li class="nav-item">
+						<router-link
+							to="/change-email"
+							class="nav-link"
+							:class="{ active: $route.path == '/change-email' }">
+							Промяна на email
+						</router-link>
+					</li>
 
-		<div class="tab-content">
-			<keep-alive>
-				<router-view></router-view>
-			</keep-alive>
+					<li class="nav-item">
+						<router-link
+							to="/deactivate"
+							class="nav-link"
+							:class="{ active: $route.path == '/deactivate' }">
+							Деактивиране
+						</router-link>
+					</li>
+				</ul>
+			</div>
+			<div class="card-body">
+				<keep-alive>
+					<router-view></router-view>
+				</keep-alive>
+			</div>
 		</div>
 		
 	</div>

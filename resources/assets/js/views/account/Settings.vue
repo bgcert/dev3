@@ -1,60 +1,78 @@
 <template>
-	<div>
-		<form class="form">
-			<div class="field">
-				<label>Име</label>
-				<input type="text" v-model="form.user.firstname">
+	<div class="form col-lg-4 col-sm-12">
+		<div class="form-group">
+			<label>Име</label>
+			<input type="text" class="form-control" v-model="form.user.firstname">
+		</div>
+
+		<div class="form-group">
+			<label>Фамилия</label>
+			<input type="text" class="form-control" v-model="form.user.lastname">
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-primary" @click.prevent="setName"> Запиши промените</button>
+		</div>
+
+		<hr>
+
+		<div class="form-group">
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" id="business-account">
+				<label class="form-check-label" for="business-account" v-model="form.publisher">Бизнес акаунт</label>
 			</div>
-			<div class="field">
-				<label>Фамилия</label>
-				<input type="text" v-model="form.user.lastname">
+		</div>
+
+		<template v-if="form.publisher">
+			<template v-if="errors.name" v-for="error in errors.name">
+				 <el-alert type="error" :title="error"></el-alert>
+			</template>
+			<div class="form-group">
+				<label>Име на организацията</label>
+				<input type="text" class="form-control" v-model="form.user.company.name">
 			</div>
-			<div class="field">
-				<button class="btn blue" @click.prevent="setName"> Запиши промените</button>
-			</div>
-			<hr>
-			<div class="field">
-				<input type="checkbox" v-model="form.publisher"> Бизнес акаунт
-			</div>
-			<template v-if="form.publisher">
-				<template v-if="errors.name" v-for="error in errors.name">
+
+			<div class="form-group">
+				<label>Адрес на профила</label>
+				<template v-if="errors.slug" v-for="error in errors.slug">
 					 <el-alert type="error" :title="error"></el-alert>
 				</template>
-				<div class="field">
-					<label>Име на организацията</label>
-					<input type="text" v-model="form.user.company.name">
+				<!-- <span class="label input">
+					http://seminari365.com/c/
+				</span> -->
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text">seminari365.com/c/</div>
+					</div>
+					<input type="text" class="form-control" v-model="form.user.company.slug" placeholder="company.ltd">
 				</div>
-
-				<div class="field">
-					<label>Адрес на профила</label>
-					<template v-if="errors.slug" v-for="error in errors.slug">
-						 <el-alert type="error" :title="error"></el-alert>
-					</template>
-					<span class="label input">
-						http://seminari365.com/c/
-					</span>
-					<input  class="labeled" type="text" v-model="form.user.company.slug" placeholder="company.ltd">
-					<span>Пример: abcltd или abc.ltd</span>
-				</div>
-
-				<div>
-					<a href="#">http://seminari365.com/c/{{ form.user.company.slug }}</a>
-				</div>
-
-				<div class="field">
-					<input type="checkbox" v-model="form.user.company.event_publish"> Публикуване на събития
-				</div>
-
-				<div class="field">
-					<input type="checkbox" v-model="form.user.company.venue_publish"> Публикуване на зали
-				</div>
-			</template>
-			
-			<div class="field">
-				<button class="btn blue" @click.prevent="setPublisher"> Запиши промените</button>
+				<small class="form-text text-muted">Пример: abcltd или abc.ltd</small>
 			</div>
-			
-		</form>
+
+			<div class="form-group">
+				<a href="#">http://seminari365.com/c/{{ form.user.company.slug }}</a>
+			</div>
+
+			<div class="form-group">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="event-publish" v-model="form.user.company.event_publish">
+					<label class="form-check-label" for="event-publish">
+						Публикуване на събития
+					</label>
+				</div>
+
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="venue-publish" v-model="form.user.company.venue_publish">
+					<label class="form-check-label" for="venue-publish">
+						Публикуване на зали
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<button class="btn btn-primary" @click.prevent="setPublisher"> Запиши промените</button>
+			</div>
+		</template>
 
 	</div>
 </template>

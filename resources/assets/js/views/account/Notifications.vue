@@ -30,7 +30,7 @@
 			</ul>
 		</template>
 		<template v-else>
-			<h4>Няма налични известия</h4>
+			<h5>Няма налични известия</h5>
 		</template>
 	</div>
 </template>
