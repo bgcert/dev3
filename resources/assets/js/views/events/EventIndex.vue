@@ -1,15 +1,15 @@
 <template>
-	<div class="segment">
-		<div class="aligned">
-			<h3>Календар</h3>	
-			<router-link to="/events/create" class="btn blue">
-				Добави събитие
+	<div class="card">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			Теми
+			<router-link to="/events/create" class="btn btn-primary btn-sm">
+				<i class="far fa-plus-square"></i> Добави събитие
 			</router-link>
 		</div>
-		
-		<div v-loading="loading" style="min-height: 200px;">
-			<div class="grid grid-1-1-1">
-				<template v-for="(event, index) in events">
+
+		<div class="card-body" v-loading="loading">
+			<div class="row">
+				<div class="col-4" v-for="(event, index) in events">
 					<CardDashboard
 						:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + event.cover"
 						:date="event.start_date_carbon"
@@ -17,10 +17,9 @@
 						:edit_link="'/events/edit/' + event.id"
 						:confirmMessage="'Сигурни ли сте, че желаете да изтриете това събитие?'"
 						@show="handleShow(event.id)"
-						@deleteClick="handleDelete(event.id, index)"
-						>
+						@deleteClick="handleDelete(event.id, index)">
 					</CardDashboard>
-				</template>
+				</div>
 			</div>
 		</div>
 	</div>

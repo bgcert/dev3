@@ -4,7 +4,7 @@
 		<div class="card-body">
 			<h5>{{ title }}</h5>
 			<div class="card-text" v-if="date">
-		    	<span class="date">{{ date }}</span>
+				<small class="text-muted">{{ date }}</small>
 		    </div>
 		</div>
 		<div class="card-footer">

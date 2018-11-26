@@ -65938,7 +65938,9 @@ var render = function() {
       _vm._v(" "),
       _vm.date
         ? _c("div", { staticClass: "card-text" }, [
-            _c("span", { staticClass: "date" }, [_vm._v(_vm._s(_vm.date))])
+            _c("small", { staticClass: "text-muted" }, [
+              _vm._v(_vm._s(_vm.date))
+            ])
           ])
         : _vm._e()
     ]),
@@ -66425,7 +66427,7 @@ var render = function() {
             ],
             staticClass: "custom-select",
             class: { "is-invalid": _vm.errors.category_id },
-            attrs: { placeholder: "Изберете категория", required: "" },
+            attrs: { required: "" },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -67780,6 +67782,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67884,111 +67894,125 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "segment" }, [
-    _c("h4", [_vm._v("Редактиране на лектор")]),
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v("\n\t\tРедактиране на лектор\n\t")
+    ]),
     _vm._v(" "),
     !_vm.loading
-      ? _c(
-          "div",
-          [
+      ? _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Име")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.teacher.name,
+                  expression: "teacher.name"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.name },
+              attrs: {
+                type: "text",
+                name: "name",
+                autofocus: "",
+                required: ""
+              },
+              domProps: { value: _vm.teacher.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.teacher, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.name
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.name[0]) + "\n\t\t\t")
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("imageUpload", {
+                attrs: {
+                  imageUrl:
+                    "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
+                    _vm.teacher.image
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Съдържание")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.teacher.details,
+                  expression: "teacher.details"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.details },
+              attrs: { required: "" },
+              domProps: { value: _vm.teacher.details },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.teacher, "details", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.details
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.details[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _c(
-              "el-form",
-              { ref: "form", attrs: { "label-width": "120px" } },
+              "div",
+              { staticClass: "d-flex justify-content-end" },
               [
                 _c(
-                  "el-form-item",
-                  { attrs: { label: "Име" } },
-                  [
-                    _vm._l(_vm.errors.name, function(error) {
-                      return _vm.errors.name
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("el-input", {
-                      model: {
-                        value: _vm.teacher.name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.teacher, "name", $$v)
-                        },
-                        expression: "teacher.name"
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Снимка" } },
-                  [
-                    _c("imageUpload", {
-                      attrs: {
-                        imageUrl:
-                          "https://d3cwccg7mi8onu.cloudfront.net/250x150/" +
-                          _vm.teacher.image
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Съдържание" } },
-                  [
-                    _vm._l(_vm.errors.details, function(error) {
-                      return _vm.errors.details
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("el-input", {
-                      attrs: { type: "textarea", rows: 6 },
-                      model: {
-                        value: _vm.teacher.details,
-                        callback: function($$v) {
-                          _vm.$set(_vm.teacher, "details", $$v)
-                        },
-                        expression: "teacher.details"
-                      }
-                    })
-                  ],
-                  2
+                  "router-link",
+                  {
+                    staticClass: "btn btn-outline-secondary mr-2",
+                    attrs: { to: "/teachers" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tОткажи\n\t\t\t\t")]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "field right" },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "btn blue", on: { click: _vm.save } },
-                      [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      { staticClass: "btn basic", attrs: { to: "/teachers" } },
-                      [_vm._v("\n\t\t\t\t\tОткажи\n\t\t\t\t")]
-                    )
-                  ],
-                  1
+                  { staticClass: "btn btn-primary", on: { click: _vm.save } },
+                  [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
                 )
               ],
               1
             )
-          ],
-          1
-        )
+          ])
+        ])
       : _vm._e()
   ])
 }
@@ -68084,7 +68108,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68134,17 +68157,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "segment" }, [
+  return _c("div", { staticClass: "card" }, [
     _c(
       "div",
-      { staticClass: "aligned" },
+      {
+        staticClass:
+          "card-header d-flex justify-content-between align-items-center"
+      },
       [
-        _c("h3", [_vm._v("Календар")]),
-        _vm._v(" "),
+        _vm._v("\n\t\tТеми\n\t\t"),
         _c(
           "router-link",
-          { staticClass: "btn blue", attrs: { to: "/events/create" } },
-          [_vm._v("\n\t\t\tДобави събитие\n\t\t")]
+          {
+            staticClass: "btn btn-primary btn-sm",
+            attrs: { to: "/events/create" }
+          },
+          [
+            _c("i", { staticClass: "far fa-plus-square" }),
+            _vm._v(" Добави събитие\n\t\t")
+          ]
         )
       ],
       1
@@ -68161,15 +68192,17 @@ var render = function() {
             expression: "loading"
           }
         ],
-        staticStyle: { "min-height": "200px" }
+        staticClass: "card-body"
       },
       [
         _c(
           "div",
-          { staticClass: "grid grid-1-1-1" },
-          [
-            _vm._l(_vm.events, function(event, index) {
-              return [
+          { staticClass: "row" },
+          _vm._l(_vm.events, function(event, index) {
+            return _c(
+              "div",
+              { staticClass: "col-4" },
+              [
                 _c("CardDashboard", {
                   attrs: {
                     image:
@@ -68190,10 +68223,10 @@ var render = function() {
                     }
                   }
                 })
-              ]
-            })
-          ],
-          2
+              ],
+              1
+            )
+          })
         )
       ]
     )
@@ -68409,6 +68442,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -68419,12 +68467,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       loading: true,
       themes: [],
       teachers: [],
-      selectedTeachers: {},
+      selectedTeachers: [],
       selectedTheme: '',
       cities: null,
       form: {
         theme: '',
-        cityId: null,
+        cityId: '',
         address: '',
         start_date: '',
         end_date: '',
@@ -68449,6 +68497,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   },
 
   methods: {
+    selectTeacher: function selectTeacher(id) {
+      console.log(id);
+    },
     upload: function upload() {
       var promise = new Promise(function (resolve, reject) {
         return __WEBPACK_IMPORTED_MODULE_1__app__["EventBus"].$emit('upload', resolve, reject);
@@ -68544,391 +68595,501 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "segment" },
-    [
-      _c("h4", [_vm._v("Ново събитие")]),
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v("\n\t\tНово събитие\n\t")
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Тема")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedTheme,
+                expression: "selectedTheme"
+              }
+            ],
+            staticClass: "custom-select",
+            class: { "is-invalid": _vm.errors.theme_id },
+            attrs: { required: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedTheme = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Изберете тема")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.themes, function(theme) {
+              return _c("option", { domProps: { value: theme.id } }, [
+                _vm._v(_vm._s(theme.title))
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm.errors.theme_id
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.theme_id[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c(
-        "el-form",
-        { ref: "form", attrs: { model: _vm.form, "label-width": "120px" } },
+        "div",
+        { staticClass: "form-group" },
         [
-          _c(
-            "el-form-item",
-            { attrs: { label: "Тема" } },
-            [
-              _vm._l(_vm.errors.theme_id, function(error) {
-                return _vm.errors.theme_id
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c(
-                "el-select",
-                {
-                  attrs: { placeholder: "Изберете тема" },
-                  model: {
-                    value: _vm.selectedTheme,
-                    callback: function($$v) {
-                      _vm.selectedTheme = $$v
-                    },
-                    expression: "selectedTheme"
-                  }
-                },
-                [
-                  _vm._l(_vm.themes, function(theme) {
-                    return [
-                      _c("el-option", {
-                        attrs: { label: theme.title, value: theme.id }
-                      })
-                    ]
-                  })
-                ],
-                2
-              )
-            ],
-            2
-          ),
+          _c("label", [_vm._v("Преподаватели")]),
           _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Лектори" } },
-            [
-              _c(
-                "el-select",
-                {
-                  attrs: {
-                    multiple: "",
-                    placeholder: "Избери преподавател(и)"
-                  },
-                  model: {
+          _vm._l(_vm.teachers, function(teacher, index) {
+            return _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
                     value: _vm.selectedTeachers,
-                    callback: function($$v) {
-                      _vm.selectedTeachers = $$v
-                    },
                     expression: "selectedTeachers"
                   }
-                },
-                _vm._l(_vm.teachers, function(teacher) {
-                  return _c("el-option", {
-                    key: teacher.id,
-                    attrs: { label: teacher.name, value: teacher.id }
-                  })
-                })
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Град" } },
-            [
-              _vm._l(_vm.errors.city_id, function(error) {
-                return _vm.errors.city_id
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c(
-                "el-select",
-                {
-                  attrs: { placeholder: "Изберете град" },
-                  model: {
-                    value: _vm.form.cityId,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "cityId", $$v)
-                    },
-                    expression: "form.cityId"
-                  }
-                },
-                _vm._l(_vm.cities, function(city) {
-                  return _c("el-option", {
-                    key: city.id,
-                    attrs: { label: city.name, value: city.id }
-                  })
-                })
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Адрес" } },
-            [
-              _vm._l(_vm.errors.address, function(error) {
-                return _vm.errors.address
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("el-input", {
-                model: {
-                  value: _vm.form.address,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "address", $$v)
-                  },
-                  expression: "form.address"
-                }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Начална дата" } },
-            [
-              _vm._l(_vm.errors.start_date, function(error) {
-                return _vm.errors.start_date
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "block" },
-                [
-                  _c("el-date-picker", {
-                    attrs: {
-                      "picker-options": _vm.startDatePickerOptions,
-                      type: "date",
-                      placeholder: "Начална дата",
-                      "value-format": "yyyy-MM-dd"
-                    },
-                    model: {
-                      value: _vm.form.start_date,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "start_date", $$v)
-                      },
-                      expression: "form.start_date"
-                    }
-                  })
                 ],
-                1
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Крайна дата" } },
-            [
-              _vm._l(_vm.errors.end_date, function(error) {
-                return _vm.errors.end_date
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "block" },
-                [
-                  _c("el-date-picker", {
-                    attrs: {
-                      "picker-options": _vm.endDatePickerOptions,
-                      type: "date",
-                      placeholder: "Крайна дата",
-                      "value-format": "yyyy-MM-dd"
-                    },
-                    model: {
-                      value: _vm.form.end_date,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "end_date", $$v)
-                      },
-                      expression: "form.end_date"
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", id: "teacher" + teacher.id },
+                domProps: {
+                  value: teacher.id,
+                  checked: Array.isArray(_vm.selectedTeachers)
+                    ? _vm._i(_vm.selectedTeachers, teacher.id) > -1
+                    : _vm.selectedTeachers
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.selectedTeachers,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = teacher.id,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.selectedTeachers = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.selectedTeachers = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.selectedTeachers = $$c
                     }
-                  })
-                ],
-                1
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Начален час" } },
-            [
-              _vm._l(_vm.errors.start_at, function(error) {
-                return _vm.errors.start_at
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("el-time-select", {
-                attrs: {
-                  "picker-options": {
-                    start: "06:00",
-                    end: "23:00",
-                    step: "00:15",
-                    maxTime: _vm.form.end_at
-                  },
-                  placeholder: "Начален час",
-                  "value-format": "HH:mm"
-                },
-                model: {
-                  value: _vm.form.start_at,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "start_at", $$v)
-                  },
-                  expression: "form.start_at"
+                  }
                 }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Краен час" } },
-            [
-              _vm._l(_vm.errors.end_at, function(error) {
-                return _vm.errors.end_at
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("el-time-select", {
-                attrs: {
-                  "picker-options": {
-                    start: "06:00",
-                    end: "23:00",
-                    step: "00:15",
-                    minTime: _vm.form.start_at
-                  },
-                  placeholder: "Начален час",
-                  "value-format": "HH:mm"
-                },
-                model: {
-                  value: _vm.form.end_at,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "end_at", $$v)
-                  },
-                  expression: "form.end_at"
-                }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Корица" } },
-            [
-              _c("imageUpload", {
-                attrs: { imageUrl: "/img/default_cover.png" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "Цена" } },
-            [
-              _vm._l(_vm.errors.price, function(error) {
-                return _vm.errors.price
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
               }),
               _vm._v(" "),
               _c(
-                "el-input",
+                "label",
                 {
-                  staticStyle: { width: "150px" },
-                  model: {
-                    value: _vm.form.price,
-                    callback: function($$v) {
-                      _vm.$set(_vm.form, "price", $$v)
-                    },
-                    expression: "form.price"
-                  }
+                  staticClass: "form-check-label",
+                  attrs: { for: "teacher" + teacher.id }
                 },
-                [_c("template", { slot: "append" }, [_vm._v("лв.")])],
-                2
-              )
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "field" }, [
-            _c("div", { staticClass: "message orange" }, [
-              _vm._v(
-                "\n\t\t\t\tМоля, посочете крайната цена с начислен ДДС.\n\t\t\t"
+                [_vm._v("\n\t\t\t\t\t" + _vm._s(teacher.name) + "\n\t\t\t\t")]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _c("el-form-item", [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.active,
-                  expression: "form.active"
-                }
-              ],
-              attrs: { type: "checkbox", id: "active" },
-              domProps: {
-                checked: Array.isArray(_vm.form.active)
-                  ? _vm._i(_vm.form.active, null) > -1
-                  : _vm.form.active
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.form.active,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && _vm.$set(_vm.form, "active", $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        _vm.$set(
-                          _vm.form,
-                          "active",
-                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                        )
-                    }
-                  } else {
-                    _vm.$set(_vm.form, "active", $$c)
-                  }
-                }
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Град")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.cityId,
+                expression: "form.cityId"
               }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "active" } }, [_vm._v("Активно")])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "field right" },
-            [
-              _c("div", { staticClass: "btn blue", on: { click: _vm.save } }, [
-                _vm._v("\n\t        \tЗапиши\n\t        ")
-              ]),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "btn basic", attrs: { to: "/events" } },
-                [_vm._v("\n\t\t\t\tОткажи\n\t\t\t")]
-              )
             ],
-            1
-          )
+            staticClass: "custom-select",
+            class: { "is-invalid": _vm.errors.city_id },
+            attrs: { required: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "cityId",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+              _vm._v("Изберете град")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.cities, function(city) {
+              return _c("option", { domProps: { value: city.id } }, [
+                _vm._v(_vm._s(city.name))
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm.errors.city_id
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.city_id[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Адрес")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.address,
+              expression: "form.address"
+            }
+          ],
+          staticClass: "form-control",
+          class: { "is-invalid": _vm.errors.address },
+          attrs: { type: "text", name: "address", required: "" },
+          domProps: { value: _vm.form.address },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "address", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors.address
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.address[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c("label", [_vm._v("Корица")]),
+          _vm._v(" "),
+          _c("imageUpload", { attrs: { imageUrl: "/img/default_cover.png" } })
         ],
         1
-      )
-    ],
-    1
-  )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Начална дата")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-control p-0 mb-1",
+            class: { "is-invalid": _vm.errors.start_date },
+            staticStyle: { border: "none" }
+          },
+          [
+            _c("el-date-picker", {
+              attrs: {
+                "picker-options": _vm.startDatePickerOptions,
+                type: "date",
+                placeholder: "Начална дата",
+                "value-format": "yyyy-MM-dd"
+              },
+              model: {
+                value: _vm.form.start_date,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "start_date", $$v)
+                },
+                expression: "form.start_date"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.errors.start_date
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v(
+                "\n\t\t\t\t" + _vm._s(_vm.errors.start_date[0]) + "\n\t\t\t"
+              )
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Крайна дата")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-control p-0 mb-1",
+            class: { "is-invalid": _vm.errors.end_date },
+            staticStyle: { border: "none" }
+          },
+          [
+            _c("el-date-picker", {
+              attrs: {
+                "picker-options": _vm.endDatePickerOptions,
+                type: "date",
+                placeholder: "Крайна дата",
+                "value-format": "yyyy-MM-dd"
+              },
+              model: {
+                value: _vm.form.end_date,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "end_date", $$v)
+                },
+                expression: "form.end_date"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.errors.end_date
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.end_date[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Начален час")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-control p-0 mb-1",
+            class: { "is-invalid": _vm.errors.start_at },
+            staticStyle: { border: "none" }
+          },
+          [
+            _c("el-time-select", {
+              attrs: {
+                "picker-options": {
+                  start: "06:00",
+                  end: "23:00",
+                  step: "00:15",
+                  maxTime: _vm.form.end_at
+                },
+                placeholder: "Начален час",
+                "value-format": "HH:mm"
+              },
+              model: {
+                value: _vm.form.start_at,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "start_at", $$v)
+                },
+                expression: "form.start_at"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.errors.start_at
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.start_at[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Краен час")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "form-control p-0 mb-1",
+            class: { "is-invalid": _vm.errors.end_at },
+            staticStyle: { border: "none" }
+          },
+          [
+            _c("el-time-select", {
+              attrs: {
+                "picker-options": {
+                  start: "06:00",
+                  end: "23:00",
+                  step: "00:15",
+                  minTime: _vm.form.start_at
+                },
+                placeholder: "Краен час",
+                "value-format": "HH:mm"
+              },
+              model: {
+                value: _vm.form.end_at,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "end_at", $$v)
+                },
+                expression: "form.end_at"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.errors.end_at
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.end_at[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", [_vm._v("Цена")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.price,
+              expression: "form.price"
+            }
+          ],
+          staticClass: "form-control col-2",
+          class: { "is-invalid": _vm.errors.price },
+          attrs: { type: "text", name: "price" },
+          domProps: { value: _vm.form.price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "price", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors.price
+          ? _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.price[0]) + "\n\t\t\t")
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+        [_vm._v("\n\t\t\tМоля, посочете крайната цена с начислен ДДС.\n\t\t")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-check" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.active,
+                expression: "form.active"
+              }
+            ],
+            staticClass: "form-check-input",
+            attrs: { type: "checkbox", value: "", id: "active" },
+            domProps: {
+              checked: Array.isArray(_vm.form.active)
+                ? _vm._i(_vm.form.active, "") > -1
+                : _vm.form.active
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.form.active,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && _vm.$set(_vm.form, "active", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.form,
+                        "active",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.form, "active", $$c)
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "label",
+            { staticClass: "form-check-label", attrs: { for: "active" } },
+            [_vm._v("\n\t\t\t\t\tАктивно\n\t\t\t\t")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "div",
+          { staticClass: "d-flex justify-content-end" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-outline-secondary mr-2",
+                attrs: { to: "/events" }
+              },
+              [_vm._v("\n\t\t\t\t\tОткажи\n\t\t\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "btn btn-primary", on: { click: _vm.save } },
+              [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
+            )
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -69026,7 +69187,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -69046,6 +69207,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69309,396 +69478,483 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "segment" },
-    [
-      _c("h4", [_vm._v("Редактиране на събитие")]),
-      _vm._v(" "),
-      _vm.event.id
-        ? [
-            _c(
-              "el-form",
-              { attrs: { "label-width": "120px" } },
-              [
-                _c("div", { staticClass: "field" }, [
-                  _c("h4", [_vm._v("Тема: " + _vm._s(_vm.event.theme.title))])
-                ]),
-                _vm._v(" "),
-                _c("el-form-item"),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Корица" } },
-                  [
-                    _c("imageUpload", {
-                      attrs: {
-                        imageUrl:
-                          "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
-                          _vm.event.cover
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Лектори" } },
-                  [
-                    _c(
-                      "el-select",
-                      {
-                        attrs: { multiple: "", placeholder: "Select" },
-                        model: {
-                          value: _vm.selectedTeachers,
-                          callback: function($$v) {
-                            _vm.selectedTeachers = $$v
-                          },
-                          expression: "selectedTeachers"
-                        }
-                      },
-                      _vm._l(_vm.teachers, function(teacher) {
-                        return _c("el-option", {
-                          key: teacher.id,
-                          attrs: { label: teacher.name, value: teacher.id }
-                        })
-                      })
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Град" } },
-                  [
-                    _vm._l(_vm.errors.city_id, function(error) {
-                      return _vm.errors.city_id
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "el-select",
-                      {
-                        attrs: { placeholder: "Изберете град" },
-                        model: {
-                          value: _vm.event.city_id,
-                          callback: function($$v) {
-                            _vm.$set(_vm.event, "city_id", $$v)
-                          },
-                          expression: "event.city_id"
-                        }
-                      },
-                      _vm._l(_vm.cities, function(city) {
-                        return _c("el-option", {
-                          key: city.id,
-                          attrs: { label: city.name, value: city.id }
-                        })
-                      })
-                    )
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Адрес" } },
-                  [
-                    _vm._l(_vm.errors.address, function(error) {
-                      return _vm.errors.address
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("el-input", {
-                      model: {
-                        value: _vm.event.address,
-                        callback: function($$v) {
-                          _vm.$set(_vm.event, "address", $$v)
-                        },
-                        expression: "event.address"
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Начална дата" } },
-                  [
-                    _vm._l(_vm.errors.start_date, function(error) {
-                      return _vm.errors.start_date
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "block" },
-                      [
-                        _c("el-date-picker", {
-                          attrs: {
-                            "picker-options": _vm.startDatePickerOptions,
-                            type: "date",
-                            placeholder: "Начална дата",
-                            "value-format": "yyyy-MM-dd"
-                          },
-                          model: {
-                            value: _vm.event.start_date,
-                            callback: function($$v) {
-                              _vm.$set(_vm.event, "start_date", $$v)
-                            },
-                            expression: "event.start_date"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Крайна дата" } },
-                  [
-                    _vm._l(_vm.errors.end_date, function(error) {
-                      return _vm.errors.end_date
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "block" },
-                      [
-                        _c("el-date-picker", {
-                          attrs: {
-                            "picker-options": _vm.endDatePickerOptions,
-                            type: "date",
-                            placeholder: "Крайна дата",
-                            "value-format": "yyyy-MM-dd"
-                          },
-                          model: {
-                            value: _vm.event.end_date,
-                            callback: function($$v) {
-                              _vm.$set(_vm.event, "end_date", $$v)
-                            },
-                            expression: "event.end_date"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Начален час" } },
-                  [
-                    _vm._l(_vm.errors.start_at, function(error) {
-                      return _vm.errors.start_at
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("el-time-select", {
-                      attrs: {
-                        "picker-options": {
-                          start: "06:00",
-                          end: "23:00",
-                          step: "00:15",
-                          maxTime: _vm.event.end_at
-                        },
-                        placeholder: "Начален час",
-                        "value-format": "HH:mm"
-                      },
-                      model: {
-                        value: _vm.event.start_at,
-                        callback: function($$v) {
-                          _vm.$set(_vm.event, "start_at", $$v)
-                        },
-                        expression: "event.start_at"
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Краен час" } },
-                  [
-                    _vm._l(_vm.errors.end_at, function(error) {
-                      return _vm.errors.end_at
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c("el-time-select", {
-                      attrs: {
-                        "picker-options": {
-                          start: "06:00",
-                          end: "23:00",
-                          step: "00:15",
-                          minTime: _vm.event.start_at
-                        },
-                        placeholder: "Начален час",
-                        "value-format": "HH:mm"
-                      },
-                      model: {
-                        value: _vm.event.end_at,
-                        callback: function($$v) {
-                          _vm.$set(_vm.event, "end_at", $$v)
-                        },
-                        expression: "event.end_at"
-                      }
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-form-item",
-                  { attrs: { label: "Цена" } },
-                  [
-                    _vm._l(_vm.errors.price, function(error) {
-                      return _vm.errors.price
-                        ? [
-                            _c("el-alert", {
-                              attrs: { type: "error", title: error }
-                            })
-                          ]
-                        : _vm._e()
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "el-input",
-                      {
-                        staticStyle: { width: "150px" },
-                        model: {
-                          value: _vm.event.price,
-                          callback: function($$v) {
-                            _vm.$set(_vm.event, "price", $$v)
-                          },
-                          expression: "event.price"
-                        }
-                      },
-                      [_c("template", { slot: "append" }, [_vm._v("лв.")])],
-                      2
-                    )
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "field" }, [
-                  _c("div", { staticClass: "message orange" }, [
-                    _vm._v(
-                      "\n\t\t\t\t\tМоля, посочете крайната цена с начислен ДДС.\n\t\t\t\t"
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("el-form-item", [
+  return _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card-header" }, [
+      _vm._v("\n\t\tРедактиране на събитие\n\t")
+    ]),
+    _vm._v(" "),
+    !_vm.loading
+      ? _c("div", { staticClass: "card-body" }, [
+          _c("h4", [
+            _vm._v("\n\t\t\tТема: " + _vm._s(_vm.event.theme.title) + "\n\t\t")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v("Преподаватели")]),
+              _vm._v(" "),
+              _vm._l(_vm.teachers, function(teacher, index) {
+                return _c("div", { staticClass: "form-check" }, [
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.event.active,
-                        expression: "event.active"
+                        value: _vm.selectedTeachers,
+                        expression: "selectedTeachers"
                       }
                     ],
-                    attrs: { type: "checkbox", id: "active" },
+                    staticClass: "form-check-input",
+                    attrs: { type: "checkbox", id: "teacher" + teacher.id },
                     domProps: {
-                      checked: Array.isArray(_vm.event.active)
-                        ? _vm._i(_vm.event.active, null) > -1
-                        : _vm.event.active
+                      value: teacher.id,
+                      checked: Array.isArray(_vm.selectedTeachers)
+                        ? _vm._i(_vm.selectedTeachers, teacher.id) > -1
+                        : _vm.selectedTeachers
                     },
                     on: {
                       change: function($event) {
-                        var $$a = _vm.event.active,
+                        var $$a = _vm.selectedTeachers,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
-                          var $$v = null,
+                          var $$v = teacher.id,
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
                             $$i < 0 &&
-                              _vm.$set(_vm.event, "active", $$a.concat([$$v]))
+                              (_vm.selectedTeachers = $$a.concat([$$v]))
                           } else {
                             $$i > -1 &&
-                              _vm.$set(
-                                _vm.event,
-                                "active",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                              (_vm.selectedTeachers = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
                           }
                         } else {
-                          _vm.$set(_vm.event, "active", $$c)
+                          _vm.selectedTeachers = $$c
                         }
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "active" } }, [_vm._v("Активно")])
-                ]),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-check-label",
+                      attrs: { for: "teacher" + teacher.id }
+                    },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t" + _vm._s(teacher.name) + "\n\t\t\t\t"
+                      )
+                    ]
+                  )
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Град")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.event.city_id,
+                    expression: "event.city_id"
+                  }
+                ],
+                staticClass: "custom-select",
+                class: { "is-invalid": _vm.errors.city_id },
+                attrs: { required: "" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.event,
+                      "city_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c(
+                  "option",
+                  { attrs: { value: "", disabled: "", selected: "" } },
+                  [_vm._v("Изберете град")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.cities, function(city) {
+                  return _c("option", { domProps: { value: city.id } }, [
+                    _vm._v(_vm._s(city.name))
+                  ])
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.errors.city_id
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.city_id[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Адрес")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.event.address,
+                  expression: "event.address"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.address },
+              attrs: { type: "text", name: "address", required: "" },
+              domProps: { value: _vm.event.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.event, "address", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.address
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.address[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v("Корица")]),
+              _vm._v(" "),
+              _c("imageUpload", {
+                attrs: {
+                  imageUrl:
+                    "https://d3cwccg7mi8onu.cloudfront.net/fit-in/" +
+                    _vm.event.cover
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Начална дата")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-control p-0 mb-1",
+                class: { "is-invalid": _vm.errors.start_date },
+                staticStyle: { border: "none" }
+              },
+              [
+                _c("el-date-picker", {
+                  attrs: {
+                    "picker-options": _vm.startDatePickerOptions,
+                    type: "date",
+                    placeholder: "Начална дата",
+                    "value-format": "yyyy-MM-dd"
+                  },
+                  model: {
+                    value: _vm.event.start_date,
+                    callback: function($$v) {
+                      _vm.$set(_vm.event, "start_date", $$v)
+                    },
+                    expression: "event.start_date"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.errors.start_date
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.start_date[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Крайна дата")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-control p-0 mb-1",
+                class: { "is-invalid": _vm.errors.end_date },
+                staticStyle: { border: "none" }
+              },
+              [
+                _c("el-date-picker", {
+                  attrs: {
+                    "picker-options": _vm.endDatePickerOptions,
+                    type: "date",
+                    placeholder: "Крайна дата",
+                    "value-format": "yyyy-MM-dd"
+                  },
+                  model: {
+                    value: _vm.event.end_date,
+                    callback: function($$v) {
+                      _vm.$set(_vm.event, "end_date", $$v)
+                    },
+                    expression: "event.end_date"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.errors.end_date
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.end_date[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Начален час")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-control p-0 mb-1",
+                class: { "is-invalid": _vm.errors.start_at },
+                staticStyle: { border: "none" }
+              },
+              [
+                _c("el-time-select", {
+                  attrs: {
+                    "picker-options": {
+                      start: "06:00",
+                      end: "23:00",
+                      step: "00:15",
+                      maxTime: _vm.event.end_at
+                    },
+                    placeholder: "Начален час",
+                    "value-format": "HH:mm"
+                  },
+                  model: {
+                    value: _vm.event.start_at,
+                    callback: function($$v) {
+                      _vm.$set(_vm.event, "start_at", $$v)
+                    },
+                    expression: "event.start_at"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.errors.start_at
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.start_at[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Краен час")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-control p-0 mb-1",
+                class: { "is-invalid": _vm.errors.end_at },
+                staticStyle: { border: "none" }
+              },
+              [
+                _c("el-time-select", {
+                  attrs: {
+                    "picker-options": {
+                      start: "06:00",
+                      end: "23:00",
+                      step: "00:15",
+                      minTime: _vm.event.start_at
+                    },
+                    placeholder: "Краен час",
+                    "value-format": "HH:mm"
+                  },
+                  model: {
+                    value: _vm.event.end_at,
+                    callback: function($$v) {
+                      _vm.$set(_vm.event, "end_at", $$v)
+                    },
+                    expression: "event.end_at"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.errors.end_at
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.end_at[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Цена")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.event.price,
+                  expression: "event.price"
+                }
+              ],
+              staticClass: "form-control col-2",
+              class: { "is-invalid": _vm.errors.price },
+              attrs: { type: "text", name: "price" },
+              domProps: { value: _vm.event.price },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.event, "price", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.price
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.price[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+            [
+              _vm._v(
+                "\n\t\t\tМоля, посочете крайната цена с начислен ДДС.\n\t\t"
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.event.active,
+                    expression: "event.active"
+                  }
+                ],
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", value: "", id: "active" },
+                domProps: {
+                  checked: Array.isArray(_vm.event.active)
+                    ? _vm._i(_vm.event.active, "") > -1
+                    : _vm.event.active
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.event.active,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = "",
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(_vm.event, "active", $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.event,
+                            "active",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.event, "active", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "form-check-label", attrs: { for: "active" } },
+                [_vm._v("\n\t\t\t\t\tАктивно\n\t\t\t\t")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "div",
+              { staticClass: "d-flex justify-content-end" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-outline-secondary mr-2",
+                    attrs: { to: "/events" }
+                  },
+                  [_vm._v("\n\t\t\t\t\tОткажи\n\t\t\t\t")]
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "field right" },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "btn blue", on: { click: _vm.save } },
-                      [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      { staticClass: "btn basic", attrs: { to: "/events" } },
-                      [_vm._v("\n\t\t\t\t\tОткажи\n\t\t\t\t")]
-                    )
-                  ],
-                  1
+                  { staticClass: "btn btn-primary", on: { click: _vm.save } },
+                  [_vm._v("\n\t\t        \tЗапиши\n\t\t        ")]
                 )
               ],
               1
             )
-          ]
-        : _vm._e()
-    ],
-    2
-  )
+          ])
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

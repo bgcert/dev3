@@ -15,7 +15,7 @@
 
 			<div class="form-group">
 				<label>Категория</label>
-				<select class="custom-select" :class="{ 'is-invalid': errors.category_id }" v-model="form.category" placeholder="Изберете категория" required>
+				<select class="custom-select" :class="{ 'is-invalid': errors.category_id }" v-model="form.category" required>
 					<option value="" disabled selected>Изберете категория</option>
 					<option v-for="category in categories" :value="category.id">{{ category.name }}</option>
 				</select>

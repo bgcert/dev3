@@ -1,56 +1,59 @@
 <template>
-	<div class="segment">
-		<h4>Ново събитие</h4>
-		<el-form ref="form" :model="form" label-width="120px">
+	<div class="card">
+		<div class="card-header">
+			Ново събитие
+		</div>
 
-			<el-form-item label="Тема">
-				<template v-if="errors.theme_id" v-for="error in errors.theme_id">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-select v-model="selectedTheme" placeholder="Изберете тема">
-					<template v-for="theme in themes">
-						<el-option :label="theme.title" :value="theme.id"></el-option>	
-					</template>
-				</el-select>
-			</el-form-item>
+		<div class="card-body">
 
-			<el-form-item label="Лектори">
-				<el-select v-model="selectedTeachers" multiple placeholder="Избери преподавател(и)">
-					<el-option
-						v-for="teacher in teachers"
-						:key="teacher.id"
-						:label="teacher.name"
-						:value="teacher.id">
-					</el-option>
-				</el-select>
-			</el-form-item>
+			<div class="form-group">
+				<label>Тема</label>
+				<select class="custom-select" :class="{ 'is-invalid': errors.theme_id }" v-model="selectedTheme" required>
+					<option value="" disabled selected>Изберете тема</option>
+					<option v-for="theme in themes" :value="theme.id">{{ theme.title }}</option>
+				</select>
+				<div class="invalid-feedback" v-if="errors.theme_id">
+					{{ errors.theme_id[0] }}
+				</div>
+			</div>
 
-			<el-form-item label="Град">
-				<template v-if="errors.city_id" v-for="error in errors.city_id">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-select v-model="form.cityId" placeholder="Изберете град">
-					<el-option
-						v-for="city in cities"
-						:key="city.id"
-						:label="city.name"
-						:value="city.id">
-					</el-option>
-				</el-select>
-			</el-form-item>
+			<div class="form-group">
+				<label>Преподаватели</label>
+				<div class="form-check" v-for="(teacher, index) in teachers">
+					<input class="form-check-input" type="checkbox" :value="teacher.id" :id="'teacher' + teacher.id" v-model="selectedTeachers">
+					<label class="form-check-label" :for="'teacher' + teacher.id">
+						{{ teacher.name }}
+					</label>
+				</div>
+			</div>
 
-			<el-form-item label="Адрес">
-				<template v-if="errors.address" v-for="error in errors.address">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input v-model="form.address"></el-input>
-			</el-form-item>
+			<div class="form-group">
+				<label>Град</label>
+				<select class="custom-select" :class="{ 'is-invalid': errors.city_id }" v-model="form.cityId" required>
+					<option value="" disabled selected>Изберете град</option>
+					<option v-for="city in cities" :value="city.id">{{ city.name }}</option>
+				</select>
+				<div class="invalid-feedback" v-if="errors.city_id">
+					{{ errors.city_id[0] }}
+				</div>
+			</div>
 
-			<el-form-item label="Начална дата">
-				<template v-if="errors.start_date" v-for="error in errors.start_date">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<div class="block">
+			<div class="form-group">
+				<label>Адрес</label>
+				<input type="text" name="address" class="form-control" :class="{ 'is-invalid': errors.address }" v-model="form.address" required>
+				<div class="invalid-feedback" v-if="errors.address">
+					{{ errors.address[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Корица</label>
+				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
+			</div>
+
+			<div class="form-group">
+				<label>Начална дата</label>
+				<div class="form-control p-0 mb-1" :class="{ 'is-invalid': errors.start_date }" style="border: none;">
 					<el-date-picker
 						v-model="form.start_date"
 						:picker-options="startDatePickerOptions"
@@ -59,13 +62,14 @@
 						value-format="yyyy-MM-dd">
 					</el-date-picker>
 				</div>
-			</el-form-item>
+				<div class="invalid-feedback" v-if="errors.start_date">
+					{{ errors.start_date[0] }}
+				</div>
+			</div>
 
-			<el-form-item label="Крайна дата">
-				<template v-if="errors.end_date" v-for="error in errors.end_date">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<div class="block">
+			<div class="form-group">
+				<label>Крайна дата</label>
+				<div class="form-control p-0 mb-1" :class="{ 'is-invalid': errors.end_date }" style="border: none;">
 					<el-date-picker
 						v-model="form.end_date"
 						:picker-options="endDatePickerOptions"
@@ -74,65 +78,76 @@
 						value-format="yyyy-MM-dd">
 					</el-date-picker>
 				</div>
-			</el-form-item>
-
-			<el-form-item label="Начален час">
-				<template v-if="errors.start_at" v-for="error in errors.start_at">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-time-select
-					v-model="form.start_at"
-					:picker-options="{ start: '06:00', end: '23:00', step: '00:15', maxTime: form.end_at }"
-					placeholder="Начален час"
-					value-format="HH:mm">
-				</el-time-select>
-			</el-form-item>
-
-			<el-form-item label="Краен час">
-				<template v-if="errors.end_at" v-for="error in errors.end_at">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-time-select
-					v-model="form.end_at"
-					:picker-options="{ start: '06:00', end: '23:00', step: '00:15', minTime: form.start_at }"
-					placeholder="Начален час"
-					value-format="HH:mm">
-				</el-time-select>
-			</el-form-item>
-
-			<el-form-item label="Корица">
-				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
-			</el-form-item>
-
-			<el-form-item label="Цена">
-				<template v-if="errors.price" v-for="error in errors.price">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input v-model="form.price" style="width: 150px;">
-					<template slot="append">лв.</template>
-				</el-input>
-			</el-form-item>
-
-			<div class="field">
-				<div class="message orange">
-					Моля, посочете крайната цена с начислен ДДС.
+				<div class="invalid-feedback" v-if="errors.end_date">
+					{{ errors.end_date[0] }}
 				</div>
 			</div>
 
-			<el-form-item>
-				<input type="checkbox" id="active" v-model="form.active"/>
-				<label for="active">Активно</label>
-			</el-form-item>
-
-			<div class="field right">
-				<div class="btn blue" @click="save">
-		        	Запиши
-		        </div>
-				<router-link to="/events" class="btn basic">
-					Откажи
-				</router-link>	
+			<div class="form-group">
+				<label>Начален час</label>
+				<div class="form-control p-0 mb-1" :class="{ 'is-invalid': errors.start_at }" style="border: none;">
+					<el-time-select
+						v-model="form.start_at"
+						:picker-options="{ start: '06:00', end: '23:00', step: '00:15', maxTime: form.end_at }"
+						placeholder="Начален час"
+						value-format="HH:mm">
+					</el-time-select>
+				</div>
+				<div class="invalid-feedback" v-if="errors.start_at">
+					{{ errors.start_at[0] }}
+				</div>
 			</div>
-		</el-form>
+
+			<div class="form-group">
+				<label>Краен час</label>
+				<div class="form-control p-0 mb-1" :class="{ 'is-invalid': errors.end_at }" style="border: none;">
+					<el-time-select
+						v-model="form.end_at"
+						:picker-options="{ start: '06:00', end: '23:00', step: '00:15', minTime: form.start_at }"
+						placeholder="Краен час"
+						value-format="HH:mm">
+					</el-time-select>
+				</div>
+				<div class="invalid-feedback" v-if="errors.end_at">
+					{{ errors.end_at[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Цена</label>
+				<input type="text" name="price" class="form-control col-2" :class="{ 'is-invalid': errors.price }" v-model="form.price">
+				<div class="invalid-feedback" v-if="errors.price">
+					{{ errors.price[0] }}
+				</div>
+			</div>
+
+			<div class="alert alert-warning" role="alert">
+				Моля, посочете крайната цена с начислен ДДС.
+			</div>
+
+			<div class="form-group">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="active" v-model="form.active">
+					<label class="form-check-label" for="active">
+						Активно
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="d-flex justify-content-end">
+					<router-link to="/events" class="btn btn-outline-secondary mr-2">
+						Откажи
+					</router-link>
+
+					<div class="btn btn-primary" @click="save">
+			        	Запиши
+			        </div>
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 </template>
 
@@ -146,12 +161,12 @@
     			loading: true,
     			themes: [],
     			teachers: [],
-    			selectedTeachers: {},
+    			selectedTeachers: [],
     			selectedTheme: '',
     			cities: null,
     			form: {
     				theme: '',
-    				cityId: null,
+    				cityId: '',
     				address: '',
     				start_date: '',
     				end_date: '',
@@ -176,6 +191,10 @@
     	},
 
     	methods: {
+
+    		selectTeacher(id) {
+    			console.log(id);
+    		},
 
     		upload() {
     			let promise = new Promise((resolve, reject) => EventBus.$emit('upload', resolve, reject));
