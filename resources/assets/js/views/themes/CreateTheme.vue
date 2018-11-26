@@ -1,62 +1,70 @@
 <template>
-	<div class="segment">
-		<h4>Нова тема</h4>
-		<el-form ref="form" :model="form" label-width="160px">
+	<div class="card">
+		<div class="card-header">
+			Нова тема
+		</div>
 
-			<el-form-item label="Заглавие">
-				<template v-if="errors.title" v-for="error in errors.title">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input v-model="form.title"></el-input>
-			</el-form-item>
-
-			<el-form-item label="Категория">
-				<template v-if="errors.category_id" v-for="error in errors.category_id">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-select v-model="form.category" placeholder="Изберете категория">
-					<template v-for="category in categories">
-						<el-option :label="category.name" :value="category.id"></el-option>	
-					</template>
-				</el-select>
-			</el-form-item>
-
-			<el-form-item label="Корица">
-				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
-			</el-form-item>
-
-			<el-form-item label="Кратко описание">
-				<template v-if="errors.excerpt" v-for="error in errors.excerpt">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input type="textarea" :rows="3" v-model="form.excerpt"></el-input>
-			</el-form-item>
-			
-			<el-form-item label="Съдържание">
-				<template v-if="errors.body" v-for="error in errors.body">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input type="textarea" :rows="6" v-model="form.body"></el-input>
-			</el-form-item>
-
-			<el-form-item label="Учебни часове">
-				<template v-if="errors.duration" v-for="error in errors.duration">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input v-model="form.duration" style="width: 100px;"></el-input>
-			</el-form-item>
-
-			<div class="field right">
-				<div class="btn blue" @click="save">
-		        	Запиши
-		        </div>
-				<router-link to="/themes" class="item">
-					<div class="btn basic">
-			        	Откажи
-			        </div>
-				</router-link>	
+		<div class="card-body">
+			<div class="form-group">
+				<label>Заглавие</label>
+				<input type="text" name="title" class="form-control" :class="{ 'is-invalid': errors.title }" v-model="form.title" autofocus required>
+				<div class="invalid-feedback" v-if="errors.title">
+					{{ errors.title[0] }}
+				</div>
 			</div>
-		</el-form>
+
+			<div class="form-group">
+				<label>Категория</label>
+				<select class="custom-select" :class="{ 'is-invalid': errors.category_id }" v-model="form.category" placeholder="Изберете категория" required>
+					<option value="" disabled selected>Изберете категория</option>
+					<option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+				</select>
+				<div class="invalid-feedback" v-if="errors.category_id">
+					{{ errors.category_id[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Корица</label>
+				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
+			</div>
+
+			<div class="form-group">
+				<label>Кратко описание</label>
+				<textarea class="form-control" :class="{ 'is-invalid': errors.excerpt }" rows="3" v-model="form.excerpt"></textarea>
+				<div class="invalid-feedback" v-if="errors.excerpt">
+					{{ errors.excerpt[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Съдържание</label>
+				<textarea class="form-control" :class="{ 'is-invalid': errors.body }" rows="6" v-model="form.body"></textarea>
+				<div class="invalid-feedback" v-if="errors.body">
+					{{ errors.body[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Учебни часове</label>
+				<input type="text" class="form-control col-2" :class="{ 'is-invalid': errors.duration }" v-model="form.duration">
+				<div class="invalid-feedback" v-if="errors.duration">
+					{{ errors.duration[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="d-flex justify-content-end">
+					<router-link to="/themes" class="btn btn-outline-secondary mr-2">
+						Откажи
+					</router-link>
+
+					<div class="btn btn-primary" @click="save">
+			        	Запиши
+			        </div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 

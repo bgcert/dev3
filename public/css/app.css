@@ -10718,6 +10718,12 @@ body {
   color: #fff;
 }
 
+.card.dashboard-card .image {
+  height: 150px;
+  background-size: cover !important;
+  background-position: center center !important;
+}
+
 .breadcrumb {
   background-color: initial;
   font-weight: 500;

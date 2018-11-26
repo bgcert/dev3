@@ -1,17 +1,15 @@
 <template>
-	<div class="segment">
-		<div class="aligned">
-			<h3>Лектори</h3>
-			<router-link to="/teachers/create">
-				<button class="btn blue">
-					Добави лектор
-				</button>
+	<div class="card">
+		<div class="card-header d-flex justify-content-between">
+			Лектори
+			<router-link to="/teachers/create" class="btn btn-primary btn-sm">
+				<i class="far fa-plus-square"></i> Добави лектор
 			</router-link>
 		</div>
-		<div v-loading="loading">
 
-			<div class="grid grid-1-1-1">
-				<template v-for="(teacher, index) in teachers">
+		<div class="card-body" v-loading="loading">
+			<div class="row">
+				<div class="col-4" v-for="(teacher, index) in teachers">
 					<CardDashboard
 						:image="'https://d3cwccg7mi8onu.cloudfront.net/250x150/' + teacher.image"
 						:title="teacher.name"
@@ -20,9 +18,8 @@
 						@show="handleShow(theme.id)"
 						@deleteClick="handleDelete(teacher.id, index)">
 					</CardDashboard>
-				</template>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </template>

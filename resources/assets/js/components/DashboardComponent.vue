@@ -59,11 +59,7 @@
 		</div>
 
 		<div class="col-lg-9 col-sm-12">
-			<div class="card">
-				<div class="card-body">
-					<router-view></router-view>
-				</div>
-			</div>
+			<router-view></router-view>
 		</div>
 	</div>
 </template>

@@ -1,33 +1,43 @@
 <template>
-	<div class="segment">
-		<h4>Нов лектор</h4>
-		<el-form ref="form" :model="form" label-width="120px">
-			<el-form-item label="Име">
-				<template v-if="errors.name" v-for="error in errors.name">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input v-model="form.name"></el-input>
-			</el-form-item>
+	<div class="card">
+		<div class="card-header">
+			Нов лектор
+		</div>
 
-			<el-form-item label="Снимка">
-				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
-			</el-form-item>
-
-			<el-form-item label="Съдържание">
-				<template v-if="errors.details" v-for="error in errors.details">
-					 <el-alert type="error" :title="error"></el-alert>
-				</template>
-				<el-input type="textarea" :rows="6" v-model="form.details"></el-input>
-			</el-form-item>
-			<div class="field right">
-				<div class="btn blue" @click="save">
-		        	Запиши
-		        </div>
-				<router-link to="/teachers" class="btn basic">
-					Откажи
-				</router-link>
+		<div class="card-body">
+			<div class="form-group">
+				<label>Име</label>
+				<input type="text" name="name" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="form.name" autofocus required>
+				<div class="invalid-feedback" v-if="errors.name">
+					{{ errors.name[0] }}
+				</div>
 			</div>
-		</el-form>
+
+			<div class="form-group">
+				<imageUpload :imageUrl="'/img/default_cover.png'"></imageUpload>
+			</div>
+
+			<div class="form-group">
+				<label>Съдържание</label>
+				<textarea class="form-control" :class="{ 'is-invalid': errors.details }" v-model="form.details" required></textarea>
+				<div class="invalid-feedback" v-if="errors.details">
+					{{ errors.details[0] }}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="d-flex justify-content-end">
+					<router-link to="/teachers" class="btn btn-outline-secondary mr-2">
+						Откажи
+					</router-link>
+
+					<div class="btn btn-primary" @click="save">
+			        	Запиши
+			        </div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </template>
 
