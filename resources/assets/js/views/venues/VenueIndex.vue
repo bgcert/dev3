@@ -1,22 +1,25 @@
 <template>
-	<div class="segment">
-		<div class="aligned">
-			<h3 style="float: left;">Зали</h3>
-			<router-link to="/venues/create" class="btn blue">
-				Добави зала
+	<div class="card">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			Зали
+			<router-link to="/venues/create" class="btn btn-primary btn-sm">
+				<i class="far fa-plus-square"></i> Добави зала
 			</router-link>
 		</div>
-		<div class="grid grid-1-1-1">
-			<template v-for="(venue, index) in venues">
-				<CardDashboard
-					:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + venue.cover"
-					:title="venue.name"
-					:edit_link="'/venues/edit/' + venue.id"
-					:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
-					@show="handleShow(venue.id)"
-					@deleteClick="handleDelete(venue.id, index)">
-				</CardDashboard>
-			</template>
+
+		<div class="card-body" v-loading="loading">
+			<div class="row">
+				<div class="col-4" v-for="(venue, index) in venues">
+					<CardDashboard
+						:image="'https://d3cwccg7mi8onu.cloudfront.net/fit-in/' + venue.cover"
+						:title="venue.name"
+						:edit_link="'/venues/edit/' + venue.id"
+						:confirmMessage="'Сигурни ли сте, че желаете да изтриете тази зала?'"
+						@show="handleShow(venue.id)"
+						@deleteClick="handleDelete(venue.id, index)">
+					</CardDashboard>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

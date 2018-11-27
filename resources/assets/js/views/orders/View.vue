@@ -1,124 +1,124 @@
 <template>
-	<div class="segment">
-		<h3>Заявка {{ order.id }}</h3>
-		<h4>{{ order.theme_title }} - {{ order.event_start_date }}</h4>
-		<div class="grid grid-2-1" v-if="order.id">
-			<div class="column">
-				<table class="dashboard">
+	<div class="card">
+		<div class="card-header">
+			Заявка от {{ order.contact_person }} 
+		</div>
+
+		<div class="card-body">
+			<h4>{{ order.theme_title }} - {{ order.event_start_date }}</h4>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Регистрирана на:</th>
+						<th>Ед. цена</th>
+						<th>Участници</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ order.created_at }}</td>
+						<td>{{ order.event_price }}.00 лв.</td>
+						<td>{{ order.participants_count }}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th></th>
+						<th><h4>Общо:</h4></th>
+						<th><h4>{{ order.event_price * order.participants_count }}.00 лв.</h4></th>
+					</tr>
+				</tfoot>
+			</table>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="2">Контакти</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Лице за контакти</td>
+						<td>{{ order.contact_person }}</td>
+					</tr>
+					<tr>
+						<td>Телефон</td>
+						<td>{{ order.contact_number }}</td>
+					</tr>
+					<tr>
+						<td>E-mail</td>
+						<td>{{ order.contact_email }}</td>
+					</tr>
+				</tbody>
+
+				<template v-if="order.invoice == 1 && order.details != null">
 					<thead>
 						<tr>
-							<th>Регистрирана на:</th>
-							<th>Ед. цена</th>
-							<th>Участници</th>
+							<th colspan="2">Данни за фактура</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>{{ order.created_at }}</td>
-							<td>{{ order.event_price }}.00 лв.</td>
-							<td>{{ order.participants_count }}</td>
+							<td>Организация</td>
+							<td>{{ order.details.organization }}</td>
+						</tr>
+						<tr>
+							<td>ЕИК</td>
+							<td>{{ order.details.cid }}</td>
+						</tr>
+						<tr>
+							<td>ДДС номер</td>
+							<td>{{ order.details.vat }}</td>
+						</tr>
+						<tr>
+							<td>Адрес</td>
+							<td>{{ order.details.address }}</td>
+						</tr>
+						<tr>
+							<td>МОЛ</td>
+							<td>{{ order.details.owner }}</td>
 						</tr>
 					</tbody>
-					<tfoot>
-						<tr>
-							<th></th>
-							<th><h4>Общо:</h4></th>
-							<th><h4>{{ order.event_price * order.participants_count }}.00 лв.</h4></th>
-						</tr>
-					</tfoot>
-				</table>
+				</template>
+			</table>
 
-				<table class="dashboard">
-					<thead>
-						<tr>
-							<th colspan="2">Контакти</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Лице за контакти</td>
-							<td>{{ order.contact_person }}</td>
-						</tr>
-						<tr>
-							<td>Телефон</td>
-							<td>{{ order.contact_number }}</td>
-						</tr>
-						<tr>
-							<td>E-mail</td>
-							<td>{{ order.contact_email }}</td>
-						</tr>
-					</tbody>
-					<template v-if="order.invoice == 1 && order.details != null">
-						<thead>
-							<tr>
-								<th colspan="2">Данни за фактура</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Организация</td>
-								<td>{{ order.details.organization }}</td>
-							</tr>
-							<tr>
-								<td>ЕИК</td>
-								<td>{{ order.details.cid }}</td>
-							</tr>
-							<tr>
-								<td>ДДС номер</td>
-								<td>{{ order.details.vat }}</td>
-							</tr>
-							<tr>
-								<td>Адрес</td>
-								<td>{{ order.details.address }}</td>
-							</tr>
-							<tr>
-								<td>МОЛ</td>
-								<td>{{ order.details.owner }}</td>
-							</tr>
-						</tbody>
-					</template>
-				</table>
+			<table class="table col-6" v-if="order.id">
+				<thead>
+					<tr>
+						<th>Списък на участниците</th>
+					</tr>
+				</thead>
+				<tbody v-for="(participant, index) in order.participants">
+					<tr>
+						<td>{{ (index+1) + '. ' + participant.name }}</td>
+					</tr>
+				</tbody>
+			</table>
 
-				<table class="dashboard">
-					<thead>
-						<tr>
-							<th>Списък на участниците</th>
-						</tr>
-					</thead>
-					<tbody v-for="(participant, index) in order.participants">
-						<tr>
-							<td>{{ (index+1) + '. ' + participant.name }}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<hr>
 			
-			<div class="column">
+			<div class="form-group col-6">
 				<label>Статус</label>
-				<el-select v-model="order.status" placeholder="Статус">
-					<el-option
-						v-for="item in options"
-						:key="item.value"
-						:label="item.label"
-						:value="item.value">
-					</el-option>
-				</el-select>
-			</div>			
+				<select class="custom-select" v-model="order.status">
+					<option v-for="item in options" :value="item.value">{{ item.label }}</option>
+				</select>
+			</div>
+
+			<div class="form-group col-6">
+				<label>Записки (видими от организатора)</label>
+				<textarea class="form-control" rows="3" v-model="order.note"></textarea>
+			</div>
+
+			<div class="text-right">
+				<router-link to="/orders" class="btn btn-link">
+					Назад
+				</router-link>
+				<button class="btn btn-outline-secondary btn-sm" @click.prevent="markAsUnread" :class="{ disabled: order.read_at == null }"> Маркирай като непрочетена</button>
+				<button class="btn btn-danger btn-sm" @click="save">Запиши</button>
+		    </div>
+
 		</div>
-		<div class="field">
-			<label>Записки (видими от организатора)</label>
-			<div>
-				<textarea v-model="order.note"></textarea>
-			</div>	
-			
-		</div>
-		<div class="field right">
-			<router-link to="/orders" class="btn basic">
-				Назад
-			</router-link>
-			<button class="btn basic" @click.prevent="markAsUnread" :class="{ disabled: !order.read }"> Маркирай като непрочетена</button>
-			<button class="btn blue" @click="save">Запиши</button>
-	    </div>	
 	</div>
 </template>
 
@@ -127,6 +127,9 @@
     	data: function () {
     		return {
     			options: [{
+    				value: 0,
+    				label: 'Необработена'
+    			},{
     				value: 1,
     				label: 'Платена'
     			}, {
@@ -157,7 +160,7 @@
     			let vm = this;
     			axios.post('/dashboard/orders/unread', { id: vm.order.id  })
 	    			.then(function (response) {
-	    				vm.order.read = false;
+	    				vm.order.read_at = null;
 	    				vm.$notify({
 				        	message: 'Статусът е променен.',
 				        	type: 'success'

@@ -28,7 +28,7 @@ class ContactController extends Controller
     {
     	$contact = \App\ContactPublisher::find($id);
     	// Mark as read
-    	$contact->read_at = \Carbon\Carbon::now();;
+    	$contact->read_at = \Carbon\Carbon::now();
     	$contact->save();
         return $contact;
     	// return view('venue', compact('venue', 'images'));
@@ -38,7 +38,7 @@ class ContactController extends Controller
     public function unread()
     {
     	$contact = \App\ContactPublisher::find(request()->id);
-    	$contact->read = 0;
+    	$contact->read_at = null;
     	$contact->save();
         return $contact;
     }

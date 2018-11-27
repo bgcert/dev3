@@ -1,38 +1,46 @@
 <template>
-	<div class="segment">
-		<h3>Заявки</h3>
+	<div class="card">
+		<div class="card-header">
+			Съобщения
+		</div>
 
-		<table class="dashboard">
-			<thead>
-				<tr>
-					<th>Изпратена на:</th>
-					<th>Относно</th>
-					<th>Подател</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody v-for="(contact, index) in contacts">
-				<tr :class="{ active: !contact.read }">
-					<td>{{ contact.created_at }}</td>
-					<td>
-						<router-link :to="'/contacts/' + contact.id">
-							{{ contact.about }}
-						</router-link>
-					</td>
-					<td>{{ contact.from }}</td>
-					<td>
-						<div class="ui mini basic icon buttons">
-							<router-link :to="'/contacts/' + contact.id" class="ui button">
-								<i class="eye icon"></i>
+		<div class="card-body">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Изпратена на:</th>
+						<th>Относно</th>
+						<th>От</th>
+						<th>Изтриване</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(contact, index) in contacts" :class="{ 'bg-warning': !contact.read_at }">
+						<td>
+							{{ contact.created_at }}
+						</td>
+						<td>
+							<router-link :to="'/contacts/' + contact.id">
+								{{ contact.about }}
 							</router-link>
-							<button class="btn small" @click.prevent="handleDelete(contact.id, index)">
-								Изтриване
-							</button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+						</td>
+						<td>
+							{{ contact.from }}
+						</td>
+						<td>
+							<div class="btn-group">
+								<router-link :to="'/contacts/' + contact.id" class="btn btn-outline-secondary btn-sm">
+									<i class="fas fa-eye"></i>
+								</router-link>
+								<button class="btn btn-outline-danger btn-sm" @click.prevent="handleDelete(contact.id, index)">
+									<i class="far fa-trash-alt"></i> Изтриване
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </template>
 

@@ -1,31 +1,35 @@
 <template>
-	<div class="segment">
-		<h4>От: {{ contact.from }}</h4>
-		<div v-if="contact.id">
-			<table class="dashboard">
+	<div class="card">
+		<div class="card-header">
+			От: {{ contact.from }}
+		</div>
+
+		<div class="card-body" v-if="contact.id">
+			
+			<table class="table">
 				<tbody>
 					<tr>
-						<td>Изпратено на: </td>
+						<th>Изпратено на:</th>
 						<td>{{ contact.created_at }}</td>
 					</tr>
 					<tr>
-						<td>Относно:</td>
+						<th>Относно:</th>
 						<td>{{ contact.about }}</td>
 					</tr>
 					<tr>
-						<td>Лице за контакти: </td>
+						<th>Лице за контакти:</th>
 						<td>{{ contact.from }}</td>
 					</tr>
 					<tr>
-						<td>E-mail: </td>
+						<th>E-mail:</th>
 						<td>{{ contact.email }}</td>
 					</tr>
 					<tr>
-						<td>Телефон: </td>
+						<th>Телефон: </th>
 						<td>{{ contact.phone }}</td>
 					</tr>
 					<tr>
-						<td>Заглавие: </td>
+						<th>Заглавие: </th>
 						<td>{{ contact.subject }}</td>
 					</tr>
 					<tr>
@@ -35,13 +39,15 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="field right">
-		    	<router-link to="/contacts" class="btn basic">
+
+			<div class="text-right">
+		    	<router-link to="/contacts" class="btn btn-link">
 					Назад
 				</router-link>
-				<button class="btn basic" @click.prevent="markAsUnread" :class="{ disabled: !read }"> Маркирай като непрочетено</button>
-				<button class="btn blue" @click.prevent="handleDelete(contact.id)"> Изтрий</button>
+				<button class="btn btn-outline-secondary btn-sm" @click.prevent="markAsUnread" :class="{ disabled: contact.read_at == null }"> Маркирай като непрочетено</button>
+				<button class="btn btn-danger btn-sm" @click.prevent="handleDelete(contact.id)"> Изтрий</button>
 		    </div>
+
 		</div>
 	</div>
 </template>
@@ -62,7 +68,7 @@
     			}],
     			value: null,
     			contact: {},
-    			read: true
+    			read_at: true
     		}
     	},
 
@@ -71,7 +77,7 @@
     			let vm = this;
     			axios.post('/dashboard/contacts/unread', { id: vm.contact.id  })
 	    			.then(function (response) {
-	    				vm.read = false;
+	    				vm.contact.read_at = null;
 	    				vm.$notify({
 				        	message: 'Статусът е променен.',
 				        	type: 'success'

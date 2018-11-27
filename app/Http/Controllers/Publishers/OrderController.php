@@ -97,7 +97,7 @@ class OrderController extends Controller
     public function unread()
     {
     	$order = \App\Order::find(request()->id);
-    	$order->read = 0;
+    	$order->read_at = null;
     	$order->save();
     	return $order;
     }

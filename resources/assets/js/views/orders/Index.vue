@@ -1,25 +1,27 @@
 <template>
-	<div class="segment">
-		<div class="aligned">
-			<h3>Заявки</h3>	
-			<router-link to="/orders/create" class="btn blue">
-				Въведи заявка
+	<div class="card">
+
+		<div class="card-header d-flex justify-content-between align-items-center">
+			Заявки
+			<router-link to="/orders/create" class="btn btn-primary btn-sm disabled">
+				<i class="far fa-plus-square"></i> Въведи заявка
 			</router-link>
 		</div>
-		<div v-loading="loading">
-			<table class="dashboard">
+		<div class="card-body" v-loading="loading">
+
+			<table class="table">
 				<thead>
 					<tr>
-						<th>Получена на:</th>
-						<th>Дата/Тема</th>
-						<th><i class="user icon"></i></th>
+						<th>Изпратена на:</th>
+						<th>Тема/Дата</th>
+						<th><i class="fas fa-users"></i></th>
 						<th>Статус</th>
 						<th></th>
 					</tr>
 				</thead>
-				<tbody v-for="(order, index) in orders">
-					<tr :class="{ active: !order.read }">
-						<td>{{ order.created_at }}</td>
+				<tbody>
+					<tr v-for="(order, index) in orders" :class="{ 'bg-warning': !order.read_at }">
+						<th>{{ order.created_at }}</th>
 						<td>
 							<router-link :to="'/orders/' + order.id">
 								{{ order.event_start_date }} - {{ order.theme_title }}
@@ -27,18 +29,16 @@
 						</td>
 						<td>{{ order.participants_count }}</td>
 						<td>
-							<div
-								class="ui mini horizontal label"
-								:class="{ green: order.status == 1, orange: order.status == 2, red: order.status == 3 }">
+							<button class="btn btn-secondary btn-sm" :class="{ 'btn-success': order.status == 1, 'btn-warning': order.status == 2, 'btn-danger': order.status == 3 }">
 								{{ statusText(order.status) }}
-							</div>
+							</button>
 						</td>
 						<td>
-							<div class="ui mini basic icon buttons">
-								<router-link :to="'/orders/' + order.id" class="ui button">
-									<i class="edit icon"></i>
+							<div class="btn-group">
+								<router-link :to="'/orders/' + order.id" class="btn btn-outline-secondary btn-sm">
+									<i class="far fa-edit"></i>
 								</router-link>
-								<button class="btn small" @click.prevent="handleDelete(order.id, index)">
+								<button class="btn btn-outline-danger btn-sm" @click.prevent="handleDelete(order.id, index)">
 									<i class="far fa-trash-alt"></i>
 								</button>
 							</div>
