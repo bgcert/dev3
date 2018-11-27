@@ -129691,6 +129691,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -129760,35 +129765,41 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              class: { active: _vm.$route.path == "/themes" },
-              attrs: { to: "/themes" }
-            },
-            [_vm._v("\n\t\t\t\tТеми\n\t\t\t")]
-          ),
+          _vm.eventPublish
+            ? _c(
+                "router-link",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  class: { active: _vm.$route.path == "/themes" },
+                  attrs: { to: "/themes" }
+                },
+                [_vm._v("\n\t\t\t\tТеми\n\t\t\t")]
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              class: { active: _vm.$route.path == "/teachers" },
-              attrs: { to: "/teachers" }
-            },
-            [_vm._v("\n\t\t\t\tЛектори\n\t\t\t")]
-          ),
+          _vm.eventPublish
+            ? _c(
+                "router-link",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  class: { active: _vm.$route.path == "/teachers" },
+                  attrs: { to: "/teachers" }
+                },
+                [_vm._v("\n\t\t\t\tЛектори\n\t\t\t")]
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              class: { active: _vm.$route.path == "/events" },
-              attrs: { to: "/events" }
-            },
-            [_vm._v("\n\t\t\t\tКалендар\n\t\t\t")]
-          ),
+          _vm.eventPublish
+            ? _c(
+                "router-link",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  class: { active: _vm.$route.path == "/events" },
+                  attrs: { to: "/events" }
+                },
+                [_vm._v("\n\t\t\t\tКалендар\n\t\t\t")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _vm.venuePublish
             ? _c(
@@ -129802,28 +129813,30 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-              class: { active: _vm.$route.path == "/orders" },
-              attrs: { to: "/orders" }
-            },
-            [
-              _vm._v("\n\t\t\t\tЗаявки\n\t\t\t\t"),
-              _vm.ordersCount
-                ? _c(
-                    "span",
-                    {
-                      staticClass: "badge badge-primary badge-pill",
-                      class: { active: _vm.$route.path == "/orders" }
-                    },
-                    [_vm._v(_vm._s(_vm.ordersCount))]
-                  )
-                : _vm._e()
-            ]
-          ),
+          _vm.eventPublish
+            ? _c(
+                "router-link",
+                {
+                  staticClass:
+                    "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
+                  class: { active: _vm.$route.path == "/orders" },
+                  attrs: { to: "/orders" }
+                },
+                [
+                  _vm._v("\n\t\t\t\tЗаявки\n\t\t\t\t"),
+                  _vm.ordersCount
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "badge badge-primary badge-pill",
+                          class: { active: _vm.$route.path == "/orders" }
+                        },
+                        [_vm._v(_vm._s(_vm.ordersCount))]
+                      )
+                    : _vm._e()
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "router-link",

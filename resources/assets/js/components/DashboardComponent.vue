@@ -11,6 +11,7 @@
 				</router-link>
 
 				<router-link
+					v-if="eventPublish"
 					to="/themes"
 					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/themes' }">
@@ -18,6 +19,7 @@
 				</router-link>
 
 				<router-link
+					v-if="eventPublish"
 					to="/teachers"
 					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/teachers' }">
@@ -25,13 +27,15 @@
 				</router-link>
 
 				<router-link
+					v-if="eventPublish"
 					to="/events"
 					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/events' }">
 					Календар
 				</router-link>
 
-				<router-link v-if="venuePublish"
+				<router-link
+					v-if="venuePublish"
 					to="/venues"
 					class="list-group-item list-group-item-action"
 					:class="{ active: $route.path == '/venues' }">
@@ -39,6 +43,7 @@
 				</router-link>
 
 				<router-link
+					v-if="eventPublish"
 					to="/orders"
 					class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 					:class="{ active: $route.path == '/orders' }">

@@ -28,14 +28,28 @@
 				</div>	
 			</div>
 		</div>
-
-		<div class="info pt-2 mt-4">
-			{{ $company->description }}
-		</div>
 	</div>
 </div>
 
 <div class="container">
+	<div class="row mt-4">
+		<div class="col-lg-8 col-md-12">
+			{{ $company->description }}	
+		</div>
+		<div class="col-lg-4 col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">{{ $company->name }}</li>
+						<li class="list-group-item">{{ $company->phone }}</li>
+						<li class="list-group-item">{{ $company->email }}</li>
+						<li class="list-group-item">{{ $company->address }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	@if(!$themes->isEmpty())
 	<div class="row mt-4">
 		@foreach($themes as $theme)
 			<div class="col-lg-6 col-md-12 pb-3">
@@ -43,34 +57,36 @@
 			</div>
 		@endforeach
 	</div>
+	@endif
 
-	<hr class="my-5">
+	@if(!$events->isEmpty())
+		<hr class="my-5">
+		<h4>График на предстоящите обучения</h4>
 
-	<h4>График на предстоящите обучения</h4>
+		<table class="table table-hover event-list-table mt-4">
+		@foreach($events as $month => $items)
+			<thead>
+				<tr>
+					<th scope="col" colspan="3">{{ $month }}</th>
+				</tr>
+			</thead>
 
-	<table class="table table-hover event-list-table mt-4">
-	@foreach($events as $month => $items)
-		<thead>
-			<tr>
-				<th scope="col" colspan="3">{{ $month }}</th>
-			</tr>
-		</thead>
-
-		<tbody>
-		@foreach($items as $item)
-			<tr class="tr-link" onclick="window.location='/event/{{ $item->id }}';">
-				<th scope="row">{{ $item->start_day_carbon }}</th>
-				<td>
-					<img class="mx-auto d-block" src="https://d3cwccg7mi8onu.cloudfront.net/100x56/{{ $item->cover }}">
-				</td>
-				<td>
-					{{ $item->theme->title }}
-				</td>
-			</tr>
+			<tbody>
+			@foreach($items as $item)
+				<tr class="tr-link" onclick="window.location='/event/{{ $item->id }}';">
+					<th scope="row">{{ $item->start_day_carbon }}</th>
+					<td>
+						<img class="mx-auto d-block" src="https://d3cwccg7mi8onu.cloudfront.net/100x56/{{ $item->cover }}">
+					</td>
+					<td>
+						{{ $item->theme->title }}
+					</td>
+				</tr>
+			@endforeach
+			</tbody>
 		@endforeach
-		</tbody>
-	@endforeach
-	</table>
+		</table>
+	@endif
 </div>
 
 <!-- <div class="container">

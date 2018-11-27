@@ -18,6 +18,7 @@ class DashboardController extends Controller
     	return ($company) ? view('dashboard', compact('company')) : abort(404);
     }
 
+    // Checking for new contact messages and orders
     public function getNewItemsCount()
     {
     	$company = \Auth::user()->company;
