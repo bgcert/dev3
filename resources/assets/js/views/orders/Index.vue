@@ -9,7 +9,7 @@
 		</div>
 		<div class="card-body" v-loading="loading">
 
-			<table class="table">
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th>Изпратена на:</th>

@@ -64359,6 +64359,78 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -65404,59 +65476,55 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.company.id
-    ? _c("div", { staticClass: "segment" }, [
-        _c("form", [
-          _c(
-            "div",
-            { staticClass: "field" },
-            [
-              _c("label", [_vm._v("Име на организацията")]),
-              _vm._v(" "),
-              _vm._l(_vm.errors.name, function(error) {
-                return _vm.errors.name
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company.name,
-                    expression: "company.name"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.company.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.company, "name", $event.target.value)
-                  }
+    ? _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n\t\tФирмени данни\n\t")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Име на организацията")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.company.name,
+                  expression: "company.name"
                 }
-              })
-            ],
-            2
-          ),
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.name },
+              attrs: {
+                type: "text",
+                name: "name",
+                autofocus: "",
+                required: ""
+              },
+              domProps: { value: _vm.company.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.company, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.name
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v("\n\t\t\t\t" + _vm._s(_vm.errors.name[0]) + "\n\t\t\t")
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "field" },
-            [
-              _vm._l(_vm.errors.slug, function(error) {
-                return _vm.errors.slug
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("label", [_vm._v("Адрес (URL) на профила в Seminari365")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "label input" }, [
-                _vm._v("\n\t\t\t\thttp://seminari365.com/c/\n\t\t\t")
-              ]),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Адрес на профила")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _vm._m(0),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -65467,8 +65535,13 @@ var render = function() {
                     expression: "company.slug"
                   }
                 ],
-                staticClass: "labeled",
-                attrs: { type: "text", placeholder: "company.ltd" },
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.errors.slug },
+                attrs: {
+                  type: "text",
+                  placeholder: "company.ltd",
+                  required: ""
+                },
                 domProps: { value: _vm.company.slug },
                 on: {
                   input: function($event) {
@@ -65478,16 +65551,25 @@ var render = function() {
                     _vm.$set(_vm.company, "slug", $event.target.value)
                   }
                 }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm._m(0),
+              }),
+              _vm._v(" "),
+              _vm.errors.slug
+                ? _c("div", { staticClass: "invalid-feedback" }, [
+                    _vm._v(
+                      "\n\t\t\t\t\t" + _vm._s(_vm.errors.slug[0]) + "\n\t\t\t\t"
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("small", { staticClass: "form-text text-muted" }, [
+              _vm._v("Пример: abcltd или abc.ltd")
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "field" },
+            { staticClass: "form-group" },
             [
               _c("label", [_vm._v("Лого")]),
               _vm._v(" "),
@@ -65502,174 +65584,164 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "field" },
-            [
-              _c("label", [_vm._v("Описание")]),
-              _vm._v(" "),
-              _vm._l(_vm.errors.description, function(error) {
-                return _vm.errors.description
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company.description,
-                    expression: "company.description"
-                  }
-                ],
-                attrs: { rows: "6" },
-                domProps: { value: _vm.company.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.company, "description", $event.target.value)
-                  }
-                }
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "equal width fields" }, [
-            _c(
-              "div",
-              { staticClass: "field" },
-              [
-                _c("label", [_vm._v("E-mail")]),
-                _vm._v(" "),
-                _vm._l(_vm.errors.email, function(error) {
-                  return _vm.errors.email
-                    ? [
-                        _c("el-alert", {
-                          attrs: { type: "error", title: error }
-                        })
-                      ]
-                    : _vm._e()
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.company.email,
-                      expression: "company.email"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.company.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.company, "email", $event.target.value)
-                    }
-                  }
-                })
-              ],
-              2
-            ),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Описание")]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "field" },
-              [
-                _c("label", [_vm._v("Телефон")]),
-                _vm._v(" "),
-                _vm._l(_vm.errors.phone, function(error) {
-                  return _vm.errors.phone
-                    ? [
-                        _c("el-alert", {
-                          attrs: { type: "error", title: error }
-                        })
-                      ]
-                    : _vm._e()
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.company.phone,
-                      expression: "company.phone"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.company.phone },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.company, "phone", $event.target.value)
-                    }
-                  }
-                })
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.company.description,
+                  expression: "company.description"
+                }
               ],
-              2
-            )
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.description },
+              attrs: { rows: "6" },
+              domProps: { value: _vm.company.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.company, "description", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.description
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" +
+                      _vm._s(_vm.errors.description[0]) +
+                      "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "field" },
-            [
-              _c("label", [_vm._v("Адрес")]),
-              _vm._v(" "),
-              _vm._l(_vm.errors.address, function(error) {
-                return _vm.errors.address
-                  ? [_c("el-alert", { attrs: { type: "error", title: error } })]
-                  : _vm._e()
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.company.address,
-                    expression: "company.address"
-                  }
-                ],
-                attrs: { rows: "2" },
-                domProps: { value: _vm.company.address },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.company, "address", $event.target.value)
-                  }
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("E-mail")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.company.email,
+                  expression: "company.email"
                 }
-              })
-            ],
-            2
-          ),
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.email },
+              attrs: { type: "email", name: "email" },
+              domProps: { value: _vm.company.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.company, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.email
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.email[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "field right" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn blue",
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.save($event)
-                  }
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Телефон")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.company.phone,
+                  expression: "company.phone"
                 }
-              },
-              [_c("i", { staticClass: "icon save" }), _vm._v(" Запиши")]
-            )
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.phone },
+              attrs: { type: "text", name: "phone" },
+              domProps: { value: _vm.company.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.company, "phone", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.phone
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.phone[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Адрес")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.company.address,
+                  expression: "company.address"
+                }
+              ],
+              staticClass: "form-control",
+              class: { "is-invalid": _vm.errors.address },
+              attrs: { type: "text", name: "address" },
+              domProps: { value: _vm.company.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.company, "address", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.address
+              ? _c("div", { staticClass: "invalid-feedback" }, [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(_vm.errors.address[0]) + "\n\t\t\t"
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("div", { staticClass: "text-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.save($event)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "far fa-save" }), _vm._v(" Запиши")]
+              )
+            ])
           ])
         ])
       ])
@@ -65680,9 +65752,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("div", { staticClass: "message orange" }, [
-        _vm._v("Пример: abcltd или abc.ltd")
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("seminari365.com/c/")
       ])
     ])
   }
@@ -71999,7 +72071,7 @@ var render = function() {
         staticClass: "card-body"
       },
       [
-        _c("table", { staticClass: "table" }, [
+        _c("table", { staticClass: "table table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
