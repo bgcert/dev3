@@ -2,15 +2,12 @@
 	<div class="row mt-4">
 		<div class="col-lg-3 col-sm-12 mb-sm-4">
 			<div class="list-group">
-				<!-- <div class="list-group-item d-flex justify-content-between align-items-center">
-					
-				</div> -->
 				<router-link
 					to="/contacts"
 					class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 					:class="{ active: $route.path == '/contacts' }">
 					Съобщения
-					<span class="badge badge-primary badge-pill" :class="{ 'badge-light': $route.path == '/contacts' }">14</span>
+					<span class="badge badge-primary badge-pill" :class="{ 'badge-light': $route.path == '/contacts' }" v-if="contactsCount">{{ contactsCount }}</span>
 				</router-link>
 
 				<router-link
@@ -46,7 +43,7 @@
 					class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 					:class="{ active: $route.path == '/orders' }">
 					Заявки
-					<span class="badge badge-primary badge-pill" :class="{ active: $route.path == '/orders' }">14</span>
+					<span class="badge badge-primary badge-pill" :class="{ active: $route.path == '/orders' }" v-if="ordersCount">{{ ordersCount }}</span>
 				</router-link>
 
 				<router-link
@@ -68,11 +65,13 @@
 	import { EventBus } from '../app';
     export default {
     	props: ['event_publish', 'venue_publish'],
+
     	data: function () {
     		return {
     			eventPublish: this.event_publish,
     			venuePublish: this.venue_publish,
-    			isCollapse: false
+    			ordersCount: null,
+    			contactsCount: null
     		}
     	},
 
@@ -85,13 +84,16 @@
         },
 
         created() {
-            
+            // Get new messages and orders count!
+            let vm = this;
+            axios.get('/dashboard/get/items').then(function (response) {
+        		console.log(response.data);
+        		vm.ordersCount = response.data[0];
+        		vm.contactsCount = response.data[1];
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
         }
     };
 </script>
-
-<style>
-	.el-menu-vertical-demo:not(.el-menu--collapse) {
-		min-height: 400px;
-	}
-</style>

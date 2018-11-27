@@ -117,6 +117,8 @@ Route::group(['namespace' => 'Publishers', 'prefix' => 'dashboard',  'middleware
 	Route::resource('contacts', 'ContactController');
 	Route::resource('comments', 'CommentController');
 
+	Route::get('/get/items', 'DashboardController@getNewItemsCount');
+
 	// Mark contact as unread
 	Route::post('/contacts/unread', 'ContactController@unread');
 

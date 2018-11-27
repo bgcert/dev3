@@ -129577,10 +129577,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(409)
-}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(411)
@@ -129589,7 +129585,7 @@ var __vue_template__ = __webpack_require__(412)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -129624,46 +129620,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 409 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(410);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("f5075660", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fbc12a80\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DashboardComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fbc12a80\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DashboardComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 410 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.el-menu-vertical-demo:not(.el-menu--collapse) {\n\tmin-height: 400px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 409 */,
+/* 410 */,
 /* 411 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -129733,18 +129691,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['event_publish', 'venue_publish'],
+
     data: function data() {
         return {
             eventPublish: this.event_publish,
             venuePublish: this.venue_publish,
-            isCollapse: false
+            ordersCount: null,
+            contactsCount: null
         };
     },
 
@@ -129753,7 +129710,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         console.log('Dashboard mounted.');
     },
-    created: function created() {}
+    created: function created() {
+        // Get new messages and orders count!
+        var vm = this;
+        axios.get('/dashboard/get/items').then(function (response) {
+            console.log(response.data);
+            vm.ordersCount = response.data[0];
+            vm.contactsCount = response.data[1];
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
 });
 
 /***/ }),
@@ -129780,14 +129747,16 @@ var render = function() {
             },
             [
               _vm._v("\n\t\t\t\tСъобщения\n\t\t\t\t"),
-              _c(
-                "span",
-                {
-                  staticClass: "badge badge-primary badge-pill",
-                  class: { "badge-light": _vm.$route.path == "/contacts" }
-                },
-                [_vm._v("14")]
-              )
+              _vm.contactsCount
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "badge badge-primary badge-pill",
+                      class: { "badge-light": _vm.$route.path == "/contacts" }
+                    },
+                    [_vm._v(_vm._s(_vm.contactsCount))]
+                  )
+                : _vm._e()
             ]
           ),
           _vm._v(" "),
@@ -129843,14 +129812,16 @@ var render = function() {
             },
             [
               _vm._v("\n\t\t\t\tЗаявки\n\t\t\t\t"),
-              _c(
-                "span",
-                {
-                  staticClass: "badge badge-primary badge-pill",
-                  class: { active: _vm.$route.path == "/orders" }
-                },
-                [_vm._v("14")]
-              )
+              _vm.ordersCount
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "badge badge-primary badge-pill",
+                      class: { active: _vm.$route.path == "/orders" }
+                    },
+                    [_vm._v(_vm._s(_vm.ordersCount))]
+                  )
+                : _vm._e()
             ]
           ),
           _vm._v(" "),

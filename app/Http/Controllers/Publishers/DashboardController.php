@@ -15,7 +15,15 @@ class DashboardController extends Controller
     public function index()
     {
     	$company = \Auth::user()->company;
-    	return ($company) ? view('dashboard', compact($company)) : abort(404);
+    	return ($company) ? view('dashboard', compact('company')) : abort(404);
+    }
+
+    public function getNewItemsCount()
+    {
+    	$company = \Auth::user()->company;
+    	$orders_count = \App\Order::where(['company_id' => $company->id, 'read_at' => null])->count();
+    	$contacts_count = \App\ContactPublisher::where(['company_id' => $company->id, 'read_at' => null])->count();
+    	return [$orders_count, $contacts_count];
     }
 
     public function getCompany()
