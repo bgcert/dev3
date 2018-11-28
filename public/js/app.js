@@ -74028,22 +74028,52 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _c("div", { staticClass: "form-check" }, [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.publisher,
+                expression: "form.publisher"
+              }
+            ],
             staticClass: "form-check-input",
-            attrs: { type: "checkbox", id: "business-account" }
+            attrs: { type: "checkbox", id: "business-account" },
+            domProps: {
+              checked: Array.isArray(_vm.form.publisher)
+                ? _vm._i(_vm.form.publisher, null) > -1
+                : _vm.form.publisher
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.form.publisher,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.form, "publisher", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.form,
+                        "publisher",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.form, "publisher", $$c)
+                }
+              }
+            }
           }),
           _vm._v(" "),
           _c(
             "label",
             {
               staticClass: "form-check-label",
-              attrs: { for: "business-account" },
-              model: {
-                value: _vm.form.publisher,
-                callback: function($$v) {
-                  _vm.$set(_vm.form, "publisher", $$v)
-                },
-                expression: "form.publisher"
-              }
+              attrs: { for: "business-account" }
             },
             [_vm._v("Бизнес акаунт")]
           )
