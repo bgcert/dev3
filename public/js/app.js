@@ -70793,7 +70793,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "multi-image-component" },
+    { staticClass: "multi-image-upload-component" },
     [
       _vm._l(_vm.existing, function(item, index) {
         return _c(

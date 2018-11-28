@@ -1,5 +1,5 @@
 <template>
-	<div class="multi-image-component">
+	<div class="multi-image-upload-component">
 		<div
 			class="image img existing"
 			:style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'"
