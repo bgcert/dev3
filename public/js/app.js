@@ -65405,6 +65405,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "image-upload-component" },
     [
       _vm._l(_vm.errors, function(error) {
         return _vm.errors
@@ -65415,13 +65416,16 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "single-image",
+          staticClass: "image rounded",
           style: "background-image: url(" + _vm.image.filename + ");"
         },
         [
           _c(
             "label",
-            { staticClass: "btn blue small", attrs: { for: "image" } },
+            {
+              staticClass: "btn btn-warning btn-sm m-2",
+              attrs: { for: "image" }
+            },
             [
               _c("i", { staticClass: "fas fa-camera" }),
               _vm._v(" Качи изображение")
@@ -65429,7 +65433,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("input", {
-            staticClass: "inputfile",
+            staticClass: "d-none",
             attrs: { type: "file", id: "image" },
             on: { change: _vm.onFileChange }
           }),
@@ -70789,13 +70793,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "multi-image-component" },
     [
       _vm._l(_vm.existing, function(item, index) {
         return _c(
           "div",
           {
             key: index,
-            staticClass: "multi-image existing",
+            staticClass: "image img existing",
             style:
               "background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/" +
               item.filename +
@@ -70805,7 +70810,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn blue small",
+                staticClass: "btn btn-danger btn-sm m-1",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -70813,7 +70818,10 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v(" Премахни")]
+              [
+                _c("i", { staticClass: "far fa-trash-alt" }),
+                _vm._v(" Премахни")
+              ]
             )
           ]
         )
@@ -70839,7 +70847,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "multi-image",
+                staticClass: "image img",
                 style: "background-image: url(" + image.filename + ");"
               },
               [
@@ -70864,7 +70872,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn blue small",
+                    staticClass: "btn btn-danger btn-sm m-1",
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -70872,7 +70880,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(" Премахни")]
+                  [
+                    _c("i", { staticClass: "far fa-trash-alt" }),
+                    _vm._v(" Премахни")
+                  ]
                 )
               ]
             )
@@ -70889,8 +70900,14 @@ var render = function() {
         [
           _c(
             "label",
-            { staticClass: "btn blue", attrs: { for: "multi-image" } },
-            [_vm._v(" Добави изображение")]
+            {
+              staticClass: "btn btn-warning btn-sm m-1",
+              attrs: { for: "multi-image" }
+            },
+            [
+              _c("i", { staticClass: "fas fa-camera" }),
+              _vm._v(" Добави изображение")
+            ]
           ),
           _vm._v(" "),
           _c("input", {
@@ -73780,9 +73797,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
 //
 //
 //

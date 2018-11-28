@@ -37,9 +37,6 @@
 				<template v-if="errors.slug" v-for="error in errors.slug">
 					 <el-alert type="error" :title="error"></el-alert>
 				</template>
-				<!-- <span class="label input">
-					http://seminari365.com/c/
-				</span> -->
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<div class="input-group-text">seminari365.com/c/</div>

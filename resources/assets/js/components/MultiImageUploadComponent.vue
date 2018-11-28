@@ -1,11 +1,11 @@
 <template>
-	<div>
+	<div class="multi-image-component">
 		<div
-			class="multi-image existing"
+			class="image img existing"
 			:style="'background-image: url(https://d3cwccg7mi8onu.cloudfront.net/fit-in/250x150/' + item.filename + ');'"
 			v-for="(item, index) in existing"
 			:key="index">
-			<button class="btn blue small" @click.prevent="detach(index, item.id)"> Премахни</button>
+			<button class="btn btn-danger btn-sm m-1" @click.prevent="detach(index, item.id)"><i class="far fa-trash-alt"></i> Премахни</button>
 		</div>
 
 		<div>
@@ -13,11 +13,11 @@
 				<div v-if="image.error" style="margin-top: 10px;">
 					<el-alert type="error" :title="image.error"></el-alert>
 				</div>
-				<div class="multi-image" :style="'background-image: url(' + image.filename + ');'">
+				<div class="image img" :style="'background-image: url(' + image.filename + ');'">
 					<div class="progress" v-if="image.progress >= 0">
 						<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
 					</div>
-					<button class="btn blue small" @click.prevent="remove(index)"> Премахни</button>
+					<button class="btn btn-danger btn-sm m-1" @click.prevent="remove(index)"><i class="far fa-trash-alt"></i> Премахни</button>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 		<div
 			class="multi-image existing"
 			:style="'background-image: url(/img/default_cover.png);'">
-			<label :for="'multi-image'" class="btn blue"> Добави изображение</label>
+			<label :for="'multi-image'" class="btn btn-warning btn-sm m-1"><i class="fas fa-camera"></i> Добави изображение</label>
 			<input type="file" :id="'multi-image'" class="inputfile" @change="onFileChange">
 		</div>
 	</div>

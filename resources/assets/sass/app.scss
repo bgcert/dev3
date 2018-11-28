@@ -432,6 +432,16 @@ body {
 	}
 }
 
+// Components
+.image-upload-component {
+	.image {
+		width: 300px;
+		height: 200px;
+		background-position: 50% !important;
+    	background-size: cover !important;
+	}
+}
+
 // Flex
 .flex-1 {
 	flex: 1;

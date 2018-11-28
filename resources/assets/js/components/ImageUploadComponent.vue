@@ -1,11 +1,11 @@
 <template>
-	<div>
+	<div class="image-upload-component">
 		<template v-if="errors" v-for="error in errors">
 			 <el-alert type="error" :title="error"></el-alert>
 		</template>
-		<div class="single-image" :style="'background-image: url(' + image.filename + ');'">
-			<label :for="'image'" class="btn blue small" ><i class="fas fa-camera"></i> Качи изображение</label>
-			<input type="file" :id="'image'" class="inputfile" @change="onFileChange">
+		<div class="image rounded" :style="'background-image: url(' + image.filename + ');'">
+			<label :for="'image'" class="btn btn-warning btn-sm m-2" ><i class="fas fa-camera"></i> Качи изображение</label>
+			<input type="file" :id="'image'" class="d-none" @change="onFileChange">
 			<div class="progress" v-if="image.progress >= 0">
 				<el-progress :text-inside="true" :stroke-width="18" :percentage="image.progress" color="rgba(142, 113, 199, 0.7)"></el-progress>
 			</div>

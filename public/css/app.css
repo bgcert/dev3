@@ -10881,6 +10881,13 @@ body {
   font-size: 0.9em;
 }
 
+.image-upload-component .image {
+  width: 300px;
+  height: 200px;
+  background-position: 50% !important;
+  background-size: cover !important;
+}
+
 .flex-1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
