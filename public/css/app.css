@@ -10886,6 +10886,7 @@ body {
   height: 200px;
   background-position: 50% !important;
   background-size: cover !important;
+  position: relative;
 }
 
 .multi-image-upload-component .image {
@@ -10893,6 +10894,7 @@ body {
   height: 200px;
   background-position: 50% !important;
   background-size: cover !important;
+  position: relative;
 }
 
 .flex-1 {
