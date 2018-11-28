@@ -16,7 +16,7 @@
 				<li class="breadcrumb-item active"> {{ $theme->title }}</li>
 			</ol>
 		</nav>
-		<h1>{{ $theme->title }}</h1>
+		<h2>{{ $theme->title }}</h2>
 	</div>
 </div>
 
@@ -81,9 +81,8 @@
 						</a>
 						<h5 class="card-title">{{ $theme->company->name }}</h5>
 					</div>
-					<!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
 					<div class="text-center mt-4">
-						<a href="#" class="btn btn-primary">Фирмен профил</a>
+						<a href="/c/{{ $theme->company->slug }}" class="btn btn-primary">Фирмен профил</a>
 					</div>
 				</div>
 			</div>

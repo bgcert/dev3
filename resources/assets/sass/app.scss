@@ -232,13 +232,23 @@ body {
 .card.card-theme-alt {
 	overflow: hidden;
 	background-color: #4947c6;
-	.cover {
-		display: block;
-		min-height: 200px;
-		background-position: 50% !important;
-    	background-size: cover !important;
-    	clip-path: polygon(12% 0,100% 0,100% 100%,0 100%);
+
+	.title {
+		flex: 2;
+		font-size: 0.9em;
 	}
+
+	.cover {
+		flex: 1;
+		a {
+			display: block;
+			min-height: 200px;
+			background-position: 50% !important;
+	    	background-size: cover !important;
+	    	clip-path: polygon(12% 0,100% 0,100% 100%,0 100%);
+		}
+	}
+	
 }
 
 // Combine card class!!!
@@ -319,8 +329,8 @@ body {
 		flex: 1;
 
 		.details {
-			max-height: 72px;
-			overflow: hidden;
+			display: none;
+			font-size: 0.9em;
 		}
 	}
 }

@@ -16,7 +16,7 @@
 				<li class="breadcrumb-item active"> {{ $event->theme->title }}</li>
 			</ol>
 		</nav>
-		<h1>{{ $event->theme->title }}</h1>
+		<h2>{{ $event->theme->title }}</h2>
 	</div>
 </div>
 
@@ -88,7 +88,7 @@
 								<img src="https://d3cwccg7mi8onu.cloudfront.net/72x72/{{ $teacher->image }}" class="rounded" alt="{{ $teacher->name }}">
 							</div>
 							<div class="content ml-3">
-								<h4 class="card-title">{{ $teacher->name }}</h4>
+								<h5 class="card-title">{{ $teacher->name }}</h5>
 								<p class="details">{{ $teacher->details }}</p>
 								<div class="text-right">
 									<button class="btn btn-link show-more">Прочети още..</button>
@@ -153,7 +153,7 @@
 						<h5 class="card-title">{{ $event->theme->company->name }}</h5>
 					</div>
 					<div class="text-center mt-4">
-						<a href="#" class="btn btn-primary">Фирмен профил</a>
+						<a href="/c/{{ $event->theme->company->slug }}" class="btn btn-primary">Фирмен профил</a>
 					</div>
 				</div>
 			</div>
@@ -191,9 +191,7 @@
 
 	$(document).ready(function(){
 	    $(".show-more").click(function(){
-	        $(this).parent().parent().find('p').animate({
-	            'max-height': '100%'
-	        });
+	        $(this).parent().parent().find('p').toggle("slow");
 	    });
 	});
 </script>

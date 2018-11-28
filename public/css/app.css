@@ -10693,7 +10693,20 @@ body {
   background-color: #4947c6;
 }
 
+.card.card-theme-alt .title {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  font-size: 0.9em;
+}
+
 .card.card-theme-alt .cover {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.card.card-theme-alt .cover a {
   display: block;
   min-height: 200px;
   background-position: 50% !important;
@@ -10780,8 +10793,8 @@ body {
 }
 
 .card-teacher .content .details {
-  max-height: 72px;
-  overflow: hidden;
+  display: none;
+  font-size: 0.9em;
 }
 
 .theme-header {
