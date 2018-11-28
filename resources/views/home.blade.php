@@ -25,15 +25,15 @@
 	<div class="container-fluid">
 		<div class="row align-items-center">
 			<div class="col-lg-6 col-md-12 m-0 p-0">
-				<div class="info">
-					<div class="p-4">
+				<div class="info p-lg-5 p-2">
+					<div class="m-3">
 						<h2 class="mb-4">
 							Богата селекция от курсове и програми на водещи обучаващи организации
 						</h2>
 						<h5>
 							Seminari365.com е виртуална зона за модерните и динамичните хора, търсещи постоянно развитие. Seminari365.com e oнлайн платформа за курсове и семинари. Тук можете да откриете или да регистрирате Вашето успешно обучение.
 						</h5>
-						<a href="/browse" class="btn btn-outline-light btn-lg mt-5">
+						<a href="/browse" class="btn btn-outline-light btn-lg mt-lg-5 mt-2">
 							Всички курсове
 						</a>
 					</div>
@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="col-lg-6 col-md-12 m-0 p-0">
-				<div class="cat-list">
+				<div class="cat-list m-3">
 					<div class="row">
 						@foreach($categories as $category)
 						<div class="col-lg-4 col-md-6 col-sm-12">

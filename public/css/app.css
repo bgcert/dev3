@@ -10566,17 +10566,12 @@ body {
 .categories .info {
   background: #4947c6;
   color: #fff;
-  padding: 80px 120px;
   -webkit-clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
           clip-path: polygon(0 0, 95% 0, 100% 100%, 0 100%);
 }
 
 .categories .info div {
   margin: 0 auto;
-}
-
-.categories .cat-list {
-  padding: 70px;
 }
 
 .categories .cat-list a {
