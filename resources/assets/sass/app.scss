@@ -312,6 +312,19 @@ body {
 	white-space: pre-line;
 }
 
+.card-teacher {
+	white-space: pre-line;
+
+	.content {
+		flex: 1;
+
+		.details {
+			max-height: 72px;
+			overflow: hidden;
+		}
+	}
+}
+
 // Theme
 .theme-header {
 	height: 300px;
