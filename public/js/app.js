@@ -298,6 +298,14 @@ var app = new Vue({
 
         callRegister: function callRegister() {
             EventBus.$emit('registerClicked');
+        },
+
+        callRequest: function callRequest() {
+            EventBus.$emit('requestClicked');
+        },
+
+        callContactPublisher: function callContactPublisher() {
+            EventBus.$emit('contactPublisherClicked');
         }
     }
 });
@@ -124771,82 +124779,173 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   props: ['id', 'title', 'classes'],
+  props: ['id', 'title'],
 
-   data: function data() {
-      return {
-         auth: window.auth,
-         dialogVisible: false,
-         contactPerson: '',
-         contactNumber: '',
-         contactEmail: '',
-         participants: [{ name: '' }],
-         invoice: false,
-         companyData: {
-            organization: '',
-            cid: null,
-            vat: null,
-            address: '',
-            owner: ''
-         }
-      };
-   },
-
-   methods: {
-      addField: function addField() {
-         if (this.participants.length <= 14) {
-            this.participants.push({
-               name: ''
-            });
-         }
-      },
-
-      deleteField: function deleteField(index) {
-         this.participants.splice(index, 1);;
-      },
-
-      sendOrder: function sendOrder() {
-         var vm = this;
-         this.dialogVisible = false;
-         axios.post('/order', {
-            event_id: this.id,
-            contact_person: this.contactPerson,
-            contact_number: this.contactNumber,
-            contact_email: this.contactEmail,
-            invoice: this.invoice,
-            participants: this.participants,
-            details: this.companyData
-         }).then(function (response) {
-            vm.$message({
-               message: 'Заявката е изпратена успешно.',
-               type: 'success'
-            });
-            console.log(response.data);
-         }).catch(function (error) {
-            vm.$message.error('Възникна грешка при изпращане на заявката.');
-            console.log(error);
-         });
-      },
-
-      handleClose: function handleClose(done) {
-         this.$confirm('Сигурни ли сте, че желаете да затворите заявката?').then(function (_) {
-            done();
-         }).catch(function (_) {});
-      },
-      handleChange: function handleChange(value) {
-         console.log(value);
+  data: function data() {
+    return {
+      showModal: false,
+      auth: window.auth,
+      dialogVisible: false,
+      contactPerson: '',
+      contactNumber: '',
+      contactEmail: '',
+      participants: [{ name: '' }],
+      invoice: false,
+      companyData: {
+        organization: '',
+        cid: null,
+        vat: null,
+        address: '',
+        owner: ''
       }
-   },
+    };
+  },
 
-   mounted: function mounted() {
-      console.log('Request Modal component mounted.');
-   },
-   created: function created() {
+  methods: {
+    openModal: function openModal() {
+      this.showModal = true;
+      Vue.nextTick(function () {
+        $('#requestModal').modal('show');
+      });
+    },
+    closeModal: function closeModal() {
+      $('#requestModal').modal('hide').promise().done(function () {
+        this.showModal = false;
+      });
+    },
+
+
+    addField: function addField() {
+      if (this.participants.length <= 14) {
+        this.participants.push({
+          name: ''
+        });
+      }
+    },
+
+    removeField: function removeField(index) {
+      this.participants.splice(index, 1);
+    },
+
+    sendRequest: function sendRequest() {
       var vm = this;
-   }
+      axios.post('/order', {
+        event_id: this.id,
+        contact_person: this.contactPerson,
+        contact_number: this.contactNumber,
+        contact_email: this.contactEmail,
+        invoice: this.invoice,
+        participants: this.participants,
+        details: this.companyData
+      }).then(function (response) {
+        vm.closeModal();
+        vm.$message({
+          message: 'Заявката е изпратена успешно.',
+          type: 'success'
+        });
+      }).catch(function (error) {
+        vm.$message.error('Възникна грешка при изпращане на заявката.');
+        vm.closeModal();
+      });
+    },
+
+    handleClose: function handleClose(done) {
+      this.$confirm('Сигурни ли сте, че желаете да затворите заявката?').then(function (_) {
+        done();
+      }).catch(function (_) {});
+    },
+    handleChange: function handleChange(value) {
+      console.log(value);
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('Request Modal component mounted.');
+  },
+  created: function created() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('requestClicked', function () {
+      _this.openModal();
+    });
+  }
 });
 
 /***/ }),
@@ -124857,409 +124956,489 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "a",
-        {
-          class: _vm.classes,
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              _vm.dialogVisible = true
+  return _vm.showModal
+    ? _c("div", [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "requestModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "requestModal",
+              "aria-hidden": "true"
             }
-          }
-        },
-        [_vm._v("Заяви участие")]
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          attrs: {
-            title: "Заявка",
-            visible: _vm.dialogVisible,
-            "before-close": _vm.handleClose
           },
-          on: {
-            "update:visible": function($event) {
-              _vm.dialogVisible = $event
-            }
-          }
-        },
-        [
-          _c("h5", { staticClass: "mb-3" }, [
-            _vm._v("Тема: " + _vm._s(_vm.title))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.contactPerson,
-                  expression: "contactPerson"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Лице за контакт" },
-              domProps: { value: _vm.contactPerson },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.contactPerson = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.contactNumber,
-                  expression: "contactNumber"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Телефон" },
-              domProps: { value: _vm.contactNumber },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.contactNumber = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.contactEmail,
-                  expression: "contactEmail"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email", placeholder: "E-mail" },
-              domProps: { value: _vm.contactEmail },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.contactEmail = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c("h3", [_vm._v("Тема: " + _vm._s(_vm.title))]),
-              _vm._v(" "),
-              _c("el-form", { ref: "form", attrs: { "label-width": "30%" } }, [
-                _c(
-                  "div",
-                  { staticClass: "ui vertical segment" },
-                  [
-                    _c(
-                      "el-form-item",
-                      [
-                        _c("el-input", {
-                          attrs: { placeholder: "Лице за контакт" },
-                          model: {
-                            value: _vm.contactPerson,
-                            callback: function($$v) {
-                              _vm.contactPerson = $$v
-                            },
-                            expression: "contactPerson"
-                          }
-                        })
-                      ],
-                      1
-                    ),
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Заявка")
+                    ]),
                     _vm._v(" "),
                     _c(
-                      "el-form-item",
-                      [
-                        _c("el-input", {
-                          attrs: { placeholder: "Телефон" },
-                          model: {
-                            value: _vm.contactNumber,
-                            callback: function($$v) {
-                              _vm.contactNumber = $$v
-                            },
-                            expression: "contactNumber"
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "aria-label": "Close" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.closeModal($event)
                           }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
+                        }
+                      },
                       [
-                        _c("el-input", {
-                          attrs: { placeholder: "E-mail" },
-                          model: {
-                            value: _vm.contactEmail,
-                            callback: function($$v) {
-                              _vm.contactEmail = $$v
-                            },
-                            expression: "contactEmail"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "ui basic segment" },
-                  [
-                    _c("h4", [_vm._v("Участници")]),
-                    _vm._v(" "),
-                    _vm._l(_vm.participants, function(pariticipant, index) {
-                      return [
-                        _c(
-                          "el-form-item",
-                          [
-                            _c(
-                              "el-input",
-                              {
-                                attrs: {
-                                  placeholder: "Участник " + (index + 1),
-                                  size: "small"
-                                },
-                                model: {
-                                  value: pariticipant.name,
-                                  callback: function($$v) {
-                                    _vm.$set(pariticipant, "name", $$v)
-                                  },
-                                  expression: "pariticipant.name"
-                                }
-                              },
-                              [
-                                _c("el-button", {
-                                  attrs: {
-                                    slot: "append",
-                                    type: "primary",
-                                    icon: "el-icon-delete"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.deleteField(index)
-                                    }
-                                  },
-                                  slot: "append"
-                                })
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
                       ]
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      [
-                        _c("el-button", {
-                          attrs: { type: "primary", icon: "el-icon-plus" },
-                          on: { click: _vm.addField }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-form-item",
-                      { attrs: { label: "Фактура" } },
-                      [
-                        _c("el-checkbox", {
-                          attrs: { name: "type" },
-                          model: {
-                            value: _vm.invoice,
-                            callback: function($$v) {
-                              _vm.invoice = $$v
-                            },
-                            expression: "invoice"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    [
+                      _c("h5", { staticClass: "mb-3" }, [
+                        _vm._v("Тема: " + _vm._s(_vm.title))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.contactPerson,
+                              expression: "contactPerson"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "contact_person",
+                            placeholder: "Лице за контакт"
+                          },
+                          domProps: { value: _vm.contactPerson },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.contactPerson = $event.target.value
+                            }
                           }
                         })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _vm.invoice
-                      ? [
-                          _c("h4", [_vm._v("Данни за фактура")]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.contactNumber,
+                              expression: "contactNumber"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            name: "phone",
+                            placeholder: "Телефон"
+                          },
+                          domProps: { value: _vm.contactNumber },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.contactNumber = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.contactEmail,
+                              expression: "contactEmail"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "email",
+                            name: "email",
+                            placeholder: "E-mail"
+                          },
+                          domProps: { value: _vm.contactEmail },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.contactEmail = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _c("label", [_vm._v("Участници")]),
+                          _vm._v(" "),
+                          _vm._l(_vm.participants, function(
+                            pariticipant,
+                            index
+                          ) {
+                            return [
+                              _c("div", { staticClass: "input-group mb-3" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: pariticipant.name,
+                                      expression: "pariticipant.name"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "participant",
+                                    placeholder:
+                                      "Име на участник " + (index + 1)
+                                  },
+                                  domProps: { value: pariticipant.name },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        pariticipant,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "input-group-append" },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger",
+                                        class: {
+                                          disabled: _vm.participants.length <= 1
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.removeField(index)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "far fa-trash-alt"
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group text-right" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            class: { disabled: _vm.participants.length == 15 },
+                            on: { click: _vm.addField }
+                          },
+                          [_vm._v("+ Добави участник")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "custom-control custom-checkbox mb-3" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.invoice,
+                                expression: "invoice"
+                              }
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: { type: "checkbox", id: "invoice-check" },
+                            domProps: {
+                              checked: Array.isArray(_vm.invoice)
+                                ? _vm._i(_vm.invoice, null) > -1
+                                : _vm.invoice
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.invoice,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 && (_vm.invoice = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.invoice = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.invoice = $$c
+                                }
+                              }
+                            }
+                          }),
                           _vm._v(" "),
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "Организация" } },
-                            [
-                              _c("el-input", {
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "invoice-check" }
+                            },
+                            [_vm._v("Желая да ми бъде издадена фактура")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.invoice
+                        ? [
+                            _c("h5", [_vm._v("Данни за фактура")]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.companyData.organization,
+                                    expression: "companyData.organization"
+                                  }
+                                ],
+                                staticClass: "form-control",
                                 attrs: {
-                                  placeholder: "Организация",
-                                  size: "small"
+                                  type: "text",
+                                  name: "company",
+                                  placeholder: "Организация"
                                 },
-                                model: {
-                                  value: _vm.companyData.organization,
-                                  callback: function($$v) {
+                                domProps: {
+                                  value: _vm.companyData.organization
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
                                     _vm.$set(
                                       _vm.companyData,
                                       "organization",
-                                      $$v
+                                      $event.target.value
                                     )
-                                  },
-                                  expression: "companyData.organization"
+                                  }
                                 }
                               })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            { attrs: { label: "ЕИК" } },
-                            [
-                              _c("el-input", {
-                                attrs: { placeholder: "ЕИК", size: "small" },
-                                model: {
-                                  value: _vm.companyData.cid,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.companyData, "cid", $$v)
-                                  },
-                                  expression: "companyData.cid"
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.companyData.cid,
+                                    expression: "companyData.cid"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "cid",
+                                  placeholder: "ЕИК"
+                                },
+                                domProps: { value: _vm.companyData.cid },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.companyData,
+                                      "cid",
+                                      $event.target.value
+                                    )
+                                  }
                                 }
                               })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            { attrs: { label: "ДДС номер" } },
-                            [
-                              _c(
-                                "el-input",
-                                {
-                                  attrs: { size: "small" },
-                                  model: {
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
                                     value: _vm.companyData.vat,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.companyData, "vat", $$v)
-                                    },
                                     expression: "companyData.vat"
                                   }
-                                },
-                                [
-                                  _c("template", { slot: "prepend" }, [
-                                    _vm._v("BG")
-                                  ])
                                 ],
-                                2
-                              )
-                            ],
-                            1
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "vat",
+                                  placeholder: "ДДС номер"
+                                },
+                                domProps: { value: _vm.companyData.vat },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.companyData,
+                                      "vat",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", [_vm._v("Адрес")]),
+                              _vm._v(" "),
+                              _c("textarea", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.companyData.address,
+                                    expression: "companyData.address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { name: "address" },
+                                domProps: { value: _vm.companyData.address },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.companyData,
+                                      "address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.companyData.owner,
+                                    expression: "companyData.owner"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  type: "text",
+                                  name: "owner",
+                                  placeholder: "МОЛ"
+                                },
+                                domProps: { value: _vm.companyData.owner },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.companyData,
+                                      "owner",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "text-right" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.closeModal($event)
+                                }
+                              }
+                            },
+                            [_vm._v("Откажи")]
                           ),
                           _vm._v(" "),
                           _c(
-                            "el-form-item",
-                            { attrs: { label: "Адрес" } },
-                            [
-                              _c("el-input", {
-                                attrs: { type: "textarea" },
-                                model: {
-                                  value: _vm.companyData.address,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.companyData, "address", $$v)
-                                  },
-                                  expression: "companyData.address"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "el-form-item",
-                            { attrs: { label: "МОЛ" } },
-                            [
-                              _c("el-input", {
-                                attrs: { placeholder: "МОЛ", size: "small" },
-                                model: {
-                                  value: _vm.companyData.owner,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.companyData, "owner", $$v)
-                                  },
-                                  expression: "companyData.owner"
-                                }
-                              })
-                            ],
-                            1
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: { click: _vm.sendRequest }
+                            },
+                            [_vm._v("Заяви")]
                           )
-                        ]
-                      : _vm._e()
-                  ],
-                  2
-                )
-              ])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "dialog-footer",
-              attrs: { slot: "footer" },
-              slot: "footer"
-            },
-            [
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.dialogVisible = false
-                    }
-                  }
-                },
-                [_vm._v("Откажи")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.sendOrder } },
-                [_vm._v("Заяви")]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ],
-    1
-  )
+                        ])
+                      ])
+                    ],
+                    2
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -129302,7 +129481,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -129314,13 +129493,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //

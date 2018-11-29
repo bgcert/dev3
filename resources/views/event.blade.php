@@ -20,6 +20,15 @@
 	</div>
 </div>
 
+<request-modal
+	:id="{{ json_encode($event->id) }}"
+	title="{{ $event->theme->title }}">
+</request-modal>
+<contact-publisher
+	:company-id="{{ $event->theme->company->id }}"
+	about="{{ $event->theme->title }}">
+</contact-publisher>
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
 	<div class="container">
 		<button
@@ -50,20 +59,10 @@
 
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<contact-publisher
-						button-text="Изпрати запитване"
-						:company-id="{{ $event->theme->company->id }}"
-						about="{{ $event->theme->title }}"
-						btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
-					</contact-publisher>
+					<button class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm" @click.prevent="callContactPublisher">Изпрати запитване</button>
 				</li>
 				<li class="nav-item">
-					<request-modal
-						:id="{{ json_encode($event->id) }}"
-						title="{{ $event->theme->title }}"
-						:auth="{{ json_encode(Auth::check()) }}"
-						classes="btn btn-light btn-lg my-1 my-1-sm">
-					</request-modal>
+					<button class="btn btn-light btn-lg my-1 my-1-sm" @click.prevent="callRequest">Заяви участие</button>
 				</li>
 			</ul>
 		</div>

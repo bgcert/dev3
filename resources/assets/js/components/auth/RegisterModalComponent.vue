@@ -16,13 +16,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div>
-		<modal v-if="showModal">
-			<div slot="body">
-				<register></register>
-			</div>
-		</modal>
-	</div> -->
 </template>
 
 <script>

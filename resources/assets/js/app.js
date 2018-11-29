@@ -105,6 +105,14 @@ const app = new Vue({
 
     	callRegister: function () {
     		EventBus.$emit('registerClicked');
+    	},
+
+    	callRequest: function () {
+    		EventBus.$emit('requestClicked');
+    	},
+
+    	callContactPublisher: function () {
+    		EventBus.$emit('contactPublisherClicked');
     	}
     }
 });
