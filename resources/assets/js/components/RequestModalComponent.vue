@@ -4,8 +4,21 @@
 		<el-dialog
 			title="Заявка"
 			:visible.sync="dialogVisible"
-			:before-close="handleClose"
-			width="25%">
+			:before-close="handleClose">
+				<h5 class="mb-3">Тема: {{ title }}</h5>
+
+				<div class="form-group">
+    				<input type="text" class="form-control" placeholder="Лице за контакт" v-model="contactPerson">
+				</div>
+
+				<div class="form-group">
+    				<input type="text" class="form-control" placeholder="Телефон" v-model="contactNumber">
+				</div>
+
+				<div class="form-group">
+    				<input type="email" class="form-control" placeholder="E-mail" v-model="contactEmail">
+				</div>
+
 				<div>
 					<h3>Тема: {{ title }}</h3>
 					<el-form ref="form" label-width="30%">

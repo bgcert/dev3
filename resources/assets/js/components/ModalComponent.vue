@@ -1,28 +1,26 @@
 <template>
-	<transition name="modal">
-		<div class="modal modal-mask show">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">
-							<slot name="header"></slot>
-						</h5>
-						<button type="button" class="close" @click="closeModal">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
+	<!-- <div class="modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						<slot name="header"></slot>
+					</h5>
+					<button type="button" class="close" @click="closeModal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 
-					<div class="modal-body">
-						<slot name="body"></slot>
-					</div>
+				<div class="modal-body">
+					<slot name="body"></slot>
+				</div>
 
-					<div class="modal-footer">
-						<slot name="footer"></slot>
-					</div>
+				<div class="modal-footer">
+					<slot name="footer"></slot>
 				</div>
 			</div>
 		</div>
-	</transition>
+	</div> -->
 </template>
 
 <script>

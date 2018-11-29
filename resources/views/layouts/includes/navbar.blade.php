@@ -2,7 +2,6 @@
 	<a class="navbar-brand" href="/">
 		<img src="/img/logo-s365.png" alt="{{ config('app.name', 'Laravel') }}">
 	</a>
-
 	<button
 		class="navbar-toggler"
 		type="button"
@@ -32,11 +31,9 @@
 			@guest
 			<li class="nav-item my-sm-2">
 				<button class="btn btn-link" @click="callRegister">Регистрация</button>
-				<register-modal></register-modal>
 			</li>
 			<li class="nav-item my-sm-2">
 				<button class="btn btn-primary btn-lg btn-round mx-2" @click="callLogin">Вход</button>
-				<login-modal></login-modal>
 			</li>
 
 			@else
@@ -90,3 +87,6 @@
 		</ul>
 	</div>
 </nav>
+
+<register-modal></register-modal>
+<login-modal></login-modal>

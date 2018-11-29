@@ -124758,6 +124758,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -124868,8 +124881,7 @@ var render = function() {
           attrs: {
             title: "Заявка",
             visible: _vm.dialogVisible,
-            "before-close": _vm.handleClose,
-            width: "25%"
+            "before-close": _vm.handleClose
           },
           on: {
             "update:visible": function($event) {
@@ -124878,6 +124890,82 @@ var render = function() {
           }
         },
         [
+          _c("h5", { staticClass: "mb-3" }, [
+            _vm._v("Тема: " + _vm._s(_vm.title))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contactPerson,
+                  expression: "contactPerson"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Лице за контакт" },
+              domProps: { value: _vm.contactPerson },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.contactPerson = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contactNumber,
+                  expression: "contactNumber"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Телефон" },
+              domProps: { value: _vm.contactNumber },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.contactNumber = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.contactEmail,
+                  expression: "contactEmail"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", placeholder: "E-mail" },
+              domProps: { value: _vm.contactEmail },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.contactEmail = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c(
             "div",
             [
@@ -126859,8 +126947,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -126887,31 +126973,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("transition", { attrs: { name: "modal" } }, [
-    _c("div", { staticClass: "modal modal-mask show" }, [
-      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-header" }, [
-            _c("h5", { staticClass: "modal-title" }, [_vm._t("header")], 2),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "close",
-                attrs: { type: "button" },
-                on: { click: _vm.closeModal }
-              },
-              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [_vm._t("body")], 2),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [_vm._t("footer")], 2)
-        ])
-      ])
-    ])
-  ])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -129041,6 +129103,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -129050,21 +129119,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	mounted: function mounted() {
-		console.log('Login Component mounted.');
+		console.log('Login Modal Component mounted.');
 	},
 
 
-	methods: {},
+	methods: {
+		openModal: function openModal() {
+			this.showModal = true;
+			Vue.nextTick(function () {
+				$('#loginModal').modal('show');
+			});
+		},
+		closeModal: function closeModal() {
+			$('#loginModal').modal('hide').promise().done(function () {
+				this.showModal = false;
+			});
+		}
+	},
 
 	created: function created() {
 		var _this = this;
 
 		__WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('loginClicked', function () {
-			_this.showModal = true;
-		});
-
-		__WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('closeModal', function () {
-			_this.showModal = false;
+			_this.openModal();
 		});
 	}
 });
@@ -129077,26 +129154,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.showModal
-        ? _c("modal", [
-            _c("h3", { attrs: { slot: "header" }, slot: "header" }, [
-              _vm._v("\n\t\t\tВход\n\t\t")
-            ]),
-            _vm._v(" "),
+  return _vm.showModal
+    ? _c("div", [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "loginModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "loginModal",
+              "aria-hidden": "true"
+            }
+          },
+          [
             _c(
               "div",
-              { attrs: { slot: "body" }, slot: "body" },
-              [_c("login")],
-              1
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [_vm._v("Вход")]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "aria-label": "Close" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.closeModal($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [_c("login")], 1)
+                ])
+              ]
             )
-          ])
-        : _vm._e()
-    ],
-    1
-  )
+          ]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -129194,7 +129302,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -129206,6 +129314,23 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -129229,15 +129354,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         console.log('Register Component mounted.');
     },
+
+
+    methods: {
+        openModal: function openModal() {
+            this.showModal = true;
+            Vue.nextTick(function () {
+                $('#registerModal').modal('show');
+            });
+        },
+        closeModal: function closeModal() {
+            $('#registerModal').modal('hide').promise().done(function () {
+                this.showModal = false;
+            });
+        }
+    },
+
     created: function created() {
         var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('registerClicked', function () {
-            _this.showModal = true;
-        });
-
-        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('closeModal', function () {
-            _this.showModal = false;
+            _this.openModal();
         });
     }
 });
@@ -129250,22 +129387,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.showModal
-        ? _c("modal", [
+  return _vm.showModal
+    ? _c("div", [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "registerModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "registerModal",
+              "aria-hidden": "true"
+            }
+          },
+          [
             _c(
               "div",
-              { attrs: { slot: "body" }, slot: "body" },
-              [_c("register")],
-              1
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Регистрация")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button", "aria-label": "Close" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.closeModal($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [_c("register")], 1)
+                ])
+              ]
             )
-          ])
-        : _vm._e()
-    ],
-    1
-  )
+          ]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
