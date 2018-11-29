@@ -124782,77 +124782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -127754,7 +127683,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -127765,6 +127694,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(1);
 //
 //
 //
@@ -127816,44 +127746,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['button-text', 'about', 'companyId', 'itemTitle', 'btnClass'],
-	data: function data() {
-		return {
-			dialogVisible: false,
-			form: {
-				company_id: this.companyId,
-				about: this.about,
-				from: '',
-				email: '',
-				phone: '',
-				subject: '',
-				body: ''
-			},
-			errors: []
-		};
-	},
+    props: ['about', 'companyId', 'itemTitle'],
+    data: function data() {
+        return {
+            showModal: false,
+            form: {
+                company_id: this.companyId,
+                about: this.about,
+                from: '',
+                email: '',
+                phone: '',
+                subject: '',
+                body: ''
+            },
+            errors: []
+        };
+    },
 
-	methods: {
-		send: function send() {
-			var vm = this;
+    methods: {
+        openModal: function openModal() {
+            this.showModal = true;
+            Vue.nextTick(function () {
+                $('#contactPublisherModal').modal('show');
+            });
+        },
+        closeModal: function closeModal() {
+            $('#contactPublisherModal').modal('hide').promise().done(function () {
+                this.showModal = false;
+            });
+        },
+        send: function send() {
+            var vm = this;
 
-			axios.post('/api/contact/form', vm.form).then(function (response) {
-				console.log(response);
-				vm.$message('Запитването е изпратено успешно.');
-				vm.dialogVisible = false;
-			}).catch(function (error) {
-				console.log(error.response);
-				vm.errors = error.response.data.errors;
-			});
-		}
-	},
+            axios.post('/api/contact/form', vm.form).then(function (response) {
+                vm.$message('Запитването е изпратено успешно.');
+                vm.closeModal();
+            }).catch(function (error) {
+                console.log(error.response);
+                vm.errors = error.response.data.errors;
+                vm.closeModal();
+            });
+        }
+    },
 
-	mounted: function mounted() {
-		console.log('Contact Publisher Component mounted.');
-	},
-	created: function created() {}
+    mounted: function mounted() {
+        console.log('Contact Publisher Component mounted.');
+    },
+    created: function created() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__app__["EventBus"].$on('contactPublisherClicked', function () {
+            _this.openModal();
+        });
+    }
 });
 
 /***/ }),
@@ -127864,285 +127857,227 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "a",
-        {
-          class: _vm.btnClass,
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              _vm.dialogVisible = true
+  return _vm.showModal
+    ? _c("div", [
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "contactPublisherModal",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "contactPublisherModal",
+              "aria-hidden": "true"
             }
-          }
-        },
-        [_vm._v(_vm._s(_vm.buttonText))]
-      ),
-      _vm._v(" "),
-      _c(
-        "el-dialog",
-        {
-          attrs: {
-            title: "Запитване",
-            visible: _vm.dialogVisible,
-            width: "400px"
           },
-          on: {
-            "update:visible": function($event) {
-              _vm.dialogVisible = $event
-            }
-          }
-        },
-        [
-          _c("div", [
-            _c("form", { staticClass: "ui form" }, [
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.from, function(error) {
-                    return _vm.errors.from
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog", attrs: { role: "document" } },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v("Запитване")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.from,
-                        expression: "form.from"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      name: "from",
-                      placeholder: "Лице за контакти"
-                    },
-                    domProps: { value: _vm.form.from },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                        staticClass: "close",
+                        attrs: { type: "button", "aria-label": "Close" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.closeModal($event)
+                          }
                         }
-                        _vm.$set(_vm.form, "from", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.email, function(error) {
-                    return _vm.errors.email
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.email,
-                        expression: "form.email"
-                      }
-                    ],
-                    attrs: {
-                      type: "email",
-                      name: "email",
-                      placeholder: "E-mail"
-                    },
-                    domProps: { value: _vm.form.email },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.from,
+                            expression: "form.from"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "name",
+                          placeholder: "Лице за контакти"
+                        },
+                        domProps: { value: _vm.form.from },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "from", $event.target.value)
+                          }
                         }
-                        _vm.$set(_vm.form, "email", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.phone, function(error) {
-                    return _vm.errors.phone
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.phone,
-                        expression: "form.phone"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      name: "phone",
-                      placeholder: "Телефон"
-                    },
-                    domProps: { value: _vm.form.phone },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          name: "email",
+                          placeholder: "E-mail"
+                        },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
                         }
-                        _vm.$set(_vm.form, "phone", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.subject, function(error) {
-                    return _vm.errors.subject
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.subject,
-                        expression: "form.subject"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      name: "subject",
-                      placeholder: "Относно"
-                    },
-                    domProps: { value: _vm.form.subject },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.phone,
+                            expression: "form.phone"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "phone",
+                          placeholder: "Телефон"
+                        },
+                        domProps: { value: _vm.form.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "phone", $event.target.value)
+                          }
                         }
-                        _vm.$set(_vm.form, "subject", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "field" },
-                [
-                  _vm._l(_vm.errors.body, function(error) {
-                    return _vm.errors.body
-                      ? [
-                          _c("el-alert", {
-                            attrs: { type: "error", title: error }
-                          })
-                        ]
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.body,
-                        expression: "form.body"
-                      }
-                    ],
-                    attrs: {
-                      name: "body",
-                      placeholder: "Запитване...",
-                      rows: "4"
-                    },
-                    domProps: { value: _vm.form.body },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.subject,
+                            expression: "form.subject"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          name: "subject",
+                          placeholder: "Относно"
+                        },
+                        domProps: { value: _vm.form.subject },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "subject", $event.target.value)
+                          }
                         }
-                        _vm.$set(_vm.form, "body", $event.target.value)
-                      }
-                    }
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "dialog-footer",
-              attrs: { slot: "footer" },
-              slot: "footer"
-            },
-            [
-              _c(
-                "el-button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.dialogVisible = false
-                    }
-                  }
-                },
-                [_vm._v("Откажи")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                { attrs: { type: "primary" }, on: { click: _vm.send } },
-                [_vm._v("Изпрати")]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ],
-    1
-  )
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Запитване")]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.body,
+                            expression: "form.body"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "subject" },
+                        domProps: { value: _vm.form.body },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "body", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.closeModal($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Откажи")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.send($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Изпрати")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
