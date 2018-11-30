@@ -46,7 +46,9 @@
 						@foreach($categories as $category)
 						<div class="col-lg-4 col-md-6 col-sm-12">
 							<a href="/browse/{{ $category->slug }}" class="cat d-flex align-items-center m-3">
-								<i class="{{ $category->icon }}"></i>
+								<div class="text-center">
+									<i class="{{ $category->icon }}"></i>
+								</div>
 								<div>{{ $category->name }}</div>
 							</a>
 						</div>

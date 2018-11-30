@@ -11,7 +11,14 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.options({ uglify: { uglifyOptions: { compress: { drop_console: true, } } } });
+mix.options({ uglify: {
+				uglifyOptions: {
+					compress: {
+							drop_console: true,
+						}
+					}
+				}
+			});
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
