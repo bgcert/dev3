@@ -110,6 +110,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
+    	$('[data-toggle="tooltip"]').tooltip({ boundary: 'window' });
+
     	function dropdown(e) {
     		let current = e.nextElementSibling;
     		// $('.menu-list').removeClass('active');

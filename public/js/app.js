@@ -73618,8 +73618,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -73628,7 +73626,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-    methods: {},
+    methods: {
+        // openNotification(id) {
+        // 	console.log(id);
+        // 	this.markAsRead(id);
+        // },
+
+        openNotification: function openNotification(item) {
+            var vm = this;
+            var route = '/users/notifications/' + item.id;
+            axios.get(route).then(function (response) {
+                console.log(response.data);
+
+                // Needs to be improved!
+                if (item.feed_notifiable_type == 'App\\Order') {
+                    window.location.href = '/dashboard#/orders';
+                } else {
+                    window.location.href = '/dashboard#/contacts';
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
 
     mounted: function mounted() {
         console.log('Notifications view mounted.');
@@ -73660,62 +73680,53 @@ var render = function() {
             _c(
               "ul",
               _vm._l(_vm.notifications, function(notification) {
-                return _c(
-                  "li",
-                  [
-                    notification.feed_notifiable_type == "App\\Order"
-                      ? [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "item",
-                              class: { unread: notification.read_at == null },
-                              attrs: { href: "/dashboard#/orders" }
-                            },
-                            [
-                              _vm._m(0, true),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "content" }, [
-                                _c("div", { staticClass: "date" }, [
-                                  _vm._v(_vm._s(notification.created_at))
-                                ]),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\tНова заявка за " +
-                                    _vm._s(notification.data) +
-                                    "\n\t\t\t\t\t\t"
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                      : [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "item",
-                              attrs: { href: "/dashboard#/contacts" }
-                            },
-                            [
-                              _vm._m(1, true),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "content" }, [
-                                _c("div", { staticClass: "date" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.notifications[0].created_at)
-                                  )
-                                ]),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\tИмате запитване относно " +
-                                    _vm._s(_vm.notifications[0].data) +
-                                    "\n\t\t\t\t\t\t"
-                                )
-                              ])
-                            ]
-                          )
-                        ]
-                  ],
-                  2
-                )
+                return _c("li", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "item",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.openNotification(notification)
+                        }
+                      }
+                    },
+                    [
+                      notification.feed_notifiable_type == "App\\Order"
+                        ? [
+                            _vm._m(0, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content" }, [
+                              _c("div", { staticClass: "date" }, [
+                                _vm._v(_vm._s(notification.created_at))
+                              ]),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\tНова заявка за " +
+                                  _vm._s(notification.data) +
+                                  "\n\t\t\t\t\t\t"
+                              )
+                            ])
+                          ]
+                        : [
+                            _vm._m(1, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content" }, [
+                              _c("div", { staticClass: "date" }, [
+                                _vm._v(_vm._s(_vm.notifications[0].created_at))
+                              ]),
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\tИмате запитване относно " +
+                                  _vm._s(_vm.notifications[0].data) +
+                                  "\n\t\t\t\t\t\t\t"
+                              )
+                            ])
+                          ]
+                    ],
+                    2
+                  )
+                ])
               })
             )
           ]
@@ -126705,6 +126716,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -126755,6 +126769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     });
 
     Echo.private('notifications.' + this.user_id).listen('NewNotification', function (e) {
+      console.log('new notification');
       _this.notificationsCount++;
 
       // play sound
@@ -126782,145 +126797,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "span",
-    {
-      staticClass: "item notification-icon",
-      on: { click: _vm.listNotifications }
-    },
-    [
-      _c(
-        "el-popover",
-        { attrs: { placement: "bottom-end", trigger: "click" } },
-        [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "loading",
-                  rawName: "v-loading",
-                  value: _vm.loading,
-                  expression: "loading"
-                }
-              ]
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "ui middle relaxed divided aligned selection list",
-                  staticStyle: { "max-width": "300px" }
-                },
-                _vm._l(_vm.notifications, function(notification) {
-                  return _c("div", { staticClass: "item" }, [
-                    _c("i", { staticClass: "info circle middle aligned icon" }),
-                    _vm._v(" "),
-                    notification.feed_notifiable_type == "App\\Order"
-                      ? _c(
-                          "a",
-                          {
-                            staticClass: "content",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.markAsRead(
-                                  notification.id,
-                                  "/dashboard#/orders/"
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "description",
-                                class: { header: notification.read_at == null }
-                              },
-                              [
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\tИмате нова заявка - " +
-                                    _vm._s(notification.created_at) +
-                                    "\n\t\t\t\t\t\t"
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    notification.feed_notifiable_type == "App\\ContactPublisher"
-                      ? _c(
-                          "a",
-                          {
-                            staticClass: "content",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.markAsRead(
-                                  notification.id,
-                                  "/dashboard#/contacts/"
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "description",
-                                class: { header: notification.read_at == null }
-                              },
-                              [
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\tИмате ново запитване - " +
-                                    _vm._s(notification.created_at) +
-                                    "\n\t\t\t\t\t\t"
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ])
-                })
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "ui tiny fluid button",
-                  attrs: { href: "/users/settings#/notifications" }
-                },
-                [_vm._v("Всички известия")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { attrs: { slot: "reference" }, slot: "reference" }, [
-            _c("div", { staticStyle: { position: "relative" } }, [
-              _c("i", {
-                staticClass: "bell icon",
-                class: {
-                  orange: this.notificationsCount > 0,
-                  outline: this.notificationsCount == 0
-                }
-              }),
-              _vm._v(" "),
-              _vm.notificationsCount > 0
-                ? _c("span", { staticClass: "notification-label" }, [
-                    _vm._v(_vm._s(_vm.notificationsCount))
-                  ])
-                : _vm._e()
-            ])
-          ])
-        ]
-      )
-    ],
-    1
-  )
+  return _vm.notificationsCount > 0
+    ? _c("span", { staticClass: "badge badge-warning notification-badge" }, [
+        _vm._v(_vm._s(_vm.notificationsCount))
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

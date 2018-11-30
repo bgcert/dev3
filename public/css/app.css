@@ -10476,6 +10476,15 @@ body {
   color: #373a3c;
 }
 
+.notification-badge {
+  position: absolute;
+  top: -1px;
+  left: 22px;
+  font-size: 0.6em;
+  -webkit-box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 .btn-round {
   border-radius: 50px;
 }
@@ -10874,6 +10883,14 @@ body {
 
 .comments .comment .comment-body {
   font-size: 0.9em;
+}
+
+.tooltip-inner {
+  background-color: #373640;
+}
+
+.tooltip .arrow:before {
+  border-right-color: #373640 !important;
 }
 
 .image-upload-component .image {

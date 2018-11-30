@@ -1,41 +1,44 @@
 <template>
-	<span class="item notification-icon" @click="listNotifications">
-		<el-popover
-			placement="bottom-end"
-			trigger="click">
-			<div v-loading="loading" >
-				<div class="ui middle relaxed divided aligned selection list" style="max-width: 300px;">
-					<div class="item" v-for="notification in notifications">
-						<i class="info circle middle aligned icon"></i>
-						<a
-							class="content"
-							@click.prevent="markAsRead(notification.id, '/dashboard#/orders/')"
-							v-if="notification.feed_notifiable_type == 'App\\Order'">
-							<span class="description" :class="{ header: notification.read_at == null }">
-								Имате нова заявка - {{ notification.created_at }}
-							</span>
-						</a>
-						<a
-							class="content"
-							@click.prevent="markAsRead(notification.id, '/dashboard#/contacts/')"
-							v-if="notification.feed_notifiable_type == 'App\\ContactPublisher'">
-							<span class="description" :class="{ header: notification.read_at == null }">
-								Имате ново запитване - {{ notification.created_at }}
-							</span>
-						</a>
+	<span class="badge badge-warning notification-badge" v-if="notificationsCount > 0">{{ notificationsCount }}</span>
+	<!-- <div>
+		<span class="item notification-icon" @click="listNotifications">
+			<el-popover
+				placement="bottom-end"
+				trigger="click">
+				<div v-loading="loading" >
+					<div class="ui middle relaxed divided aligned selection list" style="max-width: 300px;">
+						<div class="item" v-for="notification in notifications">
+							<i class="info circle middle aligned icon"></i>
+							<a
+								class="content"
+								@click.prevent="markAsRead(notification.id, '/dashboard#/orders/')"
+								v-if="notification.feed_notifiable_type == 'App\\Order'">
+								<span class="description" :class="{ header: notification.read_at == null }">
+									Имате нова заявка - {{ notification.created_at }}
+								</span>
+							</a>
+							<a
+								class="content"
+								@click.prevent="markAsRead(notification.id, '/dashboard#/contacts/')"
+								v-if="notification.feed_notifiable_type == 'App\\ContactPublisher'">
+								<span class="description" :class="{ header: notification.read_at == null }">
+									Имате ново запитване - {{ notification.created_at }}
+								</span>
+							</a>
+						</div>
 					</div>
+					<a href="/users/settings#/notifications" class="ui tiny fluid button">Всички известия</a>
 				</div>
-				<a href="/users/settings#/notifications" class="ui tiny fluid button">Всички известия</a>
-			</div>
-			
-			<span slot="reference">
-				<div style="position: relative;">
-					<i class="bell icon" :class="{ 'orange': this.notificationsCount > 0, outline: this.notificationsCount == 0 }"></i>
-					<span class="notification-label" v-if="notificationsCount > 0">{{ notificationsCount }}</span>
-				</div>
-			</span>
-		</el-popover>
-	</span>
+				
+				<span slot="reference">
+					<div style="position: relative;">
+						<i class="bell icon" :class="{ 'orange': this.notificationsCount > 0, outline: this.notificationsCount == 0 }"></i>
+						<span class="notification-label" v-if="notificationsCount > 0">{{ notificationsCount }}</span>
+					</div>
+				</span>
+			</el-popover>
+		</span>
+	</div> -->
 </template>
 
 <script>
@@ -91,6 +94,7 @@
 
             Echo.private('notifications.' + this.user_id)
                 	.listen('NewNotification', (e) => {
+                		console.log('new notification');
                 		this.notificationsCount ++;
 
                 		// play sound

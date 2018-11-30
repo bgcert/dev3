@@ -4,7 +4,7 @@
 			
 		</div>
 
-		<div class="logo">
+		<div class="logo" data-toggle="tooltip" data-placement="right" title="{{ $event->theme->company->name }}">
 			<a href="/c/{{ $event->theme->company->slug }}">
 				<img src="https://d3cwccg7mi8onu.cloudfront.net/56x56/{{ $event->theme->company->logo }}">
 			</a>

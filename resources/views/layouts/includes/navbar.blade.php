@@ -22,6 +22,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/v">Зали</a>
 			</li>
+			<li class="nav-link">
+				
+			</li>
 		</ul>
 
 		<ul class="navbar-nav ml-auto d-flex align-items-center">
@@ -79,10 +82,11 @@
 				</div>
 			</li>
 
-			<li class="nav-item mx-3">
+			<li class="nav-item position-relative mx-3">
 				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
 					<i class="far fa-bell"></i>
 				</a>
+				<notifications :user_id="{{ auth()->user()->id }}"></notifications>
 			</li>
 		</ul>
 	</div>
