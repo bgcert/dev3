@@ -82,12 +82,14 @@
 				</div>
 			</li>
 
+			@if(auth()->check())
 			<li class="nav-item position-relative mx-3">
 				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
 					<i class="far fa-bell"></i>
 				</a>
 				<notifications :user_id="{{ auth()->user()->id }}"></notifications>
 			</li>
+			@endif
 		</ul>
 	</div>
 </nav>
