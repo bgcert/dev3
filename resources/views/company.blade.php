@@ -19,17 +19,17 @@
 					<p class="small mt-2">
 						Допълнителна информация за <strong>{{ $company->name }}</strong> можете да получите, като отправите запитване
 					</p>
-					<contact-publisher
-						button-text="Изпрати запитване"
-						:company-id="{{ $company->id }}"
-						about="{{ $company->name }}"
-						btn-class="btn btn-primary btn-block">
-					</contact-publisher>
+					<button class="btn btn-outline-light mr-2 my-1 my-1-sm" @click.prevent="callContactPublisher">Изпрати запитване</button>
 				</div>	
 			</div>
 		</div>
 	</div>
 </div>
+
+<contact-publisher
+	:company-id="{{ $company->id }}"
+	about="{{ $company->name }}">
+</contact-publisher>
 
 <div class="container">
 	<div class="row mt-4">

@@ -21,38 +21,15 @@
 </div>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
-	<div class="container">
-		<button
-			class="navbar-toggler"
-			type="button"
-			data-toggle="collapse"
-			data-target="#navbarColor02"
-			aria-controls="navbarColor02"
-			aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarColor02">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="#"> Информация <span class="sr-only">(current)</span></a>
-				</li>
-			</ul>
-
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<contact-publisher
-						button-text="Изпрати запитване"
-						:company-id="{{ $theme->company->id }}"
-						about="{{ $theme->title }}"
-						btn-class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm">
-					</contact-publisher>
-				</li>
-			</ul>
-		</div>
+	<div class="container justify-content-md-end">
+		<button class="btn btn-outline-light btn-lg mr-2 my-1 my-1-sm" @click.prevent="callContactPublisher">Изпрати запитване</button>
 	</div>
 </nav>
+
+<contact-publisher
+	:company-id="{{ $theme->company->id }}"
+	about="{{ $theme->title }}">
+</contact-publisher>
 
 <div class="container mt-5">
 	<div class="row">
