@@ -28,7 +28,7 @@
 		</ul>
 
 		<ul class="navbar-nav ml-auto d-flex align-items-center">
-			<li class="nav-item my-sm-2">
+			<li class="nav-item m-2">
 				<search></search>
 			</li>
 			@guest
@@ -42,7 +42,7 @@
 			@else
 
 			@if(Auth::user()->role_id == 2)
-			<li>
+			<li class="nav-item">
 				<a class="btn btn-warning ml-2" href="/dashboard#/profile">Бизнес панел</a>
 			</li>
 			@endif
@@ -88,7 +88,7 @@
 			</li>
 
 			@if(auth()->check())
-			<li class="nav-item position-relative mx-3">
+			<li class="nav-item position-relative">
 				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle d-none d-lg-block">
 					<i class="far fa-bell"></i>
 				</a>
