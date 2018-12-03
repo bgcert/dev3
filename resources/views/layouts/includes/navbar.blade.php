@@ -47,9 +47,13 @@
 			</li>
 			@endif
 
-			<li class="nav-item dropdown mt-2">
-				<button class="btn btn-outline-secondary btn-round" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<li class="nav-item dropdown">
+				<button class="btn btn-outline-secondary btn-round d-none d-lg-block" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{ Auth::user()->abbr }}
+				</button>
+
+				<button class="btn btn-outline-primary d-lg-none mt-2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{ Auth::user()->firstname }}
 				</button>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/users/settings#/settings"> Акаунт</a>
