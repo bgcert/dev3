@@ -43,12 +43,12 @@
 
 			@if(Auth::user()->role_id == 2)
 			<li>
-				<a class="btn btn-warning mx-3" href="/dashboard#/profile">Бизнес панел</a>
+				<a class="btn btn-warning ml-2" href="/dashboard#/profile">Бизнес панел</a>
 			</li>
 			@endif
 
 			<li class="nav-item dropdown">
-				<button class="btn btn-outline-secondary btn-round d-none d-lg-block" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-outline-secondary btn-round d-none d-lg-block ml-2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{ Auth::user()->abbr }}
 				</button>
 

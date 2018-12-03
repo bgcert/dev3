@@ -73891,7 +73891,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -74323,25 +74322,25 @@ var render = function() {
                   [_vm._v("\n\t\t\t\t\tПубликуване на зали\n\t\t\t\t")]
                 )
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.setPublisher($event)
-                    }
-                  }
-                },
-                [_vm._v(" Запиши промените")]
-              )
             ])
           ]
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.setPublisher($event)
+              }
+            }
+          },
+          [_vm._v(" Запиши промените")]
+        )
+      ])
     ],
     2
   )

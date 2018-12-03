@@ -65,11 +65,10 @@
 					</label>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<button class="btn btn-primary" @click.prevent="setPublisher"> Запиши промените</button>
-			</div>
 		</template>
+		<div class="form-group">
+			<button class="btn btn-primary" @click.prevent="setPublisher"> Запиши промените</button>
+		</div>
 
 	</div>
 </template>
