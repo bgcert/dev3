@@ -47,7 +47,7 @@
 			</li>
 			@endif
 
-			<li class="nav-item dropdown mx-3">
+			<li class="nav-item dropdown mt-2">
 				<button class="btn btn-outline-secondary btn-round" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{ Auth::user()->abbr }}
 				</button>
@@ -71,9 +71,10 @@
 			@endguest
 
 			<li class="nav-item dropdown mx-3">
-				<button class="btn btn-outline-primary btn-icon btn-sm btn-circle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-outline-primary btn-icon btn-sm btn-circle d-none d-lg-block" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-question"></i>
 				</button>
+				<button class="btn btn-outline-primary d-lg-none mt-2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Помощ</button>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/page/help">Помощ</a>
 					<a class="dropdown-item" href="/page/report">Докладване</a>
@@ -84,8 +85,11 @@
 
 			@if(auth()->check())
 			<li class="nav-item position-relative mx-3">
-				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle">
+				<a href="/users/settings#/notifications" class="btn btn-outline-primary btn-icon btn-sm btn-circle d-none d-lg-block">
 					<i class="far fa-bell"></i>
+				</a>
+				<a href="/users/settings#/notifications" class="btn btn-outline-primary d-lg-none mt-2">
+					Известия
 				</a>
 				<notifications :user_id="{{ auth()->user()->id }}"></notifications>
 			</li>
