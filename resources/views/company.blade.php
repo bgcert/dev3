@@ -34,7 +34,9 @@
 <div class="container">
 	<div class="row mt-4">
 		<div class="col-lg-8 col-md-12">
-			{{ $company->description }}	
+			<p class="company-description">
+				{{ $company->description }}	
+			</p>
 		</div>
 		<div class="col-lg-4 col-md-12">
 			<div class="card">

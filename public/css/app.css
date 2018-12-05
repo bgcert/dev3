@@ -10864,6 +10864,10 @@ body {
   background-color: rgba(10, 30, 44, 0.25) !important;
 }
 
+.company-description {
+  white-space: pre-line;
+}
+
 .event-list-table .tr-link {
   cursor: pointer;
 }
