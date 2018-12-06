@@ -125,6 +125,10 @@
 								</td>
 							</tr>
 							<tr>
+								<th scope="row"><i class="fas fa-business-time"></i></th>
+								<td>{{ $event->theme->duration }} учебни часа</td>
+							</tr>
+							<tr>
 								<th scope="row"><i class="far fa-clock"></i></th>
 								<td>{{ $event->start_at_carbon }} / {{ $event->end_at_carbon }} ч.</td>
 							</tr>
