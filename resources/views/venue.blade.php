@@ -30,18 +30,18 @@
 					<div class="card-body">
 						<h5 class="card-title">Интересувате се от тази зала?</h5>
 						<p class="card-text">Изпратете запитване към {{ $venue->company->name }}</p>
-						<contact-publisher
-							button-text="Изпрати запитване"
-							:company-id="{{ $venue->company->id }}"
-							about="{{ $venue->name }}"
-							btn-class="btn btn-warning">
-						</contact-publisher>
+						<button class="btn btn-primary btn-block mr-2 my-1 my-1-sm" @click.prevent="callContactPublisher">Изпрати запитване</button>
 					</div>
 				</div>
 			</div>
 		</dir>
 	</div>
 </div>
+
+<contact-publisher
+	:company-id="{{ $venue->company->id }}"
+	about="{{ $venue->name }}">
+</contact-publisher>
 
 <div class="venue container mt-4">
 	<div class="row">
