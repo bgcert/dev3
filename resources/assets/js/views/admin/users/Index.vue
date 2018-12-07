@@ -1,41 +1,37 @@
 <template>
 	<div>
-			<table class="ui selectable celled small table"  v-if="users.length > 0">
-				<thead>
-					<tr>
-						<th>#ID</th>
-						<th>Име</th>
-						<th>Фирма</th>
-						<th>E-mail</th>
-						<th>Status</th>
-						<th>Регистриран на:</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="user in users">
-						<td>{{ user.id }}</td>
-						<td>{{ user.full_name }}</td>
+		<table class="table table-bordered" v-if="users.length > 0">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Име</th>
+					<th scope="col">Фирма</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">Регистриран на</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="user in users" :class="{ 'table-danger': !user.verified }">
+					<th scope="row">{{ user.id }}</th>
+					<td>{{ user.full_name }}</td>
+					<td>
 						<template v-if="user.role_id == 2">
-							<td><a href="#">{{ user.company.name }}</a></td>
+							<a :href="'/c/' + user.company.slug" target="_blank">{{ user.company.name }}</a>
 						</template>
-						<template v-else>
-							<td></td>
-						</template>
-						<td>{{ user.email }}</td>
-						<td v-if="user.token == null">Активиран</td>
-						<td v-else>Деактивиран</td>
-						<td>{{ user.created_at }}</td>
-						<td>
-							<div class="ui mini basic icon buttons">
-								<a href="#" class="ui button"><i class="eye icon"></i></a>
-								<a href="#" class="ui button"><i class="edit icon"></i></a>
-								<button class="ui button"><i class="trash icon"></i></button>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+					</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.created_at }}</td>
+					<td>
+						<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+							<button type="button" class="btn btn-outline-secondary"><i class="eye icon"></i></button>
+							<button type="button" class="btn btn-outline-secondary"><i class="edit icon"></i></button>
+							<button type="button" class="btn btn-outline-secondary"><i class="trash icon"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </template>
 

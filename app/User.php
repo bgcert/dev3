@@ -26,7 +26,7 @@ class User extends Authenticatable
         'role_id', 'firstname', 'lastname', 'email', 'password', 'token', 'picture',
     ];
 
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'verified'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -90,5 +90,10 @@ class User extends Authenticatable
 
 	    return mb_substr($this->firstname, 0, 1) . mb_substr($this->lastname, 0, 1);
 	}
+
+	public function getVerifiedAttribute()
+    {
+    	return $this->token === null;
+    }
 
 }

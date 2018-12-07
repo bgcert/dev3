@@ -14,7 +14,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = \App\User::with('company')->get();
+        $users = \App\User::with('company')->latest()->get();
     	return $users;
     } 
 

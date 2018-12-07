@@ -14,7 +14,7 @@ class AdminEventController extends Controller
      */
     public function index()
     {
-        $events = \App\Event::with('theme.company.user')->whereHas('theme')->get();
+        $events = \App\Event::with('theme.company.user')->whereHas('theme')->upcoming()->get();
     	return $events;
     }
 

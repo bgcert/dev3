@@ -1,34 +1,36 @@
 <template>
-	<div>
-		<div class="ui grid mt-20">
-			<div class="two wide column">
-				<div class="ui fluid vertical pointing menu">
-					<a href="/" class="item"><i class="home icon"></i> Seminari365.com</a>
-					<router-link
-						to="/admin-users"
-						class="item"
-						:class="{ active: $route.path == '/admin-users' }">
-						<i class="users icon"></i> Потребители
-					</router-link>
-					<router-link
-						to="/admin-events"
-						class="item"
-						:class="{ active: $route.path == '/admin-events' }">
-						Обучения
-					</router-link>
-					<router-link
-						to="/admin-orders"
-						class="item"
-						:class="{ active: $route.path == '/admin-orders' }">
-						Заявки
-					</router-link>
-				</div>
+	<div class="row">
+		<div class="col-3">
+			<div class="list-group">
+				<a href="/" class="list-group-item list-group-item-action"><i class="home icon"></i> Seminari365.com</a>
+				<router-link
+					to="/admin-users"
+					class="list-group-item list-group-item-action"
+					:class="{ active: $route.path == '/admin-users' }">
+					<i class="users icon"></i> Потребители
+				</router-link>
+
+				<router-link
+					to="/admin-events"
+					class="list-group-item list-group-item-action"
+					:class="{ active: $route.path == '/admin-events' }">
+					Обучения
+				</router-link>
+
+				<router-link
+					to="/admin-orders"
+					class="list-group-item list-group-item-action"
+					:class="{ active: $route.path == '/admin-orders' }">
+					Заявки
+				</router-link>
+				<a href="#" class="list-group-item list-group-item-action disabled">Запитвания</a>
 			</div>
-			<div class="twelve wide column">
-				<!-- <keep-alive> -->
-					<router-view></router-view>
-				<!-- </keep-alive> -->
-			</div>
+		</div>
+		
+		<div class="col-9">
+			<!-- <keep-alive> -->
+				<router-view></router-view>
+			<!-- </keep-alive> -->
 		</div>
 	</div>
 </template>

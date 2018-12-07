@@ -14,7 +14,7 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $orders = \App\Order::with('company.user')->get();
+        $orders = \App\Order::with('company.user')->latest()->get();
     	return $orders;
     }
 

@@ -1,28 +1,28 @@
 <template>
 	<div>
-		<table class="ui selectable celled small table"  v-if="orders.length > 0">
+		<table class="table table-bordered" v-if="orders.length > 0">
 			<thead>
 				<tr>
-					<th>#ID</th>
-					<th>Заявил</th>
-					<th>Събитие</th>
-					<th>Фирма</th>
-					<th>Регистриран на:</th>
-					<th></th>
+					<th scope="col">#</th>
+					<th scope="col">Заявил</th>
+					<th scope="col">Събитие</th>
+					<th scope="col">Фирма</th>
+					<th scope="col">Регистриран на</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="order in orders">
-					<td>{{ order.id }}</td>
+				<tr v-for="order in orders" :class="{ 'table-danger': order.read_at == null }">
+					<th scope="row">{{ order.id }}</th>
 					<td>{{ order.contact_person }}</td>
 					<td>{{ order.event_start_date }} - {{ order.theme_title }}</td>
 					<td>{{ order.company.name }}</td>
 					<td>{{ order.created_at }}</td>
 					<td>
-						<div class="ui mini basic icon buttons">
-							<a href="#" class="ui button"><i class="eye icon"></i></a>
-							<a href="#" class="ui button"><i class="edit icon"></i></a>
-							<button class="ui button"><i class="trash icon"></i></button>
+						<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+							<button type="button" class="btn btn-outline-secondary"><i class="eye icon"></i></button>
+							<button type="button" class="btn btn-outline-secondary"><i class="edit icon"></i></button>
+							<button type="button" class="btn btn-outline-secondary"><i class="trash icon"></i></button>
 						</div>
 					</td>
 				</tr>

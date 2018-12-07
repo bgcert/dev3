@@ -75012,10 +75012,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -75051,41 +75047,46 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.users.length > 0
-      ? _c("table", { staticClass: "ui selectable celled small table" }, [
+      ? _c("table", { staticClass: "table table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.users, function(user) {
-              return _c(
-                "tr",
-                [
-                  _c("td", [_vm._v(_vm._s(user.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.full_name))]),
-                  _vm._v(" "),
-                  user.role_id == 2
-                    ? [
-                        _c("td", [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _vm._v(_vm._s(user.company.name))
-                          ])
-                        ])
-                      ]
-                    : [_c("td")],
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.email))]),
-                  _vm._v(" "),
-                  user.token == null
-                    ? _c("td", [_vm._v("Активиран")])
-                    : _c("td", [_vm._v("Деактивиран")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(user.created_at))]),
-                  _vm._v(" "),
-                  _vm._m(1, true)
-                ],
-                2
-              )
+              return _c("tr", { class: { "table-danger": !user.verified } }, [
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(user.id))
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.full_name))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [
+                    user.role_id == 2
+                      ? [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/c/" + user.company.slug,
+                                target: "_blank"
+                              }
+                            },
+                            [_vm._v(_vm._s(user.company.name))]
+                          )
+                        ]
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.email))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.created_at))]),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ])
             })
           )
         ])
@@ -75099,19 +75100,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#ID")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Име")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Име")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Фирма")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Фирма")]),
         _vm._v(" "),
-        _c("th", [_vm._v("E-mail")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("E-mail")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Status")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Регистриран на")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Регистриран на:")]),
-        _vm._v(" "),
-        _c("th")
+        _c("th", { attrs: { scope: "col" } })
       ])
     ])
   },
@@ -75120,19 +75119,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("div", { staticClass: "ui mini basic icon buttons" }, [
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "eye icon" })
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "edit icon" })
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "ui button" }, [
-          _c("i", { staticClass: "trash icon" })
-        ])
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "btn-group btn-group-sm",
+          attrs: { role: "group", "aria-label": "Basic example" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "eye icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "edit icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "trash icon" })]
+          )
+        ]
+      )
     ])
   }
 ]
@@ -75233,6 +75254,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -75267,15 +75291,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c(
+      "button",
+      { staticClass: "btn btn-primary", attrs: { type: "button" } },
+      [_vm._v("Предстоящи")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-secondary", attrs: { type: "button" } },
+      [_vm._v("Всички")]
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
     _vm.events.length > 0
-      ? _c("table", { staticClass: "ui selectable celled small table" }, [
+      ? _c("table", { staticClass: "table table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.events, function(event) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(event.id))]),
+                _c("th", { attrs: { scope: "row" } }, [
+                  _vm._v(_vm._s(event.id))
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(event.theme.title))]),
                 _vm._v(" "),
@@ -75302,19 +75342,19 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#ID")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Тема")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Тема")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Начална дата")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Начална дата")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Фирма")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Фирма")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Потребител")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Потребител")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Регистриран на:")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Регистриран на")]),
         _vm._v(" "),
-        _c("th")
+        _c("th", { attrs: { scope: "col" } })
       ])
     ])
   },
@@ -75323,19 +75363,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("div", { staticClass: "ui mini basic icon buttons" }, [
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "eye icon" })
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "edit icon" })
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "ui button" }, [
-          _c("i", { staticClass: "trash icon" })
-        ])
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "btn-group btn-group-sm",
+          attrs: { role: "group", "aria-label": "Basic example" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "eye icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "edit icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "trash icon" })]
+          )
+        ]
+      )
     ])
   }
 ]
@@ -75469,31 +75531,37 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.orders.length > 0
-      ? _c("table", { staticClass: "ui selectable celled small table" }, [
+      ? _c("table", { staticClass: "table table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
           _c(
             "tbody",
             _vm._l(_vm.orders, function(order) {
-              return _c("tr", [
-                _c("td", [_vm._v(_vm._s(order.id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.contact_person))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(order.event_start_date) +
-                      " - " +
-                      _vm._s(order.theme_title)
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.company.name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.created_at))]),
-                _vm._v(" "),
-                _vm._m(1, true)
-              ])
+              return _c(
+                "tr",
+                { class: { "table-danger": order.read_at == null } },
+                [
+                  _c("th", { attrs: { scope: "row" } }, [
+                    _vm._v(_vm._s(order.id))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(order.contact_person))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(order.event_start_date) +
+                        " - " +
+                        _vm._s(order.theme_title)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(order.company.name))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(order.created_at))]),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ]
+              )
             })
           )
         ])
@@ -75507,17 +75575,17 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("#ID")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Заявил")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Заявил")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Събитие")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Събитие")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Фирма")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Фирма")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Регистриран на:")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Регистриран на")]),
         _vm._v(" "),
-        _c("th")
+        _c("th", { attrs: { scope: "col" } })
       ])
     ])
   },
@@ -75526,19 +75594,41 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("div", { staticClass: "ui mini basic icon buttons" }, [
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "eye icon" })
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "ui button", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "edit icon" })
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "ui button" }, [
-          _c("i", { staticClass: "trash icon" })
-        ])
-      ])
+      _c(
+        "div",
+        {
+          staticClass: "btn-group btn-group-sm",
+          attrs: { role: "group", "aria-label": "Basic example" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "eye icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "edit icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary",
+              attrs: { type: "button" }
+            },
+            [_c("i", { staticClass: "trash icon" })]
+          )
+        ]
+      )
     ])
   }
 ]
@@ -130201,6 +130291,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -130225,54 +130317,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "ui grid mt-20" }, [
-      _c("div", { staticClass: "two wide column" }, [
-        _c(
-          "div",
-          { staticClass: "ui fluid vertical pointing menu" },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/admin-users" },
-                attrs: { to: "/admin-users" }
-              },
-              [
-                _c("i", { staticClass: "users icon" }),
-                _vm._v(" Потребители\n\t\t\t\t")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/admin-events" },
-                attrs: { to: "/admin-events" }
-              },
-              [_vm._v("\n\t\t\t\t\tОбучения\n\t\t\t\t")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "item",
-                class: { active: _vm.$route.path == "/admin-orders" },
-                attrs: { to: "/admin-orders" }
-              },
-              [_vm._v("\n\t\t\t\t\tЗаявки\n\t\t\t\t")]
-            )
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "twelve wide column" }, [_c("router-view")], 1)
-    ])
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-3" }, [
+      _c(
+        "div",
+        { staticClass: "list-group" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "list-group-item list-group-item-action",
+              class: { active: _vm.$route.path == "/admin-users" },
+              attrs: { to: "/admin-users" }
+            },
+            [
+              _c("i", { staticClass: "users icon" }),
+              _vm._v(" Потребители\n\t\t\t")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "list-group-item list-group-item-action",
+              class: { active: _vm.$route.path == "/admin-events" },
+              attrs: { to: "/admin-events" }
+            },
+            [_vm._v("\n\t\t\t\tОбучения\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass: "list-group-item list-group-item-action",
+              class: { active: _vm.$route.path == "/admin-orders" },
+              attrs: { to: "/admin-orders" }
+            },
+            [_vm._v("\n\t\t\t\tЗаявки\n\t\t\t")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "list-group-item list-group-item-action disabled",
+              attrs: { href: "#" }
+            },
+            [_vm._v("Запитвания")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-9" }, [_c("router-view")], 1)
   ])
 }
 var staticRenderFns = [
@@ -130280,10 +130379,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "item", attrs: { href: "/" } }, [
-      _c("i", { staticClass: "home icon" }),
-      _vm._v(" Seminari365.com")
-    ])
+    return _c(
+      "a",
+      {
+        staticClass: "list-group-item list-group-item-action",
+        attrs: { href: "/" }
+      },
+      [_c("i", { staticClass: "home icon" }), _vm._v(" Seminari365.com")]
+    )
   }
 ]
 render._withStripped = true
