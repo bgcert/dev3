@@ -148,6 +148,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['au
 	Route::resource('users', 'AdminUserController');
 	Route::resource('events', 'AdminEventController');
 	Route::resource('orders', 'AdminOrderController');
+	Route::resource('contacts', 'AdminContactController');
 	Route::get('/activity', 'AdminController@activity');
 
 });

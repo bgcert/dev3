@@ -48,6 +48,7 @@ let routes = [
     { path: '/admin-users', component: require('./views/admin/users/Index.vue') },
     { path: '/admin-events', component: require('./views/admin/events/Index.vue') },
     { path: '/admin-orders', component: require('./views/admin/orders/Index.vue') },
+    { path: '/admin-contacts', component: require('./views/admin/contacts/Index.vue') },
 ];
 
 const router = new VueRouter({

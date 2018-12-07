@@ -23,7 +23,14 @@
 					:class="{ active: $route.path == '/admin-orders' }">
 					Заявки
 				</router-link>
-				<a href="#" class="list-group-item list-group-item-action disabled">Запитвания</a>
+
+				<router-link
+					to="/admin-contacts"
+					class="list-group-item list-group-item-action"
+					:class="{ active: $route.path == '/admin-contacts' }">
+					Запитвания
+				</router-link>
+				<a href="#" class="list-group-item list-group-item-action disabled">Тест</a>
 			</div>
 		</div>
 		
