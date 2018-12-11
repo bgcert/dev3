@@ -1,9 +1,9 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Редактиране на тема
 		</div>
-		<div v-if="!loading" class="card-body">
+		<div v-if="theme.id != null" class="card-body">
 			<div class="form-group">
 				<label>Заглавие</label>
 				<input type="text" name="title" class="form-control" :class="{ 'is-invalid': errors.title }" v-model="theme.title" autofocus required>
@@ -94,6 +94,7 @@
     		
     		async save() {
     			let vm = this;
+    			vm.loading = true;
 				let data = {
 					title: this.theme.title,
 					body: this.theme.body,
@@ -117,6 +118,9 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
+    			})
+    			.then(function (response) {
+    				vm.loading = false;
     			})
     		}
     	},

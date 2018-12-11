@@ -34,6 +34,8 @@ Route::view('/page/confirm', 'pages/confirm');
 // Route::view('/page/help', 'pages/terms');
 Route::view('/terms', 'terms');
 
+Route::view('/stream-test', 'stream-test');
+
 Route::get('/browse/{slug?}', 'EventController@browse');
 Route::get('/t', 'PublicController@themes');
 Route::get('/v', 'PublicController@venues');

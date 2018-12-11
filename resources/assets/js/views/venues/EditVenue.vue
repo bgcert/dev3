@@ -1,10 +1,10 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Редактиране на зала
 		</div>
 
-		<div class="card-body" v-if="!loading">
+		<div class="card-body" v-if="venue.id != null">
 
 			<div class="form-group">
 				<label>Наименование</label>
@@ -120,6 +120,8 @@
 
     		async save() {
     			let vm = this;
+    			vm.loading = true;
+
 				this.data = {
 					name: this.venue.name,
 					description: this.venue.description,
@@ -155,6 +157,9 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
+    			})
+    			.then(function (response) {
+    				vm.loading = false;
     			})
     		},
 

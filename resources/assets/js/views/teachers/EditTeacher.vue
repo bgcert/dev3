@@ -1,10 +1,10 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Редактиране на лектор
 		</div>
 
-		<div class="card-body" v-if="!loading">
+		<div class="card-body" v-if="teacher.id != null">
 			<div class="form-group">
 				<label>Име</label>
 				<input type="text" name="name" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="teacher.name" autofocus required>
@@ -65,6 +65,8 @@
     		
     		async save() {
     			let vm = this;
+    			vm.loading = true;
+
 				this.data = {
 					name: this.teacher.name,
 					details: this.teacher.details,
@@ -85,6 +87,9 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
+    			})
+    			.then(function (response) {
+    				vm.loading = false;
     			})
     		}
     	},

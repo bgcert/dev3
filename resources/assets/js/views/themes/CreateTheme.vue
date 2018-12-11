@@ -4,7 +4,7 @@
 			Нова тема
 		</div>
 
-		<div class="card-body">
+		<div class="card-body" v-loading="loading">
 			<div class="form-group">
 				<label>Заглавие</label>
 				<input type="text" name="title" class="form-control" :class="{ 'is-invalid': errors.title }" v-model="form.title" autofocus required>
@@ -101,6 +101,7 @@
 
     		async save() {
     			let vm = this;
+    			vm.loading = true;
 
 				this.data = {
 					title: this.form.title,
@@ -117,13 +118,16 @@
 				}
 
     			axios.post('/dashboard/themes', vm.data)
-    			.then(function (response) {
-    				vm.$message('Темата е добавена успешно.');
-    				vm.$router.push('/themes');
-    			})
-    			.catch(function (error) {
-    				vm.errors = error.response.data;
-    			})
+	    			.then(function (response) {
+	    				vm.$message('Темата е добавена успешно.');
+	    				vm.$router.push('/themes');
+	    			})
+	    			.catch(function (error) {
+	    				vm.errors = error.response.data;
+	    			})
+	    			.then(function () {
+	    				vm.loading = false;
+	    			})
     		}
     	},
 

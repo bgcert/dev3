@@ -4,7 +4,7 @@
 			Нов лектор
 		</div>
 
-		<div class="card-body">
+		<div class="card-body" v-loading="loading">
 			<div class="form-group">
 				<label>Име</label>
 				<input type="text" name="name" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="form.name" autofocus required>
@@ -50,7 +50,7 @@
 		},
     	data: function () {
     		return {
-    			loading: true,
+    			loading: false,
     			form: {
     				name: '',
     				details: '',
@@ -68,6 +68,7 @@
 
     		async save() {
     			let vm = this;
+    			vm.loading = true;
 
 				this.data = {
 					name: this.form.name,
@@ -87,6 +88,9 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
+    			})
+    			.then(function (response) {
+    				vm.loading = false;
     			})
     		}
     	},

@@ -40,7 +40,7 @@ class EventRequest extends FormRequest
 
         if ($this->has('theme_id'))
         {
-            $rules += ['theme_id'=> 'required|integer'];
+            $rules += ['theme_id' => 'required|integer'];
         }
 
         return $rules;

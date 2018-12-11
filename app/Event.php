@@ -20,7 +20,7 @@ class Event extends Model
     ];
     // protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
-    protected $appends = ['start_date_carbon'];
+    protected $appends = ['start_date_carbon', 'cover'];
 
     public function theme()
     {
@@ -77,16 +77,18 @@ class Event extends Model
 						});
     }
 
-    public function getCoverAttribute()
+    public function getCoverAttribute($value)
     {
-    	if (!empty($this->cover))
-    	{
-    		return $this->cover;
-    	} else if(!empty($this->theme->cover))
-    	{
-    		return $this->theme->cover;
-    	}
-    	return 'default_cover.png';
+    	if (!empty($this->attributes['cover']))
+		{
+			return $this->attributes['cover'];
+		}
+		else if (!empty($this->theme->attributes['cover']))
+		{
+			return $this->theme->attributes['cover'];
+		} else {
+			return 'default_cover.png';
+		}
     }
 
     public function getStartDateCarbonAttribute()

@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Ново събитие
 		</div>
@@ -203,6 +203,7 @@
 
     		async save() {
     			let vm = this;
+    			vm.loading = true;
 
 				this.data = {
 					theme_id: this.selectedTheme,
@@ -230,6 +231,9 @@
     			})
     			.catch(function (error) {
     				vm.errors = error.response.data;
+    			})
+    			.then(function (response) {
+    				vm.loading = false;
     			})
     		}
     	},

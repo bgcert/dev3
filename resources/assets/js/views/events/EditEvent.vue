@@ -1,10 +1,10 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Редактиране на събитие
 		</div>
 
-		<div class="card-body" v-if="!loading">
+		<div class="card-body" v-if="event.id != null">
 			<h4>
 				Тема: {{ event.theme.title }}
 			</h4>
@@ -179,6 +179,7 @@
     		
     		async save() {
     			let vm = this;
+    			vm.loading = true;
 
     			let data = {
 					city_id: this.event.city_id,
@@ -201,13 +202,16 @@
 				let route = '/dashboard/events/' + this.$route.params.id;
 
     			axios.patch(route, data)
-    			.then(function (response) {
-    				vm.$message('Събитиети е редактирано успешно.');
-    				vm.$router.push('/events');
-    			})
-    			.catch(function (error) {
-    				vm.errors = error.response.data;
-    			})
+	    			.then(function (response) {
+	    				vm.$message('Събитиети е редактирано успешно.');
+	    				vm.$router.push('/events');
+	    			})
+	    			.catch(function (error) {
+	    				vm.errors = error.response.data;
+	    			})
+	    			.then(function (response) {
+	    				vm.loading = false;
+	    			})
     		}
     	},
 

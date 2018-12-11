@@ -1,6 +1,6 @@
 <template>
 	<div class="row">
-		<div class="col-3">
+		<div class="col-2">
 			<div class="list-group">
 				<a href="/" class="list-group-item list-group-item-action"><i class="home icon"></i> Seminari365.com</a>
 				<router-link
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		
-		<div class="col-9">
+		<div class="col-10">
 			<!-- <keep-alive> -->
 				<router-view></router-view>
 			<!-- </keep-alive> -->

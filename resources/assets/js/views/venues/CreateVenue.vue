@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="card" v-loading="loading">
 		<div class="card-header">
 			Нова зала
 		</div>
@@ -127,6 +127,8 @@
 
     		async save() {
     			let vm = this;
+    			vm.loading = true;
+
 				this.data = {
 					name: this.name,
 					description: this.description,
@@ -157,6 +159,9 @@
     			.catch(function (error) {
     				vm.errors = error.response.data;
     			})
+    			.then(function (response) {
+	            	vm.loading = false;
+				})
     		}
     	},
 
@@ -170,6 +175,9 @@
 			})
 			.catch(function (error) {
 				vm.errors = error.response.data;
+			})
+			.then(function (response) {
+            	vm.loading = false;
 			});
         },
 

@@ -1,5 +1,5 @@
 <template>
-	<div class="form">
+	<div class="form" v-loading="loading">
 		<form>
 			<div class="form-group">
 				<label>Email адрес</label>
