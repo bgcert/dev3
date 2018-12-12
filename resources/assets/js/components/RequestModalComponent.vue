@@ -1,7 +1,7 @@
 <template>
 	<div v-if="showModal">
 		<div class="modal fade" id="requestModal" tabindex="-1" role="dialog" aria-labelledby="requestModal" aria-hidden="true">
-			<div class="modal-dialog" role="document">
+			<div class="modal-dialog" role="document" v-loading="loading">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">Заявка</h5>
@@ -92,6 +92,7 @@
     	data: function () {
     		return {
     			showModal: false,
+    			loading: false,
     			auth: window.auth,
     			dialogVisible: false,
     			contactPerson: '',
@@ -137,6 +138,7 @@
 
     		sendRequest: function() {
     			let vm = this;
+    			vm.loading = true;
     			axios.post('/order', {
     				event_id: this.id,
 					contact_person: this.contactPerson,
@@ -147,15 +149,17 @@
     				details: this.companyData
     			})
     			.then(function (response) {
-    				vm.closeModal();
     				vm.$message({
     					message: 'Заявката е изпратена успешно.',
     					type: 'success'
     				});
+    				vm.closeModal();
 				})
 				.catch(function (error) {
 					vm.$message.error('Възникна грешка при изпращане на заявката.');
-					vm.closeModal();
+				})
+				.then(function (response) {
+    				vm.loading = false;
 				});
     		},
 
