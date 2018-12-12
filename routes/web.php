@@ -73,6 +73,7 @@ Route::group(['namespace' => 'Users', 'prefix' => 'users',  'middleware' => 'aut
 	Route::post('/set/user/name', 'SettingsController@setName');
 	Route::post('/set/publisher/data', 'SettingsController@setPublisher');
 	Route::post('/change/password', 'SettingsController@changePassword');
+	Route::post('/delete/account', 'SettingsController@deleteAccount');
 
 	Route::get('/', 'UserController@index');
 

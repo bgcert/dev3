@@ -4,9 +4,9 @@
 			
 		</div>
 
-		<div class="logo">
+		<div class="d-flex align-items-center logo">
 			<a href="/c/{{ $theme->company->slug }}">
-				<img src="https://d3cwccg7mi8onu.cloudfront.net/56x56/{{ $theme->company->logo }}">
+				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $theme->company->logo }}">
 			</a>
 		</div>
 

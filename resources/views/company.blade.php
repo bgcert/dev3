@@ -8,7 +8,9 @@
 		<div class="row d-flex align-items-center">
 			<div class="col-lg-8 col-md-12 my-sm-4">
 				<div class="d-flex align-items-center">
-					<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/160x160/{{ $company->logo }}" alt="{{ $company->name }}" class="img-thumbnail">
+					<div class="logo">
+						<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/160x160/{{ $company->logo }}" alt="{{ $company->name }}">
+					</div>
 
 					<h5 class="ml-3">{{ $company->name }}</h5>
 				</div>	

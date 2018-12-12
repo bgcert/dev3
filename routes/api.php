@@ -28,4 +28,5 @@ Route::get('/company/details/{slug}', 'DataController@getCompanyDetails');
 Route::post('/theme/comments', 'DataController@themeComments');
 Route::post('/venue/comments', 'DataController@venueComments');
 
+Route::post('/order', 'PublicController@order');
 Route::post('/contact/form', 'PublicController@saveContactForm');

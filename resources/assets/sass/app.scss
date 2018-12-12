@@ -208,6 +208,7 @@ body {
 
 	.logo {
     	position: absolute;
+    	height: 64px;
     	top: 90px;
     	left: 20px;
     	border: 4px solid #fff;
@@ -401,6 +402,15 @@ body {
 	background: linear-gradient(90deg,#348ac7,#7474bf);
 	font-family: $primary-font;
 	color: #fff;
+
+	.logo {
+		height: 160px;
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		padding: 3px;
+		border-radius: 4px;
+	}
 
 	.info {
 		border-top: 1px dotted #fff;

@@ -139,7 +139,7 @@
     		sendRequest: function() {
     			let vm = this;
     			vm.loading = true;
-    			axios.post('/order', {
+    			axios.post('/api/order', {
     				event_id: this.id,
 					contact_person: this.contactPerson,
     				contact_number: this.contactNumber,

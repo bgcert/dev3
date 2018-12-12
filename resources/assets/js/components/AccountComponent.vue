@@ -40,12 +40,12 @@
 						</router-link>
 					</li>
 
-					<li class="nav-item">
+					<li class="nav-item" style="display: none;">
 						<router-link
 							to="/deactivate"
 							class="nav-link"
 							:class="{ active: $route.path == '/deactivate' }">
-							Деактивиране
+							Изтриване на акаунт
 						</router-link>
 					</li>
 				</ul>

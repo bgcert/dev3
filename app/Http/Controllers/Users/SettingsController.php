@@ -75,4 +75,9 @@ class SettingsController extends Controller
  		
  		return response()->json(['error' => 'There was an error.']);
     }
+
+    public function deleteAccount()
+    {
+    	// delete stuff
+    }
 }

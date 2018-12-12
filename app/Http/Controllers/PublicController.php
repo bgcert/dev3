@@ -154,6 +154,8 @@ class PublicController extends Controller
     			'name' => $item['name']
     		]);
     	}
+
+    	// queue job here!
     	
     	if (request()->invoice) {
     		$order->details()->create($request->details);

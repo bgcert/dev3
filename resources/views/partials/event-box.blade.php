@@ -4,9 +4,9 @@
 			
 		</div>
 
-		<div class="logo" data-toggle="tooltip" data-placement="right" title="{{ $event->theme->company->name }}">
+		<div class="d-flex align-items-center logo" data-toggle="tooltip" data-placement="right" title="{{ $event->theme->company->name }}">
 			<a href="/c/{{ $event->theme->company->slug }}">
-				<img src="https://d3cwccg7mi8onu.cloudfront.net/56x56/{{ $event->theme->company->logo }}">
+				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $event->theme->company->logo }}">
 			</a>
 		</div>
 		<div class="card-body mt-3">
