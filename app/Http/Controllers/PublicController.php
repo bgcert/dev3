@@ -86,18 +86,18 @@ class PublicController extends Controller
 
     public function showTheme()
     {
-    	$theme = \App\Theme::where('id', request()->id)->with('company')->first();
-    	$popularThemes = \App\Theme::where('company_id', $theme->company_id)->limit(5)->get();
-    	$relatedEvents = \App\Event::upcoming()->where('theme_id', $theme->id)->limit(4)->get();
+    	$theme = \App\Theme::where('id', request()->id)->with('company', 'category')->first();
+    	$popularThemes = \App\Theme::with('company')->where('company_id', $theme->company_id)->limit(5)->get();
+    	$relatedEvents = \App\Event::with('theme.company')->where('theme_id', $theme->id)->limit(4)->get();
     	return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
     }
 
     public function showEvent()
     {
-    	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.comments.user')->first();
+    	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.category', 'theme.comments.user')->first();
     	$event->visit();
-    	$popularThemes = \App\Theme::limit(5)->get();
-    	$relatedEvents = \App\Event::byCategory($event->theme->category->slug)->limit(4)->get();
+    	$popularThemes = \App\Theme::with('company')->limit(5)->get();
+    	$relatedEvents = \App\Event::popular($event->theme->category->id)->get();
     	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
     }
 

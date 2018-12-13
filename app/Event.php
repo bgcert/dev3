@@ -51,6 +51,21 @@ class Event extends Model
     				->with('city', 'theme.category', 'theme.company', 'visitCount');
     }
 
+    public function scopePopular($query, $id)
+    {
+    	return $query
+    				->where('active', 1)
+    				->whereDate('start_date', '>', Carbon::today())
+    				// ->whereHas('theme')
+    				->whereHas('theme', function ($query) use ($id)
+                        {
+        	               $query->where('category_id', $id);
+                        }
+                    )
+    				->with('city', 'theme.category', 'theme.company', 'visitCount')
+    				->limit(4);
+    }
+
     // For related events by company
     // Usage Event::byCompany(<company_id>)->get();
     public function scopeByCompany($query, $id)
