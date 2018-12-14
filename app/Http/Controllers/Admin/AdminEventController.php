@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class AdminEventController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,10 @@ class AdminEventController extends Controller
      */
     public function index()
     {
-        $events = \App\Event::with('theme.company.user')->whereHas('theme')->upcoming()->get();
-    	return $events;
+        return \App\Event::with('theme.company.user')
+        			->whereHas('theme')
+        			->whereDate('start_date', '>', Carbon::today())
+        			->get();
     }
 
     /**
