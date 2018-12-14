@@ -10,6 +10,9 @@ use App\Events\NewNotification;
 use App\Notifications\NewOrder;
 use Jenssegers\Date\Date;
 
+// Not sure
+use App\Repositories\Event\EventRepository;
+
 class PublicController extends Controller
 {
 	public function home()
@@ -34,19 +37,6 @@ class PublicController extends Controller
     	return view('themes', compact('themes'));
     }
 
-    // public function events()
-    // {
-    // 	$categories = \App\Category::whereHas('themes')->get();
-    // 	$cities = \App\City::whereHas('events')->get();
-
-    // 	if (request()->slug) {
-    // 		$events = \App\Event::upcoming()->byCategory(request()->slug)->get();
-    // 	} else {
-    // 		$events = \App\Event::upcoming()->get();
-    // 	}
-    // 	return view('events', compact('categories', 'cities', 'events'));
-    // }
-
     public function venues()
     {
     	$venues = \App\Venue::with('company')->get();
@@ -58,7 +48,7 @@ class PublicController extends Controller
     	return view('video');
     }
 
-    public function company()
+    public function company(EventRepository $event)
     {
 		$company = \App\Company::with('user')->where('slug', request()->slug)->first();
 
@@ -66,12 +56,14 @@ class PublicController extends Controller
 		$company->visit();
 
 		$themes = \App\Theme::with('category')->where('company_id', $company->id)->get();
-		$theme_ids = $themes->pluck('id')->toArray();
-		$events = \App\Event::upcoming()->whereIn('theme_id', $theme_ids)->get();
+		// $theme_ids = $themes->pluck('id')->toArray();
+		// $events = \App\Event::upcoming()->whereIn('theme_id', $theme_ids)->get();
 
-		$events = $events->groupBy(function($item) {
-			return Date::parse($item->start_date)->format('F, Y');
-		});
+		$events = $event->byCompany($company->id);
+
+		// $events = $events->groupBy(function($item) {
+		// 	return Date::parse($item->start_date)->format('F, Y');
+		// });
 
 		// dd($events);
 
@@ -92,14 +84,15 @@ class PublicController extends Controller
     	return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
     }
 
-    public function showEvent()
-    {
-    	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.category', 'theme.comments.user')->first();
-    	$event->visit();
-    	$popularThemes = \App\Theme::with('company')->limit(5)->get();
-    	$relatedEvents = \App\Event::popular($event->theme->category->id)->get();
-    	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
-    }
+    // Moved to EventController
+    // public function showEvent()
+    // {
+    // 	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.category', 'theme.comments.user')->first();
+    // 	$event->visit();
+    // 	$popularThemes = \App\Theme::with('company')->limit(5)->get();
+    // 	$relatedEvents = \App\Event::popular($event->theme->category->id)->get();
+    // 	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
+    // }
 
     public function showVenue()
     {

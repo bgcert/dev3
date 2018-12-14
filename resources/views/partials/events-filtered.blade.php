@@ -35,7 +35,11 @@
 	function setUrlParam(param, value) {
 		const params = new URLSearchParams(location.search);
 		params.set(param, value);
-		window.location = location.pathname + '?' + params;
+		if (location.pathname == '/') {
+			window.location = location.pathname + 'browse?' + params;
+		} else {
+			window.location = location.pathname + '?' + params;
+		}
 		//window.history.replaceState({}, '', `${location.pathname}?${params}`);
 	}
 

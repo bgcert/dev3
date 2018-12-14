@@ -15,7 +15,7 @@ class ContactController extends Controller
     public function index()
     {
     	$id = \Auth::user()->company->id;
-        return \App\ContactPublisher::where('company_id', $id)->get();
+        return \App\ContactPublisher::where('company_id', $id)->orderByDesc('created_at')->get();
     }
 
     /**

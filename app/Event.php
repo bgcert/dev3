@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Visitable;
 use Jenssegers\Date\Date;
 use Carbon\Carbon;
+use \Cache;
 
 class Event extends Model
 {
@@ -40,30 +41,6 @@ class Event extends Model
     public function orders()
     {
     	return $this->hasMany('App\Order');
-    }
-
-    public function scopeUpcoming($query)
-    {
-    	return $query
-    				->where('active', 1)
-    				->whereDate('start_date', '>', Carbon::today())
-    				->whereHas('theme')
-    				->with('city', 'theme.category', 'theme.company', 'visitCount');
-    }
-
-    public function scopePopular($query, $id)
-    {
-    	return $query
-    				->where('active', 1)
-    				->whereDate('start_date', '>', Carbon::today())
-    				// ->whereHas('theme')
-    				->whereHas('theme', function ($query) use ($id)
-                        {
-        	               $query->where('category_id', $id);
-                        }
-                    )
-    				->with('city', 'theme.category', 'theme.company', 'visitCount')
-    				->limit(4);
     }
 
     // For related events by company

@@ -43,7 +43,7 @@ Route::get('/c/{slug}', 'PublicController@company');
 Route::get('/user/{id}', 'PublicController@user');
 
 Route::get('/theme/{id}', 'PublicController@showTheme');
-Route::get('/event/{id}', 'PublicController@showEvent');
+Route::get('/event/{id}', 'EventController@show');
 Route::get('/venue/{id}', 'PublicController@showVenue');
 // Route::get('/video', 'PublicController@video');
 
