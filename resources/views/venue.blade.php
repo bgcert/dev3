@@ -118,11 +118,11 @@
 						<tbody>
 							<tr>
 								<th scope="row">Капацитет</th>
-								<td>{{ $venue->capacity }}</td>
+								<td>{{ $venue->capacity }} места</td>
 							</tr>
 							<tr>
 								<th scope="row">Адрес</th>
-								<td>{{ $venue->city->name }}, {{ $venue->address }} места</td>
+								<td>{{ $venue->city->name }}, {{ $venue->address }}</td>
 							</tr>
 						</tbody>
 					</table>

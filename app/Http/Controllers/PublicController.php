@@ -140,6 +140,7 @@ class PublicController extends Controller
 					'contact_email' => $request->contact_email,
 					'invoice' => $request->invoice,
 				];
+				
     	$order = $company->orders()->create($data);
 
     	foreach ($request->participants as $item) {

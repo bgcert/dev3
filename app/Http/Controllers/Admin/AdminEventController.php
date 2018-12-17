@@ -19,6 +19,7 @@ class AdminEventController extends Controller
         return \App\Event::with('theme.company.user')
         			->whereHas('theme')
         			->whereDate('start_date', '>', Carbon::today())
+        			->where('active', 1)
         			->get();
     }
 

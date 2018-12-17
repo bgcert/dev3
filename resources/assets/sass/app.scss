@@ -1,15 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100i,300,400,400i,500,800');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,700,800,900');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
-@import url('https://fonts.googleapis.com/css?family=Oswald:200');
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC');
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
-
-
-
+// @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+// @import url('https://fonts.googleapis.com/css?family=Oswald:200');
+// @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC');
+// @import url('https://fonts.googleapis.com/css?family=Lato');
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css');
 
@@ -496,4 +492,12 @@ body {
 footer {
 	border-top: 20px solid #212681;
 	background: #2931a0;
+}
+
+// PAGES
+
+// Live
+.live-streaming-header {
+	background: url('/img/live-stream.jpg');
+	height: 500px;
 }

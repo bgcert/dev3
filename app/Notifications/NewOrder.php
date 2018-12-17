@@ -47,7 +47,7 @@ class NewOrder extends Notification
         return (new MailMessage)
         			->subject('Нова заявка в Seminari365')
                     ->line('Имате нова заявка за ' . $this->event->theme->title)
-                    ->action('Отворете заявката', url('/dashboard#/orders/' . $this->event->id))
+                    ->action('Отворете заявката', url('/dashboard#/orders/'))
                     ->line('Благодарим, че използвате нашата платформа.');
     }
 
