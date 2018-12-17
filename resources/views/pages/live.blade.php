@@ -10,6 +10,14 @@
 	<div class="text-center">
 		<h2 class="mt-3">Излъчвайте събитията си на живо</h2>
 		<p>Seminari365 предага видео стрийминг услуга ..</p>
+		<p>Професионален стрийминг на събития
+		Организирате курс или семинар? Достигнете до Вашата аудитория навсякъде!
+		Излъчвайте към клиенти по целия свят чрез Seminari365.com. 
+		Продавайте Вашите събития без ограничения!.
+
+		Ние гарантираме излъчване с най-високо качество от всяка точка на света.
+
+		ИЗПРАТЕТЕ ЗАПИТВАНЕ ИЛИ СЕ ОБАДЕТЕ НА 02/ 4032404</p>
 
 		<div class="card-deck">
 			<div class="card">
@@ -18,7 +26,7 @@
 					<h5 class="card-title">Card title</h5>
 					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-					<a href="#" class="btn btn-warning btn-lg">Заяви</a>
+					<a href="#" class="btn btn-warning btn-lg btn-block">Заяви</a>
 				</div>
 			</div>
 			<div class="card">
