@@ -6,8 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactPublisherRequest;
 use App\Http\Requests\OrderRequest;
-use App\Events\NewNotification;
-use App\Notifications\NewOrder;
+use App\Jobs\ProcessOrder;
 use Jenssegers\Date\Date;
 
 // Not sure
@@ -140,7 +139,7 @@ class PublicController extends Controller
 					'contact_email' => $request->contact_email,
 					'invoice' => $request->invoice,
 				];
-				
+
     	$order = $company->orders()->create($data);
 
     	foreach ($request->participants as $item) {
@@ -148,25 +147,19 @@ class PublicController extends Controller
     			'name' => $item['name']
     		]);
     	}
-
-    	// queue job here!
     	
     	if (request()->invoice) {
     		$order->details()->create($request->details);
     	}
 
-    	// Event owner
-    	$event_owner = $event->theme->company->user;
+    	$owner_id = $event->theme->company->user->id;
 
-    	// Notifications should be combined eventually!!!
-    	// Add user notification
-    	$order->feedNotifications()->create(['user_id' => $event_owner->id, 'data' => $event->theme->title]);
+    	// Add user feed notification on account page
+    	$order->feedNotifications()->create(['user_id' => $owner_id, 'data' => $event->theme->title]);
 
-    	// Send email notification
-    	$event_owner->notify(new NewOrder($event));
-
-    	// Add push notification
-    	broadcast(new NewNotification($event_owner->id));
+    	// Queue job
+    	ProcessOrder::dispatch($event);
+    	
     	return $order;
     }
 }
