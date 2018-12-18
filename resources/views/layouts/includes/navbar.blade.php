@@ -43,6 +43,9 @@
 
 			@if(Auth::user()->role_id == 2)
 			<li class="nav-item">
+				<a class="btn btn-danger ml-2" href="/page/live"><i class="fas fa-video"></i> Излъчвайте на живо</a>
+			</li>
+			<li class="nav-item">
 				<a class="btn btn-warning ml-2" href="/dashboard#/profile">Бизнес панел</a>
 			</li>
 			@endif

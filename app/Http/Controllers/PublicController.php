@@ -117,6 +117,7 @@ class PublicController extends Controller
 
     public function saveAdminContactForm(Request $request)
     {
+    	// Definitely needs improvement!
     	$admin = \App\User::find(1);
     	$admin->notify(new NewAdminContact($request));
 

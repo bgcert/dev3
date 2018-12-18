@@ -42,6 +42,7 @@ class NewAdminContact extends Notification
      */
     public function toMail($notifiable)
     {
+    	// Definitely needs improvement!
         return (new MailMessage)
         			->subject('Ново запитване за стрийминг в Seminari365')
         			->line('Имате запитване за стрийминг от ' . $this->request->from)
