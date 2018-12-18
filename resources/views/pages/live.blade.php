@@ -28,18 +28,17 @@
 					</h1>
 					<ul class="list-group list-group-flush mt-4">
 						<li class="list-group-item">До 10 online участника</li>
-						<li class="list-group-item">Ограничаване на достъпа до излъчването</li>
-						<li class="list-group-item">Възможност за запис</li>
-						<li class="list-group-item">Съдействие при настройване на системата</li>
+						<li class="list-group-item">Контрол на достъпа до излъчването</li>
+						<li class="list-group-item">* Видео запис</li>
+						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
 					<a href="#" class="btn btn-success btn-lg btn-block">Заяви</a>
 				</div>
 			</div>
 
-			<div class="card border-primary">
-				<div class="card-header bg-primary text-white">
+			<div class="card border-warning">
+				<div class="card-header bg-warning">
 					<h3>Про 20</h3>
 				</div>
 				<div class="card-body">
@@ -49,33 +48,31 @@
 					</h1>
 					<ul class="list-group list-group-flush mt-4">
 						<li class="list-group-item">До 20 online участника</li>
-						<li class="list-group-item">Органичен достъп до излъчването</li>
-						<li class="list-group-item">Възможност за запис</li>
-						<li class="list-group-item">Съдействие при настройване на системата</li>
+						<li class="list-group-item">Контрол на достъпа до излъчването</li>
+						<li class="list-group-item">* Видео запис</li>
+						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-					<a href="#" class="btn btn-primary btn-lg btn-block">Заяви</a>
+					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
+					<a href="#" class="btn btn-warning btn-lg btn-block">Заяви</a>
 				</div>
 			</div>
 
-			<div class="card">
-				<div class="card-header">
+			<div class="card border-primary">
+				<div class="card-header bg-primary text-white">
 					<h3>Бизнес</h3>
 				</div>
 				<div class="card-body">
 					<h5 class="card-title">
-						ПОПИТАЙТЕ НА 02/4032404
+						ПОПИТАЙТЕ НА 02/4032404 - Цена при запитване
 					</h5>
 					<ul class="list-group list-group-flush mt-4">
 						<li class="list-group-item">Неограничен брой участници</li>
-						<li class="list-group-item">Ограничаване на достъпа до излъчването</li>
-						<li class="list-group-item">Възможност за запис</li>
+						<li class="list-group-item">Контрол на достъпа до излъчването</li>
+						<li class="list-group-item">Видео запис</li>
 						<li class="list-group-item">Транскодиране с различно качество</li>
-						<li class="list-group-item">Съдействие при настройване на системата</li>
+						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
-					<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					<!-- <p class="card-text"><small class="text-muted">* Излъчването се записва с предварителна заявка. Услугата е ВКЛЮЧЕНА в цената.</small></p> -->
 				</div>
 			</div>
 		</div>
