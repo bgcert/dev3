@@ -33,7 +33,9 @@
 						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
 					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
-					<a href="#" class="btn btn-success btn-lg btn-block">Заяви</a>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-success btn-lg btn-block" @click.prevent="callContactAdmin('Streaming - start 10')">Запитване</a>
 				</div>
 			</div>
 
@@ -53,7 +55,9 @@
 						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
 					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
-					<a href="#" class="btn btn-warning btn-lg btn-block">Заяви</a>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-warning btn-lg btn-block" @click.prevent="callContactAdmin('Streaming - pro 20')">Запитване</a>
 				</div>
 			</div>
 
@@ -62,9 +66,9 @@
 					<h3>Бизнес</h3>
 				</div>
 				<div class="card-body">
-					<h5 class="card-title">
-						ПОПИТАЙТЕ НА 02/4032404 - Цена при запитване
-					</h5>
+					<h4 class="card-title">
+						Цена при запитване
+					</h4>
 					<ul class="list-group list-group-flush mt-4">
 						<li class="list-group-item">Неограничен брой участници</li>
 						<li class="list-group-item">Контрол на достъпа до излъчването</li>
@@ -74,8 +78,13 @@
 					</ul>
 					<!-- <p class="card-text"><small class="text-muted">* Излъчването се записва с предварителна заявка. Услугата е ВКЛЮЧЕНА в цената.</small></p> -->
 				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-primary btn-lg btn-block" @click.prevent="callContactAdmin('Streaming - bussiness')">Запитване</a>
+				</div>
 			</div>
 		</div>
+
+		<contact-admin></contact-admin>
 
 		<h4 class="mt-4">
 			Ние гарантираме излъчване с най-високо качество от всяка точка на света.

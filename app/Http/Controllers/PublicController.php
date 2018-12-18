@@ -8,6 +8,7 @@ use App\Http\Requests\ContactPublisherRequest;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\ProcessOrder;
 use Jenssegers\Date\Date;
+use App\Notifications\NewAdminContact;
 
 // Not sure
 use App\Repositories\Event\EventRepository;
@@ -83,16 +84,6 @@ class PublicController extends Controller
     	return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
     }
 
-    // Moved to EventController
-    // public function showEvent()
-    // {
-    // 	$event = \App\Event::where('id', request()->id)->with('city', 'teachers', 'theme.company', 'theme.category', 'theme.comments.user')->first();
-    // 	$event->visit();
-    // 	$popularThemes = \App\Theme::with('company')->limit(5)->get();
-    // 	$relatedEvents = \App\Event::popular($event->theme->category->id)->get();
-    // 	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
-    // }
-
     public function showVenue()
     {
     	$venue = \App\Venue::where('id', request()->id)->with('city', 'company', 'comments.user')->first();
@@ -122,6 +113,14 @@ class PublicController extends Controller
     	$contactForm->feedNotifications()->create(['user_id' => $company->user_id, 'data' => $request->about]);
 
     	return $contactForm;
+    }
+
+    public function saveAdminContactForm(Request $request)
+    {
+    	$admin = \App\User::find(1);
+    	$admin->notify(new NewAdminContact($request));
+
+    	return 'Message sent.';
     }
 
     public function order(OrderRequest $request)

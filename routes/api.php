@@ -30,3 +30,4 @@ Route::post('/venue/comments', 'DataController@venueComments');
 
 Route::post('/order', 'PublicController@order');
 Route::post('/contact/form', 'PublicController@saveContactForm');
+Route::post('/admin/contact/form', 'PublicController@saveAdminContactForm');

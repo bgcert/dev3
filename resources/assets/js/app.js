@@ -68,6 +68,7 @@ Vue.component('multi-image-upload', require('./components/MultiImageUploadCompon
 Vue.component('image-upload', require('./components/ImageUploadComponent.vue'));
 Vue.component('captcha', require('./components/CaptchaComponent.vue'));
 Vue.component('contact-publisher', require('./components/ContactPublisherComponent.vue'));
+Vue.component('contact-admin', require('./components/ContactAdminComponent.vue'));
 Vue.component('rateing', require('./components/RateingComponent.vue'));
 
 // Vue.component('google-map', require('./components/GoogleMapComponent.vue'));
@@ -113,6 +114,10 @@ const app = new Vue({
 
     	callContactPublisher: function () {
     		EventBus.$emit('contactPublisherClicked');
+    	},
+
+    	callContactAdmin: function (subject) {
+    		EventBus.$emit('contactAdminClicked', subject);
     	}
     }
 });
