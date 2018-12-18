@@ -20,7 +20,10 @@ class UserController extends Controller
     }
 
     public function getNotifications() {
-    	return \Auth::user()->feedNotifications()->take(8)->get();
+    	return \Auth::user()->feedNotifications()
+    						->orderBy('created_at', 'DESC')
+    						->take(10)
+    						->get();
     }
 
     public function checkNotifications() {

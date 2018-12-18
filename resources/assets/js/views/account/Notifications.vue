@@ -1,34 +1,32 @@
 <template>
 	<div class="notifications">
 		<template v-if="notifications.length > 0">
-			<ul>
-				<li v-for="notification in notifications">
-					<a href="#" class="item" @click.prevent="openNotification(notification)">
-						<template v-if="notification.feed_notifiable_type == 'App\\Order'">
-							<div class="icon">
-								<i class="fas fa-user"></i>	
-							</div>
-							<div class="content">
-								<div class="date">{{ notification.created_at }}</div>
-								Нова заявка за {{ notification.data }}
-							</div>
-						</template>
-						<template v-else>
-							
-								<div class="icon">
-									<i class="far fa-envelope"></i>
-								</div>
-								<div class="content">
-									<div class="date">{{ notifications[0].created_at }}</div>
-									Имате запитване относно {{ notifications[0].data }}
-								</div>
-						</template>
-					</a>
-				</li>
+			<ul class="list-group col-6">
+				<a
+					class="list-group-item list-group-item-action d-flex align-items-center"
+					href="#" v-for="notification in notifications"
+					:class="{ 'active': notification.read_at == null }"
+					@click.prevent="openNotification(notification)">
+
+					<template v-if="notification.feed_notifiable_type == 'App\\Order'">
+						<i class="fas fa-user mr-3"></i>
+						<div>
+							<div>Имате заявка за {{ notification.data }}</div>
+							<small>{{ notification.created_at }}</small>
+						</div>
+					</template>
+					<template v-else>
+						<i class="far fa-envelope mr-3"></i>
+						<div>
+							<div>Имате запитване за {{ notification.data }}</div>
+							<small>{{ notification.created_at }}</small>
+						</div>
+					</template>
+				</a>
 			</ul>
 		</template>
 		<template v-else>
-			<h5>Няма налични известия</h5>
+			<h5>Нямате налични известия</h5>
 		</template>
 	</div>
 </template>
@@ -42,10 +40,6 @@
     	},
 
     	methods: {
-    		// openNotification(id) {
-    		// 	console.log(id);
-    		// 	this.markAsRead(id);
-    		// },
 
     		openNotification(item) {
     			let vm = this;
