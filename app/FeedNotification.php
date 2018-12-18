@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class FeedNotification extends Model
 {
@@ -16,5 +17,10 @@ class FeedNotification extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+    	return Carbon::parse($value)->diffForHumans();
     }
 }
