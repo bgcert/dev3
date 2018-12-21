@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Видео стрийминг, Професионален видео стрийминг, стрийминг на живо, стрийминг на събития, излъчване на живо, видео излъчване')
+
 @section('content')
 
 <div class="live-streaming-header d-flex justify-content-center align-items-center">
@@ -8,7 +10,7 @@
 
 <div class="container">
 	<div class="text-center">
-		<h3 class="mt-4">Професионален стрийминг на събития</h3>
+		<h3 class="mt-4">Професионален видео стрийминг на събития</h3>
 
 		<p class="my-4">
 			Организирате курс или семинар? Достигнете до Вашата аудитория навсякъде!
@@ -32,7 +34,7 @@
 						<li class="list-group-item">* Видео запис</li>
 						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
-					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
+					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената. Цената е с включен ДДС.</small></p>
 				</div>
 				<div class="card-footer">
 					<a href="#" class="btn btn-success btn-lg btn-block" @click.prevent="callContactAdmin('Streaming - start 10')">Запитване</a>
@@ -54,7 +56,7 @@
 						<li class="list-group-item">* Видео запис</li>
 						<li class="list-group-item">Техническо съдействие при настройване на техниката, софтуера и стартиране на излъчването</li>
 					</ul>
-					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената.</small></p>
+					<p class="card-text"><small class="text-muted">* Излъчването се записва при предварително заявяване. Услугата е ВКЛЮЧЕНА в цената. Цената е с включен ДДС.</small></p>
 				</div>
 				<div class="card-footer">
 					<a href="#" class="btn btn-warning btn-lg btn-block" @click.prevent="callContactAdmin('Streaming - pro 20')">Запитване</a>
