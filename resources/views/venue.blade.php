@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('description', 'Конферентна зала ' . $venue->name . ' - ' . $venue->company->name)
+@section('keywords', 'Зала, конферентна зала, зала за събития, ' . $venue->name . ', ' . $venue->company->name)
+@section('title', $venue->company->name . ' - ' . $venue->name)
+
 @section('content')
 
 <div

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $event->theme->title)
+@section('description', $event->theme->company->name . ' - ' . $event->theme->excerpt)
+@section('keywords', 'Обучение, ' . $event->theme->title . ', ' . $event->theme->category->name)
+@section('title', $event->theme->company->name . ' - ' . $event->theme->title)
 
 @section('content')
 

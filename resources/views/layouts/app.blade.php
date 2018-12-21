@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <meta name="description" content="Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.">
-    <meta name="keywords" content="курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове">
+    <meta name="description" content="@yield('description', 'Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.')">
+    <meta name="keywords" content="@yield('keywords', 'курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове')">
     <meta name="author" content="Seminari365">
 
     <!-- CSRF Token -->

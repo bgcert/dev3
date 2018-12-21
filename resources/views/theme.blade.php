@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', $theme->title)
+@section('description', $theme->company->name . ' - ' . $theme->excerpt)
+@section('keywords', 'Обучение, ' . $theme->title . ', ' . $theme->category->name)
+@section('title', $theme->company->name . ' - ' . $theme->title)
 
 @section('content')
 
