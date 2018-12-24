@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('description', $event->theme->company->name . ' - ' . $event->theme->title . ' - ' . preg_replace('/[\n\r]/', ' ', $event->theme->excerpt))
+@section('description', $event->theme->title . ' - ' . preg_replace('/[\n\r]/', ' ', $event->theme->excerpt))
 @section('keywords', 'Обучение, ' . $event->theme->title . ', ' . $event->theme->category->name)
-@section('title', $event->theme->company->name . ' - ' . $event->theme->title)
+@section('title', $event->theme->title . ' | ' . $event->theme->company->name . ' | ' . config('app.name'))
 
 @section('content')
 
