@@ -49,7 +49,7 @@ class EventRepository implements EventRepositoryInterface
 
     public function upcoming()
     {
-    	$result = Cache::remember('users', 60, function () {
+    	$result = Cache::remember('events', 60, function () {
 		    return $this->event->where('active', 1)
     				->whereDate('start_date', '>', Carbon::today())
     				->whereHas('theme')

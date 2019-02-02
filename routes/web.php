@@ -19,9 +19,9 @@
 //     return view('query', compact('items'));
 // });
 
-Route::get('/home', function () {
-    return 'hard to remove /home route';
-});
+// Route::get('/home', function () {
+//     return 'hard to remove /home route';
+// });
 
 // PUBLIC ROUTES
 Route::get('/', 'EventController@index')->name('home');

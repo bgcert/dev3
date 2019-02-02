@@ -7,6 +7,7 @@ use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\ResizableImage;
 use Image;
+use Cache;
 
 class EventController extends Controller
 {
@@ -44,6 +45,9 @@ class EventController extends Controller
     public function store(EventRequest $request)
     {
     	$event = \Auth::user()->company->events()->create($request->all());
+
+    	// Forget cache
+    	Cache::forget('events');
 
     	if ($request->teachers) {
     		$event->teachers()->attach($request->teachers);
