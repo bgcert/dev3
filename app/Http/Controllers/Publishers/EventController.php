@@ -93,7 +93,9 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, $id)
     {
-
+    	// Forget cache
+    	Cache::forget('events');
+    	
     	$event = \App\Event::find($id);
     	$event->update($request->all());
 
