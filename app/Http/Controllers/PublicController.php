@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ContactPublisherRequest;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\ProcessOrder;
+use App\Jobs\ProcessInquiry;
 use Jenssegers\Date\Date;
 use App\Notifications\NewAdminContact;
 
@@ -108,9 +109,11 @@ class PublicController extends Controller
     	$company = \App\Company::find($request->company_id);
     	$contactForm = $company->contact_forms()->create($request->all());
 
-    	// Email and push notifications missing!!!
     	// Add user notification
-    	$contactForm->feedNotifications()->create(['user_id' => $company->user_id, 'data' => $request->about]);
+		$contactForm->feedNotifications()->create(['user_id' => $company->user_id, 'data' => $request->about]);
+		
+		// Queue job
+    	ProcessInquiry::dispatch($company);
 
     	return $contactForm;
     }
