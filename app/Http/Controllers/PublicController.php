@@ -77,13 +77,22 @@ class PublicController extends Controller
     	return view('user', compact('user'));
     }
 
-    public function showTheme()
+    public function showTheme($slug)
     {
-    	$theme = \App\Theme::where('id', request()->id)->with('company', 'category')->first();
+		try {
+			if (is_int($slug)) {
+				$theme = \App\Theme::where('id', $slug)->with('company', 'category')->first();
+			} else {
+				$theme = \App\Theme::where('slug', $slug)->with('company', 'category')->first();
+			}
+		} catch (\Throwable $th) {
+			abort(404, 'Страницата не е намерена');
+		}
+    	
     	$popularThemes = \App\Theme::with('company')->where('company_id', $theme->company_id)->limit(5)->get();
     	$relatedEvents = \App\Event::with('theme.company')->where('theme_id', $theme->id)->limit(4)->get();
     	return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
-    }
+	}
 
     public function showVenue()
     {

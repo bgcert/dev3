@@ -43,7 +43,8 @@ Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');
 Route::get('/user/{id}', 'PublicController@user');
 
-Route::get('/theme/{id}', 'PublicController@showTheme');
+Route::get('/theme/{slug}', 'PublicController@showTheme');
+// Route::get('/theme/{slug}', 'PublicController@showThemeBySlug');
 Route::get('/event/{id}', 'EventController@show');
 Route::get('/venue/{id}', 'PublicController@showVenue');
 // Route::get('/video', 'PublicController@video');
@@ -154,5 +155,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['au
 	Route::resource('orders', 'AdminOrderController');
 	Route::resource('contacts', 'AdminContactController');
 	Route::get('/activity', 'AdminController@activity');
+
+	Route::get('/slug-builder', 'AdminController@slugBuilder');
 
 });
