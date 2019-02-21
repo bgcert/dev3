@@ -23,6 +23,7 @@ class Theme extends Model
 					        'company_id',
 					        'category_id',
 					        'title',
+                            'slug',
 					        'excerpt',
 					        'body',
 					        'cover',

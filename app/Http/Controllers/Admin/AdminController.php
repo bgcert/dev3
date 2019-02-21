@@ -21,36 +21,51 @@ class AdminController extends Controller
 
     public function slugBuilder()
     {
-        $themes = \App\Theme::where('slug'. null)->get();
+        $themes = \App\Theme::where('slug', null)->withTrashed()->get();
+
+        // dd($themes);
 
         foreach ($themes as $theme) {
+            $theme->slug = $this->slugify($theme->title);
+            $theme->save();
             echo '<li>' . $theme->title . '</li>: ' . $this->slugify($theme->title);
         }
 
 
-        return 'slug builder';
+        // return 'slug builder';
     }
 
-    public static function slugify($text)
+    public static function slugify($str)
     {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+        $str = self::transliterate($str);
 
-        // transliterate
-        $text = mb_convert_encoding($text, "UTF-8");
+        // replace non letter or digits by -
+        $str = preg_replace('~[^\pL\d]+~u', '-', $str);
 
         // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
+        $str = preg_replace('~[^-\w]+~', '', $str);
 
         // trim
-        $text = trim($text, '-');
+        $str = trim($str, '-');
 
         // remove duplicate -
-        $text = preg_replace('~-+~', '-', $text);
+        $str = preg_replace('~-+~', '-', $str);
 
         // lowercase
-        $text = strtolower($text);
-        
-        return $text;
+        $str = strtolower($str);
+
+        return $str;
+    }
+
+    public static function transliterate($str)
+    {
+        $cyr = [
+                'ж',  'ч',  'щ',   'ш',  'ю',  'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я',
+                'Ж',  'Ч',  'Щ',   'Ш',  'Ю',  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я'];
+        $lat = [
+                'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'q',
+                'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Q'];
+
+        return str_replace($cyr, $lat, $str);
     }
 }
