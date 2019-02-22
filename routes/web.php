@@ -156,7 +156,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['au
 	Route::resource('contacts', 'AdminContactController');
 	Route::get('/activity', 'AdminController@activity');
 
-	Route::get('/slug-builder', 'AdminController@slugBuilder');
+	// Route::get('/slug-builder', 'AdminController@slugBuilder');
 
 });
 

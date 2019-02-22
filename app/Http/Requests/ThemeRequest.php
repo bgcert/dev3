@@ -32,6 +32,7 @@ class ThemeRequest extends FormRequest
         return [
         	'category_id' => 'required|integer',
             'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
             'excerpt' => 'required|string|max:255',
         	'body' => 'required',
         	'cover' => 'filled|string|max:255',
