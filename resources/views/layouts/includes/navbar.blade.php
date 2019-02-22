@@ -84,7 +84,7 @@
 				<button class="btn btn-outline-primary d-lg-none mt-2" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Помощ</button>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/page/help">Помощ</a>
-					<a class="dropdown-item" href="/page/report">Докладване</a>
+					<a class="dropdown-item" href="/page/report" rel="nofollow">Докладване</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="/page/contact">Контакти</a>
 				</div>

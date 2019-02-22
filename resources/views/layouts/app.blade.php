@@ -12,7 +12,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Семинари365 - Постоянно развитие')</title>
+    <title>@yield('title', 'Семинари365 - Постоянно развитие | Курсове, семинари, конферентни зали')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
