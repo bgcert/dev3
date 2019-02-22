@@ -8,8 +8,8 @@
 					<li><a href="/browse" class="text-white">Обучения</a></li>
 					<li><a href="/v" class="text-white">Зали</a></li>
 					<li><a href="/users/settings#/settings" class="text-white">Бизнес акаунт</a></li>
-					<li><a href="/login" class="text-white">Вход</a></li>
-					<li><a href="/registration" class="text-white">Регистрация</a></li>
+					<li><a href="/login" class="text-white" rel="nofollow">Вход</a></li>
+					<li><a href="/registration" class="text-white" rel="nofollow">Регистрация</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-6 col-md-6">
