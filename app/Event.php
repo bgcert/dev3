@@ -122,4 +122,9 @@ class Event extends Model
     {
     	return Date::parse($this->start_at)->format('F');
     }
+
+    public function getMonthSlugAttribute()
+    {
+    	return strtolower(Date::parse($this->start_date)->format('d-m'));
+    }
 }

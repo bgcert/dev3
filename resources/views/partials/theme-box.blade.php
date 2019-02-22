@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="card-body mt-3">
-			<a href="/theme/{{ $theme->id }}" class="card-title">{{ $theme->title }}</a>
+			<a href="/{{ $theme->slug }}/{{ $theme->id }}" class="card-title">{{ $theme->title }}</a>
 		</div>
 	</div>
 </div>

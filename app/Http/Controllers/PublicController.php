@@ -77,21 +77,32 @@ class PublicController extends Controller
     	return view('user', compact('user'));
     }
 
-    public function showTheme($slug)
+    public function showThemeById($id)
     {
 		try {
-			if (is_int($slug)) {
-				$theme = \App\Theme::where('id', $slug)->with('company', 'category')->first();
-			} else {
-				$theme = \App\Theme::where('slug', $slug)->with('company', 'category')->first();
-			}
+			$theme = \App\Theme::where('id', $id)->with('company', 'category')->first();
+
+			$popularThemes = \App\Theme::with('company')->where('company_id', $theme->company_id)->limit(5)->get();
+			$relatedEvents = \App\Event::with('theme.company')->where('theme_id', $theme->id)->limit(4)->get();
+			
+			return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
 		} catch (\Throwable $th) {
 			abort(404, 'Страницата не е намерена');
 		}
-    	
-    	$popularThemes = \App\Theme::with('company')->where('company_id', $theme->company_id)->limit(5)->get();
-    	$relatedEvents = \App\Event::with('theme.company')->where('theme_id', $theme->id)->limit(4)->get();
-    	return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
+	}
+
+	public function showThemeBySlug($slug)
+    {
+		try {
+			$theme = \App\Theme::where('slug', $slug)->with('company', 'category')->first();
+
+			$popularThemes = \App\Theme::with('company')->where('company_id', $theme->company_id)->limit(5)->get();
+			$relatedEvents = \App\Event::with('theme.company')->where('theme_id', $theme->id)->limit(4)->get();
+
+			return view('theme', compact('theme', 'popularThemes', 'relatedEvents'));
+		} catch (\Throwable $th) {
+			abort(404);
+		}
 	}
 
     public function showVenue()

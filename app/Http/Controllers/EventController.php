@@ -41,9 +41,9 @@ class EventController extends Controller
     	return view('browse', compact('categories', 'cities', 'events'));
     }
 
-    public function show()
+    public function show($id)
     {
-    	$event = $this->event->show(request()->id);
+    	$event = $this->event->show($id);
 
     	// Add new visit
     	$event->visit();
@@ -54,5 +54,20 @@ class EventController extends Controller
     	// Repository optimized
     	$relatedEvents = $this->event->related($event->theme->category->id);
     	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
-    }
+	}
+
+	public function showBySlug($slug = null, $date = null, $id)
+    {
+    	$event = $this->event->show($id);
+
+    	// Add new visit
+    	$event->visit();
+
+    	// Not optimized via repository
+    	$popularThemes = \App\Theme::with('company')->limit(5)->get();
+
+    	// Repository optimized
+    	$relatedEvents = $this->event->related($event->theme->category->id);
+    	return view('event', compact('event', 'popularThemes', 'relatedEvents'));
+	}
 }

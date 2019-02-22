@@ -43,7 +43,7 @@ Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');
 Route::get('/user/{id}', 'PublicController@user');
 
-Route::get('/theme/{slug}', 'PublicController@showTheme');
+Route::get('/theme/{slug}', 'PublicController@showThemeById');
 // Route::get('/theme/{slug}', 'PublicController@showThemeBySlug');
 Route::get('/event/{id}', 'EventController@show');
 Route::get('/venue/{id}', 'PublicController@showVenue');
@@ -159,3 +159,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin',  'middleware' => ['au
 	Route::get('/slug-builder', 'AdminController@slugBuilder');
 
 });
+
+// SEO Routes!
+Route::get('/{slug}', 'PublicController@showThemeBySlug');
+Route::get('/{slug}/{id}', 'PublicController@showThemeBySlug');
+Route::get('/{slug}/{date}/{id}', 'EventController@showBySlug');

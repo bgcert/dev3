@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -21,40 +22,16 @@ class AdminController extends Controller
 
     public function slugBuilder()
     {
-        $themes = \App\Theme::where('slug', null)->withTrashed()->get();
-
-        // dd($themes);
+        // $themes = \App\Theme::where('slug', '')->withTrashed()->get();
+        $themes = \App\Theme::withTrashed()->get();
 
         foreach ($themes as $theme) {
-            $theme->slug = $this->slugify($theme->title);
+            $slug = self::transliterate($theme->title);
+            $theme->timestamps = false;
+            $theme->slug = Str::slug($slug, '-');
             $theme->save();
-            echo '<li>' . $theme->title . '</li>: ' . $this->slugify($theme->title);
+            echo '<li>' . $theme->title . '</li>: ' . $theme->slug;
         }
-
-
-        // return 'slug builder';
-    }
-
-    public static function slugify($str)
-    {
-        $str = self::transliterate($str);
-
-        // replace non letter or digits by -
-        $str = preg_replace('~[^\pL\d]+~u', '-', $str);
-
-        // remove unwanted characters
-        $str = preg_replace('~[^-\w]+~', '', $str);
-
-        // trim
-        $str = trim($str, '-');
-
-        // remove duplicate -
-        $str = preg_replace('~-+~', '-', $str);
-
-        // lowercase
-        $str = strtolower($str);
-
-        return $str;
     }
 
     public static function transliterate($str)

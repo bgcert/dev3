@@ -10,7 +10,7 @@
 			</a>
 		</div>
 		<div class="card-body mt-3">
-			<a href="/event/{{ $event->id }}" class="card-title">{{ $event->theme->title }}</a>
+			<a href="/{{ $event->theme->slug }}/{{ $event->month_slug }}/{{ $event->id }}" class="card-title">{{ $event->theme->title }}</a>
 			<p class="card-text mt-2">{{ $event->city->name }}, {{ $event->start_date_carbon }}</p>
 		</div>
 
