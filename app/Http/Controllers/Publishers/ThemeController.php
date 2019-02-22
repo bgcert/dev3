@@ -81,7 +81,10 @@ class ThemeController extends Controller
      */
     public function update(ThemeRequest $request, $id)
     {
-    	$theme = \App\Theme::find($id);
+        $theme = \App\Theme::find($id);
+        
+        // Create slug
+        $request->merge(['slug' => $this->slugify($request->title)]);
     	$theme->update($request->all());
     	// Move image from temp folder. Need improvements!!!
     	$this->moveImage($request->cover);
