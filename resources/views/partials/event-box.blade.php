@@ -5,12 +5,12 @@
 		</div>
 
 		<div class="d-flex align-items-center logo" data-toggle="tooltip" data-placement="right" title="{{ $event->theme->company->name }}">
-			<a href="/c/{{ $event->theme->company->slug }}">
-				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $event->theme->company->logo }}">
+			<a href="/c/{{ $event->theme->company->slug }}" title="{{ $event->theme->company->name }}">
+				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $event->theme->company->logo }}" alt="{{ $event->theme->company->name }}">
 			</a>
 		</div>
 		<div class="card-body mt-3">
-			<a href="/{{ $event->theme->slug }}/{{ $event->month_slug }}/{{ $event->id }}" class="card-title">{{ $event->theme->title }}</a>
+			<a href="/{{ $event->theme->slug }}/{{ $event->month_slug }}/{{ $event->id }}" class="card-title" title="{{ $event->theme->title }}">{{ $event->theme->title }}</a>
 			<p class="card-text mt-2">{{ $event->city->name }}, {{ $event->start_date_carbon }}</p>
 		</div>
 

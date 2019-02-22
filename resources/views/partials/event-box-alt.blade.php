@@ -6,7 +6,7 @@
 	</div>
 	<div class="content">
 		<!-- <rateing :rateing="0"></rateing> -->
-		<a href="/event/{{ $event->id }}" class="title">
+		<a href="/event/{{ $event->id }}" class="title" title="{{ $event->theme->title }}">
 			{{ $event->theme->title }}
 		</a>
 		<div class="date">

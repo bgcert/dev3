@@ -5,15 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <meta name="description" content="@yield('description', 'Семинари365 е платформа за търсене и публикуване на курсове, семинари, обучения, зали и конферентни центрове.')">
+    <meta name="description" content="@yield('description', 'Seminari365.com | Платформа за публикуване на обучения и конферентни зали')">
     <meta name="keywords" content="@yield('keywords', 'курсове, семинари, обучения, събития, зали, конферентни зали, конферентни центрове')">
     <meta name="author" content="Seminari365">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Постоянно развитие')</title>
+    <title>@yield('title', 'Семинари365 - Постоянно развитие')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

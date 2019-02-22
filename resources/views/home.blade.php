@@ -9,8 +9,8 @@
 	</div>
 	<div class="container">
 
-		<h1 class="display-4">Семинари 365</h1>
-		<h2>Открий курс днес. Бъди успешен утре.</h2>
+		<h2 class="display-4">Семинари 365</h2>
+		<h3 class="text-white">Открий курс днес. Бъди успешен утре.</h3>
 
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-6 col-md-8">
