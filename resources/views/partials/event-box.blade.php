@@ -6,7 +6,7 @@
 
 		<div class="d-flex align-items-center logo" data-toggle="tooltip" data-placement="right" title="{{ $event->theme->company->name }}">
 			<a href="/c/{{ $event->theme->company->slug }}" title="{{ $event->theme->company->name }}">
-				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $event->theme->company->logo }}" alt="{{ $event->theme->company->name }}">
+				<img src="https://d3cwccg7mi8onu.cloudfront.net/fit-in/56x56/{{ $event->theme->company->logo }}" alt="{{ $event->theme->company->name }}" title="{{ $event->theme->company->name }}">
 			</a>
 		</div>
 		<div class="card-body mt-3">
