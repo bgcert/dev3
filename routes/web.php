@@ -46,6 +46,14 @@ Route::get('/user/{id}', 'PublicController@user');
 Route::get('/theme/{slug}', 'PublicController@showThemeById');
 // Route::get('/theme/{slug}', 'PublicController@showThemeBySlug');
 Route::get('/event/{id}', 'EventController@show');
+
+Route::get('/event/{id}', function($id){
+	$event = \App\Event::with('theme')->where('id', $id)->first();
+	$url = '/' . $event->theme->slug . '/' . $event->month_slug . '/' . $event->id;
+
+	return redirect($url, 301);
+});
+
 Route::get('/venue/{id}', 'PublicController@showVenue');
 // Route::get('/video', 'PublicController@video');
 
