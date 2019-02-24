@@ -43,10 +43,19 @@ Route::get('/v', 'PublicController@venues');
 Route::get('/c/{slug}', 'PublicController@company');
 Route::get('/user/{id}', 'PublicController@user');
 
+// Theme redirect 301
+Route::get('/theme/{id}', function($id){
+	$theme = \App\Theme::find($id);
+	$url = '/' . $theme->slug . '/' . $theme->id;
+
+	return redirect($url, 301);
+});
+
 Route::get('/theme/{slug}', 'PublicController@showThemeById');
 // Route::get('/theme/{slug}', 'PublicController@showThemeBySlug');
 Route::get('/event/{id}', 'EventController@show');
 
+// Event redirect 301
 Route::get('/event/{id}', function($id){
 	$event = \App\Event::with('theme')->where('id', $id)->first();
 	$url = '/' . $event->theme->slug . '/' . $event->month_slug . '/' . $event->id;
