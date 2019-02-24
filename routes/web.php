@@ -51,9 +51,9 @@ Route::get('/theme/{id}', function($id){
 	return redirect($url, 301);
 });
 
-Route::get('/theme/{slug}', 'PublicController@showThemeById');
+// Route::get('/theme/{slug}', 'PublicController@showThemeById');
 // Route::get('/theme/{slug}', 'PublicController@showThemeBySlug');
-Route::get('/event/{id}', 'EventController@show');
+// Route::get('/event/{id}', 'EventController@show');
 
 // Event redirect 301
 Route::get('/event/{id}', function($id){
