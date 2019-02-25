@@ -22,7 +22,7 @@
 				<li class="breadcrumb-item active"> {{ $event->theme->title }}</li>
 			</ol>
 		</nav>
-		<h2>{{ $event->theme->title }}</h2>
+		<h1>{{ $event->theme->title }}</h1>
 	</div>
 </div>
 

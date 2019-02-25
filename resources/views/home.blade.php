@@ -9,8 +9,8 @@
 	</div>
 	<div class="container">
 
-		<h2 class="display-4">Семинари 365</h2>
-		<h3 class="text-white">Открий курс днес. Бъди успешен утре.</h3>
+		<h1 class="display-4">Семинари 365</h1>
+		<h2 class="text-white">Открий курс днес. Бъди успешен утре.</h2>
 
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-6 col-md-8">
@@ -63,9 +63,9 @@
 
 <section class="mb-4">
 	<div class="segment announce text-center p-4">
-		<h1 class="my-4">
+		<h3 class="my-4">
 			Желаете да публикувате в Семинари 365?
-		</h1>
+		</h3>
 		<a href="/page/publish" class="btn btn-dark btn-lg m-4">Вижте как</a>
 	</div>
 </section>

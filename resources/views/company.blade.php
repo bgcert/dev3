@@ -2,7 +2,7 @@
 
 @section('description', $company->name . ' - ' .  preg_replace('/[\n\r]/', ' ', str_limit($company->description, $words = 300, $end='...')))
 @section('keywords', $company->name . ' - ' . $company->address)
-@section('title', $company->name)
+@section('title', $company->name . ' | Seminari365.com')
 
 @section('content')
 <div class="company-header py-5">
