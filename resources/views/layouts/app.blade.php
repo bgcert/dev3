@@ -14,8 +14,6 @@
 
     <title>@yield('title', 'Семинари365 - Постоянно развитие | Курсове, семинари, конферентни зали')</title>
 
-    @stack('canonical')
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
