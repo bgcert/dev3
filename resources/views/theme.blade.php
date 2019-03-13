@@ -4,6 +4,10 @@
 @section('keywords', 'Обучение, ' . $theme->title . ', ' . $theme->category->name)
 @section('title', $theme->company->name . ' - ' . $theme->title)
 
+@push('canonical')	
+<link rel="canonical" href="/{{ $theme->slug }}/{{ $theme->id }}" />	
+@endpush
+
 @section('content')
 
 <div

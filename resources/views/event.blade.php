@@ -4,6 +4,10 @@
 @section('keywords', 'oбучение ' . $event->theme->title . ', ' . $event->theme->category->name)
 @section('title', $event->theme->title . ' | ' . $event->theme->company->name . ' | ' . config('app.name'))
 
+@push('canonical')	
+<link rel="canonical" href="/{{ $event->theme->slug }}/{{ $event->month_slug }}/{{ $event->id }}" />	
+@endpush
+
 @section('content')
 
 <div
