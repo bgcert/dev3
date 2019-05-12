@@ -48,6 +48,7 @@ class EventController extends Controller
 
     	// Forget cache
     	Cache::forget('events');
+        Cache::forget('event_' . $event->id);
 
     	if ($request->teachers) {
     		$event->teachers()->attach($request->teachers);
@@ -95,6 +96,7 @@ class EventController extends Controller
     {
     	// Forget cache
     	Cache::forget('events');
+        Cache::forget('event_' . $id);
     	
     	$event = \App\Event::find($id);
     	$event->update($request->all());
